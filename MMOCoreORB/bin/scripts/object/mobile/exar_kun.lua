@@ -26,7 +26,7 @@ exar_kun = Creature:new {
 	optionsBitmask = 128,
 	diet = HERBIVORE,
 
-	templates = {"object/mobile/ep3/exar_kun.iff"},
+	templates = {"object/mobile/exar_kun.iff"},
 		
 	lootGroups = {},
 	weapons = {"dark_jedi_weapons_gen4"},
