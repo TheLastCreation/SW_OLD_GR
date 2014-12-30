@@ -11,7 +11,7 @@ death_watch_black_sun_henchman = Creature:new {
 	baseHAM = 15000,
 	baseHAMmax = 15000,
 	armor = 1,
-	resists = {35,35,50,25,45,60,25,30,-1},
+	resists = {35,35,50,25,45,60,25,30,55},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -30,9 +30,12 @@ death_watch_black_sun_henchman = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "death_watch_bunker_commoners", chance = 10000000}
+				{group = "death_watch_bunker_commoners", chance = 5000000},
+				{group = "jetpack_parts", chance = 1000000},				
+				{group = "bounty_hunter_armor", chance = 3500000},
+				{group = "jetpack_base", chance = 500000}
 			},
-			lootChance = 1000000
+			lootChance = 4000000
 		}
 	},
 	weapons = {"pirate_weapons_heavy"},

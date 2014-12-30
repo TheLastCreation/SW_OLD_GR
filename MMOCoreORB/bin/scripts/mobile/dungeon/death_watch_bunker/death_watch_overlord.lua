@@ -12,7 +12,7 @@ death_watch_overlord = Creature:new {
 	baseHAM = 350000,
 	baseHAMmax = 350000,
 	armor = 3,
-	resists = {80,80,90,80,45,45,100,70,-1},
+	resists = {80,80,90,80,45,45,100,70,55},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -31,14 +31,16 @@ death_watch_overlord = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "death_watch_bunker_overlord_shared", chance =  10000000}
+				{group = "death_watch_bunker_overlord_shared", chance =  8000000},
+				{group = "mandalorian_schemes", chance = 2000000}
 			},
 			lootChance = 10000000
 		},
 		{
 			groups = {
 				{group = "death_watch_bunker_overlord_shared", chance =  500000},
-				{group = "death_watch_bunker_overlord_quest", chance  = 9500000}
+				{group = "death_watch_bunker_overlord_quest", chance  = 7500000},
+				{group = "nge_house_commando", chance = 2000000}
 			},
 			lootChance = 5000000
 		}

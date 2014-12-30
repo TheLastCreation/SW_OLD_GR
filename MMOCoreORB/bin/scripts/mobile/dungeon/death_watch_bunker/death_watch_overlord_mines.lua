@@ -4,14 +4,14 @@ death_watch_overlord_mines = Creature:new {
 	pvpFaction = "",
 	faction = "",
 	level = 221,
-	chanceHit = 19,
+	chanceHit = 190,
 	damageMin = 1245,
 	damageMax = 2200,
 	baseXp = 20948,
 	baseHAM = 350000,
 	baseHAMmax = 350000,
 	armor = 3,
-	resists = {80,80,90,80,45,45,100,70,-1},
+	resists = {80,80,90,80,45,45,100,70,55},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -30,7 +30,8 @@ death_watch_overlord_mines = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "death_watch_bunker_overlord_shared", chance =  10000000}
+				{group = "death_watch_bunker_overlord_shared", chance =  8000000},
+				{group = "mandalorian_schemes", chance = 2000000}
 			},
 			lootChance = 5000000
 		}
