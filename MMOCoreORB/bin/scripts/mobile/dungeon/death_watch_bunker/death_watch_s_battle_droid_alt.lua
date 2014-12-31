@@ -33,23 +33,19 @@ death_watch_s_battle_droid_alt = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "death_watch_bunker_commoners", chance = 10000000}
+				{group = "av_21_pp", chance = 10000000},
 			},
-			lootChance = 10000000
-		},
-			groups = {
-				{group = "clothing_attachments", chance = 5000000},
-				{group = "armor_attachments", chance = 5000000}
-			},
-			lootChance = 5000000
+			lootChance = 2000000
 		},
 		{
 			groups = {
-				{group = "color_crystal", chance = 10000000},
+				{group = "droid_loot", chance = 8000000},
+				{group = "nge_house_commando", chance = 2000000}
 			},
-			lootChance = 2500000
+			lootChance = 5000000
 		},
-    },
+		
+},
 	conversationTemplate = "",
 	defaultWeapon = "object/weapon/ranged/droid/droid_droideka_ranged.iff",
 	defaultAttack = "creaturerangedattack"
