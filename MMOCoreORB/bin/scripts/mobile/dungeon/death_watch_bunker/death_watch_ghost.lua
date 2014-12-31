@@ -37,7 +37,7 @@ death_watch_ghost = Creature:new {
 				{group = "mandalorian_schemes", chance = 500000},
 				{group = "nge_house_commando", chance = 2000000}
 			},
-			lootChance = 3500000
+			lootChance = 9000000
 		}
 	},
 	weapons = {"pirate_weapons_heavy"},

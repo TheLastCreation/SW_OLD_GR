@@ -38,7 +38,7 @@ black_sun_assassin_02 = Creature:new {
 				{group = "bounty_hunter_schemes", chance = 2750000},
 				{group = "jetpack_base", chance = 250000}
 			},
-			lootChance = 6500000
+			lootChance = 9000000
 		}	
 	},
 	weapons = {"pirate_weapons_heavy"},

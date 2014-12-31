@@ -42,7 +42,7 @@ death_watch_overlord = Creature:new {
 				{group = "death_watch_bunker_overlord_quest", chance  = 7500000},
 				{group = "nge_house_commando", chance = 2000000}
 			},
-			lootChance = 5000000
+			lootChance = 9000000
 		}
 	},
 	weapons = {"dark_trooper_weapons"},

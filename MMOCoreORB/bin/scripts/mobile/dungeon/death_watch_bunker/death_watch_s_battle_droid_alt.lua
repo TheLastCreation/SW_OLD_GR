@@ -35,14 +35,14 @@ death_watch_s_battle_droid_alt = Creature:new {
 			groups = {
 				{group = "av_21_pp", chance = 10000000},
 			},
-			lootChance = 2000000
+			lootChance = 9000000
 		},
 		{
 			groups = {
 				{group = "droid_loot", chance = 8000000},
 				{group = "nge_house_commando", chance = 2000000}
 			},
-			lootChance = 5000000
+			lootChance = 9000000
 		},
 		
 },
