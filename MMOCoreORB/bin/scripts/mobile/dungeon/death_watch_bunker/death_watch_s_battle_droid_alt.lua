@@ -5,11 +5,11 @@ death_watch_s_battle_droid_alt = Creature:new {
 	faction = "",
 	level = 200,
 	chanceHit = 18,
-	damageMin = 800,
-	damageMax = 1800,
-	baseXp = 1900,
-	baseHAM = 2300,
-	baseHAMmax = 2300,
+	damageMin = 1200,
+	damageMax = 2100,
+	baseXp = 19000,
+	baseHAM = 230000,
+	baseHAMmax = 230000,
 	armor = 2,
 	resists = {85,95,100,60,100,25,40,85,-1},
 	meatType = "",
@@ -33,16 +33,16 @@ death_watch_s_battle_droid_alt = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "colour_crystal", chance = 10000000},
+				{group = "av_21_pp", chance = 10000000},
 			},
 			lootChance = 2000000
 		},
 		{
 			groups = {
-				{group = "clothing_attachments", chance = 5000000},
-				{group = "armor_attachments", chance = 5000000}
+				{group = "droid_loot", chance = 8000000},
+				{group = "nge_house_commando", chance = 2000000}
 			},
-			lootChance = 9000000
+			lootChance = 5000000
 		},
 		
 },
