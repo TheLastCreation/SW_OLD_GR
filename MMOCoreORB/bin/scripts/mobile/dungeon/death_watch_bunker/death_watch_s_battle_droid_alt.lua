@@ -49,7 +49,7 @@ death_watch_s_battle_droid_alt = Creature:new {
 			},
 			lootChance = 2500000
 		},
-},
+    },
 	conversationTemplate = "",
 	defaultWeapon = "object/weapon/ranged/droid/droid_droideka_ranged.iff",
 	defaultAttack = "creaturerangedattack"
