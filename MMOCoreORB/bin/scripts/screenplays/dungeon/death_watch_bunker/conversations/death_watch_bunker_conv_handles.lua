@@ -1,4 +1,4 @@
- Foreman Quest
+-- Foreman Quest
 death_watch_foreman_handler = {  }
 
 function death_watch_foreman_handler:getNextConversationScreen(conversationTemplate, conversingPlayer, selectedOption)
@@ -165,7 +165,7 @@ function death_watch_foreman_handler:runScreenHandlers(conversationTemplate, con
 	return conversationScreen
 end
 
- Haldo Sub-Quest
+-- Haldo Sub-Quest
 death_watch_insane_miner_handler = {  }
 
 function death_watch_insane_miner_handler:getNextConversationScreen(conversationTemplate, conversingPlayer, selectedOption)
@@ -262,7 +262,7 @@ function death_watch_insane_miner_handler:runScreenHandlers(conversationTemplate
 	return conversationScreen
 end
 
-G12-4J Medical Droid
+--G12-4J Medical Droid
 death_watch_g12_4j_handler = {  }
 
 function death_watch_g12_4j_handler:getNextConversationScreen(conversationTemplate, conversingPlayer, selectedOption)
@@ -331,7 +331,7 @@ function death_watch_g12_4j_handler:runScreenHandlers(conversationTemplate, conv
 	return conversationScreen
 end
 
- Treadwell Workshop Droid
+-- Treadwell Workshop Droid
 death_watch_workshop_droid_handler = {  }
 
 function death_watch_workshop_droid_handler:getNextConversationScreen(conversationTemplate, conversingPlayer, selectedOption)
@@ -413,7 +413,7 @@ function death_watch_workshop_droid_handler:runScreenHandlers(conversationTempla
 	return conversationScreen
 end
 
- Rescue Scientist: Rebel Sidequest
+-- Rescue Scientist: Rebel Sidequest
 death_watch_rescue_scientist_handler = {  }
 
 function death_watch_rescue_scientist_handler:getNextConversationScreen(conversationTemplate, conversingPlayer, selectedOption)
@@ -468,7 +468,7 @@ function death_watch_rescue_scientist_handler:runScreenHandlers(conversationTemp
 	return conversationScreen
 end
 
- Lutin Nightstalker: Rebel Sidequest
+-- Lutin Nightstalker: Rebel Sidequest
 lutin_nightstalker_handler = {  }
 
 function lutin_nightstalker_handler:getNextConversationScreen(conversationTemplate, conversingPlayer, selectedOption)
@@ -548,7 +548,7 @@ function lutin_nightstalker_handler:runScreenHandlers(conversationTemplate, conv
 	return conversationScreen
 end
 
- Commander D'krn: Imperial Sidequest
+-- Commander D'krn: Imperial Sidequest
 commander_dkrn_handler = {  }
 
 function commander_dkrn_handler:getNextConversationScreen(conversationTemplate, conversingPlayer, selectedOption)
@@ -659,7 +659,7 @@ function commander_dkrn_handler:runScreenHandlers(conversationTemplate, conversi
 	return conversationScreen
 end
 
- Boba Fett
+-- Boba Fett
 boba_fett_handler = {  }
 
 function boba_fett_handler:getNextConversationScreen(conversationTemplate, conversingPlayer, selectedOption)
