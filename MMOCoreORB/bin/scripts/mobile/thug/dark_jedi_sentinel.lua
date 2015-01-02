@@ -35,7 +35,7 @@ dark_jedi_sentinel = Creature:new {
 				{group = "holocron_dark", chance = 600000},
 				{group = "holocron_light", chance = 600000},
 				{group = "crystals_premium", chance = 600000},
-				{group = "rifles", chance = 1300000},
+				{group = "crystal_named", chance = 1300000},
 				{group = "pistols", chance = 1300000},
 				{group = "melee_weapons", chance = 1300000},
 				{group = "armor_attachments", chance = 1100000},
