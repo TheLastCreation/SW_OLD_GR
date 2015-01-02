@@ -7,9 +7,9 @@ tusken_carnage_champion = Creature:new {
 	chanceHit = 3.85,
 	damageMin = 750,
 	damageMax = 1210,
-	baseXp = 11015,
-	baseHAM = 43000,
-	baseHAMmax = 53000,
+	baseXp = 1101,
+	baseHAM = 4300,
+	baseHAMmax = 5300,
 	armor = 2,
 	resists = {65,40,10,30,-1,30,-1,-1,-1},
 	meatType = "",
@@ -30,18 +30,28 @@ tusken_carnage_champion = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "junk", chance = 1000000},
-				{group = "tusken_common", chance = 4000000},
-				{group = "wearables_all", chance = 1500000},			
-				{group = "bone_armor", chance = 750000},
-				{group = "chitin_armor", chance = 750000},
-				{group = "armor_attachments", chance = 500000},
-				{group = "clothing_attachments", chance = 500000},
-				{group = "color_crystals", chance = 500000},
-				{group = "crystals_select", chance = 500000}
+				{group = "pistols", chance = 3333333},
+				{group = "rifles", chance = 3333333},
+				{group = "carbines", chance = 3333334},
 			},
-			lootChance = 4300000
-		}	
+			lootChance = 70000000
+		},
+		{
+			groups = {
+				{group = "clothing_attachments", chance = 5000000},
+				{group = "armor_attachments", chance = 5000000}
+			},
+			lootChance = 9000000
+		},	
+		{
+			groups = {
+				{group = "jetpack_parts", chance = 1000000},				
+				{group = "bounty_hunter_armor", chance = 3250000},
+				{group = "color_crystal", chance = 1500000},
+				{group = "jetpack_base", chance = 500000}
+			},
+			lootChance = 9500000
+		},
 	},
 	weapons = {"tusken_weapons"},
 	conversationTemplate = "",

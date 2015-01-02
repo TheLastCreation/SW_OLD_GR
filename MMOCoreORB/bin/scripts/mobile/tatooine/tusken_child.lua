@@ -31,14 +31,28 @@ tusken_child = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "junk", chance = 3500000},
-				{group = "tusken_common", chance = 3000000},
-				{group = "wearables_common", chance = 2000000},				
-				{group = "bone_armor", chance = 750000},
-				{group = "chitin_armor", chance = 750000},
+				{group = "pistols", chance = 3333333},
+				{group = "rifles", chance = 3333333},
+				{group = "carbines", chance = 3333334},
 			},
-			lootChance = 2200000
-		}
+			lootChance = 70000000
+		},
+		{
+			groups = {
+				{group = "clothing_attachments", chance = 5000000},
+				{group = "armor_attachments", chance = 5000000}
+			},
+			lootChance = 9000000
+		},	
+		{
+			groups = {
+				{group = "jetpack_parts", chance = 1000000},				
+				{group = "bounty_hunter_armor", chance = 3250000},
+				{group = "color_crystal", chance = 1500000},
+				{group = "jetpack_base", chance = 500000}
+			},
+			lootChance = 9500000
+		},
 	},
 	weapons = {"primitive_weapons"},
 	conversationTemplate = "",

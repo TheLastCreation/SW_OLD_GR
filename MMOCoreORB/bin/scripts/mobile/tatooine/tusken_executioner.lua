@@ -3,13 +3,13 @@ tusken_executioner = Creature:new {
 	socialGroup = "tusken_raider",
 	pvpFaction = "tusken_raider",
 	faction = "tusken_raider",
-	level = 263,
+	level = 150,
 	chanceHit = 23.5,
-	damageMin = 1645,
-	damageMax = 3000,
-	baseXp = 25167,
-	baseHAM = 261000,
-	baseHAMmax = 320000,
+	damageMin = 800,
+	damageMax = 1700,
+	baseXp = 2510,
+	baseHAM = 2610,
+	baseHAMmax = 3200,
 	armor = 3,
 	resists = {85,80,35,100,20,30,45,80,-1},
 	meatType = "",
@@ -30,18 +30,28 @@ tusken_executioner = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "junk", chance = 1500000},
-				{group = "tusken_common", chance = 3000000},
-				{group = "wearables_scarce", chance = 2000000},				
-				{group = "bone_armor", chance = 750000},
-				{group = "chitin_armor", chance = 750000},
-				{group = "armor_attachments", chance = 500000},
-				{group = "clothing_attachments", chance = 500000},
-				{group = "color_crystals", chance = 500000},
-				{group = "crystals_premium", chance = 500000}
+				{group = "pistols", chance = 3333333},
+				{group = "rifles", chance = 3333333},
+				{group = "carbines", chance = 3333334},
 			},
-			lootChance = 7000000
-		}		
+			lootChance = 70000000
+		},
+		{
+			groups = {
+				{group = "clothing_attachments", chance = 5000000},
+				{group = "armor_attachments", chance = 5000000}
+			},
+			lootChance = 9000000
+		},	
+		{
+			groups = {
+				{group = "jetpack_parts", chance = 1000000},				
+				{group = "bounty_hunter_armor", chance = 3250000},
+				{group = "color_crystal", chance = 1500000},
+				{group = "jetpack_base", chance = 500000}
+			},
+			lootChance = 9500000
+		},
 	},
 	weapons = {"tusken_weapons"},
 	conversationTemplate = "",
