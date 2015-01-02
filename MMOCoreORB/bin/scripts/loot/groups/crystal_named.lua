@@ -35,8 +35,8 @@ crystal_named = {
 		{itemTemplate = "bh_schemes", weight = 300000},
 		{itemTemplate = "ancient_lightsaber", weight = 300000},
 		{itemTemplate = "ancient_lightsaber_two", weight = 300000},
-		{groupTemplate ="singing_mountain_clan_force_crystal" , weight = 80000},
-		{groupTemplate = "nightsister_force_crystal", weight = 920000},
+		{itemTemplate = "singing_mountain_clan_force_crystal" , weight = 80000},
+		{itemTemplate = "nightsister_force_crystal", weight = 920000},
 	}
 }
 
