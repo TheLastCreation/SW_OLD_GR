@@ -39,7 +39,7 @@ nk_droideka = Creature:new {
 				{group = "tailor_components", chance = 500000}
 			},
 			lootChance = 9000000
-		}
+		},
 	},
 	defaultAttack = "creaturerangedattack",
 	defaultWeapon = "object/weapon/ranged/droid/droid_droideka_ranged.iff",

@@ -22,14 +22,14 @@ nk_battle_droid_03 = Creature:new {
 	milk = 0,
 	tamingChance = 0,
 	ferocity = 0,
-	pvpBitmask = AGGRESSIVE --+ ATTACKABLE + ENEMY,
+	pvpBitmask = AGGRESSIVE, --+ ATTACKABLE + ENEMY,
 	creatureBitmask = KILLER,
 	optionsBitmask = 128,
 	diet = HERBIVORE,
 
 	templates = {
 		--"object/mobile/death_watch_battle_droid.iff",
-		--"object/mobile/death_watch_battle_droid_02.iff",
+		--"object/mobile/death_watch_battle_droid_02.iff"},
 		"object/mobile/death_watch_battle_droid_03.iff"},
 	lootGroups = {
 		{
@@ -39,7 +39,7 @@ nk_battle_droid_03 = Creature:new {
 				{group = "clothing_attachments", chance = 4500000}
 			},
 			lootChance = 9000000
-		}
+		},
 	},
 	weapons = {"battle_droid_weapons"},
 	conversationTemplate = "",

@@ -28,16 +28,16 @@ nk_s_battle_droid_03 = Creature:new {
 	diet = NONE,
 
 	templates = {
-		"object/mobile/death_watch_s_battle_droid.iff",
+		--"object/mobile/death_watch_s_battle_droid.iff",
 		--"object/mobile/death_watch_s_battle_droid_02.iff",
-		--"object/mobile/death_watch_s_battle_droid_03.iff"},
+		"object/mobile/death_watch_s_battle_droid_03.iff"},
 	lootGroups = {
 		{
 			groups = {
 				{group = "clothing_attachments", chance = 10000000}
 			},
 			lootChance = 900000
-		}
+		},
 	},
 	conversationTemplate = "",
 	defaultWeapon = "object/weapon/ranged/droid/droid_droideka_ranged.iff",

@@ -1,4 +1,4 @@
-nkadv__droideka = Creature:new {
+nk_adv_droideka = Creature:new {
 	--objectName = "@mob/creature_names:nym_droideka_strong",
 	customName = "NK-Advanced Droideka",
 	socialGroup = "",
@@ -45,4 +45,4 @@ nkadv__droideka = Creature:new {
 	defaultWeapon = "object/weapon/ranged/droid/droid_droideka_ranged.iff",
 }
 
-CreatureTemplates:addCreatureTemplate(nk_droideka, "nk_droideka")
+CreatureTemplates:addCreatureTemplate(nk_adv_droideka, "nk_adv_droideka")
