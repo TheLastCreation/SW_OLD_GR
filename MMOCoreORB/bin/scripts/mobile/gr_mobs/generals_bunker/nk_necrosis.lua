@@ -21,7 +21,7 @@ nk_necrosis = Creature:new {
 	milk = 0,
 	tamingChance = 0,
 	ferocity = 0,
-	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
+	pvpBitmask = ATTACKABLE, -- + ATTACKABLE + ENEMY,
 	creatureBitmask = KILLER + STALKER,
 	optionsBitmask = 128,
 	diet = HERBIVORE,
@@ -29,6 +29,7 @@ nk_necrosis = Creature:new {
 	templates = {"object/mobile/ep3/general_grievous.iff"},
 		
 	lootGroups = {},
+	scale = 1.25,
 	weapons = {"dark_jedi_weapons_gen4"},
 	conversationTemplate = "",
 	attacks = merge(lightsabermaster,forcepowermaster)

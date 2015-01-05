@@ -22,7 +22,7 @@ nk_s_battle_droid_02 = Creature:new {
 	milk = 0,
 	tamingChance = 0,
 	ferocity = 0,
-	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
+	pvpBitmask = ATTACKABLE, -- + ATTACKABLE + ENEMY,
 	creatureBitmask = KILLER,
 	optionsBitmask = 128,
 	diet = NONE,
@@ -40,6 +40,7 @@ nk_s_battle_droid_02 = Creature:new {
 		},
 	},
 	conversationTemplate = "",
+	scale = 1.25,
 	defaultWeapon = "object/weapon/ranged/droid/droid_droideka_ranged.iff",
 	defaultAttack = "creaturerangedattack"
 }

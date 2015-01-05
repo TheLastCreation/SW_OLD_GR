@@ -41,6 +41,7 @@ nk_adv_droideka = Creature:new {
 			lootChance = 9000000
 		}
 	},
+	scale = 0.75,
 	defaultAttack = "creaturerangedattack",
 	defaultWeapon = "object/weapon/ranged/droid/droid_droideka_ranged.iff",
 }

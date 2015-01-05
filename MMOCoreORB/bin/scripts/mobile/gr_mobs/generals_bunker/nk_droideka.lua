@@ -26,6 +26,7 @@ nk_droideka = Creature:new {
 	creatureBitmask = PACK + KILLER,
 	optionsBitmask = 128,
 	diet = HERBIVORE,
+	scale = 0.75,
 
 	templates = {"object/mobile/droideka.iff"},
 	lootGroups = {
