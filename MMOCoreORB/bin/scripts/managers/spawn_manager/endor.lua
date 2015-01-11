@@ -132,6 +132,7 @@ endor_static_spawns = {
 	{"r3",60,3250.85,24,-3464.83,263.893,0, "calm", "R3-E5", "stationary"},
 	{"r3",60,-950.705,73,1542.69,331.775,0, "calm", "R3-R1", "stationary"},
 	{"r5",60,3249.85,24,-3464.83,180.771,0, "calm", "R5-J0", "stationary"},
+	{"boba_fett",60,-4676.0,12.7,4335.6,-90,0, "conversation", "", "stationary"},
 }
 
 endor_badges = {
