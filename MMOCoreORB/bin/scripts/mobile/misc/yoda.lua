@@ -28,7 +28,7 @@ yoda = Creature:new {
 
 	templates = {"object/mobile/yoda.iff"},
 	lootGroups = {},
-	weapons = {},
+	weapons = {yoda_weapons},
 	conversationTemplate = "",
 	attacks = merge(lightsabermaster,forcepowermaster)
 }
