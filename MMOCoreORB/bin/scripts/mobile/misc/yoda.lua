@@ -3,15 +3,15 @@ yoda = Creature:new {
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",
-	level = 100,
-	chanceHit = 1,
-	damageMin = 645,
-	damageMax = 1000,
-	baseXp = 9429,
-	baseHAM = 24000,
-	baseHAMmax = 30000,
+	level = 200,
+	chanceHit = 30,
+	damageMin = 900,
+	damageMax = 2000,
+	baseXp = 19429,
+	baseHAM = 34000,
+	baseHAMmax = 50000,
 	armor = 0,
-	resists = {0,0,0,0,0,0,0,0,-1},
+	resists = {50,30,30,30,30,30,30,30,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -21,8 +21,8 @@ yoda = Creature:new {
 	milk = 0,
 	tamingChance = 0,
 	ferocity = 0,
-	pvpBitmask = NONE,
-	creatureBitmask = PACK,
+	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
+	creatureBitmask = KILLER + STALKER,
 	optionsBitmask = 128,
 	diet = HERBIVORE,
 
@@ -30,8 +30,7 @@ yoda = Creature:new {
 	lootGroups = {},
 	weapons = {},
 	conversationTemplate = "",
-	attacks = {
-	}
+	attacks = merge(lightsabermaster,forcepowermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(yoda, "yoda")
