@@ -1,5 +1,5 @@
 exar_kun = Creature:new {
-	objectName = "@mob/creature_names:exar_kun",
+	objectName = "@mob/creature_names:exar_kun_cultist",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",
@@ -26,7 +26,7 @@ exar_kun = Creature:new {
 	optionsBitmask = 128,
 	diet = HERBIVORE,
 
-	templates = {"object/mobile/exar_kun.iff"},
+	templates = {"object/mobile/exar_kun_cultist.iff"},
 		
 	lootGroups = {},
 	weapons = {"dark_jedi_weapons_gen4"},
@@ -34,4 +34,4 @@ exar_kun = Creature:new {
 	attacks = merge(lightsabermaster,forcepowermaster)
 }
 
-CreatureTemplates:addCreatureTemplate(exar_kun, "exar_kun")
+CreatureTemplates:addCreatureTemplate(exar_kun_cultist, "exar_kun_cultist")

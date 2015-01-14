@@ -41,8 +41,8 @@
 --this exception also makes it possible to release a modified version 
 
 
-object_mobile_exar_kun = object_mobile_shared_exar_kun:new {
+object_mobile_exar_kun_cultist = object_mobile_shared_exar_kun_cultist:new {
 
 }
 
-ObjectTemplates:addTemplate(object_mobile_exar_kun, "object/mobile/exar_kun.iff")
+ObjectTemplates:addTemplate(object_mobile_exar_kun_cultist, "object/mobile/exar_kun_cultist.iff")
