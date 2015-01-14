@@ -77,6 +77,7 @@ includeFile("weapon/groups/st_rifleman_weapons.lua")
 includeFile("weapon/groups/st_sniper_weapons.lua")
 includeFile("weapon/groups/stormtrooper_weapons.lua")
 includeFile("weapon/groups/tusken_weapons.lua")
+includeFile("weapon/groups/yoda_weapons.lua")
 
 -- tutorial
 includeFile("weapon/groups/tutorial_bandit.lua")
