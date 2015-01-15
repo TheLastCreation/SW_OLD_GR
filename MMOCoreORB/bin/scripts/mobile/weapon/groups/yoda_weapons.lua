@@ -1,5 +1,5 @@
 yoda_weapons = {
-	"object/weapon/melee/sword/crafted_saber/sword_lightsaber_one_handed_gen4.iff",
+	"object/weapon/melee/sword/crafted_saber/sword_lightsaber_one_handed_gen2.iff",
 }
 
 addWeapon("yoda_weapons", yoda_weapons)

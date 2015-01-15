@@ -1,5 +1,6 @@
 yoda = Creature:new {
-	objectName = "@mob/creature_names:yoda",
+	--objectName = "@mob/creature_names:yoda",
+	customName = "Master_Yoda",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",
@@ -27,8 +28,24 @@ yoda = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/yoda.iff"},
-	lootGroups = {},
-	weapons = {yoda_weapons},
+	lootGroups = {
+	    {
+			groups = {
+				{group = "holocron_dark", chance = 600000},
+				{group = "holocron_light", chance = 600000},
+				{group = "crystals_premium", chance = 600000},
+				{group = "crystal_named", chance = 1300000},
+				{group = "pistols", chance = 1300000},
+				{group = "melee_weapons", chance = 1300000},
+				{group = "armor_attachments", chance = 1100000},
+				{group = "clothing_attachments", chance = 1100000},
+				{group = "carbines", chance = 1300000},
+				{group = "wearables_scarce", chance = 800000}				
+			},
+			lootChance = 8500000
+		}
+	},
+	weapons = {"yoda_weapons"},
 	conversationTemplate = "",
 	attacks = merge(lightsabermaster,forcepowermaster)
 }
