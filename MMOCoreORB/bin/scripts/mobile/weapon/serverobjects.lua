@@ -3,6 +3,9 @@
 -- creature default attack
 includeFile("weapon/creature_default_weapon.lua")
 
+--New Groups
+includeFile("weapon/groups/deathtrooper_weapons.lua")
+
 -- creature spit attacks
 includeFile("weapon/creature_spit_heavy_flame.lua")
 includeFile("weapon/creature_spit_large_green.lua")
