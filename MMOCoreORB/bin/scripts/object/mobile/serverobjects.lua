@@ -53,7 +53,7 @@ includeFile("mobile/vendor/serverobjects.lua")
 
 --New Stuff
 includeFile("mobile/exar_kun.lua")
---includeFile("mobile/exar_kun_cultist.lua")
+includeFile("mobile/exar_kuncultist_01.lua")
 includeFile("mobile/outbreak_undead_deathtrooper_01_m.lua")
 includeFile("mobile/outbreak_undead_deathtrooper_02_m.lua")
 includeFile("mobile/outbreak_undead_deathtrooper_03_m.lua")

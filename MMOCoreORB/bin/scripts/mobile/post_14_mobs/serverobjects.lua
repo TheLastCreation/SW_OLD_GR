@@ -37,5 +37,6 @@ includeFile("post_14_mobs/som/storm_lord.lua")
 
 
 --Root Folder
+includeFile("post_14_mobs/exar_kun.lua")
 includeFile("post_14_mobs/exar_kun_cultist_01.lua")
 includeFile("post_14_mobs/watto.lua")
