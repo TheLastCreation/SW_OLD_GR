@@ -51,4 +51,4 @@ deathtrooper_02 = Creature:new {
 	attacks = merge(pistoleermaster,carbineermaster,marksmanmaster,riflemanmaster)
 }
 
-CreatureTemplates:addCreatureTemplate(deathtrooper_02, "deathtrooper_02_m")
+CreatureTemplates:addCreatureTemplate(deathtrooper_02, "deathtrooper_02")
