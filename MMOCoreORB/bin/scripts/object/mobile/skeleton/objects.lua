@@ -41,6 +41,19 @@
 --which carries forward this exception.
 
 
+--New Stuff
+
+--***********************************************************************************************************************************************
+
+object_mobile_skeleton_shared_undead_humanoid = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/skeleton/shared_undead_humanoid.iff"
+
+
+}
+
+ObjectTemplates:addClientTemplate(object_mobile_skeleton_shared_undead_humanoid, "object/mobile/skeleton/shared_undead_humanoid.iff")
+--***********************************************************************************************************************************************
+
 object_mobile_skeleton_shared_acklay = SharedCreatureObjectTemplate:new {
 	clientTemplateFileName = "object/mobile/skeleton/shared_acklay.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups
