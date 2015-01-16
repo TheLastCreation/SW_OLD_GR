@@ -1,5 +1,5 @@
-deathtrooper_01 = Creature:new {
-	--objectName = "@mob/creature_names:deathtrooper_01",
+deathtrooper_02 = Creature:new {
+	--objectName = "@mob/creature_names:deathtrooper_02",
 	customName = "Deathtrooper",
 	socialGroup = "",
 	pvpFaction = "",
@@ -51,4 +51,4 @@ deathtrooper_01 = Creature:new {
 	attacks = merge(pistoleermaster,carbineermaster,marksmanmaster,riflemanmaster)
 }
 
-CreatureTemplates:addCreatureTemplate(deathtrooper_01, "deathtrooper_01_m")
+CreatureTemplates:addCreatureTemplate(deathtrooper_02, "deathtrooper_02_m")
