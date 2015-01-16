@@ -53,7 +53,7 @@ includeFile("mobile/vendor/serverobjects.lua")
 
 --New Stuff
 includeFile("mobile/exar_kun.lua")
-includeFile("mobile/exar_kuncultist_01.lua")
+includeFile("mobile/exar_kun_cultist_01.lua")
 includeFile("mobile/outbreak_undead_deathtrooper_01_m.lua")
 includeFile("mobile/outbreak_undead_deathtrooper_02_m.lua")
 includeFile("mobile/outbreak_undead_deathtrooper_03_m.lua")
@@ -85,6 +85,7 @@ includeFile("mobile/outbreak_undead_deathtrooper_28_m.lua")
 
 
 includeFile("mobile/watto.lua")
+includeFile("mobile/yoda.lua")
 
 
 -- Server Objects
@@ -248,8 +249,6 @@ includeFile("mobile/distant_ship_controller.lua")
 includeFile("mobile/dragonet.lua")
 includeFile("mobile/drall_female.lua")
 includeFile("mobile/drall_male.lua")
-includeFile("mobile/exar_kun_cultist.lua")
-includeFile("mobile/yoda.lua")
 includeFile("mobile/dressed_1handsword_trainer_01.lua")
 includeFile("mobile/dressed_1handsword_trainer_02.lua")
 includeFile("mobile/dressed_1handsword_trainer_03.lua")
