@@ -367,3 +367,11 @@ tutorial = {
 dungeon1 = {
 	weatherEnabled = 0,
 }
+
+kaas = {
+	weatherEnabled = 0,
+}
+
+hoth = {
+	weatherEnabled = 0,
+}
