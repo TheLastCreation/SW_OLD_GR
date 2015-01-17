@@ -202,14 +202,14 @@ taanab = {
 
 	planetTravelPoints = {
 		{name = "North Starport", x = -287.58, z = 35, y = 4878.54, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
-		{name = "South Starport", x = 4032.56, z = 37, y = -6234.47, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
+		{name = "South Starport", x = 4032.56, z = 37, y = -6234.47, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1}
 
 	},
 }
 
 talus = {
 
-	weatherEnabled = 1,
+	weatherEnabled = 0,
 
 	planetTravelPoints = {
 		{name = "Dearic Starport", x = 263.58401, z = 6, y = -2952.1284, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
