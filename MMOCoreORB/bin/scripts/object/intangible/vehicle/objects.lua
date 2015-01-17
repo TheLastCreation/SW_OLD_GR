@@ -48,6 +48,13 @@ object_intangible_vehicle_shared_barc_speeder_pcd = SharedIntangibleObjectTempla
 
 ObjectTemplates:addClientTemplate(object_intangible_vehicle_shared_barc_speeder_pcd, "object/intangible/vehicle/shared_barc_speeder_pcd.iff")
 
+object_intangible_vehicle_shared_pod_racer_one_pcd = SharedIntangibleObjectTemplate:new {
+	clientTemplateFileName = "object/intangible/vehicle/shared_pod_racer_one_pcd.iff"
+
+}
+
+ObjectTemplates:addClientTemplate(object_intangible_vehicle_shared_pod_racer_one_pcd, "object/intangible/vehicle/shared_pod_racer_one_pcd.iff")
+
 object_intangible_vehicle_shared_jetpack_pcd = SharedIntangibleObjectTemplate:new {
 	clientTemplateFileName = "object/intangible/vehicle/shared_jetpack_pcd.iff"
 	--Data below here is deprecated and loaded from the tres, keeping for easy lookups

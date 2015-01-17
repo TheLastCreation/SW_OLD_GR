@@ -47,6 +47,13 @@ object_mobile_vehicle_shared_barc_speeder = SharedCreatureObjectTemplate:new {
 
 ObjectTemplates:addClientTemplate(object_mobile_vehicle_shared_barc_speeder, "object/mobile/vehicle/shared_barc_speeder.iff")
 
+object_mobile_vehicle_shared_pod_racer_one = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/vehicle/shared_pod_racer_one.iff"
+
+}
+
+ObjectTemplates:addClientTemplate(object_mobile_vehicle_shared_pod_racer_one, "object/mobile/vehicle/shared_pod_racer_one.iff")
+
 
 object_mobile_vehicle_shared_jetpack = SharedCreatureObjectTemplate:new {
 	clientTemplateFileName = "object/mobile/vehicle/shared_jetpack.iff"

@@ -41,20 +41,22 @@
 --this exception also makes it possible to release a modified version 
 
 
+object_tangible_deed_vehicle_deed_pod_racer_one_deed = object_tangible_deed_vehicle_deed_shared_pod_racer_one_deed:new {
 
---Children folder includes
+	templateType = VEHICLEDEED,
 
--- Server Objects
-includeFile("mobile/vehicle/pod_racer_one.lua")
-includeFile("mobile/vehicle/barc_speeder.lua")
-includeFile("mobile/vehicle/jetpack.lua")
-includeFile("mobile/vehicle/landspeeder_av21.lua")
-includeFile("mobile/vehicle/landspeeder_base.lua")
-includeFile("mobile/vehicle/landspeeder_x31.lua")
-includeFile("mobile/vehicle/landspeeder_x34.lua")
-includeFile("mobile/vehicle/landspeeder_xp38.lua")
-includeFile("mobile/vehicle/speederbike.lua")
-includeFile("mobile/vehicle/speederbike_base.lua")
-includeFile("mobile/vehicle/speederbike_flash.lua")
-includeFile("mobile/vehicle/speederbike_swoop.lua")
-includeFile("mobile/vehicle/vehicle_base.lua")
+	controlDeviceObjectTemplate = "object/intangible/vehicle/pod_racer_one_pcd.iff",
+	generatedObjectTemplate = "object/mobile/vehicle/pod_racer_one.iff",
+
+	numberExperimentalProperties = {1, 1, 1},
+	experimentalProperties = {"XX", "XX", "SR"},
+	experimentalWeights = {1, 1, 1},
+	experimentalGroupTitles = {"null", "null", "exp_durability"},
+	experimentalSubGroupTitles = {"null", "null", "hit_points"},
+	experimentalMin = {0, 0, 28000},
+	experimentalMax = {0, 0, 30000},
+	experimentalPrecision = {0, 0, 0},
+	experimentalCombineType = {0, 0, 1},
+}
+
+ObjectTemplates:addTemplate(object_tangible_deed_vehicle_deed_barc_speeder_deed, "object/tangible/deed/vehicle_deed/pod_racer_one_deed.iff")
