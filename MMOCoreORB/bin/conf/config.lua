@@ -137,7 +137,7 @@ ZonesEnabled = {
 TrePath = "/home/swgemu/workspace/tre"
 
 TreFiles = {
-	"gr_publish_05_01.tre"
+	"gr_publish_05_01.tre",
 	"gr_publish_03_01.tre",
 	"default_patch.tre",
 	"patch_sku1_14_00.tre",
