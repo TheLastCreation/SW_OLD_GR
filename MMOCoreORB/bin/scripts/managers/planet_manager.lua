@@ -196,6 +196,17 @@ rori = {
 	}
 }
 
+taanab = {
+
+	weatherEnabled = 1,
+
+	planetTravelPoints = {
+		{name = "North Starport", x = -287.58, z = 35, y = 4878.54, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
+		{name = "South Starport", x = 4032.56, z = 37, y = -6234.47, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
+
+	},
+}
+
 talus = {
 
 	weatherEnabled = 1,
