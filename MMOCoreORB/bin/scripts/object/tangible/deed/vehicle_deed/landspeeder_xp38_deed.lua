@@ -41,30 +41,22 @@
 --this exception also makes it possible to release a modified version 
 
 
+object_tangible_deed_vehicle_deed_landspeeder_xp38_deed = object_tangible_deed_vehicle_deed_shared_landspeeder_xp38_deed:new {
 
---Children folder includes
+	templateType = VEHICLEDEED,	
 
--- Server Objects
-includeFile("intangible/vehicle/barc_speeder_pcd.lua")
-includeFile("intangible/vehicle/barc_speeder_imperial_pcd.lua")
-includeFile("intangible/vehicle/barc_speeder_rebel_pcd.lua")
-includeFile("intangible/vehicle/landspeeder_desert_skiff_pcd.lua")
-includeFile("intangible/vehicle/landspeeder_lava_skiff.lua")
-includeFile("intangible/vehicle/landspeeder_organa_pcd.lua")
-includeFile("intangible/vehicle/landspeeder_tantive4_pcd.lua")
-includeFile("intangible/vehicle/landspeeder_usv5_pcd.lua")
-includeFile("intangible/vehicle/landspeeder_v35_pcd.lua")
-includeFile("intangible/vehicle/landspeeder_xp38_pcd.lua")
-includeFile("intangible/vehicle/pod_racer_one_pcd.lua")
-includeFile("intangible/vehicle/pod_racer_two_pcd.lua")
-includeFile("intangible/vehicle/sith_speeder_pcd.lua")
+	controlDeviceObjectTemplate = "object/intangible/vehicle/landspeeder_av21_pcd.iff",
+	generatedObjectTemplate = "object/mobile/vehicle/landspeeder_av21.iff",
 
--- Server Objects
-includeFile("intangible/vehicle/jetpack_pcd.lua")
-includeFile("intangible/vehicle/landspeeder_av21_pcd.lua")
-includeFile("intangible/vehicle/landspeeder_x31_pcd.lua")
-includeFile("intangible/vehicle/landspeeder_x34_pcd.lua")
-includeFile("intangible/vehicle/speederbike_flash_pcd.lua")
-includeFile("intangible/vehicle/speederbike_pcd.lua")
-includeFile("intangible/vehicle/speederbike_swoop_pcd.lua")
-includeFile("intangible/vehicle/vehicle_pcd_base.lua")
+	numberExperimentalProperties = {1, 1, 1},
+	experimentalProperties = {"XX", "XX", "SR"},
+	experimentalWeights = {1, 1, 1},
+	experimentalGroupTitles = {"null", "null", "exp_durability"},
+	experimentalSubGroupTitles = {"null", "null", "hit_points"},
+	experimentalMin = {0, 0, 1500},
+	experimentalMax = {0, 0, 3000},
+	experimentalPrecision = {0, 0, 0},
+	experimentalCombineType = {0, 0, 1},
+}
+
+ObjectTemplates:addTemplate(object_tangible_deed_vehicle_deed_landspeeder_xp38_deed, "object/tangible/deed/vehicle_deed/landspeeder_xp38_deed.iff")

@@ -41,30 +41,8 @@
 --this exception also makes it possible to release a modified version 
 
 
+object_mobile_vehicle_landspeeder_desert_skiff = object_mobile_vehicle_shared_landspeeder_desert_skiff:new {
 
---Children folder includes
+}
 
--- Server Objects
-includeFile("intangible/vehicle/barc_speeder_pcd.lua")
-includeFile("intangible/vehicle/barc_speeder_imperial_pcd.lua")
-includeFile("intangible/vehicle/barc_speeder_rebel_pcd.lua")
-includeFile("intangible/vehicle/landspeeder_desert_skiff_pcd.lua")
-includeFile("intangible/vehicle/landspeeder_lava_skiff.lua")
-includeFile("intangible/vehicle/landspeeder_organa_pcd.lua")
-includeFile("intangible/vehicle/landspeeder_tantive4_pcd.lua")
-includeFile("intangible/vehicle/landspeeder_usv5_pcd.lua")
-includeFile("intangible/vehicle/landspeeder_v35_pcd.lua")
-includeFile("intangible/vehicle/landspeeder_xp38_pcd.lua")
-includeFile("intangible/vehicle/pod_racer_one_pcd.lua")
-includeFile("intangible/vehicle/pod_racer_two_pcd.lua")
-includeFile("intangible/vehicle/sith_speeder_pcd.lua")
-
--- Server Objects
-includeFile("intangible/vehicle/jetpack_pcd.lua")
-includeFile("intangible/vehicle/landspeeder_av21_pcd.lua")
-includeFile("intangible/vehicle/landspeeder_x31_pcd.lua")
-includeFile("intangible/vehicle/landspeeder_x34_pcd.lua")
-includeFile("intangible/vehicle/speederbike_flash_pcd.lua")
-includeFile("intangible/vehicle/speederbike_pcd.lua")
-includeFile("intangible/vehicle/speederbike_swoop_pcd.lua")
-includeFile("intangible/vehicle/vehicle_pcd_base.lua")
+ObjectTemplates:addTemplate(object_mobile_vehicle_landspeeder_desert_skiff, "object/mobile/vehicle/landspeeder_desert_skiff.iff")

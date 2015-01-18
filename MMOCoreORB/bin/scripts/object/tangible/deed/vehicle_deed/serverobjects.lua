@@ -44,9 +44,22 @@
 
 --Children folder includes
 
--- Server Objects
-includeFile("tangible/deed/vehicle_deed/pod_racer_one_deed.lua")
+-- New Objects
 includeFile("tangible/deed/vehicle_deed/barc_speeder_deed.lua")
+includeFile("tangible/deed/vehicle_deed/barc_speeder_imperial_deed.lua")
+includeFile("tangible/deed/vehicle_deed/barc_speeder_rebel_deed.lua")
+includeFile("tangible/deed/vehicle_deed/landspeeder_desert_skiff_deed.lua")
+includeFile("tangible/deed/vehicle_deed/landspeeder_lava_skiff_deed.lua")
+includeFile("tangible/deed/vehicle_deed/landspeeder_organa_deed.lua")
+includeFile("tangible/deed/vehicle_deed/landspeeder_tantive4_deed.lua")
+includeFile("tangible/deed/vehicle_deed/landspeeder_usv5_deed.lua")
+includeFile("tangible/deed/vehicle_deed/landspeeder_v35_deed.lua")
+includeFile("tangible/deed/vehicle_deed/landspeeder_xp38_deed.lua")
+includeFile("tangible/deed/vehicle_deed/pod_racer_one_deed.lua")
+includeFile("tangible/deed/vehicle_deed/pod_racer_two_deed.lua")
+includeFile("tangible/deed/vehicle_deed/sith_speeder_deed.lua")
+
+-- Server Objects
 includeFile("tangible/deed/vehicle_deed/jetpack_deed.lua")
 includeFile("tangible/deed/vehicle_deed/landspeeder_av21_deed.lua")
 includeFile("tangible/deed/vehicle_deed/landspeeder_x31_deed.lua")

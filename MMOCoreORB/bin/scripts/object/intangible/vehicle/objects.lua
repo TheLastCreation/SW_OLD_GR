@@ -43,17 +43,74 @@
 -- BARC Speeder pcd
 object_intangible_vehicle_shared_barc_speeder_pcd = SharedIntangibleObjectTemplate:new {
 	clientTemplateFileName = "object/intangible/vehicle/shared_barc_speeder_pcd.iff"
-
 }
-
 ObjectTemplates:addClientTemplate(object_intangible_vehicle_shared_barc_speeder_pcd, "object/intangible/vehicle/shared_barc_speeder_pcd.iff")
-
+--*******************************************************************************************************************************************
+object_intangible_vehicle_shared_barc_speeder_imperial_pcd = SharedIntangibleObjectTemplate:new {
+	clientTemplateFileName = "object/intangible/vehicle/shared_barc_speeder_imperial_pcd.iff"
+}
+ObjectTemplates:addClientTemplate(object_intangible_vehicle_shared_barc_speeder_imperial_pcd, "object/intangible/vehicle/shared_barc_speeder_imperial_pcd.iff")
+--*************************************************************************************************************************************************************
+object_intangible_vehicle_shared_barc_speeder_rebel_pcd = SharedIntangibleObjectTemplate:new {
+	clientTemplateFileName = "object/intangible/vehicle/shared_barc_speeder_rebel_pcd.iff"
+}
+ObjectTemplates:addClientTemplate(object_intangible_vehicle_shared_barc_speeder_rebel_pcd, "object/intangible/vehicle/shared_barc_speeder_rebel_pcd.iff")
+--*******************************************************************************************************************************************
+object_intangible_vehicle_shared_landspeeder_ab1_pcd = SharedIntangibleObjectTemplate:new {
+	clientTemplateFileName = "object/intangible/vehicle/shared_landspeeder_ab1_pcd.iff"
+}
+ObjectTemplates:addClientTemplate(object_intangible_vehicle_shared_landspeeder_ab1_pcd, "object/intangible/vehicle/shared_landspeeder_ab1_pcd.iff")
+--**********************************************************************************************************************************************************
+object_intangible_vehicle_shared_landspeeder_desert_skiff_pcd = SharedIntangibleObjectTemplate:new {
+	clientTemplateFileName = "object/intangible/vehicle/shared_landspeeder_desert_skiff_pcd.iff"
+}
+ObjectTemplates:addClientTemplate(object_intangible_vehicle_shared_landspeeder_desert_skiff_pcd, "object/intangible/vehicle/shared_landspeeder_desert_skiff_pcd.iff")
+--**********************************************************************************************************************************************************
+object_intangible_vehicle_shared_landspeeder_lava_skiff_pcd = SharedIntangibleObjectTemplate:new {
+	clientTemplateFileName = "object/intangible/vehicle/shared_landspeeder_lava_skiff_pcd.iff"
+}
+ObjectTemplates:addClientTemplate(object_intangible_vehicle_shared_landspeeder_lava_skiff_pcd, "object/intangible/vehicle/shared_landspeeder_lava_skiff_pcd.iff")
+--**********************************************************************************************************************************************************
+object_intangible_vehicle_shared_landspeeder_organa_pcd = SharedIntangibleObjectTemplate:new {
+	clientTemplateFileName = "object/intangible/vehicle/shared_landspeeder_organa_pcd.iff"
+}
+ObjectTemplates:addClientTemplate(object_intangible_vehicle_shared_landspeeder_organa_pcd, "object/intangible/vehicle/shared_landspeeder_organa_pcd.iff")
+--**********************************************************************************************************************************************************
+object_intangible_vehicle_shared_landspeeder_tantive4_pcd = SharedIntangibleObjectTemplate:new {
+	clientTemplateFileName = "object/intangible/vehicle/shared_landspeeder_tantive4_pcd.iff"
+}
+ObjectTemplates:addClientTemplate(object_intangible_vehicle_shared_landspeeder_tantive4_pcd, "object/intangible/vehicle/shared_landspeeder_tantive4_pcd.iff")
+--**********************************************************************************************************************************************************
+object_intangible_vehicle_shared_landspeeder_usv5_pcd = SharedIntangibleObjectTemplate:new {
+	clientTemplateFileName = "object/intangible/vehicle/shared_landspeeder_usv5_pcd.iff"
+}
+ObjectTemplates:addClientTemplate(object_intangible_vehicle_shared_landspeeder_usv5_pcd, "object/intangible/vehicle/shared_landspeeder_usv5_pcd.iff")
+--**********************************************************************************************************************************************************
+object_intangible_vehicle_shared_landspeeder_v35_pcd = SharedIntangibleObjectTemplate:new {
+	clientTemplateFileName = "object/intangible/vehicle/shared_landspeeder_v35_pcd.iff"
+}
+ObjectTemplates:addClientTemplate(object_intangible_vehicle_shared_landspeeder_v35_pcd, "object/intangible/vehicle/shared_landspeeder_v35_pcd.iff")
+--**********************************************************************************************************************************************************
+object_intangible_vehicle_shared_landspeeder_xp38_pcd = SharedIntangibleObjectTemplate:new {
+	clientTemplateFileName = "object/intangible/vehicle/shared_landspeeder_xp38_pcd.iff"
+}
+ObjectTemplates:addClientTemplate(object_intangible_vehicle_shared_landspeeder_xp38_pcd, "object/intangible/vehicle/shared_landspeeder_xp38_pcd.iff")
+--**********************************************************************************************************************************************************
 object_intangible_vehicle_shared_pod_racer_one_pcd = SharedIntangibleObjectTemplate:new {
 	clientTemplateFileName = "object/intangible/vehicle/shared_pod_racer_one_pcd.iff"
-
 }
-
 ObjectTemplates:addClientTemplate(object_intangible_vehicle_shared_pod_racer_one_pcd, "object/intangible/vehicle/shared_pod_racer_one_pcd.iff")
+--*********************************************************************************************************************************************
+object_intangible_vehicle_shared_pod_racer_two_pcd = SharedIntangibleObjectTemplate:new {
+	clientTemplateFileName = "object/intangible/vehicle/shared_pod_racer_two_pcd.iff"
+}
+ObjectTemplates:addClientTemplate(object_intangible_vehicle_shared_pod_racer_two_pcd, "object/intangible/vehicle/shared_pod_racer_two_pcd.iff")
+--*********************************************************************************************************************************************
+object_intangible_vehicle_shared_sith_speeder_pcd = SharedIntangibleObjectTemplate:new {
+	clientTemplateFileName = "object/intangible/vehicle/shared_sith_speeder_pcd.iff"
+}
+ObjectTemplates:addClientTemplate(object_intangible_vehicle_shared_sith_speeder_pcd, "object/intangible/vehicle/shared_sith_speeder_pcd.iff")
+--*******************************************************************************************************************************************
 
 object_intangible_vehicle_shared_jetpack_pcd = SharedIntangibleObjectTemplate:new {
 	clientTemplateFileName = "object/intangible/vehicle/shared_jetpack_pcd.iff"

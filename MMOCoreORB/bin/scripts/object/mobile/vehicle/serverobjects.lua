@@ -44,9 +44,21 @@
 
 --Children folder includes
 
--- Server Objects
-includeFile("mobile/vehicle/pod_racer_one.lua")
+-- New Objects
 includeFile("mobile/vehicle/barc_speeder.lua")
+includeFile("mobile/vehicle/barc_speeder_imperial.lua")
+includeFile("mobile/vehicle/barc_speeder_rebel.lua")
+includeFile("mobile/vehicle/landspeeder_ab1.lua")
+includeFile("mobile/vehicle/landspeeder_desert_skiff.lua")
+includeFile("mobile/vehicle/landspeeder_lava_skiff.lua")
+includeFile("mobile/vehicle/landspeeder_organa.lua")
+includeFile("mobile/vehicle/landspeeder_tantive4.lua")
+includeFile("mobile/vehicle/landspeeder_usv5.lua")
+includeFile("mobile/vehicle/pod_racer_one.lua")
+includeFile("mobile/vehicle/pod_racer_two.lua")
+includeFile("mobile/vehicle/sith_speeder.lua")
+
+-- Server Objects
 includeFile("mobile/vehicle/jetpack.lua")
 includeFile("mobile/vehicle/landspeeder_av21.lua")
 includeFile("mobile/vehicle/landspeeder_base.lua")
