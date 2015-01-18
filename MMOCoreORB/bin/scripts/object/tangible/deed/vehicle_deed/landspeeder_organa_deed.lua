@@ -41,7 +41,7 @@
 --this exception also makes it possible to release a modified version 
 
 
-object_tangible_deed_vehicle_deed_landspeeder_organa_deed = object_tangible_deed_vehicle_deed_shared_landspeeder_organa_deed:new {
+object_tangible_deed_vehicle_deed_vehicle_deed_organa_speeder = object_tangible_deed_vehicle_deed_shared_vehicle_deed_organa_speeder:new {
 
 	templateType = VEHICLEDEED,	
 
@@ -59,4 +59,4 @@ object_tangible_deed_vehicle_deed_landspeeder_organa_deed = object_tangible_deed
 	experimentalCombineType = {0, 0, 1},
 }
 
-ObjectTemplates:addTemplate(object_tangible_deed_vehicle_deed_landspeeder_organa_deed, "object/tangible/deed/vehicle_deed/landspeeder_organa_deed.iff")
+ObjectTemplates:addTemplate(object_tangible_deed_vehicle_deed_vehicle_deed_organa_speeder, "object/tangible/deed/vehicle_deed/vehicle_deed_organa_speeder.iff")
