@@ -41,8 +41,9 @@
 --this exception also makes it possible to release a modified version 
 
 
-object_mobile_vehicle_landspeeder_v35_pcd = object_mobile_vehicle_shared_landspeeder_v35_pcd:new {
+object_intangible_vehicle_landspeeder_v35_pcd = object_intangible_vehicle_shared_landspeeder_v35_pcd:new {
+
 
 }
 
-ObjectTemplates:addTemplate(object_mobile_vehicle_landspeeder_v35_pcd, "object/mobile/vehicle/landspeeder_v35_pcd.iff")
+ObjectTemplates:addTemplate(object_intangible_vehicle_landspeeder_v35_pcd, "object/intangible/vehicle/landspeeder_v35_pcd.iff")
