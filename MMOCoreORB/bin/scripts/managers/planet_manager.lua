@@ -196,20 +196,9 @@ rori = {
 	}
 }
 
-taanab = {
-
-	weatherEnabled = 1,
-
-	planetTravelPoints = {
-		{name = "North Starport", x = -287.58, z = 35, y = 4878.54, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
-		{name = "South Starport", x = 4032.56, z = 37, y = -6234.47, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1}
-
-	}
-}
-
 talus = {
 
-	weatherEnabled = 0,
+	weatherEnabled = 1,
 
 	planetTravelPoints = {
 		{name = "Dearic Starport", x = 263.58401, z = 6, y = -2952.1284, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
@@ -369,7 +358,7 @@ dungeon1 = {
 }
 
 kaas = {
-	weatherEnabled = 0,
+	weatherEnabled = 1,
 	
 			planetTravelPoints = {
 		{name = "Starport", x = -5155.0, z = 80, y = -2244, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1}
@@ -377,9 +366,18 @@ kaas = {
 }
 
 hoth = {
-	weatherEnabled = 0,
+	weatherEnabled = 1,
 	
 		planetTravelPoints = {
 		{name = "Starport", x = -2226.0, z = 120, y = 737.0, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1}
+	}
+}
+
+taanab = {
+	weatherEnabled = 1,
+
+		planetTravelPoints = {
+		{name = "North Starport", x = -287.58, z = 35, y = 4878.54, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
+		{name = "South Starport", x = 4032.56, z = 37, y = -6234.47, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1}
 	}
 }
