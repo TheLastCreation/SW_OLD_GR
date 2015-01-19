@@ -45,8 +45,8 @@ object_tangible_deed_vehicle_deed_barc_speeder_rebel_deed = object_tangible_deed
 
 	templateType = VEHICLEDEED,
 
-	controlDeviceObjectTemplate = "object/intangible/vehicle/barc_speeder_pcd.iff",
-	generatedObjectTemplate = "object/mobile/vehicle/barc_speeder.iff",
+	controlDeviceObjectTemplate = "object/intangible/vehicle/barc_speeder_rebel_pcd.iff",
+	generatedObjectTemplate = "object/mobile/vehicle/barc_speeder_rebel.iff",
 
 	numberExperimentalProperties = {1, 1, 1},
 	experimentalProperties = {"XX", "XX", "SR"},

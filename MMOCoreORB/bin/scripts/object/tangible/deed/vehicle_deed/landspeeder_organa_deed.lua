@@ -45,8 +45,8 @@ object_tangible_deed_vehicle_deed_vehicle_deed_organa_speeder = object_tangible_
 
 	templateType = VEHICLEDEED,	
 
-	controlDeviceObjectTemplate = "object/intangible/vehicle/landspeeder_av21_pcd.iff",
-	generatedObjectTemplate = "object/mobile/vehicle/landspeeder_av21.iff",
+	controlDeviceObjectTemplate = "object/intangible/vehicle/landspeeder_organa_pcd.iff",
+	generatedObjectTemplate = "object/mobile/vehicle/landspeeder_organa.iff",
 
 	numberExperimentalProperties = {1, 1, 1},
 	experimentalProperties = {"XX", "XX", "SR"},

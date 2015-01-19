@@ -45,8 +45,8 @@ object_tangible_deed_vehicle_deed_landspeeder_xp38_deed = object_tangible_deed_v
 
 	templateType = VEHICLEDEED,	
 
-	controlDeviceObjectTemplate = "object/intangible/vehicle/landspeeder_av21_pcd.iff",
-	generatedObjectTemplate = "object/mobile/vehicle/landspeeder_av21.iff",
+	controlDeviceObjectTemplate = "object/intangible/vehicle/landspeeder_xp38_pcd.iff",
+	generatedObjectTemplate = "object/mobile/vehicle/landspeeder_xp38.iff",
 
 	numberExperimentalProperties = {1, 1, 1},
 	experimentalProperties = {"XX", "XX", "SR"},
