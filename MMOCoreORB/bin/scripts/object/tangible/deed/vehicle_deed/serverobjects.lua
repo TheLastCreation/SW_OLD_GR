@@ -48,6 +48,7 @@
 includeFile("tangible/deed/vehicle_deed/barc_speeder_deed.lua")
 includeFile("tangible/deed/vehicle_deed/barc_speeder_imperial_deed.lua")
 includeFile("tangible/deed/vehicle_deed/barc_speeder_rebel_deed.lua")
+includeFile("tangible/deed/vehicle_deed/landspeeder_ab1_deed.lua")
 includeFile("tangible/deed/vehicle_deed/landspeeder_desert_skiff_deed.lua")
 includeFile("tangible/deed/vehicle_deed/landspeeder_lava_skiff_deed.lua")
 includeFile("tangible/deed/vehicle_deed/landspeeder_organa_deed.lua")
