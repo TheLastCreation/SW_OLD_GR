@@ -1,3 +1,9 @@
+--GR Screenplay MObs
+includeFile("post_14_mobs/gr_screenplay_mobs/kill_the_general/ktg_imperial_captain.lua")
+includeFile("post_14_mobs/gr_screenplay_mobs/kill_the_general/ktg_palpatine_hologram.lua")
+
+
+
 --Death Troopers
 includeFile("post_14_mobs/death_troopers/deathtrooper_01.lua")
 includeFile("post_14_mobs/death_troopers/deathtrooper_02.lua")

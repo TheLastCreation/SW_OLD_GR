@@ -6,6 +6,7 @@ require("corvetteTicketTakerLogic")
 
 --GR Screenplays
 includeFile("gr_screenplays/generals_bunker.lua")
+includeFile("gr_screenplays/lok/kill_the_general.lua")
 
 
 -- Theme parks
