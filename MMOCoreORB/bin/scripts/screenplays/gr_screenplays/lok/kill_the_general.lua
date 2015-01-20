@@ -56,8 +56,8 @@ kill_the_general_missions =
 npcMapKillTheGeneral =
 	{
 		{
-			spawnData = { planetName = "naboo", npcTemplate = "ktg_palpatine_hologram", x = 15.1, z = -11.5, y = -20.4, direction = -8, cellID = 1260046, position = STAND },
-			worldPosition = { x = 5386, y = 6402 },
+			spawnData = { planetName = "naboo", npcTemplate = "ktg_palpatine_hologram", x = 15.3334, z = -13.7584, y = -15.7758, direction = -8, cellID = 1260046, position = STAND },
+			worldPosition = { x = 5386, y = 6405 },
 			npcNumber = 1,
 			stfFile = "@gr_themepark/test_convo.stf",
 			missions = kill_the_general_missions
@@ -103,10 +103,10 @@ KillTheGeneral = ThemeParkLogic:new {
 }
 
 registerScreenPlay("KillTheGeneral", true)
-
+--[[
 kill_the_general_mission_giver_conv_handler = mission_giver_conv_handler:new {
 	themePark = KillTheGeneral
 }
 kill_the_general_mission_target_conv_handler = mission_target_conv_handler:new {
 	themePark = KillTheGeneral
-}
+}]]--
