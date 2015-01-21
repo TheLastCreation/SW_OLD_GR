@@ -1,4 +1,4 @@
-includeFile("mobile/som/8t88.lua")
+--[[includeFile("mobile/som/8t88.lua")
 includeFile("mobile/som/asn_121.lua")
 includeFile("mobile/som/battlefield_foreman.lua")
 includeFile("mobile/som/blackguard.lua")
@@ -104,7 +104,7 @@ includeFile("mobile/som/.lua")
 includeFile("mobile/som/.lua")
 includeFile("mobile/som/.lua")
 
-
+]]--
 
 
 includeFile("mobile/som/storm_lord.lua")
