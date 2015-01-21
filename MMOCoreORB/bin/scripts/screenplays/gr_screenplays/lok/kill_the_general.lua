@@ -60,7 +60,7 @@ npcMapKillTheGeneral =
 			worldPosition = { x = 5386, y = 6405 },
 			npcNumber = 1,
 			stfFile = "@gr_themepark/test_convo.stf",
-			missions = kill_the_general_missions
+			missions = ktg_palpatine_hologram_missions
 		},
 		--[[{
 			spawnData = { planetName = "tatooine", npcTemplate = "ree_yees", x = 5.97, z = 0.299998, y = 116.1, direction = 248.813, cellID = 1177466, position = STAND },
