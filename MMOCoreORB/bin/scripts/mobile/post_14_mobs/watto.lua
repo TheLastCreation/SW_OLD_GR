@@ -1,5 +1,6 @@
 watto = Creature:new {
-	objectName = "@mob/creature_names:watto",
+	--objectName = "@mob/creature_names:watto",
+	customName = "Watto",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",
