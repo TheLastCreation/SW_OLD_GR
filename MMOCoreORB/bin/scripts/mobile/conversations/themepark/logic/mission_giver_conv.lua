@@ -247,7 +247,7 @@ function createMissionGiverConvoTemplate(templateName, convoHandler)
 end
 
 --GR Screenplays
-createMissionGiverConvoTemplate("kill_the_general_mission_giver_convotemplate", "kill_the_general_mission_giver_conv_handler")
+--createMissionGiverConvoTemplate("kill_the_general_mission_giver_convotemplate", "kill_the_general_mission_giver_conv_handler")
 
 -- Themeparks
 createMissionGiverConvoTemplate("theme_park_imperial_mission_giver_convotemplate", "theme_park_imperial_mission_giver_conv_handler")
