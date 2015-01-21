@@ -30,7 +30,7 @@ ktg_palpatine_hologram = Creature:new {
 	templates = {"object/mobile/ep3/palpatine_hologram.iff"},
 		
 	lootGroups = {},
-	weapons = {""},
+	weapons = {},
 	conversationTemplate = ""
 	--attacks = merge(lightsabermaster,forcepowermaster)
 }

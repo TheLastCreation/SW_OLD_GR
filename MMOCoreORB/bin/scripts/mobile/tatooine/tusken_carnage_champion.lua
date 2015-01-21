@@ -47,7 +47,7 @@ tusken_carnage_champion = Creature:new {
 			groups = {
 				{group = "jetpack_parts", chance = 1000000},				
 				{group = "bounty_hunter_armor", chance = 3250000},
-				{group = "color_crystal", chance = 1500000},
+				{group = "color_crystals", chance = 1500000},
 				{group = "jetpack_base", chance = 500000}
 			},
 			lootChance = 9500000
