@@ -1,4 +1,4 @@
-kill_the_general_missions =
+ktg_palpatine_hologram_missions =
 {
 	{
 		missionType = "assassinate",
