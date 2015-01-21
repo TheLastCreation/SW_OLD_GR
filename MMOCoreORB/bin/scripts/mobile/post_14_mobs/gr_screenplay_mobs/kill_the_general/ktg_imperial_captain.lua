@@ -1,6 +1,6 @@
 ktg_imperial_captain = Creature:new {
-	objectName = "@mob/creature_names:crackdown_imperial_army_captain",
-	customName - "Imperial Captain",
+	--objectName = "@mob/creature_names:crackdown_imperial_army_captain",
+	customName = "Imperial Captain",
 	socialGroup = "imperial",
 	pvpFaction = "imperial",
 	faction = "imperial",

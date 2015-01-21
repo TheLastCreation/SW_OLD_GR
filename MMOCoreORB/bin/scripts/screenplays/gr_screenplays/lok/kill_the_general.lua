@@ -103,10 +103,10 @@ KillTheGeneral = ThemeParkLogic:new {
 }
 
 registerScreenPlay("KillTheGeneral", true)
---[[
+
 kill_the_general_mission_giver_conv_handler = mission_giver_conv_handler:new {
 	themePark = KillTheGeneral
 }
 kill_the_general_mission_target_conv_handler = mission_target_conv_handler:new {
 	themePark = KillTheGeneral
-}]]--
+}
