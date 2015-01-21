@@ -30,7 +30,7 @@ ktg_imperial_captain = Creature:new {
 	lootGroups = {},
 	weapons = {},
 	--attacks = merge(riflemanmaster,carbineermaster,brawlermaster),
-	conversationTemplate = "",
+	conversationTemplate = "kill_the_general_mission_target_convotemplate",
 	optionsBitmask = 136
 }
 

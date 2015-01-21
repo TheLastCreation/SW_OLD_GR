@@ -31,7 +31,7 @@ ktg_palpatine_hologram = Creature:new {
 		
 	lootGroups = {},
 	weapons = {},
-	conversationTemplate = ""
+	conversationTemplate = "kill_the_general_mission_giver_convotemplate"
 	--attacks = merge(lightsabermaster,forcepowermaster)
 }
 
