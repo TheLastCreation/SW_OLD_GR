@@ -60,11 +60,11 @@ object_mobile_vehicle_shared_barc_speeder_rebel = SharedCreatureObjectTemplate:n
 }
 ObjectTemplates:addClientTemplate(object_mobile_vehicle_shared_barc_speeder_rebel, "object/mobile/vehicle/shared_barc_speeder_rebel.iff")
 --********************************************************************************************************************************
-object_mobile_vehicle_shared_landspeeder_ab1 = SharedCreatureObjectTemplate:new {
+--[[object_mobile_vehicle_shared_landspeeder_ab1 = SharedCreatureObjectTemplate:new {
 	clientTemplateFileName = "object/mobile/vehicle/shared_landspeeder_ab1.iff"
 
 }
-ObjectTemplates:addClientTemplate(object_mobile_vehicle_shared_landspeeder_ab1, "object/mobile/vehicle/shared_landspeeder_ab1.iff")
+ObjectTemplates:addClientTemplate(object_mobile_vehicle_shared_landspeeder_ab1, "object/mobile/vehicle/shared_landspeeder_ab1.iff")]]--
 --********************************************************************************************************************************
 object_mobile_vehicle_shared_landspeeder_desert_skiff = SharedCreatureObjectTemplate:new {
 	clientTemplateFileName = "object/mobile/vehicle/shared_landspeeder_desert_skiff.iff"
@@ -78,11 +78,11 @@ object_mobile_vehicle_shared_landspeeder_lava_skiff = SharedCreatureObjectTempla
 }
 ObjectTemplates:addClientTemplate(object_mobile_vehicle_shared_landspeeder_lava_skiff, "object/mobile/vehicle/shared_landspeeder_lava_skiff.iff")
 --********************************************************************************************************************************
-object_mobile_vehicle_shared_landspeeder_organa = SharedCreatureObjectTemplate:new {
+--[[object_mobile_vehicle_shared_landspeeder_organa = SharedCreatureObjectTemplate:new {
 	clientTemplateFileName = "object/mobile/vehicle/shared_landspeeder_organa.iff"
 
 }
-ObjectTemplates:addClientTemplate(object_mobile_vehicle_shared_landspeeder_organa, "object/mobile/vehicle/shared_landspeeder_organa.iff")
+ObjectTemplates:addClientTemplate(object_mobile_vehicle_shared_landspeeder_organa, "object/mobile/vehicle/shared_landspeeder_organa.iff")]]--
 --********************************************************************************************************************************
 object_mobile_vehicle_shared_landspeeder_tantive4 = SharedCreatureObjectTemplate:new {
 	clientTemplateFileName = "object/mobile/vehicle/shared_landspeeder_tantive4.iff"
