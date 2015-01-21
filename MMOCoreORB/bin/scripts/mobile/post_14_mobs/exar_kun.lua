@@ -1,5 +1,5 @@
 exar_kun = Creature:new {
-	objectName = "@mob/creature_names:exar_kun",
+	--objectName = "@mob/creature_names:exar_kun",
 	customName = "Exar Kun",
 	socialGroup = "",
 	pvpFaction = "",
