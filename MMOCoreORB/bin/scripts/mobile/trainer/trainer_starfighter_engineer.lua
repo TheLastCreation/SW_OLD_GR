@@ -1,5 +1,6 @@
 trainer_starfighter_engineer = Creature:new {
-	objectName = "@mob/creature_names:trainer_starfighter_engineer",
+	--objectName = "@mob/creature_names:trainer_starfighter_engineer",
+	customName = "Starfighter Engineer Trainer",
 	pvpFaction = "",
 	faction = "",
 	level = 100,

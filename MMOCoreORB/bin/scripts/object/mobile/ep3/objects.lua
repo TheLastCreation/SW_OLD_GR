@@ -43,7 +43,7 @@
 --***********************************************************************************************************************************************************************
 
 
-
+--[[
 object_mobile_ep3_shared_dressed_ep3_warchief = SharedCreatureObjectTemplate:new {
 	clientTemplateFileName = "object/mobile/ep3/shared_dressed_ep3_forest_warchief.iff"
 
@@ -51,7 +51,7 @@ object_mobile_ep3_shared_dressed_ep3_warchief = SharedCreatureObjectTemplate:new
 
 }
 
-ObjectTemplates:addClientTemplate(object_mobile_ep3_shared_dressed_ep3_forest_warchief, "object/mobile/ep3/shared_dressed_ep3_forest_warchief.iff")
+ObjectTemplates:addClientTemplate(object_mobile_ep3_shared_dressed_ep3_forest_warchief, "object/mobile/ep3/shared_dressed_ep3_forest_warchief.iff")]]--
 
 
 --***********************************************************************************************************************************************************************

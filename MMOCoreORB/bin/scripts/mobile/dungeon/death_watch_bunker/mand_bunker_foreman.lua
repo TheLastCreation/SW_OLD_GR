@@ -1,5 +1,5 @@
 mand_bunker_foreman = Creature:new {
-	objectName = "",
+	--objectName = "",
 	customName = "Japer Witter (a mine Foreman)",
 	socialGroup = "death_watch",
 	pvpFaction = "",
