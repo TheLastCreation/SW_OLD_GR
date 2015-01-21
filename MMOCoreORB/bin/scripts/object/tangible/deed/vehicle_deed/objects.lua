@@ -55,10 +55,10 @@ object_tangible_deed_vehicle_deed_shared_barc_speeder_rebel_deed = SharedTangibl
 }
 ObjectTemplates:addClientTemplate(object_tangible_deed_vehicle_deed_shared_barc_speeder_rebel_deed, "object/tangible/deed/vehicle_deed/shared_barc_speeder_rebel_deed.iff")
 --*****************************************************************************************************************************************************************
-object_tangible_deed_vehicle_deed_shared_landspeeder_ab1_deed = SharedTangibleObjectTemplate:new {
+--[[object_tangible_deed_vehicle_deed_shared_landspeeder_ab1_deed = SharedTangibleObjectTemplate:new {
 	clientTemplateFileName = "object/tangible/deed/vehicle_deed/shared_landspeeder_ab1_deed.iff"
 }
-ObjectTemplates:addClientTemplate(object_tangible_deed_vehicle_deed_shared_landspeeder_ab1_deed, "object/tangible/deed/vehicle_deed/shared_landspeeder_ab1_deed.iff")
+ObjectTemplates:addClientTemplate(object_tangible_deed_vehicle_deed_shared_landspeeder_ab1_deed, "object/tangible/deed/vehicle_deed/shared_landspeeder_ab1_deed.iff")]]--
 --**************************************************************************************************************************************************************************
 object_tangible_deed_vehicle_deed_shared_landspeeder_desert_skiff_deed = SharedTangibleObjectTemplate:new {
 	clientTemplateFileName = "object/tangible/deed/vehicle_deed/shared_landspeeder_desert_skiff_deed.iff"
@@ -70,10 +70,10 @@ object_tangible_deed_vehicle_deed_shared_landspeeder_lava_skiff_deed = SharedTan
 }
 ObjectTemplates:addClientTemplate(object_tangible_deed_vehicle_deed_shared_landspeeder_lava_skiff_deed, "object/tangible/deed/vehicle_deed/shared_landspeeder_lava_skiff_deed.iff")
 --**************************************************************************************************************************************************************************
-object_tangible_deed_vehicle_deed_shared_vehicle_deed_organa_speeder = SharedTangibleObjectTemplate:new {
+--[[object_tangible_deed_vehicle_deed_shared_vehicle_deed_organa_speeder = SharedTangibleObjectTemplate:new {
 	clientTemplateFileName = "object/tangible/deed/vehicle_deed/shared_vehicle_deed_organa_speeder.iff"
 }
-ObjectTemplates:addClientTemplate(object_tangible_deed_vehicle_deed_shared_vehicle_deed_organa_speeder, "object/tangible/deed/vehicle_deed/shared_vehicle_deed_organa_speeder.iff")
+ObjectTemplates:addClientTemplate(object_tangible_deed_vehicle_deed_shared_vehicle_deed_organa_speeder, "object/tangible/deed/vehicle_deed/shared_vehicle_deed_organa_speeder.iff")]]--
 --**************************************************************************************************************************************************************************
 object_tangible_deed_vehicle_deed_shared_landspeeder_tantive4_deed = SharedTangibleObjectTemplate:new {
 	clientTemplateFileName = "object/tangible/deed/vehicle_deed/shared_landspeeder_tantive4_deed.iff"
