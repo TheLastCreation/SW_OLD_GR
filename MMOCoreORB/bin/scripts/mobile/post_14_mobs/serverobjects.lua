@@ -1,6 +1,6 @@
---GR Screenplay MObs
-includeFile("post_14_mobs/gr_screenplay_mobs/kill_the_general/ktg_imperial_captain.lua")
-includeFile("post_14_mobs/gr_screenplay_mobs/kill_the_general/ktg_palpatine_hologram.lua")
+--GR Screenplay Mobs
+--includeFile("post_14_mobs/gr_screenplay_mobs/kill_the_general/ktg_imperial_captain.lua")
+--includeFile("post_14_mobs/gr_screenplay_mobs/kill_the_general/ktg_palpatine_hologram.lua")
 
 
 
