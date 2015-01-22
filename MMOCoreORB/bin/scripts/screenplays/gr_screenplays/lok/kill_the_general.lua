@@ -59,7 +59,7 @@ npcMapKillTheGeneral =
 			spawnData = { planetName = "naboo", npcTemplate = "ktg_palpatine_hologram", x = 15.3334, z = -13.7584, y = -15.7758, direction = -8, cellID = 1260046, position = STAND },
 			worldPosition = { x = 5386, y = 6405 },
 			npcNumber = 1,
-			stfFile = "@gr_themepark/ktg_emperor_palpatine",
+			stfFile = "@@theme_park_jabba/ree_yees",
 			missions = ktg_palpatine_hologram_missions
 		},
 	}

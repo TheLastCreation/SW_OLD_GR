@@ -23,8 +23,8 @@ ktg_palpatine_hologram = Creature:new {
 	tamingChance = 0,
 	ferocity = 0,
 	pvpBitmask = NONE, --AGGRESSIVE + ATTACKABLE + ENEMY,
-	creatureBitmask = PACK, --KILLER + STALKER,
-	optionsBitmask = 136,
+	creatureBitmask = NONE, --KILLER + STALKER,
+	optionsBitmask = 264,
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/ep3/palpatine_hologram.iff"},
