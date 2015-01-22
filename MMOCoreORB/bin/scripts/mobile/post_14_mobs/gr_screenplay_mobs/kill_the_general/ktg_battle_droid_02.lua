@@ -24,14 +24,14 @@ ktg_battle_droid_02 = Creature:new {
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE, --+ ATTACKABLE + ENEMY,
 	creatureBitmask = KILLER,
-	optionsBitmask = 136,
+	optionsBitmask = 264,
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/death_watch_battle_droid_02.iff"},
 
 	lootGroups = {},
 	weapons = {"battle_droid_weapons"},
-	conversationTemplate = "kill_the_general_mission_target_convotemplate",
+	conversationTemplate = "ktg_general_mission_target_convotemplate",
 	attacks = merge(pistoleermaster,carbineermaster,marksmanmaster)
 }
 
