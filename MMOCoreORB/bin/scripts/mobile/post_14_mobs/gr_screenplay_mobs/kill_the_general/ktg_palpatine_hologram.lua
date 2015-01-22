@@ -23,16 +23,16 @@ ktg_palpatine_hologram = Creature:new {
 	tamingChance = 0,
 	ferocity = 0,
 	pvpBitmask = NONE, --AGGRESSIVE + ATTACKABLE + ENEMY,
-	creatureBitmask = NONE, --KILLER + STALKER,
-	optionsBitmask = 264,
+	creatureBitmask = PACK, --KILLER + STALKER,
+	optionsBitmask = 136,
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/ep3/palpatine_hologram.iff"},
 		
 	lootGroups = {},
 	weapons = {},
-	conversationTemplate = "kill_the_general_mission_giver_convotemplate"
-	--attacks = merge(lightsabermaster,forcepowermaster)
+	conversationTemplate = "kill_the_general_mission_giver_convotemplate",
+	attacks = {}
 }
 
 CreatureTemplates:addCreatureTemplate(ktg_palpatine_hologram, "ktg_palpatine_hologram")
