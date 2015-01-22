@@ -24,25 +24,14 @@ ktg_battle_droid_02 = Creature:new {
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE, --+ ATTACKABLE + ENEMY,
 	creatureBitmask = KILLER,
-	optionsBitmask = 128,
+	optionsBitmask = 136,
 	diet = HERBIVORE,
 
-	templates = {
-		--"object/mobile/death_watch_battle_droid.iff",
-		"object/mobile/death_watch_battle_droid_02.iff"},
-		--"object/mobile/death_watch_battle_droid_03.iff"},
-	lootGroups = {
-		{
-			groups = {
-				{group = "armor_attachments", chance = 4500000},
-				{group = "death_watch_bunker_commoners", chance = 1000000},
-				{group = "clothing_attachments", chance = 4500000}
-			},
-			lootChance = 9000000
-		},
-	},
+	templates = {"object/mobile/death_watch_battle_droid_02.iff"},
+
+	lootGroups = {},
 	weapons = {"battle_droid_weapons"},
-	conversationTemplate = "",
+	conversationTemplate = "kill_the_general_mission_target_convotemplate",
 	attacks = merge(pistoleermaster,carbineermaster,marksmanmaster)
 }
 

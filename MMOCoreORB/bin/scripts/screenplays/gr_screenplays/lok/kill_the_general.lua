@@ -11,7 +11,7 @@ ktg_palpatine_hologram_missions =
 		},
 		itemSpawns =
 		{
-			{ itemTemplate = "object/tangible/mission/quest_item/singular_nak_q1_needed.iff", itemName = "" }
+			--{ itemTemplate = "object/tangible/mission/quest_item/singular_nak_q1_needed.iff", itemName = "" }
 		},
 		rewards =
 		{
