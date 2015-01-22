@@ -68,7 +68,7 @@ KillTheGeneral = ThemeParkLogic:new {
 	numberOfActs = 1,
 	npcMap = npcMapKillTheGeneral,
 	className = "KillTheGeneral",
-	screenPlayState = "kill_the_general",
+	screenPlayState = "kill_the_general_quest",
 	distance = 400
 }
 
