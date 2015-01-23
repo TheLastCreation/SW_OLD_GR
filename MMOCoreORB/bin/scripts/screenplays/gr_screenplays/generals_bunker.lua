@@ -32,5 +32,16 @@ function GeneralsBunkerScreenPlay:spawnMobiles()
 
 
 
+--TEST Space
+
+	spawnMobile("lok", "nk_droideka",200, -26.3, -9.0, 25.0, 0, 9686004)
+	spawnMobile("lok", "nk_adv_droideka",200, -29.0, -9.0, 25.0, 0, 9686004)
+	spawnMobile("lok", "nk_battle_droid_01",200, -30.5, -9.0, 25.0, 0, 9686004)
+	spawnMobile("lok", "nk_battle_droid_02",200, -32.0, -9.0, 25.0, 0, 9686004)
+	spawnMobile("lok", "nk_battle_droid_03",200, -33.5, -9.0, 25.0, 0, 9686004)
+	spawnMobile("lok", "nk_s_battle_droid_01",200, -35.0, -9.0, 25.0, 0, 9686004)
+	spawnMobile("lok", "nk_s_battle_droid_02",200, -36.5, -9.0, 25.0, 0, 9686004)
+	spawnMobile("lok", "nk_s_battle_droid_03",200, -37.5, -9.0, 25.0, 0, 9686004)
+	spawnMobile("lok", "nk_necrosis",200, -38.4, -9.0, 25.0, 0, 9686004)
 
 end
