@@ -59,4 +59,4 @@ object_tangible_deed_vehicle_deed_vehicle_deed_sith_speeder = object_tangible_de
 	experimentalCombineType = {0, 0, 1},
 }
 
-ObjectTemplates:addTemplate(object_tangible_deed_vehicle_deed_vehicle_deed_sith_speeder, "object/tangible/deed/vehicle_deed_vehicle_deed_sith_speeder.iff")
+ObjectTemplates:addTemplate(object_tangible_deed_vehicle_deed_vehicle_deed_sith_speeder, "object/tangible/deed/vehicle_deed/vehicle_deed_sith_speeder.iff")
