@@ -36,7 +36,7 @@ death_watch_wraith = Creature:new {
 				{group = "mandalorian_schemes", chance = 500000},
 				{group = "death_watch_bunker_ingredient_binary",  chance = 100000}
 			},
-			lootChance = 9000000
+			lootChance = 10000000
 		}
 	},
 	weapons = {"pirate_weapons_heavy"},

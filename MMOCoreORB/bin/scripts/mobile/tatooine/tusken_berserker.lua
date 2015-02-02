@@ -34,23 +34,23 @@ tusken_berserker = Creature:new {
 				{group = "rifles", chance = 3333333},
 				{group = "carbines", chance = 3333334},
 			},
-			lootChance = 70000000
+			lootChance = 100000000
 		},
 		{
 			groups = {
 				{group = "clothing_attachments", chance = 5000000},
-				{group = "armor_attachments", chance = 5000000}
+				{group = "armor_attachments", chance = 5000000},
 			},
-			lootChance = 9000000
+			lootChance = 100000000
 		},	
 		{
 			groups = {
-				{group = "jetpack_parts", chance = 1000000},				
-				{group = "bounty_hunter_armor", chance = 3250000},
-				{group = "color_crystals", chance = 1500000},
-				{group = "jetpack_base", chance = 500000}
+				{group = "jetpack_parts", chance = 2500000},				
+				{group = "bounty_hunter_armor", chance = 2500000},
+				{group = "crystals_premium", chance = 2500000},
+				{group = "jetpack_base", chance = 2500000},
 			},
-			lootChance = 9500000
+			lootChance = 100000000
 		},
 	},
 	weapons = {"tusken_weapons"},

@@ -29,25 +29,30 @@ black_sun_guard_02 = Creature:new {
 
 	templates = {"object/mobile/dressed_black_sun_guard.iff"},
 	lootGroups = {
-         	{
+		{
 			groups = {
-				{group = "armor_attachments", chance = 2500000},
-				{group = "clothing_attachments", chance = 2500000},
-				{group = "blacksun_rare", chance = 1000000},
-				{group = "jetpack_parts", chance = 1000000},				
-				{group = "bounty_hunter_schemes", chance = 3000000}
+				{group = "pistols", chance = 3333333},
+				{group = "rifles", chance = 3333333},
+				{group = "carbines", chance = 3333334},
 			},
-			lootChance = 5500000
+			lootChance = 100000000
 		},
 		{
 			groups = {
-				{group = "deed_voucher", chance = 750000},
-				{group = "clothing_attachment", chance = 4500000},
-				{group = "armor_attachment", chance = 4500000},
-				{group = "jetpack_base", chance = 250000}
+				{group = "clothing_attachments", chance = 5000000},
+				{group = "armor_attachments", chance = 5000000},
 			},
-			lootChance = 1500000
+			lootChance = 100000000
 		},	
+		{
+			groups = {
+				{group = "jetpack_parts", chance = 2500000},				
+				{group = "bounty_hunter_armor", chance = 2500000},
+				{group = "crystals_premium", chance = 2500000},
+				{group = "jetpack_base", chance = 2500000},
+			},
+			lootChance = 100000000
+		},
 	},
 	weapons = {"pirate_weapons_heavy"},
 	conversationTemplate = "",
