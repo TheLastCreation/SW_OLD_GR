@@ -86,7 +86,7 @@ corellia = {
         {templateFile = "object/static/creature/imperial_at_st.iff", ox = 0, oy = 0.290803, oz = 0, ow = 0.956783, x = -220.3, z = 28.0, y = -4872.7, parentid = 0},
         {templateFile = "object/tangible/event_perk/banner_imperial_style_01.iff", ox = 0, oy = 0.290803, oz = 0, ow = 0.956783, x = -176.8, z = 28.0, y = -4728.6, parentid = 0},
         {templateFile = "object/tangible/event_perk/banner_imperial_style_01.iff", ox = 0, oy = 0.290803, oz = 0, ow = 0.956783, x = -176.8, z = 28.0, y = -4719.0, parentid = 0},
-        {templateFile = "object/static/particle/particle_distant_ships_dogfight_t_vs_x_3.iff", ox = 0, oy = 0.290803, oz = 0, ow = 0.956783, x = -153.1, z = 28.0, y = -4730.5, parentid = 0},
+        {templateFile = "object/tangible/jedi/force_shrine_stone.iff", ox = 0, oy = 0.290803, oz = 0, ow = 0.956783, x = -144.2, z = 28.2, y = -4695.7, parentid = 0},
 	}
 }
 
