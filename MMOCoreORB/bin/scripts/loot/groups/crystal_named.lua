@@ -13,7 +13,6 @@ crystal_named = {
 		{itemTemplate = "force_crystal_bondaras_folly", weight = 300000},
 		{itemTemplate = "force_crystal_dawn_of_dagobah", weight = 300000},
 		{itemTemplate = "force_crystal_gallias_intuition", weight = 300000},
-		{itemTemplate = "force_crystal_homs_future", weight = 300000},
 		{itemTemplate = "force_crystal_horns_future", weight = 300000},
 		{itemTemplate = "force_crystal_kenobis_legacy", weight = 300000},
 		{itemTemplate = "force_crystal_kits_ferocity", weight = 300000},
