@@ -581,10 +581,10 @@ void SuiManager::handleCharacterBuilderSelectItem(CreatureObject* player, SuiBox
 
 			} else if (templatePath == "apply_dots") {
 				ManagedReference<SceneObject*> scob = cbSui->getUsingObject();
-				player->addDotState(CreatureState::POISONED, scob->getObjectID(), 100, CreatureAttribute::HEALTH, 60, 80, 0);
-				player->addDotState(CreatureState::BLEEDING, scob->getObjectID(), 100, CreatureAttribute::ACTION, 60, 80, 0);
-				player->addDotState(CreatureState::DISEASED, scob->getObjectID(), 100, CreatureAttribute::ACTION, 60, 80, 0);
-				player->addDotState(CreatureState::ONFIRE, scob->getObjectID(), 100, CreatureAttribute::HEALTH, 60, 80, 0);
+				player->addDotState(player, CreatureState::POISONED, scob->getObjectID(), 100, CreatureAttribute::HEALTH, 60, 80, 0);
+				player->addDotState(player, CreatureState::BLEEDING, scob->getObjectID(), 100, CreatureAttribute::ACTION, 60, 80, 0);
+				player->addDotState(player, CreatureState::DISEASED, scob->getObjectID(), 100, CreatureAttribute::ACTION, 60, 80, 0);
+				player->addDotState(player, CreatureState::ONFIRE, scob->getObjectID(), 100, CreatureAttribute::HEALTH, 60, 80, 0);
 			} else if (templatePath == "clear_dots") {
 				player->clearDots();
 			} else if (templatePath == "max_xp") {
@@ -822,6 +822,54 @@ void SuiManager::sendListBox(SceneObject* usingObject, SceneObject* player, cons
 				box->addMenuItem(optionString);
 			}
 			options.pop();
+		}
+
+		box->setCallback(new LuaSuiCallback(creature->getZoneServer(), screenplay, callback));
+		box->setPromptTitle(title);
+		box->setPromptText(text);
+		box->setUsingObject(usingObject);
+		box->setForceCloseDistance(32.f);
+
+		creature->sendMessage(box->generateMessage());
+		playerObject->addSuiBox(box);
+	}
+}
+
+void SuiManager::sendTransferBox(SceneObject* usingObject, SceneObject* player, const String& title, const String& text, LuaObject& optionsAddFrom, LuaObject& optionsAddTo, const String& screenplay, const String& callback) {
+	if (usingObject == NULL)
+		return;
+
+	if (player == NULL || !player->isCreatureObject())
+		return;
+
+	CreatureObject* creature = cast<CreatureObject*>(player);
+
+	PlayerObject* playerObject = creature->getPlayerObject();
+
+	if (playerObject != NULL) {
+
+		ManagedReference<SuiTransferBox*> box = NULL;
+
+		box = new SuiTransferBox(creature, 0x00);
+
+		if(optionsAddFrom.isValidTable()){
+			String optionAddFromTextString = optionsAddFrom.getStringAt(1);
+			String optionAddFromStartingString = optionsAddFrom.getStringAt(2);
+			String optionAddFromRatioString = optionsAddFrom.getStringAt(3);
+			box->addFrom(optionAddFromTextString,
+					optionAddFromStartingString,
+					optionAddFromStartingString, optionAddFromRatioString);
+			optionsAddFrom.pop();
+		}
+
+		if(optionsAddTo.isValidTable()){
+			String optionAddToTextString = optionsAddTo.getStringAt(1);
+			String optionAddToStartingString = optionsAddTo.getStringAt(2);
+			String optionAddToRatioString = optionsAddTo.getStringAt(3);
+			box->addTo(optionAddToTextString,
+					optionAddToStartingString,
+					optionAddToStartingString, optionAddToRatioString);
+			optionsAddTo.pop();
 		}
 
 		box->setCallback(new LuaSuiCallback(creature->getZoneServer(), screenplay, callback));

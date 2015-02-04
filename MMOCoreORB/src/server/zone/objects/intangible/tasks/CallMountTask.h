@@ -32,7 +32,12 @@ public:
 		if(player->isInCombat())
 			return;
 
-		Locker clocker(device->getControlledObject(), player);
+		ManagedReference<TangibleObject*> vehicle = device->getControlledObject();
+
+		if (vehicle == NULL)
+			return;
+
+		Locker clocker(vehicle, player);
 		device->spawnObject(player);
 	}
 };

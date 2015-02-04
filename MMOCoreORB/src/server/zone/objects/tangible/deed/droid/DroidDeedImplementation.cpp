@@ -12,6 +12,7 @@
 #include "server/zone/managers/creature/CreatureTemplateManager.h"
 #include "server/zone/managers/creature/CreatureManager.h"
 #include "server/zone/managers/creature/PetManager.h"
+#include "server/zone/managers/stringid/StringIdManager.h"
 #include "server/zone/managers/player/PlayerManager.h"
 #include "server/zone/templates/mobile/CreatureTemplate.h"
 #include "server/zone/templates/tangible/DroidDeedTemplate.h"
@@ -112,6 +113,9 @@ void DroidDeedImplementation::updateCraftingValues(CraftingValues* values, bool 
 	}
 	modules.removeAll();
 	overallQuality = values->getCurrentValue("exp_effectiveness");
+	if (overallQuality < 0) {
+		overallQuality = 1;
+	}
 	// @TODO Add crafting values, this should adjust toHit and Speed based on droid ham, also
 
 	// we need to stack modules if they are stackable.
@@ -216,25 +220,10 @@ int DroidDeedImplementation::handleObjectMenuSelect(CreatureObject* player, byte
 			return 1;
 		}
 
-		Reference<PetControlDevice*> controlDevice = (server->getZoneServer()->createObject(controlDeviceObjectTemplate.hashCode(), 1)).castTo<PetControlDevice*>();
-		if( controlDevice == NULL ){
-			player->sendSystemMessage("wrong droid control device template " + controlDeviceObjectTemplate);
-			return 1;
-		}
-
 		Reference<CreatureManager*> creatureManager = player->getZone()->getCreatureManager();
 		if( creatureManager == NULL )
 			return 1;
 
-		Reference<CreatureObject*> creatureObject = creatureManager->createCreature(generatedObjectTemplate.hashCode(), true, mobileTemplate.hashCode() );
-		if( creatureObject == NULL ){
-			player->sendSystemMessage("wrong droid templates;mobileTemplate=[" + mobileTemplate + "];generatedObjectTemplate=[" + generatedObjectTemplate + "]" );
-			return 1;
-		}
-
-		Reference<DroidObject*> droid = creatureObject.castTo<DroidObject*>();
-		if( droid == NULL )
-			return 1;
 		CreatureTemplateManager* creatureTemplateManager = CreatureTemplateManager::instance();
 		Reference<CreatureTemplate*> creatureTemplate =  creatureTemplateManager->getTemplate( mobileTemplate.hashCode() );
 		if( creatureTemplate == NULL ){
@@ -242,8 +231,29 @@ int DroidDeedImplementation::handleObjectMenuSelect(CreatureObject* player, byte
 			return 1;
 		}
 
+		Reference<PetControlDevice*> controlDevice = (server->getZoneServer()->createObject(controlDeviceObjectTemplate.hashCode(), 1)).castTo<PetControlDevice*>();
+		if( controlDevice == NULL ){
+			player->sendSystemMessage("wrong droid control device template " + controlDeviceObjectTemplate);
+			return 1;
+		}
+
+		Reference<CreatureObject*> creatureObject = creatureManager->createCreature(generatedObjectTemplate.hashCode(), true, mobileTemplate.hashCode() );
+		if( creatureObject == NULL ){
+			controlDevice->destroyObjectFromDatabase(true);
+			player->sendSystemMessage("wrong droid templates;mobileTemplate=[" + mobileTemplate + "];generatedObjectTemplate=[" + generatedObjectTemplate + "]" );
+			return 1;
+		}
+
+		Reference<DroidObject*> droid = creatureObject.castTo<DroidObject*>();
+		if( droid == NULL ) {
+			controlDevice->destroyObjectFromDatabase(true);
+			creatureObject->destroyObjectFromDatabase(true);
+			return 1;
+		}
+
 		droid->loadTemplateData( creatureTemplate );
 		droid->setSpecies(species);
+		droid->setCustomObjectName(StringIdManager::instance()->getStringId(*droid->getObjectName()), true);
 
 		// Transfer crafting components from deed to droid
 		ManagedReference<SceneObject*> craftingComponents = getSlottedObject("crafted_components");
@@ -282,7 +292,7 @@ int DroidDeedImplementation::handleObjectMenuSelect(CreatureObject* player, byte
 		}
 		if(droid->isCombatDroid()) {
 			// change ham to match overall setup
-			int maxHam = DroidMechanics::determineHam(overallQuality,species);
+			float maxHam = DroidMechanics::determineHam(overallQuality,species);
 			for (int i = 0; i < 9; ++i) {
 				if (i % 3 == 0) {
 					droid->setMaxHAM(i,maxHam,true);
@@ -317,7 +327,11 @@ int DroidDeedImplementation::handleObjectMenuSelect(CreatureObject* player, byte
 		droid->createChildObjects();
 		controlDevice->setControlledObject(droid);
 		controlDevice->setDefaultCommands();
-		datapad->transferObject(controlDevice, -1);
+
+		if (!datapad->transferObject(controlDevice, -1)) {
+			controlDevice->destroyObjectFromDatabase(true);
+			return 1;
+		}
 
 		datapad->broadcastObject(controlDevice, true);
 

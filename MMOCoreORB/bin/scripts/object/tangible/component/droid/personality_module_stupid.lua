@@ -43,7 +43,10 @@
 
 object_tangible_component_droid_personality_module_stupid = object_tangible_component_droid_shared_personality_module_stupid:new {
 
-
+	templateType = DROIDPERSONALITYCHIP,
+	dataObjectComponent = "DroidPersonalityModuleDataComponent",
+	reactionName = "@npc_reaction/droid_stupid",
+	attrName = "@craft_droid_ingredients_n:personality_module_stupid",
 	numberExperimentalProperties = {1, 1, 2, 1, 2, 1},
 	experimentalProperties = {"XX", "XX", "CD", "OQ", "XX", "CD", "OQ", "XX"},
 	experimentalWeights = {1, 1, 1, 1, 1, 1, 1, 1},

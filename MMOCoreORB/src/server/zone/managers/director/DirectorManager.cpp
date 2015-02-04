@@ -21,6 +21,7 @@
 #include "server/zone/managers/structure/StructureManager.h"
 #include "server/zone/managers/faction/FactionManager.h"
 #include "server/zone/managers/combat/CombatManager.h"
+#include "server/zone/objects/tangible/threat/ThreatMap.h"
 #include "server/zone/managers/templates/TemplateManager.h"
 #include "server/zone/managers/stringid/StringIdManager.h"
 #include "server/zone/managers/name/NameManager.h"
@@ -295,6 +296,7 @@ void DirectorManager::initializeLuaEngine(Lua* luaEngine) {
 	lua_register(luaEngine->getLuaState(), "setQuestStatus", setQuestStatus);
 	lua_register(luaEngine->getLuaState(), "getQuestStatus", getQuestStatus);
 	lua_register(luaEngine->getLuaState(), "removeQuestStatus", removeQuestStatus);
+	lua_register(luaEngine->getLuaState(), "getControllingFaction", getControllingFaction);
 
 	luaEngine->setGlobalInt("POSITIONCHANGED", ObserverEventType::POSITIONCHANGED);
 	luaEngine->setGlobalInt("CLOSECONTAINER", ObserverEventType::CLOSECONTAINER);
@@ -385,6 +387,13 @@ void DirectorManager::initializeLuaEngine(Lua* luaEngine) {
 	luaEngine->setGlobalInt("MOVEIN", ContainerPermissions::MOVEIN);
 	luaEngine->setGlobalInt("MOVEOUT", ContainerPermissions::MOVEOUT);
 	luaEngine->setGlobalInt("WALKIN", ContainerPermissions::WALKIN);
+
+	// Transfer Error Codes
+	luaEngine->setGlobalInt("TRANSFERCANADD", TransferErrorCode::SUCCESS);
+	luaEngine->setGlobalInt("TRANSFERCANTADD", TransferErrorCode::CANTADD);
+	luaEngine->setGlobalInt("TRANSFERCANTREMOVE", TransferErrorCode::CANTREMOVE);
+	luaEngine->setGlobalInt("TRANSFERSUCCESS", 1);
+	luaEngine->setGlobalInt("TRANSFERFAIL", 0);
 
 	// Badges
 	luaEngine->setGlobalInt("COUNT_5", Badge::COUNT_5);
@@ -1424,6 +1433,12 @@ int DirectorManager::forcePeace(lua_State* L) {
 
 	if (creatureObject != NULL) {
 		Locker locker(creatureObject);
+
+		ThreatMap* threatMap = creatureObject->getThreatMap();
+
+		if (threatMap != NULL)
+			threatMap->removeAll();
+
 		CombatManager::instance()->forcePeace(creatureObject);
 	}
 
@@ -2566,4 +2581,29 @@ int DirectorManager::removeQuestStatus(lua_State* L) {
 	instance()->removeQuestStatus(keyString);
 
 	return 0;
+}
+
+int DirectorManager::getControllingFaction(lua_State* L) {
+	if (checkArgumentCount(L, 1) == 1) {
+		instance()->error("incorrect number of arguments passed to DirectorManager::getControllingFaction");
+		ERROR_CODE = INCORRECT_ARGUMENTS;
+		return 0;
+	}
+
+	String zoneName = lua_tostring(L, -1);
+
+	Zone* zone = ServerCore::getZoneServer()->getZone(zoneName);
+
+	if (zone == NULL) {
+		lua_pushnil(L);
+	} else {
+		GCWManager* gcwMan = zone->getGCWManager();
+
+		if (gcwMan == NULL) {
+			lua_pushnil(L);
+		} else {
+			lua_pushinteger(L, gcwMan->getWinningFaction());
+		}
+	}
+	return 1;
 }

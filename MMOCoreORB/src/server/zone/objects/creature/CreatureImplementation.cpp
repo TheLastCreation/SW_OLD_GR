@@ -269,6 +269,38 @@ bool CreatureImplementation::canHarvestMe(CreatureObject* player) {
 
 	return false;
 }
+bool CreatureImplementation::canDroidHarvestMe(CreatureObject* player,CreatureObject* droid) {
+
+	// droid should be able to harvest if in range, with current AI
+	if(!droid->isInRange(_this.get(), 10.0f) || droid->isInCombat() || !player->hasSkill("outdoors_scout_novice")
+			|| droid->isDead() || droid->isIncapacitated() || isPet()) {
+		return false;
+	}
+
+	if (!hasOrganics()) {
+		return false;
+	}
+
+	if (player->getSkillMod("creature_harvesting") < 1) {
+		return false;
+	}
+
+	if (alreadyHarvested.contains(player->getObjectID())) {
+		return false;
+	}
+
+	SceneObject* creatureInventory = getSlottedObject("inventory");
+
+	if (creatureInventory == NULL) {
+		return false;
+	}
+
+	uint64 lootOwnerID = creatureInventory->getContainerPermissions()->getOwnerID();
+
+	if (player->getObjectID() == lootOwnerID || (player->isGrouped() && player->getGroupID() == lootOwnerID))
+		return true;
+	return false;
+}
 
 bool CreatureImplementation::hasSkillToHarvestMe(CreatureObject* player) {
 

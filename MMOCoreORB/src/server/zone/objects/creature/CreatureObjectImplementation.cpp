@@ -501,9 +501,7 @@ void CreatureObjectImplementation::setWeapon(WeaponObject* weao,
 	if (isPlayerCreature()) {
 		PlayerObject* ghost = getSlottedObject("ghost").castTo<PlayerObject*>();
 		if (ghost != NULL) {
-			if (!ghost->hasAbility("counterAttack") && (weapon->isCarbineWeapon() || (weapon->isTwoHandMeleeWeapon() && !weapon->isJediWeapon()))) {
-				SkillManager::instance()->addAbility(ghost, "counterAttack", false);
-			} else if (ghost->hasAbility("counterAttack") && !(weapon->isCarbineWeapon() || (weapon->isTwoHandMeleeWeapon() && !weapon->isJediWeapon()))) {
+			if (ghost->hasAbility("counterAttack") && !(weapon->isCarbineWeapon() || (weapon->isTwoHandMeleeWeapon() && !weapon->isJediWeapon()))) {
 				SkillManager::instance()->removeAbility(ghost, "counterAttack", false);
 			}
 		}
@@ -1311,8 +1309,9 @@ void CreatureObjectImplementation::addSkillMod(const int modType, const String& 
 
 	SkillModEntry newMod = skillModList.getVisibleSkillMod(skillMod);
 
-	if(newMod == oldMod)
+	if(newMod == oldMod) {
 		return;
+	}
 
 	if (notifyClient) {
 		CreatureObjectDeltaMessage4* msg = new CreatureObjectDeltaMessage4(_this.get());
@@ -1740,8 +1739,8 @@ void CreatureObjectImplementation::enqueueCommand(unsigned int actionCRC,
 	QueueCommand* queueCommand = objectController->getQueueCommand(actionCRC);
 
 	if (queueCommand == NULL) {
-		StringBuffer msg;
-		msg << "trying to enqueue NULL QUEUE COMMAND 0x" << hex << actionCRC;
+		//StringBuffer msg;
+		//msg << "trying to enqueue NULL QUEUE COMMAND 0x" << hex << actionCRC;
 		//error(msg.toString());
 
 		//StackTrace::printStackTrace();
@@ -1956,6 +1955,10 @@ void CreatureObjectImplementation::notifyLoadFromDatabase() {
 
 	for (int i = 0; i < playerSkillList->size(); ++i) {
 		Skill* skill = playerSkillList->get(i);
+
+		if (skill == NULL)
+			continue;
+
 		skillManager->awardDraftSchematics(skill, ghost, false);
 
 		totalSkillPointsWasted -= skill->getSkillPointsRequired();

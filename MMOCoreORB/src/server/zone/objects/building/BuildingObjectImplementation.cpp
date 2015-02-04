@@ -801,7 +801,7 @@ void BuildingObjectImplementation::onExit(CreatureObject* player, uint64 parenti
 uint32 BuildingObjectImplementation::getMaximumNumberOfPlayerItems() {
 	SharedStructureObjectTemplate* ssot = dynamic_cast<SharedStructureObjectTemplate*> (templateObject.get());
 	if (isCivicStructure() )
-		return 400;
+		return 250;
 
 	if (ssot == NULL)
 		return 0;
@@ -813,7 +813,7 @@ uint32 BuildingObjectImplementation::getMaximumNumberOfPlayerItems() {
 	if (lots == 0)
 		return MAXPLAYERITEMS;
 
-	return MIN(MAXPLAYERITEMS, lots * 400);
+	return MIN(MAXPLAYERITEMS, lots * 100);
 }
 
 bool BuildingObjectImplementation::transferObject(SceneObject* object, int containmentType, bool notifyClient, bool allowOverflow) {
@@ -1312,8 +1312,7 @@ void BuildingObjectImplementation::createChildObjects(){
 
 				InstallationObject* installation = cast<InstallationObject*>(obj.get());
 				if(installation != NULL){
-					installation->setOwnerObjectID(getObjectID());
-					installation->setOwnerName(this->getObjectNameStringIdName());
+					installation->setOwner(getObjectID());
 				}
 
 				if(gcwMan != NULL){

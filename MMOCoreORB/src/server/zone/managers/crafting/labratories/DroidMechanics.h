@@ -66,6 +66,15 @@ public:
 			return ((rating/600.0) * 100) + 100;
 		return 1;
 	}
+	/** Used to determine harvest droid and trap droid skill mod*/
+	static int determineDroidSkillBonus(float playerSkill, float droidSkill, float baseAmount) {
+		float p1 = (playerSkill + 1)/(float)100;
+		float p2 = 3.55 * p1;
+		float p3 = droidSkill/p2;
+		float p4 = p3/100;
+		float bonus = (baseAmount * p4);
+		return ceil(bonus);
+	}
 };
 
 }

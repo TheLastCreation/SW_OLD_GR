@@ -181,23 +181,23 @@ void GeneticLabratory::setInitialCraftingValues(TangibleObject* prototype, Manuf
 	stunMin = Genetics::determineMinResistance(stunMax);
 	saberMin = Genetics::determineMinResistance(saberMax);
 
-	if(saberMax < 0)
+	if(saberMax <= 0)
 		spSaber = false;
-	if (blastMax < 0)
+	if (blastMax <= 0)
 		spBlast = false;
-	if (kineticMax < 0)
+	if (kineticMax <= 0)
 		spKinetic = false;
-	if (energyMax < 0)
+	if (energyMax <= 0)
 		spEnergy = false;
-	if (heatMax < 0)
+	if (heatMax <= 0)
 		spHeat = false;
-	if (coldMax < 0)
+	if (coldMax <= 0)
 		spCold = false;
-	if (electricMax < 0)
+	if (electricMax <= 0)
 		spElectric = false;
-	if(acidMax < 0)
+	if(acidMax <= 0)
 		spAcid = false;
-	if(stunMax < 0)
+	if(stunMax <= 0)
 		spStun = false;
 
 	craftingValues->addExperimentalProperty("expPhysiqueProfile","fortitude",fortMin,fortMax,0,false,CraftingManager::LINEARCOMBINE);
@@ -286,12 +286,12 @@ void GeneticLabratory::setInitialCraftingValues(TangibleObject* prototype, Manuf
 	int quality = ( ((float)phy->getQuality() * 0.2)+ ((float)pro->getQuality()*0.2) + ((float)men->getQuality()*0.2) + ((float)psy->getQuality()*0.2) + ((float)agr->getQuality()*0.2));
 	bool ranged = false;
 	int odds = 0;
-	float menQual = 7 - men->getQuality();
-	float psyQual = 7 - psy->getQuality();
+	float menQual = men->getQuality() - 1;
+	float psyQual = psy->getQuality() - 1;
 	if (men->isRanged() || psy->isRanged()) {
-		int chance = System::random((assemblySuccess * 10)-100); // so amazing success 100, critical falure is 20
+		int chance = System::random(100-(assemblySuccess * 10)); // so amazing success 100, critical falure is 20
 		// did you roll exceed (7 - Quality) * 10 (VHQ is 0) so always works
-		if (chance > (menQual * 10) || chance > (psyQual * 10))
+		if (chance >= (menQual * 10) || chance >= (psyQual * 10))
 			ranged = true;
 	}
 	odds = quality * 100;
@@ -345,10 +345,11 @@ void GeneticLabratory::experimentRow(CraftingValues* craftingValues,int rowEffec
 	others.add("power");
 	others.add("hardiness");
 	others.add("fortitude");
-
+	bool resistLine = false;
 	if (title == "expPhysiqueProfile") {
 		prop1 = "hardiness";
 		prop2 = "fortitude";
+		resistLine = true;
 	}
 	if (title == "expProwessProfile") {
 		prop1 = "dexterity";
@@ -397,7 +398,6 @@ void GeneticLabratory::experimentRow(CraftingValues* craftingValues,int rowEffec
 		// this is the amount we increase
 		float increaseA = Genetics::experimentFormula(b,a);
 		float increaseB = Genetics::experimentFormula(a,b);
-
 		if (CraftingManager::CRITICALFAILURE == experimentationResult) {
 			boost = -0.08f;
 			if (reduceA){
@@ -430,6 +430,14 @@ void GeneticLabratory::experimentRow(CraftingValues* craftingValues,int rowEffec
 				cbp = 1;
 			if (cap > 1)
 				cap = 1;
+			if (cap < 0)
+				cap = 0;
+			if (cbp < 0)
+				cbp = 0;
+			if (a < 0)
+				a = 1;
+			if (b < 0)
+				b = 1;
 			craftingValues->setCurrentValue(prop1,a);
 			craftingValues->setCurrentValue(prop2,b);
 			craftingValues->setCurrentPercentage(prop1,cap);
@@ -454,8 +462,8 @@ void GeneticLabratory::experimentRow(CraftingValues* craftingValues,int rowEffec
 		} else {
 			if (experimentationResult == CraftingManager::AMAZINGSUCCESS) {
 				boost = 0.15;
-				increaseA *= 0.05;
-				increaseB *= 0.05;
+				increaseA += increaseA * 0.05;
+				increaseB += increaseB * 0.05;
 			}
 			if (experimentationResult == CraftingManager::GREATSUCCESS)
 				boost = 0.1;
@@ -503,6 +511,7 @@ void GeneticLabratory::experimentRow(CraftingValues* craftingValues,int rowEffec
 				cbp = 1;
 			if (cap > 1)
 				cap = 1;
+			// Re calc percentage from the new value?
 			craftingValues->setCurrentValue(prop1,a);
 			craftingValues->setCurrentValue(prop2,b);
 			craftingValues->setCurrentPercentage(prop1,cap);
@@ -510,34 +519,80 @@ void GeneticLabratory::experimentRow(CraftingValues* craftingValues,int rowEffec
 			craftingValues->lockValue(prop1);
 			craftingValues->lockValue(prop2);
 		}
+		// we have an initial value: and a max value inrease by same percentage as the experimented row. so 10 points of great success would be 100% on the resist values
+		// this should go for every point tried that was a bug.
+		if (resistLine) {
+			// only recalc resists when the line was physique. We could do the following
+			// for all NON special resist, we recalc the percent and if less than max by formula then we set it to that, exp seems to hold so lets try this
+			float currentFort = craftingValues->getCurrentValue("fortitude");
+			float currentEffective = ceil(currentFort * 0.1); // use ceil to round
+			if (currentFort > 500) {
+				currentEffective = (currentFort - 500.0) * 0.1;
+			}
+			// Check to see if it is NOT a special resist and it is NOT vulnerable
+			if (craftingValues->getCurrentPercentage("dna_comp_armor_kinetic") < 1 && craftingValues->getMaxValue("dna_comp_armor_kinetic") > 0) {
+				craftingValues->unlockValue("dna_comp_armor_kinetic");
+				craftingValues->setCurrentValue("dna_comp_armor_kinetic",currentEffective);
+				craftingValues->lockValue("dna_comp_armor_kinetic");
+				//craftingValues->setCurrentPercentage("dna_comp_armor_kinetic",craftingValues->getCurrentPercentage("dna_comp_armor_kinetic") + boost);
+			}
+
+			if (craftingValues->getCurrentPercentage("dna_comp_armor_blast") < 1 && craftingValues->getMaxValue("dna_comp_armor_blast") > 0) {
+				craftingValues->unlockValue("dna_comp_armor_blast");
+				craftingValues->setCurrentValue("dna_comp_armor_blast",currentEffective);
+				craftingValues->lockValue("dna_comp_armor_blast");
+				//craftingValues->setCurrentPercentage("dna_comp_armor_blast",craftingValues->getCurrentPercentage("dna_comp_armor_blast") + boost);
+			}
+
+			if (craftingValues->getCurrentPercentage("dna_comp_armor_energy") < 1 && craftingValues->getMaxValue("dna_comp_armor_energy") > 0){
+				craftingValues->unlockValue("dna_comp_armor_energy");
+				craftingValues->setCurrentValue("dna_comp_armor_energy",currentEffective);
+				craftingValues->lockValue("dna_comp_armor_energy");
+				//craftingValues->setCurrentPercentage("dna_comp_armor_energy",craftingValues->getCurrentPercentage("dna_comp_armor_energy") + boost);
+			}
+
+			if (craftingValues->getCurrentPercentage("dna_comp_armor_heat") < 1 && craftingValues->getMaxValue("dna_comp_armor_heat") > 0) {
+				craftingValues->unlockValue("dna_comp_armor_heat");
+				craftingValues->setCurrentValue("dna_comp_armor_heat",currentEffective);
+				craftingValues->lockValue("dna_comp_armor_heat");
+				//craftingValues->setCurrentPercentage("dna_comp_armor_heat",craftingValues->getCurrentPercentage("dna_comp_armor_heat") + boost);
+			}
+
+			if (craftingValues->getCurrentPercentage("dna_comp_armor_cold") < 1 && craftingValues->getMaxValue("dna_comp_armor_cold") > 0) {
+				craftingValues->unlockValue("dna_comp_armor_cold");
+				craftingValues->setCurrentValue("dna_comp_armor_cold",currentEffective);
+				craftingValues->lockValue("dna_comp_armor_cold");
+				//craftingValues->setCurrentPercentage("dna_comp_armor_cold",craftingValues->getCurrentPercentage("dna_comp_armor_cold") + boost);
+			}
+
+			if (craftingValues->getCurrentPercentage("dna_comp_armor_electric") < 1 && craftingValues->getMaxValue("dna_comp_armor_electric") > 0){
+				craftingValues->unlockValue("dna_comp_armor_electric");
+				craftingValues->setCurrentValue("dna_comp_armor_electric",currentEffective);
+				craftingValues->lockValue("dna_comp_armor_electric");
+
+				//craftingValues->setCurrentPercentage("dna_comp_armor_electric",craftingValues->getCurrentPercentage("dna_comp_armor_electric") + boost);
+			}
+
+			if (craftingValues->getCurrentPercentage("dna_comp_armor_acid") < 1 && craftingValues->getMaxValue("dna_comp_armor_acid") > 0) {
+				craftingValues->unlockValue("dna_comp_armor_acid");
+				craftingValues->setCurrentValue("dna_comp_armor_acid",currentEffective);
+				craftingValues->lockValue("dna_comp_armor_acid");
+				//craftingValues->setCurrentPercentage("dna_comp_armor_acid",craftingValues->getCurrentPercentage("dna_comp_armor_acid") + boost);
+			}
+
+			if (craftingValues->getCurrentPercentage("dna_comp_armor_stun") < 1 && craftingValues->getMaxValue("dna_comp_armor_stun") > 0){
+				craftingValues->unlockValue("dna_comp_armor_stun");
+				craftingValues->setCurrentValue("dna_comp_armor_stun",currentEffective);
+				craftingValues->lockValue("dna_comp_armor_stun");
+				//craftingValues->setCurrentPercentage("dna_comp_armor_stun",craftingValues->getCurrentPercentage("dna_comp_armor_stun") + boost);
+			}
+			if (craftingValues->getCurrentPercentage("dna_comp_armor_saber") < 1 && craftingValues->getMaxValue("dna_comp_armor_saber") > 0){
+				craftingValues->unlockValue("dna_comp_armor_saber");
+				craftingValues->setCurrentValue("dna_comp_armor_saber",currentEffective);
+				craftingValues->lockValue("dna_comp_armor_saber");
+				//craftingValues->setCurrentPercentage("dna_comp_armor_saber",craftingValues->getCurrentPercentage("dna_comp_armor_saber") + boost);
+			}
+			//recalculateResist(craftingValues);
+		}
 	}
-	// we have an initial value: and a max value inrease by same percentage as the experimented row. so 10 points of great success would be 100% on the resist values
-	if (craftingValues->getCurrentPercentage("dna_comp_armor_kinetic") < 1)
-		craftingValues->setCurrentPercentage("dna_comp_armor_kinetic",craftingValues->getCurrentPercentage("dna_comp_armor_kinetic") + boost);
-
-	if (craftingValues->getCurrentPercentage("dna_comp_armor_blast") < 1)
-		craftingValues->setCurrentPercentage("dna_comp_armor_blast",craftingValues->getCurrentPercentage("dna_comp_armor_blast") + boost);
-
-	if (craftingValues->getCurrentPercentage("dna_comp_armor_energy") < 1)
-		craftingValues->setCurrentPercentage("dna_comp_armor_energy",craftingValues->getCurrentPercentage("dna_comp_armor_energy") + boost);
-
-	if (craftingValues->getCurrentPercentage("dna_comp_armor_heat") < 1)
-		craftingValues->setCurrentPercentage("dna_comp_armor_heat",craftingValues->getCurrentPercentage("dna_comp_armor_heat") + boost);
-
-	if (craftingValues->getCurrentPercentage("dna_comp_armor_cold") < 1)
-		craftingValues->setCurrentPercentage("dna_comp_armor_cold",craftingValues->getCurrentPercentage("dna_comp_armor_cold") + boost);
-
-	if (craftingValues->getCurrentPercentage("dna_comp_armor_electric") < 1)
-		craftingValues->setCurrentPercentage("dna_comp_armor_electric",craftingValues->getCurrentPercentage("dna_comp_armor_electric") + boost);
-
-	if (craftingValues->getCurrentPercentage("dna_comp_armor_acid") < 1)
-		craftingValues->setCurrentPercentage("dna_comp_armor_acid",craftingValues->getCurrentPercentage("dna_comp_armor_acid") + boost);
-
-	if (craftingValues->getCurrentPercentage("dna_comp_armor_stun") < 1)
-		craftingValues->setCurrentPercentage("dna_comp_armor_stun",craftingValues->getCurrentPercentage("dna_comp_armor_stun") + boost);
-
-	if (craftingValues->getCurrentPercentage("dna_comp_armor_saber") < 1)
-		craftingValues->setCurrentPercentage("dna_comp_armor_saber",craftingValues->getCurrentPercentage("dna_comp_armor_saber") + boost);
-
-	recalculateResist(craftingValues);
 }

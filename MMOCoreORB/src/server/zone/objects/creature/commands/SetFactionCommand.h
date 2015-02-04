@@ -121,11 +121,26 @@ public:
 		}
 		Locker _lock(tano,creature);
 
-		if (faction == "neutral")
+		if (faction == "neutral") {
 			tano->setFaction(0);
 
-		if (faction == "imperial" || faction == "rebel" || faction == "hutt")
+			if (pobj != NULL) {
+				pobj->setFactionRank(0);
+			}
+		}
+
+		if (faction == "imperial" || faction == "rebel" || faction == "hutt") {
+			if (pobj != NULL && faction.hashCode() != tano->getFaction()) {
+				pobj->setFactionRank(0);
+			}
+
 			tano->setFaction(faction.hashCode());
+		}
+
+		if (targetPlayerObject != NULL) { // Cap off points to new caps
+			targetPlayerObject->increaseFactionStanding("imperial", 0);
+			targetPlayerObject->increaseFactionStanding("rebel", 0);
+		}
 
 
 		if (tokenizer.hasMoreTokens()) {

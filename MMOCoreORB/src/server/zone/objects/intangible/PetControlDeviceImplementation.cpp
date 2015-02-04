@@ -328,18 +328,18 @@ void PetControlDeviceImplementation::spawnObject(CreatureObject* player) {
 	ManagedReference<PlayerObject*> ghost = player->getPlayerObject();
 	ghost->addToActivePets(pet);
 
-
+	bool isDroid = false;
 	if (pet->isDroidObject()) {
 		DroidObject* droid = cast<DroidObject*>(pet);
-
+		isDroid = true;
 		if( droid == NULL )
 			return;
 
 		// Sanity check that there isn't another power task outstanding
 		droid->removePendingTask( "droid_power" );
 		droid->initDroidModules();
-		droid->loadSkillMods(player);
 		droid->onCall();
+		droid->loadSkillMods(player);
 		// Submit new power task
 		Reference<Task*> droidPowerTask = new DroidPowerTask( droid );
 		droid->addPendingTask("droid_power", droidPowerTask, 120000); // 2 min
@@ -351,7 +351,6 @@ void PetControlDeviceImplementation::spawnObject(CreatureObject* player) {
 		else{
 			droid->handleLowPower();
 		}
-
 	} else {
 		pet->setFollowObject(player);
 		pet->storeFollowObject();
@@ -359,7 +358,15 @@ void PetControlDeviceImplementation::spawnObject(CreatureObject* player) {
 	pet->setHomeLocation(player->getPositionX(), player->getPositionZ(), player->getPositionY(), (parent != NULL && parent->isCellObject()) ? parent : NULL);
 	pet->setNextStepPosition(player->getPositionX(), player->getPositionZ(), player->getPositionY(), (parent != NULL && parent->isCellObject()) ? parent : NULL);
 	pet->clearPatrolPoints();
-	pet->setCreatureBitmask(CreatureFlag::PET);
+	if (petType == PetManager::CREATUREPET) {
+		pet->setCreatureBitmask(CreatureFlag::PET);
+	}
+	if (petType == PetManager::DROIDPET) {
+		pet->setCreatureBitmask(CreatureFlag::DROID_PET);
+	}
+	if (petType == PetManager::FACTIONPET) {
+		pet->setCreatureBitmask(CreatureFlag::FACTION_PET);
+	}
 	pet->activateLoad("");
 	pet->activateRecovery();
 	// Not training any commands
@@ -392,7 +399,7 @@ void PetControlDeviceImplementation::storeObject(CreatureObject* player, bool fo
 
 	assert(pet->isLockedByCurrentThread());
 
-	if (!force && pet->isInCombat())
+	if (!force && (pet->isInCombat() || player->isInCombat()))
 		return;
 
 	if (player->isRidingMount() && player->getParent() == pet) {
@@ -919,6 +926,12 @@ void PetControlDeviceImplementation::fillAttributeList(AttributeListMessage* alm
 	if( trainedCommands.contains(PetManager::REPAIR) ){
 		alm->insertAttribute("pet_command_13", trainedCommands.get(PetManager::REPAIR) ); // Droid Repair really was listed as Trick 2
 	}
+	if( trainedCommands.contains(PetManager::THROWTRAP) ){
+		alm->insertAttribute("pet_command_22", trainedCommands.get(PetManager::THROWTRAP) ); // Droid Repair really was listed as Trick 2
+	}
+	if( trainedCommands.contains(PetManager::HARVEST) ){
+		alm->insertAttribute("pet_command_21", trainedCommands.get(PetManager::HARVEST) ); // Droid Repair really was listed as Trick 2
+	}
 }
 
 void PetControlDeviceImplementation::setDefaultCommands(){
@@ -961,25 +974,65 @@ void PetControlDeviceImplementation::setTrainingCommand( unsigned int commandID 
 	if( pet == NULL )
 		return;
 
-	// Check power on droids
+	ManagedReference<CreatureObject*> owner = pet->getLinkedCreature().get();
+	if (owner == NULL || !owner->isPlayerCreature())
+		return;
+
 	if( petType == PetManager::DROIDPET) {
 		ManagedReference<DroidObject*> droid = this->controlledObject.get().castTo<DroidObject*>();
 		if (droid == NULL)
 			return;
 
+		// Check power on droids
 		if( !droid->hasPower() ){
 			droid->showFlyText("npc_reaction/flytext","low_power", 204, 0, 0);  // "*Low Power*"
 			return;
 		}
+
+		if(((commandID == PetManager::ATTACK || commandID == PetManager::GUARD || commandID == PetManager::RANGED_ATTACK) && !droid->isCombatDroid()) ||
+			(commandID == PetManager::RECHARGEOTHER && !droid->isPowerDroid()) ||
+			(commandID == PetManager::TRANSFER) ||
+			(commandID == PetManager::SPECIAL_ATTACK1) ||
+			(commandID == PetManager::SPECIAL_ATTACK2) ||
+			(commandID == PetManager::TRICK1) ||
+			(commandID == PetManager::TRICK2)){
+			return;
+		}
+	}
+	else if(petType == PetManager::CREATUREPET){
+		if(((commandID == PetManager::ATTACK || commandID == PetManager::FOLLOW || commandID == PetManager::STORE) && !owner->hasSkill("outdoors_creaturehandler_novice") ) ||
+			(commandID == PetManager::STAY && !owner->hasSkill("outdoors_creaturehandler_training_01")) ||
+			(commandID == PetManager::GUARD && !owner->hasSkill("outdoors_creaturehandler_training_02")) ||
+			(commandID == PetManager::FRIEND && !owner->hasSkill("outdoors_creaturehandler_support_03")) ||
+			(commandID == PetManager::PATROL && !owner->hasSkill("outdoors_creaturehandler_training_03")) ||
+			((commandID == PetManager::FORMATION1 || commandID == PetManager::FORMATION2) && !owner->hasSkill("outdoors_creaturehandler_training_04")) ||
+			(commandID == PetManager::TRANSFER && !owner->hasSkill("outdoors_creaturehandler_master")) ||
+			(commandID == PetManager::TRICK1 && !owner->hasSkill("outdoors_creaturehandler_healing_01")) ||
+			(commandID == PetManager::TRICK2 && !owner->hasSkill("outdoors_creaturehandler_healing_03")) ||
+			(commandID == PetManager::GROUP && !owner->hasSkill("outdoors_creaturehandler_support_01")) ||
+			(commandID == PetManager::SPECIAL_ATTACK1 && !owner->hasSkill("outdoors_creaturehandler_taming_03")) ||
+			(commandID == PetManager::SPECIAL_ATTACK2 && !owner->hasSkill("outdoors_creaturehandler_taming_04")) ||
+			(commandID == PetManager::RANGED_ATTACK && !owner->hasSkill("outdoors_creaturehandler_master")) ||
+			(commandID == PetManager::FOLLOWOTHER && !owner->hasSkill("outdoors_creaturehandler_support_02")) ||
+			(commandID == PetManager::RECHARGEOTHER))
+				return;
+	}
+	else if(petType == PetManager::FACTIONPET){
+		if(commandID == PetManager::RECHARGEOTHER ||
+			(commandID == PetManager::TRANSFER) ||
+			(commandID == PetManager::SPECIAL_ATTACK1) ||
+			(commandID == PetManager::SPECIAL_ATTACK2) ||
+			(commandID == PetManager::TRICK1) ||
+			(commandID == PetManager::TRICK2))
+				return;
 	}
 
 	trainingCommand = commandID;
 	pet->showFlyText("npc_reaction/flytext","alert", 204, 0, 0);  // "?"
-
 }
 
 void PetControlDeviceImplementation::trainAsMount(CreatureObject* player) {
-	if (isTrainedAsMount())
+	if (isTrainedAsMount() || !player->hasSkill("outdoors_creaturehandler_support_04"))
 		return;
 
 	PetManager* petManager = player->getZoneServer()->getPetManager();

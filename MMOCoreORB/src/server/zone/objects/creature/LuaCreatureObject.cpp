@@ -7,6 +7,7 @@
 
 #include "LuaCreatureObject.h"
 #include "server/zone/objects/creature/CreatureObject.h"
+#include "server/zone/objects/creature/DroidObject.h"
 #include "server/zone/objects/cell/CellObject.h"
 #include "server/zone/objects/player/sessions/ConversationSession.h"
 #include "server/zone/ZoneServer.h"
@@ -14,6 +15,7 @@
 #include "server/zone/packets/chat/ChatSystemMessage.h"
 #include "server/zone/objects/player/sessions/EntertainingSession.h"
 #include "server/zone/objects/player/PlayerObject.h"
+#include "server/zone/managers/player/PlayerManager.h"
 
 const char LuaCreatureObject::className[] = "LuaCreatureObject";
 
@@ -49,6 +51,7 @@ Luna<LuaCreatureObject>::RegType LuaCreatureObject::Register[] = {
 		{ "getPositionX", &LuaSceneObject::getPositionX },
 		{ "getPositionY", &LuaSceneObject::getPositionY },
 		{ "getPositionZ", &LuaSceneObject::getPositionZ },
+		{ "getDirectionAngle", &LuaSceneObject::getDirectionAngle },
 		{ "getWorldPositionX", &LuaSceneObject::getWorldPositionX },
 		{ "getWorldPositionY", &LuaSceneObject::getWorldPositionY },
 		{ "getWorldPositionZ", &LuaSceneObject::getWorldPositionZ },
@@ -102,6 +105,9 @@ Luna<LuaCreatureObject>::RegType LuaCreatureObject::Register[] = {
 		{ "getWalkSpeed", &LuaCreatureObject::getWalkSpeed },
 		{ "isAttackableBy", &LuaCreatureObject::isAttackableBy },
 		{ "getSpecies", &LuaCreatureObject::getSpecies },
+		{ "isDroidPet", &LuaCreatureObject::isDroidPet },
+		{ "isCombatDroidPet", &LuaCreatureObject::isCombatDroidPet },
+		{ "awardExperience", &LuaCreatureObject::awardExperience },
 		{ 0, 0 }
 };
 
@@ -135,8 +141,9 @@ int LuaCreatureObject::addDotState(lua_State* L) {
 	byte type = lua_tointeger(L, -5);
 	uint32 strength = lua_tointeger(L, -6);
 	uint64 dotType = lua_tointeger(L, -7);
+	CreatureObject* attacker = (CreatureObject*)lua_touserdata(L, -8);
 
-	realObject->addDotState(dotType, objectID, strength, type, duration, potency, defense);
+	realObject->addDotState(attacker, dotType, objectID, strength, type, duration, potency, defense);
 
 	return 0;
 }
@@ -749,4 +756,31 @@ int LuaCreatureObject::getSpecies(lua_State* L) {
 	lua_pushinteger(L, realObject->getSpecies());
 
 	return 1;
+}
+
+int LuaCreatureObject::isDroidPet(lua_State* L) {
+	bool retVal = realObject->isDroidObject() && realObject->isPet();
+	lua_pushboolean(L, retVal);
+
+	return 1;
+}
+
+int LuaCreatureObject::isCombatDroidPet(lua_State* L) {
+	bool retVal = realObject->isDroidObject() && realObject->isPet();
+	if (retVal) {
+		DroidObject* d = cast<DroidObject*>(realObject);
+		retVal = d->isCombatDroid();
+	}
+	lua_pushboolean(L, retVal);
+	return 1;
+}
+
+int LuaCreatureObject::awardExperience(lua_State* L) {
+	String experienceType = lua_tostring(L, -2);
+	int experienceAmount = lua_tointeger(L, -1);
+
+	PlayerManager* playerManager = realObject->getZoneServer()->getPlayerManager();
+	playerManager->awardExperience(realObject, experienceType, experienceAmount, false);
+
+	return 0;
 }

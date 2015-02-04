@@ -1,5 +1,6 @@
 require("ai.ai")
 require("ai.interrupts")
+local ObjectManager = require("managers.object.object_manager")
 
 SelectAttackBase = createClass(Ai)
 
@@ -42,9 +43,28 @@ function SelectAttackBase:doAction(pAgent)
 end
 
 SelectAttack = createClass(SelectAttackBase, Interrupt)
-SelectAttackPet = createClass(SelectAttackBase, PetInterrupt)
+SelectAttackCreaturePet = createClass(SelectAttackBase, CreaturePetInterrupt)
+SelectAttackDroidPet = createClass(SelectAttackBase, DroidPetInterrupt)
+SelectAttackFactionPet = createClass(SelectAttackBase, FactionPetInterrupt)
 
-function SelectAttackPet:terminate(pAgent)
+function SelectAttackCreaturePet:terminate(pAgent)
+	if pAgent ~= nil then
+		local agent = AiAgent(pAgent)
+		if agent:getBehaviorStatus() == BEHAVIOR_FAILURE then agent:restoreFollowObject() end
+	end
+	return 0
+end
+
+
+function SelectAttackDroidPet:terminate(pAgent)
+	if pAgent ~= nil then
+		local agent = AiAgent(pAgent)
+		if agent:getBehaviorStatus() == BEHAVIOR_FAILURE then agent:restoreFollowObject() end
+	end
+	return 0
+end
+
+function SelectAttackFactionPet:terminate(pAgent)
 	if pAgent ~= nil then
 		local agent = AiAgent(pAgent)
 		if agent:getBehaviorStatus() == BEHAVIOR_FAILURE then agent:restoreFollowObject() end

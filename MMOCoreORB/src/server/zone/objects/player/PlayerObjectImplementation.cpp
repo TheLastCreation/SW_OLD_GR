@@ -787,14 +787,19 @@ void PlayerObjectImplementation::addAbilities(Vector<Ability*>& abilities, bool 
 }
 
 void PlayerObjectImplementation::removeAbility(Ability* ability, bool notifyClient) {
+	int index = abilityList.find(ability);
+
+	if (index == -1)
+		return;
+
 	if (notifyClient) {
 		PlayerObjectDeltaMessage9* msg = new PlayerObjectDeltaMessage9(_this.get());
 		msg->startUpdate(0);
-		abilityList.remove(abilityList.find(ability), msg, 1);
+		abilityList.remove(index, msg, 1);
 		msg->close();
 		sendMessage(msg);
 	} else {
-		abilityList.remove(abilityList.find(ability));
+		abilityList.remove(index);
 	}
 }
 
@@ -1396,23 +1401,27 @@ void PlayerObjectImplementation::increaseFactionStanding(const String& factionNa
 
 	if (!factionStandingList.isPvpFaction(factionName))
 		newAmount = MIN(5000, newAmount);
-	else
+	else if (player->getFaction() == factionName.hashCode())
 		newAmount = MIN(FactionManager::instance()->getFactionPointsCap(player->getFactionRank()), newAmount);
+	else
+		newAmount = MIN(1000, newAmount);;
 
 	factionStandingList.put(factionName, newAmount);
 
-	int change = floor(newAmount - currentAmount);
+	if (amount != 0) {
+		int change = floor(newAmount - currentAmount);
 
-	//Send the proper system message.
-	StringIdChatParameter msg("@base_player:prose_award_faction");
-	msg.setTO("@faction/faction_names:" + factionName);
-	msg.setDI(change);
+		//Send the proper system message.
+		StringIdChatParameter msg("@base_player:prose_award_faction");
+		msg.setTO("@faction/faction_names:" + factionName);
+		msg.setDI(change);
 
-	if (change == 0)
-		msg.setStringId("@base_player:prose_max_faction");
+		if (change == 0)
+			msg.setStringId("@base_player:prose_max_faction");
 
 
-	player->sendSystemMessage(msg);
+		player->sendSystemMessage(msg);
+	}
 }
 
 uint32 PlayerObjectImplementation::getNewSuiBoxID(uint32 type) {
@@ -1453,19 +1462,28 @@ void PlayerObjectImplementation::decreaseFactionStanding(const String& factionNa
 	//Ensure that the new amount is not less than -5000.
 	float newAmount = MAX(-5000, currentAmount - amount);
 
+	if (factionStandingList.isPvpFaction(factionName)) {
+		if (player->getFaction() == factionName.hashCode())
+			newAmount = MIN(FactionManager::instance()->getFactionPointsCap(player->getFactionRank()), newAmount);
+		else
+			newAmount = MIN(1000, newAmount);
+	}
+
 	factionStandingList.put(factionName, newAmount);
 
-	int change = floor(currentAmount - newAmount);
+	if (amount != 0) {
+		int change = floor(currentAmount - newAmount);
 
-	//Send the proper system message.
-	StringIdChatParameter msg("@base_player:prose_lose_faction");
-	msg.setTO("@faction/faction_names:" + factionName);
-	msg.setDI(change);
+		//Send the proper system message.
+		StringIdChatParameter msg("@base_player:prose_lose_faction");
+		msg.setTO("@faction/faction_names:" + factionName);
+		msg.setDI(change);
 
-	if (change == 0)
-		msg.setStringId("@base_player:prose_min_faction");
+		if (change == 0)
+			msg.setStringId("@base_player:prose_min_faction");
 
-	player->sendSystemMessage(msg);
+		player->sendSystemMessage(msg);
+	}
 }
 
 float PlayerObjectImplementation::getFactionStanding(const String& factionName) {
@@ -1574,6 +1592,15 @@ void PlayerObjectImplementation::doRecovery() {
 	if (damageOverTimeList->hasDot() && damageOverTimeList->isNextTickPast()) {
 		damageOverTimeList->activateDots(creature);
 	}
+
+	if (creature->isBleeding() && !damageOverTimeList->hasDot(CreatureState::BLEEDING))
+		creature->clearState(CreatureState::BLEEDING);
+	if (creature->isPoisoned() && !damageOverTimeList->hasDot(CreatureState::POISONED))
+		creature->clearState(CreatureState::POISONED);
+	if (creature->isDiseased() && !damageOverTimeList->hasDot(CreatureState::DISEASED))
+		creature->clearState(CreatureState::DISEASED);
+	if (creature->isOnFire() && !damageOverTimeList->hasDot(CreatureState::ONFIRE))
+		creature->clearState(CreatureState::ONFIRE);
 
 	CommandQueueActionVector* commandQueue = creature->getCommandQueue();
 
@@ -2208,4 +2235,10 @@ int PlayerObjectImplementation::getCharacterAgeInDays() {
 	int days = timeDelta / 60 / 60 / 24;
 
 	return days;
+}
+
+String PlayerObjectImplementation::getForceSensitiveExperienceRatio(const String& type) {
+	if (!FsExperienceTypes::getFsRatio(type).isEmpty())
+		return FsExperienceTypes::getFsRatio(type);
+	else return "";
 }

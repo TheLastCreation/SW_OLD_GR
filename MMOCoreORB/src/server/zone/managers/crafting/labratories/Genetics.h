@@ -79,6 +79,10 @@ public:
 			}
 			count++;
 		}
+		// We know the min and max of each one, cal the % diff, and pick highest
+		//float maxApercent = 100.00/(aMax/a);
+		//float maxBpercent = 100.0/(bMax/b);
+		// However each exp point will move it up by a chunk. soooooo good = 1 point in the given formula
 		// we should now have the run to the max for both a and b, so determine the highest
 		// if we say 14 rounds needed the max percentage would be: 14/10 = 1.4 or 140% or 100% normalized
 		float maxACount = aCount/10.0f;
@@ -177,7 +181,7 @@ public:
 	}
 	static float determineMinResistance(float input) {
 		if (input < 0) // if max is vulnerable the min is always vulnerable
-			return -1;
+			return -99;
 		return round(input * ((input/100.0f) + 0.15f));
 	}
 	static int generateCL(float hamTotal, float toHit, float speed, float damage, float kinetic, float blast, float heat, float cold, float energy, float electricy, float acid, float stun, float armorRating) {
@@ -192,6 +196,7 @@ public:
 		float rElectricity = electricy >= 0 ? electricy : armorRating == 0 ? 0 : -50;
 		float rAcid = acid >= 0 ? acid : armorRating == 0 ? 0 : -50;
 		float rStun = stun >= 0 ? stun : armorRating == 0 ? 0 : -50;
+		// We need to maybe handle special resists differently for the calc, we also need to adust for newer informaiton
 		float resist = 1 - (0.35*rKinetic/100) - (0.35*rEnergy/100) - (0.05*rBlast/100) - (0.05*rHeat/100) - (0.05*rCold/100) - (0.05*rElectricity/100) - (0.05*rAcid/100) - (0.05*rStun/100);
 		return floor( (1.5/(float)100) * (Math::sqrt(base/(armor * resist))+7));
 	}

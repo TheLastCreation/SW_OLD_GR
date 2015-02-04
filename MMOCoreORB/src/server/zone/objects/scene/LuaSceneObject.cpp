@@ -23,6 +23,7 @@ Luna<LuaSceneObject>::RegType LuaSceneObject::Register[] = {
 		{ "getPositionX", &LuaSceneObject::getPositionX },
 		{ "getPositionY", &LuaSceneObject::getPositionY },
 		{ "getPositionZ", &LuaSceneObject::getPositionZ },
+		{ "getDirectionAngle", &LuaSceneObject::getDirectionAngle },
 		{ "getWorldPositionX", &LuaSceneObject::getWorldPositionX },
 		{ "getWorldPositionY", &LuaSceneObject::getWorldPositionY },
 		{ "getWorldPositionZ", &LuaSceneObject::getWorldPositionZ },
@@ -48,6 +49,7 @@ Luna<LuaSceneObject>::RegType LuaSceneObject::Register[] = {
 		{ "isCreatureObject", &LuaSceneObject::isCreatureObject },
 		{ "isAiAgent", &LuaSceneObject::isAiAgent },
 		{ "isPlayerCreature", &LuaSceneObject::isPlayerCreature },
+		{ "isBuildingObject", &LuaSceneObject::isBuildingObject },
 		{ "sendTo", &LuaSceneObject::sendTo },
 		{ "getCustomObjectName", &LuaSceneObject::getCustomObjectName },
 		{ "getDisplayedName", &LuaSceneObject::getDisplayedName },
@@ -187,6 +189,12 @@ int LuaSceneObject::getPositionX(lua_State* L) {
 
 int LuaSceneObject::getPositionZ(lua_State* L) {
 	lua_pushnumber(L, realObject->getPositionZ());
+
+	return 1;
+}
+
+int LuaSceneObject::getDirectionAngle(lua_State* L) {
+	lua_pushnumber(L, realObject->getDirectionAngle());
 
 	return 1;
 }
@@ -464,6 +472,14 @@ int LuaSceneObject::isAiAgent(lua_State* L) {
 
 int LuaSceneObject::isPlayerCreature(lua_State* L) {
 	bool val = realObject->isPlayerCreature();
+
+	lua_pushboolean(L, val);
+
+	return 1;
+}
+
+int LuaSceneObject::isBuildingObject(lua_State* L) {
+	bool val = realObject->isBuildingObject();
 
 	lua_pushboolean(L, val);
 

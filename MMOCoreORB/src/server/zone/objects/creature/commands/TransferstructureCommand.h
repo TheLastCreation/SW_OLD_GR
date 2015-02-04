@@ -104,7 +104,7 @@ public:
 					if(obj == NULL)
 						continue;
 
-					if(obj->isNoTrade()) {
+					if(obj->isNoTrade() || obj->containsNoTradeObjectRecursive()) {
 						StringIdChatParameter param("@player_structure:building_has_notrade");
 						param.setTT(obj->getDisplayedName());
 						creature->sendSystemMessage(param);
@@ -227,14 +227,12 @@ public:
 		ghost->removeOwnedStructure(structure);
 		targetGhost->addOwnedStructure(structure);
 
-		structure->setOwnerObjectID(targetCreature->getObjectID());
-
 		//Setup permissions.
-		if (!structure->isOnPermissionList("ADMIN", targetCreature->getFirstName()))
-			structure->grantPermission("ADMIN", targetCreature->getFirstName());
+		structure->revokeAllPermissions(targetCreature->getObjectID());
+		structure->grantPermission("ADMIN", targetCreature->getObjectID());
 
-		structure->setOwnerName(targetCreature->getFirstName());
-		structure->revokePermission("ADMIN", creature->getFirstName());
+		structure->setOwner(targetCreature->getObjectID());
+		structure->revokePermission("ADMIN", creature->getObjectID());
 
 		//Update the cell permissions if the structure is private and a building.
 		if (!structure->isPublicStructure() && structure->isBuildingObject()) {
