@@ -3,11 +3,12 @@ printer_parts = {
 	minimumLevel = 0,
 	maximumLevel = 0,
 	lootItems = {
-		{itemTemplate = "crystal_gallias_intuition", weight = 2222222},
-		{itemTemplate = "crystal_horns_future", weight = 2222222},
-		{itemTemplate = "crystal_bondaras_folly", weight = 1111111},
-		{itemTemplate = "crystal_baass_wisdom", weight = 1111111},
-		{itemTemplate = "crystal_banes_heart", weight = 1111112},
+		{itemTemplate = "blank_canvas", weight = 2222222},
+		{itemTemplate = "paint_cartridge", weight = 2222222},
+		{itemTemplate = "paint_disperser", weight = 2222222},
+		{itemTemplate = "picture_printer", weight = 1111111},
+		{itemTemplate = "viewscreen_printer", weight = 1111111},
+		{itemTemplate = "viewscreen_reader", weight = 1111112},
 	}
 }
 
