@@ -31,7 +31,7 @@ ktg_imperial_captain = Creature:new {
 	weapons = {},
 	--attacks = merge(riflemanmaster,carbineermaster,brawlermaster),
 	--conversationTemplate = "ktg_general_mission_target_convotemplate",
-	optionsBitmask = 264
+	optionsBitmask = 128 --264
 }
 
 CreatureTemplates:addCreatureTemplate(ktg_imperial_captain, "ktg_imperial_captain")
