@@ -62,7 +62,7 @@ class ResourceContainer extends TangibleObject {
 	public static final int MAXSIZE = 100000;
 	
     public ResourceContainer() {
-    	stackQuantity = 0;
+    	stackQuantity = 10;
     	
     	setLoggingName("ResourceContainer");
     }
