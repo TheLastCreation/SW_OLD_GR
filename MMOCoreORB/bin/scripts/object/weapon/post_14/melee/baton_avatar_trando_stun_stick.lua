@@ -134,4 +134,4 @@ object_weapon_melee_baton_baton_avatar_trando_stun_stick = object_weapon_melee_b
 	experimentalCombineType = {0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 }
 
-ObjectTemplates:addTemplate(object_weapon_melee_baton_baton_avatar_trando_stun_stick, "object/weapon/melee/baton/baton_baton_avatar_trando_stun_stick.iff")
+ObjectTemplates:addTemplate(object_weapon_melee_baton_baton_avatar_trando_stun_stick, "object/weapon/melee/baton/baton_avatar_trando_stun_stick.iff")

@@ -89,4 +89,4 @@ object_weapon_melee_2h_sword_quest_2h_sword_battleaxe = object_weapon_melee_2h_s
 	experimentalCombineType = {0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 }
 
-ObjectTemplates:addTemplate(object_weapon_melee_2h_sword_2h_sword_battleaxe, "object/weapon/melee/2h_sword/2h_sword_battleaxe.iff")
+ObjectTemplates:addTemplate(object_weapon_melee_2h_sword_quest_2h_sword_battleaxe, "object/weapon/melee/2h_sword/quest_2h_sword_battleaxe.iff")

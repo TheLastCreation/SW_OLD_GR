@@ -2,7 +2,7 @@ ep3_loot_calibrated = {
 	minimumLevel = 0,
 	maximumLevel = -1,
 	customObjectName = "",
-	directObjectTemplate = "object/weapon/ranged/carbine/ep3_loot_calibrated.iff",
+	directObjectTemplate = "object/weapon/ranged/pistol/ep3_loot_calibrated.iff",
 	craftingValues = {
 		{"mindamage",56,90,0},
 		{"maxdamage",91,163,0},

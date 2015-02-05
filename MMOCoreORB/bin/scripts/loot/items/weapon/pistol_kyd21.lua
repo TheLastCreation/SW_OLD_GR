@@ -2,7 +2,7 @@ pistol_kyd21 = {
 	minimumLevel = 0,
 	maximumLevel = -1,
 	customObjectName = "",
-	directObjectTemplate = "object/weapon/ranged/pistol/pistol_kyd21.iff",
+	directObjectTemplate = "object/weapon/ranged/pistol/ep3/pistol_kyd21.iff",
 	craftingValues = {
 		{"mindamage",7,17,0},
 		{"maxdamage",36,72,0},

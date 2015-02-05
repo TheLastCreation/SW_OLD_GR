@@ -2,7 +2,7 @@ rifle_naktra_crystal = {
 	minimumLevel = 0,
 	maximumLevel = -1,
 	customObjectName = "",
-	directObjectTemplate = "object/weapon/ranged/rifle/rifle_naktra_crystal.iff",
+	directObjectTemplate = "object/weapon/ranged/rifle/ep3/rifle_naktra_crystal.iff",
 	craftingValues = {
 		{"mindamage",47,96,0},
 		{"maxdamage",100,188,0},

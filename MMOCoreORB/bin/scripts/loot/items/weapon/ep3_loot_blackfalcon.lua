@@ -2,7 +2,7 @@ ep3_loot_blackfalcon = {
 	minimumLevel = 0,
 	maximumLevel = -1,
 	customObjectName = "",
-	directObjectTemplate = "object/weapon/ranged/pistols/ep3_loot_blackfalcon.iff",
+	directObjectTemplate = "object/weapon/ranged/pistol/ep3_loot_blackfalcon.iff",
 	craftingValues = {
 		{"mindamage",56,90,0},
 		{"maxdamage",91,163,0},
