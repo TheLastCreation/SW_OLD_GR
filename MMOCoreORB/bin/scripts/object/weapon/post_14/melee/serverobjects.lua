@@ -13,7 +13,7 @@ includeFile("weapon/post_14/melee/ep3_loot_heartstriker.lua")
 includeFile("weapon/post_14/melee/ep3_loot_necrosis.lua")
 includeFile("weapon/post_14/melee/ep3_loot_soulstinger.lua")
 includeFile("weapon/post_14/melee/fan_metal.lua")
-includeFile("weapon/post_14/melee/massassiknucklerlua")
+includeFile("weapon/post_14/melee/massassiknuckler.lua")
 includeFile("weapon/post_14/melee/punch_dagger.lua")
 includeFile("weapon/post_14/melee/pvp_bf_knuckler.lua")
 includeFile("weapon/post_14/melee/vibroknuckler_npe.lua")
@@ -24,7 +24,7 @@ includeFile("weapon/post_14/melee/wookiee_knuckler.lua")
 
 
 --POLEARM
-includeFile("weapon/post_14/melee/ep3_loot_pestilence _wod.lua")
+includeFile("weapon/post_14/melee/ep3_loot_pestilence_wod.lua")
 includeFile("weapon/post_14/melee/ep3_loot_pestilence.lua")
 includeFile("weapon/post_14/melee/ep3_loot_poisonspike.lua")
 includeFile("weapon/post_14/melee/ep3_loot_strike.lua")
