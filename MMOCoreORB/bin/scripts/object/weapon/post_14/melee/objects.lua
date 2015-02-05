@@ -703,7 +703,7 @@ object_weapon_melee_knife_shared_knife_survival_npe = SharedWeaponObjectTemplate
 
 ObjectTemplates:addClientTemplate(object_weapon_melee_knife_shared_knife_survival_npe, "object/weapon/melee/knife/shared_knife_survival_npe.iff")
 --****************************************************************************************************************************************************************************
-object_weapon_melee_ep3_knife_shared_knife_naktra_crystal = SharedWeaponObjectTemplate:new {
+object_weapon_melee_knife_ep3_shared_knife_naktra_crystal = SharedWeaponObjectTemplate:new {
 	clientTemplateFileName = "object/weapon/melee/knife/ep3/shared_knife_naktra_crystal.iff"
 
 }

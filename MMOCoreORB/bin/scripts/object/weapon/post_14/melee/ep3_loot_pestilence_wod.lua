@@ -41,7 +41,7 @@
 --this exception also makes it possible to release a modified version 
 
 
-object_weapon_melee_polearm_ep3_loot_pestilence _wod = object_weapon_melee_polearm_shared_ep3_loot_pestilence _wod:new {
+object_weapon_melee_polearm_ep3_loot_pestilence_wod = object_weapon_melee_polearm_shared_ep3_loot_pestilence_wod:new {
 
 	playerRaces = { "object/creature/player/bothan_male.iff",
 				"object/creature/player/bothan_female.iff",
@@ -132,4 +132,4 @@ object_weapon_melee_polearm_ep3_loot_pestilence _wod = object_weapon_melee_polea
 	experimentalCombineType = {0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 }
 
-ObjectTemplates:addTemplate(object_weapon_melee_polearm_ep3_loot_pestilence _wod, "object/weapon/melee/polearm/ep3_loot_pestilence _wod.iff")
+ObjectTemplates:addTemplate(object_weapon_melee_polearm_ep3_loot_pestilence_wod, "object/weapon/melee/polearm/ep3_loot_pestilence_wod.iff")
