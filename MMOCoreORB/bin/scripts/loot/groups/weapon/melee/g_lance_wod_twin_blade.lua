@@ -1,4 +1,4 @@
-lance_wod_twin_blade = {
+g_lance_wod_twin_blade = {
 	description = "",
 	minimumLevel = 0,
 	maximumLevel = 0,
@@ -7,4 +7,4 @@ lance_wod_twin_blade = {
 	}
 }
 
-addLootGroupTemplate("lance_wod_twin_blade", lance_wod_twin_blade)
+addLootGroupTemplate("g_lance_wod_twin_blade", g_lance_wod_twin_blade)

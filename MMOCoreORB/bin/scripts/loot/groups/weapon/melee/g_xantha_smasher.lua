@@ -1,4 +1,4 @@
-xantha_smasher = {
+g_xantha_smasher = {
 	description = "",
 	minimumLevel = 0,
 	maximumLevel = 0,
@@ -7,4 +7,4 @@ xantha_smasher = {
 	}
 }
 
-addLootGroupTemplate("xantha_smasher", xantha_smasher)
+addLootGroupTemplate("g_xantha_smasher", g_xantha_smasher)

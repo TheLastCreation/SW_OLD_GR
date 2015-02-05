@@ -1,4 +1,4 @@
-rifle_pvp = {
+g_rifle_pvp = {
 	description = "",
 	minimumLevel = 0,
 	maximumLevel = 0,
@@ -7,4 +7,4 @@ rifle_pvp = {
 	}
 }
 
-addLootGroupTemplate("rifle_pvp", rifle_pvp)
+addLootGroupTemplate("g_rifle_pvp", g_rifle_pvp)

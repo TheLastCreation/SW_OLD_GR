@@ -1,4 +1,4 @@
-sword_lightsaber_one_handed_gcw_s01_gen5 = {
+g_sword_lightsaber_one_handed_gcw_s01_gen5 = {
 	description = "",
 	minimumLevel = 0,
 	maximumLevel = 0,
@@ -7,4 +7,4 @@ sword_lightsaber_one_handed_gcw_s01_gen5 = {
 	}
 }
 
-addLootGroupTemplate("sword_lightsaber_one_handed_gcw_s01_gen5", sword_lightsaber_one_handed_gcw_s01_gen5)
+addLootGroupTemplate("g_sword_lightsaber_one_handed_gcw_s01_gen5", g_sword_lightsaber_one_handed_gcw_s01_gen5)

@@ -1,4 +1,4 @@
-sword_mandalorian = {
+g_sword_mandalorian = {
 	description = "",
 	minimumLevel = 0,
 	maximumLevel = 0,
@@ -7,4 +7,4 @@ sword_mandalorian = {
 	}
 }
 
-addLootGroupTemplate("sword_mandalorian", sword_mandalorian)
+addLootGroupTemplate("g_sword_mandalorian", g_sword_mandalorian)

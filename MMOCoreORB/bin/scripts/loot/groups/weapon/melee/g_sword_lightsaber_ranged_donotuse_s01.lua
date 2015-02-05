@@ -1,4 +1,4 @@
-sword_lightsaber_ranged_donotuse_s01 = {
+g_sword_lightsaber_ranged_donotuse_s01 = {
 	description = "",
 	minimumLevel = 0,
 	maximumLevel = 0,
@@ -7,4 +7,4 @@ sword_lightsaber_ranged_donotuse_s01 = {
 	}
 }
 
-addLootGroupTemplate("sword_lightsaber_ranged_donotuse_s01", sword_lightsaber_ranged_donotuse_s01)
+addLootGroupTemplate("g_sword_lightsaber_ranged_donotuse_s01", g_sword_lightsaber_ranged_donotuse_s01)

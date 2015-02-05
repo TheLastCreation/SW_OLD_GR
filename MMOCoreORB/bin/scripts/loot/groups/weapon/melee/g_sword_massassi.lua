@@ -1,4 +1,4 @@
-sword_massassi = {
+g_sword_massassi = {
 	description = "",
 	minimumLevel = 0,
 	maximumLevel = 0,
@@ -7,4 +7,4 @@ sword_massassi = {
 	}
 }
 
-addLootGroupTemplate("sword_massassi", sword_massassi)
+addLootGroupTemplate("g_sword_massassi", g_sword_massassi)

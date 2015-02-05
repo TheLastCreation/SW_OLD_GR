@@ -1,4 +1,4 @@
-som_2h_sword_obsidian = {
+g_som_2h_sword_obsidian = {
 	description = "",
 	minimumLevel = 0,
 	maximumLevel = 0,
@@ -7,4 +7,4 @@ som_2h_sword_obsidian = {
 	}
 }
 
-addLootGroupTemplate("som_2h_sword_obsidian", som_2h_sword_obsidian)
+addLootGroupTemplate("g_som_2h_sword_obsidian", g_som_2h_sword_obsidian)

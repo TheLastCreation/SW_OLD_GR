@@ -1,4 +1,4 @@
-sword_rebel = {
+g_sword_rebel = {
 	description = "",
 	minimumLevel = 0,
 	maximumLevel = 0,
@@ -7,4 +7,4 @@ sword_rebel = {
 	}
 }
 
-addLootGroupTemplate("sword_rebel", sword_rebel)
+addLootGroupTemplate("g_sword_rebel", g_sword_rebel)

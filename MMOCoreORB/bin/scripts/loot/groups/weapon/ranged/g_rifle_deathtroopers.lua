@@ -1,4 +1,4 @@
-rifle_deathtroopers = {
+g_rifle_deathtroopers = {
 	description = "",
 	minimumLevel = 0,
 	maximumLevel = 0,
@@ -7,4 +7,4 @@ rifle_deathtroopers = {
 	}
 }
 
-addLootGroupTemplate("rifle_deathtroopers", rifle_deathtroopers)
+addLootGroupTemplate("g_rifle_deathtroopers", g_rifle_deathtroopers)

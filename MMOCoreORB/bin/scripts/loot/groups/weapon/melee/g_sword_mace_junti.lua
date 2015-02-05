@@ -1,4 +1,4 @@
-sword_mace_junti = {
+g_sword_mace_junti = {
 	description = "",
 	minimumLevel = 0,
 	maximumLevel = 0,
@@ -7,4 +7,4 @@ sword_mace_junti = {
 	}
 }
 
-addLootGroupTemplate("sword_mace_junti", sword_mace_junti)
+addLootGroupTemplate("g_sword_mace_junti", g_sword_mace_junti)

@@ -1,4 +1,4 @@
-rifle_proton = {
+g_rifle_proton = {
 	description = "",
 	minimumLevel = 0,
 	maximumLevel = 0,
@@ -7,4 +7,4 @@ rifle_proton = {
 	}
 }
 
-addLootGroupTemplate("rifle_proton", rifle_proton)
+addLootGroupTemplate("g_rifle_proton", g_rifle_proton)

@@ -1,4 +1,4 @@
-rifle_ld1 = {
+g_rifle_ld1 = {
 	description = "",
 	minimumLevel = 0,
 	maximumLevel = 0,
@@ -7,4 +7,4 @@ rifle_ld1 = {
 	}
 }
 
-addLootGroupTemplate("rifle_ld1", rifle_ld1)
+addLootGroupTemplate("g_rifle_ld1", g_rifle_ld1)

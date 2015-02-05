@@ -1,4 +1,4 @@
-sword_lightsaber_polearm_gen4_heroic = {
+g_sword_lightsaber_polearm_gen4_heroic = {
 	description = "",
 	minimumLevel = 0,
 	maximumLevel = 0,
@@ -7,4 +7,4 @@ sword_lightsaber_polearm_gen4_heroic = {
 	}
 }
 
-addLootGroupTemplate("sword_lightsaber_polearm_gen4_heroic", sword_lightsaber_polearm_gen4_heroic)
+addLootGroupTemplate("g_sword_lightsaber_polearm_gen4_heroic", g_sword_lightsaber_polearm_gen4_heroic)

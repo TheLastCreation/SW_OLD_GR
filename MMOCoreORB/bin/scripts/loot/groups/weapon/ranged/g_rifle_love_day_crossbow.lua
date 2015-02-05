@@ -1,4 +1,4 @@
-rifle_love_day_crossbow = {
+g_rifle_love_day_crossbow = {
 	description = "",
 	minimumLevel = 0,
 	maximumLevel = 0,
@@ -7,4 +7,4 @@ rifle_love_day_crossbow = {
 	}
 }
 
-addLootGroupTemplate("rifle_love_day_crossbow", rifle_love_day_crossbow)
+addLootGroupTemplate("g_rifle_love_day_crossbow", g_rifle_love_day_crossbow)
