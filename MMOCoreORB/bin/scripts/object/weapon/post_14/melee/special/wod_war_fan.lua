@@ -41,7 +41,7 @@
 --this exception also makes it possible to release a modified version 
 
 
-object_weapon_melee_2h_sword_2h_sword_kashyyk = object_weapon_melee_2h_sword_shared_2h_sword_kashyyk:new {
+object_weapon_melee_special_wod_war_fan = object_weapon_melee_special_shared_wod_war_fan:new {
 
 	playerRaces = { "object/creature/player/bothan_male.iff",
 				"object/creature/player/bothan_female.iff",
@@ -132,4 +132,4 @@ object_weapon_melee_2h_sword_2h_sword_kashyyk = object_weapon_melee_2h_sword_sha
 	experimentalCombineType = {0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 }
 
-ObjectTemplates:addTemplate(object_weapon_melee_2h_sword_2h_sword_kashyyk, "object/weapon/melee/2h_sword/2h_sword_kashyyk.iff")
+ObjectTemplates:addTemplate(object_weapon_melee_special_wod_war_fan, "object/weapon/melee/special/wod_war_fan.iff")

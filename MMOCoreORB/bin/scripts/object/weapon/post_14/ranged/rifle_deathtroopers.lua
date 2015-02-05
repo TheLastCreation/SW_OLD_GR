@@ -114,8 +114,8 @@ object_weapon_ranged_rifle_rifle_deathtroopers = object_weapon_ranged_rifle_shar
 	maxRange = 150,
 	maxRangeAccuracy = 100,
 
-	minDamage = 9998,
-	maxDamage = 9999,
+	minDamage = 550,
+	maxDamage = 750,
 
 	attackSpeed = 1,
 
