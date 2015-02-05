@@ -1,8 +1,8 @@
-th_sword_battleaxe _npe _npe = {
+th_sword_battleaxe _npe = {
 	minimumLevel = 0,
 	maximumLevel = -1,
 	customObjectName = "",
-	directObjectTemplate = "object/weapon/melee/2h_sword/2h_sword_battleaxe _npe.iff",
+	directObjectTemplate = "object/weapon/melee/2h_sword/2h_sword_battleaxe_npe.iff",
 	craftingValues = {
 		{"mindamage",28,52,0},
 		{"maxdamage",53,98,0},
@@ -28,4 +28,4 @@ th_sword_battleaxe _npe _npe = {
 	junkMaxValue = 55
 }
 
-addLootItemTemplate("th_sword_battleaxe _npe _npe", th_sword_battleaxe _npe _npe)
+addLootItemTemplate("th_sword_battleaxe _npe", th_sword_battleaxe _npe)
