@@ -12,6 +12,87 @@ JUNKCORSEC = 256
 --Post 14 Weapons
 
 -- Server Objects
+
+--2H SWORDS
+includeFile("items/weapon/2h_sword_avatar_wke_toothpick.lua")
+includeFile("items/weapon/2h_sword_avatar_wke_toothpick2.lua")
+includeFile("items/weapon/2h_sword_battleaxe _npe.lua")
+includeFile("items/weapon/2h_sword_battleaxe _quest.lua")
+includeFile("items/weapon/2h_sword_cleaver_npe.lua")
+includeFile("items/weapon/2h_sword_kashyyk.lua")
+includeFile("items/weapon/2h_sword_kashyyk_wod.lua")
+includeFile("items/weapon/2h_sword_katana_generic.lua")
+includeFile("items/weapon/2h_sword_kun_massassi.lua")
+includeFile("items/weapon/2h_sword_maul_legendary.lua")
+includeFile("items/weapon/2h_sword_pvp_bf_01.lua")
+includeFile("items/weapon/2h_sword_sith.lua")
+includeFile("items/weapon/2h_sword_sith_generic.lua")
+includeFile("items/weapon/2h_sword_sith_wod.lua")
+includeFile("items/weapon/2h_sword_wod_scyth.lua")
+includeFile("items/weapon/2h_sword_wod_sword.lua")
+includeFile("items/weapon/ep3_loot_executer.lua")
+includeFile("items/weapon/ep3_loot_lifeblood.lua")
+includeFile("items/weapon/ep3_loot_sickle.lua")
+includeFile("items/weapon/ep3_loot_sickle_wod.lua")
+includeFile("items/weapon/quest_2h_sword_battleaxe.lua")
+includeFile("items/weapon/quest_2h_sword_maul.lua")
+includeFile("items/weapon/som_2h_sword_massassi.lua")
+includeFile("items/weapon/som_2h_sword_obsidian.lua")
+includeFile("items/weapon/som_2h_sword_obsidian_generic.lua")
+includeFile("items/weapon/som_2h_sword_tulrus.lua")
+includeFile("items/weapon/som_2h_sword_tulrus_generic.lua")
+
+--AXE
+includeFile("items/weapon/axe_heavy_duty_npe.lua")
+
+--BATON
+includeFile("items/weapon/baton_avatar_trando_stun_stick.lua")
+includeFile("items/weapon/baton_gaderiffi_elite.lua")
+includeFile("items/weapon/baton_gaderiffi_npe.lua")
+includeFile("items/weapon/baton_stun_legendary.lua")
+includeFile("items/weapon/mandoviol_smasher.lua")
+includeFile("items/weapon/xantha_smasher.lua")
+
+--KNIFE
+includeFile("items/weapon/ep3_loot_blackbane.lua")
+includeFile("items/weapon/knife_dagger_static.lua")
+includeFile("items/weapon/knife_survival_decorative.lua")
+includeFile("items/weapon/knife_survival_npe.lua")
+includeFile("items/weapon/knife_naktra_crystal.lua")
+includeFile("items/weapon/knife_trando_skinner.lua")
+
+--SWORD
+includeFile("items/weapon/ep3_loot_eventide.lua")
+includeFile("items/weapon/ep3_loot_ripper.lua")
+includeFile("items/weapon/ep3_loot_ripper_wod.lua")
+includeFile("items/weapon/som_sword_mustafar_bandit.lua")
+includeFile("items/weapon/som_sword_mustafar_bandit_generic.lua")
+includeFile("items/weapon/som_sword_obsidian.lua")
+includeFile("items/weapon/som_sword_obsidian_generic.lua")
+includeFile("items/weapon/sword_01_npe.lua")
+includeFile("items/weapon/sword_01_static.lua")
+includeFile("items/weapon/sword_02_generic.lua")
+includeFile("items/weapon/sword_acid.lua")
+includeFile("items/weapon/sword_avatar_wke_spiritblade.lua")
+includeFile("items/weapon/sword_lightsaber_adeen.lua")
+includeFile("items/weapon/sword_lightsaber_umakk.lua")
+includeFile("items/weapon/sword_mace_junti.lua")
+includeFile("items/weapon/sword_mace_junti_generic.lua")
+includeFile("items/weapon/sword_mandalorian.lua")
+includeFile("items/weapon/sword_marauder.lua")
+includeFile("items/weapon/sword_massassi.lua")
+includeFile("items/weapon/sword_massassi_generic.lua")
+includeFile("items/weapon/sword_pvp_bf_01.lua")
+includeFile("items/weapon/sword_rantok_generic.lua")
+includeFile("items/weapon/sword_rebel.lua")
+includeFile("items/weapon/sword_rsf.lua")
+includeFile("items/weapon/sword_rsf_generic.lua")
+includeFile("items/weapon/sword_wod_scyth.lua")
+includeFile("items/weapon/sword_wod_sword.lua")
+includeFile("items/weapon/sword_wookiee.lua")
+includeFile("items/weapon/ep3_sword_wookiee.lua")
+
+
 -- Post 14 Carbines
 includeFile("items/weapon/carbine_alliance_needler.lua")
 includeFile("items/weapon/carbine_avatar_trando.lua")
@@ -55,7 +136,7 @@ includeFile("items/weapon/ep3_loot_rilctur.lua")
 includeFile("items/weapon/event_carbine_hairtrigger.lua")
 includeFile("items/weapon/som_carbine_republic_sfor.lua")
 includeFile("items/weapon/som_carbine_republic_sfor_generic.lua")
-             items/weapon
+
 
 -- Post 14 Pistols
 includeFile("items/weapon/ep3_loot_blackfalcon.lua")
