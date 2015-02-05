@@ -1,8 +1,8 @@
-th_sword_battleaxe _quest _quest = {
+th_sword_battleaxe_quest = {
 	minimumLevel = 0,
 	maximumLevel = -1,
 	customObjectName = "",
-	directObjectTemplate = "object/weapon/melee/2h_sword/2h_sword_battleaxe _quest.iff",
+	directObjectTemplate = "object/weapon/melee/2h_sword/2h_sword_battleaxe_quest.iff",
 	craftingValues = {
 		{"mindamage",28,52,0},
 		{"maxdamage",53,98,0},
@@ -28,4 +28,4 @@ th_sword_battleaxe _quest _quest = {
 	junkMaxValue = 55
 }
 
-addLootItemTemplate("th_sword_battleaxe _quest _quest", th_sword_battleaxe _quest _quest)
+addLootItemTemplate("th_sword_battleaxe_quest", th_sword_battleaxe_quest)

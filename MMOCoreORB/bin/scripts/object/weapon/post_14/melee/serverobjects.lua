@@ -65,8 +65,8 @@ includeFile("weapon/post_14/melee/polearm/crafted_saber/sword_lightsaber_polearm
 --2H SWORD
 includeFile("weapon/post_14/melee/2h_sword/2h_sword_avatar_wke_toothpick.lua")
 includeFile("weapon/post_14/melee/2h_sword/2h_sword_avatar_wke_toothpick2.lua")
-includeFile("weapon/post_14/melee/2h_sword/2h_sword_battleaxe _npe.lua")
-includeFile("weapon/post_14/melee/2h_sword/2h_sword_battleaxe _quest.lua")
+includeFile("weapon/post_14/melee/2h_sword/2h_sword_battleaxe_npe.lua")
+includeFile("weapon/post_14/melee/2h_sword/2h_sword_battleaxe_quest.lua")
 includeFile("weapon/post_14/melee/2h_sword/2h_sword_cleaver_npe.lua")
 includeFile("weapon/post_14/melee/2h_sword/2h_sword_kashyyk.lua")
 includeFile("weapon/post_14/melee/2h_sword/2h_sword_kashyyk_wod.lua")

@@ -16,8 +16,8 @@ JUNKCORSEC = 256
 --2H SWORDS
 includeFile("items/weapon/th_sword_avatar_wke_toothpick.lua")
 includeFile("items/weapon/th_sword_avatar_wke_toothpick2.lua")
-includeFile("items/weapon/th_sword_battleaxe _npe.lua")
-includeFile("items/weapon/th_sword_battleaxe _quest.lua")
+includeFile("items/weapon/th_sword_battleaxe_npe.lua")
+includeFile("items/weapon/th_sword_battleaxe_quest.lua")
 includeFile("items/weapon/th_sword_cleaver_npe.lua")
 includeFile("items/weapon/th_sword_kashyyk.lua")
 includeFile("items/weapon/th_sword_kashyyk_wod.lua")

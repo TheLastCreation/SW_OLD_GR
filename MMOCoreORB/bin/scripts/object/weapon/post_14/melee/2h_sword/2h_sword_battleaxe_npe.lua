@@ -1,4 +1,4 @@
-object_weapon_melee_2h_sword_2h_sword_battleaxe _quest = object_weapon_melee_2h_sword_shared_2h_sword_battleaxe _quest:new {
+object_weapon_melee_2h_sword_2h_sword_battleaxe_npe = object_weapon_melee_2h_sword_shared_2h_sword_battleaxe_npe:new {
 
 	playerRaces = { "object/creature/player/bothan_male.iff",
 				"object/creature/player/bothan_female.iff",
@@ -89,4 +89,4 @@ object_weapon_melee_2h_sword_2h_sword_battleaxe _quest = object_weapon_melee_2h_
 	experimentalCombineType = {0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 }
 
-ObjectTemplates:addTemplate(object_weapon_melee_2h_sword_2h_sword_battleaxe _quest, "object/weapon/melee/2h_sword/2h_sword_battleaxe _quest.iff")
+ObjectTemplates:addTemplate(object_weapon_melee_2h_sword_2h_sword_battleaxe_npe, "object/weapon/melee/2h_sword/2h_sword_battleaxe_npe.iff")

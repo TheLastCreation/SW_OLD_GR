@@ -28,4 +28,4 @@ th_sword_cleaver_npe = {
 	junkMaxValue = 55
 }
 
-addLootItemTemplate("th_sword_cleaver_npe", th_sword_cleaver_npe
+addLootItemTemplate("th_sword_cleaver_npe", th_sword_cleaver_npe)
