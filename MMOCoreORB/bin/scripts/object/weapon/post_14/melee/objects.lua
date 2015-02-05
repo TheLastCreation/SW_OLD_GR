@@ -132,12 +132,12 @@ ObjectTemplates:addClientTemplate(object_weapon_melee_special_ep3_shared_wookiee
 
 
 --POLEARM
-object_weapon_melee_polearm_shared_ep3_loot_pestilence _wod = SharedWeaponObjectTemplate:new {
-	clientTemplateFileName = "object/weapon/melee/polearm/shared_ep3_loot_pestilence _wod.iff"
+object_weapon_melee_polearm_shared_ep3_loot_pestilence_wod = SharedWeaponObjectTemplate:new {
+	clientTemplateFileName = "object/weapon/melee/polearm/shared_ep3_loot_pestilence_wod.iff"
 
 }
 
-ObjectTemplates:addClientTemplate(object_weapon_melee_polearm_shared_ep3_loot_pestilence _wod, "object/weapon/melee/polearm/shared_ep3_loot_pestilence _wod.iff")
+ObjectTemplates:addClientTemplate(object_weapon_melee_polearm_shared_ep3_loot_pestilence_wod, "object/weapon/melee/polearm/shared_ep3_loot_pestilence_wod.iff")
 --****************************************************************************************************************************************************************************
 object_weapon_melee_polearm_shared_ep3_loot_pestilence = SharedWeaponObjectTemplate:new {
 	clientTemplateFileName = "object/weapon/melee/polearm/shared_ep3_loot_pestilence.iff"
