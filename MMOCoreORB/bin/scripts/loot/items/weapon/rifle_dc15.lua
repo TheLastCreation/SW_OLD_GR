@@ -2,7 +2,7 @@ rifle_dc15 = {
 	minimumLevel = 0,
 	maximumLevel = -1,
 	customObjectName = "",
-	directObjectTemplate = "object/weapon/ranged/rifle/rifle_dc15.iff",
+	directObjectTemplate = "object/weapon/ranged/rifle/ep3/rifle_dc15.iff",
 	craftingValues = {
 		{"mindamage",47,96,0},
 		{"maxdamage",100,188,0},

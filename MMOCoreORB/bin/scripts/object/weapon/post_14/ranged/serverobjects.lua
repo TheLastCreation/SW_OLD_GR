@@ -157,11 +157,6 @@ includeFile("weapon/post_14/ranged/som_ion_relic_pistol.lua")
 includeFile("weapon/post_14/ranged/som_ion_relic_pistol_generic.lua")
 
 
-
-
-
-
-
 --Post 14 Rifles
 includeFile("weapon/post_14/ranged/ep3_loot_darksting.lua")
 includeFile("weapon/post_14/ranged/ep3_loot_dawnsorrow.lua")
@@ -221,41 +216,3 @@ includeFile("weapon/post_14/ranged/som_rifle_mustafar_disruptor_generic.lua")
 -- Post 14 Heavy
 includeFile("weapon/post_14/ranged/ep3_loot_corellian.lua")
 includeFile("weapon/post_14/ranged/ep3_loot_void.lua")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

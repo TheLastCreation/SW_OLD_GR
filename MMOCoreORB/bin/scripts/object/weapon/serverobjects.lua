@@ -50,5 +50,6 @@ includeFile("weapon/melee/serverobjects.lua")
 includeFile("weapon/mine/serverobjects.lua")
 includeFile("weapon/ranged/serverobjects.lua")
 includeFile("weapon/trap/serverobjects.lua")
+includeFile("weapon/post_14/serverobjects.lua")
 
 -- Server Objects
