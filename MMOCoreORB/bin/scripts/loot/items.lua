@@ -90,7 +90,7 @@ includeFile("items/weapon/sword_rsf_generic.lua")
 includeFile("items/weapon/sword_wod_scyth.lua")
 includeFile("items/weapon/sword_wod_sword.lua")
 includeFile("items/weapon/sword_wookiee.lua")
-includeFile("items/weapon/ep3_sword_wookiee.lua")
+--includeFile("items/weapon/ep3_sword_wookiee.lua")
 
 
 -- Post 14 Carbines
