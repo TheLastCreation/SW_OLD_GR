@@ -392,19 +392,19 @@ object_weapon_melee_2h_sword_shared_2h_sword_avatar_wke_toothpick2 = SharedWeapo
 
 ObjectTemplates:addClientTemplate(object_weapon_melee_2h_sword_shared_2h_sword_avatar_wke_toothpick2, "object/weapon/melee/2h_sword/shared_2h_sword_avatar_wke_toothpick2.iff")
 --****************************************************************************************************************************************************************************
-object_weapon_melee_2h_sword_shared_2h_sword_battleaxe _npe = SharedWeaponObjectTemplate:new {
-	clientTemplateFileName = "object/weapon/melee/2h_sword/shared_2h_sword_battleaxe _npe.iff"
+object_weapon_melee_2h_sword_shared_2h_sword_battleaxe_npe = SharedWeaponObjectTemplate:new {
+	clientTemplateFileName = "object/weapon/melee/2h_sword/shared_2h_sword_battleaxe_npe.iff"
 
 }
 
-ObjectTemplates:addClientTemplate(object_weapon_melee_2h_sword_shared_2h_sword_battleaxe _npe, "object/weapon/melee/2h_sword/shared_2h_sword_battleaxe _npe.iff")
+ObjectTemplates:addClientTemplate(object_weapon_melee_2h_sword_shared_2h_sword_battleaxe_npe, "object/weapon/melee/2h_sword/shared_2h_sword_battleaxe_npe.iff")
 --****************************************************************************************************************************************************************************
-object_weapon_melee_2h_sword_shared_2h_sword_battleaxe _quest = SharedWeaponObjectTemplate:new {
-	clientTemplateFileName = "object/weapon/melee/2h_sword/shared_2h_sword_battleaxe _quest.iff"
+object_weapon_melee_2h_sword_shared_2h_sword_battleaxe_quest = SharedWeaponObjectTemplate:new {
+	clientTemplateFileName = "object/weapon/melee/2h_sword/shared_2h_sword_battleaxe_quest.iff"
 
 }
 
-ObjectTemplates:addClientTemplate(object_weapon_melee_2h_sword_shared_2h_sword_battleaxe _quest, "object/weapon/melee/2h_sword/shared_2h_sword_battleaxe _quest.iff")
+ObjectTemplates:addClientTemplate(object_weapon_melee_2h_sword_shared_2h_sword_battleaxe_quest, "object/weapon/melee/2h_sword/shared_2h_sword_battleaxe_quest.iff")
 --****************************************************************************************************************************************************************************
 object_weapon_melee_2h_sword_shared_2h_sword_cleaver_npe = SharedWeaponObjectTemplate:new {
 	clientTemplateFileName = "object/weapon/melee/2h_sword/shared_2h_sword_cleaver_npe.iff"
