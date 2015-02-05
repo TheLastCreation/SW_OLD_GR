@@ -1,4 +1,4 @@
-th_sword_battleaxe _npe = {
+th_sword_battleaxe_npe = {
 	minimumLevel = 0,
 	maximumLevel = -1,
 	customObjectName = "",
@@ -28,4 +28,4 @@ th_sword_battleaxe _npe = {
 	junkMaxValue = 55
 }
 
-addLootItemTemplate("th_sword_battleaxe _npe", th_sword_battleaxe _npe)
+addLootItemTemplate("th_sword_battleaxe_npe", th_sword_battleaxe_npe)
