@@ -1,0 +1,10 @@
+sword_massassi = {
+	description = "",
+	minimumLevel = 0,
+	maximumLevel = 0,
+	lootItems = {
+		{itemTemplate = "sword_massassi", weight = 10000000}
+	}
+}
+
+addLootGroupTemplate("sword_massassi", sword_massassi)
