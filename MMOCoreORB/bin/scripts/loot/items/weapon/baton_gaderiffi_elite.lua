@@ -28,4 +28,4 @@ baton_gaderiffi_elite = {
 	junkMaxValue = 55
 }
 
-addLootItemTemplate("baton_gaderiffi_elite", baton_gaderiffi_elite
+addLootItemTemplate("baton_gaderiffi_elite", baton_gaderiffi_elite)

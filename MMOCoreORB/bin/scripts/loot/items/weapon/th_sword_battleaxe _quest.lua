@@ -1,8 +1,8 @@
-2h_sword_kashyyk_wod = {
+th_sword_battleaxe _quest _quest = {
 	minimumLevel = 0,
 	maximumLevel = -1,
 	customObjectName = "",
-	directObjectTemplate = "object/weapon/melee/2h_sword/2h_sword_kashyyk_wod.iff",
+	directObjectTemplate = "object/weapon/melee/2h_sword/2h_sword_battleaxe _quest.iff",
 	craftingValues = {
 		{"mindamage",28,52,0},
 		{"maxdamage",53,98,0},
@@ -28,4 +28,4 @@
 	junkMaxValue = 55
 }
 
-addLootItemTemplate("2h_sword_kashyyk_wod", 2h_sword_kashyyk_wod)
+addLootItemTemplate("th_sword_battleaxe _quest _quest", th_sword_battleaxe _quest _quest)

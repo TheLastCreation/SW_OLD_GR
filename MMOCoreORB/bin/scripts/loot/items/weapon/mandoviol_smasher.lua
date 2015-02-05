@@ -28,4 +28,4 @@ mandoviol_smasher = {
 	junkMaxValue = 55
 }
 
-addLootItemTemplate("mandoviol_smasher", mandoviol_smasher
+addLootItemTemplate("mandoviol_smasher", mandoviol_smasher)

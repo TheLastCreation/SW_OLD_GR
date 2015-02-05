@@ -28,4 +28,4 @@ baton_stun_legendary = {
 	junkMaxValue = 55
 }
 
-addLootItemTemplate("baton_stun_legendary", baton_stun_legendary
+addLootItemTemplate("baton_stun_legendary", baton_stun_legendary)

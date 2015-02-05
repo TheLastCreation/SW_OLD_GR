@@ -1,8 +1,8 @@
-pistol_launcher_generic = {
+pistol_launcher_medium = {
 	minimumLevel = 0,
 	maximumLevel = -1,
 	customObjectName = "",
-	directObjectTemplate = "object/weapon/ranged/pistol/pistol_launcher_generic.iff",
+	directObjectTemplate = "object/weapon/ranged/pistol/pistol_launcher_medium.iff",
 	craftingValues = {
 		{"mindamage",7,17,0},
 		{"maxdamage",36,72,0},
@@ -29,4 +29,4 @@ pistol_launcher_generic = {
 
 }
 
-addLootItemTemplate("pistol_launcher_generic", pistol_launcher_generic)
+addLootItemTemplate("pistol_launcher_medium", pistol_launcher_medium)

@@ -28,4 +28,4 @@ axe_heavy_duty_npe = {
 	junkMaxValue = 55
 }
 
-addLootItemTemplate("axe_heavy_duty_npe", axe_heavy_duty_npe
+addLootItemTemplate("axe_heavy_duty_npe", axe_heavy_duty_npe)

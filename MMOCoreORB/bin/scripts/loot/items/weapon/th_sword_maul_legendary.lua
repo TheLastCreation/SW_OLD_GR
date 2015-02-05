@@ -1,8 +1,8 @@
-2h_sword_pvp_bf_01 = {
+th_sword_maul_legendary = {
 	minimumLevel = 0,
 	maximumLevel = -1,
 	customObjectName = "",
-	directObjectTemplate = "object/weapon/melee/2h_sword/2h_sword_pvp_bf_01.iff",
+	directObjectTemplate = "object/weapon/melee/2h_sword/2h_sword_maul_legendary.iff",
 	craftingValues = {
 		{"mindamage",28,52,0},
 		{"maxdamage",53,98,0},
@@ -28,4 +28,4 @@
 	junkMaxValue = 55
 }
 
-addLootItemTemplate("2h_sword_pvp_bf_01", 2h_sword_pvp_bf_01)
+addLootItemTemplate("th_sword_maul_legendary", th_sword_maul_legendary)

@@ -28,4 +28,4 @@ ep3_loot_blackbane = {
 	junkMaxValue = 55
 }
 
-addLootItemTemplate("ep3_loot_blackbane", ep3_loot_blackbane
+addLootItemTemplate("ep3_loot_blackbane", ep3_loot_blackbane)

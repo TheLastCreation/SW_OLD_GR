@@ -1,4 +1,4 @@
-2h_sword_sith = {
+th_sword_sith = {
 	minimumLevel = 0,
 	maximumLevel = -1,
 	customObjectName = "",
@@ -28,4 +28,4 @@
 	junkMaxValue = 55
 }
 
-addLootItemTemplate("2h_sword_sith", 2h_sword_sith)
+addLootItemTemplate("th_sword_sith", th_sword_sith)

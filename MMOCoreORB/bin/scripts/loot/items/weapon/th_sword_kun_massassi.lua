@@ -1,8 +1,8 @@
-2h_sword_battleaxe _quest = {
+th_sword_kun_massassi = {
 	minimumLevel = 0,
 	maximumLevel = -1,
 	customObjectName = "",
-	directObjectTemplate = "object/weapon/melee/2h_sword/2h_sword_battleaxe _quest.iff",
+	directObjectTemplate = "object/weapon/melee/2h_sword/2h_sword_kun_massassi.iff",
 	craftingValues = {
 		{"mindamage",28,52,0},
 		{"maxdamage",53,98,0},
@@ -28,4 +28,4 @@
 	junkMaxValue = 55
 }
 
-addLootItemTemplate("2h_sword_battleaxe _quest", 2h_sword_battleaxe _quest)
+addLootItemTemplate("th_sword_kun_massassi", th_sword_kun_massassi)

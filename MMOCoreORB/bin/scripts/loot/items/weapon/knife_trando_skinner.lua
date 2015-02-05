@@ -28,4 +28,4 @@ knife_trando_skinner = {
 	junkMaxValue = 55
 }
 
-addLootItemTemplate("knife_trando_skinner", knife_trando_skinner
+addLootItemTemplate("knife_trando_skinner", knife_trando_skinner)

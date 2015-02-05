@@ -28,4 +28,4 @@ xantha_smasher = {
 	junkMaxValue = 55
 }
 
-addLootItemTemplate("xantha_smasher", xantha_smasher
+addLootItemTemplate("xantha_smasher", xantha_smasher)

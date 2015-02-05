@@ -28,4 +28,4 @@ baton_avatar_trando_stun_stick = {
 	junkMaxValue = 55
 }
 
-addLootItemTemplate("baton_avatar_trando_stun_stick", baton_avatar_trando_stun_stick
+addLootItemTemplate("baton_avatar_trando_stun_stick", baton_avatar_trando_stun_stick)

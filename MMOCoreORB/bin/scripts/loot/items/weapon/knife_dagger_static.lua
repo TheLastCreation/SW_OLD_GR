@@ -28,4 +28,4 @@ knife_dagger_static = {
 	junkMaxValue = 55
 }
 
-addLootItemTemplate("knife_dagger_static", knife_dagger_static
+addLootItemTemplate("knife_dagger_static", knife_dagger_static)

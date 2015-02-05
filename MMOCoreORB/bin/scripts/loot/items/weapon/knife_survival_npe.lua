@@ -28,4 +28,4 @@ knife_survival_npe = {
 	junkMaxValue = 55
 }
 
-addLootItemTemplate("knife_survival_npe", knife_survival_npe
+addLootItemTemplate("knife_survival_npe", knife_survival_npe)

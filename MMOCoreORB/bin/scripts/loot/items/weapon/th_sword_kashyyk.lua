@@ -1,8 +1,8 @@
-2h_sword_avatar_wke_toothpick = {
+th_sword_kashyyk = {
 	minimumLevel = 0,
 	maximumLevel = -1,
 	customObjectName = "",
-	directObjectTemplate = "object/weapon/melee/2h_sword/2h_sword_avatar_wke_toothpick.iff",
+	directObjectTemplate = "object/weapon/melee/2h_sword/2h_sword_kashyyk.iff",
 	craftingValues = {
 		{"mindamage",28,52,0},
 		{"maxdamage",53,98,0},
@@ -28,4 +28,4 @@
 	junkMaxValue = 55
 }
 
-addLootItemTemplate("2h_sword_avatar_wke_toothpick", 2h_sword_avatar_wke_toothpick)
+addLootItemTemplate("th_sword_kashyyk", th_sword_kashyyk)

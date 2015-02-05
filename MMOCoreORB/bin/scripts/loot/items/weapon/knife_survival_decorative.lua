@@ -28,4 +28,4 @@ knife_survival_decorative = {
 	junkMaxValue = 55
 }
 
-addLootItemTemplate("knife_survival_decorative", knife_survival_decorative
+addLootItemTemplate("knife_survival_decorative", knife_survival_decorative)

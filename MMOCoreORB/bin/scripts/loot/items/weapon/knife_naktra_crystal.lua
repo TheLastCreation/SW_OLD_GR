@@ -28,4 +28,4 @@ knife_naktra_crystal = {
 	junkMaxValue = 55
 }
 
-addLootItemTemplate("knife_naktra_crystal", knife_naktra_crystal
+addLootItemTemplate("knife_naktra_crystal", knife_naktra_crystal)
