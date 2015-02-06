@@ -3,10 +3,10 @@ me_dune_stalker_leader = Creature:new {
 	socialGroup = "dune_stalker",
 	pvpFaction = "",
 	faction = "",
-	level = 12,
+	level = 14,
 	chanceHit = 0.32,
-	damageMin = 100,
-	damageMax = 130,
+	damageMin = 1130,
+	damageMax = 180,
 	baseXp = 150,
 	baseHAM = 670,
 	baseHAMmax = 900,
@@ -38,17 +38,9 @@ me_dune_stalker_leader = Creature:new {
 									{group = "pistols", chance = 1000000}
 								},
 								lootChance = 20000000
-					},
-					{
-						groups = {
-									{group = "pistols", chance = 3333333},
-									{group = "rifles", chance = 3333333},
-									{group = "carbines", chance = 3333334}
-								},
-								lootChance = 20000000
 					}
 				},
-	weapons = {"tusken_weapons"},
+	weapons = {"ranged_weapons"},
 	conversationTemplate = ""
 	--attacks = merge(brawlermaster,marksmanmaster)
 }

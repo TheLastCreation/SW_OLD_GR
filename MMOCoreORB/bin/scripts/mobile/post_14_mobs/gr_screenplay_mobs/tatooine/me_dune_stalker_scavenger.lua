@@ -38,17 +38,9 @@ me_dune_stalker_scavenger = Creature:new {
 									{group = "pistols", chance = 1000000}
 								},
 								lootChance = 20000000
-					},
-					{
-						groups = {
-									{group = "pistols", chance = 3333333},
-									{group = "rifles", chance = 3333333},
-									{group = "carbines", chance = 3333334}
-								},
-								lootChance = 20000000
 					}
 				},
-	weapons = {"tusken_weapons"},
+	weapons = {"ranged_weapons"},
 	conversationTemplate = ""
 	--attacks = merge(marksmannovice,brawlernovice)
 }
