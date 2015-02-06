@@ -8,7 +8,7 @@ sword_mandalorian = {
 		{"maxdamage",551,750,0},
 		{"attackspeed",2.1,1.0,1},
 		{"woundchance",8,15,0},
-		{"hitpoints",2500,1500,0},
+		{"hitpoints",2500,2500,0},
 		{"zerorangemod",-5,5,0},
 		{"maxrangemod",-5,5,0},
 		{"midrange",3,3,0},

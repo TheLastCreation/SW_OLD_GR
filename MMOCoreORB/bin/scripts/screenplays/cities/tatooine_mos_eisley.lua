@@ -31,6 +31,13 @@ end
 
 function TatooineMosEisleyScreenPlay:spawnMobiles()
 
+
+	--Easy Mobs Outside ME
+	spawnMobile("tatooine", "me_dune_stalker_leader",240,3142.1,5.3,-4742.1,65,0)
+	spawnMobile("tatooine", "me_dune_stalker_marksman",240,3149.5,5.0,-4744.8,-45,0)
+	spawnMobile("tatooine", "me_dune_stalker_brawler",240,3152.5,5.0,-4738.0,151,0)
+	
+	
 	--Anything dashed out will need to be added here and removed from spawn manager once the spawnMobiles command is extended.
 
 	--Starport

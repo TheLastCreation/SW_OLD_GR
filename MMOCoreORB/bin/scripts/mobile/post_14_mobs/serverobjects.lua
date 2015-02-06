@@ -3,6 +3,13 @@ includeFile("post_14_mobs/gr_screenplay_mobs/kill_the_general/ktg_imperial_capta
 includeFile("post_14_mobs/gr_screenplay_mobs/kill_the_general/ktg_palpatine_hologram.lua")
 
 
+--Tatooine
+includeFile("post_14_mobs/gr_screenplay_mobs/tatooine/me_dune_stalker_brawler.lua")
+includeFile("post_14_mobs/gr_screenplay_mobs/tatooine/me_dune_stalker_enforcer.lua")
+includeFile("post_14_mobs/gr_screenplay_mobs/tatooine/me_dune_stalker_leader.lua")
+includeFile("post_14_mobs/gr_screenplay_mobs/tatooine/me_dune_stalker_marksman.lua")
+includeFile("post_14_mobs/gr_screenplay_mobs/tatooine/me_dune_stalker_scavenger.lua")
+
 
 --Death Troopers
 includeFile("post_14_mobs/death_troopers/deathtrooper_01.lua")
