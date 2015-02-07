@@ -37,7 +37,7 @@ function TatooineMosEisleyScreenPlay:spawnMobiles()
 	spawnMobile("tatooine", "me_dune_stalker_marksman", 240, 3149.5, 5.0, -4744.8, -45, 0)
 	spawnMobile("tatooine", "me_dune_stalker_brawler", 240, 3152.5, 5.0, -4738.0, 151, 0)
 	
-	spawnMobile("tatooine", "me_dune_stalker_brawler", 240, 3002.2, 6.1, -4819.3, -135, 0)
+	spawnMobile("tatooine", "me_dune_stalker_brawler", 240, 3002.2, 5.0, -4819.3, -135, 0)
 	spawnMobile("tatooine", "me_dune_stalker_marksman", 240, 3192.9, 5.0, -4819.1, 118, 0)
 	spawnMobile("tatooine", "me_dune_stalker_scavenger", 240, 3197.8, 5.0, -4821.5, -35, 0)
 	
