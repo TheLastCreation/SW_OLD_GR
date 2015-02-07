@@ -145,6 +145,10 @@ lok = {
 	},
 	
 	planetObjects = {
+		{templateFile = "object/static/structure/general/landing_pad_transport.iff", ox = 0, oy = 0.81, oz = 0, ow = -0.59, x = 3746.7, z = 12.0, y = -3035.2, parentid = 0},
+		{templateFile = "object/tangible/event_perk/lambda_shuttle.iff", ox = 0, oy = -0.164, oz = 0, ow = 0.986, x = 3746.7, z = 12.0, y = -3035.2, parentid = 0},
+		{templateFile = "object/static/installation/mockup_power_generator_fusion_style_1.iff", ox = 0, oy = 0.989, oz = 0, ow = -0.150, x = 3763.26, z = 12.117, y = -3083.17, parentid = 0},
+		{templateFile = "object/static/installation/mockup_power_generator_fusion_style_1.iff", ox = 0, oy = 0.989, oz = 0, ow = -0.150, x = 3769.74, z = 11.979, y = -3085.27, parentid = 0},
 	--	{templateFile = "object/tangible/terminal/terminal_character_builder.iff", ox = 0, oy = 0.999879, oz = 0, ow = 0.015506, x = 464.677, z = 8.75806, y = 5506.49, parentid = 0}
 	}
 }
