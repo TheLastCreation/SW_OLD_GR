@@ -9,7 +9,7 @@ carbine_alliance_needler = {
 		{"attackspeed",5.3,3.7,1},
 		{"woundchance",8,16,0},
 		{"roundsused",30,65,0},
-		{"hitpoints",750,1500,0},
+		{"hitpoints",1300,1500,0},
 		{"zerorangemod",-35,-35,0},
 		{"maxrangemod",-50,-50,0},
 		{"midrange",40,40,0},
