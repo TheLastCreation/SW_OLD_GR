@@ -8,7 +8,7 @@ baton_gaderiffi_elite = {
 		{"maxdamage",53,98,0},
 		{"attackspeed",4.2,2.9,1},
 		{"woundchance",1,3,0},
-		{"hitpoints",750,1500,0},
+		{"hitpoints",2500,2500,0},
 		{"zerorangemod",-5,5,0},
 		{"maxrangemod",-5,5,0},
 		{"midrange",3,3,0},
