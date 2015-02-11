@@ -8,7 +8,7 @@ ep3_loot_sharpshooter = {
 		{"maxdamage",100,188,0},
 		{"attackspeed",9.1,6.3,0},
 		{"woundchance",2.4,4.2,0},
-		{"hitpoints",750,750,0},
+		{"hitpoints",1500,1500,0},
 		{"attackhealthcost",23,14,0},
 		{"attackactioncost",47,28,0},
 		{"attackmindcost",61,37,0},
