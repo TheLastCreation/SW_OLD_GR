@@ -26,7 +26,7 @@ admin_general_admin_01 = {
 		"teleport",
 		"teleportto",
 		"invulnerable",
-		"kill",
+		--"kill",
 		"setSpeed",
 		"planetWarp"
 	},
