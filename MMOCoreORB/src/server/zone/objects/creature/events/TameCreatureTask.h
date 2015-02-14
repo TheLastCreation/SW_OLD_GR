@@ -8,6 +8,7 @@
 #include "server/zone/objects/creature/CreatureObject.h"
 #include "server/zone/objects/intangible/PetControlDevice.h"
 #include "server/chat/ChatManager.h"
+#include "server/zone/objects/creature/events/SpawnCreatureTask.h"
 #include "engine/engine.h"
 
 class TameCreatureTask : public Task {
@@ -106,18 +107,18 @@ public:
 		if (objectString == "")
 			objectString = "object/intangible/pet/pet_control.iff";
 
-		ManagedReference<PetControlDevice*> controlDevice = zoneServer->createObject(objectString.hashCode(), 1).castTo<PetControlDevice*>();
-
-		if (controlDevice == NULL) {
-			resetStatus();
-			return;
-		}
-
 		SceneObject* datapad = player->getSlottedObject("datapad");
 		PlayerManager* playerManager = zoneServer->getPlayerManager();
 		ObjectManager* objectManager = zoneServer->getObjectManager();
 
 		if (datapad == NULL || playerManager == NULL || objectManager == NULL) {
+			resetStatus();
+			return;
+		}
+
+		ManagedReference<PetControlDevice*> controlDevice = zoneServer->createObject(objectString.hashCode(), 1).castTo<PetControlDevice*>();
+
+		if (controlDevice == NULL) {
 			resetStatus();
 			return;
 		}
@@ -135,7 +136,12 @@ public:
 		controlDevice->updateStatus(1);
 		controlDevice->setCustomObjectName(creature->getCustomObjectName(), true);
 
-		datapad->transferObject(controlDevice, -1);
+		if (!datapad->transferObject(controlDevice, -1)) {
+			resetStatus();
+			controlDevice->destroyObjectFromDatabase(true);
+			return;
+		}
+
 		objectManager->persistSceneObjectsRecursively(creature, 1);
 
 		creature->setControlDevice(controlDevice);
@@ -149,10 +155,37 @@ public:
 			creature->setPvpStatusBitmask(player->getPvpStatusBitmask(), false);
 
 		creature->setBaby(false);
-		creature->setFollowObject(player);
 
 		if (creature->isAiAgent()) {
 			AiAgent* agent = cast<AiAgent*>(creature.get());
+			ManagedReference<SceneObject*> parent = player->getParent().get();
+
+			if (agent->getHomeObject() == NULL) {
+				float respawn = agent->getRespawnTimer() * 1000;
+
+				if (agent->getRandomRespawn()) {
+					respawn = System::random(respawn) + (respawn / 2.f);
+				}
+
+				uint32 tempCRC = 0;
+				CreatureTemplate* crTemplate = agent->getCreatureTemplate();
+
+				if (crTemplate != NULL)
+					tempCRC = crTemplate->getTemplateName().hashCode();
+
+				PatrolPoint* homeLoc = agent->getHomeLocation();
+
+				Reference<Task*> task = new SpawnCreatureTask(tempCRC, agent->getRespawnTimer(), creature->getZone()->getZoneName(), homeLoc->getPositionX(), homeLoc->getPositionZ(), homeLoc->getPositionY(), agent->getParentID(), agent->getRandomRespawn());
+				task->schedule(respawn);
+			}
+
+			agent->setFollowObject(player);
+			agent->storeFollowObject();
+
+			agent->setHomeLocation(player->getPositionX(), player->getPositionZ(), player->getPositionY(), (parent != NULL && parent->isCellObject()) ? parent : NULL);
+			agent->setNextStepPosition(player->getPositionX(), player->getPositionZ(), player->getPositionY(), (parent != NULL && parent->isCellObject()) ? parent : NULL);
+			agent->clearPatrolPoints();
+
 			agent->setCreatureBitmask(CreatureFlag::PET);
 			agent->activateLoad("");
 		}

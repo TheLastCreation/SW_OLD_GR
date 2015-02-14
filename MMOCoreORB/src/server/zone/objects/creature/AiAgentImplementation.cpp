@@ -40,6 +40,7 @@
 #include "server/zone/objects/cell/CellObject.h"
 #include "server/zone/objects/creature/AiAgent.h"
 #include "server/zone/objects/creature/Creature.h"
+#include "server/zone/objects/creature/DroidObject.h"
 #include "server/zone/objects/creature/conversation/ConversationObserver.h"
 #include "server/zone/objects/player/PlayerObject.h"
 #include "server/zone/objects/tangible/weapon/WeaponObject.h"
@@ -179,7 +180,7 @@ void AiAgentImplementation::loadTemplateData(CreatureTemplate* templateData) {
 				for (int i = 0; i < weptemps.size(); ++i) {
 					uint32 crc = weptemps.get(i).hashCode();
 
-					ManagedReference<WeaponObject*> weao = (server->getZoneServer()->createObject(crc, 0)).castTo<WeaponObject*>();
+					ManagedReference<WeaponObject*> weao = (server->getZoneServer()->createObject(crc, getPersistenceLevel())).castTo<WeaponObject*>();
 
 					if (weao != NULL) {
 						weao->setMinDamage(minDmg * 0.5);
@@ -318,7 +319,7 @@ void AiAgentImplementation::loadTemplateData(CreatureTemplate* templateData) {
 
 						String templ = obj->getObjectTemplate();
 
-						ManagedReference<TangibleObject*> tano = (server->getZoneServer()->createObject(templ.hashCode(), 0)).castTo<TangibleObject*>();
+						ManagedReference<TangibleObject*> tano = (server->getZoneServer()->createObject(templ.hashCode(), getPersistenceLevel())).castTo<TangibleObject*>();
 
 						if (tano != NULL) {
 							VectorMap<String, uint8>* cust = obj->getCustomizationVariables();
@@ -327,7 +328,9 @@ void AiAgentImplementation::loadTemplateData(CreatureTemplate* templateData) {
 								tano->setCustomizationVariable(cust->elementAt(j).getKey(), cust->elementAt(j).getValue());
 							}
 
-							transferObject(tano, 4, false);
+							if (!transferObject(tano, 4, false) && tano->isPersistent()) {
+								tano->destroyObjectFromDatabase(true);
+							}
 						}
 
 					}
@@ -695,42 +698,6 @@ void AiAgentImplementation::setDespawnOnNoPlayerInRange(bool val) {
 	}
 }
 
-bool AiAgentImplementation::tryRetreat() {
-	return false;
-	//TODO: fix this
-
-	try {
-
-		if(homeLocation.isInRange(_this.get(), 1.5))
-			return false;
-
-		if (homeLocation.getPositionX() == 0 && homeLocation.getPositionY() == 0 && homeLocation.getPositionZ() == 0)
-			return false;
-
-		CombatManager::instance()->forcePeace(_this.get());
-
-		Locker locker(&targetMutex);
-
-		setOblivious();
-
-		//showFlyText("npc_reaction/flytext", "afraid", 0xFF, 0, 0);
-
-		homeLocation.setReached(false);
-
-		if (threatMap != NULL)
-			threatMap->removeAll();
-
-		patrolPoints.add(0, homeLocation);
-
-		activateMovementEvent();
-	} catch (Exception& e) {
-		error(e.getMessage());
-		e.printStackTrace();
-	}
-
-	return true;
-}
-
 void AiAgentImplementation::runAway(CreatureObject* target, float range) {
 	if (target == NULL || getZone() == NULL) {
 		setOblivious();
@@ -748,6 +715,7 @@ void AiAgentImplementation::runAway(CreatureObject* target, float range) {
 
 	showFlyText("npc_reaction/flytext", "afraid", 0xFF, 0, 0);
 	notifyObservers(ObserverEventType::FLEEING, target);
+	sendReactionChat(CreatureManager::FLEE);
 
 	followState = AiAgent::FLEEING;
 	fleeRange = range;
@@ -831,8 +799,9 @@ void AiAgentImplementation::clearCombatState(bool clearDefenders) {
 
 	if (threatMap != NULL)
 		threatMap->removeAll();
+
 	notifyObservers(ObserverEventType::PEACE);
-	//setOblivious();
+	sendReactionChat(CreatureManager::CALM);
 }
 
 void AiAgentImplementation::notifyInsert(QuadTreeEntry* entry) {
@@ -1311,6 +1280,8 @@ bool AiAgentImplementation::findNextPosition(float maxDistance, bool walk) {
 			//activateMovementEvent();
 			PatrolPoint oldPoint = patrolPoints.remove(0);
 
+			currentFoundPath = NULL;
+
 			if (isRetreating())
 				homeLocation.setReached(true);
 
@@ -1539,6 +1510,8 @@ bool AiAgentImplementation::findNextPosition(float maxDistance, bool walk) {
 
 		if (followObject == NULL)
 			notifyObservers(ObserverEventType::DESTINATIONREACHED);
+
+		currentFoundPath = NULL;
 
 		currentSpeed = 0;
 	}
@@ -1921,6 +1894,8 @@ int AiAgentImplementation::notifyObjectDestructionObservers(TangibleObject* atta
 			creatureManager->notifyDestruction(attacker, _this.get(), condition);
 		}
 	}
+
+	sendReactionChat(CreatureManager::DEATH);
 
 	return CreatureObjectImplementation::notifyObjectDestructionObservers(attacker, condition);
 }
@@ -2454,7 +2429,7 @@ void AiAgentImplementation::setupBehaviorTree(AiTemplate* aiTemplate) {
 	for (int i=0; i < treeTemplate->size(); i++) {
 		LuaAiTemplate* temp = treeTemplate->get(i).get();
 		if (temp == NULL) {
-			error("Null AI template"); // FIXME (dannuic): Is this still happening?
+			error("Null AI template, contact dannuic if this occurs"); // FIXME (dannuic): Is this still happening?
 			continue;
 		}
 
@@ -2690,6 +2665,8 @@ void AiAgentImplementation::setCombatState() {
 	if (homeObject != NULL)
 		homeObject->notifyObservers(ObserverEventType::AIMESSAGE, _this.get(), ObserverEventType::STARTCOMBAT);
 
+	sendReactionChat(CreatureManager::ATTACKED);
+
 	//broadcastInterrupt(ObserverEventType::STARTCOMBAT);
 
 	activateInterrupt(_this.get(), ObserverEventType::STARTCOMBAT);
@@ -2793,4 +2770,116 @@ void AiAgentImplementation::restoreFollowObject() {
 		setOblivious();
 	else
 		setFollowObject(obj);
+}
+
+void AiAgentImplementation::sendReactionChat(int type, int state) {
+	if (!getCooldownTimerMap()->isPast("reaction_chat") || getZone() == NULL) {
+		return;
+	}
+
+	StringBuffer message;
+
+	if (getReactionStf() != "") {
+		message << getReactionStf();
+	} else if (isDroidObject()) {
+		DroidObject* droid = _this.get().castTo<DroidObject*>();
+		if (droid->getPersonalityBase() != "") {
+			message << droid->getPersonalityBase();
+		} else {
+			return;
+		}
+	} else {
+		return;
+	}
+
+	int chance = 0;
+	String typeString;
+
+	switch(type) {
+	case CreatureManager::ALERT: // TODO: add trigger
+		chance = 25;
+		typeString = "alert_";
+		break;
+	case CreatureManager::ALLY: // TODO: add trigger
+		chance = 25;
+		typeString = "ally_";
+		break;
+	case CreatureManager::ASSIST: // TODO: add trigger
+		chance = 25;
+		typeString = "assist_";
+		break;
+	case CreatureManager::ATTACKED:
+		chance = 25;
+		typeString = "attacked_";
+		break;
+	case CreatureManager::BYE: // TODO: add trigger
+		chance = 25;
+		typeString = "bye_";
+		break;
+	case CreatureManager::CALM:
+		chance = 25;
+		typeString = "calm_";
+		break;
+	case CreatureManager::DEATH:
+		chance = 50;
+		typeString = "death_";
+		break;
+	case CreatureManager::FLEE:
+		chance = 25;
+		typeString = "flee_";
+		break;
+	case CreatureManager::GLOAT:
+		chance = 100;
+		typeString = "gloat_";
+		break;
+	case CreatureManager::HELP: // TODO: add trigger
+		chance = 25;
+		typeString = "help_";
+		break;
+	case CreatureManager::HI: // TODO: add trigger
+		chance = 25;
+		typeString = "hi_";
+		break;
+	case CreatureManager::HIT:
+		chance = 10;
+		typeString = "hit_";
+		break;
+	case CreatureManager::HITTARGET:
+		chance = 10;
+		typeString = "hit_target_";
+		break;
+	case CreatureManager::THREAT: // TODO: add trigger
+		chance = 25;
+		typeString = "threat_";
+		break;
+	default:
+		return;
+		break;
+	}
+
+	switch (state) {
+	case CreatureManager::NONE:
+		break;
+	case CreatureManager::NICE:
+		typeString = typeString + "nice_";
+		break;
+	case CreatureManager::MID:
+		typeString = typeString + "mid_";
+		break;
+	case CreatureManager::MEAN:
+		typeString = typeString + "mean_";
+		break;
+	default:
+		return;
+		break;
+	}
+
+	if (System::random(99) < chance) {
+		message << ":" << typeString << (System::random(15) + 1);
+		StringIdChatParameter chat;
+		chat.setStringId(message.toString());
+		getZoneServer()->getChatManager()->broadcastMessage(_this.get(),chat,0,0,0);
+
+		getCooldownTimerMap()->updateToCurrentAndAddMili("reaction_chat",30000); // 30 second cooldown
+	}
 }

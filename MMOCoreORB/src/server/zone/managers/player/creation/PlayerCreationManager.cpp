@@ -51,6 +51,7 @@ which carries forward this exception.
 #include "server/login/packets/ErrorMessage.h"
 #include "server/chat/ChatManager.h"
 #include "server/login/account/Account.h"
+#include "server/zone/objects/player/sui/messagebox/SuiMessageBox.h"
 #include "server/zone/objects/player/PlayerObject.h"
 #include "server/zone/packets/MessageCallback.h"
 #include "server/zone/packets/charcreation/ClientCreateCharacterCallback.h"
@@ -376,8 +377,8 @@ bool PlayerCreationManager::createCharacter(MessageCallback* data) {
 			ClientCreateCharacterCallback*>(data);
 	ZoneClientSession* client = data->getClient();
 
-	if (client->getCharacterCount(zoneServer.get()->getGalaxyID()) >= 20) {
-		ErrorMessage* errMsg = new ErrorMessage("Create Error", "You can only have 20 characters per galaxy", 0x0);
+	if (client->getCharacterCount(zoneServer.get()->getGalaxyID()) >= 10) {
+		ErrorMessage* errMsg = new ErrorMessage("Create Error", "You are limited to 10 characters per galaxy.", 0x0);
 		client->sendMessage(errMsg);
 
 		return false;
@@ -504,10 +505,9 @@ bool PlayerCreationManager::createCharacter(MessageCallback* data) {
 				ManagedReference<Account*> playerAccount = playerManager->getAccount(accID);
 
 				if (playerAccount == NULL) {
+					playerCreature->destroyPlayerCreatureFromDatabase(true);
 					return false;
 				}
-
-				//if (client->has)
 
 				int accountPermissionLevel = playerAccount->getAdminLevel();
 				String accountName = playerAccount->getUsername();
@@ -515,7 +515,7 @@ bool PlayerCreationManager::createCharacter(MessageCallback* data) {
 				if(accountPermissionLevel > 0 && (accountPermissionLevel == 9 || accountPermissionLevel == 10 || accountPermissionLevel == 12 || accountPermissionLevel == 15)) {
 					playerManager->updatePermissionLevel(playerCreature, accountPermissionLevel);
 
-					Reference<ShipControlDevice*> shipControlDevice = zoneServer->createObject(String("object/intangible/ship/tiefighter_pcd.iff").hashCode(), 1).castTo<ShipControlDevice*>();
+					Reference<ShipControlDevice*> shipControlDevice = zoneServer->createObject(String("object/intangible/ship/sorosuub_space_yacht_pcd.iff").hashCode(), 1).castTo<ShipControlDevice*>();
 					//ShipObject* ship = (ShipObject*) server->createObject(String("object/ship/player/player_sorosuub_space_yacht.iff").hashCode(), 1);
 					Reference<ShipObject*> ship = zoneServer->createObject(String("object/ship/player/player_basic_tiefighter.iff").hashCode(), 1).castTo<ShipObject*>();
 
@@ -527,8 +527,11 @@ bool PlayerCreationManager::createCharacter(MessageCallback* data) {
 					ManagedReference<SceneObject*> datapad = playerCreature->getSlottedObject("datapad");
 
 					if (datapad != NULL) {
-						datapad->transferObject(shipControlDevice, -1);
+						if (!datapad->transferObject(shipControlDevice, -1)) {
+							shipControlDevice->destroyObjectFromDatabase(true);
+						}
 					} else {
+						shipControlDevice->destroyObjectFromDatabase(true);
 						error("could not get datapad from player");
 					}
 				}
@@ -548,10 +551,11 @@ bool PlayerCreationManager::createCharacter(MessageCallback* data) {
 
 							Time timeVal(sec);
 
-							if (timeVal.miliDifference() < 3600000) {
-								ErrorMessage* errMsg = new ErrorMessage("Create Error", "You can only create 1 character per hour on each server. Please wait!", 0x0);
+							if (timeVal.miliDifference() < 86400000) {
+								ErrorMessage* errMsg = new ErrorMessage("Create Error", "You are only permitted to create one character every 24 hours. Repeat attempts prior to 24 hours elapsing will reset the timer.", 0x0);
 								client->sendMessage(errMsg);
 
+								playerCreature->destroyPlayerCreatureFromDatabase(true);
 								return false;
 							}
 							//timeVal.se
@@ -565,10 +569,11 @@ bool PlayerCreationManager::createCharacter(MessageCallback* data) {
 					if (lastCreatedCharacter.containsKey(accID)) {
 						Time lastCreatedTime = lastCreatedCharacter.get(accID);
 
-						if (lastCreatedTime.miliDifference() < 3600000) {
-							ErrorMessage* errMsg = new ErrorMessage("Create Error", "You can only create 1 character per hour on each server. Please wait!", 0x0);
+						if (lastCreatedTime.miliDifference() < 86400000) {
+							ErrorMessage* errMsg = new ErrorMessage("Create Error", "You are only permitted to create one character every 24 hours. Repeat attempts prior to 24 hours elapsing will reset the timer.", 0x0);
 							client->sendMessage(errMsg);
 
+							playerCreature->destroyPlayerCreatureFromDatabase(true);
 							return false;
 						} else {
 							lastCreatedTime.updateToCurrentTime();
@@ -667,6 +672,13 @@ bool PlayerCreationManager::createCharacter(MessageCallback* data) {
 
 	JediManager::instance()->onPlayerCreated(playerCreature);
 
+	ManagedReference<SuiMessageBox*> box = new SuiMessageBox(playerCreature, SuiWindowType::NONE);
+	box->setPromptTitle("PLEASE NOTE");
+	box->setPromptText("You are limited to creating one character every 24 hours. Attempting to create another character or deleting your character before the 24 hour timer expires will reset the timer.");
+
+	ghost->addSuiBox(box);
+	playerCreature->sendMessage(box->generateMessage());
+
 	return true;
 }
 
@@ -746,6 +758,8 @@ void PlayerCreationManager::addStartingItems(CreatureObject* creature,
 			String error;
 			if (creature->canAddObject(item, 4, error) == 0) {
 				creature->transferObject(item, 4, false);
+			} else {
+				item->destroyObjectFromDatabase(true);
 			}
 		}
 
@@ -754,14 +768,19 @@ void PlayerCreationManager::addStartingItems(CreatureObject* creature,
 	// Get inventory.
 	if (!equipmentOnly) {
 		SceneObject* inventory = creature->getSlottedObject("inventory");
+		if (inventory == NULL) {
+			return;
+		}
 
 		//Add common starting items.
 		for (int itemNumber = 0; itemNumber < commonStartingItems.size();
 				itemNumber++) {
 			ManagedReference<SceneObject*> item = zoneServer->createObject(
 					commonStartingItems.get(itemNumber).hashCode(), 1);
-			if (item != NULL && inventory != NULL) {
-				inventory->transferObject(item, -1, false);
+			if (item != NULL) {
+				if (!inventory->transferObject(item, -1, false)) {
+					item->destroyObjectFromDatabase(true);
+				}
 			}
 		}
 	}
@@ -783,6 +802,14 @@ void PlayerCreationManager::addProfessionStartingItems(CreatureObject* creature,
 	SkillManager::instance()->awardSkill(startingSkill->getSkillName(),
 			creature, false, true, true);
 
+	//Set the hams.
+	for (int i = 0; i < 9; ++i) {
+		int mod = professionData->getAttributeMod(i);
+		creature->setBaseHAM(i, mod, false);
+		creature->setHAM(i, mod, false);
+		creature->setMaxHAM(i, mod, false);
+	}
+
 	SortedVector < String > *itemTemplates = professionData->getProfessionItems(
 			clientTemplate);
 
@@ -803,8 +830,11 @@ void PlayerCreationManager::addProfessionStartingItems(CreatureObject* creature,
 
 		if (item != NULL) {
 			String error;
-			if (creature->canAddObject(item, 4, error) == 0)
+			if (creature->canAddObject(item, 4, error) == 0) {
 				creature->transferObject(item, 4, false);
+			} else {
+				item->destroyObjectFromDatabase(true);
+			}
 		} else {
 			error(
 					"could not create item in PlayerCreationManager::addProfessionStartingItems: "
@@ -815,6 +845,9 @@ void PlayerCreationManager::addProfessionStartingItems(CreatureObject* creature,
 	// Get inventory.
 	if (!equipmentOnly) {
 		SceneObject* inventory = creature->getSlottedObject("inventory");
+		if (inventory == NULL) {
+			return;
+		}
 
 		//Add profession specific items.
 		for (int itemNumber = 0;
@@ -826,20 +859,14 @@ void PlayerCreationManager::addProfessionStartingItems(CreatureObject* creature,
 			ManagedReference<SceneObject*> item = zoneServer->createObject(
 					itemTemplate.hashCode(), 1);
 
-			if (item != NULL && inventory != NULL) {
-				inventory->transferObject(item, -1, false);
+			if (item != NULL) {
+				if (!inventory->transferObject(item, -1, false)) {
+					item->destroyObjectFromDatabase(true);
+				}
 			} else if (item == NULL) {
 				error("could not create profession item " + itemTemplate);
 			}
 		}
-	}
-
-	//Set the hams.
-	for (int i = 0; i < 9; ++i) {
-		int mod = professionData->getAttributeMod(i);
-		creature->setBaseHAM(i, mod, false);
-		creature->setHAM(i, mod, false);
-		creature->setMaxHAM(i, mod, false);
 	}
 }
 
@@ -879,8 +906,14 @@ void PlayerCreationManager::addHair(CreatureObject* creature,
 			hairTemplate.hashCode(), 1);
 
 	//TODO: Validate hairCustomization
-	if (hair == NULL || !hair->isTangibleObject())
+	if (hair == NULL) {
 		return;
+	}
+
+	if (!hair->isTangibleObject()) {
+		hair->destroyObjectFromDatabase(true);
+		return;
+	}
 
 	TangibleObject* tanoHair = cast<TangibleObject*>(hair.get());
 	tanoHair->setContainerDenyPermission("owner",
@@ -937,7 +970,11 @@ void PlayerCreationManager::addStartingItemsInto(CreatureObject* creature,
 		ManagedReference<SceneObject*> item = zoneServer->createObject(
 				commonStartingItems.get(itemNumber).hashCode(), 1);
 		if (item != NULL && container != NULL && !item->isWeaponObject()) {
-			container->transferObject(item, -1, true);
+			if (!container->transferObject(item, -1, true)) {
+				item->destroyObjectFromDatabase(true);
+			}
+		} else if (item != NULL) {
+			item->destroyObjectFromDatabase(true);
 		}
 	}
 
@@ -963,10 +1000,13 @@ void PlayerCreationManager::addStartingItemsInto(CreatureObject* creature,
 				professionData->getStartingItems()->get(itemNumber).hashCode(),
 				1);
 		if (item != NULL && container != NULL && !item->isWeaponObject()) {
-			container->transferObject(item, -1, true);
+			if (!container->transferObject(item, -1, true)) {
+				item->destroyObjectFromDatabase(true);
+			}
+		} else if (item != NULL) {
+			item->destroyObjectFromDatabase(true);
 		}
 	}
-
 
 	//Add race specific items.
 	Vector < String > *startingItems = playerTemplate->getStartingItems();
@@ -976,8 +1016,13 @@ void PlayerCreationManager::addStartingItemsInto(CreatureObject* creature,
 			ManagedReference<SceneObject*> item = zoneServer->createObject(
 					startingItems->get(i).hashCode(), 1);
 
-			if (item != NULL && container != NULL && !item->isWeaponObject())
-				container->transferObject(item, -1, true);
+			if (item != NULL && container != NULL && !item->isWeaponObject()) {
+				if (!container->transferObject(item, -1, true)) {
+					item->destroyObjectFromDatabase(true);
+				}
+			} else if (item != NULL) {
+				item->destroyObjectFromDatabase(true);
+			}
 		}
 
 	}
@@ -1019,8 +1064,13 @@ void PlayerCreationManager::addStartingWeaponsInto(CreatureObject* creature,
 		ManagedReference<SceneObject*> item = zoneServer->createObject(
 				commonStartingItems.get(itemNumber).hashCode(), 1);
 		if (item != NULL && container != NULL && item->isWeaponObject()) {
-			item->sendTo(creature, true);
-			container->transferObject(item, -1, true);
+			if (container->transferObject(item, -1, true)) {
+				item->sendTo(creature, true);
+			} else {
+				item->destroyObjectFromDatabase(true);
+			}
+		} else if (item != NULL) {
+			item->destroyObjectFromDatabase(true);
 		}
 	}
 
@@ -1033,8 +1083,13 @@ void PlayerCreationManager::addStartingWeaponsInto(CreatureObject* creature,
 				professionData->getStartingItems()->get(itemNumber).hashCode(),
 				1);
 		if (item != NULL && container != NULL && item->isWeaponObject()) {
-			item->sendTo(creature, true);
-			container->transferObject(item, -1, true);
+			if (container->transferObject(item, -1, true)) {
+				item->sendTo(creature, true);
+			} else {
+				item->destroyObjectFromDatabase(true);
+			}
+		} else if (item != NULL) {
+			item->destroyObjectFromDatabase(true);
 		}
 	}
 
@@ -1048,8 +1103,13 @@ void PlayerCreationManager::addStartingWeaponsInto(CreatureObject* creature,
 					startingItems->get(i).hashCode(), 1);
 
 			if (item != NULL && container != NULL && item->isWeaponObject()) {
-				item->sendTo(creature, true);
-				container->transferObject(item, -1, true);
+				if (container->transferObject(item, -1, true)) {
+					item->sendTo(creature, true);
+				} else {
+					item->destroyObjectFromDatabase(true);
+				}
+			} else if (item != NULL) {
+				item->destroyObjectFromDatabase(true);
 			}
 		}
 	}
@@ -1080,14 +1140,19 @@ void PlayerCreationManager::addRacialMods(CreatureObject* creature,
 	// Get inventory.
 	if (!equipmentOnly) {
 		SceneObject* inventory = creature->getSlottedObject("inventory");
+		if (inventory == NULL) {
+			return;
+		}
 
 		if (startingItems != NULL) {
 			for (int i = 0; i < startingItems->size(); ++i) {
 				ManagedReference<SceneObject*> item = zoneServer->createObject(
 						startingItems->get(i).hashCode(), 1);
 
-				if (item != NULL && inventory != NULL) {
-					inventory->transferObject(item, -1, false);
+				if (item != NULL) {
+					if (!inventory->transferObject(item, -1, false)) {
+						item->destroyObjectFromDatabase(true);
+					}
 				}
 
 			}

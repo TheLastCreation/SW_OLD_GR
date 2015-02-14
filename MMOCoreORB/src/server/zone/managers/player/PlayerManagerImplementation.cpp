@@ -503,38 +503,6 @@ bool PlayerManagerImplementation::checkPlayerName(MessageCallback* messageCallba
 	return true;
 }
 
-
-Reference<TangibleObject*> PlayerManagerImplementation::createHairObject(const String& hairObjectFile, const String& hairCustomization) {
-	Reference<TangibleObject*> hairObject = NULL;
-
-	if (hairObjectFile.isEmpty()) {
-		info("hairObjectFile empty");
-		return NULL;
-	}
-
-	info("trying to create hair object " + hairObjectFile);
-	Reference<SceneObject*> hair = server->createObject(hairObjectFile.hashCode(), 1);
-
-	if (hair == NULL) {
-		info("objectManager returned NULL hair object");
-		return NULL;
-	}
-
-	if (hair->getGameObjectType() != SceneObjectType::GENERICITEM || hair->getArrangementDescriptor(0).get(0) != "hair") {
-		ManagedReference<SceneObject*> clearRef = hair;
-
-		return NULL;
-	} else {
-		hairObject = hair.castTo<TangibleObject*>();
-
-		hairObject->setCustomizationString(hairCustomization);
-
-		info("hair object created successfully");
-	}
-
-	return hairObject;
-}
-
 void PlayerManagerImplementation::createTutorialBuilding(CreatureObject* player) {
 	Zone* zone = server->getZone("tutorial");
 
@@ -4217,9 +4185,15 @@ void PlayerManagerImplementation::generateVeteranReward(CreatureObject* player )
 
 	// Generate item
 	SceneObject* inventory = player->getSlottedObject("inventory");
+	if( inventory == NULL ){
+		player->sendSystemMessage( "@veteran:reward_error"); //	The reward could not be granted.
+		cancelVeteranRewardSession( player );
+		return;
+	}
+
 	VeteranReward reward = veteranRewards.get(rewardSession->getSelectedRewardIndex());
 	Reference<SceneObject*> rewardSceno = server->createObject(reward.getTemplateFile().hashCode(), 1);
-	if( rewardSceno == NULL || inventory == NULL ){
+	if( rewardSceno == NULL ){
 		player->sendSystemMessage( "@veteran:reward_error"); //	The reward could not be granted.
 		cancelVeteranRewardSession( player );
 		return;
@@ -4228,6 +4202,7 @@ void PlayerManagerImplementation::generateVeteranReward(CreatureObject* player )
 	// Transfer to player
 	if( !inventory->transferObject(rewardSceno, -1, false, true) ){ // Allow overflow
 		player->sendSystemMessage( "@veteran:reward_error"); //	The reward could not be granted.
+		rewardSceno->destroyObjectFromDatabase(true);
 		cancelVeteranRewardSession( player );
 		return;
 	}
@@ -4583,6 +4558,15 @@ bool PlayerManagerImplementation::doBurstRun(CreatureObject* player, float hamMo
 	}
 
 	if (player->hasBuff(String("gallop").hashCode()) || player->hasBuff(String("burstrun").hashCode()) || player->hasBuff(String("retreat").hashCode())) {
+		player->sendSystemMessage("@combat_effects:burst_run_no"); // You cannot burst run right now.
+		return false;
+	}
+
+	uint32 forceRun1CRC = BuffCRC::JEDI_FORCE_RUN_1;
+	uint32 forceRun2CRC = BuffCRC::JEDI_FORCE_RUN_2;
+	uint32 forceRun3CRC = BuffCRC::JEDI_FORCE_RUN_3;
+
+	if(player->hasBuff(forceRun1CRC) || player->hasBuff(forceRun2CRC) || player->hasBuff(forceRun3CRC)) {
 		player->sendSystemMessage("@combat_effects:burst_run_no"); // You cannot burst run right now.
 		return false;
 	}

@@ -2,15 +2,13 @@ deathWatchQuestNpcs = {
 	{"mand_bunker_foreman", 1, 27.6, -61.5, -297.6, -112, 5996355},
 	{"death_watch_workshop_droid", 1, -113.3, -20, -101.3, 35, 5996328},
 	{"mand_bunker_technician", 1, -23.9, -52, -163.8, 45, 5996378},
-	--{"ventilation_quest_droid", 1, -6.2, -52.0, -119.6, 62, 5996379},
 	{"death_watch_medical_droid", 1, -80.3, -20, -121, -34, 5996329},
 	{"death_watch_rescue_scientist", 1, 113.9,-68,-187,1,5996351},
-	
+
 	-- ***** TEMPORARY FOR TESTING *****
 	{"boba_fett", 0, -4677,13,4325,-90,0},
 	{"death_watch_herald_imperial", 0, -4677,13,4323,-90,0},
 	{"death_watch_herald_rebel", 0, -4677,13,4321,-90,0},
-	
 }
 
 deathWatchSpecialSpawns = {
@@ -64,6 +62,8 @@ deathWatchSpecialSpawns = {
 	droidengineerattack2 = {"death_watch_wraith", 0, -241.9, -40.0, -95.8, 23, 5996370},
 	droidengineerattack3 = {"death_watch_ghost", 0,-249.1, -40.0, -85.1, 114, 5996370},
 	droidengineerattack4 = {"death_watch_bloodguard", 0,-254.9, -40.0, -92.7, -130, 5996370},
+	bombdroid = {"r2", 300, 94, -64, -132, 90, 5996348},
+	ventdroid = {"mand_bunker_vent_droid", 0, 5.4, -52.0, -120.8, -62, 5996379},
 }
 
 deathWatchStaticSpawns = {
@@ -71,7 +71,6 @@ deathWatchStaticSpawns = {
 	{"death_watch_s_battle_droid", 300, 110, -64, -92, 150, 5996349},
 	{"death_watch_ghost", 300, 116, -64, -101, -156, 5996349},
 	{"death_watch_wraith", 300, 113, -64, -100.7, -36, 5996349},
-	{"blastromech", 300, 98, -64, -132, -90, 5996348},
 	{"death_watch_s_battle_droid", 300, 22.1, -64, -97, 110, 5996347},
 	{"death_watch_wraith", 300, 22.6, -64, -111.1, 128, 5996347},
 	{"death_watch_battle_droid", 300, 40.2, -64, -154.6, -71, 5996347},

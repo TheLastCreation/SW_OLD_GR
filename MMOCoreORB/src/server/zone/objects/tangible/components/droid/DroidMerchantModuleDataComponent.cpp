@@ -105,7 +105,7 @@ int DroidMerchantModuleDataComponent::handleObjectMenuSelect(CreatureObject* pla
 		tway->setPosition(waypoint->getPositionX(), waypoint->getPositionZ(), waypoint->getPositionY());
 		tway->setActive(true);
 		tway->setCustomObjectName(waypoint->getDisplayedName(),true);
-		tway->setColor(WaypointObject::SPECIALTYPE_FIND);
+		tway->setColor(WaypointObject::COLOR_BLUE);
 		ManagedReference<PlayerObject*> ghost = player->getPlayerObject();
 		ghost->addWaypoint(tway,true,true);
 		player->sendSystemMessage("@pet/droid_modules:waypoint_sent");
@@ -159,8 +159,8 @@ int DroidMerchantModuleDataComponent::handleObjectMenuSelect(CreatureObject* pla
 	else if (selectedID == BARKER_STORE_WAYPOINT) {
 		// Handle the waypoint input
 		ManagedReference<PlayerObject*> ghost = player->getPlayerObject();
-		WaypointList* waypoints = ghost->getWaypointList();
-		if(waypoints->size() == 0) {
+		int waypointsSize = ghost->getWaypointListSize();
+		if(waypointsSize == 0) {
 			player->sendSystemMessage("@pet/droid_modules:no_waypoints_in_datapad");
 			return 0;
 		}
@@ -170,8 +170,8 @@ int DroidMerchantModuleDataComponent::handleObjectMenuSelect(CreatureObject* pla
 		box->setPromptTitle("@pet/droid_modules:barker_message_sub"); // Configure Effects
 		box->setOkButton(true, "@ok");
 		box->setCancelButton(true, "@cancel");
-		for(int i=0;i<waypoints->size();i++) {
-			ManagedReference<WaypointObject*> way = waypoints->getValueAt(i);
+		for(int i=0;i<waypointsSize;i++) {
+			ManagedReference<WaypointObject*> way = ghost->getWaypoint(i);
 			box->addMenuItem(way->getDisplayedName(),way->getObjectID());
 		}
 		ManagedReference<DroidObject*> droid = getDroidObject();

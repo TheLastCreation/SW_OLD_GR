@@ -503,8 +503,17 @@ class PlayerObject extends IntangibleObject {
 	 * @post { this is locked, waypoint list doesnt contain the specified waypoint }
 	 * @param waypointID waypoint object id to remove
 	 * @param notifyClient determines whether to update the client with the changes
+	 * @param destroy determines whether to remove the waypoint from the database
 	 */
-	public native void removeWaypoint(unsigned long waypointID, boolean notifyClient = true);
+	public native void removeWaypoint(unsigned long waypointID, boolean notifyClient = true, boolean destroy = true);
+
+	/**
+	 * Updates the client with a waypoint change
+	 * @pre { this is locked }
+	 * @post { this is locked }
+	 * @param waypointID waypoint object id to update
+	 */
+	public native void updateWaypoint(unsigned long waypointID);
 
 	/**
 	 * Removes a waypoint of a special type from this player
@@ -524,6 +533,25 @@ class PlayerObject extends IntangibleObject {
 
 	@dirty
 	public native WaypointObject getSurveyWaypoint();
+
+	public boolean hasWaypoint(unsigned long objectID) {
+		return waypointList.contains(objectID);
+	}
+
+	@dirty
+	public void insertWaypointListToMessage(BaseMessage msg) {
+		waypointList.insertToMessage(msg);
+	}
+
+	@dirty
+	public int getWaypointListSize() {
+		return waypointList.size();
+	}
+
+	@dirty
+	public WaypointObject getWaypoint(int index) {
+		return waypointList.getValueAt(index);
+	}
 
 	/**
 	 * Adds new abilities commands to player
@@ -1148,11 +1176,7 @@ class PlayerObject extends IntangibleObject {
 	}
 	
 	public native void sendFriendLists();
-	
-	public boolean hasWaypoint(unsigned long objectID) {
-		return waypointList.contains(objectID);
-	}
-	
+
 	/**
 	 * Checks to see if this player object has the specified ability.
 	 * @param ability The ability to search for.
@@ -1263,13 +1287,7 @@ class PlayerObject extends IntangibleObject {
 	public int getForcePowerMax() {
 		return forcePowerMax;
 	}
-	
-	@local
-	@dirty
-	public WaypointList getWaypointList() {
-		return waypointList;
-	}
-	
+
 	@local
 	@dirty
 	public AbilityList getAbilityList() {

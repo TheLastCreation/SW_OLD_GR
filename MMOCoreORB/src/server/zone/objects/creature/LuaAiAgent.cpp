@@ -43,6 +43,8 @@ Luna<LuaAiAgent>::RegType LuaAiAgent::Register[] = {
 		{ "getTargetID", &LuaCreatureObject::getTargetID },
 		{ "getObjectID", &LuaSceneObject::getObjectID },
 		{ "getFollowState", &LuaAiAgent::getFollowState },
+		{ "setFollowState", &LuaAiAgent::setFollowState },
+		{ "setNextPosition", &LuaAiAgent::setNextPosition },
 		{ "findNextPosition", &LuaAiAgent::findNextPosition },
 		{ "getMaxDistance", &LuaAiAgent::getMaxDistance },
 		{ "generatePatrol", &LuaAiAgent::generatePatrol },
@@ -223,6 +225,25 @@ int LuaAiAgent::getFollowState(lua_State* L) {
 	return 1;
 }
 
+int LuaAiAgent::setNextPosition(lua_State* L) {
+	SceneObject* cell = static_cast<SceneObject*>(lua_touserdata(L, -1));
+	float y = lua_tonumber(L, -2);
+	float z = lua_tonumber(L, -3);
+	float x = lua_tonumber(L, -4);
+
+	realObject->setNextPosition(x, z, y, cell);
+
+	return 0;
+}
+
+int LuaAiAgent::setFollowState(lua_State* L) {
+	int state = lua_tonumber(L, -1);
+
+	realObject->setFollowState(state);
+
+	return 0;
+}
+
 /**
  * @param takes a float maxDistance argument
  * @return bool to lua depending on if a new position was found or not
@@ -328,6 +349,8 @@ int LuaAiAgent::setCurrentSpeed(lua_State* L) {
 }
 
 int LuaAiAgent::getTargetFromMap(lua_State* L) {
+	Locker locker(realObject);
+
 	SceneObject* retVal = realObject->getTargetFromMap();
 
 	if (retVal == NULL)
@@ -339,6 +362,8 @@ int LuaAiAgent::getTargetFromMap(lua_State* L) {
 }
 
 int LuaAiAgent::getTargetFromDefenders(lua_State* L) {
+	Locker locker(realObject);
+
 	SceneObject* retVal = realObject->getTargetFromDefenders();
 
 	if (retVal == NULL)
@@ -410,12 +435,16 @@ int LuaAiAgent::validateStateAttack(lua_State* L) {
 }
 
 int LuaAiAgent::removeDefender(lua_State* L) {
+	Locker locker(realObject);
+
 	realObject->removeDefender(realObject->getFollowObject());
 
 	return 0;
 }
 
 int LuaAiAgent::removeDefenders(lua_State* L) {
+	Locker locker(realObject);
+
 	realObject->removeDefenders();
 
 	return 0;
@@ -443,8 +472,11 @@ int LuaAiAgent::runAway(lua_State* L) {
 	CreatureObject* target = static_cast<CreatureObject*>(lua_touserdata(L, -2));
 	float range = lua_tonumber(L, -1);
 
-	if (target != NULL)
+	if (target != NULL) {
+		Locker locker(realObject);
+
 		realObject->runAway(target, range);
+	}
 
 	return 0;
 }
@@ -644,6 +676,8 @@ int LuaAiAgent::shouldRetreat(lua_State* L) {
 int LuaAiAgent::clearCombatState(lua_State* L) {
 	bool clearDefenders = lua_toboolean(L, -1);
 
+	Locker locker(realObject);
+
 	realObject->clearCombatState(clearDefenders);
 
 	return 0;
@@ -667,6 +701,8 @@ int LuaAiAgent::checkLineOfSight(lua_State* L) {
 }
 
 int LuaAiAgent::activateRecovery(lua_State* L) {
+	Locker locker(realObject);
+
 	realObject->activateRecovery();
 
 	return 0;
