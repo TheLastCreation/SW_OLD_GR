@@ -1,3 +1,5 @@
+includeFile("items/weapon/bestine_quest_sword.lua")                        
+includeFile("items/weapon/blacksun_razor.lua") 
 includeFile("items/weapon/blacksun_razor_generic.lua")
 includeFile("items/weapon/blasterfist.lua")
 includeFile("items/weapon/blasterfist_generic.lua")
@@ -62,5 +64,4 @@ includeFile("items/weapon/victor_baton_gaderiffi.lua")
 includeFile("items/weapon/wod_war_fan.lua")                                
 includeFile("items/weapon/wookiee_knuckler.lua")                           
 includeFile("items/weapon/wookiee_knuckler_wod.lua")                       
-includeFile("items/weapon/bestine_quest_sword.lua")                        
-includeFile("items/weapon/blacksun_razor.lua")                             
+                            
