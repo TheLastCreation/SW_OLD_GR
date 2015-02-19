@@ -631,11 +631,7 @@ void JunkdealerCreatureImplementation::selectConversationOption(int option, Scen
 			player->sendMessage(slist);
 
 		} else {
-			StringIdChatParameter params(stffile, "s_3633b5a5");
-			NpcConversationMessage* skillmsg = new NpcConversationMessage(player, params);
-			ghost->setLastNpcConvMessStr("junkdealer_nokit");
-			ghost->addLastNpcConvOptions(choice);
-			player->sendMessage(skillmsg);
+			sendConversationTerminate(player,stffile,"s_3633b5a5");
 		}
 
 	} else if (ghost->getLastNpcConvMessStr() == "junkdealer_kit5") {
@@ -685,34 +681,26 @@ void JunkdealerCreatureImplementation::selectConversationOption(int option, Scen
 		}
 
 		if (found) {
-			StringIdChatParameter params(stffile, "s_3df21ea0");
-			NpcConversationMessage* skillmsg = new NpcConversationMessage(player, params);
-			ghost->setLastNpcConvMessStr("junkdealer_alreadyhavekit");
-			ghost->addLastNpcConvOptions(choice);
-			player->sendMessage(skillmsg);
+			sendConversationTerminate(player,stffile,"s_3df21ea0");
 
 		} else if (inventory->hasFullContainerObjects()) {
-			StringIdChatParameter params(stffile, "s_5b10c0b9");
-			NpcConversationMessage* skillmsg = new NpcConversationMessage(player, params);
-			ghost->setLastNpcConvMessStr("junkdealer_inventoryfull");
-			ghost->addLastNpcConvOptions(choice);
-			player->sendMessage(skillmsg);
+			sendConversationTerminate(player,stffile,"s_5b10c0b9");
 
 		} else {
-			StringIdChatParameter params(stffile, "s_14efaaa2");
-			NpcConversationMessage* skillmsg = new NpcConversationMessage(player, params);
-			ghost->setLastNpcConvMessStr("junkdealer_givekit");
-			ghost->addLastNpcConvOptions(choice);
-			player->sendMessage(skillmsg);
+			sendConversationTerminate(player,stffile,"s_14efaaa2");
 
 			ManagedReference<LootkitObject*> lootkit = (server->getZoneServer()->createObject(CRC, 2)).castTo<LootkitObject*>();
 
-			lootkit->sendTo(player, true);
-			if (!inventory->transferObject(lootkit, -1, true))
+			if (inventory->transferObject(lootkit, -1, true)) {
+				lootkit->sendTo(player, true);
+			} else {
 				info("Could not add object.", true);
+				lootkit->destroyObjectFromDatabase(true);
+			}
 		}
-	} else
+	} else {
 		player->sendMessage(new StopNpcConversation(player, getObjectID()));
+	}
 }
 
 void JunkdealerCreatureImplementation::createSellJunkLootSelection(CreatureObject* player) {
