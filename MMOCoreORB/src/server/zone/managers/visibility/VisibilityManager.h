@@ -116,7 +116,7 @@ class VisibilityManager : public Singleton<VisibilityManager>, public Logger, pu
 
 	/**
 	 * Calculates the visibility increase for the player depending on the number
-	 * of players and NPC's within 32 m.
+	 * of players and NPC's within 64 m.
 	 * @param creature the player.
 	 * @param visibilityIncrease base increase for the action.
 	 */
