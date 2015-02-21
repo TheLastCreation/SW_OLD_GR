@@ -338,7 +338,7 @@ includeFile("treasure_map/TreasureMapMenuComponent.lua")
 
 --Tests
 --includeFile("tests/options_bitmask_test.lua")
---includeFile("event/stresstest_20120128.lua")
+includeFile("event/stresstest_20120128.lua")
 
 --Race Tracks
 includeFile("racetracks/racetracks.lua")
