@@ -94,16 +94,16 @@ float VisibilityManager::calculateVisibilityIncrease(CreatureObject* creature) {
 
 		for (int i = 0; i < closeObjects.size(); ++i) {
 			SceneObject* obj = cast<SceneObject*>(closeObjects.get(i).get());
-			if (obj->isCreatureObject() && creature->isInRange(obj, 32)) {
+			if (obj->isCreatureObject() && creature->isInRange(obj, 64)) {
 				ManagedReference<CreatureObject*> c = cast<CreatureObject*>(obj);
 				if (c->isNonPlayerCreatureObject()) {
 					if (creature->getFaction() == 0 || (c->getFaction() != factionImperial && c->getFaction() != factionRebel)) {
-						visibilityIncrease += 0.5;
+						visibilityIncrease += 1.0;
 					} else {
 						if (creature->getFaction() == c->getFaction()) {
-							visibilityIncrease += 0.25;
+							visibilityIncrease += 0.5;
 						} else {
-							visibilityIncrease += 1;
+							visibilityIncrease += 2;
 						}
 					}
 				}
