@@ -1,7 +1,6 @@
 kaadu_female = Creature:new {
 	objectName = "@mob/creature_names:kaadu_female",
 	socialGroup = "kaadu",
-	pvpFaction = "",
 	faction = "",
 	level = 12,
 	chanceHit = 0.29,
@@ -34,6 +33,7 @@ kaadu_female = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
+		{"",""},
 		{"posturedownattack","postureDownChance=50"}
 	}
 }

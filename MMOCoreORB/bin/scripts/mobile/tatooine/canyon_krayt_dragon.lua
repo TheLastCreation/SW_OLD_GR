@@ -1,7 +1,6 @@
 canyon_krayt_dragon = Creature:new {
 	objectName = "@mob/creature_names:canyon_krayt_dragon",
 	socialGroup = "krayt",
-	pvpFaction = "",
 	faction = "",
 	level = 275,
 	chanceHit = 27.25,
@@ -50,7 +49,7 @@ canyon_krayt_dragon = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"dizzyattack","dizzyChance=50"},
+		{"creatureareaattack",""},
 		{"stunattack","stunChance=50"}
 	}
 }

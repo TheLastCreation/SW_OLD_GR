@@ -1,7 +1,6 @@
 male_mamien = Creature:new {
 	objectName = "@mob/creature_names:mamien_male",
 	socialGroup = "mamien",
-	pvpFaction = "",
 	faction = "",
 	level = 19,
 	chanceHit = 0.32,
@@ -32,6 +31,7 @@ male_mamien = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
+		{"",""},
 		{"stunattack","stunChance=50"}
 	}
 }

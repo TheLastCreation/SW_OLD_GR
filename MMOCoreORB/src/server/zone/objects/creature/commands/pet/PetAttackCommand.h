@@ -49,14 +49,13 @@ public:
 
 		ManagedReference<TangibleObject*> targetTano = targetObject.castTo<TangibleObject*>();
 
-		CombatManager* combatManager = CombatManager::instance();
-
-		combatManager->startCombat(pet, targetTano);
-
 		controlDevice->setLastCommand(PetManager::ATTACK);
 		controlDevice->setLastCommandTarget(targetTano);
 
 		pet->activateInterrupt(pet->getLinkedCreature().get(), ObserverEventType::STARTCOMBAT);
+
+		pet->selectDefaultAttack();
+		pet->enqueueAttack(QueueCommand::FRONT);
 
 		return SUCCESS;
 	}

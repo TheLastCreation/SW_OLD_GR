@@ -1,7 +1,6 @@
 deranged_wrix = Creature:new {
 	objectName = "@mob/creature_names:deranged_wrix",
 	socialGroup = "self",
-	pvpFaction = "",
 	faction = "",
 	level = 18,
 	chanceHit = 0.32,
@@ -32,8 +31,8 @@ deranged_wrix = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"intimidationattack","intimidationChance=50"},
-		{"stunattack","stunChance=50"}
+		{"stunattack","stunChance=50"},
+		{"intimidationattack","intimidationChance=50"}
 	}
 }
 

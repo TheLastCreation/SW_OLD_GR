@@ -1,7 +1,6 @@
 bh_bodyguard_zabrak_female = Creature:new {
 	objectName = "@mob/creature_names:bodyguard",
 	socialGroup = "thug",
-	pvpFaction = "thug",
 	faction = "thug",
 	level = 18,
 	chanceHit = 0.32,
@@ -53,6 +52,7 @@ bh_bodyguard_zabrak_female = Creature:new {
 	},
 	weapons = {"pirate_weapons_heavy"},
 	conversationTemplate = "",
+	reactionStf = "@npc_reaction/slang",
 	attacks = merge(brawlermaster,marksmanmaster)
 }
 

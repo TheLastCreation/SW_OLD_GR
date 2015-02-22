@@ -1,7 +1,6 @@
 frightened_borgle = Creature:new {
 	objectName = "@mob/creature_names:frightened_borgle",
 	socialGroup = "borgle",
-	pvpFaction = "",
 	faction = "",
 	level = 8,
 	chanceHit = 0.27,
@@ -33,6 +32,7 @@ frightened_borgle = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
+		{"",""},
 		{"intimidationattack","intimidationChance=50"}
 	}
 }

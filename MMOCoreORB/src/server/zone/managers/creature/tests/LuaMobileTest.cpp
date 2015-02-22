@@ -204,14 +204,10 @@ TEST_F(LuaMobileTest, LuaMobileTemplatesTest) {
 			EXPECT_TRUE( controlDeviceTemplate.beginsWith("object/intangible/pet/") ) << "Control device template " << controlDeviceTemplate.toCharArray() << " from " << templateName << " is not a pet/droid control device template.";
 		}
 
-		// Verify that faction and pvpFaction are valid
+		// Verify that faction is valid
 		String faction = creature->getFaction();
 		if (!faction.isEmpty()) {
 			EXPECT_TRUE( FactionManager::instance()->isFaction(faction) ) << "Faction, " << faction.toCharArray() << ", from mobile template " << templateName << " does not exist.";
-		}
-		String pvpFaction = creature->getPvpFaction();
-		if (!pvpFaction.isEmpty()) {
-			EXPECT_TRUE( FactionManager::instance()->isFaction(pvpFaction) ) << "PvpFaction, " << pvpFaction.toCharArray() << ", from mobile template " << templateName << " does not exist.";
 		}
 
 		// Verify level
@@ -410,7 +406,7 @@ TEST_F(LuaMobileTest, LuaMobileTemplatesTest) {
 		for (int i = 0; i < cam->size(); i++) {
 			String commandName = cam->getCommand(i);
 
-			EXPECT_TRUE( commandConfigManager->contains(commandName) ) << "Attack: " << commandName.toCharArray() << " is not a valid command in mobile template: " << templateName;
+			EXPECT_TRUE( commandName.isEmpty() || commandConfigManager->contains(commandName) ) << "Attack: " << commandName.toCharArray() << " is not a valid command in mobile template: " << templateName;
 		}
 
 		// Very attackable npcs

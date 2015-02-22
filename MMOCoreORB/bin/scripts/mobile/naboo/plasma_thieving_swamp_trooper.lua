@@ -1,7 +1,6 @@
 plasma_thieving_swamp_trooper = Creature:new {
 	objectName = "@mob/creature_names:swamp_trooper_anti_gungan",
 	socialGroup = "imperial",
-	pvpFaction = "imperial",
 	faction = "imperial",
 	level = 25,
 	chanceHit = 0.36,
@@ -28,7 +27,7 @@ plasma_thieving_swamp_trooper = Creature:new {
 
 	templates = {"object/mobile/dressed_swamp_trooper.iff"},
 	lootGroups = {
-	    {
+		{
 			groups = {
 				{group = "junk", chance = 2000000},
 				{group = "tailor_components", chance = 2000000},
@@ -37,10 +36,11 @@ plasma_thieving_swamp_trooper = Creature:new {
 				{group = "wearables_uncommon", chance = 2000000},
 			},
 			lootChance = 3200000
-		}					
+		}
 	},
 	weapons = {"stormtrooper_weapons"},
 	conversationTemplate = "",
+	reactionStf = "@npc_reaction/stormtrooper",
 	attacks = merge(brawlermaster,marksmanmaster)
 }
 

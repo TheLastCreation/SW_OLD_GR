@@ -1,7 +1,6 @@
 carrion_spat = Creature:new {
 	objectName = "@mob/creature_names:carrion_spat",
 	socialGroup = "carrion_spat",
-	pvpFaction = "",
 	faction = "",
 	level = 10,
 	chanceHit = 0.28,
@@ -32,6 +31,7 @@ carrion_spat = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
+		{"",""},
 		{"stunattack","stunChance=50"}
 	}
 }

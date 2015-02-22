@@ -1,7 +1,6 @@
 devil_gulginaw = Creature:new {
 	objectName = "@mob/creature_names:devil_gulginaw",
 	socialGroup = "gulginaw",
-	pvpFaction = "",
 	faction = "",
 	level = 18,
 	chanceHit = 0.31,
@@ -33,6 +32,7 @@ devil_gulginaw = Creature:new {
 	weapons = {"creature_spit_small_red"},
 	conversationTemplate = "",
 	attacks = {
+		{"",""},
 		{"dizzyattack","dizzyChance=50"}
 	}
 }

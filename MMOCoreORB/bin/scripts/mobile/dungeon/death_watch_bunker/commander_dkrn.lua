@@ -2,7 +2,6 @@ commander_dkrn = Creature:new {
 	objectName = "",
 	customName = "Commander D'krn",
 	socialGroup = "imperial",
-	pvpFaction = "imperial",
 	faction = "imperial",
 	level = 10,
 	chanceHit = 0.28,

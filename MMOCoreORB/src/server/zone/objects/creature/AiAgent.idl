@@ -132,16 +132,16 @@ class AiAgent extends CreatureObject {
 	
 	protected boolean despawnOnNoPlayerInRange;
 	
-	protected SceneObject followObject;
+	private SceneObject followObject;
 	@weakReference
-	protected SceneObject followStore;
-	protected unsigned int followState;
+	private SceneObject followStore;
+	private unsigned int followState;
 	@dereferenced
-	protected transient Mutex targetMutex;
+	private transient Mutex targetMutex;
 	@dereferenced
-	protected transient Mutex awarenessEventMutex;
+	private transient Mutex awarenessEventMutex;
 	@dereferenced
-	protected transient Mutex movementEventMutex;
+	private transient Mutex movementEventMutex;
 	
 	@dereferenced
 	protected transient Time lastDamageReceived;
@@ -620,22 +620,29 @@ class AiAgent extends CreatureObject {
 	public native boolean generatePatrol(int num, float dist);
 	
 	public SceneObject getFollowObject() {
-		return followObject;
+		synchronized (targetMutex) {
+			return followObject;
+		}
 	}
 	
 	public void storeFollowObject() {
-		followStore = followObject;
+		synchronized (targetMutex) {
+			followStore = followObject;
+		}
 	}
 	
 	public native void restoreFollowObject();
-	
-	@read
+
 	public unsigned int getFollowState() {
-		return followState;
+		synchronized (targetMutex) {
+			return followState;
+		}
 	}
 
 	public void setFollowState(int state) {
-		followState = state;
+		synchronized (targetMutex) {
+			followState = state;
+		}
 	}
 	
 	@dirty
@@ -675,16 +682,15 @@ class AiAgent extends CreatureObject {
 	public native void selectSpecialAttack(int attackNum);
 	public native void selectDefaultAttack();
 	public native boolean validateStateAttack();
-	public native void enqueueAttack();
+	public native void enqueueAttack(int priority = -1);
 	
 	@dirty
 	public boolean isRetreating() {
 		return !homeLocation.isReached();
 	}
-	
-	@read
+
 	public boolean isFleeing() {
-		return followState == FLEEING;
+		return getFollowState() == FLEEING;
 	}
 	
 	public native void clearDespawnEvent();
@@ -1027,14 +1033,6 @@ class AiAgent extends CreatureObject {
 		return (getControlDevice() != null);
 	}
 
-	@dirty
-	public string getPvPFaction(){
-		if (npcTemplate.get() == null)
-			return "";
-		
-		return npcTemplate.get().getPvpFaction();
-	}
-	
 	/**
 	 * Pull an AI template from AiMap and set up the tree using the rules from the template. Then 
 	 * store the root behavior in the trees Map.
@@ -1202,5 +1200,8 @@ class AiAgent extends CreatureObject {
 
 	@preLocked
 	public native void sendReactionChat(int type, int state = 0);
+	
+	@local
+	public native float getEffectiveResist();
 
 }

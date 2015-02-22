@@ -1,7 +1,6 @@
 tusken_commoner = Creature:new {
 	objectName = "@mob/creature_names:tusken_commoner",
 	socialGroup = "tusken_raider",
-	pvpFaction = "tusken_raider",
 	faction = "tusken_raider",
 	level = 16,
 	chanceHit = 0.31,
@@ -30,28 +29,18 @@ tusken_commoner = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "pistols", chance = 3333333},
-				{group = "rifles", chance = 3333333},
-				{group = "carbines", chance = 3333334}
+				{group = "junk", chance = 1500000},
+				{group = "tusken_common", chance = 3000000},
+				{group = "wearables_common", chance = 2000000},				
+				{group = "bone_armor", chance = 750000},
+				{group = "chitin_armor", chance = 750000},
+				{group = "armor_attachments", chance = 500000},
+				{group = "clothing_attachments", chance = 500000},
+				{group = "color_crystals", chance = 500000},
+				{group = "crystals_poor", chance = 500000}
 			},
-			lootChance = 100000000
-		},
-		{
-			groups = {
-				{group = "clothing_attachments", chance = 5000000},
-				{group = "armor_attachments", chance = 5000000}
-			},
-			lootChance = 100000000
-		},	
-		{
-			groups = {
-				{group = "jetpack_parts", chance = 2500000},				
-				{group = "bounty_hunter_armor", chance = 2500000},
-				{group = "crystals_premium", chance = 2500000},
-				{group = "jetpack_base", chance = 2500000}
-			},
-			lootChance = 100000000
-		},
+			lootChance = 2200000
+		}
 	},
 	weapons = {"tusken_weapons"},
 	conversationTemplate = "",

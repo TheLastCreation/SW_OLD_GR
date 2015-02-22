@@ -51,12 +51,9 @@ protected:
 	int meatAmount;
 
 	String objectName;
-	bool generateRandomName;
-	bool useOnlyRandomName;//forces generateRandomName on if its off.
-	bool hasLastName;//default to true,  only has effect if generateRandomNameee or useOnlyRandomName are on.
+	int randomNameType;
 	String socialGroup;
 	String faction;
-	String pvpFaction;
 
 	int level;
 
@@ -242,16 +239,8 @@ public:
 		return objectName;
 	}
 
-	inline bool getGenerateRandomName() {
-		return generateRandomName;
-	}
-
-	inline bool getUseOnlyRandomName() {
-		return useOnlyRandomName;
-	}
-
-	inline bool getHasLastName() {
-			return hasLastName;
+	inline int getRandomNameType() {
+		return randomNameType;
 	}
 
 	inline String getSocialGroup() {
@@ -332,10 +321,6 @@ public:
 
 	inline CreatureAttackMap* getAttacks() {
 		return attacks;
-	}
-
-	inline String getPvpFaction() {
-		return pvpFaction;
 	}
 
 	inline String getPatrolPathTemplate() {

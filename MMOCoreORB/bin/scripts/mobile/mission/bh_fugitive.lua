@@ -1,7 +1,6 @@
 bh_fugitive = Creature:new {
 	objectName = "@mob/creature_names:fugitive",
 	socialGroup = "thug",
-	pvpFaction = "thug",
 	faction = "thug",
 	level = 7,
 	chanceHit = 0.26,
@@ -41,6 +40,7 @@ bh_fugitive = Creature:new {
 	},
 	weapons = {"pirate_weapons_light"},
 	conversationTemplate = "",
+	reactionStf = "@npc_reaction/slang",
 	attacks = merge(brawlernovice,marksmannovice)
 }
 

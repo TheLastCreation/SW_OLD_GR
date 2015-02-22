@@ -95,7 +95,7 @@ Luna<LuaAiAgent>::RegType LuaAiAgent::Register[] = {
 		{ "hasLoot", &LuaAiAgent::hasLoot },
 		{ "isEventMob", &LuaAiAgent::isEventMob },
 		{ "isPet", &LuaAiAgent::isPet },
-		{ "getPvPFaction", &LuaAiAgent::getPvPFaction },
+		{ "isCreature", &LuaSceneObject::isCreature},
 		{ "getAvgSpeed", &LuaAiAgent::getAvgSpeed },
 		{ "isAggressiveTo", &LuaAiAgent::isAggressiveTo },
 		{ "isAttackableBy", &LuaAiAgent::isAttackableBy },
@@ -598,11 +598,6 @@ int LuaAiAgent::isEventMob(lua_State* L) {
 
 int LuaAiAgent::isPet(lua_State* L) {
 	lua_pushboolean(L, realObject->isPet());
-	return 1;
-}
-
-int LuaAiAgent::getPvPFaction(lua_State* L) {
-	lua_pushstring(L, realObject->getPvPFaction().toCharArray());
 	return 1;
 }
 

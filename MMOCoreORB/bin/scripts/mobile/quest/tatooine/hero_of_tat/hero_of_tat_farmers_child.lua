@@ -1,7 +1,6 @@
-farmers_wife = Creature:new {
-	objectName = "@mob/creature_names:quest_hero_of_tatooine_farmer_wife",
+hero_of_tat_farmers_child = Creature:new {
+	objectName = "@mob/creature_names:quest_hero_of_tatooine_farmer_daughter",
 	socialGroup = "townsperson",
-	pvpFaction = "townsperson",
 	faction = "townsperson",
 	level = 4,
 	chanceHit = 0.24,
@@ -21,17 +20,16 @@ farmers_wife = Creature:new {
 	milk = 0,
 	tamingChance = 0,
 	ferocity = 0,
-	pvpBitmask = NONE,
+	pvpBitmask = ATTACKABLE,
 	creatureBitmask = HERD,
 	optionsBitmask = 128,
 	diet = HERBIVORE,
 
-	templates = {"object/mobile/dressed_quest_farmer_wife.iff"},
+	templates = {"object/mobile/dressed_quest_farmer_child.iff"},
 	lootGroups = {},
 	weapons = {},
 	conversationTemplate = "",
-	attacks = {
-	}
+	attacks = merge(marksmannovice,brawlernovice)
 }
 
-CreatureTemplates:addCreatureTemplate(farmers_wife, "farmers_wife")
+CreatureTemplates:addCreatureTemplate(hero_of_tat_farmers_child, "hero_of_tat_farmers_child")

@@ -1,15 +1,14 @@
 krayt_dragon_ancient = Creature:new {
 	objectName = "@mob/creature_names:krayt_dragon_ancient",
 	socialGroup = "krayt",
-	pvpFaction = "",
 	faction = "",
-	level = 200,
+	level = 336,
 	chanceHit = 30.0,
-	damageMin = 1800,
-	damageMax = 2500,
-	baseXp = 22000,
-	baseHAM = 22000,
-	baseHAMmax = 22000,
+	damageMin = 2270,
+	damageMax = 4250,
+	baseXp = 28549,
+	baseHAM = 410000,
+	baseHAMmax = 501000,
 	armor = 3,
 	resists = {195,195,195,195,165,195,195,195,-1},
 	meatType = "meat_carnivore",
@@ -31,28 +30,27 @@ krayt_dragon_ancient = Creature:new {
 		{
 	        groups = {
 				{group = "krayt_tissue_rare", chance = 3300000},
-				{group = "holocron_dark", chance = 3300000},
+				{group = "krayt_dragon_common", chance = 3300000},
 				{group = "pearls_flawless", chance = 3400000}				
 			},
-			lootChance = 9000000
+			lootChance = 6500000
 		},
 		{
-			groups = {
-				{group = "clothing_attachments", chance = 5000000},
-				{group = "armor_attachments", chance = 5000000}
+	        groups = {
+				{group = "composite_armor", chance = 2000000},
+				{group = "ubese_armor", chance = 2000000},
+				{group = "melee_two_handed", chance = 2000000},
+				{group = "rifles", chance = 2000000},
+				{group = "wearables_all", chance = 2000000},				
 			},
-			lootChance = 9000000
-		},	
+			lootChance = 3500000
+		}
 	},
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
 		{"creatureareacombo",""},
-		{"dizzyattack","dizzyChance=50"},
-		{"blindattack","blindChance=50"},
-		{"intimidationattack","intimidationChance=50"},
-		{"creatureareaknockdown","knockdownChance=50"},
-		{"stunattack","stunChance=50"}
+		{"creatureareaknockdown","knockdownChance=50"}
 	}
 }
 

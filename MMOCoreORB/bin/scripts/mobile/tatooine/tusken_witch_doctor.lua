@@ -1,15 +1,14 @@
 tusken_witch_doctor = Creature:new {
 	objectName = "@mob/creature_names:tusken_witch_doctor",
 	socialGroup = "tusken_raider",
-	pvpFaction = "tusken_raider",
 	faction = "tusken_raider",
-	level = 150,
+	level = 202,
 	chanceHit = 16,
-	damageMin = 800,
-	damageMax = 1500,
-	baseXp = 1920,
-	baseHAM = 1600,
-	baseHAMmax = 1950,
+	damageMin = 1145,
+	damageMax = 2000,
+	baseXp = 19201,
+	baseHAM = 160000,
+	baseHAMmax = 195000,
 	armor = 3,
 	resists = {65,95,35,100,0,30,45,80,-1},
 	meatType = "",
@@ -30,28 +29,18 @@ tusken_witch_doctor = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "pistols", chance = 3333333},
-				{group = "rifles", chance = 3333333},
-				{group = "carbines", chance = 3333334}
+				{group = "junk", chance = 1500000},
+				{group = "tusken_common", chance = 3000000},
+				{group = "wearables_scarce", chance = 2000000},				
+				{group = "bone_armor", chance = 750000},
+				{group = "chitin_armor", chance = 750000},
+				{group = "armor_attachments", chance = 500000},
+				{group = "clothing_attachments", chance = 500000},
+				{group = "color_crystals", chance = 500000},
+				{group = "crystals_premium", chance = 500000}
 			},
-			lootChance = 100000000
-		},
-		{
-			groups = {
-				{group = "clothing_attachments", chance = 5000000},
-				{group = "armor_attachments", chance = 5000000}
-			},
-			lootChance = 100000000
-		},	
-		{
-			groups = {
-				{group = "jetpack_parts", chance = 2500000},				
-				{group = "bounty_hunter_armor", chance = 2500000},
-				{group = "crystals_premium", chance = 2500000},
-				{group = "jetpack_base", chance = 2500000}
-			},
-			lootChance = 100000000
-		},
+			lootChance = 6000000
+		}	
 	},
 	weapons = {"tusken_weapons"},
 	conversationTemplate = "",

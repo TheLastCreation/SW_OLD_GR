@@ -1,7 +1,6 @@
 clipped_fynock = Creature:new {
 	objectName = "@mob/creature_names:clipped_fynock",
 	socialGroup = "fynock",
-	pvpFaction = "",
 	faction = "",
 	level = 9,
 	chanceHit = 0.27,
@@ -32,6 +31,7 @@ clipped_fynock = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
+		{"",""},
 		{"stunattack","stunChance=50"}
 	}
 }

@@ -1,7 +1,6 @@
 flewt_leviathan = Creature:new {
 	objectName = "@mob/creature_names:flewt_leviathan",
 	socialGroup = "flewt",
-	pvpFaction = "",
 	faction = "",
 	level = 9,
 	chanceHit = 0.28,
@@ -33,6 +32,7 @@ flewt_leviathan = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
+		{"",""},
 		{"dizzyattack","dizzyChance=50"}
 	}
 }

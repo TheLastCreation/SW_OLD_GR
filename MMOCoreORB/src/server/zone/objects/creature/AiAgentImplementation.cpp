@@ -257,28 +257,22 @@ void AiAgentImplementation::loadTemplateData(CreatureTemplate* templateData) {
 
 	objectName = npcTemplate->getObjectName();
 
-	if(npcTemplate->getGenerateRandomName())//generateRandomName
-	{
+	if(npcTemplate->getRandomNameType() != NameManagerType::TAG) {
 		NameManager* nm = server->getNameManager();
-		if(npcTemplate->getUseOnlyRandomName())
-		{
-			setCustomObjectName(nm->makeCreatureName(npcTemplate->getHasLastName()), false);
-		}
-		else
-		{
-			String newName = nm->makeCreatureName(npcTemplate->getHasLastName());
+
+		if(npcTemplate->getRandomNameType() % 2 == 1) {
+			setCustomObjectName(nm->makeCreatureName(npcTemplate->getRandomNameType()), false);
+		} else {
+			String newName = nm->makeCreatureName(npcTemplate->getRandomNameType());
 			newName += " (";
 			newName += StringIdManager::instance()->getStringId(objectName.getFullPath().hashCode()).toString();
 			StringIdManager::instance()->getStringId(objectName.getFullPath().hashCode()).toString();
 			newName += ")";
 			setCustomObjectName(newName, false);
 		}
-	}
-	else// if(templateData->getCustomName().count != 0)//not nessicary.
-	{
+	} else {
 		setCustomObjectName(templateData->getCustomName(), false);
 	}
-
 
 	setHeight(templateData->getScale(), false);
 
@@ -291,10 +285,10 @@ void AiAgentImplementation::loadTemplateData(CreatureTemplate* templateData) {
 		setLoggingName(logName.toString());
 	}
 
-	String pvpFaction = npcTemplate->getPvpFaction();
+	String factionString = npcTemplate->getFaction();
 
-	if (!pvpFaction.isEmpty() && (pvpFaction == "imperial" || pvpFaction == "rebel")) {
-		setFaction(pvpFaction.hashCode());
+	if (!factionString.isEmpty() && (factionString == "imperial" || factionString == "rebel")) {
+		setFaction(factionString.hashCode());
 	}
 
 	if (!loadedOutfit) {
@@ -481,11 +475,17 @@ void AiAgentImplementation::selectSpecialAttack(int attackNum) {
 	}
 
 	if (attackNum >= 0 && attackNum < attackMap->size()) {
-		String args = attackMap->getArguments(attackNum);
-		nextActionCRC = attackMap->getCommand(attackNum).hashCode();
-		nextActionArgs = attackMap->getArguments(attackNum);
-	} else
+		String cmd = attackMap->getCommand(attackNum);
+
+		if (cmd.isEmpty()) {
+			selectDefaultAttack();
+		} else {
+			nextActionCRC = cmd.hashCode();
+			nextActionArgs = attackMap->getArguments(attackNum);
+		}
+	} else {
 		selectDefaultAttack();
+	}
 }
 
 void AiAgentImplementation::selectDefaultAttack() {
@@ -497,19 +497,23 @@ void AiAgentImplementation::selectDefaultAttack() {
 	nextActionArgs = "";
 }
 
-void AiAgentImplementation::enqueueAttack() {
-	if (followObject != NULL) {
-		enqueueCommand(nextActionCRC, 0, followObject->getObjectID(), nextActionArgs);
+void AiAgentImplementation::enqueueAttack(int priority) {
+	ManagedReference<SceneObject*> followCopy = getFollowObject();
+
+	if (followCopy != NULL) {
+		enqueueCommand(nextActionCRC, 0, followCopy->getObjectID(), nextActionArgs, priority);
 		nextActionCRC = 0;
 		nextActionArgs = "";
 	}
 }
 
 bool AiAgentImplementation::validateStateAttack() {
-	if (followObject == NULL || !followObject->isCreatureObject())
+	ManagedReference<SceneObject*> followCopy = getFollowObject();
+
+	if (followCopy == NULL || !followCopy->isCreatureObject())
 		return false;
 
-	return validateStateAttack(cast<CreatureObject*>(followObject.get()), nextActionArgs);
+	return validateStateAttack(followCopy.castTo<CreatureObject*>(), nextActionArgs);
 }
 
 SceneObject* AiAgentImplementation::getTargetFromMap() {
@@ -560,16 +564,18 @@ SceneObject* AiAgentImplementation::getTargetFromDefenders() {
 }
 
 bool AiAgentImplementation::validateTarget() {
-	if (followObject == NULL)
+	ManagedReference<SceneObject*> followCopy = getFollowObject();
+
+	if (followCopy == NULL)
 		return false;
 
-	if (!followObject->isInRange(_this.get(), 128))
+	if (!followCopy->isInRange(_this.get(), 128))
 		return false;
 
-	if (followObject->isCreatureObject() && (!cast<CreatureObject*>(followObject.get())->isAttackableBy(_this.get()) || cast<CreatureObject*>(followObject.get())->isDead() || cast<CreatureObject*>(followObject.get())->isIncapacitated()))
+	if (followCopy->isCreatureObject() && (!followCopy.castTo<CreatureObject*>()->isAttackableBy(_this.get()) || followCopy.castTo<CreatureObject*>()->isDead() || followCopy.castTo<CreatureObject*>()->isIncapacitated()))
 		return false;
 
-	if (followObject->isTangibleObject() && (!cast<TangibleObject*>(followObject.get())->isAttackableBy(_this.get()) || cast<TangibleObject*>(followObject.get())->isDestroyed()))
+	if (followCopy->isTangibleObject() && (!followCopy.castTo<TangibleObject*>()->isAttackableBy(_this.get()) || followCopy.castTo<TangibleObject*>()->isDestroyed()))
 		return false;
 
 	return true;
@@ -603,10 +609,11 @@ int AiAgentImplementation::handleObjectMenuSelect(CreatureObject* player, byte s
 }
 
 void AiAgentImplementation::selectWeapon() {
+	ManagedReference<SceneObject*> followCopy = getFollowObject();
 	float dist = 5.f;
 
-	if (followObject != NULL)
-		dist = getDistanceTo(followObject.get());
+	if (followCopy != NULL)
+		dist = getDistanceTo(followCopy);
 
 	float diff = 1024.f;
 	WeaponObject* finalWeap = getWeapon();
@@ -614,7 +621,7 @@ void AiAgentImplementation::selectWeapon() {
 	for (int i = 0; i < weapons.size(); ++i) {
 		WeaponObject* weap = weapons.get(i);
 
-		float range = abs(weap->getIdealRange() - dist);
+		float range = fabs(weap->getIdealRange() - dist);
 
 		if (range < diff) {
 			diff = range;
@@ -699,6 +706,7 @@ void AiAgentImplementation::setDespawnOnNoPlayerInRange(bool val) {
 }
 
 void AiAgentImplementation::runAway(CreatureObject* target, float range) {
+	ManagedReference<SceneObject*> followCopy = getFollowObject();
 	if (target == NULL || getZone() == NULL) {
 		setOblivious();
 		return;
@@ -717,14 +725,16 @@ void AiAgentImplementation::runAway(CreatureObject* target, float range) {
 	notifyObservers(ObserverEventType::FLEEING, target);
 	sendReactionChat(CreatureManager::FLEE);
 
+	Locker locker(&targetMutex);
 	followState = AiAgent::FLEEING;
 	fleeRange = range;
+	locker.release();
 
 	if (!homeLocation.isInRange(_this.get(), 128)) {
 		homeLocation.setReached(false);
 		setNextPosition(homeLocation.getPositionX(), homeLocation.getPositionZ(), homeLocation.getPositionY(), homeLocation.getCell());
 	} else {
-		Vector3 runTrajectory(getPositionX() - followObject->getPositionX(), getPositionY() - followObject->getPositionY(), 0);
+		Vector3 runTrajectory(getPositionX() - followCopy->getPositionX(), getPositionY() - followCopy->getPositionY(), 0);
 		runTrajectory = runTrajectory * (fleeRange / runTrajectory.length());
 		runTrajectory += getPosition();
 
@@ -749,10 +759,13 @@ void AiAgentImplementation::queueDizzyFallEvent() {
 }
 
 void AiAgentImplementation::addDefender(SceneObject* defender) {
+	unsigned int stateCopy = getFollowState();
+
 	if (defenderList.size() == 0 && defender != NULL) {
 		showFlyText("npc_reaction/flytext", "threaten", 0xFF, 0, 0);
 		setFollowObject(defender);
-	} else if (followState <= STALKING) {
+	} else if (stateCopy <= STALKING) {
+		Locker locker(&targetMutex);
 		followState = FOLLOWING;
 	}
 
@@ -770,7 +783,7 @@ void AiAgentImplementation::removeDefender(SceneObject* defender) {
 	if (defender->isCreatureObject())
 		getThreatMap()->dropDamage(cast<CreatureObject*>(defender));
 
-	if (followObject == defender) {
+	if (getFollowObject() == defender) {
 		CreatureObject* target = getThreatMap()->getHighestThreatCreature();
 
 		if (target == NULL && defenderList.size() > 0) {
@@ -998,7 +1011,7 @@ void AiAgentImplementation::notifyDissapear(QuadTreeEntry* entry) {
 	if (scno == _this.get())
 		return;
 
-	if (scno == followObject) {
+	if (scno == getFollowObject()) {
 		class SetObliviousTask : public Task {
 			ManagedReference<AiAgent*> ai;
 			ManagedReference<SceneObject*> sceno;
@@ -1008,6 +1021,7 @@ void AiAgentImplementation::notifyDissapear(QuadTreeEntry* entry) {
 
 			void run() {
 				Locker locker(ai);
+				Locker clocker(sceno, ai);
 				if (sceno == ai->getFollowObject()) {
 					ai->restoreFollowObject();
 				}
@@ -1104,10 +1118,11 @@ void AiAgentImplementation::updateCurrentPosition(PatrolPoint* pos) {
 
 
 void AiAgentImplementation::checkNewAngle() {
-	if (followObject == NULL)
+	ManagedReference<SceneObject*> followCopy = getFollowObject();
+	if (followCopy == NULL)
 		return;
 
-	faceObject(followObject);
+	faceObject(followCopy);
 
 	if (!nextStepPosition.isReached()) {
 		broadcastNextPositionUpdate(&nextStepPosition);
@@ -1280,22 +1295,24 @@ bool AiAgentImplementation::findNextPosition(float maxDistance, bool walk) {
 			//activateMovementEvent();
 			PatrolPoint oldPoint = patrolPoints.remove(0);
 
+			ManagedReference<SceneObject*> followCopy = getFollowObject();
+
 			currentFoundPath = NULL;
 
 			if (isRetreating())
 				homeLocation.setReached(true);
 
-			if (followObject == NULL)
+			if (followCopy == NULL)
 				notifyObservers(ObserverEventType::DESTINATIONREACHED);
 
 			currentSpeed = 0;
 
-			if (followObject != NULL && !(isRetreating() || isFleeing())) {
+			if (followCopy != NULL && !(isRetreating() || isFleeing())) {
 				targetMutex.unlock();
 				checkNewAngle();
 			}
 
-			return followState == AiAgent::WATCHING || followState == AiAgent::FLEEING;
+			return getFollowState() == AiAgent::WATCHING || getFollowState() == AiAgent::FLEEING;
 		}
 
 		for (int i = 1; i < path->size() && !found; ++i) { // i = 0 is our position
@@ -1508,7 +1525,7 @@ bool AiAgentImplementation::findNextPosition(float maxDistance, bool walk) {
 		if (isRetreating())
 			homeLocation.setReached(true);
 
-		if (followObject == NULL)
+		if (getFollowObject() == NULL)
 			notifyObservers(ObserverEventType::DESTINATIONREACHED);
 
 		currentFoundPath = NULL;
@@ -1601,6 +1618,7 @@ bool AiAgentImplementation::generatePatrol(int num, float dist) {
 	}
 
 	if (patrolPoints.size() > 0) {
+		Locker locker(&targetMutex);
 		followState = AiAgent::PATROLLING;
 		return true;
 	}
@@ -1612,16 +1630,19 @@ float AiAgentImplementation::getMaxDistance() {
 	if (isRetreating() || isFleeing())
 		return 0.5;
 
-	switch (followState) {
+	ManagedReference<SceneObject*> followCopy = getFollowObject();
+	unsigned int stateCopy = getFollowState();
+
+	switch (stateCopy) {
 	case AiAgent::PATROLLING:
 		return 0.5;
 		break;
 	case AiAgent::STALKING:
-		return followObject != NULL ? getDistanceTo(followObject) : 25;
+		return followCopy != NULL ? getDistanceTo(followCopy) : 25;
 		break;
 	case AiAgent::FOLLOWING:
 		// stop in weapons range
-		if (followObject != NULL && !CollisionManager::checkLineOfSight(_this.get(), followObject)) {
+		if (followCopy != NULL && !CollisionManager::checkLineOfSight(_this.get(), followCopy)) {
 			return 0.5;
 		} else if (getWeapon() != NULL ) {
 			float weapMaxRange = MIN(getWeapon()->getIdealRange(), getWeapon()->getMaxRange());
@@ -1634,9 +1655,12 @@ float AiAgentImplementation::getMaxDistance() {
 }
 
 int AiAgentImplementation::setDestination() {
-	switch (followState) {
+	ManagedReference<SceneObject*> followCopy = getFollowObject();
+	unsigned int stateCopy = getFollowState();
+
+	switch (stateCopy) {
 	case AiAgent::OBLIVIOUS:
-		if (followObject != NULL)
+		if (followCopy != NULL)
 			setOblivious();
 
 		clearPatrolPoints();
@@ -1651,12 +1675,12 @@ int AiAgentImplementation::setDestination() {
 		break;
 	case AiAgent::FLEEING:
 		// TODO (dannuic): do we need to check threatmap for other players in range at this point? also, is this too far? alsoalso, is this time too static?
-		if (!isRetreating() && (followObject == NULL || !isInRange(followObject, fleeRange))) {
+		if (!isRetreating() && (followCopy == NULL || !isInRange(followCopy, fleeRange))) {
 			clearCombatState(true);
-			setWatchObject(followObject);
+			setWatchObject(followCopy);
 			alertedTime.updateToCurrentTime();
 			alertedTime.addMiliTime(10000);
-			activateAwarenessEvent(followObject.castTo<CreatureObject*>());
+			activateAwarenessEvent(followCopy.castTo<CreatureObject*>());
 			return setDestination();
 		}
 
@@ -1664,7 +1688,7 @@ int AiAgentImplementation::setDestination() {
 	case AiAgent::PATROLLING:
 		break;
 	case AiAgent::WATCHING:
-		if (followObject == NULL) {
+		if (followCopy == NULL) {
 			setOblivious();
 			return setDestination();
 		}
@@ -1676,13 +1700,13 @@ int AiAgentImplementation::setDestination() {
 		break;
 	case AiAgent::STALKING:
 	case AiAgent::FOLLOWING:
-		if (followObject == NULL) {
+		if (followCopy == NULL) {
 			setOblivious();
 			return setDestination();
 		}
 
 		clearPatrolPoints();
-		setNextPosition(followObject->getPositionX(), followObject->getPositionZ(), followObject->getPositionY(), followObject->getParent().get());
+		setNextPosition(followCopy->getPositionX(), followCopy->getPositionZ(), followCopy->getPositionY(), followCopy->getParent().get());
 		break;
 	default:
 		setOblivious();
@@ -1809,7 +1833,7 @@ void AiAgentImplementation::activateMovementEvent() {
 	if (isWaiting() && moveEvent != NULL)
 		moveEvent->cancel();
 
-	if ((waitTime < 0 || numberOfPlayersInRange <= 0) && followObject == NULL && !isRetreating()) {
+	if ((waitTime < 0 || numberOfPlayersInRange <= 0) && getFollowObject() == NULL && !isRetreating()) {
 		if (moveEvent != NULL) {
 			moveEvent->clearCreatureObject();
 			moveEvent = NULL;
@@ -2200,11 +2224,11 @@ bool AiAgentImplementation::isAggressiveTo(CreatureObject* target) {
 			return true;
 	}
 
-	String pvpFaction = getPvPFaction();
+	String factionString = getFactionString();
 
-	if (!pvpFaction.isEmpty()) {
+	if (!factionString.isEmpty()) {
 		if (target->isPlayerCreature() && ghost != NULL) {
-			float targetsStanding = ghost->getFactionStanding(pvpFaction);
+			float targetsStanding = ghost->getFactionStanding(factionString);
 
 			if (targetsStanding <= -3000)
 				return true;
@@ -2215,7 +2239,7 @@ bool AiAgentImplementation::isAggressiveTo(CreatureObject* target) {
 			AiAgent* targetAi = cast<AiAgent*>(target);
 
 			if (targetAi != NULL) {
-				if (FactionManager::instance()->isEnemy(pvpFaction, targetAi->getPvPFaction()))
+				if (FactionManager::instance()->isEnemy(factionString, targetAi->getFactionString()))
 					return true;
 				else
 					return false;
@@ -2550,7 +2574,7 @@ void AiAgentImplementation::setCurrentBehavior(uint32 b) {
 
 		chatManager->broadcastMessage(_this.get(), currentBehaviorID, 0, 0, 0);*/
 	} else
-		error("Null Behavior in " + currentBehaviorID);
+		error("Null Behavior in " + String::valueOf(currentBehaviorID));
 }
 
 int AiAgentImplementation::getBehaviorStatus() {
@@ -2770,16 +2794,19 @@ bool AiAgentImplementation::isAttackableBy(CreatureObject* object) {
 }
 
 void AiAgentImplementation::restoreFollowObject() {
+	Locker locker(&targetMutex);
 	ManagedReference<SceneObject*> obj = followStore.get();
+	locker.release();
 
-	if (obj == NULL)
+	if (obj == NULL) {
 		setOblivious();
-	else if (getCloseObjects() != NULL && !getCloseObjects()->contains(obj.get()))
+	} else if (getCloseObjects() != NULL && !getCloseObjects()->contains(obj.get())) {
 		setOblivious();
-	else if (obj->isCreatureObject() && cast<CreatureObject*>(obj.get())->isInvisible())
+	} else if (obj->isCreatureObject() && cast<CreatureObject*>(obj.get())->isInvisible()) {
 		setOblivious();
-	else
+	} else {
 		setFollowObject(obj);
+	}
 }
 
 void AiAgentImplementation::sendReactionChat(int type, int state) {
@@ -2892,4 +2919,25 @@ void AiAgentImplementation::sendReactionChat(int type, int state) {
 
 		getCooldownTimerMap()->updateToCurrentAndAddMili("reaction_chat",30000); // 30 second cooldown
 	}
+}
+float AiAgentImplementation::getEffectiveResist() {
+	if (!isSpecialProtection(WeaponObject::ACID) && getAcid() > 0)
+		return getAcid();
+	if (!isSpecialProtection(WeaponObject::BLAST) && getBlast() > 0)
+		return getBlast();
+	if (!isSpecialProtection(WeaponObject::COLD) && getCold() > 0)
+		return getCold();
+	if (!isSpecialProtection(WeaponObject::ELECTRICITY) && getElectricity() > 0)
+		return getElectricity();
+	if (!isSpecialProtection(WeaponObject::ENERGY) && getEnergy() > 0)
+		return getEnergy();
+	if (!isSpecialProtection(WeaponObject::HEAT) && getHeat() > 0)
+		return getLightSaber();
+	if (!isSpecialProtection(WeaponObject::KINETIC) && getKinetic() > 0)
+		return getKinetic();
+	if (!isSpecialProtection(WeaponObject::LIGHTSABER) && getLightSaber() > 0)
+		return getLightSaber();
+	if (!isSpecialProtection(WeaponObject::STUN) && getStun() > 0)
+		return getStun();
+	return 0;
 }

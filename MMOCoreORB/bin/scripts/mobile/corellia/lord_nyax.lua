@@ -1,7 +1,6 @@
 lord_nyax = Creature:new {
 	objectName = "@mob/creature_names:lord_nyax",
 	socialGroup = "followers_of_lord_nyax",
-	pvpFaction = "followers_of_lord_nyax",
 	faction = "followers_of_lord_nyax",
 	level = 129,
 	chanceHit = 4.9,
@@ -41,6 +40,7 @@ lord_nyax = Creature:new {
 	},
 	weapons = {"nyaxs_weapons"},
 	conversationTemplate = "",
+	reactionStf = "@npc_reaction/fancy",
 	attacks = merge(brawlermaster,swordsmanmaster)
 }
 

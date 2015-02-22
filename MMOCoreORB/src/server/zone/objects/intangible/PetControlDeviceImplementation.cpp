@@ -68,6 +68,13 @@ void PetControlDeviceImplementation::callObject(CreatureObject* player) {
 		return;
 	}
 
+	if (!pet->getCooldownTimerMap()->isPast("call_cooldown")) {
+		if (petType == PetManager::DROIDPET)
+			player->sendSystemMessage("@pet/droid_modules:droid_maint_on_maint_run"); //You cannot call that droid. It is currently on a maintenance run.
+		else
+			player->sendSystemMessage("@pet/pet_menu:cant_call"); // cant call pet right now
+		return;
+	}
 	assert(pet->isLockedByCurrentThread());
 
 	unsigned int petFaction = pet->getFaction();
@@ -826,14 +833,24 @@ void PetControlDeviceImplementation::fillAttributeList(AttributeListMessage* alm
 				CreatureAttackMap* attMap = pet->getAttackMap();
 				if (attMap != NULL) {
 					if (attMap->size() > 0) {
-						String str = StringIdManager::instance()->getStringId(("@combat_effects:" + pet->getAttackMap()->getCommand(0)).hashCode()).toString();
-						alm->insertAttribute("spec_atk_1", str);
+						String cmd = pet->getAttackMap()->getCommand(0);
+						if (cmd.isEmpty()) {
+							alm->insertAttribute("spec_atk_1", " ---");
+						} else {
+							String str = StringIdManager::instance()->getStringId(("@combat_effects:" + cmd).hashCode()).toString();
+							alm->insertAttribute("spec_atk_1", str);
+						}
 					} else
 						alm->insertAttribute("spec_atk_1", " ---");
 
 					if (attMap->size() > 1) {
-						String str = StringIdManager::instance()->getStringId(("@combat_effects:" + pet->getAttackMap()->getCommand(1)).hashCode()).toString();
-						alm->insertAttribute("spec_atk_2", str);
+						String cmd = pet->getAttackMap()->getCommand(1);
+						if (cmd.isEmpty()) {
+							alm->insertAttribute("spec_atk_1", " ---");
+						} else {
+							String str = StringIdManager::instance()->getStringId(("@combat_effects:" + cmd).hashCode()).toString();
+							alm->insertAttribute("spec_atk_2", str);
+						}
 					} else
 						alm->insertAttribute("spec_atk_2", " ---");
 				}

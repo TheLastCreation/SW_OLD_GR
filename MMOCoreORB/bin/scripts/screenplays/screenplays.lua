@@ -71,7 +71,10 @@ includeFile("events/lifeDay.lua")
 
 -- Hero of Tatooine
 includeFile("tasks/hero_of_tatooine/conversations/hermitConvoHandler.lua")
+includeFile("tasks/hero_of_tatooine/conversations/heroOfTatFarmerConvoHandler.lua")
+includeFile("tasks/hero_of_tatooine/conversations/heroOfTatMotherConvoHandler.lua")
 includeFile("tasks/hero_of_tatooine/heroOfTatooine.lua")
+includeFile("tasks/hero_of_tatooine/heroOfTatooineContainerComponents.lua")
 includeFile("tasks/hero_of_tatooine/heroOfTatooineMenuComponents.lua")
 
 

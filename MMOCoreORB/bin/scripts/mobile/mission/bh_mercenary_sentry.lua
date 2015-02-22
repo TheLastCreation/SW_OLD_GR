@@ -1,7 +1,6 @@
 bh_mercenary_sentry = Creature:new {
 	objectName = "@mob/creature_names:geonosian_human_security_force",
 	socialGroup = "geonosian",
-	pvpFaction = "",
 	faction = "",
 	level = 66,
 	chanceHit = 0.65,
@@ -64,6 +63,7 @@ bh_mercenary_sentry = Creature:new {
 	},
 	weapons = {"geonosian_mercenary_weapons"},
 	conversationTemplate = "",
+	reactionStf = "@npc_reaction/slang",
 	attacks = merge(brawlermaster,marksmanmaster,pistoleermaster,riflemanmaster)
 }
 

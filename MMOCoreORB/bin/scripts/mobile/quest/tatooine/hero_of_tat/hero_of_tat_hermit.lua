@@ -1,7 +1,6 @@
-hermit_quest = Creature:new {
+hero_of_tat_hermit = Creature:new {
 	objectName = "@mob/creature_names:quest_hero_of_tatooine_hermit",
 	socialGroup = "townsperson",
-	pvpFaction = "townsperson",
 	faction = "townsperson",
 	level = 100,
 	chanceHit = 1,
@@ -34,4 +33,4 @@ hermit_quest = Creature:new {
 	}
 }
 
-CreatureTemplates:addCreatureTemplate(hermit_quest, "hermit_quest")
+CreatureTemplates:addCreatureTemplate(hero_of_tat_hermit, "hero_of_tat_hermit")

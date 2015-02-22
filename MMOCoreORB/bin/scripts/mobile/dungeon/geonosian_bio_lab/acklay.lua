@@ -2,7 +2,6 @@ acklay = Creature:new {
 	objectName = "@mob/creature_names:geonosian_acklay_bunker_boss",
 	customName = "Acklay",
 	socialGroup = "geonosian_creature",
-	pvpFaction = "",
 	faction = "",
 	level = 157,
 	chanceHit = 92.5,
@@ -39,8 +38,8 @@ acklay = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"creatureareacombo",""},
-		{"posturedownattack","postureDownChance=50"}
+		{"posturedownattack","postureDownChance=50"},
+		{"creatureareacombo",""}
 	}
 }
 

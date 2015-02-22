@@ -1,7 +1,6 @@
 dappled_gualama = Creature:new {
 	objectName = "@mob/creature_names:dappled_gualama",
 	socialGroup = "gualama",
-	pvpFaction = "",
 	faction = "",
 	level = 14,
 	chanceHit = 0.3,
@@ -34,6 +33,7 @@ dappled_gualama = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
+		{"",""},
 		{"stunattack","stunChance=50"}
 	}
 }

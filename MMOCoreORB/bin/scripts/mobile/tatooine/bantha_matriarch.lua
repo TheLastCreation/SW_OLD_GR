@@ -1,7 +1,6 @@
 bantha_matriarch = Creature:new {
 	objectName = "@mob/creature_names:matriarch_bantha",
 	socialGroup = "bantha",
-	pvpFaction = "",
 	faction = "",
 	level = 25,
 	chanceHit = 0.35,
@@ -33,6 +32,7 @@ bantha_matriarch = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
+		{"",""},
 		{"posturedownattack","postureDownChance=50"}
 	}
 }

@@ -1,7 +1,6 @@
 male_squall = Creature:new {
 	objectName = "@mob/creature_names:squall_male",
 	socialGroup = "squall",
-	pvpFaction = "",
 	faction = "",
 	level = 11,
 	chanceHit = 0.29,
@@ -32,6 +31,7 @@ male_squall = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
+		{"",""},
 		{"stunattack","stunChance=50"}
 	}
 }

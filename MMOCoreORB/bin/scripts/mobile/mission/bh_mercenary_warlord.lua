@@ -1,7 +1,6 @@
 bh_mercenary_warlord = Creature:new {
 	objectName = "@mob/creature_names:mercenary_warlord",
 	socialGroup = "lok_mercenaries",
-	pvpFaction = "lok_mercenaries",
 	faction = "lok_mercenaries",
 	level = 44,
 	chanceHit = 0.47,
@@ -66,6 +65,7 @@ bh_mercenary_warlord = Creature:new {
 	},
 	weapons = {"rebel_weapons_heavy"},
 	conversationTemplate = "",
+	reactionStf = "@npc_reaction/slang",
 	attacks = merge(commandomaster,marksmanmaster,brawlermaster)
 }
 

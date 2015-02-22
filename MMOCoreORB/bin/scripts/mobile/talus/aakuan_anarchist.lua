@@ -2,7 +2,6 @@ aakuan_anarchist = Creature:new {
 	objectName = "",
 	customName = "an Aa'kuan Anarchist",
 	socialGroup = "aakuans",
-	pvpFaction = "aakuans",
 	faction = "aakuans",
 	level = 30,
 	chanceHit = 0.39,
@@ -34,18 +33,19 @@ aakuan_anarchist = Creature:new {
 		{
 			groups = {
 				{group = "junk", chance = 4600000},
-				{group = "wearables_all", chance = 2000000},				
+				{group = "wearables_all", chance = 2000000},
 				{group = "aakuan_common", chance = 2300000},
 				{group = "armor_attachments", chance = 200000},
 				{group = "rifles", chance = 300000},
 				{group = "carbines", chance = 300000},
-				{group = "pistols", chance = 300000}				
+				{group = "pistols", chance = 300000}
 			},
 			lootChance = 2200000
 		}
 	},
 	weapons = {"melee_weapons"},
 	conversationTemplate = "",
+	reactionStf = "@npc_reaction/fancy",
 	attacks = merge(brawlermaster,swordsmanmaster)
 }
 

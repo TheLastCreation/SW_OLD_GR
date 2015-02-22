@@ -1,7 +1,6 @@
 bh_sennex_guard = Creature:new {
 	objectName = "@mob/creature_names:sennex_guard",
 	socialGroup = "sennex",
-	pvpFaction = "pirate",
 	faction = "pirate",
 	level = 32,
 	chanceHit = 0.4,
@@ -60,10 +59,11 @@ bh_sennex_guard = Creature:new {
 				{group = "armor_attachments", chance = 1000000}
 			},
 			lootChance = 6000000
-		}				
+		}
 	},
 	weapons = {"pirate_weapons_heavy"},
 	conversationTemplate = "",
+	reactionStf = "@npc_reaction/slang",
 	attacks = merge(brawlermaster,marksmanmaster)
 }
 

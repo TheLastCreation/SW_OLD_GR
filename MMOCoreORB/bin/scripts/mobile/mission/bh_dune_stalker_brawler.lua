@@ -1,7 +1,6 @@
 bh_dune_stalker_brawler = Creature:new {
 	objectName = "@mob/creature_names:dune_stalker_brawler",
 	socialGroup = "dune_stalker",
-	pvpFaction = "",
 	faction = "",
 	level = 17,
 	chanceHit = 0.32,
@@ -49,10 +48,11 @@ bh_dune_stalker_brawler = Creature:new {
 				{group = "armor_attachments", chance = 1000000}
 			},
 			lootChance = 6000000
-		}				
+		}
 	},
 	weapons = {"tusken_weapons"},
 	conversationTemplate = "",
+	reactionStf = "@npc_reaction/slang",
 	attacks = merge(brawlermaster,marksmanmaster)
 }
 

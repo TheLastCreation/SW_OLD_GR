@@ -1,7 +1,6 @@
 bh_terrorist = Creature:new {
 	objectName = "@mob/creature_names:terrorist",
 	socialGroup = "thug",
-	pvpFaction = "thug",
 	faction = "thug",
 	level = 17,
 	chanceHit = 0.32,
@@ -38,6 +37,7 @@ bh_terrorist = Creature:new {
 		}
 	},
 	weapons = {"pirate_weapons_heavy"},
+	reactionStf = "@npc_reaction/slang",
 	attacks = merge(brawlermaster,marksmanmaster)
 }
 
