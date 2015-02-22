@@ -1,9 +1,8 @@
-
-knife_vibroblade = {
+knife_vibroblade_quest = {
 	minimumLevel = 0,
 	maximumLevel = -1,
 	customObjectName = "",
-	directObjectTemplate = "object/weapon/melee/knife/knife_vibroblade.iff",
+	directObjectTemplate = "object/weapon/melee/knife/knife_vibroblade_quest.iff",
 	craftingValues = {
 		{"mindamage",11,20,0},
 		{"maxdamage",60,111,0},
@@ -30,4 +29,4 @@ knife_vibroblade = {
 
 }
 
-addLootItemTemplate("knife_vibroblade", knife_vibroblade)
+addLootItemTemplate("knife_vibroblade_quest", knife_vibroblade_quest)

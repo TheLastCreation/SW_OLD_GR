@@ -1,8 +1,8 @@
-2h_sword_avatar_wke_toothpick = {
+two_handed_sword_katana_generic = {
 	minimumLevel = 0,
 	maximumLevel = -1,
 	customObjectName = "",
-	directObjectTemplate = "object/weapon/melee/2h_sword/2h_sword_avatar_wke_toothpick.iff",
+	directObjectTemplate = "object/weapon/melee/2h_sword/2h_sword_katana_generic.iff",
 	craftingValues = {
 		{"mindamage",28,52,0},
 		{"maxdamage",53,98,0},
@@ -28,4 +28,4 @@
 	junkMaxValue = 55
 }
 
-addLootItemTemplate("2h_sword_avatar_wke_toothpick", 2h_sword_avatar_wke_toothpick)
+addLootItemTemplate("two_handed_sword_katana_generic", two_handed_sword_katana_generic)

@@ -3,7 +3,7 @@ g_2h_sword_cleaver = {
 	minimumLevel = 0,
 	maximumLevel = 0,
 	lootItems = {
-		{itemTemplate = "2h_sword_cleaver", weight = 10000000}
+		{itemTemplate = "two_handed_sword_cleaver", weight = 10000000}
 	}
 }
 

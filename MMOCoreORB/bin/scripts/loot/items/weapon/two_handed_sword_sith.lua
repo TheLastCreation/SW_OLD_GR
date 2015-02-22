@@ -1,8 +1,8 @@
-2h_sword_cleaver_npe = {
+two_handed_sword_sith = {
 	minimumLevel = 0,
 	maximumLevel = -1,
 	customObjectName = "",
-	directObjectTemplate = "object/weapon/melee/2h_sword/2h_sword_cleaver_npe.iff",
+	directObjectTemplate = "object/weapon/melee/2h_sword/2h_sword_sith.iff",
 	craftingValues = {
 		{"mindamage",28,52,0},
 		{"maxdamage",53,98,0},
@@ -28,4 +28,4 @@
 	junkMaxValue = 55
 }
 
-addLootItemTemplate("2h_sword_cleaver_npe", 2h_sword_cleaver_npe)
+addLootItemTemplate("two_handed_sword_sith", two_handed_sword_sith)

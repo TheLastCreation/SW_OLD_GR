@@ -1,8 +1,8 @@
-2h_sword_avatar_wke_toothpick2 = {
+two_handed_sword_cleaver = {
 	minimumLevel = 0,
 	maximumLevel = -1,
 	customObjectName = "",
-	directObjectTemplate = "object/weapon/melee/2h_sword/2h_sword_avatar_wke_toothpick2.iff",
+	directObjectTemplate = "object/weapon/melee/2h_sword/2h_sword_cleaver.iff",
 	craftingValues = {
 		{"mindamage",28,52,0},
 		{"maxdamage",53,98,0},
@@ -28,4 +28,4 @@
 	junkMaxValue = 55
 }
 
-addLootItemTemplate("2h_sword_avatar_wke_toothpick2", 2h_sword_avatar_wke_toothpick2)
+addLootItemTemplate("two_handed_sword_cleaver", two_handed_sword_cleaver)

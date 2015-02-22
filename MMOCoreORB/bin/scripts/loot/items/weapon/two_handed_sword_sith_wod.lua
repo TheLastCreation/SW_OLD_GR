@@ -1,8 +1,8 @@
-2h_sword_sith_generic = {
+two_handed_sword_sith_wod = {
 	minimumLevel = 0,
 	maximumLevel = -1,
 	customObjectName = "",
-	directObjectTemplate = "object/weapon/melee/2h_sword/2h_sword_sith_generic.iff",
+	directObjectTemplate = "object/weapon/melee/2h_sword/2h_sword_sith_wod.iff",
 	craftingValues = {
 		{"mindamage",28,52,0},
 		{"maxdamage",53,98,0},
@@ -28,4 +28,4 @@
 	junkMaxValue = 55
 }
 
-addLootItemTemplate("2h_sword_sith_generic", 2h_sword_sith_generic)
+addLootItemTemplate("two_handed_sword_sith_wod", two_handed_sword_sith_wod)

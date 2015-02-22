@@ -1,8 +1,8 @@
-2h_sword_blacksun_hack = {
+two_handed_sword_battleaxe = {
 	minimumLevel = 0,
 	maximumLevel = -1,
 	customObjectName = "",
-	directObjectTemplate = "object/weapon/melee/2h_sword/2h_sword_blacksun_hack.iff",
+	directObjectTemplate = "object/weapon/melee/2h_sword/2h_sword_battleaxe.iff",
 	craftingValues = {
 		{"mindamage",47,96,0},
 		{"maxdamage",100,188,0},
@@ -29,4 +29,4 @@
 
 }
 
-addLootItemTemplate("2h_sword_blacksun_hack", 2h_sword_blacksun_hack)
+addLootItemTemplate("two_handed_sword_battleaxe", two_handed_sword_battleaxe)

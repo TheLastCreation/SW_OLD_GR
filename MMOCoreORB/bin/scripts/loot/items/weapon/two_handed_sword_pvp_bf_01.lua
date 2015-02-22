@@ -1,8 +1,8 @@
-2h_sword_wod_sword = {
+two_handed_sword_pvp_bf_01 = {
 	minimumLevel = 0,
 	maximumLevel = -1,
 	customObjectName = "",
-	directObjectTemplate = "object/weapon/melee/2h_sword/2h_sword_wod_sword.iff",
+	directObjectTemplate = "object/weapon/melee/2h_sword/2h_sword_pvp_bf_01.iff",
 	craftingValues = {
 		{"mindamage",28,52,0},
 		{"maxdamage",53,98,0},
@@ -28,4 +28,4 @@
 	junkMaxValue = 55
 }
 
-addLootItemTemplate("2h_sword_wod_sword", 2h_sword_wod_sword)
+addLootItemTemplate("two_handed_sword_pvp_bf_01", two_handed_sword_pvp_bf_01)

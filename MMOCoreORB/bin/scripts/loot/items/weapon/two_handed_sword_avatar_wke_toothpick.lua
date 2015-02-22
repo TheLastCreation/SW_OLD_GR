@@ -1,8 +1,8 @@
-2h_sword_kun_massassi = {
+two_handed_sword_avatar_wke_toothpick = {
 	minimumLevel = 0,
 	maximumLevel = -1,
 	customObjectName = "",
-	directObjectTemplate = "object/weapon/melee/2h_sword/2h_sword_kun_massassi.iff",
+	directObjectTemplate = "object/weapon/melee/2h_sword/2h_sword_avatar_wke_toothpick.iff",
 	craftingValues = {
 		{"mindamage",28,52,0},
 		{"maxdamage",53,98,0},
@@ -28,4 +28,4 @@
 	junkMaxValue = 55
 }
 
-addLootItemTemplate("2h_sword_kun_massassi", 2h_sword_kun_massassi)
+addLootItemTemplate("two_handed_sword_avatar_wke_toothpick", two_handed_sword_avatar_wke_toothpick)
