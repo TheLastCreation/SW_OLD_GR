@@ -28,9 +28,9 @@ function GeneralsBunkerScreenPlay:spawnMobiles()
 
 --Inside
 
-	spawnMobile("lok", "nk_droideka", 200,  -10.6, -17.0, 75.8, 179, 9686007 "npc_imperial", "npc_rebel")
-	spawnMobile("lok", "nk_s_battle_droid_01",200, 7.7, -9.0, 28.9, 176, 9686003 "npc_imperial", "npc_rebel")
-	spawnMobile("lok", "nk_s_battle_droid_01",200, -1.0, -9.0, 29.0, 176, 9686003 "npc_imperial", "npc_rebel")
+	spawnMobile("lok", "nk_droideka", 200,  -10.6, -17.0, 75.8, 179, 9686007)
+	spawnMobile("lok", "nk_s_battle_droid_01",200, 7.7, -9.0, 28.9, 176, 9686003)
+	spawnMobile("lok", "nk_s_battle_droid_01",200, -1.0, -9.0, 29.0, 176, 9686003)
 
 
 
