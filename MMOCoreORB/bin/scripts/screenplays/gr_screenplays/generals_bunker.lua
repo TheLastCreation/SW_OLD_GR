@@ -40,6 +40,18 @@ function GeneralsBunkerScreenPlay:spawnMobiles()
 	spawnMobile("lok", "nk_s_battle_droid_02", 200, 37.2, -21.0, 133.3, 178, 9686009)
 	spawnMobile("lok", "nk_s_battle_droid_03", 200, 37.5, -21.0, 153.1, 179, 9686009)
 	spawnMobile("lok", "nk_necrosis", 200, 3.2, -23.0, 282.0, -179, 9686015)
+	spawnMobile("lok", "outbreak_undead_deathtrooper_01_m", 200, -33.2, -9.0, 27.6, 90, 9686004)
+	spawnMobile("lok", "outbreak_undead_deathtrooper_02_m", 200, 23.6, -17.0, 63.3, -90, 9686006)
+	spawnMobile("lok", "outbreak_undead_deathtrooper_03_m", 200, 9.2, -23.0, 125.1, 178, 9686008)
+	spawnMobile("lok", "outbreak_undead_deathtrooper_04_m", 200, -38.4, -23.0, 121.7, 179, 9686008)
+	spawnMobile("lok", "outbreak_undead_deathtrooper_01_m", 200, -37.8, -23.0, 158.3, 179, 9686008)
+	spawnMobile("lok", "outbreak_undead_deathtrooper_02_m", 200, -38.1, -23.0, 199.0, 179, 9686008)
+	spawnMobile("lok", "outbreak_undead_deathtrooper_05_m", 200, -11.2, -23.0, 198.8, 177, 9686008)
+	spawnMobile("lok", "outbreak_undead_deathtrooper_01_m", 200, 9.5, -23.0, 199.8, 175, 9686008)
+	spawnMobile("lok", "outbreak_undead_deathtrooper_03_m", 200, 9.8, -23.0, 153.7, 178, 9686008)
+	
+	
+	
 	
 	
 
