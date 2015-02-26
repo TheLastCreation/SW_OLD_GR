@@ -49,6 +49,8 @@ function GeneralsBunkerScreenPlay:spawnMobiles()
 	spawnMobile("lok", "outbreak_undead_deathtrooper_05_m", 200, -11.2, -23.0, 198.8, 177, 9686008)
 	spawnMobile("lok", "outbreak_undead_deathtrooper_01_m", 200, 9.5, -23.0, 199.8, 175, 9686008)
 	spawnMobile("lok", "outbreak_undead_deathtrooper_03_m", 200, 9.8, -23.0, 153.7, 178, 9686008)
+	spawnMobile("lok", "leia_organa", 200, -78.9, -23.0, 259.5, 92, 9686014)
+	
 	
 	
 	

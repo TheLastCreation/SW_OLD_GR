@@ -22,8 +22,8 @@ outbreak_undead_deathtrooper_03_m = Creature:new {
 	milk = 0,
 	tamingChance = 0,
 	ferocity = 1,
-	pvpBitmask = ATTACKABLE, -- + ATTACKABLE + ENEMY,
-	creatureBitmask = NONE, --KILLER + STALKER,
+	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
+	creatureBitmask = KILLER,
 	optionsBitmask = 128,
 	diet = HERBIVORE,
 
