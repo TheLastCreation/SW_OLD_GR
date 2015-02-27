@@ -47,9 +47,42 @@ function GeneralsBunkerScreenPlay:spawnMobiles()
 	spawnMobile("lok", "outbreak_undead_deathtrooper_01_m", 200, -37.8, -23.0, 158.3, 179, 9686008)
 	spawnMobile("lok", "outbreak_undead_deathtrooper_02_m", 200, -38.1, -23.0, 199.0, 179, 9686008)
 	spawnMobile("lok", "outbreak_undead_deathtrooper_05_m", 200, -11.2, -23.0, 198.8, 177, 9686008)
-	spawnMobile("lok", "outbreak_undead_deathtrooper_01_m", 200, 9.5, -23.0, 199.8, 175, 9686008)
+	spawnMobile("lok", "nk_mega_droid", 200, 9.5, -23.0, 199.8, 175, 9686008)
 	spawnMobile("lok", "outbreak_undead_deathtrooper_03_m", 200, 9.8, -23.0, 153.7, 178, 9686008)
-	spawnMobile("lok", "leia_organa", 200, -78.9, -23.0, 259.5, 92, 9686014)
+	spawnMobile("lok", "leia_organa", 200, -87.8, -23.0, 232.9, 174, 9686012)
+	spawnMobile("lok", "commoner", 200, -9.0, -23.0, 143.5, -176, 9686008)
+	spawnMobile("lok", "commoner", 200, -3.7, -23.0, 136.2, -178, 9686008)
+	spawnMobile("lok", "commoner", 200, -11.7, -23.0, 131.0, 87, 9686008)
+	spawnMobile("lok", "commoner", 200, -25.0, -23.0, 144.9, -174, 9686008)
+	spawnMobile("lok", "commoner", 200, -18.2, -23.0, 136.4, 178, 9686008)
+	spawnMobile("lok", "commoner", 200, -18.7, -23.0, 151.1, 93, 9686008)
+	spawnMobile("lok", "commoner", 200, -18.7, -23.0, 163.0, -1, 9686008)
+	spawnMobile("lok", "commoner", 200, -26.7, -23.0, 171.4, -92, 9686008)
+	spawnMobile("lok", "commoner", 200, -5.4, -23.0, 165.8, 179, 9686008)
+	spawnMobile("lok", "commoner", 200, -10.2, -23.0, 176.7, 2, 9686008)
+	spawnMobile("lok", "nk_droideka", 200, 9.2, -23.0, 220.3, -175, 9686013)
+	spawnMobile("lok", "nk_droideka", 200, -2.4, -23.0, 247.4, -177, 9686016)
+	spawnMobile("lok", "nk_droideka", 200, 10.8, -23.0, 275.9, -177, 9686015)
+	spawnMobile("lok", "nk_droideka", 200, -4.1, -23.0, 269.1, 86, 9686015)
+	spawnMobile("lok", "nk_droideka", 200, 29.4, -23.0, 253.0, 177, 9686016)
+	spawnMobile("lok", "nk_mega_droid", 200, 43.6, -23.0, 280.5, -179, 9686016)
+	spawnMobile("lok", "nk_droideka", 200, 23.6, -23.0, 219.4, -90, 9686011)
+	spawnMobile("lok", "commoner", 200, 37.8, -23.0, 206.4, -1, 9686011)
+	spawnMobile("lok", "commoner", 200, 44.8, -23.0, 206.2, 0, 9686011)
+	spawnMobile("lok", "commoner", 200, 51.5, -23.0, 233.6, 178, 9686011)
+	spawnMobile("lok", "nk_droideka", 200, -53.1, -23.0, 219.3, 89, 9686012)
+	spawnMobile("lok", "commoner", 200, -73.6, -23.0, 205.1, -1, 9686012)
+	spawnMobile("lok", "commoner", 200, -80.5, -23.0, 232.8, -178, 9686012)
+	spawnMobile("lok", "nk_droideka", 200, -89.2, -21.0, 223.3, -177, 9686012)
+	spawnMobile("lok", "nk_droideka", 200, -85.8, -21.0, 223.5, -177, 9686012)
+	spawnMobile("lok", "nk_mega_droid", 200, -73.0, -21.0, 219.0, 89, 9686012)
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
