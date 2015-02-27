@@ -45,4 +45,4 @@ nk_mega_droid = Creature:new {
 	defaultAttack = "creaturerangedattack"
 }
 
-CreatureTemplates:addCreatureTemplate(nk_s_battle_droid_01, "nk_s_battle_droid_01")
+CreatureTemplates:addCreatureTemplate(nk_mega_droid, "nk_mega_droid")
