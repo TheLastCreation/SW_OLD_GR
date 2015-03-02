@@ -98,12 +98,12 @@ float VisibilityManager::calculateVisibilityIncrease(CreatureObject* creature) {
 				ManagedReference<CreatureObject*> c = cast<CreatureObject*>(obj);
 				if (c->isNonPlayerCreatureObject()) {
 					if (creature->getFaction() == 0 || (c->getFaction() != factionImperial && c->getFaction() != factionRebel)) {
-						visibilityIncrease += 1.0;
+						visibilityIncrease += 2.0;
 					} else {
 						if (creature->getFaction() == c->getFaction()) {
-							visibilityIncrease += 1.0;
+							visibilityIncrease += 2.0;
 						} else {
-							visibilityIncrease += 1.0;
+							visibilityIncrease += 2.0;
 						}
 					}
 				}
