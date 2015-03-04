@@ -62,19 +62,19 @@ CityVotingCyclesUntilLocked = 1
 
 --The amount of time in minutes before the city performs an update.
 --CityUpdateInterval = 10080
-CityUpdateInterval = 2880
+CityUpdateInterval = 10080
 
 --The amount of time in minutes a new city has to gain enough citizens to remain a city.
-NewCityGracePeriod = 1440000000000
+NewCityGracePeriod = 1440
 
 --The amount of time in minutes an old city has to regain enough citizens to remain a city.
-OldCityGracePeriod = 30240
+OldCityGracePeriod = 4320
 
 --Whether or not to allow the use of the command, /cityWarn to give players a TEF while in the city limits.
 EnableCityWarn = false
 
 --The number of citizens required to achieve each city rank. (Outpost, Village, Township, City, Metropolis)
-CitizensPerRank = {1, 1, 1, 1, 1}
+CitizensPerRank = {2, 5, 10, 25, 40}
 --CitizensPerRank = {10, 20, 35, 55, 85}
 
 --The radius in meters of the city at each city rank. (Outpost, Village, Township, City, Metropolis)
