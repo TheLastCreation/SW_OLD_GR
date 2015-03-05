@@ -151,7 +151,7 @@ int ForceShrineMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, C
 			box->setPromptText("Welcome to the Light Ranks!");
 			ghost->addSuiBox(box);
 			creature->sendMessage(box->generateMessage());
-			SkillManager::instance()->awardSkill("force_rank_dark_novice", creature, true, true, true);
+			SkillManager::instance()->awardSkill("force_rank_light_novice", creature, true, true, true);
 			creature->playEffect("clienteffect/entertainer_dazzle_level_3.cef", ""); // Not sure if it's the right one for this.
 			PlayMusicMessage* pmm = new PlayMusicMessage("sound/intro.snd");
 			creature->sendMessage(pmm);

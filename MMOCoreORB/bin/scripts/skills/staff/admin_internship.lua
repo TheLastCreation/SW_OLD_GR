@@ -24,13 +24,13 @@ admin_internship = {
 		"teleport",
 		"teleportto",
 		"teleportTarget",
-		"invulnerable",
-		"kill",
-		"killPlayer",
+	--	"invulnerable",
+	--	"kill",
+	--	"killPlayer",
 		"gmRevive",
 		"setSpeed",
-		"setFaction",
-		"setFactionStanding"
+	--	"setFaction",
+	--	"setFactionStanding"
 	},
 	skillModifiers = {},
 	schematicsGranted = {},
