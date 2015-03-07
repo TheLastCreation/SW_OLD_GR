@@ -1470,33 +1470,6 @@ includeFile("items/swggr_custom/bounty_hunter_schemes/bounty_hunter_gloves_schem
 includeFile("items/swggr_custom/bounty_hunter_schemes/bounty_hunter_helmet_scheme.lua")
 includeFile("items/swggr_custom/bounty_hunter_schemes/bounty_hunter_leggings_scheme.lua")
 
---Housing
-
-includeFile("items/swggr_custom/nge_housing/nge_bespin_house_scheme.lua")
-includeFile("items/swggr_custom/nge_housing/nge_commando_house_scheme.lua")
-includeFile("items/swggr_custom/nge_housing/nge_hut_house_deed.lua")
-includeFile("items/swggr_custom/nge_housing/nge_jabba_house_scheme.lua")
-includeFile("items/swggr_custom/nge_housing/nge_mustafar_house_scheme.lua")
-includeFile("items/swggr_custom/nge_housing/nge_sand_crawler_house_scheme.lua")
-includeFile("items/swggr_custom/nge_housing/nge_tree_house_scheme.lua")
-includeFile("items/swggr_custom/nge_housing/nge_vehicle_house_scheme.lua")
-includeFile("items/swggr_custom/nge_housing/nge_gen_lg_win_01_scheme.lua")
-includeFile("items/swggr_custom/nge_housing/nge_gen_lg_win_02_scheme.lua")
-includeFile("items/swggr_custom/nge_housing/nge_gen_md_win_01_scheme.lua")
-includeFile("items/swggr_custom/nge_housing/nge_gen_md_win_02_scheme.lua")
-includeFile("items/swggr_custom/nge_housing/nge_gen_sm_win_01_scheme.lua")
-includeFile("items/swggr_custom/nge_housing/nge_gen_sm_win_02_scheme.lua")
-includeFile("items/swggr_custom/nge_housing/nge_yt1300_house_scheme.lua")
-includeFile("items/swggr_custom/nge_housing/nge_tat_sm_win_01_scheme.lua")
-includeFile("items/swggr_custom/nge_housing/nge_nab_sm_win_01_scheme.lua")
-includeFile("items/swggr_custom/nge_housing/nge_jedi_house_scheme.lua")
-includeFile("items/swggr_custom/nge_housing/nge_sith_house_scheme.lua")
-
---Factional Houses
-
-includeFile("items/swggr_custom/nge_housing/rebel_spire_scheme.lua")
-includeFile("items/swggr_custom/nge_housing/imperial_spire_scheme.lua")
-
 --Clothing
 
 includeFile("items/swggr_custom/smc_bicep_l.lua")
