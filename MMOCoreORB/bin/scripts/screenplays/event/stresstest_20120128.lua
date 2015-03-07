@@ -37,10 +37,10 @@ function stresstest_20120128:spawnMobiles()
 	shuttle4:setOptionsBitmask(256)
 	shuttle4:setPosture(PRONE)
 	
-	local pBarker = spawnMobile("corellia", "stresstest_shuttleloc_barker", 1, -149, 28, -4706, 140, 0)
-	local barker = LuaCreatureObject(pBarker)
-	barker:setOptionsBitmask(256)
-	self:barkShuttleLocation(pBarker)
+	--local pBarker = spawnMobile("corellia", "stresstest_shuttleloc_barker", 1, -149, 28, -4706, 140, 0)
+	--local barker = LuaCreatureObject(pBarker)
+	--barker:setOptionsBitmask(256)
+	--self:barkShuttleLocation(pBarker)
 end
 
 function stresstest_20120128:spawnSceneObjects()
