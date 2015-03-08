@@ -68,7 +68,7 @@ object_tangible_wearables_robe_robe_jedi_light_s03 = object_tangible_wearables_r
 				    {"jedi_force_power_regen", 10}
 				},
 
-				noTrade = 1,
+				noTrade = 0,
 
 				objectMenuComponent = {"cpp", "RobeObjectMenuComponent"},
 				certificationsRequired = {"force_rank_light_rank_05"},
