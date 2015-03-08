@@ -34,7 +34,6 @@ end
 --spawn the travel terminal players dbl click to travel
 
 function cnet_auxilary_shuttle:spawnSceneObjects()
-
 	local pCollector = spawnSceneObject("corellia", "object/tangible/furniture/imperial/data_terminal_s1.iff", -159, 28.0, -4783.1 , 0, 1, 0, 0, 0)
 	local collector = LuaSceneObject(pCollector)
 	local col2creo = LuaCreatureObject(pCollector)
@@ -42,6 +41,13 @@ function cnet_auxilary_shuttle:spawnSceneObjects()
 	collector:setCustomObjectName("\\#ee3377Travel to Super Mall")
 	createObserver(OBJECTRADIALUSED, "cnet_auxilary_shuttle", "teleportNaboo", pCollector)
 	
+	--Return from Super Mall
+	local pCollector2 = spawnSceneObject("naboo", "object/tangible/furniture/imperial/data_terminal_s1.iff", -4030.0, -195.5, 4630.4 , 0, 0.707107, 0, 0.707107, 0)
+	local collector2 = LuaSceneObject(pCollector2)
+	local col2creo = LuaCreatureObject(pCollector2)
+	col2creo:setOptionsBitmask(264)
+	collector2:setCustomObjectName("\\#ee3377Travel to Coronet, Corellia")
+	createObserver(OBJECTRADIALUSED, "cnet_auxilary_shuttle", "teleportCnet", pCollector2)	
 end
 
 --  shuttle location barker
@@ -56,4 +62,9 @@ end
 function cnet_auxilary_shuttle:teleportNaboo(pCollector, pPlayer)
 	local player = LuaSceneObject(pPlayer)
 	player:switchZone("naboo", -4036.9, -195.6, 4627.1, 0)
+end
+
+function stresstest_20120128:teleportCnet(pCollector, pPlayer)
+	local player = LuaSceneObject(pPlayer)
+	player:switchZone("corellia", -159, 28, -4783.1, 0)
 end
