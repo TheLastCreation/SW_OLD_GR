@@ -35,7 +35,7 @@ end
 
 function cnet_auxilary_shuttle:spawnSceneObjects()
 
-	local pCollector = spawnSceneObject("corellia", "object/tangible/furniture/imperial/data_terminal_s1.iff", -164.5, 28.0, -4724.0 , 0, 1, 0, 0, 0)
+	local pCollector = spawnSceneObject("corellia", "object/tangible/furniture/imperial/data_terminal_s1.iff", -159, 28.0, -4783.1 , 0, 1, 0, 0, 0)
 	local collector = LuaSceneObject(pCollector)
 	local col2creo = LuaCreatureObject(pCollector)
 	col2creo:setOptionsBitmask(264)
