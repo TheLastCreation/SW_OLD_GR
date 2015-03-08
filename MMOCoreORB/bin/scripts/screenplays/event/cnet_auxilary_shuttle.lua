@@ -64,7 +64,7 @@ function cnet_auxilary_shuttle:teleportNaboo(pCollector, pPlayer)
 	player:switchZone("naboo", -4036.9, -195.6, 4627.1, 0)
 end
 
-function stresstest_20120128:teleportCnet(pCollector, pPlayer)
+function cnet_auxilary_shuttle:teleportCnet(pCollector, pPlayer)
 	local player = LuaSceneObject(pPlayer)
 	player:switchZone("corellia", -159, 28, -4783.1, 0)
 end
