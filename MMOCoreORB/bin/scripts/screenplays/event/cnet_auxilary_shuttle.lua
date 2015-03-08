@@ -44,7 +44,7 @@ function cnet_auxilary_shuttle:spawnSceneObjects()
 	
 end
 
-    shuttle location barker
+--  shuttle location barker
 
 function cnet_auxilary_shuttle:barkShuttleLocation(pBarker)
 	if (pBarker ~= nil) then
