@@ -24,10 +24,10 @@ function cnet_auxilary_shuttle:spawnMobiles()
 --	shuttle:setOptionsBitmask(256)
 --	shuttle:setPosture(PRONE)
 	
-	local pBarker = spawnMobile("corellia", "shuttleloc_barker", 1, -164.0, 28.0, -4720.3, 88, 0)
-	local barker = LuaCreatureObject(pBarker)
-	barker:setOptionsBitmask(256)
-	self:barkShuttleLocation(pBarker)
+--	local pBarker = spawnMobile("corellia", "shuttleloc_barker", 1, -164.0, 28.0, -4720.3, 88, 0)
+--	local barker = LuaCreatureObject(pBarker)
+--	barker:setOptionsBitmask(256)
+--	self:barkShuttleLocation(pBarker)
 	
 end
 
@@ -49,7 +49,7 @@ end
 function cnet_auxilary_shuttle:barkShuttleLocation(pBarker)
 	if (pBarker ~= nil) then
 		spatialChat(pBarker, "\\#881100Attention Citizens!\n\NEW SUPER MALL ON NABOO THIS WAY PLEASE")
-		createEvent(15000, "cnet_auxilary_shuttle", "barkShuttleLocation", pBarker)
+	createEvent(15000, "cnet_auxilary_shuttle", "barkShuttleLocation", pBarker)
 	end
 end
 
