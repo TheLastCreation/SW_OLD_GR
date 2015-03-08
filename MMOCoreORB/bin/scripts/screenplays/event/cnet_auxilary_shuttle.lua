@@ -15,7 +15,7 @@ function cnet_auxilary_shuttle:start()
 	end
 end
 
-spawn the Lambda shuttle & barker NPC
+--spawn the Lambda shuttle & barker NPC
 
 function cnet_auxilary_shuttle:spawnMobiles()
 
