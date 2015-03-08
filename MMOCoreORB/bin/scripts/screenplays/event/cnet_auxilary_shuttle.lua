@@ -31,7 +31,7 @@ function cnet_auxilary_shuttle:spawnMobiles()
 	
 end
 
-    spawn the travel terminal players dbl click to travel
+--spawn the travel terminal players dbl click to travel
 
 function cnet_auxilary_shuttle:spawnSceneObjects()
 
