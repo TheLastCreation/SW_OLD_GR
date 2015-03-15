@@ -15,10 +15,10 @@
 #include <system/lang/String.h>
 #include <system/platform.h>
 
-#include "../../../../autogen/server/chat/ChatManager.h"
-#include "../../../../autogen/server/zone/ZoneServer.h"
-#include "../../../chat/StringIdChatParameter.h"
-#include "../../../ServerCore.h"
+#include "server/chat/ChatManager.h"
+#include "server/zone/ZoneServer.h"
+#include "server/chat/StringIdChatParameter.h"
+#include "server/ServerCore.h"
 
 #include "server/zone/managers/creature/AiMap.h"
 #include "server/zone/managers/collision/CollisionManager.h"
@@ -103,6 +103,7 @@ Luna<LuaAiAgent>::RegType LuaAiAgent::Register[] = {
 		{ "isConcealed", &LuaAiAgent::isConcealed },
 		{ "isCamouflaged", &LuaAiAgent::isCamouflaged },
 		{ "shouldRetreat", &LuaAiAgent::shouldRetreat },
+		{ "leash", &LuaAiAgent::leash },
 		{ "clearCombatState", &LuaAiAgent::clearCombatState },
 		{ "isInCombat", &LuaAiAgent::isInCombat },
 		{ "checkLineOfSight", &LuaAiAgent::checkLineOfSight },
@@ -131,16 +132,28 @@ Luna<LuaAiAgent>::RegType LuaAiAgent::Register[] = {
 
 
 LuaAiAgent::LuaAiAgent(lua_State *L) : LuaCreatureObject(L) {
+#ifdef DYNAMIC_CAST_LUAOBJECTS
+	realObject = dynamic_cast<AiAgent*>(_getRealSceneObject());
+
+	assert(!_getRealSceneObject() || realObject != NULL);
+#else
 	realObject = static_cast<AiAgent*>(lua_touserdata(L, 1));
+#endif
 }
 
 LuaAiAgent::~LuaAiAgent(){
 }
 
 int LuaAiAgent::_setObject(lua_State* L) {
-	realObject = static_cast<AiAgent*>(lua_touserdata(L, -1));
-
 	LuaCreatureObject::_setObject(L);
+
+#ifdef DYNAMIC_CAST_LUAOBJECTS
+	realObject = dynamic_cast<AiAgent*>(_getRealSceneObject());
+
+	assert(!_getRealSceneObject() || realObject != NULL);
+#else
+	realObject = static_cast<AiAgent*>(lua_touserdata(L, -1));
+#endif
 
 	return 0;
 }
@@ -666,6 +679,14 @@ int LuaAiAgent::shouldRetreat(lua_State* L) {
 	lua_pushboolean(L, retVal);
 
 	return 1;
+}
+
+int LuaAiAgent::leash(lua_State* L) {
+	Locker locker(realObject);
+
+	realObject->leash();
+
+	return 0;
 }
 
 int LuaAiAgent::clearCombatState(lua_State* L) {

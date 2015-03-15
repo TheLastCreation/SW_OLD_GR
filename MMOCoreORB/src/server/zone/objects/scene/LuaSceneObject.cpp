@@ -73,13 +73,12 @@ Luna<LuaSceneObject>::RegType LuaSceneObject::Register[] = {
 		{ "setContainerOwnerID", &LuaSceneObject::setContainerOwnerID},
 		{ "setObjectName", &LuaSceneObject::setObjectName},
 		{ "isASubChildOf", &LuaSceneObject::isASubChildOf},
-		{ "playEffect", &LuaSceneObject::playEffect},
 		{ 0, 0 }
 
 };
 
 LuaSceneObject::LuaSceneObject(lua_State *L) {
-	realObject = (SceneObject*)lua_touserdata(L, 1);
+	realObject = reinterpret_cast<SceneObject*>(lua_touserdata(L, 1));
 }
 
 LuaSceneObject::~LuaSceneObject(){
@@ -95,7 +94,7 @@ int LuaSceneObject::_getObject(lua_State* L) {
 }
 
 int LuaSceneObject::_setObject(lua_State* L) {
-	realObject = (SceneObject*)lua_touserdata(L, -1);
+	realObject = reinterpret_cast<SceneObject*>(lua_touserdata(L, -1));
 
 	return 0;
 }
@@ -629,13 +628,4 @@ int LuaSceneObject::isASubChildOf(lua_State* L) {
 	lua_pushboolean(L, realObject->isASubChildOf(obj));
 
 	return 1;
-}
-
-int LuaSceneObject::playEffect(lua_State* L) {
-	String aux = lua_tostring(L, -1);
-	String file = lua_tostring(L, -2);
-
-	realObject->playEffect(file, aux);
-
-	return 0;
 }

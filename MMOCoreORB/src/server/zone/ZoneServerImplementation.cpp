@@ -75,6 +75,7 @@ which carries forward this exception.
 #include "server/zone/managers/guild/GuildManager.h"
 #include "server/zone/managers/creature/CreatureManager.h"
 #include "server/zone/managers/faction/FactionManager.h"
+#include "server/zone/managers/reaction/ReactionManager.h"
 #include "server/zone/managers/director/DirectorManager.h"
 #include "server/zone/managers/city/CityManager.h"
 #include "server/zone/managers/structure/StructureManager.h"
@@ -180,6 +181,9 @@ void ZoneServerImplementation::initialize() {
 	objectManager->updateObjectVersion();
 
 	stringIdManager = StringIdManager::instance();
+
+	reactionManager = new ReactionManager(_this.get());
+	reactionManager->loadLuaConfig();
 
 	creatureTemplateManager = CreatureTemplateManager::instance();
 	creatureTemplateManager->loadTemplates();
@@ -295,6 +299,13 @@ void ZoneServerImplementation::startManagers() {
 	FactionManager::instance()->loadData();
 
 	cityManager->loadCityRegions();
+
+	for (int i = 0; i < zones->size(); ++i) {
+		Zone* zone = zones->get(i);
+		if (zone != NULL) {
+			zone->updateCityRegions();
+		}
+	}
 
 	//Start global screen plays
 	DirectorManager::instance()->loadPersistentEvents();

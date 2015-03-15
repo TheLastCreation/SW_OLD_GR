@@ -138,6 +138,9 @@ DeathWatchBunkerScreenPlay = ScreenPlay:new {
 
 	containerRespawnTime = 20 * 60 * 1000, -- 20 minutes
 	debrisRespawnTime = 10 * 60 * 1000, -- 10 minutes
+
+	primaryArmorColors = { 48, 55, 60, 95, 111, 127, 135, 143 },
+	secondaryArmorColors = { 42, 90, 236, 244, 252, 253, 254, 255 }
 }
 
 registerScreenPlay("DeathWatchBunkerScreenPlay", true)
@@ -218,12 +221,10 @@ function DeathWatchBunkerScreenPlay:spawnObjects()
 	writeData(spawnedSceneObject:getObjectID() .. ":dwb:terminal", 1)
 
 	-- Outside locked door message
-	local pActiveArea = spawnSceneObject("endor", "object/active_area.iff", -4680.6,0.4,4324.5,0,0,0,0,0)
-	ObjectManager.withActiveArea(pActiveArea, function(activeArea)
-		activeArea:setRadius(5)
-		activeArea:setCellObjectID(5996315)
+	local pActiveArea = spawnActiveArea("endor", "object/active_area.iff", -4680.6, 0.4, 4324.5, 5, 5996315)
+	if pActiveArea ~= nil then
 		createObserver(ENTEREDAREA, "DeathWatchBunkerScreenPlay", "notifyEnteredOutsideLockedDoorArea", pActiveArea)
-	end)
+	end
 
 	-- Door Access Terminal A
 	spawnedPointer = spawnSceneObject("endor", "object/tangible/dungeon/death_watch_bunker/door_control_terminal.iff", -84.4526,-20,-50.504,5996323,-0.707107,0,0.707107,0)
@@ -253,12 +254,10 @@ function DeathWatchBunkerScreenPlay:spawnObjects()
 	createObserver(SPATIALCHATRECEIVED, "DeathWatchBunkerScreenPlay", "voiceTerminalSpatialReceived", spawnedPointer)
 
 	-- Voice Terminal Instruction message
-	local pActiveArea = spawnSceneObject("endor", "object/active_area.iff",-4588,-41.6,4182.3,0,0,0,0,0)
-	ObjectManager.withActiveArea(pActiveArea, function(activeArea)
-		activeArea:setRadius(10)
-		activeArea:setCellObjectID(5996348)
+	local pActiveArea = spawnActiveArea("endor", "object/active_area.iff", -4588, -41.6, 4182.3, 10, 5996348)
+	if pActiveArea ~= nil then
 		createObserver(ENTEREDAREA, "DeathWatchBunkerScreenPlay", "notifyEnteredVoiceTerminalArea", pActiveArea)
-	end)
+	end
 
 	--Blastromech
 	local spawn = deathWatchSpecialSpawns["bombdroid"]
@@ -450,17 +449,19 @@ function DeathWatchBunkerScreenPlay:setLootBoxPermissions(pContainer)
 end
 
 function DeathWatchBunkerScreenPlay:onEnterDWB(sceneObject, creatureObject)
-	ObjectManager.withCreatureObject(creatureObject, function(creature)
+	return ObjectManager.withCreatureObject(creatureObject, function(creature)
 		if (creature:isAiAgent()) then
 			return 0
 		end
 
 		self:lockAll(creatureObject)
+
+		return 0
 	end)
 end
 
 function DeathWatchBunkerScreenPlay:onExitDWB(sceneObject, creatureObject, long)
-	ObjectManager.withCreatureObject(creatureObject, function(creature)
+	return ObjectManager.withCreatureObject(creatureObject, function(creature)
 		if (creature:isAiAgent() == true) then
 			return 0
 		end
@@ -468,6 +469,8 @@ function DeathWatchBunkerScreenPlay:onExitDWB(sceneObject, creatureObject, long)
 		if long == self.buildingIds.outside or long == 0 then
 			self:lockAll(creatureObject)
 		end
+
+		return 0
 	end)
 end
 
@@ -531,6 +534,8 @@ function DeathWatchBunkerScreenPlay:boxLooted(pSceneObject, pCreature, selectedI
 
 		createEvent(self.containerRespawnTime, "DeathWatchBunkerScreenPlay", "refillContainer", pSceneObject)
 	end
+
+	return 0
 end
 
 function DeathWatchBunkerScreenPlay:refillContainer(pSceneObject)
@@ -742,20 +747,23 @@ function DeathWatchBunkerScreenPlay:voiceTerminalSpatialReceived(pTerminal, pCha
 	AiAgent(pBombDroid):setWait(0)
 	AiAgent(pBombDroid):setNextPosition(droidLoc.x, droidLoc.z, droidLoc.y, pCell)
 	AiAgent(pBombDroid):executeBehavior()
+
+	return 0
 end
 
 function DeathWatchBunkerScreenPlay:notifyEnteredVoiceTerminalArea(pArea, pPlayer)
-	ObjectManager.withCreatureObject(pPlayer, function(player)
+	return ObjectManager.withCreatureObject(pPlayer, function(player)
 		if (player:isAiAgent()) then
 			return 0
 		end
 
 		player:sendSystemMessage("@dungeon/death_watch:rc_mouse_instructions")
+		return 0
 	end)
 end
 
 function DeathWatchBunkerScreenPlay:notifyEnteredOutsideLockedDoorArea(pArea, pPlayer)
-	ObjectManager.withCreatureObject(pPlayer, function(player)
+	return ObjectManager.withCreatureObject(pPlayer, function(player)
 		if (player:isAiAgent()) then
 			return 0
 		end
@@ -763,12 +771,14 @@ function DeathWatchBunkerScreenPlay:notifyEnteredOutsideLockedDoorArea(pArea, pP
 		if (player:hasScreenPlayState(1, "death_watch_bunker") == 0) then
 			player:sendSystemMessage("@dungeon/death_watch:entrance_denied")
 		end
+
+		return 0
 	end)
 end
 
 function DeathWatchBunkerScreenPlay:bombDroidDetonated(pBombDroid, pBombDroid2)
 	if (pBombDroid == nil) then
-		return
+		return 1
 	end
 
 	local debrisID = readData("dwb:bombDebris")
@@ -778,7 +788,7 @@ function DeathWatchBunkerScreenPlay:bombDroidDetonated(pBombDroid, pBombDroid2)
 	local pDebris2 = getSceneObject(debrisID2)
 
 	if (pDebris == nil and pDebris2 == nil) then
-		return
+		return 1
 	end
 
 	if (pDebris ~= nil and SceneObject(pBombDroid):isInRangeWithObject(pDebris, 5)) then
@@ -788,6 +798,8 @@ function DeathWatchBunkerScreenPlay:bombDroidDetonated(pBombDroid, pBombDroid2)
 		SceneObject(pDebris):playEffect("clienteffect/combat_grenade_proton.cef", "")
 		createEvent(1000, "DeathWatchBunkerScreenPlay", "destroyDebris", pDebris2)
 	end
+
+	return 1
 end
 
 function DeathWatchBunkerScreenPlay:respawnDebris(pOldDebris)
@@ -835,7 +847,7 @@ end
 
 function DeathWatchBunkerScreenPlay:haldoKilled(pHaldo, pPlayer)
 	createEvent(1000 * 240, "DeathWatchBunkerScreenPlay", "respawnHaldo", pPlayer)
-	ObjectManager.withCreatureObject(pPlayer, function(creature)
+	return ObjectManager.withCreatureObject(pPlayer, function(creature)
 		if (creature:hasScreenPlayState(2, "death_watch_foreman_stage") == 1 and creature:hasScreenPlayState(4, "death_watch_foreman_stage") == 0) then
 			local pInventory = creature:getSlottedObject("inventory")
 			if (pInventory == nil) then
@@ -843,7 +855,7 @@ function DeathWatchBunkerScreenPlay:haldoKilled(pHaldo, pPlayer)
 			else
 				if (SceneObject(pInventory):hasFullContainerObjects() == true) then
 					creature:sendSystemMessage("@error_message:inv_full")
-					return 0
+					return 1
 				else
 					local pBattery = getContainerObjectByTemplate(pInventory, "object/tangible/dungeon/death_watch_bunker/drill_battery.iff", true)
 					if (pBattery == nil) then
@@ -858,15 +870,17 @@ function DeathWatchBunkerScreenPlay:haldoKilled(pHaldo, pPlayer)
 				end
 			end
 		end
+
+		return 1
 	end)
 end
 
 function DeathWatchBunkerScreenPlay:haldoDamage(pHaldo, pPlayer, damage)
 	if pHaldo == nil or pPlayer == nil then
-		return
+		return 1
 	end
 
-	ObjectManager.withCreatureObject(pHaldo, function(haldo)
+	return ObjectManager.withCreatureObject(pHaldo, function(haldo)
 		if ((haldo:getHAM(0) <= (haldo:getMaxHAM(0) * 0.9)) or (haldo:getHAM(3) <= (haldo:getMaxHAM(3) * 0.9)) or (haldo:getHAM(6) <= (haldo:getMaxHAM(6) * 0.9))) then
 			local spawnLoc = { x = haldo:getPositionX(), z = haldo:getPositionZ(), y = haldo:getPositionY(), cell = haldo:getParentID(), angle = haldo:getDirectionAngle() }
 			local spawnHam = { h = haldo:getHAM(0), a = haldo:getHAM(3), m = haldo:getHAM(6) }
@@ -875,7 +889,7 @@ function DeathWatchBunkerScreenPlay:haldoDamage(pHaldo, pPlayer, damage)
 			local pNewHaldo = spawnMobile("endor", "mand_bunker_crazed_miner_converse", 0, spawnLoc.x, spawnLoc.z, spawnLoc.y, spawnLoc.angle, spawnLoc.cell)
 
 			if (pNewHaldo == nil) then
-				return
+				return 1
 			end
 			CreatureObject(pNewHaldo):setPvpStatusBitmask(0)
 			CreatureObject(pNewHaldo):setHAM(0, spawnHam.h)
@@ -884,6 +898,8 @@ function DeathWatchBunkerScreenPlay:haldoDamage(pHaldo, pPlayer, damage)
 
 			spatialChat(pNewHaldo, "@dungeon/death_watch:help_me")
 		end
+
+		return 1
 	end)
 end
 
@@ -1359,15 +1375,8 @@ function DeathWatchBunkerScreenPlay:stopCraftingProcess(pCreature, pTerm, succes
 			end
 
 			if (number ~= 4) then
-				local armorColorCount = TangibleObject(pReward):getPaletteColorCount("index_color_1")
-				if (armorColorCount ~= 0) then
-					TangibleObject(pReward):setCustomizationVariable("/private/index_color_1", getRandomNumber(armorColorCount))
-				end
-
-				armorColorCount = TangibleObject(pReward):getPaletteColorCount("index_color_2")
-				if (armorColorCount ~= 0) then
-					TangibleObject(pReward):setCustomizationVariable("/private/index_color_2", getRandomNumber(armorColorCount))
-				end
+				TangibleObject(pReward):setCustomizationVariable("/private/index_color_1", self.primaryArmorColors[getRandomNumber(1,8)])
+				TangibleObject(pReward):setCustomizationVariable("/private/index_color_2", self.secondaryArmorColors[getRandomNumber(1,8)])
 			end
 		end
 
@@ -1643,6 +1652,7 @@ end
 
 function DeathWatchBunkerScreenPlay:ventDroidDestinationReached(pDroid)
 	createEvent(2000, "DeathWatchBunkerScreenPlay", "doVentDroidMove", pDroid)
+	return 1
 end
 
 function DeathWatchBunkerScreenPlay:doVentDroidMove(pDroid)
