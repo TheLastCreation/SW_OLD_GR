@@ -58,7 +58,6 @@ which carries forward this exception.
 #include "server/zone/objects/cell/CellObject.h"
 #include "server/zone/objects/region/Region.h"
 #include "server/zone/objects/building/BuildingObject.h"
-#include "server/zone/objects/tangible/terminal/Terminal.h"
 #include "server/zone/templates/SharedObjectTemplate.h"
 #include "server/zone/templates/appearance/PortalLayout.h"
 #include "server/zone/templates/appearance/FloorMesh.h"
@@ -136,7 +135,10 @@ void ZoneImplementation::startManagers() {
 
 	gcwManager->start();
 
+	updateCityRegions();
+
 	ObjectDatabaseManager::instance()->commitLocalTransaction();
+
 
 
 	managersStarted = true;
@@ -424,15 +426,6 @@ void ZoneImplementation::addSceneObject(SceneObject* object) {
 		if (structure->isCivicStructure() || structure->isCommercialStructure()) {
 			return;
 		}
-	//Same thing for player city bank/mission terminals
-	} else if (object->isTerminal()) {
-		Terminal* terminal = cast<Terminal*>(object);
-		ManagedReference<SceneObject*> controlledObject = terminal->getControlledObject();
-		if (controlledObject != NULL && controlledObject->isStructureObject()) {
-			StructureObject* structure = controlledObject.castTo<StructureObject*>();
-			if (structure->isCivicStructure())
-				return;
-		}
 	}
 	
 	registerObjectWithPlanetaryMap(object);
@@ -553,8 +546,6 @@ void ZoneImplementation::updateCityRegions() {
 
 	for (int i = 0; i < cityRegionUpdateVector.size(); ++i) {
 		CityRegion* city = cityRegionUpdateVector.get(i);
-
-		Locker locker(city);
 
 		Time* nextUpdateTime = city->getNextUpdateTime();
 		int seconds = -1 * round(nextUpdateTime->miliDifference() / 1000.f);
