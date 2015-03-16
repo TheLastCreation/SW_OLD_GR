@@ -801,7 +801,7 @@ void BuildingObjectImplementation::onExit(CreatureObject* player, uint64 parenti
 uint32 BuildingObjectImplementation::getMaximumNumberOfPlayerItems() {
 	SharedStructureObjectTemplate* ssot = dynamic_cast<SharedStructureObjectTemplate*> (templateObject.get());
 	if (isCivicStructure() )
-		return 250;
+		return 400;
 
 	if (ssot == NULL)
 		return 0;
