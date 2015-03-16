@@ -33,7 +33,7 @@ blood_thirsty_borgle = Creature:new {
 	conversationTemplate = "",
 	attacks = {
 		{"",""},
-		{"posturedownattack",""}
+		{"posturedownattack","postureDownChance=50"}
 	}
 }
 

@@ -33,7 +33,7 @@ frenzied_choku = Creature:new {
 	conversationTemplate = "",
 	attacks = {
 		{"mediumdisease",""},
-		{"stunattack",""}
+		{"stunattack","stunChance=50"}
 	}
 }
 

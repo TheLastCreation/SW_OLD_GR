@@ -31,7 +31,7 @@ pudgy_nudfuh = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"intimidationattack",""}
+		{"intimidationattack","intimidationChance=50"}
 	}
 }
 

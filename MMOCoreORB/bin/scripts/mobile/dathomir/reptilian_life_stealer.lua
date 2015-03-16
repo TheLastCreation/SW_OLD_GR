@@ -31,8 +31,8 @@ reptilian_life_stealer = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"strongpoison",""},
-		{"blindattack",""}
+		{"blindattack","blindChance=50"},
+		{"strongpoison",""}
 	}
 }
 

@@ -121,7 +121,7 @@ function CorellianCorvetteScreenPlay:onEnterCorvette(pCorvette, pPlayer)
 		local active = readData("corvetteActive:" .. SceneObject(pCorvette):getObjectID())
 		if active ~= 1 then
 			createEvent(10 * 1000, "CorellianCorvetteScreenPlay", "handleNotAuthorized", pPlayer)
-			return 0
+			return
 		end
 
 		local playerCount = readData("corvettePlayerCount:" .. SceneObject(pCorvette):getObjectID())
@@ -130,11 +130,9 @@ function CorellianCorvetteScreenPlay:onEnterCorvette(pCorvette, pPlayer)
 
 		if playerCount > 10 then
 			createEvent(10 * 1000, "CorellianCorvetteScreenPlay", "handleTooMany", pPlayer)
-			return 0
+			return
 		end
 	end
-
-	return 0
 end
 
 function CorellianCorvetteScreenPlay:onExitCorvette(pCorvette, pPlayer)
@@ -143,8 +141,6 @@ function CorellianCorvetteScreenPlay:onExitCorvette(pCorvette, pPlayer)
 
 		writeData("corvettePlayerCount:" .. SceneObject(pCorvette):getObjectID(), playerCount - 1)
 	end
-
-	return 0
 end
 
 function CorellianCorvetteScreenPlay:handleNotAuthorized(pPlayer)

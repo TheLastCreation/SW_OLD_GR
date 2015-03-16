@@ -14,9 +14,7 @@ class ReplaceFlashSpeederSuiCallback : public SuiCallback {
 
 public:
 
-	enum {
-		FLASH_SPEEDER_COST = 20000
-	};
+	static const int FLASH_SPEEDER_COST = 20000;
 
 	ReplaceFlashSpeederSuiCallback(ZoneServer* server)
 		: SuiCallback(server) {

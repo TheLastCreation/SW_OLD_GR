@@ -32,8 +32,8 @@ huurton_stalker = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"stunattack",""},
-		{"dizzyattack",""}
+		{"stunattack","stunChance=50"},
+		{"dizzyattack","dizzyChance=50"}
 	}
 }
 

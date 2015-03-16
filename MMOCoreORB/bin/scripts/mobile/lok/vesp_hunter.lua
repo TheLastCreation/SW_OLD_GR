@@ -29,11 +29,11 @@ vesp_hunter = Creature:new {
 	controlDeviceTemplate = "object/intangible/pet/vesp_hue.iff",
 	scale = 1.05,
 	lootGroups = {},
-	weapons = {"creature_spit_small_yellow"},
+	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"blindattack",""},
-		{"posturedownattack",""}
+		{"blindattack","blindChance=50"},
+		{"posturedownattack","postureDownChance=50"}
 	}
 }
 

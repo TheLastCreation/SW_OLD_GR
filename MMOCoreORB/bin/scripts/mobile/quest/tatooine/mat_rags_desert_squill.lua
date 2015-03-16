@@ -37,7 +37,7 @@ mat_rags_desert_squill = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"stunattack",""}
+		{"stunattack","stunChance=50"}
 	}
 }
 

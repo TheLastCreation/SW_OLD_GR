@@ -32,8 +32,8 @@ huurton_huntress = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"knockdownattack",""},
-		{"stunattack",""}
+		{"knockdownattack","knockdownChance=50"},
+		{"stunattack","stunChance=50"}
 	}
 }
 

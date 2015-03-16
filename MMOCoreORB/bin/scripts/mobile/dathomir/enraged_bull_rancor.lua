@@ -47,8 +47,8 @@ enraged_bull_rancor = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"knockdownattack",""},
-		{"creatureareaknockdown",""}
+		{"knockdownattack","knockdownChance=50"},
+		{"creatureareaknockdown","knockdownChance=30"}
 	}
 }
 

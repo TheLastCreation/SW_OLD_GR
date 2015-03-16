@@ -31,8 +31,8 @@ seething_bol_crusher = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"mediumdisease",""},
-		{"dizzyattack",""}
+		{"dizzyattack","dizzyChance=50"},
+		{"mediumdisease",""}
 	}
 }
 

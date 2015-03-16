@@ -93,7 +93,6 @@ which carries forward this exception.
 #include "server/zone/objects/intangible/PetControlDevice.h"
 #include "server/zone/objects/player/Races.h"
 #include "server/zone/objects/installation/InstallationObject.h"
-#include "server/zone/objects/structure/events/StructureSetOwnerTask.h"
 #include "badges/Badge.h"
 #include "badges/Badges.h"
 #include "server/zone/packets/player/BadgesResponseMessage.h"
@@ -109,7 +108,6 @@ which carries forward this exception.
 #include "server/zone/objects/player/sessions/TradeSession.h"
 #include "server/zone/objects/player/events/StoreSpawnedChildrenTask.h"
 #include "server/zone/objects/player/events/BountyHunterTefRemovalTask.h"
-#include "server/zone/objects/player/events/RemoveSpouseTask.h"
 #include "server/zone/managers/visibility/VisibilityManager.h"
 #include "server/zone/managers/gcw/GCWManager.h"
 #include "server/zone/managers/jedi/JediManager.h"
@@ -149,8 +147,6 @@ void PlayerObjectImplementation::loadTemplateData(SharedObjectTemplate* template
 
 	drinkFilling = 0;
 	drinkFillingMax = 100;
-
-	reactionFines = 0;
 
 	jediState = getJediState();
 
@@ -2078,17 +2074,10 @@ void PlayerObjectImplementation::destroyObjectFromDatabase(bool destroyContained
 		if (structure != NULL) {
 			Zone* zone = structure->getZone();
 
-			if (zone != NULL) {
-				if (structure->isCivicStructure()) {
-					StructureSetOwnerTask* task = new StructureSetOwnerTask(structure, 0);
-					task->execute();
-					continue;
-				}
-
+			if (zone != NULL)
 				StructureManager::instance()->destroyStructure(structure);
-			} else {
+			else
 				structure->destroyObjectFromDatabase(true);
-			}
 		}
 	}
 
@@ -2100,8 +2089,10 @@ void PlayerObjectImplementation::destroyObjectFromDatabase(bool destroyContained
 			PlayerObject* spouseGhost = spouse->getPlayerObject();
 
 			if (spouseGhost != NULL) {
-				RemoveSpouseTask* task = new RemoveSpouseTask(spouse);
-				task->execute();
+				Locker locker(_this.get());
+				Locker clocker(spouseGhost, _this.get());
+
+				spouseGhost->removeSpouse();
 			}
 		}
 	}

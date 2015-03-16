@@ -33,7 +33,7 @@ malignant_squill = Creature:new {
 	conversationTemplate = "",
 	attacks = {
 		{"strongdisease",""},
-		{"stunattack",""}
+		{"stunattack","stunChance=50"}
 	}
 }
 

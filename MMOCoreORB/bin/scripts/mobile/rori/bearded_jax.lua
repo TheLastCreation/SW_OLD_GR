@@ -32,7 +32,7 @@ bearded_jax = Creature:new {
 	conversationTemplate = "",
 	attacks = {
 		{"",""},
-		{"intimidationattack",""}
+		{"intimidationattack","intimidationChance=50"}
 	}
 }
 

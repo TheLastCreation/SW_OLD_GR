@@ -32,8 +32,7 @@ variegated_womp_rat = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"",""},
-		{"stunattack",""}
+		{"stunattack","stunChance=50"}
 	}
 }
 

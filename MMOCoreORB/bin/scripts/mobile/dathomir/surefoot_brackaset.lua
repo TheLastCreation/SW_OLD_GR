@@ -38,8 +38,8 @@ surefoot_brackaset = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"stunattack",""},
-		{"posturedownattack",""}
+		{"posturedownattack","postureDownChance=50"},
+		{"stunattack","stunChance=50"}
 	}
 }
 

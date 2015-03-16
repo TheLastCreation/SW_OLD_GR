@@ -188,7 +188,6 @@ void PlayerManagerImplementation::loadLuaConfig() {
 	baseStoredVehicles = lua->getGlobalInt("baseStoredVehicles");
 	baseStoredShips = lua->getGlobalInt("baseStoredShips");
 
-	veteranRewardAdditionalMilestones = lua->getGlobalInt("veteranRewardAdditionalMilestones");
 
 	LuaObject rewardMilestonesLua = lua->getGlobalObject("veteranRewardMilestones");
 	for (int i = 1; i <= rewardMilestonesLua.getTableSize(); ++i) {
@@ -612,16 +611,9 @@ int PlayerManagerImplementation::notifyDestruction(TangibleObject* destructor, T
 
 	ghost->updateIncapacitationCounter();
 
-	DeltaVector<ManagedReference<SceneObject*> >* defenderList = destructor->getDefenderList();
+	destructor->removeDefender(destructedObject);
 
-	bool isDefender = false;
-
-	if (defenderList->contains(destructedObject)) {
-		isDefender = true;
-		destructor->removeDefender(destructedObject);
-	}
-
-	if ((!destructor->isKiller() || !isDefender) && ghost->getIncapacitationCounter() < 3) {
+	if (!destructor->isKiller() && ghost->getIncapacitationCounter() < 3) {
 		playerCreature->setCurrentSpeed(0);
 		playerCreature->setPosture(CreaturePosture::INCAPACITATED, true);
 		playerCreature->updateLocomotion();
@@ -4240,39 +4232,21 @@ void PlayerManagerImplementation::generateVeteranReward(CreatureObject* player )
 	}
 }
 
-int PlayerManagerImplementation::getEligibleMilestone( PlayerObject *playerGhost, Account* account ) {
+int PlayerManagerImplementation::getEligibleMilestone( PlayerObject *playerGhost, Account* account ){
 
 	if( account == NULL || playerGhost == NULL )
 		return -1;
 
 	int accountAge = account->getAgeInDays();
-	int milestone = -1;
-
-	// Return -1 if account age is less than the first milestone
-	if (accountAge < veteranRewardMilestones.get(0)) {
-		return -1;
-	}
 
 	// Return the first milestone for which the player is eligible and has not already claimed
-	for( int i=0; i < veteranRewardMilestones.size(); i++) {
-		milestone = veteranRewardMilestones.get(i);
-		if( accountAge >= milestone && playerGhost->getChosenVeteranReward(milestone).isEmpty() ) {
+	for( int i=0; i < veteranRewardMilestones.size(); i++){
+		int milestone = veteranRewardMilestones.get(i);
+		if( accountAge >= milestone && playerGhost->getChosenVeteranReward(milestone).isEmpty() ){
 			return milestone;
 		}
 	}
 
-	// They've claimed all of the established milestones, see if they're eligible for an additional one
-	milestone += veteranRewardAdditionalMilestones;
-
-	while (accountAge >= milestone) {
-		if (playerGhost->getChosenVeteranReward(milestone).isEmpty()) {
-			return milestone;
-		}
-
-		milestone += veteranRewardAdditionalMilestones;
-	}
-
-	// Not eligible for any milestones
 	return -1;
 }
 
@@ -4282,22 +4256,16 @@ int PlayerManagerImplementation::getFirstIneligibleMilestone( PlayerObject *play
 		return -1;
 
 	int accountAge = account->getAgeInDays();
-	int milestone = -1;
 
 	// Return the first milestone the player has not already claimed
 	for( int i=0; i < veteranRewardMilestones.size(); i++){
-		milestone = veteranRewardMilestones.get(i);
-		if( accountAge < milestone ) {
+		int milestone = veteranRewardMilestones.get(i);
+		if( accountAge < milestone && !playerGhost->getChosenVeteranReward(milestone).isEmpty() ){
 			return milestone;
 		}
 	}
 
-	// Check additional milestones if all established ones have been claimed
-	while (accountAge >= milestone) {
-		milestone += veteranRewardAdditionalMilestones;
-	}
-
-	return milestone;
+	return -1;
 }
 
 bool PlayerManagerImplementation::increaseOnlineCharCountIfPossible(ZoneClientSession* client) {
@@ -4664,12 +4632,6 @@ bool PlayerManagerImplementation::doBurstRun(CreatureObject* player, float hamMo
 	else
 		buff->setStartMessage(modifiedStartStringId);
 	buff->setEndMessage(endStringId);
-
-	StringIdChatParameter startSpam("cbt_spam", "burstrun_start");
-	StringIdChatParameter endSpam("cbt_spam", "burstrun_stop");
-	buff->setStartSpam(startSpam);
-	buff->setEndSpam(endSpam);
-	buff->setBroadcastSpam(true);
 
 	player->addBuff(buff);
 

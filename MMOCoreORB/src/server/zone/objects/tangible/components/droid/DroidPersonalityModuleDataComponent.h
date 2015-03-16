@@ -60,8 +60,6 @@ class DroidPersonalityModuleDataComponent : public BaseDroidModuleComponent {
 protected:
 	String personalityBase;
 	String chipName;
-	String convoTemplate;
-	String personalityStf;
 	ManagedReference<DroidPersonalityObserver*> observer;
 
 public:
@@ -82,8 +80,6 @@ public:
 	void notifyEvent(unsigned int eventType, ManagedObject* arg1, int64 arg2,bool forced = false);
 	void quip(String message,DroidObject* droid);
 	String getPersonalityBase();
-	uint32 getPersonalityConversationTemplate();
-	String getPersonalityStf() { return personalityStf; }
 };
 
 

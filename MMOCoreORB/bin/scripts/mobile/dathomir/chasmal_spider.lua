@@ -33,7 +33,7 @@ chasmal_spider = Creature:new {
 	conversationTemplate = "",
 	attacks = {
 		{"strongpoison",""},
-		{"stunattack",""}
+		{"stunattack","stunChance=50"}
 	}
 }
 

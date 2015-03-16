@@ -31,7 +31,7 @@ rabid_shaupaut = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"intimidationattack",""},
+		{"intimidationattack","intimidationChance=50"},
 		{"milddisease",""}
 	}
 }

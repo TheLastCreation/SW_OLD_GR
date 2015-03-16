@@ -31,7 +31,7 @@ ancient_mamien = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"dizzyattack",""}
+		{"dizzyattack","dizzyChance=50"}
 	}
 }
 

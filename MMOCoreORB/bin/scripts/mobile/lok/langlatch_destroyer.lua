@@ -32,8 +32,8 @@ langlatch_destroyer = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"stunattack",""},
-		{"knockdownattack",""}
+		{"stunattack","stunChance=50"},
+		{"knockdownattack","knockdownChance=50"}
 	}
 }
 

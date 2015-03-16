@@ -31,8 +31,8 @@ gurk_whelp = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"blindattack",""},
-		{"intimidationattack",""}
+		{"blindattack","blindChance=50"},
+		{"intimidationattack","intimidationChance=50"}
 	}
 }
 

@@ -30,7 +30,7 @@ kreetle_swarmling = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"posturedownattack",""}
+		{"posturedownattack","postureDownChance=50"}
 	}
 }
 

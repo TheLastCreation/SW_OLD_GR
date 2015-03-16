@@ -38,8 +38,8 @@ theme_park_imperial_fambaa = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"dizzyattack",""},
-		{"posturedownattack",""}
+		{"dizzyattack","dizzyChance=50"},
+		{"posturedownattack","postureDownChance=50"}
 	}
 }
 

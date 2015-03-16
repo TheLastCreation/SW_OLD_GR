@@ -45,11 +45,9 @@ public:
 			if (bank < incomeTax) {
 				lock.release();
 
-				// Failed to Pay Income Tax!
 				params.setStringId("city/city", "income_tax_nopay_body");
 				chatManager->sendMail("@city/city:new_city_from", "@city/city:income_tax_nopay_subject", params, citizen->getFirstName(), NULL);
 
-				// Citizen Failed to Pay Income Tax
 				params.setStringId("city/city", "income_tax_nopay_mayor_body");
 				chatManager->sendMail("@city/city:new_city_from", "@city/city:income_tax_nopay_mayor_subject", params, mayorName, NULL);
 
@@ -59,8 +57,6 @@ public:
 			citizen->subtractBankCredits(incomeTax);
 
 			lock.release();
-
-			// City Income Tax Paid
 			params.setStringId("city/city", "income_tax_paid_body");
 			chatManager->sendMail("@city/city:new_city_from", "@city/city:income_tax_paid_subject", params, citizen->getFirstName(), NULL);
 

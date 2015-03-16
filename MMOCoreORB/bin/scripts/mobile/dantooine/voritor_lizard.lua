@@ -35,10 +35,10 @@ voritor_lizard = Creature:new {
 			lootChance = 1900000
 		}
 	},
-	weapons = {"creature_spit_small_yellow"},
+	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"intimidationattack",""}
+		{"intimidationattack","intimidationChance=50"}
 	}
 }
 

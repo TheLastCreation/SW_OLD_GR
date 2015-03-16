@@ -46,7 +46,6 @@ imperial_general = Creature:new {
 	weapons = {"imperial_weapons_medium"},
 	conversationTemplate = "imperialRecruiterConvoTemplate",
 	reactionStf = "@npc_reaction/military",
-	personalityStf = "@hireling/hireling_military",	
 	attacks = merge(riflemanmaster,carbineermaster,brawlermaster)
 }
 

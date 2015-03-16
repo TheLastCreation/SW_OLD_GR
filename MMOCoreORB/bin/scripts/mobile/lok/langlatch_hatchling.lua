@@ -32,7 +32,7 @@ langlatch_hatchling = Creature:new {
 	conversationTemplate = "",
 	attacks = {
 		{"",""},
-		{"posturedownattack",""}
+		{"posturedownattack","postureDownChance=50"}
 	}
 }
 

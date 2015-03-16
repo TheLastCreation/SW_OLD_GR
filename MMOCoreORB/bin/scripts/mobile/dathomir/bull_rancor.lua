@@ -49,7 +49,7 @@ bull_rancor = Creature:new {
 	conversationTemplate = "",
 	attacks = {
 		{"creatureareadisease",""},
-		{"dizzyattack",""}
+		{"dizzyattack","dizzyChance=50"}
 	}
 }
 

@@ -112,15 +112,27 @@ protected:
 	bool npcSpawned;
 
 public:
-	
-	enum {
-		NOSPAWN        = 1, // Spawn type no spawn.
-		NEUTRALSPAWN   = 2, // Spawn type neutral spawn.
-		IMPERIALSPAWN  = 4, // Spawn type imperial spawn.
-		REBELSPAWN     = 8, // Spawn type rebel spawn.
-		BHTARGETSPAWN  = 16 //Spawn type bh target.
-	};
-	
+	/**
+	 * Spawn type no spawn.
+	 */
+	static const int NOSPAWN = 1;
+	/**
+	 * Spawn type neutral spawn.
+	 */
+	static const int NEUTRALSPAWN = 2;
+	/**
+	 * Spawn type imperial spawn.
+	 */
+	static const int IMPERIALSPAWN = 4;
+	/**
+	 * Spawn type rebel spawn.
+	 */
+	static const int REBELSPAWN = 8;
+	/**
+	 * Spawn type bh target.
+	 */
+	static const int BHTARGETSPAWN = 16;
+
 	/**
 	 * Default constructor.
 	 */

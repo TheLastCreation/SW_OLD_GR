@@ -32,7 +32,7 @@ carrion_spat = Creature:new {
 	conversationTemplate = "",
 	attacks = {
 		{"",""},
-		{"stunattack",""}
+		{"stunattack","stunChance=50"}
 	}
 }
 

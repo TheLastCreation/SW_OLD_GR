@@ -20,20 +20,22 @@ class RenameCitySuiCallback : public SuiCallback {
 	ManagedWeakReference<CityRegion*> city;
 
 public:
-	RenameCitySuiCallback(Zone* zone, CityRegion* city) : SuiCallback(zone->getZoneServer()) {
+	RenameCitySuiCallback(Zone* zone, CityRegion* city)
+			: SuiCallback(zone->getZoneServer()) {
+
 		this->zne = zone;
 		this->city = city;
 	}
 
 	void run(CreatureObject* creature, SuiBox* sui, bool cancelPressed, Vector<UnicodeString>* args) {
-		if(cancelPressed || server == NULL)
+		if(cancelPressed)
 			return;
 
-		ManagedReference<CityRegion*> cityObject = city.get();
-		if(cityObject == NULL)
+		if(city == NULL || server == NULL)
 			return;
 
 		ManagedReference<Zone*> zone = this->zne.get();
+
 		if (zone == NULL)
 			return;
 
@@ -70,6 +72,8 @@ public:
 			return;
 		}
 
+		ManagedReference<CityRegion*> cityObject = city.get();
+
 		if(cityObject->getMayorID() != creature->getObjectID())
 			return;
 
@@ -100,12 +104,12 @@ public:
 				planetManager->addPlayerCityTravelPoint(newTP);
 			}
 		}
-
 		if(isRegistered)
 			cityManager->registerCity(cityObject, creature);
 
 		creature->addCooldown("rename_city_cooldown", 604800 * 4); // 4 week cooldown.  need to investigate
 		creature->sendSystemMessage("@city/city:name_changed"); // The city name has been successfully changed.");
+
 	}
 };
 

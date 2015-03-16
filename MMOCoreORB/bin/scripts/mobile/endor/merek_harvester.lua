@@ -32,7 +32,7 @@ merek_harvester = Creature:new {
 	conversationTemplate = "",
 	attacks = {
 		{"creatureareacombo",""},
-		{"dizzyattack",""}
+		{"dizzyattack","dizzyChance=50"}
 	}
 }
 

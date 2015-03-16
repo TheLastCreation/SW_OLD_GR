@@ -31,7 +31,7 @@ angler_recluse = Creature:new {
 	weapons = {"creature_spit_small_green","creature_spit_small_green"},
 	conversationTemplate = "",
 	attacks = {
-		{"posturedownattack",""},
+		{"posturedownattack","postureDownChance=50"},
 		{"strongpoison",""}
 	}
 }

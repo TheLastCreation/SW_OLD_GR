@@ -222,8 +222,6 @@ class CreatureObject extends TangibleObject {
 	@dereferenced
 	protected transient Vector3 lastCombatPosition;
 	
-	protected transient string alternateAppearance;
-	
 	public static final int HUMAN = 0;
 	public static final int RODIAN = 1;
 	public static final int TRANDOSHAN = 2;
@@ -949,16 +947,6 @@ class CreatureObject extends TangibleObject {
 	 */
 	public native boolean setState(unsigned long state, boolean notifyClient = true);
 	
-	
-	/**
-	 * Sets an alternate appearance
-	 * @pre { this object is locked }
-	 * @post { this object is locked, alternateAppearance is set and clients updated
-	 * @param serverAppearanceTemplate appearance template
-	 * @notifyClient updates all in range clients and self
-	 */
-	public native void setAlternateAppearance(final string appearanceTeamplate, boolean notifyClient = true);
-	
 	/**
 	 * Cleares a state from the state bitmask
 	 * @pre { this object is locked }
@@ -1012,11 +1000,9 @@ class CreatureObject extends TangibleObject {
 	 * sends the conversation list 
 	 * @pre {this locked, player locked }
 	 * @post { this locked, player locked }
-	 * @return whether the conversation was started or not
 	 */
 	@dirty
-	public abstract boolean sendConversationStartTo(SceneObject player) {
-		return false;
+	public abstract void sendConversationStartTo(SceneObject player) {
 	}
 	
 	/**
@@ -1036,27 +1022,6 @@ class CreatureObject extends TangibleObject {
 	 */
 	@dirty
 	public native void sendMessage(BasePacket msg);
-
-	/**
-	 * Sends CombatSpam to players for state/posture changes
-	 * @pre { }
-	 * @post { CombatSpam is sent to clients }
-	 * @param stringName The string name in cbt_spam.stf to send.
-	 * @param color The color of the combat spam text. 0 = white, 1 = auto green/red, 10 = red, 11 = yellow
-	 * @param broadcast Specifies whether to send the packet to all nearby players or just this player.
-	 */
-	@dirty
-	public native void sendStateCombatSpam(final string fileName, final string stringName, byte color, int damage = 0, boolean broadcast = true);
-
-	/**
-	 * Sends custom CombatSpam strings to players
-	 * @pre { }
-	 * @post { CombatSpam is sent to clients }
-	 * @param customString The string to send to combat spam window.
-	 * @param color The color of the combat spam text. 0 = white, 10 = red, 11 = yellow
-	 */
-	@dirty
-	public native void sendCustomCombatSpam(final unicode customString, byte color);
 	
 	/**
 	 * Sends a ExecuteConsoleCommand to the client
@@ -1609,31 +1574,7 @@ class CreatureObject extends TangibleObject {
 	public float getHeight() {
 		return height;
 	}
-
-	@dirty
-	public boolean isDroidSpecies() {
-		//Determine if creature is a droid.
-		if (species >= 203 && species <= 225 && species != 207)
-			return true;
-
-		return false;
-	}
-
-	@dirty 
-	public boolean isWalkerSpecies() {
-		//Determine if creature is an ATST or ATAT.
-		if (species == 226)
-			return true;
-
-		return false;
-	} 
-
-	@dirty
-	public native boolean hasEffectImmunity(byte effectType);
-
-	@dirty
-	public native boolean hasDotImmunity(unsigned int dotType);
-		
+	
 	@read
 	public int getSpecies() {
 		return species;
@@ -1802,7 +1743,7 @@ class CreatureObject extends TangibleObject {
 	@read
 	public boolean isStunned() {
 		return stateBitmask & CreatureState.STUNNED;
-	}	
+	}
 
 	@read
 	public boolean isBlinded() {
@@ -1940,10 +1881,6 @@ class CreatureObject extends TangibleObject {
 	public void setInvisible(boolean invis) {
 		invisible = invis;
 	}
-	
-	public string getAlternateAppearance() {
-		return alternateAppearance;
-	}
 
 	@local
 	@dirty
@@ -1965,6 +1902,4 @@ class CreatureObject extends TangibleObject {
 	 * @param destroyContainedObjects if true, will destroy from database all its contained objects
 	 */
 	public abstract native void destroyPlayerCreatureFromDatabase(boolean destroyContainedObjects = false);
-
-	public native float getTemplateRadius();
 }

@@ -31,8 +31,8 @@ juvenile_pygmy_torton = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"knockdownattack",""},
-		{"dizzyattack",""}
+		{"knockdownattack","knockdownChance=50"},
+		{"dizzyattack","dizzyChance=50"}
 	}
 }
 

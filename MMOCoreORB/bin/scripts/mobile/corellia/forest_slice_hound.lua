@@ -33,7 +33,7 @@ forest_slice_hound = Creature:new {
 	conversationTemplate = "",
 	attacks = {
 		{"",""},
-		{"posturedownattack",""}
+		{"posturedownattack","postureDownChance=50"}
 	}
 }
 

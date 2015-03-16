@@ -31,8 +31,8 @@ bordok_mare = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"stunattack",""},
-		{"creatureareaknockdown",""}
+		{"stunattack","stunChance=50"},
+		{"creatureareaknockdown","knockdownChance=30"}
 	}
 }
 

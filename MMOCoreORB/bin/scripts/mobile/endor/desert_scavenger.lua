@@ -31,8 +31,8 @@ desert_scavenger = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"intimidationattack",""},
-		{"blindattack",""}
+		{"intimidationattack","intimidationChance=50"},
+		{"blindattack","blindChance=50"}
 	}
 }
 

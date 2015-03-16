@@ -69,20 +69,26 @@ function GeonosianLabScreenPlay:start()
 end
 
 function GeonosianLabScreenPlay:spawnActiveAreas()
-	local pActiveArea = spawnActiveArea("yavin4", "object/active_area.iff", -6435.5, 85.6, -367, 10, 1627783)
-	if pActiveArea ~= nil then
+	local pActiveArea = spawnSceneObject("yavin4", "object/active_area.iff", -6435.5, 85.6, -367, 0, 0, 0, 0, 0)
+	ObjectManager.withActiveArea(pActiveArea, function(activeArea)
+		activeArea:setCellObjectID(1627783)
+		activeArea:setRadius(10)
 		createObserver(ENTEREDAREA, "GeonosianLabScreenPlay", "notifyEnteredPoisonGas", pActiveArea)
-	end
+	end)
 
-	local pGasArea = spawnActiveArea("yavin4", "object/active_area.iff", -6181.9, 48.3, -197.2, 4, 1627822)
-	if pGasArea ~= nil then
+	local pGasArea = spawnSceneObject("yavin4", "object/active_area.iff", -6181.9, 48.3, -197.2, 0, 0, 0, 0, 0)
+	ObjectManager.withActiveArea(pGasArea, function(gasArea)
+		gasArea:setCellObjectID(1627822)
+		gasArea:setRadius(4)
 		createObserver(ENTEREDAREA, "GeonosianLabScreenPlay", "notifyEnteredPoisonGas", pGasArea)
-	end
+	end)
 
-	local pShockArea = spawnActiveArea("yavin4", "object/active_area.iff", -6169.0, 48.3, -382.3, 4, 1627813)
-	if pShockArea ~= nil then
+	local pShockArea = spawnSceneObject("yavin4", "object/active_area.iff", -6169.0, 48.3, -382.3, 0, 0, 0, 0, 0)
+	ObjectManager.withActiveArea(pShockArea, function(shockArea)
+		shockArea:setCellObjectID(1627813)
+		shockArea:setRadius(4)
 		createObserver(ENTEREDAREA, "GeonosianLabScreenPlay", "notifyElectroShock", pShockArea)
-	end
+	end)
 end
 
 function GeonosianLabScreenPlay:spawnSceneObjects()
@@ -109,11 +115,13 @@ function GeonosianLabScreenPlay:spawnSceneObjects()
 		createObserver(OBJECTRADIALUSED, "GeonosianLabScreenPlay", "notifyKeypadUsed", pSceneObject)
 
 		local aa = self.doorActiveAreas[i]
-		local pActiveArea = spawnActiveArea("yavin4", "object/active_area.iff", aa.worldX, aa.worldZ, aa.worldY, 4, aa.cell)
-		if pActiveArea ~= nil then
-			writeData(SceneObject(pActiveArea):getObjectID() .. ":GeoLabKeypad", i)
+		local pActiveArea = spawnSceneObject("yavin4", "object/active_area.iff", aa.worldX, aa.worldZ, aa.worldY, 0, 0, 0, 0, 0)
+		ObjectManager.withActiveArea(pActiveArea, function(activeArea)
+			writeData(activeArea:getObjectID() .. ":GeoLabKeypad", i)
+			activeArea:setCellObjectID(aa.cell)
+			activeArea:setRadius(4)
 			createObserver(ENTEREDAREA, "GeonosianLabScreenPlay", "notifyLockedDoorArea", pActiveArea)
-		end
+		end)
 	end
 
 	for i = 1, 15, 1 do
@@ -244,8 +252,6 @@ function GeonosianLabScreenPlay:notifyGasValveUsed(pGasValve, pPlayer, radialSel
 			end
 		end)
 	end
-
-	return 0
 end
 
 function GeonosianLabScreenPlay:notifyKeypadUsed(pKeypad, pPlayer, radialSelected)
@@ -253,8 +259,6 @@ function GeonosianLabScreenPlay:notifyKeypadUsed(pKeypad, pPlayer, radialSelecte
 		local suiManager = LuaSuiManager()
 		suiManager:sendKeypadSui(pKeypad, pPlayer, "GeonosianLabScreenPlay", "keypadSuiCallback")
 	end
-
-	return 0
 end
 
 function GeonosianLabScreenPlay:restartGasLeak()
@@ -301,10 +305,6 @@ function GeonosianLabScreenPlay:keypadSuiCallback(pCreature, pSui, cancelPressed
 end
 
 function GeonosianLabScreenPlay:notifyEnteredLab(pBuilding, pPlayer)
-	if not SceneObject(pPlayer):isCreatureObject() then
-		return 0
-	end
-
 	ObjectManager.withCreatureObject(pPlayer, function(player)
 		if (player:isAiAgent()) then
 			return 0
@@ -322,15 +322,9 @@ function GeonosianLabScreenPlay:notifyEnteredLab(pBuilding, pPlayer)
 
 		player:sendSystemMessage("@dungeon/geonosian_madbio:relock") --Security systems at this facility have been cycled and reset.
 	end)
-
-	return 0
 end
 
 function GeonosianLabScreenPlay:notifyLockedDoorArea(pArea, pPlayer)
-	if (not SceneObject(pPlayer):isCreatureObject()) then
-		return 0
-	end
-
 	ObjectManager.withCreatureObject(pPlayer, function(player)
 		if (player:isAiAgent()) then
 			return 0
@@ -341,8 +335,6 @@ function GeonosianLabScreenPlay:notifyLockedDoorArea(pArea, pPlayer)
 			player:sendSystemMessage("@dungeon/geonosian_madbio:door_locked") -- This door is locked.
 		end
 	end)
-	
-	return 0
 end
 
 function GeonosianLabScreenPlay:setupPermissionGroups()
@@ -408,23 +400,17 @@ function GeonosianLabScreenPlay:notifyEnteredPoisonGas(pActiveArea, pMovingObjec
 				player:sendSystemMessage("@dungeon/geonosian_madbio:toxic_fumes") --You breathe in toxic fumes!
 			end)
 		end
-		return 0
 	end)
 end
 
 function GeonosianLabScreenPlay:notifyElectroShock(pActiveArea, pMovingObject)
-	if not SceneObject(pMovingObject):isCreatureObject() then
-		return 0
-	end
-
-	return ObjectManager.withCreatureObject(pMovingObject, function(player)
+	ObjectManager.withCreatureObject(pMovingObject, function(player)
 		if (player:isAiAgent() and not AiAgent(pMovingObject):isPet()) then
 			return 0
 		end
 
 		player:inflictDamage(pMovingObject, 0, 1000, 0)
 		player:sendSystemMessage("@dungeon/geonosian_madbio:shock") --You feel electricity coursing through your body!
-		return 0
 	end)
 end
 

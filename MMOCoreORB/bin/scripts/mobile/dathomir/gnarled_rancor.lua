@@ -48,7 +48,7 @@ gnarled_rancor = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"knockdownattack",""}
+		{"knockdownattack","knockdownChance=50"}
 	}
 }
 

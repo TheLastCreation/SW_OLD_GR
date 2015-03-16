@@ -31,8 +31,8 @@ thune_herd_leader = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"dizzyattack",""},
-		{"posturedownattack",""}
+		{"dizzyattack","dizzyChance=50"},
+		{"posturedownattack","postureDownChance=50"}
 	}
 }
 

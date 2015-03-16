@@ -32,7 +32,7 @@ male_mawgax = Creature:new {
 	conversationTemplate = "",
 	attacks = {
 		{"",""},
-		{"intimidationattack",""}
+		{"intimidationattack","intimidationChance=50"}
 	}
 }
 

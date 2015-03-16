@@ -32,7 +32,7 @@ female_plains_tusk_cat = Creature:new {
 	conversationTemplate = "",
 	attacks = {
 		{"",""},
-		{"stunattack",""}
+		{"stunattack","stunChance=50"}
 	}
 }
 

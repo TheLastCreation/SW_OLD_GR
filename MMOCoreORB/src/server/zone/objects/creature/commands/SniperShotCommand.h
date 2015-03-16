@@ -91,7 +91,7 @@ public:
 
 		int maxRange = weapon->getMaxRange();
 
-		if (!player->isInRange(creature, maxRange + player->getTemplateRadius() + creature->getTemplateRadius()))
+		if (!player->isInRange(creature, maxRange))
 			return TOOFAR;
 				
 		if (player->isAttackableBy(creature) && player->isIncapacitated()) {

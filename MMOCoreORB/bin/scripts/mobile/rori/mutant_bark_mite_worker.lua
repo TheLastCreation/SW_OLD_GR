@@ -31,7 +31,7 @@ mutant_bark_mite_worker = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"stunattack",""}
+		{"stunattack","stunChance=50"}
 	}
 }
 

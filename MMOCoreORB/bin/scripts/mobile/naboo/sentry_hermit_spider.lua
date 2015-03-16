@@ -31,7 +31,7 @@ sentry_hermit_spider = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"intimidationattack",""},
+		{"intimidationattack","intimidationChance=50"},
 		{"mildpoison",""}
 	}
 }

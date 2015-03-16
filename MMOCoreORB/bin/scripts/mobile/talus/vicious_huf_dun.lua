@@ -32,7 +32,7 @@ vicious_huf_dun = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"stunattack",""}
+		{"stunattack","stunChance=50"}
 	}
 }
 

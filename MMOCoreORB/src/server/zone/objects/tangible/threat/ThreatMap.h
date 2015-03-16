@@ -43,7 +43,6 @@ class ThreatMapEntry : public VectorMap<String, uint32> {
 	int aggroMod;
 	uint64 threatBitmask;
 	int healAmount;
-	uint32 nonAggroDamageTotal;
 
 public:
 	ThreatMapEntry() {
@@ -51,7 +50,6 @@ public:
 		aggroMod = 0;
 		threatBitmask = 0;
 		healAmount = 0;
-		nonAggroDamageTotal = 0;
 	}
 
 	ThreatMapEntry(const ThreatMapEntry& e) : VectorMap<String, uint32>(e) {
@@ -59,19 +57,13 @@ public:
 		aggroMod = e.aggroMod;
 		threatBitmask = e.threatBitmask;
 		healAmount = e.healAmount;
-		nonAggroDamageTotal = e.nonAggroDamageTotal;
 	}
 
 	ThreatMapEntry& operator=(const ThreatMapEntry& e) {
-		if (this == &e)
-			return *this;
-
+		VectorMap<String, uint32>::operator=(e);
 		aggroMod = e.aggroMod;
 		threatBitmask = e.threatBitmask;
 		healAmount = e.healAmount;
-		nonAggroDamageTotal = e.nonAggroDamageTotal;
-
-		VectorMap<String, uint32>::operator=(e);
 
 		return *this;
 	}
@@ -106,31 +98,12 @@ public:
 	void clearAggro() {
 		aggroMod = 0;
 	}
-
-	uint32 getTotalDamage() {
-		uint32 totalDamage = 0;
-
-		for (int i = 0; i < size(); i++)
-			totalDamage += elementAt(i).getValue();
-
-		return totalDamage;
-	}
-
-	void setNonAggroDamage(uint32 amount) {
-		nonAggroDamageTotal = amount;
-	}
-
-	uint32 getNonAggroDamage() {
-		return nonAggroDamageTotal;
-	}
 };
 
 class ThreatMap : public VectorMap<ManagedReference<CreatureObject*> , ThreatMapEntry> {
 public:
 	/// Time between normal target evaluation
-	enum {
-		EVALUATIONCOOLDOWN = 24000
-	};
+	static const int EVALUATIONCOOLDOWN = 24000;
 
 protected:
 	ManagedWeakReference<TangibleObject*> self;

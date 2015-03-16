@@ -29,11 +29,11 @@ toxic_merek_battlelord = Creature:new {
 	controlDeviceTemplate = "object/intangible/pet/merek_hue.iff",
 	scale = 1.05,
 	lootGroups = {},
-	weapons = {"creature_spit_small_yellow"},
+	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"strongpoison",""},
-		{"blindattack",""}
+		{"blindattack","blindChance=50"},
+		{"strongpoison",""}
 	}
 }
 

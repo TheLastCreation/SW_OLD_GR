@@ -31,8 +31,8 @@ ravenous_rasp = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"strongpoison",""},
-		{"dizzyattack",""}
+		{"dizzyattack","dizzyChance=50"},
+		{"strongpoison",""}
 	}
 }
 

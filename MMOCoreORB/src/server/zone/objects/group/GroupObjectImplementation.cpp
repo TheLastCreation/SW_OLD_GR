@@ -12,7 +12,6 @@
 #include "server/zone/ZoneClientSession.h"
 #include "server/chat/room/ChatRoom.h"
 #include "server/chat/ChatManager.h"
-#include "server/zone/managers/group/GroupManager.h"
 #include "server/zone/objects/creature/CreatureObject.h"
 #include "server/zone/ZoneProcessServer.h"
 #include "server/zone/ZoneServer.h"
@@ -132,20 +131,6 @@ void GroupObjectImplementation::removeMember(SceneObject* member) {
 		CreatureObject* playerCreature = cast<CreatureObject*>(member);
 		RemovePetsFromGroupTask* task = new RemovePetsFromGroupTask(playerCreature, _this.get());
 		task->execute();
-
-		//Close any open Group SUIs.
-		ManagedReference<PlayerObject*> ghost = playerCreature->getPlayerObject();
-		if (ghost != NULL) {
-			ghost->closeSuiWindowType(SuiWindowType::GROUP_LOOT_RULE);
-			ghost->closeSuiWindowType(SuiWindowType::GROUP_LOOT_CHANGED);
-			ghost->closeSuiWindowType(SuiWindowType::GROUP_LOOT_PICK_LOOTER);
-		}
-
-		//Reset Master Looter if needed.
-		if (getMasterLooterID() == playerCreature->getObjectID()) {
-			ManagedReference<CreatureObject*> groupLeader = (getLeader()).castTo<CreatureObject*>();
-			GroupManager::instance()->changeMasterLooter(_this.get(), groupLeader, false);
-		}
 
 		if (hasSquadLeader()) {
 			removeGroupModifiers(playerCreature);
@@ -432,7 +417,7 @@ void GroupObjectImplementation::calcGroupLevel() {
 	broadcastMessage(msg);
 }
 
-void GroupObjectImplementation::sendSystemMessage(StringIdChatParameter& param, bool sendLeader) {
+void GroupObjectImplementation::sendSystemMessage(StringIdChatParameter& param) {
 	Locker lock(_this.get());
 
 	for (int i = 0; i < groupMembers.size(); ++i) {
@@ -440,7 +425,7 @@ void GroupObjectImplementation::sendSystemMessage(StringIdChatParameter& param, 
 
 		ManagedReference<SceneObject*> obj = member->get();
 
-		if (obj == NULL || !obj->isPlayerCreature() || (!sendLeader && obj == getLeader()))
+		if (obj == NULL || !obj->isPlayerCreature())
 			continue;
 
 		CreatureObject* creature = cast<CreatureObject*>(obj.get());
@@ -448,7 +433,7 @@ void GroupObjectImplementation::sendSystemMessage(StringIdChatParameter& param, 
 	}
 }
 
-void GroupObjectImplementation::sendSystemMessage(const String& fullPath, bool sendLeader) {
+void GroupObjectImplementation::sendSystemMessage(const String& fullPath) {
 	Locker lock(_this.get());
 
 	for (int i = 0; i < groupMembers.size(); ++i) {
@@ -456,7 +441,7 @@ void GroupObjectImplementation::sendSystemMessage(const String& fullPath, bool s
 
 		ManagedReference<SceneObject*> obj = member->get();
 
-		if (obj == NULL || !obj->isPlayerCreature() || (!sendLeader && obj == getLeader()))
+		if (obj == NULL || !obj->isPlayerCreature())
 			continue;
 
 		CreatureObject* creature = cast<CreatureObject*>(obj.get());
@@ -517,15 +502,4 @@ void GroupObjectImplementation::scheduleSquadLeaderBonusTask() {
 	if (!squadLeaderBonusTask->isScheduled())
 		squadLeaderBonusTask->schedule(300000);
 }
-
-void GroupObjectImplementation::updateLootRules() {
-	GroupObjectDeltaMessage6* msg = new GroupObjectDeltaMessage6(_this.get());
-	msg->updateLootRules(this->masterLooterID, this->lootRule);
-	msg->close();
-	broadcastMessage(msg);
-}
-
-
-
-
 

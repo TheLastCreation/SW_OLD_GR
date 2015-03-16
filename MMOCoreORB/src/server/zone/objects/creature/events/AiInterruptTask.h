@@ -41,8 +41,6 @@ public:
 
 		Locker locker(strongRef);
 
-		Locker crossLocker(sourceRef, strongRef);
-
 		strongRef->interrupt(sourceRef, msg);
 	}
 };

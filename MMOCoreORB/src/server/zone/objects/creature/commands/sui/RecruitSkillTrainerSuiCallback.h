@@ -33,25 +33,18 @@ public:
 			return;
 
 		ManagedReference<CityRegion*> city = player->getCityRegion();
+
 		if (city == NULL)
 			return;
 
-		if (!city->isMayor(player->getObjectID()))
-			return;
-
-		if (city->getSkillTrainerCount() >= (int) city->getCityRank() * 3) {
-					player->sendSystemMessage("@city/city:no_more_trainers"); // Your city can't support any more trainers at its current rank!
+		if (city->getSkillTrainerCount() >= (int) city->getCityRank() * 3){
+					player->sendSystemMessage("@city/city:no_more_trainers");
 					return;
 		}
 
 		Zone* zone = player->getZone();
 
 		PlayerObject* ghost = player->getPlayerObject();
-		if (ghost == NULL)
-			return;
-
-		if (!ghost->hasAbility("recruitskilltrainer"))
-			return;
 
 		int option = Integer::valueOf(args->get(0).toString());
 
@@ -159,10 +152,9 @@ public:
 
 		}
 
-		if (trainerTemplatePath != "") {
-			Locker clocker(city, player);
+		if (trainerTemplatePath != ""){
 
-			if(city->getCityTreasury() < 1000) {
+			if(city->getCityTreasury() < 1000){
 				StringIdChatParameter msg;
 				msg.setStringId("@city/city:action_no_money");
 				msg.setDI(1000);
@@ -171,15 +163,9 @@ public:
 
 			}
 
-			CreatureObject* trainer = zone->getCreatureManager()->spawnCreature(trainerTemplatePath.hashCode(),0,player->getWorldPositionX(),player->getWorldPositionZ(),player->getWorldPositionY(),0,true);
-
-			if (trainer == NULL) {
-				player->sendSystemMessage("@city/city:st_fail"); // Failed to create the skill trainer for some reason. Try again.
-				return;
-			}
-
-			trainer->rotate(player->getDirectionAngle());
 			city->subtractFromCityTreasury(1000);
+			CreatureObject* trainer = zone->getCreatureManager()->spawnCreature(trainerTemplatePath.hashCode(),0,player->getWorldPositionX(),player->getWorldPositionZ(),player->getWorldPositionY(),0,true);
+			trainer->rotate(player->getDirectionAngle());
 			city->addSkillTrainer(trainer);
 
 		}

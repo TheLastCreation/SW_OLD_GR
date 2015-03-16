@@ -139,16 +139,10 @@ function TreasureMapMenuComponent:chestLootedEvent(pChest, pCreature)
 	if (SceneObject(pChest):getContainerObjectsSize() == 0) then
 		TreasureMapMenuComponent:removeTreasureChest(pChest)
 	end
-
-	return 0
 end
 
 function TreasureMapMenuComponent:openChestEvent(pChest, pCreature)
-	if not SceneObject(pCreature):isCreatureObject() then
-		return 0
-	end
-
-	return ObjectManager.withCreatureObject(pCreature, function(creature)
+	ObjectManager.withCreatureObject(pCreature, function(creature)
 		local chestOwnerID = readData(SceneObject(pChest):getObjectID() .. ":ownerID")
 		if (chestOwnerID ~= creature:getObjectID()) then
 			creature:sendSystemMessage("@treasure_map/treasure_map:sys_not_yours") -- That treasure chest doesn't belong to you.
@@ -161,8 +155,6 @@ function TreasureMapMenuComponent:openChestEvent(pChest, pCreature)
 			creature:sendSystemMessage("You find " .. credits .. " credits in the chest.")
 			writeData(creature:getObjectID() .. ":hasOpenedChest", 1)
 		end
-
-		return 0
 	end)
 end
 
@@ -281,13 +273,10 @@ end
 function TreasureMapMenuComponent:spawnSearchArea(mapType, pCreature, x, y)
 	local mapData = treasureMapData[mapType]
 	local z = getTerrainHeight(pCreature, x, y)
-	local pActiveArea = spawnActiveArea(mapData.planet, "object/active_area.iff", x, z, y, 64, 0)
+	local pActiveArea = spawnSceneObject(mapData.planet, "object/active_area.iff", x, z, y, 0, 0, 0, 0, 0)
 
-	if pActiveArea ~= nil then
-		return SceneObject(pActiveArea):getObjectID()
-	else
-		return 0
-	end
+	ActiveArea(pActiveArea):setRadius(64)
+	return SceneObject(pActiveArea):getObjectID()
 end
 
 function TreasureMapMenuComponent:getMapType(pObject)

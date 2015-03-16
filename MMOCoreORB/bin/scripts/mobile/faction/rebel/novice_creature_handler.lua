@@ -32,7 +32,6 @@ novice_creature_handler = Creature:new {
 	weapons = {"rebel_weapons_light"},
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/military",
-	personalityStf = "@hireling/hireling_military",			
 	attacks = merge(marksmannovice,brawlernovice)
 }
 

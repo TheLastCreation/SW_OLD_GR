@@ -31,8 +31,8 @@ stoneskin_hanadak = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"knockdownattack",""},
-		{"blindattack",""}
+		{"blindattack","blindChance=50"},
+		{"knockdownattack","knockdownChance=50"}
 	}
 }
 

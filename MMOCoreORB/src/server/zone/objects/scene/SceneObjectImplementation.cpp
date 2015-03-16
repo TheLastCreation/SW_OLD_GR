@@ -49,6 +49,7 @@ which carries forward this exception.
 #include "server/zone/managers/object/ObjectManager.h"
 #include "server/zone/managers/objectcontroller/ObjectController.h"
 
+#include "server/zone/packets/object/PlayClientEffectObjectMessage.h"
 #include "server/zone/packets/scene/SceneObjectCreateMessage.h"
 #include "server/zone/packets/scene/SceneObjectDestroyMessage.h"
 #include "server/zone/packets/scene/SceneObjectCloseMessage.h"
@@ -84,7 +85,6 @@ which carries forward this exception.
 #include "server/zone/objects/creature/VehicleObject.h"
 #include "server/zone/objects/building/BuildingObject.h"
 #include "server/zone/templates/ChildObject.h"
-#include "server/zone/templates/appearance/MeshAppearanceTemplate.h"
 #include "server/zone/objects/tangible/terminal/Terminal.h"
 #include "server/zone/objects/scene/components/ZoneComponent.h"
 #include "server/zone/objects/scene/components/ObjectMenuComponent.h"
@@ -1644,6 +1644,11 @@ bool SceneObjectImplementation::isDecoration(){
 					templateObject->getFullTemplateString().contains("object/building/player/city/garden")));
 }
 
+bool SceneObjectImplementation::isCityStreetLamp(){
+	return (templateObject != NULL && templateObject->getFullTemplateString().contains("object/tangible/furniture/city/streetlamp"));
+}
+
+
 Reference<SceneObject*> SceneObjectImplementation::getContainerObjectRecursive(uint64 oid) {
 	ManagedReference<SceneObject*> obj = containerObjects.get(oid);
 
@@ -1694,20 +1699,11 @@ bool SceneObjectImplementation::hasObjectInSlottedContainer(SceneObject* object)
 int SceneObjectImplementation::getArrangementDescriptorSize() {
 	return templateObject->getArrangementDescriptors().size();
 }
-
 bool SceneObjectImplementation::isDataPad() {
 	return templateObject->getFullTemplateString().contains("datapad");
 }
 
-float SceneObjectImplementation::getTemplateRadius() {
-	if (templateObject == NULL || templateObject->getAppearanceTemplate() == NULL)
-		return 0.f;
-
-	MeshAppearanceTemplate* app = cast<MeshAppearanceTemplate*>(templateObject->getAppearanceTemplate());
-
-	if (app == NULL || app->getAABBTree() == NULL)
-		return 0.f;
-
-	// we currently don't scale these, so we have no scale variable
-	return app->getAABBTree()->getBoundingBox().extents().length();
+void SceneObjectImplementation::playEffect(const String& file, const String& aux) {
+	PlayClientEffectObjectMessage* effect = new PlayClientEffectObjectMessage(_this.get(), file, aux);
+	broadcastMessage(effect, true);
 }

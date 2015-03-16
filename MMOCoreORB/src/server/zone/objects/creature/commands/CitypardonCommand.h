@@ -66,7 +66,7 @@ public:
 
 		ManagedReference<SceneObject*> targetObject = zserv->getObject(target);
 
-		if (targetObject == NULL || !targetObject->isPlayerCreature()) {
+		if (targetObject == NULL || !targetObject->isCreatureObject()) {
 			try {
 				String targetFirstName;
 				UnicodeTokenizer tokenizer(arguments);
@@ -78,7 +78,7 @@ public:
 			}
 		}
 
-		if (targetObject == NULL || !targetObject->isPlayerCreature())
+		if (targetObject == NULL || !targetObject->isCreatureObject())
 			return INVALIDTARGET;
 
 		CreatureObject* targetCreature = cast<CreatureObject*>(targetObject.get());
@@ -101,7 +101,6 @@ public:
 		}
 
 		city->removeBannedPlayer(targetCreature->getObjectID());
-		city->applySpecializationModifiers(targetCreature);
 
 		targetCreature->sendSystemMessage("@city/city:city_pardoned"); //You have been pardoned and are once again able to use city services.
 

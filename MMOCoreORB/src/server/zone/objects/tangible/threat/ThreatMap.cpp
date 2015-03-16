@@ -64,6 +64,19 @@ void ThreatMap::removeObservers() {
 
 	Reference<ThreatMapClearObserversTask*> task = new ThreatMapClearObserversTask(*this, threatMapObserver);
 	Core::getTaskManager()->executeTask(task);
+
+	//moved this to a task so it executes async in a different thread to avoid deadlocks
+	/*Locker locker(self);
+
+	for (int i = 0; i < size(); ++i) {
+		CreatureObject* creature = elementAt(i).getKey();
+
+		if (creature != NULL && threatMapObserver != NULL) {
+			Locker clocker(creature, self);
+
+			creature->dropObserver(ObserverEventType::HEALINGPERFORMED, threatMapObserver);
+		}
+	}*/
 }
 
 void ThreatMap::addDamage(CreatureObject* target, uint32 damage, String xp) {
@@ -91,33 +104,17 @@ void ThreatMap::addDamage(CreatureObject* target, uint32 damage, String xp) {
 		entry->addDamage(xpToAward, damage);
 		entry->addAggro(1);
 	}
+
+	// randomly change target everytime threatmap is added to, TODO: keep this in mind and perhaps make it slightly more complicated
+	if (System::random(5) == 0)
+		currentThreat = target;
 }
 
 void ThreatMap::removeAll() {
 	Locker locker(&lockMutex);
 
 	removeObservers();
-
-	for (int i = 0; i < size(); i++) {
-		VectorMapEntry<ManagedReference<CreatureObject*> , ThreatMapEntry> *entry = &elementAt(i);
-
-		ManagedReference<CreatureObject*> key = entry->getKey();
-		ThreatMapEntry *value = &entry->getValue();
-
-		ManagedReference<TangibleObject*> selfStrong = self.get();
-
-		// these checks will determine if we should store the damage from the dropped aggressor
-		if (key == NULL || selfStrong == NULL || key->isDead() || !key->isOnline() || key->getPlanetCRC() != selfStrong->getPlanetCRC()) {
-			remove(i);
-
-			if (threatMapObserver != NULL)
-				key->dropObserver(ObserverEventType::HEALINGPERFORMED, threatMapObserver);
-		} else {
-			value->setNonAggroDamage(value->getTotalDamage());
-			value->clearAggro();
-		}
-	}
-
+	VectorMap<ManagedReference<CreatureObject*> , ThreatMapEntry>::removeAll();
 	currentThreat = NULL;
 	threatMatrix.clear();
 }
@@ -125,22 +122,16 @@ void ThreatMap::removeAll() {
 void ThreatMap::dropDamage(CreatureObject* target) {
 	Locker llocker(&lockMutex);
 
-	ManagedReference<TangibleObject*> selfStrong = self.get();
-	if (target == NULL || selfStrong == NULL || target->isDead() || !target->isOnline() || target->getPlanetCRC() != selfStrong->getPlanetCRC()) {
-		drop(target);
-
-		if (threatMapObserver != NULL)
-			target->dropObserver(ObserverEventType::HEALINGPERFORMED, threatMapObserver);
-	} else {
-		ThreatMapEntry *entry = &get(target);
-		entry->setNonAggroDamage(entry->getTotalDamage());
-		entry->clearAggro();
-	}
+	drop(target);
 
 	llocker.release();
 
 	if (currentThreat == target)
 		currentThreat = NULL;
+
+	if (threatMapObserver != NULL) {
+		target->dropObserver(ObserverEventType::HEALINGPERFORMED, threatMapObserver);
+	}
 }
 
 bool ThreatMap::setThreatState(CreatureObject* target, uint64 state, uint64 duration, uint64 cooldown) {
@@ -222,7 +213,11 @@ uint32 ThreatMap::getTotalDamage() {
 	for (int i = 0; i < size(); ++i) {
 		ThreatMapEntry* entry = &elementAt(i).getValue();
 
-		totalDamage += entry->getTotalDamage();
+		for (int j = 0; j < entry->size(); ++j) {
+			uint32 damage = entry->elementAt(j).getValue();
+
+			totalDamage += damage;
+		}
 	}
 
 	return totalDamage;
@@ -238,7 +233,13 @@ CreatureObject* ThreatMap::getHighestDamagePlayer() {
 	for (int i = 0; i < size(); ++i) {
 		ThreatMapEntry* entry = &elementAt(i).getValue();
 
-		uint32 totalDamage = entry->getTotalDamage();
+		uint32 totalDamage = 0;
+
+		for (int j = 0; j < entry->size(); ++j) {
+			uint32 damage = entry->elementAt(j).getValue();
+
+			totalDamage += damage;
+		}
 
 		CreatureObject* creature = elementAt(i).getKey();
 
@@ -288,7 +289,13 @@ CreatureObject* ThreatMap::getHighestDamageGroupLeader(){
 	for (int i = 0; i < size(); ++i) {
 		ThreatMapEntry* entry = &elementAt(i).getValue();
 
-		uint32 totalDamage = entry->getTotalDamage();
+		uint32 totalDamage = 0;
+
+		for (int j = 0; j < entry->size(); ++j) {
+			uint32 damage = entry->elementAt(j).getValue();
+
+			totalDamage += damage;
+		}
 
 		CreatureObject* creature = elementAt(i).getKey();
 		//tlog.info("Group id is " + String::valueOf(creature->getGroupID()),true);

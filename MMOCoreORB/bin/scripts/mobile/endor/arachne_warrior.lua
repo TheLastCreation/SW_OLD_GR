@@ -32,7 +32,7 @@ arachne_warrior = Creature:new {
 	weapons = {"creature_spit_small_toxicgreen"},
 	conversationTemplate = "",
 	attacks = {
-		{"blindattack",""},
+		{"blindattack","blindChance=50"},
 		{"strongpoison",""}
 	}
 }

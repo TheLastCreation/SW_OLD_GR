@@ -32,7 +32,7 @@ festering_squill = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"blindattack",""},
+		{"blindattack","blindChance=50"},
 		{"mediumdisease",""}
 	}
 }

@@ -82,7 +82,7 @@ public:
 
 		Locker clocker(creatureTarget, creature);
 
-		if (!creatureTarget->isInRange(creature, range + creatureTarget->getTemplateRadius() + creature->getTemplateRadius()))
+		if (!creatureTarget->isInRange(creature, range))
 			return TOOFAR;
 			
 		if (!creatureTarget->isHealableBy(creature)) {

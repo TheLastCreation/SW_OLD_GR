@@ -45,8 +45,7 @@ public:
 		if (creature == NULL)
 			return;
 
-		Locker locker(target);
-		Locker clocker(creature, target);
+		Locker locker(creature);
 
 		if (!success && creature->hasBuff(crc)) {
 			creature->sendSystemMessage(buffMsg);

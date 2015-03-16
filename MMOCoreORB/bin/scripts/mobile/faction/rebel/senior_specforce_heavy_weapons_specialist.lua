@@ -48,7 +48,6 @@ senior_specforce_heavy_weapons_specialist = Creature:new {
 	},
 	weapons = {"rebel_weapons_heavy"},
 	reactionStf = "@npc_reaction/military",
-	personalityStf = "@hireling/hireling_military",			
 	attacks = merge(commandomaster,marksmanmaster,brawlermaster)
 }
 

@@ -31,8 +31,8 @@ roba_pack_leader = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"dizzyattack",""},
-		{"blindattack",""}
+		{"blindattack","blindChance=50"},
+		{"dizzyattack","dizzyChance=50"}
 	}
 }
 

@@ -56,18 +56,15 @@ function cnet_auxilary_shuttle:barkShuttleLocation(pBarker)
 	if (pBarker ~= nil) then
 		spatialChat(pBarker, "\\#881100Attention Citizens!\n\NEW SUPER MALL ON NABOO THIS WAY PLEASE")
 	createEvent(15000, "cnet_auxilary_shuttle", "barkShuttleLocation", pBarker)
-	return 0
 	end
 end
 
 function cnet_auxilary_shuttle:teleportNaboo(pCollector, pPlayer)
 	local player = LuaSceneObject(pPlayer)
 	player:switchZone("naboo", -4036.9, -195.6, 4627.1, 0)
-	return 0
 end
 
 function cnet_auxilary_shuttle:teleportCnet(pCollector, pPlayer)
 	local player = LuaSceneObject(pPlayer)
 	player:switchZone("corellia", -159, 28, -4783.1, 0)
-	return 0
 end

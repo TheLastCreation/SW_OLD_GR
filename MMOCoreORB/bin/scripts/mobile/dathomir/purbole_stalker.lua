@@ -32,7 +32,7 @@ purbole_stalker = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"dizzyattack",""},
+		{"dizzyattack","dizzyChance=50"},
 		{"mildpoison",""}
 	}
 }

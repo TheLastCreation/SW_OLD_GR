@@ -24,16 +24,12 @@ private:
 	bool readObjectMember(ObjectInputStream* stream, const String& name);
 
 public:
-	enum {
-		LISTNOTFOUND    = 0xFF,
-		GRANTED         = 0x00,
-		REVOKED         = 0x01,
-		CANTCHANGEOWNER = 0x02
-	};
+	static const int LISTNOTFOUND = 0xFF;
+	static const int GRANTED = 0x00;
+	static const int REVOKED = 0x01;
+	static const int CANTCHANGEOWNER = 0x02;
 
-	enum {
-		MAX_ENTRIES = 50
-	};
+	static const int MAX_ENTRIES = 50;
 
 public:
 	StructurePermissionList();

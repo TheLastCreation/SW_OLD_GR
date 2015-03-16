@@ -46,14 +46,11 @@ DrainForceCommand = {
 	
 	animationCRC = hashCode("force_drain_1"),
 
-	combatSpam = "forcedrain_hit",
+	combatSpam = "forcedrain",
 	
 	poolsToDamage = NONE,
 
-	damage = 100, --Force drained
-
 	range = 32
-	
 }
 
 AddCommand(DrainForceCommand)

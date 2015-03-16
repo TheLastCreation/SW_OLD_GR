@@ -32,7 +32,7 @@ graul_marauder = Creature:new {
 	conversationTemplate = "",
 	attacks = {
 		{"creatureareableeding",""},
-		{"stunattack",""}
+		{"stunattack","stunChance=50"}
 	}
 }
 

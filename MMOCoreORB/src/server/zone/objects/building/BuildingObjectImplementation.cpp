@@ -801,7 +801,7 @@ void BuildingObjectImplementation::onExit(CreatureObject* player, uint64 parenti
 uint32 BuildingObjectImplementation::getMaximumNumberOfPlayerItems() {
 	SharedStructureObjectTemplate* ssot = dynamic_cast<SharedStructureObjectTemplate*> (templateObject.get());
 	if (isCivicStructure() )
-		return 400;
+		return 250;
 
 	if (ssot == NULL)
 		return 0;
@@ -1223,7 +1223,6 @@ void BuildingObjectImplementation::createChildObjects(){
 			childObjects.put(obj);
 			obj->initializePosition(childPosition.getX(), childPosition.getZ(), childPosition.getY());
 			obj->setDirection(child->getDirection());
-			obj->initializeChildObject(_this.get());
 
 
 			// if it's inside
@@ -1310,6 +1309,7 @@ void BuildingObjectImplementation::createChildObjects(){
 			permissions->setInheritPermissionsFromParent(false);
 			permissions->setDefaultDenyPermission(ContainerPermissions::MOVECONTAINER);
 			permissions->setDenyPermission("owner", ContainerPermissions::MOVECONTAINER);
+			obj->initializeChildObject(_this.get());
 
 			if(obj->isTurret() || obj->isMinefield() || obj->isDetector()){
 				TangibleObject* tano = cast<TangibleObject*>(obj.get());

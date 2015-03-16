@@ -47,7 +47,6 @@ object_tangible_component_droid_personality_module_geek = object_tangible_compon
 	dataObjectComponent = "DroidPersonalityModuleDataComponent",
 	reactionName = "@npc_reaction/droid_geek",
 	attrName = "@craft_droid_ingredients_n:personality_module_geek",
-	personalityStf = "@hireling/hireling_droid_geek",
 	numberExperimentalProperties = {1, 1, 2, 1, 2, 1},
 	experimentalProperties = {"XX", "XX", "CD", "OQ", "XX", "CD", "OQ", "XX"},
 	experimentalWeights = {1, 1, 1, 1, 1, 1, 1, 1},
@@ -57,7 +56,6 @@ object_tangible_component_droid_personality_module_geek = object_tangible_compon
 	experimentalMax = {0, 0, 15, 1000, 15, 30},
 	experimentalPrecision = {0, 0, 0, 0, 0, 0},
 	experimentalCombineType = {1, 1, 1, 1, 1, 1},
-	conversationTemplate = "pet_geek_convotemplate"
 }
 
 ObjectTemplates:addTemplate(object_tangible_component_droid_personality_module_geek, "object/tangible/component/droid/personality_module_geek.iff")

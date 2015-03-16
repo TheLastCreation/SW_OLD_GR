@@ -31,7 +31,7 @@ mantigrue_hunter = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"blindattack",""}
+		{"blindattack","blindChance=50"}
 	}
 }
 

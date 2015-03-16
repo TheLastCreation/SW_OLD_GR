@@ -32,7 +32,7 @@ timid_vir_vur = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"stunattack",""}
+		{"stunattack","stunChance=50"}
 	}
 }
 

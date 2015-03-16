@@ -77,7 +77,7 @@ public:
 
 		insertEquipmentList(creo);
 
-		insertAscii(creo->getAlternateAppearance());
+		insertAscii("");//insertAscii(creo->getTemplateString());
 
 		insertByte(creo->getFrozen());
 

@@ -55,8 +55,6 @@ public:
 
 		uint64 oid = listbox->getMenuObjectID(idx);
 
-		Locker clocker(city, player);
-
 		CityManager* cityManager = server->getCityManager();
 		cityManager->castMayoralVote(city, player, oid);
 	}

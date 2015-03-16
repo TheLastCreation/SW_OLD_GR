@@ -30,10 +30,10 @@ wonderous_cu_pa = Creature:new {
 	controlDeviceTemplate = "object/intangible/pet/cu_pa_hue.iff",
 	scale = 1.1,
 	lootGroups = {},
-	weapons = {"creature_spit_small_yellow"},
+	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"stunattack",""}
+		{"stunattack","stunChance=50"}
 	}
 }
 

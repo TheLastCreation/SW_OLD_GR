@@ -32,8 +32,8 @@ noxious_squill = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"stunattack",""},
-		{"milddisease",""}
+		{"milddisease",""},
+		{"stunattack","stunChance=50"}
 	}
 }
 

@@ -136,9 +136,8 @@ int ConversationObserverImplementation::notifyObserverEvent(unsigned int eventTy
 	//Send the conversation screen to the player.
 	sendConversationScreenToPlayer(player, npc, conversationScreen);
 
-	if (conversationScreen == NULL) {
+	if (conversationScreen == NULL)
 		cancelConversationSession(player, npc);
-	}
 
 	//Keep the observer.
 	return 0;

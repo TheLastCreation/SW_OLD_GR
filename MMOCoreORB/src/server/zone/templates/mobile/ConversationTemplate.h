@@ -63,8 +63,7 @@ public:
 		ConversationTemplateTypeTrainer,
 		ConversationTemplateTypeDeliverMission,
 		ConversationTemplateTypeInformantMission,
-		ConversationTemplateTypeLua,
-		ConversationTemplateTypePersonality
+		ConversationTemplateTypeLua
 	};
 protected:
 	String initialScreenID;
@@ -105,8 +104,6 @@ public:
 			conversationTemplateType = ConversationTemplateTypeInformantMission;
 		} else if (templateType == "Lua") {
 			conversationTemplateType = ConversationTemplateTypeLua;
-		} else if (templateType == "Personality") {
-			conversationTemplateType = ConversationTemplateTypePersonality;
 		} else {
 			conversationTemplateType = ConversationTemplateTypeNormal;
 		}

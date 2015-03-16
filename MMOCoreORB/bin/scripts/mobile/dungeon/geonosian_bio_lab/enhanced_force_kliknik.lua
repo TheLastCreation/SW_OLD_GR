@@ -39,7 +39,7 @@ enhanced_force_kliknik = Creature:new {
 	weapons = {"creature_spit_heavy_flame"},
 	conversationTemplate = "",
 	attacks = {
-		{"stunattack",""},
+		{"stunattack","stunChance=50"},
 		{"creatureareaattack",""}
 	}
 }

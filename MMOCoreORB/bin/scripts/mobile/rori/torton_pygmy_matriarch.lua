@@ -31,8 +31,8 @@ torton_pygmy_matriarch = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"intimidationattack",""},
-		{"dizzyattack",""}
+		{"dizzyattack","dizzyChance=50"},
+		{"intimidationattack","intimidationChance=50"}
 	}
 }
 

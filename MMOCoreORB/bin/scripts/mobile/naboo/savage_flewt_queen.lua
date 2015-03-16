@@ -31,8 +31,8 @@ savage_flewt_queen = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"stunattack",""},
-		{"mildpoison",""}
+		{"mildpoison",""},
+		{"stunattack","stunChance=50"}
 	}
 }
 

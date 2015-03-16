@@ -66,13 +66,11 @@ private:
 	float contribution;
 
 public:
-	enum {
-		RESOURCESLOT,
-		IDENTICALSLOT,
-		MIXEDSLOT,
-		OPTIONALIDENTICALSLOT,
-		OPTIONALMIXEDSLOT
-	};
+	static const int RESOURCESLOT = 0;
+	static const int IDENTICALSLOT = 1;
+	static const int MIXEDSLOT = 2;
+	static const int OPTIONALIDENTICALSLOT = 3;
+	static const int OPTIONALMIXEDSLOT = 4;
 
 public:
 	DraftSlot() {

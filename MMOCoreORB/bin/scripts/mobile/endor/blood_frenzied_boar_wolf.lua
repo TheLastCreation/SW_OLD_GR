@@ -32,7 +32,7 @@ blood_frenzied_boar_wolf = Creature:new {
 	conversationTemplate = "",
 	attacks = {
 		{"creatureareableeding",""},
-		{"blindattack",""}
+		{"blindattack","blindChance=50"}
 	}
 }
 

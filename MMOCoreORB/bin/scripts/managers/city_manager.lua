@@ -125,16 +125,6 @@ CitiesAllowed = {
 	emailBody: The body of the email that is sent to citizens when this tax changes. %DI = Amount of new tax; %TO = Name of the city.
 --]]
 CityTaxes = {
-	{--Income Tax
-		min = 0, max = 2000,
-		menuText = "@city/city:income_tax",
-		inputTitle = "@city/city:set_tax_t_income",
-		inputText = "@city/city:set_tax_d_income",
-		statusPrompt = "@city/city:income_tax_prompt",
-		systemMessage = "@city/city:set_income_tax",
-		emailSubject = "@city/city:tax_income_subject",
-		emailBody = "@city/city:tax_income_body"
-	},
 	{--Property Tax
 		min = 0, max = 50,
 		menuText = "@city/city:property_tax_prompt",
@@ -144,6 +134,16 @@ CityTaxes = {
 		systemMessage = "@city/city:set_property_tax",
 		emailSubject = "@city/city:tax_property_subject",
 		emailBody = "@city/city:tax_property_body"
+	},
+	{--Income Tax
+		min = 0, max = 2000,
+		menuText = "@city/city:income_tax",
+		inputTitle = "@city/city:set_tax_t_income",
+		inputText = "@city/city:set_tax_d_income",
+		statusPrompt = "@city/city:income_tax_prompt",
+		systemMessage = "@city/city:set_income_tax",
+		emailSubject = "@city/city:tax_income_subject",
+		emailBody = "@city/city:tax_income_body"
 	},
 	{--Sales Tax
 		min = 0, max = 20,
@@ -168,9 +168,9 @@ CityTaxes = {
 	{--Garage Tax
 		min = 0, max = 30,
 		menuText = "@city/city:garage_tax",
-		inputTitle = "Adjust Garage Service Fee", -- missing from stf
+		inputTitle = "@city/city:set_tax_t_garage",
 		inputText = "@city/city:set_tax_d_garage",
-		statusPrompt = "Garage Cost: ", -- missing from stf
+		statusPrompt = "Garage Cost: ",
 		systemMessage = "@city/city:set_garage_tax",
 		emailSubject = "@city/city:garage_fee_subject",
 		emailBody = "@city/city:garage_fee_body"
@@ -207,7 +207,7 @@ CitySpecializations = {
 		}
 	},
 	{--Clone Lab
-		name = "@city/city:city_spec_cloning",
+		name = "@city/city:city_spec_clone",
 		cost = 80000,
 		skillMods = {
 			{"private_spec_cloning", 20}
@@ -224,7 +224,7 @@ CitySpecializations = {
 		name = "@city/city:city_spec_missions",
 		cost = 80000,
 		skillMods = {
-			{"private_spec_missions", 15}
+			{"private_spec_missions", 20}
 		}
 	},
 	{--Entertainment District

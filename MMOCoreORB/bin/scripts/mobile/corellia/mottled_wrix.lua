@@ -32,7 +32,7 @@ mottled_wrix = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"stunattack",""},
+		{"stunattack","stunChance=50"},
 		{"mediumdisease",""}
 	}
 }

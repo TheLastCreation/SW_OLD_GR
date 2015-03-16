@@ -32,7 +32,7 @@ volatile_scyk = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"mediumpoison",""}
+		{"posturedownattack","postureDownChance=50"}
 	}
 }
 

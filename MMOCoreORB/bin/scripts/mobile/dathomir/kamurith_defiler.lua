@@ -31,7 +31,7 @@ kamurith_defiler = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"dizzyattack",""},
+		{"dizzyattack","dizzyChance=50"},
 		{"strongdisease",""}
 	}
 }

@@ -31,7 +31,7 @@ bloodseeker_mite_queen = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"dizzyattack",""},
+		{"dizzyattack","dizzyChance=50"},
 		{"strongdisease",""}
 	}
 }

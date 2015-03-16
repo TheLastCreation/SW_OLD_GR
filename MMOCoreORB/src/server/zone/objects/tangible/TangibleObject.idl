@@ -754,9 +754,5 @@ class TangibleObject extends SceneObject {
 		}
 		return null;
 	}
-
-	public native boolean isCityStreetLamp();
-	public native boolean isCityStatue();
-	public native boolean isCityFountain();
 }
 

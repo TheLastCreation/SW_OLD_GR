@@ -21,24 +21,8 @@ int ThreatMapObserverImplementation::notifyObserverEvent(uint32 eventType, Obser
 	ThreatMap* threatMap = strongRef->getThreatMap();
 
 	if (threatMap != NULL) {
-		CreatureObject* originator = cast<CreatureObject*>(observable);
-
-		if (originator == NULL )
-			return 1;
-
-		int findIndex = threatMap->find(originator);
-
-		if (findIndex >= 0) {
-			ThreatMapEntry& entry = threatMap->get(findIndex);
-
-			if (entry.getTotalDamage() == entry.getNonAggroDamage())
-				return 1;
-
-		} else {
-			return 1;
-		}
-
 		CreatureObject* target = cast<CreatureObject*>(arg1);
+
 		if (target != NULL)
 			threatMap->addHeal(target, arg2);
 	}

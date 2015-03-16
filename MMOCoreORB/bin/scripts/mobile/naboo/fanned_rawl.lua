@@ -31,7 +31,7 @@ fanned_rawl = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"posturedownattack",""},
+		{"posturedownattack","postureDownChance=50"},
 		{"mildpoison",""}
 	}
 }

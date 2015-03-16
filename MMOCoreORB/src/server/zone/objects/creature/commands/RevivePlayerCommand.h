@@ -227,7 +227,7 @@ public:
 			return GENERALERROR;
 		}
 
-		if (!creatureTarget->isInRange(creature, range + creatureTarget->getTemplateRadius() + creature->getTemplateRadius()))
+		if (!creatureTarget->isInRange(creature, range))
 			return TOOFAR;
 
 		uint64 objectId = 0;

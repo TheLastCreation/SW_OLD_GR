@@ -390,11 +390,11 @@ function WarrenScreenPlay:notifyUseCRTerminal(pTerminal, pPlayer)
 	local pInventory = CreatureObject(pPlayer):getSlottedObject("inventory")
 
 	if (pInventory == nil) then
-		return 0
+		return
 	end
 
 	if (self:isMCRElevatorActive()) then
-		return 0
+		return
 	end
 
 	local objectid = SceneObject(pTerminal):getObjectID()
@@ -405,48 +405,48 @@ function WarrenScreenPlay:notifyUseCRTerminal(pTerminal, pPlayer)
 		pObj = getContainerObjectByTemplate(pInventory, "object/tangible/mission/quest_item/warren_controlroom_passkey1.iff", true)
 
 		if (readData("warren:elevator:lock1") == 0) then
-			return 0
+			return
 		elseif (pObj ~= nil) then
 			writeData("warren:elevator:lock1", 0)
 		else
 			SceneObject(pTerminal):showFlyText("theme_park/warren/warren_system_messages", "mcr_term_active", 0, 255, 0)
-			return 0
+			return
 		end
 	elseif (objectid == 8465560) then
 		pObj = getContainerObjectByTemplate(pInventory, "object/tangible/mission/quest_item/warren_controlroom_passkey2.iff", true)
 
 		if (readData("warren:elevator:lock2") == 0) then
-			return 0
+			return
 		elseif (pObj ~= nil) then
 			writeData("warren:elevator:lock2", 0)
 		else
 			SceneObject(pTerminal):showFlyText("theme_park/warren/warren_system_messages", "mcr_term_active", 0, 255, 0)
-			return 0
+			return
 		end
 	elseif (objectid == 8465561) then
 		pObj = getContainerObjectByTemplate(pInventory, "object/tangible/mission/quest_item/warren_controlroom_passkey3.iff", true)
 
 		if (readData("warren:elevator:lock3") == 0) then
-			return 0
+			return
 		elseif (pObj ~= nil) then
 			writeData("warren:elevator:lock3", 0)
 		else
 			SceneObject(pTerminal):showFlyText("theme_park/warren/warren_system_messages", "mcr_term_active", 0, 255, 0)
-			return 0
+			return
 		end
 	elseif (objectid == 8465562) then
 		pObj = getContainerObjectByTemplate(pInventory, "object/tangible/mission/quest_item/warren_controlroom_passkey4.iff", true)
 
 		if (readData("warren:elevator:lock4") == 0) then
-			return 0
+			return
 		elseif (pObj ~= nil) then
 			writeData("warren:elevator:lock4", 0)
 		else
 			SceneObject(pTerminal):showFlyText("theme_park/warren/warren_system_messages", "mcr_term_active", 0, 255, 0)
-			return 0
+			return
 		end
 	else
-		return 0
+		return
 	end
 
 	if (self:isMCRElevatorActive()) then
@@ -456,8 +456,6 @@ function WarrenScreenPlay:notifyUseCRTerminal(pTerminal, pPlayer)
 
 	SceneObject(pTerminal):setCustomObjectName("theme_park/warren/warren_system_messages", "mcr_term_name_off")
 	SceneObject(pTerminal):showFlyText("theme_park/warren/warren_system_messages", "mcr_term_deactivated", 0, 255, 0)
-
-	return 0
 end
 
 function WarrenScreenPlay:isMCRElevatorActive()
@@ -534,8 +532,6 @@ function WarrenScreenPlay:useReactorCoreSwitch(pTerminal, pPlayer)
 		local pWarren = getSceneObject(self.buildingID)
 		BuildingObject(pWarren):broadcastSpecificCellPermissions(8575715)
 	end
-
-	return 0
 end
 
 function WarrenScreenPlay:generatePasscode(length)
@@ -603,7 +599,7 @@ end
 function WarrenScreenPlay:notifyEnteredWarren(pBuilding, pPlayer)
 
 	if (not SceneObject(pPlayer):isPlayerCreature()) then
-		return 0
+		return
 	end
 
 	local pInventory = SceneObject(pPlayer):getSlottedObject("inventory")

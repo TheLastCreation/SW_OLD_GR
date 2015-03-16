@@ -77,7 +77,6 @@ public:
 			if (creature->isPlayerCreature())
 				(creature)->sendSystemMessage("@cbt_spam:cover_fail_single"); // You fail to take cover.
 
-			creature->sendStateCombatSpam("cbt_spam", "cover_fail", 0);
 			return GENERALERROR;
 		}
 
@@ -91,7 +90,6 @@ public:
 				if (creature->isPlayerCreature())
 					(creature)->sendSystemMessage("@cbt_spam:cover_fail_single"); // You fail to take cover.
 
-				creature->sendStateCombatSpam("cbt_spam", "cover_fail", 0);
 				return GENERALERROR;
 			}
 		}
@@ -102,7 +100,7 @@ public:
 			creature->queueDizzyFallEvent();				
 
 		creature->inflictDamage(creature, CreatureAttribute::ACTION, actionCost, false);
-		creature->sendStateCombatSpam("cbt_spam", "cover_success", 0);
+
 		return SUCCESS;
 	}
 

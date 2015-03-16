@@ -31,8 +31,8 @@ hanadak_ancient = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"knockdownattack",""},
-		{"blindattack",""}
+		{"knockdownattack","knockdownChance=50"},
+		{"blindattack","blindChance=50"}
 	}
 }
 

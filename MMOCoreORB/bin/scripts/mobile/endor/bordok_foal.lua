@@ -32,8 +32,8 @@ bordok_foal = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"intimidationattack",""},
-		{"dizzyattack",""}
+		{"intimidationattack","intimidationChance=50"},
+		{"dizzyattack","dizzyChance=50"}
 	}
 }
 

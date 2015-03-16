@@ -36,15 +36,13 @@ protected:
 public:
 	DnaSampleRange(LuaObject& obj);
 	virtual ~DnaSampleRange();
-	enum {
-		VHQ = 1,
-		HQ  = 2,
-		AA  = 3,
-		A   = 4,
-		BA  = 5,
-		LQ  = 6,
-		VLQ = 7
-	};
+	static const int VHQ = 1;
+	static const int HQ  = 2;
+	static const int AA  = 3;
+	static const int A   = 4;
+	static const int BA  = 5;
+	static const int LQ  = 6;
+	static const int VLQ = 7;
 	int generateValue(int quality);
 	String toString();
 	bool inRange(int amount);

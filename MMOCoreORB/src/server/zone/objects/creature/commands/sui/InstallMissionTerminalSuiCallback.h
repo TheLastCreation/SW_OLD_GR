@@ -31,14 +31,12 @@ public:
 			return;
 
 		ManagedReference<CityRegion*> city = player->getCityRegion();
+
 		if (city == NULL)
 			return;
 
-		if (!city->isMayor(player->getObjectID()))
-			return;
-
-		if (city->getMissionTerminalCount() >= (int) city->getCityRank() * 3) {
-			player->sendSystemMessage("@city/city:no_more_mt"); // Your city can't support any more mission terminals at its current rank!
+		if (city->getMissionTerminalCount() >= (int) city->getCityRank() * 3){
+			player->sendSystemMessage("@city/city:no_more_mt");
 			return;
 		}
 
@@ -48,18 +46,8 @@ public:
 			return;
 
 		PlayerObject* ghost = player->getPlayerObject();
-		if (ghost == NULL)
-			return;
-
-		if (!ghost->hasAbility("installmissionterminal"))
-			return;
 
 		int option = Integer::valueOf(args->get(0).toString());
-
-		if ((option == 5 || option == 6) && !ghost->hasAbility("place_faction_terminal")) {
-			player->sendSystemMessage("@city/city:no_factional"); // You must have Martial Policy IV: Faction to place faction aligned mission terminals.
-			return;
-		}
 
 		String terminalTemplatePath = "";
 
@@ -87,8 +75,7 @@ public:
 		break;
 		}
 
-		if (terminalTemplatePath != "") {
-			Locker clocker(city, player);
+		if (terminalTemplatePath != ""){
 
 			if(city->getCityTreasury() < 1000){
 				StringIdChatParameter msg;
@@ -98,26 +85,16 @@ public:
 				return;
 			}
 
-			StructureObject* cityHall = city->getCityHall();
-			if (cityHall == NULL)
-				return;
-
 			ManagedReference<SceneObject*> sceneObject = ObjectManager::instance()->createObject(terminalTemplatePath.hashCode(), 1, "sceneobjects");
 
 			sceneObject->initializePosition(player->getWorldPositionX(), player->getWorldPositionZ(),player->getWorldPositionY());
 			sceneObject->rotate(player->getDirectionAngle());
+			zone->transferObject(sceneObject, -1, true);
 			city->addMissionTerminal(sceneObject);
 			city->subtractFromCityTreasury(1000);
 
-			clocker.release();
-
-			Locker clocker2(cityHall, player);
-
-			cityHall->addChildObject(sceneObject);
-			sceneObject->initializeChildObject(cityHall);
-
-			zone->transferObject(sceneObject, -1, true);
 		}
+
 	}
 };
 

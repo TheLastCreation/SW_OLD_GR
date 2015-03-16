@@ -51,7 +51,7 @@ giant_canyon_krayt_dragon = Creature:new {
 	conversationTemplate = "",
 	attacks = {
 		{"creatureareaattack",""},
-		{"creatureareaknockdown",""}
+		{"creatureareaknockdown","knockdownChance=50"}
 	}
 }
 

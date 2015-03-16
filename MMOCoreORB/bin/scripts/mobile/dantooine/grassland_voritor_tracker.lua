@@ -38,8 +38,8 @@ grassland_voritor_tracker = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"knockdownattack",""},
-		{"posturedownattack",""}
+		{"knockdownattack","knockdownChance=50"},
+		{"posturedownattack","postureDownChance=50"}
 	}
 }
 

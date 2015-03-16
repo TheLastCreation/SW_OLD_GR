@@ -32,8 +32,7 @@ reclusive_shear_mite = Creature:new {
 	weapons = {"creature_spit_small_yellow"},
 	conversationTemplate = "",
 	attacks = {
-		{"",""},
-		{"blindattack",""}
+		{"blindattack","blindChance=50"}
 	}
 }
 

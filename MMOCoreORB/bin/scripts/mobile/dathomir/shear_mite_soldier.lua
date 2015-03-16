@@ -33,7 +33,7 @@ shear_mite_soldier = Creature:new {
 	conversationTemplate = "",
 	attacks = {
 		{"mildpoison",""},
-		{"stunattack",""}
+		{"stunattack","stunChance=50"}
 	}
 }
 

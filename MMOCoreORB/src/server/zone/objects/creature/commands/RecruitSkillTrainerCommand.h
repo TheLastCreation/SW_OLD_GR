@@ -65,14 +65,11 @@ public:
 		if (!checkInvalidLocomotions(creature))
 			return INVALIDLOCOMOTION;
 
-		PlayerObject* ghost = creature->getPlayerObject();
-		if (ghost == NULL)
-			return GENERALERROR;
-
-		if (!ghost->hasAbility("recruitskilltrainer"))
+		if (!creature->hasSkill("social_politician_civic_02"))
 			return GENERALERROR;
 
 		ManagedReference<CityRegion*> city = creature->getCityRegion();
+
 		if (city == NULL)
 			return GENERALERROR;
 
@@ -82,7 +79,7 @@ public:
 		ManagedReference<SuiListBox*> suiTrainerType = new SuiListBox(creature, SuiWindowType::RECRUIT_SKILL_TRAINER, 0);
 		suiTrainerType->setCallback(new RecruitSkillTrainerSuiCallback(server->getZoneServer()));
 
-		suiTrainerType->setPromptTitle("@city/city:trainer_n"); // Recruit Skill Trainer
+		suiTrainerType->setPromptTitle("@city/city:trainer_n");
 		suiTrainerType->setPromptText("@city/city:trainer_d");
 
 		suiTrainerType->addMenuItem("@city/city:st_architect", 0);
@@ -119,7 +116,9 @@ public:
 		suiTrainerType->addMenuItem("@city/city:st_unarmed", 31);
 		suiTrainerType->addMenuItem("@city/city:st_weaponsmith", 32);
 
-		ghost->addSuiBox(suiTrainerType);
+
+
+		creature->getPlayerObject()->addSuiBox(suiTrainerType);
 		creature->sendMessage(suiTrainerType->generateMessage());
 
 		return SUCCESS;

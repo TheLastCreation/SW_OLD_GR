@@ -9,9 +9,11 @@ function options_bitmask_test:start()
 		return 0
 	end
 	
-	local pActiveArea1 = spawnActiveArea("simple", "object/active_area.iff", 0, 0, 0, 200, 0)
+	local pActiveArea1 = spawnSceneObject("simple", "object/active_area.iff", 0, 0, 0, 0, 0, 0, 0, 0)
 
 	if (pActiveArea1 ~= nil) then
+		local activeArea = LuaActiveArea(pActiveArea1)
+		activeArea:setRadius(200)
 		createObserver(ENTEREDAREA, "options_bitmask_test", "notifyEnteredArea1", pActiveArea1)
 	end
 
@@ -54,7 +56,7 @@ function options_bitmask_test:notifyEnteredArea1(pActiveArea, pMovingObject)
 		
 		if (pTangible == nil) then
 			printf("tangible is nil\n")
-			return 0
+			return
 		end
 		
 		local tangible = LuaTangibleObject(pTangible)
@@ -65,6 +67,4 @@ function options_bitmask_test:notifyEnteredArea1(pActiveArea, pMovingObject)
 			tangible:setOptionsBitmask(2^i)
 		end
 	end
-
-	return 0
 end

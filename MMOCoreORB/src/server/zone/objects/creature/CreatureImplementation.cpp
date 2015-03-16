@@ -450,11 +450,11 @@ void CreatureImplementation::setPetLevel(int newLevel) {
 	minDmg *= ratio;
 	maxDmg *= ratio;
 
-	if (readyWeapon != NULL) {
-		float mod = 1.f - 0.1f*float(readyWeapon->getArmorPiercing());
+	for (int i = 0; i < weapons.size(); ++i) {
+		WeaponObject* weao = weapons.get(i);
 
-		readyWeapon->setMinDamage(minDmg * mod);
-		readyWeapon->setMaxDamage(maxDmg * mod);
+		weao->setMinDamage(minDmg * 0.5);
+		weao->setMaxDamage(maxDmg * 0.5);
 	}
 
 	if (defaultWeapon != NULL) {

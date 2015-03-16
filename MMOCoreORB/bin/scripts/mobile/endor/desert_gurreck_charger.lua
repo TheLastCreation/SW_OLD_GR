@@ -33,7 +33,7 @@ desert_gurreck_charger = Creature:new {
 	conversationTemplate = "",
 	attacks = {
 		{"",""},
-		{"blindattack",""}
+		{"blindattack","blindChance=50"}
 	}
 }
 

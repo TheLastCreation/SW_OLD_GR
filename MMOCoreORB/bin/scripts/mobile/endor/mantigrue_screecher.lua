@@ -32,7 +32,7 @@ mantigrue_screecher = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"intimidationattack",""},
+		{"intimidationattack","intimidationChance=50"},
 		{"creatureareadisease",""}
 	}
 }

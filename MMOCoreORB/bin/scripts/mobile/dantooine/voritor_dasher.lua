@@ -35,11 +35,11 @@ voritor_dasher = Creature:new {
 			lootChance = 2100000
 		}
 	},
-	weapons = {"creature_spit_small_yellow"},
+	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"dizzyattack",""},
-		{"creatureareapoison",""}
+		{"creatureareapoison",""},
+		{"dizzyattack","dizzyChance=50"}
 	}
 }
 

@@ -31,8 +31,8 @@ blurrg_tracker = Creature:new {
 	weapons = {"creature_spit_small_yellow"},
 	conversationTemplate = "",
 	attacks = {
-		{"posturedownattack",""},
-		{"knockdownattack",""}
+		{"posturedownattack","postureDownChance=50"},
+		{"knockdownattack","knockdownChance=50"}
 	}
 }
 

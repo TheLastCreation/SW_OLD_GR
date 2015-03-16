@@ -32,7 +32,7 @@ deranged_ravisher = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"knockdownattack",""},
+		{"knockdownattack","knockdownChance=50"},
 		{"mediumdisease",""}
 	}
 }

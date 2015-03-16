@@ -392,7 +392,7 @@ public:
 			}
 		}
 
-		if (!creature->isInRange(targetCreature, range + creature->getTemplateRadius() + targetCreature->getTemplateRadius()))
+		if (!creature->isInRange(targetCreature, range))
 			return TOOFAR;
 
 		if (!canPerformSkill(creature, targetCreature, curePack))

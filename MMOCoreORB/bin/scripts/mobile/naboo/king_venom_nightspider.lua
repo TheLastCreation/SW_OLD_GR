@@ -32,7 +32,7 @@ king_venom_nightspider = Creature:new {
 	conversationTemplate = "",
 	attacks = {
 		{"mediumpoison",""},
-		{"stunattack",""}
+		{"stunattack","stunChance=50"}
 	}
 }
 

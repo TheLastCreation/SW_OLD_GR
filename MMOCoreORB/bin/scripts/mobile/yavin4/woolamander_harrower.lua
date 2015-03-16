@@ -38,8 +38,8 @@ woolamander_harrower = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"knockdownattack",""},
-		{"creatureareapoison",""}
+		{"creatureareapoison",""},
+		{"knockdownattack","knockdownChance=50"}
 	}
 }
 

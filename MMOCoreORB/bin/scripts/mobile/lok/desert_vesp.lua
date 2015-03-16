@@ -33,7 +33,7 @@ desert_vesp = Creature:new {
 	conversationTemplate = "",
 	attacks = {
 		{"strongpoison",""},
-		{"stunattack",""}
+		{"stunattack","stunChance=50"}
 	}
 }
 

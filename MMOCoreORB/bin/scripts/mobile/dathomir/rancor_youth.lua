@@ -47,8 +47,8 @@ rancor_youth = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"knockdownattack",""},
-		{"creatureareableeding",""}
+		{"creatureareableeding",""},
+		{"knockdownattack","knockdownChance=50"}
 	}
 }
 

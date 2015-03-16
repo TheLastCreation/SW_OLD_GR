@@ -47,8 +47,8 @@ nightsister_enraged_bull_rancor = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"knockdownattack",""},
-		{"creatureareaknockdown",""}
+		{"creatureareaknockdown","knockdownChance=30"},
+		{"knockdownattack","knockdownChance=50"}
 	}
 }
 

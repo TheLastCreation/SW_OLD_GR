@@ -32,8 +32,8 @@ loathsome_mangler = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"dizzyattack",""},
-		{"intimidationattack",""}
+		{"dizzyattack","dizzyChance=50"},
+		{"intimidationattack","intimidationChance=50"}
 	}
 }
 

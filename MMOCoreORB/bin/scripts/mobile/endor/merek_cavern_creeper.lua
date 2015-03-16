@@ -32,8 +32,8 @@ merek_cavern_creeper = Creature:new {
 	weapons = {"creature_spit_small_yellow"},
 	conversationTemplate = "",
 	attacks = {
-		{"blindattack",""},
-		{"intimidationattack",""}
+		{"blindattack","blindChance=50"},
+		{"intimidationattack","intimidationChance=50"}
 	}
 }
 

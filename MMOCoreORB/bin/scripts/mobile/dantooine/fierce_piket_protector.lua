@@ -31,8 +31,8 @@ fierce_piket_protector = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"dizzyattack",""},
-		{"blindattack",""}
+		{"dizzyattack","dizzyChance=50"},
+		{"blindattack","blindChance=50"}
 	}
 }
 

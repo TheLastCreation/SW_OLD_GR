@@ -82,9 +82,6 @@ class ChatManager extends ManagedService implements Logger {
 	@dereferenced 
 	private VectorMap<string, ChatRoom> gameRooms;
 
-	@dereferenced
-	protected VectorMap<unsigned int, string> socialTypes;
-
 	ChatRoom groupRoom;
 	ChatRoom guildRoom;
 	ChatRoom core3Room;
@@ -96,14 +93,6 @@ class ChatManager extends ManagedService implements Logger {
 	unsigned int roomID;
 
 	boolean mute;
-
-	@dereferenced
-	private transient VectorMap<string, unsigned int> spatialChatTypes;
-
-	@dereferenced
-	private transient VectorMap<unsigned int, short> spatialChatDistances;
-
-	private transient short defaultSpatialChatDistance;
 	
 	public static final int IM_SUCCESS = 0x00;
 	public static final int IM_OFFLINE = 0x04;
@@ -116,14 +105,10 @@ class ChatManager extends ManagedService implements Logger {
 	public native ChatManager(ZoneServer serv, int initsize);
 	
 	public native void finalize();
-
-	public native void loadSpatialChatTypes();
-
+	
 	public native void initiateRooms();
 	public native void initiatePlanetRooms();
 	public native void destroyRooms();
-
-	private native void loadSocialTypes();
 	
 	public native ChatRoom createRoom(final string roomName, ChatRoom parent = null);
 	
@@ -273,10 +258,5 @@ class ChatManager extends ManagedService implements Logger {
 	 */
 	public ChatRoom getGeneralRoom() {
 		return generalRoom;
-	}
-
-	@dirty
-	public string getSocialType(unsigned int id) {
-		return socialTypes.get(id);
 	}
 }

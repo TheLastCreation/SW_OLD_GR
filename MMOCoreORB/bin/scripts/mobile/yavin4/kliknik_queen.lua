@@ -38,7 +38,7 @@ kliknik_queen = Creature:new {
 	weapons = {"creature_spit_small_yellow"},
 	conversationTemplate = "",
 	attacks = {
-		{"dizzyattack",""},
+		{"dizzyattack","dizzyChance=50"},
 		{"mildpoison",""}
 	}
 }

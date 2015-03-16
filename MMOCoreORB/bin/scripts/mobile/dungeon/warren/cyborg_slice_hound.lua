@@ -31,8 +31,8 @@ cyborg_slice_hound = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"stunattack",""},
-		{"intimidationattack",""}
+		{"stunattack","stunChance=50"},
+		{"intimidationattack","intimidationChance=50"}
 	}
 }
 

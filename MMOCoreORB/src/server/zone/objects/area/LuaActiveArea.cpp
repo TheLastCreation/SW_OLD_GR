@@ -25,28 +25,16 @@ Luna<LuaActiveArea>::RegType LuaActiveArea::Register[] = {
 };
 
 LuaActiveArea::LuaActiveArea(lua_State *L) : LuaSceneObject(L) {
-#ifdef DYNAMIC_CAST_LUAOBJECTS
-	realObject = dynamic_cast<ActiveArea*>(_getRealSceneObject());
-
-	assert(!_getRealSceneObject() || realObject != NULL);
-#else
 	realObject = static_cast<ActiveArea*>(lua_touserdata(L, 1));
-#endif
 }
 
 LuaActiveArea::~LuaActiveArea(){
 }
 
 int LuaActiveArea::_setObject(lua_State* L) {
-	LuaSceneObject::_setObject(L);
-
-#ifdef DYNAMIC_CAST_LUAOBJECTS
-	realObject = dynamic_cast<ActiveArea*>(_getRealSceneObject());
-
-	assert(!_getRealSceneObject() || realObject != NULL);
-#else
 	realObject = static_cast<ActiveArea*>(lua_touserdata(L, -1));
-#endif
+
+	LuaSceneObject::_setObject(L);
 
 	return 0;
 }

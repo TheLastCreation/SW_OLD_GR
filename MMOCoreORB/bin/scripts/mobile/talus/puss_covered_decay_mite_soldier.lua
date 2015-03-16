@@ -29,10 +29,10 @@ puss_covered_decay_mite_soldier = Creature:new {
 	controlDeviceTemplate = "object/intangible/pet/bark_mite_hue.iff",
 	scale = 1.1,
 	lootGroups = {},
-	weapons = {"creature_spit_small_yellow"},
+	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"blindattack",""},
+		{"blindattack","blindChance=50"},
 		{"milddisease",""}
 	}
 }

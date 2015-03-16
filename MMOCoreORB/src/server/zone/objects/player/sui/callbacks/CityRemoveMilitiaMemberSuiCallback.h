@@ -31,7 +31,9 @@ class CityRemoveMilitiaMemberSuiCallback : public SuiCallback {
 	ManagedWeakReference<CityRegion*> cityRegion;
 
 public:
-	CityRemoveMilitiaMemberSuiCallback(ZoneServer* server, CityRegion* city) : SuiCallback(server) {
+	CityRemoveMilitiaMemberSuiCallback(ZoneServer* server, CityRegion* city)
+		: SuiCallback(server) {
+
 		cityRegion = city;
 	}
 

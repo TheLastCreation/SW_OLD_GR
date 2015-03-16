@@ -47,15 +47,16 @@ which carries forward this exception.
 
 #include "server/zone/objects/scene/SceneObject.h"
 
-class TransferForceCommand : public CombatQueueCommand {
+class TransferForceCommand : public QueueCommand {
 public:
 
 	TransferForceCommand(const String& name, ZoneProcessServer* server)
-		: CombatQueueCommand(name, server) {
+		: QueueCommand(name, server) {
 
 	}
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
+
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
 
@@ -66,55 +67,53 @@ public:
 			return NOJEDIARMOR;
 		}
 
+		// Fail if target is not a player...
+
 		ManagedReference<SceneObject*> object = server->getZoneServer()->getObject(target);
 
-		// Fail if target is not a player...
-		if (object == NULL || !object->isPlayerCreature())
+		if (object == NULL || !object->isCreatureObject())
 			return INVALIDTARGET;
 
 		CreatureObject* targetCreature = cast<CreatureObject*>( object.get());
 
-		if (targetCreature == NULL || targetCreature->isDead() || targetCreature->isIncapacitated())
+		if (targetCreature == NULL)
 			return INVALIDTARGET;
 
 		Locker clocker(targetCreature, creature);
 
 		ManagedReference<PlayerObject*> targetGhost = targetCreature->getPlayerObject();
-		ManagedReference<PlayerObject*> playerGhost = creature->getPlayerObject();
+		ManagedReference<PlayerObject*> playerObject = creature->getPlayerObject();
 
-		if (targetGhost == NULL || playerGhost == NULL)
+		if (targetGhost == NULL || playerObject == NULL)
 			return GENERALERROR;
+
+		if (targetCreature->isAiAgent() || targetCreature->isDead())
+			return INVALIDTARGET;
 			
 		if (!CollisionManager::checkLineOfSight(creature, targetCreature)) {
 			creature->sendSystemMessage("@container_error_message:container18");
 			return GENERALERROR;	
 		}			
 			
-		if (!creature->isInRange(targetCreature, range + targetCreature->getTemplateRadius() + creature->getTemplateRadius()))
+		if (!creature->isInRange(targetCreature, 32))
 			return TOOFAR;
 			
-		int maxTransfer = damage; //Value set in command lua
-		if (playerGhost->getForcePower() < maxTransfer) {
+		if (playerObject->getForcePower() < 200) {
 			creature->sendSystemMessage("@jedi_spam:no_force_power"); //You do not have enough force to do that.
 			return GENERALERROR;
-		}
+		}			
+			
+		if (targetGhost->getForcePower() >= targetGhost->getForcePowerMax())
+			return GENERALERROR;	
 			
 		if (targetCreature->isHealableBy(creature)) {
-			int forceSpace = targetGhost->getForcePowerMax() - targetGhost->getForcePower();
-			if (forceSpace <= 0)
-				return GENERALERROR;
-
-			int forceTransfer = forceSpace >= maxTransfer ? maxTransfer : forceSpace;
-			targetGhost->setForcePower(targetGhost->getForcePower() + forceTransfer);
-			playerGhost->setForcePower(playerGhost->getForcePower() - forceTransfer);
-
-			creature->doCombatAnimation(targetCreature, animationCRC, 0x1, 0xFF);
-			CombatManager::instance()->broadcastCombatSpam(creature, targetCreature, NULL, forceTransfer, "cbt_spam", combatSpam, 0);
-
-			return SUCCESS;
+			targetGhost->setForcePower(targetGhost->getForcePower() + 200);
+			playerObject->setForcePower(playerObject->getForcePower() - 200);
+			
+			creature->doCombatAnimation(targetCreature,String("force_transfer_1").hashCode(),0,0xFF);
 		}
 
-		return GENERALERROR;
+		return SUCCESS;
 	}
 
 	float getCommandDuration(CreatureObject* object, const UnicodeString& arguments) {

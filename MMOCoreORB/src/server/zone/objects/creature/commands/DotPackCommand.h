@@ -68,15 +68,20 @@ public:
 			objectId = 0;
 	}
 
-	bool checkTarget(CreatureObject* creature, CreatureObject* targetCreature, uint32 dotType) {
+	bool checkTarget(CreatureObject* creature, CreatureObject* targetCreature) {
 		if (!targetCreature->isAttackableBy(creature))
 			return false;
+		/*else if (targetCreature->isPlayingMusic())
+			targetCreature->stopPlayingMusic();
+		else if (targetCreature->isDancing())
+			targetCreature->stopDancing();
+		 */
 
-		if (targetCreature->hasDotImmunity(dotType))
-			return false;
+		PlayerManager* playerManager = server->getPlayerManager();
 
-		if (creature != targetCreature && !CollisionManager::checkLineOfSight(creature, targetCreature))
+		if (creature != targetCreature && !CollisionManager::checkLineOfSight(creature, targetCreature)) {
 			return false;
+		}
 
 		return true;
 	}
@@ -129,8 +134,9 @@ public:
 					if (!creatureTarget->isAttackableBy(creature))
 						continue;
 
-					if (checkTarget(creature, creatureTarget, pharma->getDotType()))
+					if (checkTarget(creature, creatureTarget)) {
 						doAreaMedicActionTarget(creature, creatureTarget, pharma);
+					}
 
 				} catch (Exception& e) {
 				}
@@ -230,7 +236,13 @@ public:
 			return INSUFFICIENTHAM;
 
 		ManagedReference<SceneObject*> object = server->getZoneServer()->getObject(target);
-		if (object == NULL || !object->isCreatureObject() || creature == object)
+
+		if (object != NULL && !object->isCreatureObject()) {
+			return INVALIDTARGET;
+		} else if (object == NULL)
+			return INVALIDTARGET;
+
+		if (creature == object)
 			return INVALIDTARGET;
 
 		uint64 objectId = 0;
@@ -247,10 +259,9 @@ public:
 		if (dotPack == NULL)
 			return GENERALERROR;
 
-		PlayerManager* playerManager = server->getPlayerManager();
-		CombatManager* combatManager = CombatManager::instance();
+		CreatureObject* creatureTarget = cast<CreatureObject*>( object.get());
 
-		CreatureObject* creatureTarget = cast<CreatureObject*>(object.get());
+		PlayerManager* playerManager = server->getPlayerManager();
 
 		if (creature != creatureTarget && !CollisionManager::checkLineOfSight(creature, creatureTarget)) {
 			creature->sendSystemMessage("@container_error_message:container18");
@@ -259,15 +270,15 @@ public:
 
 		int	range = int(dotPack->getRange() + creature->getSkillMod("healing_range") / 100 * 14);
 
-		if (creature != creatureTarget && !creature->isInRange(creatureTarget, range + creatureTarget->getTemplateRadius() + creature->getTemplateRadius())){
+		if (creature != creatureTarget && !creature->isInRange(creatureTarget, range)){
 			creature->sendSystemMessage("@error_message:target_out_of_range"); //Your target is out of range for this action.
 			return TOOFAR;
 		}
 		//timer
 		if (!creature->checkCooldownRecovery(skillName)) {
 			creature->sendSystemMessage("@healing_response:healing_must_wait"); //You must wait before you can do that.
-			return GENERALERROR;
 
+			return GENERALERROR;
 		} else {
 			float modSkill = (float)creature->getSkillMod("healing_range_speed");
 			int delay = (int)round(12.0f - (6.0f * modSkill / 100 ));
@@ -290,43 +301,38 @@ public:
 
 		Locker clocker(creatureTarget, creature);
 
-		if (!combatManager->startCombat(creature, creatureTarget))
+		if (!CombatManager::instance()->startCombat(creature, creatureTarget))
 			return INVALIDTARGET;
 
 		applyCost(creature, cost);
 
 		int dotPower = dotPack->calculatePower(creature);
+
 		int dotDMG = 0;
-
 		if (dotPack->isPoisonDeliveryUnit()) {
-			if (!creatureTarget->hasDotImmunity(dotPack->getDotType())) {
-				StringIdChatParameter stringId("healing", "apply_poison_self");
-				stringId.setTT(creatureTarget->getObjectID());
+			StringIdChatParameter stringId("healing", "apply_poison_self");
+			stringId.setTT(creatureTarget->getObjectID());
 
-				creature->sendSystemMessage(stringId);
+			creature->sendSystemMessage(stringId);
 
-				StringIdChatParameter stringId2("healing", "apply_poison_other");
-				stringId2.setTU(creature->getObjectID());
+			StringIdChatParameter stringId2("healing", "apply_poison_other");
+			stringId2.setTU(creature->getObjectID());
 
-				creatureTarget->sendSystemMessage(stringId2);
+			creatureTarget->sendSystemMessage(stringId2);
 
-				dotDMG = creatureTarget->addDotState(creature, CreatureState::POISONED, dotPack->getServerObjectCRC(), dotPower, dotPack->getPool(), dotPack->getDuration(), dotPack->getPotency(), creatureTarget->getSkillMod("resistance_poison") + creatureTarget->getSkillMod("poison_disease_resist"));
-			}
-
+			dotDMG = creatureTarget->addDotState(creature, CreatureState::POISONED, dotPack->getServerObjectCRC(), dotPower, dotPack->getPool(), dotPack->getDuration(), dotPack->getPotency(), creatureTarget->getSkillMod("resistance_poison") + creatureTarget->getSkillMod("poison_disease_resist"));
 		} else {
-			if (!creatureTarget->hasDotImmunity(dotPack->getDotType())) {
-				StringIdChatParameter stringId("healing", "apply_disease_self");
-				stringId.setTT(creatureTarget->getObjectID());
+			StringIdChatParameter stringId("healing", "apply_disease_self");
+			stringId.setTT(creatureTarget->getObjectID());
 
-				creature->sendSystemMessage(stringId);
+			creature->sendSystemMessage(stringId);
 
-				StringIdChatParameter stringId2("healing", "apply_disease_other");
-				stringId2.setTU(creature->getObjectID());
+			StringIdChatParameter stringId2("healing", "apply_disease_other");
+			stringId2.setTU(creature->getObjectID());
 
-				creatureTarget->sendSystemMessage(stringId2);
+			creatureTarget->sendSystemMessage(stringId2);
 
-				dotDMG = creatureTarget->addDotState(creature, CreatureState::DISEASED, dotPack->getServerObjectCRC(), dotPower, dotPack->getPool(), dotPack->getDuration(), dotPack->getPotency(), creatureTarget->getSkillMod("resistance_disease") + creatureTarget->getSkillMod("poison_disease_resist"));
-			}
+			dotDMG = creatureTarget->addDotState(creature, CreatureState::DISEASED, dotPack->getServerObjectCRC(), dotPower, dotPack->getPool(), dotPack->getDuration(), dotPack->getPotency(), creatureTarget->getSkillMod("resistance_disease") + creatureTarget->getSkillMod("poison_disease_resist"));
 		}
 
 		if (dotDMG) {

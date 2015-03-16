@@ -31,7 +31,7 @@ bloodseeker_mite_guardian = Creature:new {
 	weapons = {"creature_spit_small_red"},
 	conversationTemplate = "",
 	attacks = {
-		{"stunattack",""},
+		{"stunattack","stunChance=50"},
 		{"strongdisease",""}
 	}
 }

@@ -1,20 +1,20 @@
-DathomirSarlaccScreenPlay = ScreenPlay:new {
+DathominrSarlaccScreenPlay = ScreenPlay:new {
 	numberOfActs = 1,
 
-	screenplayName = "DathomirSarlaccScreenPlay",
+	screenplayName = "DathominrSarlaccScreenPlay",
 
 }
 
-registerScreenPlay("DathomirSarlaccScreenPlay", true)
+registerScreenPlay("DathominrSarlaccScreenPlay", true)
 
-function DathomirSarlaccScreenPlay:start()
+function DathominrSarlaccScreenPlay:start()
 	if (isZoneEnabled("dathomir")) then
 		self:spawnMobiles()
 
 	end
 end
 
-function DathomirSarlaccScreenPlay:spawnMobiles()
+function DathominrSarlaccScreenPlay:spawnMobiles()
 
 	spawnMobile("dathomir", "mutant_rancor", 360, -2096.8, 29.2, 3186.8, -40, 0)
 	spawnMobile("dathomir", "mutant_rancor", 360, -2077.2, 41.8, 3249.2, 0, 0)

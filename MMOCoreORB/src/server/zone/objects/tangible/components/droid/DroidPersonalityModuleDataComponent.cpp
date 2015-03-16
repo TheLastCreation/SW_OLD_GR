@@ -70,12 +70,9 @@ void DroidPersonalityModuleDataComponent::initializeTransientMembers() {
 	}
 	personalityBase = moduleTemplate->getReactionName();
 	chipName = moduleTemplate->getChipName();
-	convoTemplate = moduleTemplate->getConversationTemplate();
-	personalityStf = moduleTemplate->getPersonalityStf();
 }
 void DroidPersonalityModuleDataComponent::initialize(CreatureObject* droid) {
 	// do we need to change any droid stats: no
-	// when instaled we get converse options.
 }
 void DroidPersonalityModuleDataComponent::fillAttributeList(AttributeListMessage* alm, CreatureObject* droid) {
 	alm->insertAttribute("personality_module", chipName);
@@ -93,18 +90,11 @@ String DroidPersonalityModuleDataComponent::toString(){
 	return BaseDroidModuleComponent::toString();
 }
 void DroidPersonalityModuleDataComponent::onCall() {
-
 	ManagedReference<DroidObject*> droid = getDroidObject();
 	if( droid == NULL ){
 		info( "Droid is null" );
 		return;
 	}
-	if (convoTemplate.hashCode() > 0) {
-		droid->setOptionBit(OptionBitmask::CONVERSE,true);
-	} else {
-		droid->clearOptionBit(OptionBitmask::CONVERSE,true);
-	}
-
 	if (observer == NULL) {
 		observer = new DroidPersonalityObserver(this);
 		observer->deploy();
@@ -161,25 +151,15 @@ void DroidPersonalityModuleDataComponent::notifyEvent(unsigned int eventType, Ma
 					message << "hi_";
 				else
 					message << "bye_";
-				// reaction should be based on faction alignment.
-				int droidFaction = droid->getFaction();
-				SceneObject* sceno = dynamic_cast<SceneObject*>(arg1);
-				int inputFaction = droidFaction;
-				bool aggressive = false;
-				if (sceno != NULL) {
-					CreatureObject* target = dynamic_cast<CreatureObject*>(sceno);
-					inputFaction = target->getFaction();
-					if (target->isAttackableBy(droid)) // attackable checks pet owner for npc to npc quips, is aggressiveTo doesnt.
-						aggressive = true;
-				}
 				String responseAttitude;
 				if (responseAttitude == "") {
-					if (inputFaction == droidFaction)
-						responseAttitude = "nice";
-					else if (aggressive)
+					short type = System::random(2);
+					if (type == 0)
 						responseAttitude = "mean";
-					else
+					else if (type == 1)
 						responseAttitude = "mid";
+					else
+						responseAttitude = "nice";
 				}
 				if (forced) {
 					responseAttitude = "nice";
@@ -229,7 +209,4 @@ void DroidPersonalityModuleDataComponent::notifyEvent(unsigned int eventType, Ma
 
 String DroidPersonalityModuleDataComponent::getPersonalityBase() {
 	return personalityBase;
-}
-uint32 DroidPersonalityModuleDataComponent::getPersonalityConversationTemplate() {
-	return convoTemplate.hashCode();
 }

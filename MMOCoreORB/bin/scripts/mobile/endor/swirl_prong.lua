@@ -31,8 +31,8 @@ swirl_prong = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"stunattack",""},
-		{"knockdownattack",""}
+		{"knockdownattack","knockdownChance=50"},
+		{"stunattack","stunChance=50"}
 	}
 }
 

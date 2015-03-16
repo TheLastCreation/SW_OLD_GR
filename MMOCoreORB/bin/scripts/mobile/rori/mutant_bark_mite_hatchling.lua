@@ -31,7 +31,7 @@ mutant_bark_mite_hatchling = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"blindattack",""}
+		{"blindattack","blindChance=50"}
 	}
 }
 

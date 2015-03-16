@@ -50,7 +50,7 @@ juvenile_canyon_krayt_dragon = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"posturedownattack",""},
+		{"posturedownattack","postureDownChance=50"},
 		{"creatureareaattack",""}
 	}
 }

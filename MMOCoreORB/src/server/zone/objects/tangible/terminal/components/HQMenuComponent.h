@@ -15,16 +15,17 @@
 class HQMenuComponent : public ObjectMenuComponent {
 protected:
 
-	enum {
-		MAKEREBEL     = 222,
-		MAKEIMPERIAL  = 223,
-		// 37 is something in the objectcontroller
-		MAKENEUTRAL   = 224,
-		DESTROY       = 225,
-		ABORTSHUTDOWN = 226,
+	static const int MAKEREBEL = 222;
+	static const int MAKEIMPERIAL = 223;
+	// 37 is something in the objectcontroller
+	static const int MAKENEUTRAL = 224;
+	static const int DESTROY = 225;
+	static const int ABORTSHUTDOWN = 226;
 
-		JAMUPLINK     = 227
-	};
+	static const int JAMUPLINK = 227;
+
+
+
 
 public:
 
@@ -46,6 +47,8 @@ public:
 	 */
 	 int handleObjectMenuSelect(SceneObject* sceneObject, CreatureObject* player, byte selectedID);
 };
+
+
 
 
 #endif /* HQMENUCOMPONENT_H_ */

@@ -31,7 +31,7 @@ borgle_life_sapper = Creature:new {
 	weapons = {"creature_spit_small_red"},
 	conversationTemplate = "",
 	attacks = {
-		{"posturedownattack",""},
+		{"posturedownattack","postureDownChance=50"},
 		{"mediumpoison",""}
 	}
 }

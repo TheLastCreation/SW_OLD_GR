@@ -93,22 +93,18 @@ class MeshAppearanceTemplate : public AppearanceTemplate {
 	//Vector<Triangle> triangles;
 
 	AABBTree* aabbTree;
-	Sphere* boundingSphere;
+
 	//String file;
 
 public:
 	MeshAppearanceTemplate() {
 		aabbTree = NULL;
 		meshes = NULL;
-		boundingSphere = NULL;
 	}
 
 	~MeshAppearanceTemplate() {
 		delete aabbTree;
 		aabbTree = NULL;
-
-		delete boundingSphere;
-		boundingSphere = NULL;
 	}
 
 	void createAABB();
@@ -138,10 +134,6 @@ public:
 
 	inline AABBTree* getAABBTree() {
 		return aabbTree;
-	}
-
-	inline Sphere* getBoundingSphere() {
-		return boundingSphere;
 	}
 
 };

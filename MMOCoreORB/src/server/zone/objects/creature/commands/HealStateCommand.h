@@ -276,7 +276,7 @@ public:
 		if (!canPerformSkill(creature, creatureTarget, statePack))
 			return GENERALERROR;
 
-		if (!creatureTarget->isInRange(creature, range + creatureTarget->getTemplateRadius() + creature->getTemplateRadius()))
+		if (!creatureTarget->isInRange(creature, range))
 			return TOOFAR;
 
 		PlayerManager* playerManager = server->getPlayerManager();

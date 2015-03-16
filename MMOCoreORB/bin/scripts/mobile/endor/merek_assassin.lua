@@ -32,7 +32,7 @@ merek_assassin = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"dizzyattack",""},
+		{"dizzyattack","dizzyChance=50"},
 		{"strongpoison",""}
 	}
 }

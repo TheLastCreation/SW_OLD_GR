@@ -71,12 +71,9 @@ protected:
 	uint32 unitsHarvested;  /// Number of units already mined
 
 public:
-	enum {
-		HIGHDENSITY   = 1,
-		MEDIUMDENSITY = 2,
-		LOWDENSITY    = 3
-	};
-		
+	static const short HIGHDENSITY = 1;
+	static const short MEDIUMDENSITY = 2;
+	static const short LOWDENSITY = 3;
 
 public:
 	SpawnDensityMap() : Object(), Serializable() {

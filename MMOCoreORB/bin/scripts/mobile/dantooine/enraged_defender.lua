@@ -32,8 +32,8 @@ enraged_defender = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"posturedownattack",""},
-		{"blindattack",""}
+		{"posturedownattack","postureDownChance=50"},
+		{"blindattack","blindChance=50"}
 	}
 }
 

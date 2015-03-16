@@ -99,7 +99,6 @@ namespace server {
 		static int dropObserver(lua_State* L);
 		static int spawnMobile(lua_State* L);
 		static int spawnSceneObject(lua_State* L);
-		static int spawnActiveArea(lua_State* L);
 		static int spawnBuilding(lua_State* L);
 		static int destroyBuilding(lua_State* L);
 		static int createLoot(lua_State* L);
@@ -155,7 +154,6 @@ namespace server {
 		static int getQuestStatus(lua_State* L);
 		static int removeQuestStatus(lua_State* L);
 		static int getControllingFaction(lua_State* L);
-		static int playClientEffectLoc(lua_State* L);
 
 	private:
 		void setupLuaPackagePath(Lua* luaEngine);

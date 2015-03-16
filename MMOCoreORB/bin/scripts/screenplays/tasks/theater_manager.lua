@@ -46,8 +46,9 @@ function TheaterManagerScreenPlay:spawnAudition(pPlayer)
 			judge:setState(STATESITTINGONCHAIR)
 			writeData(player:getObjectID() .. ":judge3ID", judge:getObjectID())
 		end)
-		local pAuditionArea = spawnActiveArea("naboo", "object/active_area.iff", -5791.9, 8.1, 4235.9, 7, 0)
+		local pAuditionArea = spawnSceneObject("naboo", "object/active_area.iff", -5791.9, 8.1, 4235.9, 0, 0, 0, 0, 0)
 		ObjectManager.withActiveArea(pAuditionArea, function(auditionArea)
+			auditionArea:setRadius(7)
 			writeData(player:getObjectID() .. ":auditionAreaID", auditionArea:getObjectID())
 			writeData(auditionArea:getObjectID() .. ":ownerID", player:getObjectID())
 			createObserver(ENTEREDAREA, "TheaterManagerScreenPlay", "notifyEnteredAuditionArea", pAuditionArea)
@@ -60,42 +61,28 @@ function TheaterManagerScreenPlay:spawnAudition(pPlayer)
 end
 
 function TheaterManagerScreenPlay:notifyEnteredAuditionArea(pActiveArea, pPlayer)
-	if not SceneObject(pPlayer):isCreatureObject() then
-		return 0
-	end
-
-	return ObjectManager.withActiveArea(pActiveArea, function(activeArea)
-		return ObjectManager.withCreatureObject(pPlayer, function(player)
+	ObjectManager.withActiveArea(pActiveArea, function(activeArea)
+		ObjectManager.withCreatureObject(pPlayer, function(player)
 			local playerID = player:getObjectID()
 			local areaOwnerID = readData(activeArea:getObjectID() .. ":ownerID")
 			if (playerID == areaOwnerID) then
 				writeData(player:getObjectID() .. ":inAuditionArea", 1)
-				return 0
 			end
-
-			return 0
 		end)
 	end)
 end
 
 function TheaterManagerScreenPlay:notifyExitedAuditionArea(pActiveArea, pPlayer)
-	if not SceneObject(pPlayer):isCreatureObject() then
-		return 0
-	end
-
-	return ObjectManager.withActiveArea(pActiveArea, function(activeArea)
-		return ObjectManager.withCreatureObject(pPlayer, function(player)
+	ObjectManager.withActiveArea(pActiveArea, function(activeArea)
+		ObjectManager.withCreatureObject(pPlayer, function(player)
 			local playerID = player:getObjectID()
 			local areaOwnerID = readData(activeArea:getObjectID() .. ":ownerID")
 			if (playerID == areaOwnerID) then
 				writeData(player:getObjectID() .. ":inAuditionArea", 0)
 				if (readData(player:getObjectID() .. ":auditionPhase") ~= nil and readData(player:getObjectID() .. ":auditionPhase") ~= 0) then
 					self:failAudition(pPlayer, "fail_left_audition_area")
-					return 1
 				end
 			end
-
-			return 0
 		end)
 	end)
 end
@@ -184,10 +171,6 @@ function TheaterManagerScreenPlay:checkPerformanceStatus(pPlayer)
 end
 
 function TheaterManagerScreenPlay:notifyPerformanceObserver(pPlayer, pPlayer2)
-	if not SceneObject(pPlayer):isPlayerCreature() then
-		return 0
-	end
-
 	ObjectManager.withCreatureAndPlayerObject(pPlayer, function(player, playerObject)
 		local auditionType = readData(player:getObjectID() .. ":auditionType")
 		local expectedPerformance = readData(player:getObjectID() .. ":expectedPerformance")
@@ -197,24 +180,16 @@ function TheaterManagerScreenPlay:notifyPerformanceObserver(pPlayer, pPlayer2)
 			dropObserver(CHANGEENTERTAIN, pPlayer)
 		end
 	end)
-
-	return 0
 end
 
 function TheaterManagerScreenPlay:notifyFlourishObserver(pPlayer, pPlayer2, flourishID)
-	if not SceneObject(pPlayer):isPlayerCreature() then
-		return 0
-	end
-
-	return ObjectManager.withCreatureAndPlayerObject(pPlayer, function(player, playerObject)
+	ObjectManager.withCreatureAndPlayerObject(pPlayer, function(player, playerObject)
 		local auditionType = readData(player:getObjectID() .. ":auditionType")
 		local expectedPerformance = readData(player:getObjectID() .. ":expectedPerformance")
 		if (flourishID == expectedPerformance) then
 			writeData(player:getObjectID() .. ":performanceCompleted", 1)
-			return 1
+			dropObserver(FLOURISH, pPlayer)
 		end
-
-		return 0
 	end)
 end
 
@@ -528,10 +503,6 @@ function TheaterManagerScreenPlay:completePromotionPhase(pPlayer)
 end
 
 function TheaterManagerScreenPlay:notifyPromotionObserver(pPlayer, pEntertained)
-	if not SceneObject(pPlayer):isCreatureObject() or not SceneObject(pEntertained):isCreatureObject() then
-		return 0
-	end
-
 	return ObjectManager.withCreatureObject(pPlayer, function(player)
 		return ObjectManager.withCreatureObject(pEntertained, function(entertainedPlayer)
 			local series = self:getCurrentSeries(pPlayer)
@@ -558,8 +529,6 @@ function TheaterManagerScreenPlay:notifyPromotionObserver(pPlayer, pEntertained)
 					player:sendSystemMessage("You are entertaining " .. entertainedPlayer:getFirstName() .. ". You must entertain " .. (requiredPromotions - currentPromotions) .. " more people to achieve Popularity Rank Three.")
 				end
 			end
-
-			return 0
 		end)
 	end)
 end

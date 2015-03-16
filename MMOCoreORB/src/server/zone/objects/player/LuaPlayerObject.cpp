@@ -64,28 +64,16 @@ Luna<LuaPlayerObject>::RegType LuaPlayerObject::Register[] = {
 
 
 LuaPlayerObject::LuaPlayerObject(lua_State *L) : LuaIntangibleObject(L) {
-#ifdef DYNAMIC_CAST_LUAOBJECTS
-	realObject = dynamic_cast<PlayerObject*>(_getRealSceneObject());
-
-	assert(!_getRealSceneObject() || realObject != NULL);
-#else
-	realObject = reinterpret_cast<PlayerObject*>(lua_touserdata(L, 1));
-#endif
+	realObject = (PlayerObject*)lua_touserdata(L, 1);
 }
 
 LuaPlayerObject::~LuaPlayerObject() {
 }
 
 int LuaPlayerObject::_setObject(lua_State* L) {
-	LuaIntangibleObject::_setObject(L);
-
-#ifdef DYNAMIC_CAST_LUAOBJECTS
-	realObject = dynamic_cast<PlayerObject*>(_getRealSceneObject());
-
-	assert(!_getRealSceneObject() || realObject != NULL);
-#else
 	realObject = (PlayerObject*)lua_touserdata(L, -1);
-#endif
+
+	LuaIntangibleObject::_setObject(L);
 
 	return 0;
 }

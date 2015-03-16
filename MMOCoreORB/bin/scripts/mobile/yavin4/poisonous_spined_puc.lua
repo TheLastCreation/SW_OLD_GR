@@ -33,7 +33,7 @@ poisonous_spined_puc = Creature:new {
 	conversationTemplate = "",
 	attacks = {
 		{"strongpoison",""},
-		{"stunattack",""}
+		{"stunattack","stunChance=50"}
 	}
 }
 

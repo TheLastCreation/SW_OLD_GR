@@ -31,8 +31,8 @@ rancid_remmer_warrior = Creature:new {
 	weapons = {"creature_spit_small_red"},
 	conversationTemplate = "",
 	attacks = {
-		{"stunattack",""},
-		{"posturedownattack",""}
+		{"posturedownattack","postureDownChance=50"},
+		{"stunattack","stunChance=50"}
 	}
 }
 

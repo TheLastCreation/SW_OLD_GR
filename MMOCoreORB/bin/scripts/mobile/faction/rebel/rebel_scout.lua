@@ -34,7 +34,6 @@ rebel_scout = Creature:new {
 	lootGroups = {},
 	weapons = {"rebel_weapons_light"},
 	reactionStf = "@npc_reaction/military",
-	personalityStf = "@hireling/hireling_military",			
 	attacks = merge(brawlermid,marksmanmid)
 }
 

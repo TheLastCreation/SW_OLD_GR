@@ -38,8 +38,8 @@ giant_kimogila = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"creatureareaknockdown",""},
-		{"dizzyattack",""}
+		{"creatureareaknockdown","knockdownChance=50"},
+		{"dizzyattack","dizzyChance=50"}
 	}
 }
 

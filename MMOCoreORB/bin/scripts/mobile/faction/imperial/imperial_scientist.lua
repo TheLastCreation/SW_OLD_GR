@@ -35,7 +35,6 @@ imperial_scientist = Creature:new {
 	lootGroups = {},
 	weapons = {},
 	reactionStf = "@npc_reaction/military",
-	personalityStf = "@hireling/hireling_military",	
 	attacks = brawlernovice
 }
 

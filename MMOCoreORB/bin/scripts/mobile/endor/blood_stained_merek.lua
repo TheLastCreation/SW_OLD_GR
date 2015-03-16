@@ -32,7 +32,7 @@ blood_stained_merek = Creature:new {
 	weapons = {"creature_spit_small_red"},
 	conversationTemplate = "",
 	attacks = {
-		{"knockdownattack",""}
+		{"knockdownattack","knockdownChance=50"}
 	}
 }
 

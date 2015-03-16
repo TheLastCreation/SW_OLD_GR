@@ -32,7 +32,7 @@ gaping_spider_queen = Creature:new {
 	weapons = {"creature_spit_small_toxicgreen"},
 	conversationTemplate = "",
 	attacks = {
-		{"knockdownattack",""},
+		{"knockdownattack","knockdownChance=50"},
 		{"mediumpoison",""}
 	}
 }

@@ -111,11 +111,6 @@ public:
 		insertShort(value);
 	}
 
-	void updateAlternateAppearance() {
-		startUpdate(0x10);
-		insertAscii(creo->getAlternateAppearance());
-	}
-
 	/*
 
 	void updateInviterId() {
@@ -125,6 +120,11 @@ public:
 		insertLong(creo->getNewGroupInviteCounter());
 	}
 
+
+
+
+
+
 	void updateInstrumentID(int value) {
 		startUpdate(0x0C);
 		insertInt(value);
@@ -133,6 +133,11 @@ public:
 	void updateMoodAnimation(String value) {
 		startUpdate(0x04);
 		insertAscii(value);
+	}
+
+	void updateTemplateString() {
+		startUpdate(0x10);
+		insertAscii(creo->getTemplateString());
 	}
 
 	void setFrozen(bool frozen) {

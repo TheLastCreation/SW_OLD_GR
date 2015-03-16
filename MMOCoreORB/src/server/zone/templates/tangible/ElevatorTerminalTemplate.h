@@ -14,11 +14,9 @@ class ElevatorTerminalTemplate : public SharedTangibleObjectTemplate {
 	byte movementType;
 
 public:
-	enum {
-		UPONLY    = 0x00,
-		DOWNONLY  = 0x01,
-		UPANDDOWN = 0x02
-	};
+	static const byte UPONLY = 0x00;
+	static const byte DOWNONLY = 0x01;
+	static const byte UPANDDOWN = 0x02;
 
 public:
 	ElevatorTerminalTemplate() {

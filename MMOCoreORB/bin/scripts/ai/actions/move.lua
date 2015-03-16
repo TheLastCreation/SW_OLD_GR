@@ -10,7 +10,7 @@ function MoveBase:checkConditions(pAgent)
 		if (creature:getPosture() == UPRIGHT and agent:setDestination() > 0) then
 			if agent:shouldRetreat(200) then 
 				agent:clearCombatState(true)
-				agent:leash()
+				agent:setOblivious()
 				return false
 			end
 			return true

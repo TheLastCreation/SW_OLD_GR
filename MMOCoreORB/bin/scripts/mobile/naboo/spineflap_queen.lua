@@ -31,7 +31,7 @@ spineflap_queen = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"knockdownattack",""},
+		{"knockdownattack","knockdownChance=50"},
 		{"mediumpoison",""}
 	}
 }

@@ -31,8 +31,8 @@ feral_forest_mite_king = Creature:new {
 	weapons = {"creature_spit_small_yellow"},
 	conversationTemplate = "",
 	attacks = {
-		{"blindattack",""},
-		{"dizzyattack",""}
+		{"blindattack","blindChance=50"},
+		{"dizzyattack","dizzyChance=50"}
 	}
 }
 

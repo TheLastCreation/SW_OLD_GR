@@ -32,8 +32,8 @@ gurreck = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"posturedownattack",""},
-		{"intimidationattack",""}
+		{"posturedownattack","postureDownChance=50"},
+		{"intimidationattack","intimidationChance=50"}
 	}
 }
 
