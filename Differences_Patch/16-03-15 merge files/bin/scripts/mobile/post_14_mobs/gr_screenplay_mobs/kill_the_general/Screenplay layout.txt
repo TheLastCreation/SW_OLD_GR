@@ -1,0 +1,46 @@
+Title - Kill the General
+
+
+
+
+Brief plot outline.
+
+	It has come to the attention of the Emperor that a former Droid General who was thought to have been destroyed, has either been repaired or reactivated along with a substantial number of relic clone army droids and has started raiding Loyal Imperial forces, stealing supplies and abducting personnel.
+	You must gather information as to the whereabouts of this general and his pitiful little band, report your findings about their activities.
+
+
+Target Distance 800m
+
+Starting Planet & Location
+
+Mission NPC's
+
+	NPC.1  - Emperor Palpatine Hologram
+	
+	
+		Mission 1. Type & Plot - 1 Emperor - Assasinate get data disk stolen from murdered imp spy - details of droids attaking couriers
+
+	
+
+			
+			
+		Mission 2. Type & Plot - 2 Emperor - Deliver - plans to imp spy 
+
+
+
+		Mission 3. Type & Plot - Escort - Imp captured captain back to emperor for debrief.
+	
+	
+			 - Kaadara Imp Bunker - Escort Mission
+		
+				Destroy the abductors of an Imperial subject and escort captured Imperial Captain back to the Emperor for Debriefing.
+				
+				"They overran our outpost, stole some equipment and kidnapped me. I lost some good men! Have you come to return me to my garrison?
+		
+			Mission Target.
+		
+				ktg_imperial_captain - Battle Droid guard x3
+
+
+
+	
