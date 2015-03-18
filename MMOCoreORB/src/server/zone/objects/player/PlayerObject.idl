@@ -109,7 +109,15 @@ class PlayerObject extends IntangibleObject {
 	
 	protected int drinkFilling;
 	protected int drinkFillingMax;
+
+	protected int reactionFines;
 	
+	@dereferenced
+	protected Time reactionFineTimestamp; // Timestamp of when player was given a fine
+
+	@dereferenced
+	protected Time reactionFineMailTimestamp; // Timestamp of last mail sent regarding fine being due
+
 	protected string starterProfession;
 	
 	protected string bankLocation;
@@ -374,7 +382,7 @@ class PlayerObject extends IntangibleObject {
 		holoEmoteUseCount = 0;
 		
 		spouseName = "";
-		
+
 		Logger.setLoggingName("PlayerObject");
 	}
 	
@@ -863,6 +871,11 @@ class PlayerObject extends IntangibleObject {
 	@dirty
 	public int getConsentListSize() {
 		return consentList.size();
+	}
+
+	@dirty
+	public int getReactionFines() {
+		return reactionFines;
 	}
 	
 	@local
@@ -1739,5 +1752,35 @@ class PlayerObject extends IntangibleObject {
 	}
 
 	public native int getCharacterAgeInDays();
+
+	public void addToReactionFines(int fine) {
+		reactionFines = reactionFines + fine;
+	}
+
+	public void setReactionFines(int amount) {
+		reactionFines = amount;
+	}
+
+	public void subtractFromReactionFines(int amount) {
+		reactionFines = reactionFines - amount;
+	}
+
+	public void updateReactionFineTimestamp() {
+		reactionFineTimestamp.updateToCurrentTime();
+	}
+
+	public void updateReactionFineMailTimestamp() {
+		reactionFineMailTimestamp.updateToCurrentTime();
+	}
+
+	@local
+	public Time getReactionFineTimestamp() {
+		return reactionFineTimestamp;
+	}
+
+	@local
+	public Time getReactionFineMailTimestamp() {
+		return reactionFineMailTimestamp;
+	}
 }
 

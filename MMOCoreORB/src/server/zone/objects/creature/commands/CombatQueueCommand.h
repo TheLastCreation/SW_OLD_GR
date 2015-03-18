@@ -9,6 +9,7 @@
 #define COMBATQUEUECOMMAND_H_
 
 #include"server/zone/ZoneServer.h"
+#include "server/zone/Zone.h"
 #include "server/zone/objects/scene/SceneObject.h"
 #include "server/zone/managers/combat/CombatManager.h"
 #include "server/zone/managers/player/PlayerManager.h"
@@ -20,6 +21,7 @@
 #include "server/zone/objects/creature/commands/effect/StateEffect.h"
 #include "server/zone/objects/creature/commands/effect/DotEffect.h"
 #include "server/zone/objects/creature/commands/effect/CommandEffect.h"
+#include "server/zone/packets/object/CombatSpam.h"
 #include "QueueCommand.h"
 #include "server/zone/managers/collision/PathFinderManager.h"
 
@@ -38,24 +40,6 @@ protected:
 	float forceCostMultiplier;
 	float forceCost;
 
-	int knockdownStateChance;
-	int postureDownStateChance;
-	int postureUpStateChance;
-
-	int dizzyStateChance;
-	int blindStateChance;
-	int stunStateChance;
-	int intimidateStateChance;
-	int nextAttackDelayChance;
-	int durationStateTime;
-
-	uint32 dotDuration;
-	uint64 dotType;
-	uint8 dotPool;
-	uint32 dotStrength;
-	float dotPotency;
-	bool dotDamageOfHit;
-
 	int range;
 
 	String accuracySkillMod;
@@ -70,7 +54,7 @@ protected:
 	uint32 animationCRC;
 	String effectString;
 
-	VectorMap<uint64, StateEffect> stateEffects;
+	VectorMap<uint8, StateEffect> stateEffects;
 	VectorMap<uint64, DotEffect> dotEffects;
 
 	uint8 attackType;
@@ -95,25 +79,7 @@ public:
 
 		poolsToDamage = CombatManager::RANDOM;
 
-		knockdownStateChance = 0;
-		postureDownStateChance = 0;
-		postureUpStateChance = 0;
-		dizzyStateChance = 0;
-		blindStateChance = 0;
-		stunStateChance = 0;
-		intimidateStateChance = 0;
-		nextAttackDelayChance = 0;
-
-		durationStateTime = 10;
-
-		dotDuration = 0;
-		dotType = 0;
-		dotPool = 0;
-		dotStrength = 0;
-		dotPotency = 80;
-
 		coneAngle = 30;
-		dotDamageOfHit = false;
 
 		//for weapon set -1
 		range = -1;
@@ -165,10 +131,10 @@ public:
 		if (creature->isKneeling() && weapon->isMeleeWeapon() && range == -1 && !weapon->isJediWeapon())
 			return NOKNEELING;
 
-		if (creature->isProne() && (!weapon->isRangedWeapon() || targetObject->isInRange(creature, 5)) && range == -1)
+		if (creature->isProne() && (!weapon->isRangedWeapon() || targetObject->isInRange(creature, 5 + targetObject->getTemplateRadius() + creature->getTemplateRadius())) && range == -1)
 			return NOPRONE;
 
-		if (!targetObject->isInRange(creature, checkRange))
+		if (!targetObject->isInRange(creature, checkRange + targetObject->getTemplateRadius() + creature->getTemplateRadius()))
 			return TOOFAR;
 
 		if (!CollisionManager::checkLineOfSight(creature, targetObject)) {
@@ -207,26 +173,6 @@ public:
 		return CombatManager::instance()->calculateWeaponAttackSpeed(object, object->getWeapon(), speedMultiplier);
 	}
 
-	inline uint32 getDotDuration() const {
-		return dotDuration;
-	}
-
-	inline uint64 getDotType() const {
-		return dotType;
-	}
-
-	inline uint8 getDotPool() const {
-		return dotPool;
-	}
-
-	inline uint32 getDotStrength() const {
-		return dotStrength;
-	}
-
-	inline float getDotPotency() const {
-		return dotPotency;
-	}
-
 	inline float getHealthCostMultiplier() const {
 		return healthCostMultiplier;
 	}
@@ -247,36 +193,12 @@ public:
 		return accuracySkillMod;
 	}
 
-	inline int getBlindChance() const {
-		return blindStateChance;
-	}
-
 	inline float getDamageMultiplier() const {
 		return damageMultiplier;
 	}
 
 	inline int getAccuracyBonus() const {
 		return accuracyBonus;
-	}
-
-	inline int getDizzyChance() const {
-		return dizzyStateChance;
-	}
-
-	inline int getIntimidateChance() const {
-		return intimidateStateChance;
-	}
-
-	inline int getKnockdownChance() const {
-		return knockdownStateChance;
-	}
-
-	inline int getPostureDownChance() const {
-		return postureDownStateChance;
-	}
-
-	inline int getPostureUpChance() const {
-		return postureUpStateChance;
 	}
 
 	inline float getSpeedMultiplier() const {
@@ -287,20 +209,12 @@ public:
 		return speed;
 	}
 
-	inline int getStunChance() const {
-		return stunStateChance;
-	}
-
 	inline bool isAreaAction() const {
 		return areaAction;
 	}
 
 	inline bool isConeAction() const {
 		return coneAction;
-	}
-
-	inline bool isDotDamageOfHit() const {
-		return dotDamageOfHit;
 	}
 
 	inline int getConeAngle() const {
@@ -311,24 +225,12 @@ public:
 		return areaRange;
 	}
 
-	inline int getDurationStateTime() const {
-		return durationStateTime;
-	}
-
 	inline float getForceCostMultiplier() const {
 		return forceCostMultiplier;
 	}
 
 	inline float getForceCost() const {
 		return forceCost;
-	}
-
-	inline int getNextAttackDelayChance() const {
-		return nextAttackDelayChance;
-	}
-
-	void setBlindStateChance(int blindStateChance) {
-		this->blindStateChance = blindStateChance;
 	}
 
 	void setDamageMultiplier(float damageMultiplier) {
@@ -359,60 +261,8 @@ public:
 		this->forceCost = f;
 	}
 
-	void setDizzyStateChance(int dizzyStateChance) {
-		this->dizzyStateChance = dizzyStateChance;
-	}
-
-	void setIntimidateStateChance(int intimidateStateChance) {
-		this->intimidateStateChance = intimidateStateChance;
-	}
-
-	void setKnockdownStateChance(int knockdownStateChance) {
-		this->knockdownStateChance = knockdownStateChance;
-	}
-
-	void setPostureDownStateChance(int postureDownStateChance) {
-		this->postureDownStateChance = postureDownStateChance;
-	}
-
-	void setPostureUpStateChance(int postureUpStateChance) {
-		this->postureUpStateChance = postureUpStateChance;
-	}
-
-	void setNextAttackDelayChance(int i) {
-		this->nextAttackDelayChance = i;
-	}
-
-	void setDurationStateTime(int i) {
-		this->durationStateTime = i;
-	}
-
-	void setDotDuration(uint32 i) {
-		this->dotDuration = i;
-	}
-
-	void setDotType(uint64 l) {
-		this->dotType = l;
-	}
-
-	void setDotPool(uint8 c) {
-		this->dotPool = c;
-	}
-
-	void setDotStrength(uint32 i) {
-		this->dotStrength = i;
-	}
-
-	void setDotPotency(float f) {
-		this->dotPotency = f;
-	}
-
 	void setConeAngle(int i) {
 		this->coneAngle = i;
-	}
-
-	void setDotDamageOfHit(bool b) {
-		this->dotDamageOfHit = b;
 	}
 
 	void setAreaAction(bool b) {
@@ -439,10 +289,6 @@ public:
 		this->speed = speedd;
 	}
 
-	void setStunStateChance(int stunStateChance) {
-		this->stunStateChance = stunStateChance;
-	}
-
 	inline uint32 getAnimationCRC() const {
 		return animationCRC;
 	}
@@ -459,7 +305,7 @@ public:
 		return poolsToDamage;
 	}
 
-	inline VectorMap<uint64, StateEffect>* getStateEffects() {
+	inline VectorMap<uint8, StateEffect>* getStateEffects() {
 		return &stateEffects;
 	}
 
@@ -479,7 +325,7 @@ public:
 		this->poolsToDamage = poolsToDamage;
 	}
 
-	void setStateEffects(VectorMap<uint64, StateEffect> stateEffects) {
+	void setStateEffects(VectorMap<uint8, StateEffect> stateEffects) {
 		this->stateEffects = stateEffects;
 	}
 
@@ -487,7 +333,7 @@ public:
 		stateEffects.put(stateEffect.getEffectType(), stateEffect);
 	}
 
-	StateEffect getStateEffect(uint64 type) {
+	StateEffect getStateEffect(uint8 type) {
 		return stateEffects.get(type);
 	}
 
@@ -554,7 +400,7 @@ public:
 			if (creature->isKnockedDown() || creature->isProne()) {
 				if (80 > System::random(100))
 					creature->setPosture(CreaturePosture::UPRIGHT, true);
-				break;
+			break;
 			}
 
 			if (creature->isRidingMount()) {
@@ -568,7 +414,6 @@ public:
 			creature->updateKnockdownRecovery();
 			creature->updateLastKnockdown();
 			creature->sendSystemMessage("@cbt_spam:posture_knocked_down");
-
 			break;
 		case CommandEffect::POSTUREUP:
 			if (creature->isRidingMount()) {
@@ -579,10 +424,12 @@ public:
 			if (creature->getPosture() == CreaturePosture::PRONE) {
 				creature->setPosture(CreaturePosture::CROUCHED);
 				creature->sendSystemMessage("@cbt_spam:force_posture_change_1");
+				creature->sendStateCombatSpam("cbt_spam", "force_posture_change_1", 0, false);
 				creature->updatePostureUpRecovery();
 			} else if (creature->getPosture() == CreaturePosture::CROUCHED) {
 				creature->setPosture(CreaturePosture::UPRIGHT);
 				creature->sendSystemMessage("@cbt_spam:force_posture_change_0");
+				creature->sendStateCombatSpam("cbt_spam", "force_posture_change_0", 0, false);
 				creature->updatePostureUpRecovery();
 			}
 
@@ -596,10 +443,12 @@ public:
 			if (creature->getPosture() == CreaturePosture::UPRIGHT) {
 				creature->setPosture(CreaturePosture::CROUCHED);
 				creature->sendSystemMessage("@cbt_spam:force_posture_change_1");
+				creature->sendStateCombatSpam("cbt_spam", "force_posture_change_1", 0, false);
 				creature->updatePostureDownRecovery();
 			} else if (creature->getPosture() == CreaturePosture::CROUCHED) {
 				creature->setPosture(CreaturePosture::PRONE);
 				creature->sendSystemMessage("@cbt_spam:force_posture_change_2");
+				creature->sendStateCombatSpam("cbt_spam", "force_posture_change_2", 0, false);
 				creature->updatePostureDownRecovery();
 			}
 
@@ -629,6 +478,40 @@ public:
 			break;
 		}
 		return;
+	}
+
+	//Override for special cases (skills like Taunt that don't have 5 result strings)
+	virtual void sendAttackCombatSpam(TangibleObject* attacker, TangibleObject* defender, int attackResult, int damage, const CreatureAttackData& data) {
+		if (attacker == NULL || defender == NULL)
+			return;
+
+		String stringName = data.getCombatSpam();
+		byte color = 0;
+
+		switch (attackResult) {
+		case CombatManager::HIT:
+			stringName += "_hit";
+			color = 1;
+			break;
+		case CombatManager::MISS:
+			stringName += "_miss";
+			break;
+		case CombatManager::DODGE:
+			stringName += "_evade";
+			break;
+		case CombatManager::COUNTER:
+			stringName += "_counter";
+			break;
+		case CombatManager::BLOCK:
+		case CombatManager::RICOCHET:
+			stringName += "_block";
+			break;
+		default:
+			break;
+		}
+
+		CombatManager::instance()->broadcastCombatSpam(attacker, defender, NULL, damage, "cbt_spam", stringName, color);
+
 	}
 
 	uint8 getAttackType() const {

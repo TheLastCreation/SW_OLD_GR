@@ -32,22 +32,13 @@ protected:
 	float mindCostMultiplier;
 	float forceCostMultiplier;
 
-	int nextAttackDelayChance;
-	int durationStateTime;
-
-	uint32 dotDuration;
-	uint64 dotType;
-	uint8 dotPool;
-	uint32 dotStrength;
-	float dotPotency;
-
     int range;
     int coneAngle;
     int areaRange;
 
     uint32 animationCRC;
 
-    VectorMap<uint64, StateEffect>* stateEffects;
+    VectorMap<uint8, StateEffect>* stateEffects;
     VectorMap<uint64, DotEffect>* dotEffects;
 
 	uint8 attackType;
@@ -122,30 +113,6 @@ public:
 		return damageMultiplier;
 	}
 
-	uint32 getDotDuration() const {
-		return dotDuration;
-	}
-
-	uint8 getDotPool() const {
-		return dotPool;
-	}
-
-	float getDotPotency() const {
-		return dotPotency;
-	}
-
-	uint32 getDotStrength() const {
-		return dotStrength;
-	}
-
-	uint64 getDotType() const {
-		return dotType;
-	}
-
-	int getDurationStateTime() const {
-		return durationStateTime;
-	}
-
 	float getForceCostMultiplier() const {
 		return forceCostMultiplier;
 	}
@@ -156,10 +123,6 @@ public:
 
 	float getMindCostMultiplier() const {
 		return mindCostMultiplier;
-	}
-
-	int getNextAttackDelayChance() const {
-		return nextAttackDelayChance;
 	}
 
 	int getPoolsToDamage() const {
@@ -174,7 +137,7 @@ public:
 		return speedMultiplier;
 	}
 
-	VectorMap<uint64, StateEffect>* getStateEffects() const {
+	VectorMap<uint8, StateEffect>* getStateEffects() const {
 		return stateEffects;
 	}
 
@@ -208,6 +171,10 @@ public:
 
 	void setCombatSpam(String spam) {
 		this->combatSpam = spam;
+	}
+
+	bool isStateOnlyAttack() const {
+		return poolsToDamage == 0;
 	}
 };
 

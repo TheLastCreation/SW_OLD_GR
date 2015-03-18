@@ -31,7 +31,8 @@ young_hanadak_rock_crusher = Creature:new {
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"dizzyattack","dizzyChance=50"}
+		{"",""},
+		{"dizzyattack",""}
 	}
 }
 

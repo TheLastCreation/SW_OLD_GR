@@ -1,5 +1,6 @@
 scout_trooper = Creature:new {
 	objectName = "@mob/creature_names:scout_trooper",
+	randomNameType = NAME_SCOUTTROOPER_TAG,
 	socialGroup = "imperial",
 	faction = "imperial",
 	level = 23,
@@ -46,6 +47,7 @@ scout_trooper = Creature:new {
 	weapons = {"imperial_weapons_heavy"},
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/stormtrooper",
+	personalityStf = "@hireling/hireling_stormtrooper",	
 	attacks = merge(brawlermaster,marksmanmaster)
 }
 

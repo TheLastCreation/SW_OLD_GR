@@ -63,6 +63,8 @@ public:
 		if (!checkInvalidLocomotions(creature))
 			return INVALIDLOCOMOTION;
 
+		creature->sendStateCombatSpam("cbt_spam", "reload", 0);
+
 		return SUCCESS;
 	}
 

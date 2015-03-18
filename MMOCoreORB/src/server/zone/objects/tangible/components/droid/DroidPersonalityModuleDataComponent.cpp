@@ -45,6 +45,7 @@
 #include "server/zone/objects/tangible/component/droid/DroidComponent.h"
 #include "server/zone/templates/tangible/DroidPersonalityModuleTemplate.h"
 #include "server/chat/ChatManager.h"
+#include "server/zone/managers/reaction/ReactionManager.h"
 
 DroidPersonalityModuleDataComponent::DroidPersonalityModuleDataComponent() {
 	setLoggingName("DroidCraftingModule");
@@ -70,9 +71,12 @@ void DroidPersonalityModuleDataComponent::initializeTransientMembers() {
 	}
 	personalityBase = moduleTemplate->getReactionName();
 	chipName = moduleTemplate->getChipName();
+	convoTemplate = moduleTemplate->getConversationTemplate();
+	personalityStf = moduleTemplate->getPersonalityStf();
 }
 void DroidPersonalityModuleDataComponent::initialize(CreatureObject* droid) {
 	// do we need to change any droid stats: no
+	// when instaled we get converse options.
 }
 void DroidPersonalityModuleDataComponent::fillAttributeList(AttributeListMessage* alm, CreatureObject* droid) {
 	alm->insertAttribute("personality_module", chipName);
@@ -90,21 +94,28 @@ String DroidPersonalityModuleDataComponent::toString(){
 	return BaseDroidModuleComponent::toString();
 }
 void DroidPersonalityModuleDataComponent::onCall() {
+
 	ManagedReference<DroidObject*> droid = getDroidObject();
 	if( droid == NULL ){
 		info( "Droid is null" );
 		return;
 	}
+	if (convoTemplate.hashCode() > 0) {
+		droid->setOptionBit(OptionBitmask::CONVERSE,true);
+	} else {
+		droid->clearOptionBit(OptionBitmask::CONVERSE,true);
+	}
+
 	if (observer == NULL) {
 		observer = new DroidPersonalityObserver(this);
 		observer->deploy();
 	}
 	Locker plock(droid);
-	notifyEvent(ObserverEventType::ENTEREDAREA,NULL,0,true);
+
 	droid->registerObserver(ObserverEventType::DAMAGERECEIVED, observer);
-	droid->registerObserver(ObserverEventType::ENTEREDAREA, observer);
-	droid->registerObserver(ObserverEventType::EXITEDAREA, observer);
 	droid->registerObserver(ObserverEventType::DEFENDERADDED, observer);
+
+	droid->sendReactionChat(ReactionManager::HI, ReactionManager::NICE, true);
 }
 void DroidPersonalityModuleDataComponent::onStore() {
 	ManagedReference<DroidObject*> droid = getDroidObject();
@@ -117,12 +128,11 @@ void DroidPersonalityModuleDataComponent::onStore() {
 		return;
 	}
 	Locker dlock( droid );
-	notifyEvent(ObserverEventType::EXITEDAREA,NULL,0,true);
 
 	droid->dropObserver(ObserverEventType::DAMAGERECEIVED, observer);
-	droid->dropObserver(ObserverEventType::ENTEREDAREA, observer);
-	droid->dropObserver(ObserverEventType::EXITEDAREA, observer);
 	droid->dropObserver(ObserverEventType::DEFENDERADDED, observer);
+
+	droid->sendReactionChat(ReactionManager::BYE, ReactionManager::NICE, true);
 }
 
 void DroidPersonalityModuleDataComponent::copy(BaseDroidModuleComponent* other) {
@@ -146,27 +156,6 @@ void DroidPersonalityModuleDataComponent::notifyEvent(unsigned int eventType, Ma
 		int roll = System::random(100);
 		StringBuffer message;
 		if (roll > 50 || forced) {
-			if (eventType == ObserverEventType::ENTEREDAREA || eventType == ObserverEventType::EXITEDAREA) {
-				if (eventType ==ObserverEventType::ENTEREDAREA)
-					message << "hi_";
-				else
-					message << "bye_";
-				String responseAttitude;
-				if (responseAttitude == "") {
-					short type = System::random(2);
-					if (type == 0)
-						responseAttitude = "mean";
-					else if (type == 1)
-						responseAttitude = "mid";
-					else
-						responseAttitude = "nice";
-				}
-				if (forced) {
-					responseAttitude = "nice";
-				}
-				message << responseAttitude;
-				quip(message.toString(),droid);
-			}
 			if (eventType == ObserverEventType::DEFENDERADDED) {
 				short type = System::random(1);
 				if (type == 0)
@@ -209,4 +198,7 @@ void DroidPersonalityModuleDataComponent::notifyEvent(unsigned int eventType, Ma
 
 String DroidPersonalityModuleDataComponent::getPersonalityBase() {
 	return personalityBase;
+}
+uint32 DroidPersonalityModuleDataComponent::getPersonalityConversationTemplate() {
+	return convoTemplate.hashCode();
 }

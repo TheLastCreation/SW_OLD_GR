@@ -57,14 +57,17 @@ public:
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 
-		if (!checkStateMask(creature))
+		if (!checkStateMask(creature)) {
 			return INVALIDSTATE;
+		}
 
-		if (!checkInvalidLocomotions(creature))
+		if (!checkInvalidLocomotions(creature)) {
 			return INVALIDLOCOMOTION;
+		}
 
-		if (!creature->isPlayerCreature())
+		if (!creature->isPlayerCreature()) {
 			return GENERALERROR;
+		}
 
 		CreatureObject* player = cast<CreatureObject*>(creature);
 		PlayerObject* ghost = player->getPlayerObject();
@@ -76,20 +79,17 @@ public:
 
 			try {
 				Locker clocker(creatureObject, creature);
-
 				ValidatedPosition* validPosition = ghost->getLastValidatedPosition();
 				uint64 parentid = validPosition->getParent();
-
-				if (parentid != creatureObject->getParentID())
+				if (parentid != creatureObject->getParentID()) {
 					return TOOFAR;
+				}
 
-				Vector3 vec = validPosition->getWorldPosition(server->getZoneServer());
-
-				if (vec.distanceTo(creatureObject->getWorldPosition()) <= 5.f) {
+				if (player->getDistanceTo(creatureObject) <= 5.f) {
 					ghost->setConversatingCreature(creatureObject);
-					creatureObject->sendConversationStartTo(creature);
-
-					creatureObject->notifyObservers(ObserverEventType::STARTCONVERSATION, player);
+					if (creatureObject->sendConversationStartTo(creature)) {
+						creatureObject->notifyObservers(ObserverEventType::STARTCONVERSATION, player);
+					}
 				} else {
 					return TOOFAR;
 				}
@@ -98,9 +98,9 @@ public:
 				e.printStackTrace();
 				creature->error("unreported ObjectControllerMessage::parseNpcStartConversation(creature* creature, Message* pack) exception");
 			}
-		} else
+		} else {
 			return INVALIDTARGET;
-
+		}
 		return SUCCESS;
 	}
 

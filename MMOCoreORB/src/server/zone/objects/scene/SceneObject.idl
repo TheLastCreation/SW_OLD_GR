@@ -1162,7 +1162,9 @@ class SceneObject extends QuadTreeEntry implements Logger {
 	 * @param obj The object to face.
 	 */
 	public native void faceObject(SceneObject obj);
-	
+
+	public native boolean isFacingObject(SceneObject obj);
+
 	public native abstract void notifySelfPositionUpdate();
 	
 	@dirty
@@ -1334,7 +1336,6 @@ class SceneObject extends QuadTreeEntry implements Logger {
 	}
 	
 	public native boolean isDecoration();
-	public native boolean isCityStreetLamp();
 	
 	@local
 	public native void setObjectMenuComponent(final string name);
@@ -1882,7 +1883,11 @@ class SceneObject extends QuadTreeEntry implements Logger {
 	public native SortedVector<Observer> getObservers(unsigned int eventType);
 	
 	public native abstract void createChildObjects();
-	
+
+	public void addChildObject(SceneObject obj) {
+		childObjects.put(obj);
+	}
+
 	@local
 	@dirty
 	public Matrix4 getTransformForCollisionMatrix() {
@@ -1935,6 +1940,16 @@ class SceneObject extends QuadTreeEntry implements Logger {
 	}
 
 	@dirty
+	public abstract boolean isPoiBuilding() {
+		return false;
+	}
+
+	@dirty
+	public abstract boolean isTheaterObject() {
+		return false;
+	}
+
+	@dirty
 	public abstract boolean isEventPerkDeed() {
 		return false;
 	}	
@@ -1942,12 +1957,6 @@ class SceneObject extends QuadTreeEntry implements Logger {
 	@dirty
 	public native boolean isDataPad();
 
-	@dirty
-	public native void playEffect(final string file, final string aux);
-	
-	@dirty
-	public void playEffect(final string file) {
-		playEffect(file, "");
-	}
+	public native abstract float getTemplateRadius();
 }
 

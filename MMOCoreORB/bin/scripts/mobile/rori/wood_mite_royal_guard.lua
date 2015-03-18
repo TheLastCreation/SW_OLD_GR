@@ -29,11 +29,11 @@ wood_mite_royal_guard = Creature:new {
 	controlDeviceTemplate = "object/intangible/pet/bark_mite_hue.iff",
 	scale = 1.05,
 	lootGroups = {},
-	weapons = {},
+	weapons = {"creature_spit_small_yellow"},
 	conversationTemplate = "",
 	attacks = {
-		{"knockdownattack","knockdownChance=50"},
-		{"posturedownattack","postureDownChance=50"}
+		{"knockdownattack",""},
+		{"posturedownattack",""}
 	}
 }
 

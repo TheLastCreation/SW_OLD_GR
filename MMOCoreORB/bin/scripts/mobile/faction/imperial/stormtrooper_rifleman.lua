@@ -1,5 +1,6 @@
 stormtrooper_rifleman = Creature:new {
 	objectName = "@mob/creature_names:stormtrooper_rifleman",
+	randomNameType = NAME_STORMTROOPER_TAG,
 	socialGroup = "imperial",
 	faction = "imperial",
 	level = 25,
@@ -46,6 +47,7 @@ stormtrooper_rifleman = Creature:new {
 	weapons = {"st_rifleman_weapons"},
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/stormtrooper",
+	personalityStf = "@hireling/hireling_stormtrooper",		
 	attacks = merge(riflemanmaster,carbineermaster,brawlermaster)
 }
 

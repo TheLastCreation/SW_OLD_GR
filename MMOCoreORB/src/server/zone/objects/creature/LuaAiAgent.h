@@ -100,6 +100,7 @@ namespace creature {
 		int isConcealed(lua_State* L);
 		int isCamouflaged(lua_State* L);
 		int shouldRetreat(lua_State* L);
+		int leash(lua_State* L);
 		int clearCombatState(lua_State* L);
 		int isInCombat(lua_State* L);
 		int checkLineOfSight(lua_State* L);
@@ -123,6 +124,8 @@ namespace creature {
 		int setAlertDuration(lua_State* L);
 		int alertedTimeIsPast(lua_State* L);
 		int setLevel(lua_State* L);
+		int hasReactionChatMessages(lua_State* L);
+		int sendReactionChat(lua_State* L);
 	private:
 		AiAgent* realObject;
 	};

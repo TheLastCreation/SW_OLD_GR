@@ -1,5 +1,6 @@
 dark_trooper = Creature:new {
 	objectName = "@mob/creature_names:dark_trooper",
+	randomNameType = NAME_DARKTROOPER,
 	socialGroup = "imperial",
 	faction = "imperial",
 	level = 35,
@@ -24,6 +25,7 @@ dark_trooper = Creature:new {
 	creatureBitmask = PACK + KILLER,
 	optionsBitmask = 128,
 	diet = HERBIVORE,
+	scale = 1.5,
 
 	templates = {"object/mobile/dark_trooper.iff"},
 	lootGroups = {
@@ -46,6 +48,7 @@ dark_trooper = Creature:new {
 	weapons = {"dark_trooper_weapons"},
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/stormtrooper",
+	personalityStf = "@hireling/hireling_stormtrooper",	
 	attacks = merge(riflemanmaster,marksmanmaster,fencermaster,brawlermaster)
 }
 

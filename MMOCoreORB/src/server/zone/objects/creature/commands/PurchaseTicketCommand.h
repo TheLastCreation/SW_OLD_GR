@@ -51,7 +51,6 @@ which carries forward this exception.
 #include "server/zone/objects/tangible/ticket/TicketObject.h"
 #include "server/zone/managers/planet/PlanetManager.h"
 #include "server/zone/objects/region/CityRegion.h"
-#include "server/zone/managers/city/CityManager.h"
 
 class PurchaseTicketCommand : public QueueCommand {
 public:
@@ -97,7 +96,7 @@ public:
 				return GENERALERROR;
 			}
 			if(!currentCity->isClientRegion()){
-				departureTax = currentCity->getTax(CityRegion::TAX_TRAVEL);
+				departureTax = currentCity->getTravelTax();
 			}
 		}
 		ManagedReference<SceneObject*> inventory = creature->getSlottedObject("inventory");
@@ -256,14 +255,13 @@ public:
 		}
 		_lock.release();
 
-		if(currentCity != NULL && !currentCity->isClientRegion() && departureTax > 0){
+		if(currentCity != NULL && !currentCity->isClientRegion() && departureTax > 0) {
 			Locker clocker(currentCity, creature);
 			int taxPaid = departureTax + (roundTrip * departureTax);
 			currentCity->addToCityTreasury(taxPaid);
 
-			StringIdChatParameter param("@base_player:prose_pay_acct_success"); //You successfully make a payment of %DI credits to %TO.
+			StringIdChatParameter param("@city/city:city_ticket_pay"); // You pay a tax of %DI credits to the local City Travel Authority.
 			param.setDI(taxPaid);
-			param.setTO(currentCity->getRegionName());
 
 			creature->sendSystemMessage(param);
 		}

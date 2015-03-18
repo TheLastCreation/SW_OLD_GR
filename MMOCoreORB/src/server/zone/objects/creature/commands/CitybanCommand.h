@@ -69,7 +69,7 @@ public:
 
 		ManagedReference<SceneObject*> targetObject = zserv->getObject(target);
 
-		if (targetObject == NULL || !targetObject->isCreatureObject()) {
+		if (targetObject == NULL || !targetObject->isPlayerCreature()) {
 			try {
 				String targetFirstName;
 				UnicodeTokenizer tokenizer(arguments);
@@ -81,7 +81,7 @@ public:
 			}
 		}
 
-		if (targetObject == NULL || !targetObject->isCreatureObject()) {
+		if (targetObject == NULL || !targetObject->isPlayerCreature()) {
 			return INVALIDTARGET;
 		}
 
@@ -124,6 +124,7 @@ public:
 		}
 
 		city->addBannedPlayer(targetCreature->getObjectID());
+		city->removeSpecializationModifiers(targetCreature);
 
 		targetCreature->sendSystemMessage("@city/city:city_banned"); //You have been banned from the this city.  You may no longer use any city services.
 

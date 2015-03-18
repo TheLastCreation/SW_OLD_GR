@@ -40,7 +40,7 @@
 # this exception also makes it possible to release a modified version 
 # which carries forward this exception.
 
-AM_CXXFLAGS= $(UNITTEST_DIRECTIVES) -ggdb -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -DDEFAULT_DYNAMIC_CAST -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations
+AM_CXXFLAGS= $(UNITTEST_DIRECTIVES) -ggdb -Wall -Wextra -Wno-unused -Wno-sign-compare -Wno-multichar -DDEFAULT_DYNAMIC_CAST -Wno-unused-parameter -Wno-overloaded-virtual -Wno-missing-declarations -Werror
 
 ENGINE3_PATH=../../../../MMOEngine
 ENGINE3_MOCK_PATH=../../../utils
@@ -97,7 +97,10 @@ core3_TESTS = 	server/zone/objects/area/areashapes/tests/CircularAreaShapeTest.c
 			  	server/zone/tests/ZoneTest.cpp \
 			  	server/zone/managers/objectcontroller/command/tests/CommandLuaTest.cpp
 
-core3_IDLS =	autogen/server/zone/objects/tangible/components/droid/DroidPersonalityObserver.cpp \
+core3_IDLS =	autogen/server/zone/objects/intangible/TheaterObject.cpp \
+				autogen/server/zone/objects/building/PoiBuilding.cpp \
+				autogen/server/zone/objects/creature/conversation/PetTrainingConversationObserver.cpp \
+				autogen/server/zone/objects/tangible/components/droid/DroidPersonalityObserver.cpp \
 				autogen/server/zone/objects/player/sessions/DroidMaintenanceSession.cpp \
 				autogen/server/zone/objects/tangible/components/droid/DroidHarvestObserver.cpp \
 				autogen/server/zone/objects/tangible/components/droid/DroidPlaybackObserver.cpp \
@@ -271,6 +274,7 @@ core3_IDLS =	autogen/server/zone/objects/tangible/components/droid/DroidPersonal
 				autogen/server/zone/managers/city/CityManager.cpp \
 				autogen/server/zone/managers/planet/PlanetManager.cpp \
 				autogen/server/zone/managers/radial/RadialManager.cpp \
+				autogen/server/zone/managers/reaction/ReactionManager.cpp \
 				autogen/server/zone/managers/resource/ResourceManager.cpp \
 				autogen/server/zone/managers/resource/InterplanetarySurvey.cpp \
 				autogen/server/zone/managers/creature/CreatureManager.cpp \
@@ -684,9 +688,11 @@ core3_SOURCES =	$(core3_IDLS) \
 		server/zone/objects/creature/conversation/ConversationObserverImplementation.cpp \
 		server/zone/objects/creature/conversation/TrainerConversationObserverImplementation.cpp \
 		server/zone/objects/creature/conversation/DeliverMissionConversationObserverImplementation.cpp \
+		server/zone/objects/creature/conversation/PetTrainingConversationObserverImplementation.cpp \
 		server/zone/objects/creature/conversation/InformantMissionConversationObserverImplementation.cpp \
 		server/zone/objects/creature/conversation/screenhandlers/TrainerScreenHandlers.cpp \
 		server/zone/objects/creature/conversation/screenhandlers/DeliverMissionScreenHandler.cpp \
+		server/zone/objects/creature/conversation/screenhandlers/PetTrainingScreenHandler.cpp \
 		server/zone/objects/creature/conversation/screenhandlers/InformantMissionScreenHandler.cpp \
 		server/zone/objects/player/PlayerObjectImplementation.cpp \
 		server/zone/objects/player/sui/callbacks/DelegateSuiCallback.cpp \
@@ -771,6 +777,7 @@ core3_SOURCES =	$(core3_IDLS) \
 		server/zone/managers/radial/RadialManagerImplementation.cpp \
 		server/zone/managers/resource/ResourceManagerImplementation.cpp \
 		server/zone/managers/resource/InterplanetarySurveyImplementation.cpp \
+		server/zone/managers/reaction/ReactionManagerImplementation.cpp \
 		server/zone/managers/creature/CreatureManagerImplementation.cpp \
 		server/zone/managers/creature/PetManagerImplementation.cpp \
 		server/zone/managers/creature/SpawnAreaMap.cpp \
@@ -833,4 +840,3 @@ core3_SOURCES =	$(core3_IDLS) \
 #		server/zone/managers/object/UpdateModifiedObjectsThread.cpp \
 #		server/zone/objects/scene/SceneObject.cpp \
 #		server/zone/objects/scene/SceneObjectImplementation.cpp
-		

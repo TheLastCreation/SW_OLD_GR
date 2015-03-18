@@ -51,8 +51,10 @@
 #include "server/zone/managers/skill/SkillModManager.h"
 #include "server/zone/managers/skill/SkillManager.h"
 #include "server/zone/managers/player/PlayerManager.h"
+#include "server/zone/managers/combat/CombatManager.h"
 #include "server/zone/managers/mission/MissionManager.h"
 #include "server/zone/managers/creature/PetManager.h"
+#include "server/zone/managers/reaction/ReactionManager.h"
 #include "server/zone/ZoneClientSession.h"
 #include "server/zone/packets/creature/CreatureObjectMessage1.h"
 #include "server/zone/packets/creature/CreatureObjectMessage3.h"
@@ -76,6 +78,7 @@
 #include "server/zone/packets/object/PlayClientEffectObjectMessage.h"
 #include "server/zone/packets/object/Animation.h"
 #include "server/zone/objects/creature/CreaturePosture.h"
+#include "server/zone/objects/creature/commands/effect/CommandEffect.h"
 #include "server/zone/objects/creature/events/CommandQueueActionEvent.h"
 #include "server/zone/Zone.h"
 #include "server/zone/ZoneServer.h"
@@ -101,6 +104,8 @@
 #include "server/zone/objects/building/hospital/HospitalBuildingObject.h"
 
 #include "server/zone/packets/object/SitOnObject.h"
+
+#include "server/zone/packets/object/CombatSpam.h"
 
 #include "server/zone/managers/planet/PlanetManager.h"
 #include "server/zone/managers/terrain/TerrainManager.h"
@@ -609,10 +614,8 @@ void CreatureObjectImplementation::addShockWounds(int shockToAdd,
 		newShockWounds = 1000;
 	}
 
-	if (shockToAdd > 0 && _this.get()->isPlayerCreature()) {
-		CombatSpam* msg = new CombatSpam(_this.get(), _this.get(), NULL, shockToAdd, "cbt_spam", "shock_wound", _this.get());
-		sendMessage(msg);
-	}
+	if (shockToAdd > 0 && _this.get()->isPlayerCreature())
+		sendStateCombatSpam("cbt_spam", "shock_wound", 1, shockToAdd, false);
 
 	setShockWounds(newShockWounds, notifyClient);
 }
@@ -749,6 +752,20 @@ void CreatureObjectImplementation::clearCombatState(bool removedefenders) {
 	//info("finished clearCombatState");
 }
 
+void CreatureObjectImplementation::setAlternateAppearance(const String& appearanceTemplate, bool notifyClient) {
+	alternateAppearance = appearanceTemplate;
+
+	if (!notifyClient)
+		return;
+
+	CreatureObjectDeltaMessage6* dcreo6 = new CreatureObjectDeltaMessage6(
+			_this.get());
+	dcreo6->updateAlternateAppearance();
+	dcreo6->close();
+
+	broadcastMessage(dcreo6, true);
+}
+
 bool CreatureObjectImplementation::setState(uint64 state, bool notifyClient) {
 	if (!(stateBitmask & state)) {
 		stateBitmask |= state;
@@ -805,15 +822,19 @@ bool CreatureObjectImplementation::setState(uint64 state, bool notifyClient) {
 			case CreatureState::STUNNED:
 				playEffect("clienteffect/combat_special_defender_stun.cef");
 				sendSystemMessage("@cbt_spam:go_stunned_single");
+				sendStateCombatSpam("cbt_spam", "go_stunned", 0);
 				break;
 			case CreatureState::BLINDED:
 				playEffect("clienteffect/combat_special_defender_blind.cef");
 				sendSystemMessage("@cbt_spam:go_blind_single");
+				sendStateCombatSpam("cbt_spam", "go_blind", 0);
 				break;
-			case CreatureState::DIZZY:
+			case CreatureState::DIZZY: {
 				playEffect("clienteffect/combat_special_defender_dizzy.cef");
 				sendSystemMessage("@cbt_spam:go_dizzy_single");
+				sendStateCombatSpam("cbt_spam", "go_dizzy", 0);
 				break;
+			}
 			case CreatureState::POISONED:
 				break;
 			case CreatureState::DISEASED:
@@ -843,7 +864,13 @@ bool CreatureObjectImplementation::setState(uint64 state, bool notifyClient) {
 			case CreatureState::COVER:
 				playEffect("clienteffect/combat_special_attacker_cover.cef");
 				sendSystemMessage("@cbt_spam:cover_success_single");
+				sendStateCombatSpam("cbt_spam", "cover_success", 0);
 				break;
+			case CreatureState::PEACE:
+				sendSystemMessage("@cbt_spam:peace_single");
+				sendStateCombatSpam("cbt_spam", "peace", 0);
+				break;
+
 			default:
 				break;
 			}
@@ -872,12 +899,15 @@ bool CreatureObjectImplementation::clearState(uint64 state, bool notifyClient) {
 		switch (state) {
 		case CreatureState::STUNNED:
 			sendSystemMessage("@cbt_spam:no_stunned_single");
+			sendStateCombatSpam("cbt_spam", "no_stunned", 0);
 			break;
 		case CreatureState::BLINDED:
 			sendSystemMessage("@cbt_spam:no_blind_single");
+			sendStateCombatSpam("cbt_spam", "no_blind", 0);
 			break;
 		case CreatureState::DIZZY:
 			sendSystemMessage("@cbt_spam:no_dizzy_single");
+			sendStateCombatSpam("cbt_spam", "no_dizzy", 0);
 			break;
 		case CreatureState::POISONED:
 			sendSystemMessage("@dot_message:stop_poisoned");
@@ -1141,10 +1171,8 @@ int CreatureObjectImplementation::addWounds(int type, int value,
 	if (newValue < 0)
 		returnValue = value - newValue;
 
-	if (value > 0 && _this.get()->isPlayerCreature()) {
-		CombatSpam* msg = new CombatSpam(_this.get(), _this.get(), NULL, value, "cbt_spam", "wounded", _this.get());
-		sendMessage(msg);
-	}
+	if (value > 0 && _this.get()->isPlayerCreature())
+		sendStateCombatSpam("cbt_spam", "wounded", 1, value, false);
 
 	setWounds(type, newValue, notifyClient);
 
@@ -1425,6 +1453,20 @@ void CreatureObjectImplementation::setPosture(int newPosture, bool notifyClient)
 		messages.add(dcreo3);
 
 		broadcastMessages(&messages, true);
+
+		if (isPlayerCreature() || isAiAgent()) {
+			switch (posture) {
+			case CreaturePosture::UPRIGHT:
+				sendStateCombatSpam("cbt_spam", "stand", 11);
+				break;
+			case CreaturePosture::PRONE:
+				sendStateCombatSpam("cbt_spam", "prone", 11);
+				break;
+			case CreaturePosture::CROUCHED:
+				sendStateCombatSpam("cbt_spam", "kneel", 11);
+				break;
+			}
+		}
 	}
 
 	if(posture != CreaturePosture::UPRIGHT && posture != CreaturePosture::DRIVINGVEHICLE
@@ -2343,9 +2385,8 @@ void CreatureObjectImplementation::activateHAMRegeneration() {
 	else if (isSitting())
 		modifier *= (2);
 
-	if (!isPlayerCreature()) {
-		modifier /= 3.0f;
-	}
+	if (!isPlayerCreature() && isInCombat())
+		return;
 
 	uint32 healthTick = (uint32) ceil((float) MAX(0, getHAM(
 			CreatureAttribute::CONSTITUTION)) * 13.0f / 1200.0f * 3.0f
@@ -2506,6 +2547,35 @@ void CreatureObjectImplementation::sendMessage(BasePacket* msg) {
 	} else {
 		ownerClient->sendMessage(msg);
 	}
+}
+
+void CreatureObjectImplementation::sendStateCombatSpam(const String& fileName, const String& stringName, byte color, int damage, bool broadcast) {
+	Zone* zone = getZone();
+	if (zone == NULL)
+		return;
+
+	if (isDead()) //We don't need to know when a corpse can see clearly again!
+		return;
+
+	ManagedReference<CreatureObject*> creature = _this.get();
+
+	if (broadcast) { //Send spam to all nearby players.
+		CombatManager::instance()->broadcastCombatSpam(creature, NULL, NULL, 0, fileName, stringName, color);
+
+	} else { //Send spam only to originating player.
+		if (!creature->isPlayerCreature())
+			return;
+
+		CombatSpam* spam = new CombatSpam(creature, NULL, creature, NULL, damage, fileName, stringName, color);
+		creature->sendMessage(spam);
+	}
+}
+
+void CreatureObjectImplementation::sendCustomCombatSpam(const UnicodeString& customString, byte color) {
+	if (!this->isPlayerCreature())
+			return;
+	CombatSpam* spam = new CombatSpam(_this.get(), customString, color);
+	sendMessage(spam);
 }
 
 String CreatureObjectImplementation::getFirstName() {
@@ -2770,7 +2840,7 @@ int CreatureObjectImplementation::notifyObjectDestructionObservers(TangibleObjec
 
 	if (attacker->isAiAgent()) {
 		AiAgent* aiAgent = cast<AiAgent*>(attacker);
-		aiAgent->sendReactionChat(CreatureManager::GLOAT);
+		aiAgent->sendReactionChat(ReactionManager::GLOAT);
 	}
 
 	return TangibleObjectImplementation::notifyObjectDestructionObservers(attacker, condition);
@@ -2867,7 +2937,7 @@ int CreatureObjectImplementation::handleObjectMenuSelect(CreatureObject* player,
 
 			return 0;
 		case 36:
-			getZoneServer()->getPlayerManager()->lootAll(player, _this.get());
+			player->executeObjectControllerAction(String("loot").hashCode(), getObjectID(), "all");
 
 			return 0;
 		}
@@ -3009,4 +3079,53 @@ void CreatureObjectImplementation::destroyPlayerCreatureFromDatabase(bool destro
 
 		guild->removeMember(oid);
 	}
+}
+
+float CreatureObjectImplementation::getTemplateRadius() {
+	SharedCreatureObjectTemplate* creoTempl = templateObject.castTo<SharedCreatureObjectTemplate*>();
+
+	if (creoTempl == NULL)
+		return 0;
+
+	return creoTempl->getCollisionRadius()*getHeight();
+}
+
+bool CreatureObjectImplementation::hasEffectImmunity(uint8 effectType) {
+	switch (effectType) {
+	case CommandEffect::BLIND:
+	case CommandEffect::DIZZY:
+	case CommandEffect::INTIMIDATE:
+	case CommandEffect::STUN:
+	case CommandEffect::NEXTATTACKDELAY:
+		if (isDroidSpecies() || isVehicleObject() || isWalkerSpecies())
+			return true;
+		break;
+	case CommandEffect::KNOCKDOWN:
+	case CommandEffect::POSTUREUP:
+	case CommandEffect::POSTUREDOWN:
+		if (isVehicleObject() || isWalkerSpecies())
+			return true;
+		break;
+	default:
+		return false;
+	}
+
+	return false;
+}
+
+bool CreatureObjectImplementation::hasDotImmunity(uint32 dotType) {
+	switch (dotType) {
+	case CreatureState::POISONED:
+	case CreatureState::BLEEDING:
+	case CreatureState::DISEASED:
+		if (isDroidSpecies() || isVehicleObject())
+			return true;
+		break;
+	case CreatureState::ONFIRE:
+		return false;
+	default:
+		return false;
+	}
+
+	return false;
 }

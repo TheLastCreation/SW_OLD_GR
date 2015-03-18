@@ -10,6 +10,8 @@
 
 #include "engine/engine.h"
 
+#define DYNAMIC_CAST_LUAOBJECTS 1
+
 namespace server {
 namespace zone {
 namespace objects {
@@ -55,6 +57,7 @@ namespace scene {
 		//int removeObject(lua_State* L);
 		int getGameObjectType(lua_State* L);
 		int faceObject(lua_State* L);
+		int isFacingObject(lua_State* L);
 		int destroyObjectFromWorld(lua_State* L);
 		int destroyObjectFromDatabase(lua_State* L);
 		int updateDirection(lua_State* L);
@@ -87,7 +90,11 @@ namespace scene {
 		int setContainerOwnerID(lua_State* L);
 		int setObjectName(lua_State* L);
 		int isASubChildOf(lua_State* L);
-		int playEffect(lua_State* L);
+
+	protected:
+		SceneObject* _getRealSceneObject() {
+			return realObject.get();
+		}
 
 	private:
 		// The pointer to the 'real object' defined in object.cc

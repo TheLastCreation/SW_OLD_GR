@@ -89,9 +89,6 @@ function createMissionTargetConvoTemplate(templateName, convoHandler)
 	addConversationTemplate(templateName, mission_target_convotemplate);
 end
 
---GR Screenplays
-createMissionTargetConvoTemplate("kill_the_general_mission_target_convotemplate","kill_the_general_mission_target_conv_handler")
-
 
 -- Themeparks
 createMissionTargetConvoTemplate("theme_park_imperial_mission_target_convotemplate","theme_park_imperial_mission_target_conv_handler")
