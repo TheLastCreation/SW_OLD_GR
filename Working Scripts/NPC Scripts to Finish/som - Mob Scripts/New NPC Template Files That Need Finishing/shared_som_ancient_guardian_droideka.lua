@@ -1,15 +1,15 @@
 bandit = Creature:new {
-	objectName = "@mob/creature_names:bandit",
-	socialGroup = "bandit",
-	pvpFaction = "bandit",
-	faction = "bandit",
-	level = 8,
+	customName = "",
+	socialGroup = "",
+	pvpFaction = "",
+	faction = "",
+	level = 70,
 	chanceHit = 0.27,
-	damageMin = 70,
-	damageMax = 75,
+	damageMin = 550,
+	damageMax = 800,
 	baseXp = 235,
-	baseHAM = 405,
-	baseHAMmax = 495,
+	baseHAM = 16000,
+	baseHAMmax = 19000,
 	armor = 0,
 	resists = {0,0,0,0,0,0,0,-1,-1},
 	meatType = "",
@@ -26,14 +26,10 @@ bandit = Creature:new {
 	optionsBitmask = 128,
 	diet = HERBIVORE,
 
-	templates = {"object/mobile/dressed_plasma_bandit.iff"},
+	templates = {"object/mobile/som/bandit.iff"},
 	lootGroups = {
 		{
-			groups = {
-				{group = "junk", chance = 6500000},
-				{group = "tailor_components", chance = 1500000},
-				{group = "loot_kit_parts", chance = 2000000}
-			},
+			groups = {},
 			lootChance = 2100000
 		}
 	},

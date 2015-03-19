@@ -1,5 +1,5 @@
-object_mobile_exar_kun = object_mobile_shared_exar_kun:new {
+object_mobile_som_exar_kun = object_mobile_som_shared_exar_kun:new {
 
 }
 
-ObjectTemplates:addTemplate(object_mobile_exar_kun, "object/mobile/exar_kun.iff")
+ObjectTemplates:addTemplate(object_mobile_som_exar_kun, "object/mobile/som/exar_kun.iff")
