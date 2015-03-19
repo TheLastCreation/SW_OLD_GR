@@ -30,9 +30,11 @@ nk_necrosis = Creature:new {
 	templates = {"object/mobile/ep3/general_grievous.iff"},
 		
 	lootGroups = {
-					{group = "g_musty_house_loot_deed", chance = 10000000}
-				},
+					{
+						{group = "g_musty_house_loot_deed", chance = 10000000}
+					},
 				lootChance = 3500000
+				},
 	scale = 1.25,
 	weapons = {"dark_jedi_weapons_gen4"},
 	conversationTemplate = "",
