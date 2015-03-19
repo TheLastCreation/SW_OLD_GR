@@ -37,12 +37,12 @@ me_dune_stalker_enforcer = Creature:new {
 									{group = "carbines", chance = 1500000},
 									{group = "pistols", chance = 1000000}
 								},
-								lootChance = 20000000
+								lootChance = 10000000
 					}
 				},
 	weapons = {"ranged_weapons"},
-	conversationTemplate = ""
-	--attacks = merge(brawlermaster,marksmanmaster)
+	conversationTemplate = "",
+	attacks = merge(brawlermaster,marksmanmaster)
 }
 
 CreatureTemplates:addCreatureTemplate(me_dune_stalker_enforcer, "me_dune_stalker_enforcer")

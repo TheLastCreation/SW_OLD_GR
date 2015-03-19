@@ -37,9 +37,8 @@ death_watch_overlord = Creature:new {
 		},
 		{
 			groups = {
-				{group = "death_watch_bunker_overlord_shared", chance =  500000},
-				{group = "death_watch_bunker_overlord_quest", chance  = 7500000},
-				{group = "crystal_named", chance = 2000000}
+				{group = "death_watch_bunker_overlord_shared", chance =  2500000},
+				{group = "death_watch_bunker_overlord_quest", chance  = 7500000}
 			},
 			lootChance = 10000000
 		},

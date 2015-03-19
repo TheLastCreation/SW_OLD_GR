@@ -32,8 +32,7 @@ event_cavern_spider_queen = Creature:new {
 	lootGroups = {
 	   {
 			groups = {
-				{group = "crystal_named", chance = 5000000},
-				{group = "holocron_light", chance = 5000000}
+				{group = "holocron_light", chance = 10000000}
 			},
 			lootChance = 9000000
 		}
