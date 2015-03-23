@@ -81,6 +81,7 @@ namespace creature {
 		int isStalker(lua_State* L);
 		int isKiller(lua_State* L);
 		int getFerocity(lua_State* L);
+		int getAggroRadius(lua_State* L);
 		int getArmor(lua_State* L);
 		int getDespawnOnNoPlayerInRange(lua_State* L);
 		int getNumberOfPlayersInRange(lua_State* L);
@@ -118,7 +119,6 @@ namespace creature {
 		int checkRange(lua_State* L);
 		int broadcastInterrupt(lua_State* L);
 		int getSocialGroup(lua_State* L);
-		int getOwner(lua_State* L);
 		int getLastCommand(lua_State* L);
 		int getLastCommandTarget(lua_State* L);
 		int setAlertDuration(lua_State* L);
@@ -126,6 +126,7 @@ namespace creature {
 		int setLevel(lua_State* L);
 		int hasReactionChatMessages(lua_State* L);
 		int sendReactionChat(lua_State* L);
+		int addPatrolPoint(lua_State* L);
 	private:
 		AiAgent* realObject;
 	};

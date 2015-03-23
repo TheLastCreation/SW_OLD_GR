@@ -106,6 +106,9 @@ class AiAgent extends CreatureObject {
 	protected PatrolPointsVector patrolPoints;
 	
 	@dereferenced
+	protected PatrolPointsVector savedPatrolPoints;
+	
+	@dereferenced
 	protected PatrolPoint homeLocation;
 	
 	@dereferenced
@@ -182,6 +185,8 @@ class AiAgent extends CreatureObject {
 	protected string nextActionArgs;
 	
 	public static final int UPDATEMOVEMENTINTERVAL = 500; // msec
+	
+	public static final int DEFAULTAGGRORADIUS = 24;
 	
 	public static final int OBLIVIOUS = 0;
 	public static final int WATCHING = 1;
@@ -368,7 +373,24 @@ class AiAgent extends CreatureObject {
 	
 	public void clearPatrolPoints() {
 		synchronized (targetMutex) {
+			if (getFollowState() == PATROLLING) {
+				for (int i = 0; i < patrolPoints.size(); i++) {
+					savedPatrolPoints.add(patrolPoints.get(i));
+				}
+			}
+			
 			patrolPoints.removeAll();
+		}
+	}
+	
+	@local
+	public native void setPatrolPoints(@dereferenced PatrolPointsVector pVector);
+	
+	@local
+	@dereferenced
+	public PatrolPoint getNextPatrolPoint() {
+		synchronized (targetMutex) {
+			return patrolPoints.get(0);
 		}
 	}
 	
@@ -568,7 +590,7 @@ class AiAgent extends CreatureObject {
 	
 	public void setOblivious() {
 		synchronized (targetMutex) {
-			followState = OBLIVIOUS;
+			setFollowState(OBLIVIOUS);
 			setTargetObject(null);
 			//activateMovementEvent();
 		}
@@ -579,7 +601,7 @@ class AiAgent extends CreatureObject {
 			if (this.isRetreating())
 				return;
 
-			followState = WATCHING;
+			setFollowState(WATCHING);
 
 			setTargetObject(obj);
 			//activateMovementEvent();
@@ -591,7 +613,7 @@ class AiAgent extends CreatureObject {
 			if (this.isRetreating())
 				return;
 
-			followState = STALKING;
+			setFollowState(STALKING);
 
 			setTargetObject(obj);
 			//activateMovementEvent();
@@ -603,7 +625,7 @@ class AiAgent extends CreatureObject {
 			if (this.isRetreating())
 				return;
 
-			followState = FOLLOWING;
+			setFollowState(FOLLOWING);
 
 			setTargetObject(obj);
 			//activateMovementEvent();
@@ -648,6 +670,7 @@ class AiAgent extends CreatureObject {
 
 	public void setFollowState(int state) {
 		synchronized (targetMutex) {
+			clearPatrolPoints();
 			followState = state;
 		}
 	}
@@ -842,6 +865,14 @@ class AiAgent extends CreatureObject {
 			return 0;
 		
 		return npcTemplate.get().getFerocity();
+	}
+	
+	@dirty
+	public int getAggroRadius() {
+		if (npcTemplate.get() == null)
+			return 0;
+		
+		return npcTemplate.get().getAggroRadius();
 	}
 	
 	@dirty

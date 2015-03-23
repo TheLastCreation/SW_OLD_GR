@@ -159,11 +159,10 @@ public:
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 
-		if (!checkStateMask(creature))
-			return INVALIDSTATE;
+		int result = doCommonMedicalCommandChecks(creature);
 
-		if (!checkInvalidLocomotions(creature))
-			return INVALIDLOCOMOTION;
+		if (result != SUCCESS)
+			return result;
 
 		ManagedReference<SceneObject*> object = server->getZoneServer()->getObject(target);
 
@@ -173,9 +172,10 @@ public:
 
 				if (tangibleObject != NULL && tangibleObject->isAttackableBy(creature)) {
 					object = creature;
-				} else 
+				} else {
 					creature->sendSystemMessage("@healing_response:healing_response_a1"); //Target must be a player or a creature pet in order to tend damage
 					return GENERALERROR;
+				}
 			}
 		} else
 			object = creature;
@@ -184,23 +184,13 @@ public:
 
 		Locker clocker(creatureTarget, creature);
 
-		if ((creatureTarget->isAiAgent() && !creatureTarget->isPet()) || creatureTarget->isDroidObject() || creatureTarget->isDead() || creatureTarget->isRidingMount() || creatureTarget->isAttackableBy(creature))
+		if ((creatureTarget->isAiAgent() && !creatureTarget->isPet()) || creatureTarget->isDroidObject() || creatureTarget->isVehicleObject() || creatureTarget->isDead() || creatureTarget->isRidingMount() || creatureTarget->isAttackableBy(creature))
 			creatureTarget = creature;
 
 		if (!creatureTarget->isInRange(creature, range + creatureTarget->getTemplateRadius() + creature->getTemplateRadius()))
 			return TOOFAR;
 
 		uint8 attribute = findAttribute(creatureTarget);
-
-		if (creature->isProne() || creature->isMeditating()) {
-			creature->sendSystemMessage("@error_message:wrong_state"); //You cannot complete that action while in your current state.
-			return GENERALERROR;
-		}
-
-		if (creature->isRidingMount()) {
-			creature->sendSystemMessage("@error_message:survey_on_mount"); //You cannot perform that action while mounted on a creature or driving a vehicle.
-			return GENERALERROR;
-		}
 		
 		if (!creatureTarget->isHealableBy(creature)) {
 			creature->sendSystemMessage("@healing:pvp_no_help");  //It would be unwise to help such a patient.
@@ -271,7 +261,6 @@ public:
 		creature->inflictDamage(creature, CreatureAttribute::MIND, mindCost, false);
 		creature->addWounds(CreatureAttribute::FOCUS, mindWoundCost);
 		creature->addWounds(CreatureAttribute::WILLPOWER, mindWoundCost);
-		creature->addShockWounds(2);
 
 		doAnimations(creature, creatureTarget);
 

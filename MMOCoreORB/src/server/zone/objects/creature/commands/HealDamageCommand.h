@@ -191,16 +191,6 @@ public:
 			return false;
 		}
 
-		if (creature->isProne() || creature->isMeditating() || creature->isSwimming()) {
-			creature->sendSystemMessage("@error_message:wrong_state"); //You cannot complete that action while in your current state.
-			return false;
-		}
-
-		if (creature->isRidingMount()) {
-			creature->sendSystemMessage("@error_message:survey_on_mount"); //You cannot perform that action while mounted on a creature or driving a vehicle.
-			return false;
-		}
-
 		if (creature->getHAM(CreatureAttribute::MIND) < mindCost) {
 			creature->sendSystemMessage("@healing_response:not_enough_mind"); //You do not have enough mind to do that.
 			return false;
@@ -374,11 +364,10 @@ public:
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 
-		if (!checkStateMask(creature))
-			return INVALIDSTATE;
+		int result = doCommonMedicalCommandChecks(creature);
 
-		if (!checkInvalidLocomotions(creature))
-			return INVALIDLOCOMOTION;
+		if (result != SUCCESS)
+			return result;
 
 		ManagedReference<SceneObject*> object = server->getZoneServer()->getObject(target);
 
@@ -400,7 +389,7 @@ public:
 
 		Locker clocker(targetCreature, creature);
 
-		if ((targetCreature->isAiAgent() && !targetCreature->isPet()) || targetCreature->isDroidObject() || targetCreature->isDead() || targetCreature->isRidingMount() || targetCreature->isAttackableBy(creature))
+		if ((targetCreature->isAiAgent() && !targetCreature->isPet()) || targetCreature->isDroidObject() || targetCreature->isVehicleObject() || targetCreature->isDead() || targetCreature->isRidingMount() || targetCreature->isAttackableBy(creature))
 			targetCreature = creature;
 
 		uint64 pharmaceuticalObjectID = 0;

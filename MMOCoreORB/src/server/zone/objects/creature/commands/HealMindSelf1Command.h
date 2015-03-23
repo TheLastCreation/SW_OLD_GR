@@ -68,21 +68,13 @@ public:
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 
+		int result = doCommonMedicalCommandChecks(creature);
 
-		if (!checkStateMask(creature))
-			return INVALIDSTATE;
+		if (result != SUCCESS)
+			return result;
 
-		if (!checkInvalidLocomotions(creature))
-			return INVALIDLOCOMOTION;
-
-		if (isWearingArmor(creature)) {
+		if (isWearingArmor(creature))
 			return NOJEDIARMOR;
-		}
-
-		if (isWarcried(creature)) {
-			return GENERALERROR;
-		}
-
 
 		if (!checkForceCost(creature)) {
 			creature->sendSystemMessage("@jedi_spam:no_force_power");

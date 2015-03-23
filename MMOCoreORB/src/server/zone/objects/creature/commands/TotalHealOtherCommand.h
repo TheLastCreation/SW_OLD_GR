@@ -296,11 +296,7 @@ public:
 			creature->sendSystemMessage("Your target has nothing of that type to heal."); //Your target has nothing of that type to heal.
 			return false;
 		}
-		
-		if (creature->isProne()) {
-			return false;
-		}
-				
+
 		PlayerManager* playerManager = server->getPlayerManager();
 
 		if (creature != creatureTarget && !CollisionManager::checkLineOfSight(creature, creatureTarget)) {
@@ -313,15 +309,13 @@ public:
 	
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 
-		if (!checkStateMask(creature))
-			return INVALIDSTATE;
+		int result = doCommonMedicalCommandChecks(creature);
 
-		if (!checkInvalidLocomotions(creature))
-			return INVALIDLOCOMOTION;
+		if (result != SUCCESS)
+			return result;
 
-		if (isWearingArmor(creature)) {
+		if (isWearingArmor(creature))
 			return NOJEDIARMOR;
-		}			
 
 		ManagedReference<SceneObject*> object = server->getZoneServer()->getObject(target);
 
@@ -385,7 +379,7 @@ public:
 		int healedAction = creatureTarget->healDamage(creature, CreatureAttribute::ACTION, heal);
 		int healedMind = creatureTarget->healDamage(creature, CreatureAttribute::MIND, heal, true, false);		
 
-		creatureTarget->addShockWounds(-1000);
+		creatureTarget->addShockWounds(-1000, true, false);
 		
 		creatureTarget->removeStateBuff(CreatureState::STUNNED);
 

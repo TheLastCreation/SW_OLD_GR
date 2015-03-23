@@ -149,16 +149,6 @@ public:
 			return false;
 		}
 
-		if (creature->isProne() || creature->isMeditating()) {
-			creature->sendSystemMessage("@error_message:wrong_state"); //You cannot complete that action while in your current state.
-			return false;
-		}
-
-		if (creature->isRidingMount()) {
-			creature->sendSystemMessage("@error_message:survey_on_mount"); //You cannot perform that action while mounted on a creature or driving a vehicle.
-			return false;
-		}
-
 		if (!creatureTarget->isHealableBy(creature)) {
 			creature->sendSystemMessage("@healing:pvp_no_help");  //It would be unwise to help such a patient.
 			return false;
@@ -223,11 +213,10 @@ public:
 
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 
-		if (!checkStateMask(creature))
-			return INVALIDSTATE;
+		int result = doCommonMedicalCommandChecks(creature);
 
-		if (!checkInvalidLocomotions(creature))
-			return INVALIDLOCOMOTION;
+		if (result != SUCCESS)
+			return result;
 
 		ManagedReference<SceneObject*> object = server->getZoneServer()->getObject(target);
 
@@ -249,7 +238,7 @@ public:
 
 		Locker clocker(creatureTarget, creature);
 
-		if ((creatureTarget->isAiAgent() && !creatureTarget->isPet()) || creatureTarget->isDroidObject() || creatureTarget->isDead() || creatureTarget->isRidingMount() || creatureTarget->isAttackableBy(creature))
+		if ((creatureTarget->isAiAgent() && !creatureTarget->isPet()) || creatureTarget->isDroidObject() || creatureTarget->isVehicleObject() || creatureTarget->isDead() || creatureTarget->isRidingMount() || creatureTarget->isAttackableBy(creature))
 			creatureTarget = creature;
 
 		uint64 state = CreatureState::INVALID;

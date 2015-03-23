@@ -134,15 +134,13 @@ public:
 	
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 
-		if (!checkStateMask(creature))
-			return INVALIDSTATE;
+		int result = doCommonMedicalCommandChecks(creature);
 
-		if (!checkInvalidLocomotions(creature))
-			return INVALIDLOCOMOTION;
+		if (result != SUCCESS)
+			return result;
 
-		if (isWearingArmor(creature)) {
+		if (isWearingArmor(creature))
 			return NOJEDIARMOR;
-		}
 		
 
 		ManagedReference<SceneObject*> object = server->getZoneServer()->getObject(target);

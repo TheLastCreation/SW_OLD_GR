@@ -68,6 +68,9 @@ public:
 		if (target == leader)
 			return true;
 
+		if (target->getParentRecursively(SceneObjectType::BUILDING) != leader->getParentRecursively(SceneObjectType::BUILDING))
+			return false;
+
 		PlayerObject* leaderGhost = leader->getPlayerObject();
 		PlayerObject* targetGhost = target->getPlayerObject();
 
@@ -127,7 +130,7 @@ public:
         if(health < 0 || action < 0 || mind < 0)
             return false;
 
-        if(player->getHAM(CreatureAttribute::ACTION) < action || player->getHAM(CreatureAttribute::HEALTH) < health || player->getHAM(CreatureAttribute::MIND) < mind)
+        if(player->getHAM(CreatureAttribute::ACTION) <= action || player->getHAM(CreatureAttribute::HEALTH) <= health || player->getHAM(CreatureAttribute::MIND) <= mind)
             return false;
 
         if(health > 0)

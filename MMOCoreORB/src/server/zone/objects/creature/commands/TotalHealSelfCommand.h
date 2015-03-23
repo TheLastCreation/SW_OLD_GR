@@ -176,11 +176,10 @@ public:
 		
 	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 
-		if (!checkStateMask(creature))
-			return INVALIDSTATE;
+		int result = doCommonMedicalCommandChecks(creature);
 
-		if (!checkInvalidLocomotions(creature))
-			return INVALIDLOCOMOTION;
+		if (result != SUCCESS)
+			return result;
 
 		if (isWearingArmor(creature)) {
 			return NOJEDIARMOR;
@@ -212,7 +211,7 @@ public:
 		int healedAction = creature->healDamage(creature, CreatureAttribute::ACTION, heal);
 		int healedMind = creature->healDamage(creature, CreatureAttribute::MIND, heal, true, false);		
 
-		creature->addShockWounds(-1000);
+		creature->addShockWounds(-1000, true, false);
 		
 		creature->removeStateBuff(CreatureState::STUNNED);
 

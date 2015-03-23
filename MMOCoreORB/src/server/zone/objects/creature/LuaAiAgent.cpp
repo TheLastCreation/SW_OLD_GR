@@ -83,6 +83,7 @@ Luna<LuaAiAgent>::RegType LuaAiAgent::Register[] = {
 		{ "isStalker", &LuaAiAgent::isStalker },
 		{ "isKiller", &LuaAiAgent::isKiller },
 		{ "getFerocity", &LuaAiAgent::getFerocity },
+		{ "getAggroRadius", &LuaAiAgent::getAggroRadius },
 		{ "getArmor", &LuaAiAgent::getArmor },
 		{ "getDespawnOnNoPlayerInRange", &LuaAiAgent::getDespawnOnNoPlayerInRange },
 		{ "getNumberOfPlayersInRange", &LuaAiAgent::getNumberOfPlayersInRange },
@@ -121,7 +122,7 @@ Luna<LuaAiAgent>::RegType LuaAiAgent::Register[] = {
 		{ "checkRange", &LuaAiAgent::checkRange },
 		{ "broadcastInterrupt", &LuaAiAgent::broadcastInterrupt },
 		{ "getSocialGroup", &LuaAiAgent::getSocialGroup },
-		{ "getOwner", &LuaAiAgent::getOwner },
+		{ "getOwner", &LuaCreatureObject::getOwner },
 		{ "getLastCommand", &LuaAiAgent::getLastCommand },
 		{ "getLastCommandTarget", &LuaAiAgent::getLastCommandTarget },
 		{ "setAlertDuration", &LuaAiAgent::setAlertDuration },
@@ -129,6 +130,7 @@ Luna<LuaAiAgent>::RegType LuaAiAgent::Register[] = {
 		{ "setLevel", &LuaAiAgent::setLevel },
 		{ "hasReactionChatMessages", &LuaAiAgent::hasReactionChatMessages },
 		{ "sendReactionChat", &LuaAiAgent::sendReactionChat },
+		{ "addPatrolPoint", &LuaAiAgent::addPatrolPoint },
 		{ 0, 0 }
 };
 
@@ -556,6 +558,11 @@ int LuaAiAgent::getFerocity(lua_State* L) {
 	return 1;
 }
 
+int LuaAiAgent::getAggroRadius(lua_State* L) {
+	lua_pushinteger(L, realObject->getAggroRadius());
+	return 1;
+}
+
 int LuaAiAgent::getArmor(lua_State* L) {
 	lua_pushinteger(L, realObject->getArmor());
 	return 1;
@@ -855,16 +862,6 @@ int LuaAiAgent::getSocialGroup(lua_State* L) {
 	return 1;
 }
 
-int LuaAiAgent::getOwner(lua_State* L) {
-	CreatureObject* retVal = realObject->getLinkedCreature().get();
-
-	if (retVal == NULL)
-		lua_pushnil(L);
-	else
-		lua_pushlightuserdata(L, retVal);
-	return 1;
-}
-
 int LuaAiAgent::getLastCommand(lua_State* L) {
 	ManagedReference<PetControlDevice*> controlDevice = realObject->getControlDevice().castTo<PetControlDevice*>();
 
@@ -927,6 +924,19 @@ int LuaAiAgent::sendReactionChat(lua_State* L) {
 	Locker locker(realObject);
 
 	realObject->sendReactionChat(type, state);
+
+	return 0;
+}
+
+int LuaAiAgent::addPatrolPoint(lua_State* L) {
+	SceneObject* cell = static_cast<SceneObject*>(lua_touserdata(L, -1));
+	float y = lua_tonumber(L, -2);
+	float z = lua_tonumber(L, -3);
+	float x = lua_tonumber(L, -4);
+
+	PatrolPoint newPoint(x, z, y, cell);
+
+	realObject->addPatrolPoint(newPoint);
 
 	return 0;
 }
