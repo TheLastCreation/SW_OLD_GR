@@ -33,7 +33,7 @@ nk_necrosis = Creature:new {
 					{
 						{group = "g_musty_house_loot_deed", chance = 10000000}
 					},
-				lootChance = 3500000
+				lootChance = 5500000
 				},
 	scale = 1.25,
 	weapons = {"dark_jedi_weapons_gen4"},

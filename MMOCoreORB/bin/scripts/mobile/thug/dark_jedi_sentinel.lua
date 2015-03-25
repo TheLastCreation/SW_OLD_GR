@@ -1,7 +1,7 @@
 dark_jedi_sentinel = Creature:new {
 	objectName = "@mob/creature_names:dark_jedi_sentinel",
-	socialGroup = "self",
-	faction = "",
+	socialGroup = "imperial",
+	faction = "imperial",
 	level = 300,
 	chanceHit = 30,
 	damageMin = 2645,
@@ -43,7 +43,13 @@ dark_jedi_sentinel = Creature:new {
 				{group = "wearables_scarce", chance = 800000}				
 			},
 			lootChance = 8500000
-		}
+		},
+		{
+			groups = {
+				{group = "crystal_named", chance = 10000000}				
+			},
+			lootChance = 10000000
+		},
 	},
 	weapons = {"dark_jedi_weapons_gen4"},
 	conversationTemplate = "",

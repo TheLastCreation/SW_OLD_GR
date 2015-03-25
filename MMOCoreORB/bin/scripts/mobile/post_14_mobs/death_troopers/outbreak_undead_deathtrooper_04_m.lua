@@ -29,7 +29,19 @@ outbreak_undead_deathtrooper_04_m = Creature:new {
 
 	templates = {"object/mobile/outbreak_undead_deathtrooper_04_m.iff"},
 		
-	lootGroups = {},
+	lootGroups = {
+	    {
+			groups = {
+				{group = "clothing_attachments", chance = 4500000},
+				{group = "armor_attachments", chance = 2000000},
+				{group = "nyms_common", chance = 1000000},
+				{group = "pistols", chance = 1000000},
+				{group = "carbines", chance = 1000000},
+				{group = "tailor_components", chance = 500000}
+			},
+			lootChance = 9000000
+		}
+	},
 	--scale = 1.25,
 	weapons = {"deathtrooper_weapons"},
 	conversationTemplate = "",
