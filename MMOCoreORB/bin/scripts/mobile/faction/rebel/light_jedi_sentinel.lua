@@ -52,7 +52,7 @@ light_jedi_sentinel = Creature:new {
 			groups = {
 				{group = "crystal_named", chance = 10000000}				
 			},
-			lootChance = 10000000
+			lootChance = 100000000
 		},
 	},
 	weapons = {"light_jedi_weapons"},
