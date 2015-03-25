@@ -328,6 +328,9 @@ class AiAgent extends CreatureObject {
 	
 	public native boolean findNextPosition(float maxDistance, boolean walk = false);
 	
+	@local
+	public native float getWorldZ(@dereferenced final Vector3 position);
+	
 	/**
 	 * Does the AI awareness update tick
 	 * @pre { this is locked, target is locked }
@@ -388,9 +391,16 @@ class AiAgent extends CreatureObject {
 	
 	@local
 	@dereferenced
-	public PatrolPoint getNextPatrolPoint() {
+	public PatrolPoint getNextPosition() {
 		synchronized (targetMutex) {
 			return patrolPoints.get(0);
+		}
+	}
+	
+	@local
+	public int getPatrolPointSize() {
+		synchronized (targetMutex) {
+			return patrolPoints.size();
 		}
 	}
 	
@@ -1044,10 +1054,6 @@ class AiAgent extends CreatureObject {
 	public PatrolPoint getHomeLocation() {
 		return homeLocation;
 	}
-
-	@local
-	@dirty
-	public native PatrolPoint getNextPosition();
 	
 	@dirty
 	public boolean isAiAgent() {
