@@ -211,11 +211,11 @@ function ThemeParkLogic:getMissionFaction(npcNumber, missionNumber)
 	local mission = self:getMission(npcNumber, missionNumber)
 	local npcData = self:getNpcData(npcNumber)
 
-	if mission.faction == nil and npcData.faction == nil then
+	if (mission == nil or mission.faction == nil) and npcData.faction == nil then
 		return 0
 	end
 
-	if (mission.faction ~= nil) then
+	if mission ~= nil and mission.faction ~= nil then
 		return mission.faction
 	else
 		return npcData.faction
@@ -360,6 +360,11 @@ end
 
 function ThemeParkLogic:handleMissionAccept(npcNumber, missionNumber, pConversingPlayer)
 	local mission = self:getMission(npcNumber, missionNumber)
+
+	if mission == nil then
+		return false
+	end
+
 	local creature = CreatureObject(pConversingPlayer)
 
 	writeStringData(creature:getObjectID() .. ":activeScreenPlay", self.className)
@@ -546,6 +551,10 @@ function ThemeParkLogic:notifyKilledHuntTarget(pAttacker, pVictim)
 	local missionNumber = self:getCurrentMissionNumber(npcNumber, pAttacker)
 	local mission = self:getMission(npcNumber, missionNumber)
 
+	if mission == nil then
+		return 0
+	end
+
 	if (SceneObject(pVictim):getObjectName() == mission.huntTarget.npcTemplate) then
 		self:completeMission(pAttacker)
 		return 1
@@ -709,6 +718,10 @@ function ThemeParkLogic:notifyDefeatedTargetWithLoot(pVictim, pAttacker)
 
 	local ownerID = readData(victimID .. ":missionOwnerID")
 	local pOwner = getCreatureObject(ownerID)
+	
+	if (pOwner == nil) then
+		return 0
+	end
 
 	if self:killedByCorrectPlayer(victimID, attackerID) == false and (self:isGroupedWith(pOwner, pAttacker) == false or self:isInQuestRangeOf(pOwner, pVictim) == false) then
 		self:clearInventory(pVictim)
@@ -726,8 +739,8 @@ function ThemeParkLogic:notifyDefeatedTargetWithLoot(pVictim, pAttacker)
 	local inventory = LuaSceneObject(pInventory)
 
 	local numberOfItems = inventory:getContainerObjectsSize()
-	local activeNpcNumber = self:getActiveNpcNumber(pAttacker)
-	local requiredItems = self:getRequiredItem(activeNpcNumber, pAttacker)
+	local activeNpcNumber = self:getActiveNpcNumber(pOwner)
+	local requiredItems = self:getRequiredItem(activeNpcNumber, pOwner)
 
 	for j = 1, # requiredItems, 1 do
 		for i = 0, numberOfItems - 1, 1 do
@@ -799,7 +812,7 @@ function ThemeParkLogic:getMissionLootCount(pLooter)
 	local missionNumber = self:getCurrentMissionNumber(npcNumber, pLooter)
 	local mission = self:getMission(npcNumber, missionNumber)
 
-	if mission.missionType == "confiscate" then
+	if mission ~= nil and mission.missionType == "confiscate" then
 		return table.getn(mission.itemSpawns)
 	else
 		return 0
@@ -814,6 +827,11 @@ function ThemeParkLogic:getMissionPreReq(pPlayer)
 	local npcNumber = self:getActiveNpcNumber(pPlayer)
 	local missionNumber = self:getCurrentMissionNumber(npcNumber, pPlayer)
 	local mission = self:getMission(npcNumber, missionNumber)
+
+	if mission == nil then
+		return 0
+	end
+
 	local preReq = mission.preReq
 
 	if preReq == nil or preReq == "" then
@@ -891,6 +909,11 @@ function ThemeParkLogic:setNpcDefender(pPlayer)
 	local npcNumber = self:getActiveNpcNumber(pPlayer)
 	local missionNumber = self:getCurrentMissionNumber(npcNumber, pPlayer)
 	local mission = self:getMission(npcNumber, missionNumber)
+
+	if mission == nil then
+		return
+	end
+
 	local currentMissionType = self:getMissionType(npcNumber, pPlayer)
 
 	local numberOfSpawns = readData(playerID .. ":missionSpawns")
@@ -957,7 +980,7 @@ function ThemeParkLogic:getMissionKillCount(pAttacker)
 	local missionNumber = self:getCurrentMissionNumber(npcNumber, pAttacker)
 	local mission = self:getMission(npcNumber, missionNumber)
 
-	if mission.missionType == "assassinate" then
+	if mission ~= nil and mission.missionType == "assassinate" then
 		return table.getn(mission.primarySpawns)
 	else
 		return 0
@@ -1053,7 +1076,7 @@ function ThemeParkLogic:getMissionDescription(pConversingPlayer, direction)
 			missionNumber = missionNumber + table.getn(self:getNpcData(npcNumber).missions)
 			npcNumber = npcNumber * 2
 		end
-		if curMission.missionDescription ~= "" and curMission.missionDescription ~= nil and direction == "target" then
+		if curMission ~= nil and curMission.missionDescription ~= "" and curMission.missionDescription ~= nil and direction == "target" then
 			creature:sendSystemMessage(curMission.missionDescription)
 			return curMission.missionDescription
 		elseif self.missionDescriptionStf == "" then
@@ -1086,6 +1109,11 @@ function ThemeParkLogic:getDefaultWaypointName(pConversingPlayer, direction)
 		local currentMissionType = self:getMissionType(activeNpcNumber, pConversingPlayer)
 		local currentMissionNumber = self:getCurrentMissionNumber(activeNpcNumber, pConversingPlayer)
 		local mission = self:getMission(activeNpcNumber, currentMissionNumber)
+
+		if mission == nil then
+			return ""
+		end
+
 		local mainNpc = mission.primarySpawns
 		local mainNpcName = self:getNpcName(mainNpc[1].npcName)
 		local missionItem = mission.itemSpawns
@@ -1105,6 +1133,8 @@ function ThemeParkLogic:getDefaultWaypointName(pConversingPlayer, direction)
 		elseif currentMissionType == "confiscate" then
 			local missionItemName = missionItem[1].itemName
 			return "Confiscate " .. missionItemName
+		else
+			return ""
 		end
 	else
 		return "Return to the mission giver."
@@ -1193,7 +1223,6 @@ function ThemeParkLogic:getSpawnPoints(numberOfSpawns, x, y, pConversingPlayer)
 	local activeNpcNumber = self:getActiveNpcNumber(pConversingPlayer)
 	local currentMissionType = self:getMissionType(activeNpcNumber, pConversingPlayer)
 	local currentMissionNumber = self:getCurrentMissionNumber(activeNpcNumber, pConversingPlayer)
-	local mission = self:getMission(activeNpcNumber, currentMissionNumber)
 
 	local spawnDistance = self.distance
 
@@ -1317,6 +1346,10 @@ function ThemeParkLogic:getRequiredItem(activeNpcNumber, pConversingPlayer)
 	local missionNumber = self:getCurrentMissionNumber(activeNpcNumber, pConversingPlayer)
 	local mission = self:getMission(activeNpcNumber, missionNumber)
 
+	if mission == nil then
+		return {}
+	end
+
 	return mission.itemSpawns
 end
 
@@ -1404,6 +1437,11 @@ function ThemeParkLogic:handleMissionReward(pConversingPlayer)
 	local npcNumber = self:getActiveNpcNumber(pConversingPlayer)
 	local missionNumber = self:getCurrentMissionNumber(npcNumber, pConversingPlayer)
 	local mission = self:getMission(npcNumber, missionNumber)
+
+	if mission == nil then
+		return
+	end
+
 	local rewards = mission.rewards
 
 	for i = 1, # rewards, 1 do
@@ -1588,7 +1626,7 @@ end
 
 function ThemeParkLogic:getMissionType(activeNpcNumber, pConversingPlayer)
 	if pConversingPlayer == nil then
-		return
+		return ""
 	end
 
 	local missionNumber = self:getCurrentMissionNumber(activeNpcNumber, pConversingPlayer)
@@ -1598,6 +1636,10 @@ function ThemeParkLogic:getMissionType(activeNpcNumber, pConversingPlayer)
 	end
 
 	local mission = self:getMission(activeNpcNumber, missionNumber)
+
+	if mission == nil then
+		return ""
+	end
 
 	return mission.missionType
 end

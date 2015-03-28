@@ -658,11 +658,12 @@ function DeathWatchBunkerScreenPlay:voiceTerminalSpatialReceived(pTerminal, pCha
 		writeData("dwb:bombDroidHandlerLastUse", os.time())
 	elseif (bombDroidHandlerID ~= terminalUserID) then
 		local lastTerminalUse = readData("dwb:bombDroidHandlerLastUse")
+
 		if (os.difftime(os.time(), lastTerminalUse) < 120) then
 			CreatureObject(pPlayer):sendSystemMessage("@dungeon/death_watch:terminal_in_use")
 			return 0
 		else
-			writeData("dwb:bombDroidHandler", bombDroidHandlerID)
+			writeData("dwb:bombDroidHandler", terminalUserID)
 			writeData("dwb:bombDroidHandlerLastUse", os.time())
 		end
 	end
@@ -675,18 +676,13 @@ function DeathWatchBunkerScreenPlay:voiceTerminalSpatialReceived(pTerminal, pCha
 	local spatialCommand = tokenizer[1]
 	local moveDistance = 0
 
-	if (spatialCommand == "reset") then
-		local lastDetonate = readData("dwb:lastDroidDetonate")
-		if (lastDetonate ~= 0 and os.difftime(os.time(), lastDetonate) < 180) then
-			CreatureObject(pPlayer):sendSystemMessage("@dungeon/death_watch:reload_voice_pattern")
-			return 0
-		end
+	local bombDroidID = readData("dwb:bombDroid")
+	local pBombDroid = getSceneObject(bombDroidID)
+
+	if (spatialCommand == "reset" and pBombDroid == nil) then
 		self:respawnBombDroid()
 		return 0
 	end
-
-	local bombDroidID = readData("dwb:bombDroid")
-	local pBombDroid = getSceneObject(bombDroidID)
 
 	if (pBombDroid == nil or not SceneObject(pBombDroid):isAiAgent()) then
 		return 0
@@ -799,6 +795,8 @@ function DeathWatchBunkerScreenPlay:bombDroidDetonated(pBombDroid, pBombDroid2)
 		createEvent(1000, "DeathWatchBunkerScreenPlay", "destroyDebris", pDebris2)
 	end
 
+	deleteData("dwb:bombDroid")
+
 	return 1
 end
 
@@ -897,9 +895,11 @@ function DeathWatchBunkerScreenPlay:haldoDamage(pHaldo, pPlayer, damage)
 			CreatureObject(pNewHaldo):setHAM(6, spawnHam.m)
 
 			spatialChat(pNewHaldo, "@dungeon/death_watch:help_me")
-		end
 
-		return 1
+			return 1
+		else
+			return 0
+		end
 	end)
 end
 
@@ -1480,8 +1480,11 @@ function DeathWatchBunkerScreenPlay:doValveSwitch(pCreature, valveNumber)
 	local state4 = readData("dwb:valve4")
 
 	if (state1 == 1 and state2 == 1 and state3 == 1 and state4 == 1) then
-		CreatureObject(pCreature):setScreenPlayState(64, "death_watch_foreman_stage")
-		CreatureObject(pCreature):sendSystemMessage("@dungeon/death_watch:restored_pressure")
+		ObjectManager.withCreatureObject(pCreature, function(creature)
+			playClientEffectLoc(creature:getObjectID(), "clienteffect/dth_watch_water_pressure.cef", "endor", creature:getPositionX(), creature:getPositionZ(), creature:getPositionY(), creature:getParentID())
+			creature:setScreenPlayState(64, "death_watch_foreman_stage")
+			creature:sendSystemMessage("@dungeon/death_watch:restored_pressure")
+		end)
 		-- Reset valves to starting state with A, B and D active
 		self:swapValveState(pCreature, 3, false)
 	end
@@ -1560,11 +1563,11 @@ function DeathWatchBunkerScreenPlay:craftingConfirmCallback(pCreature, pSui, can
 	if step == 1 then
 		writeData(SceneObject(pUsingObject):getObjectID() .. ":dwb:currentlycrafting", 2)
 		CreatureObject(pCreature):sendSystemMessage("@dungeon/death_watch:alum_process_begun")
-		createEvent(30 * 1000, "DeathWatchBunkerScreenPlay", "nextCraftingStep", pUsingObject)
+		createEvent(10 * 1000, "DeathWatchBunkerScreenPlay", "nextCraftingStep", pUsingObject)
 	elseif step == 3 then
 		writeData(SceneObject(pUsingObject):getObjectID() .. ":dwb:currentlycrafting", 4)
 		CreatureObject(pCreature):sendSystemMessage("@dungeon/death_watch:aeration_process_begun")
-		createEvent(30 * 1000, "DeathWatchBunkerScreenPlay", "finishCraftingStep", pUsingObject)
+		createEvent(10 * 1000, "DeathWatchBunkerScreenPlay", "finishCraftingStep", pUsingObject)
 	end
 
 	return 0
@@ -1583,7 +1586,7 @@ function DeathWatchBunkerScreenPlay:doVentDroidStep(pDroid)
 		return
 	end
 
-	if (curStep == 0) then -- Initial spawn at toolbox, wait 30 seconds
+	if (curStep == 0) then -- Initial spawn at technician, wait 10 secs
 		local spawn = deathWatchSpecialSpawns["ventdroid"]
 		pDroid = spawnMobile("endor", spawn[1], spawn[2], spawn[3], spawn[4], spawn[5], spawn[6], spawn[7])
 		SceneObject(pDroid):setCustomObjectName("Ventilation Repair Droid")
@@ -1591,7 +1594,7 @@ function DeathWatchBunkerScreenPlay:doVentDroidStep(pDroid)
 		createObserver(DESTINATIONREACHED, "DeathWatchBunkerScreenPlay", "ventDroidDestinationReached", pDroid)
 		AiAgent(pDroid):setAiTemplate("manualescortwalk") -- Don't move unless patrol point is added to list, walking speed
 		AiAgent(pDroid):setFollowState(4) -- Patrolling
-		createEvent(30 * 1000, "DeathWatchBunkerScreenPlay", "doVentDroidStep", pDroid)
+		createEvent(10 * 1000, "DeathWatchBunkerScreenPlay", "doVentDroidStep", pDroid)
 		writeData("dwb:ventDroidStep", curStep + 1)
 	elseif (curStep == 1) then -- Move to toolbox
 		self:sendMessageToCell(5996345, "@dungeon/death_watch:protect_tools")
@@ -1651,8 +1654,8 @@ function DeathWatchBunkerScreenPlay:doVentDroidStep(pDroid)
 end
 
 function DeathWatchBunkerScreenPlay:ventDroidDestinationReached(pDroid)
-	createEvent(2000, "DeathWatchBunkerScreenPlay", "doVentDroidMove", pDroid)
-	return 1
+	createEvent(1500, "DeathWatchBunkerScreenPlay", "doVentDroidMove", pDroid)
+	return 0
 end
 
 function DeathWatchBunkerScreenPlay:doVentDroidMove(pDroid)

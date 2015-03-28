@@ -439,6 +439,8 @@ void AiAgentImplementation::notifyPositionUpdate(QuadTreeEntry* entry) {
 
 void AiAgentImplementation::doAwarenessCheck(CreatureObject* target) {
 	Behavior* current = behaviors.get(currentBehaviorID);
+	if (_this.get() == target)
+		return;
 	if (current != NULL && target != NULL && numberOfPlayersInRange > 0 && current->doAwarenessCheck(target)) {
 		activateInterrupt(target, ObserverEventType::OBJECTINRANGEMOVED);
 		activateAwarenessEvent(target);
@@ -490,6 +492,26 @@ void AiAgentImplementation::selectSpecialAttack(int attackNum) {
 		} else {
 			nextActionCRC = cmd.hashCode();
 			nextActionArgs = attackMap->getArguments(attackNum);
+
+			ZoneServer* zoneServer = getZoneServer();
+			if (zoneServer == NULL) {
+				selectDefaultAttack();
+				return;
+			}
+
+			ObjectController* objectController = zoneServer->getObjectController();
+			if (objectController == NULL) {
+				selectDefaultAttack();
+				return;
+			}
+
+			QueueCommand* queueCommand = getZoneServer()->getObjectController()->getQueueCommand(nextActionCRC);
+			ManagedReference<SceneObject*> followCopy = getFollowObject();
+			if (queueCommand == NULL || followCopy == NULL
+					|| (queueCommand->getMaxRange() >= 0 && !followCopy->isInRange(_this.get(), queueCommand->getMaxRange() + getTemplateRadius() + followCopy->getTemplateRadius()))
+					|| (queueCommand->getMaxRange() < 0 && !followCopy->isInRange(_this.get(), getWeapon()->getMaxRange() + getTemplateRadius() + followCopy->getTemplateRadius()))) {
+				selectDefaultAttack();
+			}
 		}
 	} else {
 		selectDefaultAttack();
@@ -621,7 +643,7 @@ void AiAgentImplementation::selectWeapon() {
 	float dist = 5.f;
 
 	if (followCopy != NULL)
-		dist = getDistanceTo(followCopy) + followCopy->getTemplateRadius() + getTemplateRadius() - 2;
+		dist = getDistanceTo(followCopy) - followCopy->getTemplateRadius() - getTemplateRadius();
 
 	WeaponObject* finalWeap = NULL;
 	ManagedReference<WeaponObject*> defaultWeapon = getSlottedObject("default_weapon").castTo<WeaponObject*>();
@@ -634,7 +656,7 @@ void AiAgentImplementation::selectWeapon() {
 		readyWeaponRangeDiff = fabs(readyWeapon->getIdealRange() - dist);
 	}
 
-	if (defaultWeapon != NULL) {
+	if (defaultWeapon != NULL && defaultWeapon->getMaxRange() >= dist) {
 		defaultWeaponRangeDiff = fabs(defaultWeapon->getIdealRange() - dist);
 	}
 
@@ -792,8 +814,12 @@ void AiAgentImplementation::leash() {
 
 	CombatManager::instance()->forcePeace(_this.get());
 
-	homeLocation.setReached(false);
-	setNextPosition(homeLocation.getPositionX(), homeLocation.getPositionZ(), homeLocation.getPositionY(), homeLocation.getCell());
+	if (!homeLocation.isInRange(_this.get(), 1.5)) {
+		homeLocation.setReached(false);
+		addPatrolPoint(homeLocation);
+	} else {
+		homeLocation.setReached(true);
+	}
 }
 
 void AiAgentImplementation::setDefender(SceneObject* defender) {
@@ -1163,8 +1189,6 @@ void AiAgentImplementation::updateCurrentPosition(PatrolPoint* pos) {
 	if (getZone() == NULL)
 		return;
 
-//	Locker clocker(getZone(), _this.get()); updateZone locks zone
-
 	if (cell != NULL && cell->getParent() != NULL)
 		updateZoneWithParent(cell, false, false);
 	else
@@ -1311,7 +1335,7 @@ bool AiAgentImplementation::findNextPosition(float maxDistance, bool walk) {
 			// go to the edge of the maxDistance radius and stop, so select the minimum
 			// of either our max travel distance (newSpeed) or the distance from the
 			// maxDistance radius
-			maxDist = MIN(newSpeed, targetDistance - maxDistance);
+			maxDist = MIN(newSpeed, targetDistance - maxDistance + 0.1);
 		else
 			// We are already at or inside the maxDistance radius, so we have reached this
 			// patrolPoint. We want to stop at every patrolPoint exactly once, so we will
@@ -1346,7 +1370,7 @@ bool AiAgentImplementation::findNextPosition(float maxDistance, bool walk) {
 			// To find our stopping point, either we need to go all the way through the path (which shouldn't
 			// happen because of our earlier check for distance) or we've gone as far down the path as we can
 			// in one tick.
-			if (pathDistance >= maxDist) {
+			if (pathDistance > maxDist) {
 				// this is farther than we can go in one timestep
 				found = true;
 
@@ -1480,6 +1504,7 @@ bool AiAgentImplementation::findNextPosition(float maxDistance, bool walk) {
 			homeLocation.setReached(true);
 
 		currentFoundPath = NULL;
+		targetCellObject = NULL;
 		currentSpeed = 0;
 	}
 
@@ -1680,12 +1705,7 @@ int AiAgentImplementation::setDestination() {
 		setNextPosition(getPositionX(), getPositionZ(), getPositionY(), getParent().get()); // sets patrolPoints[0] to current position
 		checkNewAngle(); // sends update zone packet
 		if (getPatrolPointSize() > 0) {
-			Locker locker(&targetMutex);
-
-			PatrolPoint patrolPoint = patrolPoints.get(0);
-
-			locker.release(); // we cant have targetMutex locked before locking zone because at least in notifyDisappear zone is locked before locking targetMutex
-
+			PatrolPoint patrolPoint = getNextPosition();
 			updateCurrentPosition(&patrolPoint);
 		}
 		break;
@@ -1932,10 +1952,6 @@ int AiAgentImplementation::inflictDamage(TangibleObject* attacker, int damageTyp
 
 		if (damage > 0) {
 			getThreatMap()->addDamage(creature, damage);
-
-			if (System::random(5) == 1) {
-				setDefender(creature);
-			}
 		}
 	}
 	activateInterrupt(attacker, ObserverEventType::DAMAGERECEIVED);
@@ -1952,10 +1968,6 @@ int AiAgentImplementation::inflictDamage(TangibleObject* attacker, int damageTyp
 
 		if (damage > 0) {
 			getThreatMap()->addDamage(creature, damage, xp);
-
-			if (System::random(5) == 1) {
-				setDefender(creature);
-			}
 		}
 	}
 	activateInterrupt(attacker, ObserverEventType::DAMAGERECEIVED);

@@ -75,7 +75,6 @@
 #include "server/zone/packets/player/NewbieTutorialRequest.h"
 #include "server/zone/packets/ui/NewbieTutorialEnableHudElement.h"
 #include "server/zone/packets/ui/OpenHolocronToPageMessage.h"
-#include "server/zone/packets/object/PlayClientEffectObjectMessage.h"
 #include "server/zone/packets/object/Animation.h"
 #include "server/zone/objects/creature/CreaturePosture.h"
 #include "server/zone/objects/creature/commands/effect/CommandEffect.h"
@@ -491,12 +490,43 @@ void CreatureObjectImplementation::sendSystemMessage(UnicodeString& message) {
 
 void CreatureObjectImplementation::clearQueueAction(uint32 actioncntr,
 		float timer, uint32 tab1, uint32 tab2) {
-	if (!isPlayerCreature())
+	if (actioncntr == 0 || !isPlayerCreature())
 		return;
 
 	BaseMessage* queuemsg = new CommandQueueRemove(_this.get(), actioncntr, timer,
 			tab1, tab2);
 	sendMessage(queuemsg);
+}
+
+void CreatureObjectImplementation::clearQueueActions(bool combatOnly) {
+	for (int i = commandQueue->size() - 1; i >= 0; i--) {
+		CommandQueueAction* command = commandQueue->get(i);
+
+		if (command == NULL)
+			continue;
+
+		if (combatOnly) {
+			ZoneServer* zoneServer = getZoneServer();
+			if (zoneServer == NULL)
+				continue;
+
+			ObjectController* objectController = zoneServer->getObjectController();
+			if (objectController == NULL)
+				continue;
+
+			QueueCommand* qc = objectController->getQueueCommand(command->getCommand());
+			if (qc == NULL)
+				continue;
+
+			if (!qc->isCombatCommand())
+				continue;
+		}
+
+		if (command->getActionCounter() != 0)
+			clearQueueAction(command->getActionCounter());
+
+		commandQueue->remove(i);
+	}
 }
 
 void CreatureObjectImplementation::setWeapon(WeaponObject* weao,
@@ -505,15 +535,6 @@ void CreatureObjectImplementation::setWeapon(WeaponObject* weao,
 		weao = TangibleObjectImplementation::getSlottedObject("default_weapon").castTo<WeaponObject*>();
 
 	weapon = weao;
-
-	if (isPlayerCreature()) {
-		PlayerObject* ghost = getSlottedObject("ghost").castTo<PlayerObject*>();
-		if (ghost != NULL) {
-			if (ghost->hasAbility("counterAttack") && !(weapon->isCarbineWeapon() || (weapon->isTwoHandMeleeWeapon() && !weapon->isJediWeapon()))) {
-				SkillManager::instance()->removeAbility(ghost, "counterAttack", false);
-			}
-		}
-	}
 
 	if (notifyClient) {
 		CreatureObjectDeltaMessage6* msg = new CreatureObjectDeltaMessage6(
@@ -744,6 +765,8 @@ void CreatureObjectImplementation::clearCombatState(bool removedefenders) {
 
 		broadcastMessage(dcreo3, true);
 	}
+
+	clearQueueActions(false);
 
 	if (removedefenders)
 		removeDefenders();
@@ -2091,14 +2114,6 @@ void CreatureObjectImplementation::doAnimation(const String& anim) {
 	Animation* msg = new Animation(_this.get(), anim);
 
 	broadcastMessage(msg, true);
-}
-
-void CreatureObjectImplementation::playEffect(const String& file,
-		const String& aux) {
-	PlayClientEffectObjectMessage* effect = new PlayClientEffectObjectMessage(
-			_this.get(), file, aux);
-
-	broadcastMessage(effect, true);
 }
 
 void CreatureObjectImplementation::dismount() {

@@ -4,11 +4,6 @@ require("themeParkLogic")
 require("corvetteTicketGiverLogic")
 require("corvetteTicketTakerLogic")
 
---GR Screenplays
-includeFile("gr_screenplays/generals_bunker.lua")
---includeFile("gr_screenplays/lok/kill_the_general.lua")
-
-
 -- Theme parks
 includeFile("themepark/conversations/goru_conv_handler.lua")
 includeFile("themepark/conversations/mission_giver_conv_handler.lua")
@@ -78,7 +73,6 @@ includeFile("tasks/hero_of_tatooine/conversations/heroOfTatMotherConvoHandler.lu
 includeFile("tasks/hero_of_tatooine/heroOfTatooine.lua")
 includeFile("tasks/hero_of_tatooine/heroOfTatooineContainerComponents.lua")
 includeFile("tasks/hero_of_tatooine/heroOfTatooineMenuComponents.lua")
-
 
 -- Task/Quest
 includeFile("tasks/corellia/chertyl_ruluwoor.lua")
@@ -340,11 +334,6 @@ includeFile("static_spawns/yavin4_static_spawns.lua")
 --Treasure Maps
 includeFile("treasure_map/EncodedDiskMenuComponent.lua")
 includeFile("treasure_map/TreasureMapMenuComponent.lua")
-
---Tests
---includeFile("tests/options_bitmask_test.lua")
---includeFile("event/stresstest_20120128.lua")
---includeFile("event/cnet_auxilary_shuttle.lua")
 
 --Race Tracks
 includeFile("racetracks/racetracks.lua")
