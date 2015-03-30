@@ -139,6 +139,8 @@ void BlueprintEntry::removeResources(FactoryObject* factory) {
 	while(matchingHopperItems.size() > 0) {
 		TangibleObject* object = matchingHopperItems.get(0);
 
+		Locker locker(object);
+
 		if(object->getUseCount() < quantity) {
 			count += object->getUseCount();
 			matchingHopperItems.removeElement(object);

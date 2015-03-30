@@ -320,6 +320,8 @@ void AiAgentImplementation::loadTemplateData(CreatureTemplate* templateData) {
 						ManagedReference<TangibleObject*> tano = (server->getZoneServer()->createObject(templ.hashCode(), getPersistenceLevel())).castTo<TangibleObject*>();
 
 						if (tano != NULL) {
+							Locker objLocker(tano);
+
 							VectorMap<String, uint8>* cust = obj->getCustomizationVariables();
 
 							for (int j = 0; j < cust->size(); ++j) {
@@ -667,6 +669,8 @@ void AiAgentImplementation::selectWeapon() {
 
 	if (currentWeapon != finalWeap) {
 		if (currentWeapon != NULL && currentWeapon != defaultWeapon) {
+			Locker locker(currentWeapon);
+
 			currentWeapon->destroyObjectFromWorld(false);
 
 			//info("removed weapon " + currentWeapon->getDisplayedName(), true);
@@ -675,6 +679,7 @@ void AiAgentImplementation::selectWeapon() {
 		if (finalWeap != NULL && finalWeap != defaultWeapon) {
 
 			//info("selected weapon " + finalWeap->getDisplayedName(), true);
+			Locker locker(finalWeap);
 
 			transferObject(finalWeap, 4, false);
 			broadcastObject(finalWeap, false);
@@ -908,10 +913,10 @@ void AiAgentImplementation::notifyInsert(QuadTreeEntry* entry) {
 	if (scno->isPlayerCreature()) {
 		CreatureObject* creo = cast<CreatureObject*>(scno);
 		if (!creo->isInvisible()) {
-			numberOfPlayersInRange.increment();
+			int newValue = (int) numberOfPlayersInRange.increment();
 			activateMovementEvent();
 
-			if (numberOfPlayersInRange == 1) { // we had no players in range before, and now we do. Need to "activate" AI
+			if (newValue == 1) { // we had no players in range before, and now we do. Need to "activate" AI
 				CloseObjectsVector* vec = (CloseObjectsVector*) getCloseObjects();
 				if (vec == NULL)
 					return;
@@ -1093,24 +1098,17 @@ void AiAgentImplementation::notifyDissapear(QuadTreeEntry* entry) {
 		return;
 
 	if (scno == getFollowObject()) {
-		class SetObliviousTask : public Task {
-			ManagedReference<AiAgent*> ai;
-			ManagedReference<SceneObject*> sceno;
+			ManagedReference<AiAgent*> ai = _this.get();
+			ManagedReference<SceneObject*> sceno = scno;
 
-		public:
-			SetObliviousTask(AiAgent* mob, SceneObject* scno) : ai(mob), sceno(scno) {}
+			EXECUTE_TASK_2(ai, sceno, {
+				Locker locker(ai_p);
+				Locker clocker(sceno_p, ai_p);
 
-			void run() {
-				Locker locker(ai);
-				Locker clocker(sceno, ai);
-				if (sceno == ai->getFollowObject()) {
-					ai->restoreFollowObject();
+				if (sceno_p == ai_p->getFollowObject()) {
+					ai_p->restoreFollowObject();
 				}
-			}
-		};
-
-		SetObliviousTask* task = new SetObliviousTask(_this.get().get(), scno);
-		task->execute();
+			});
 	}
 
 	if (scno->isPlayerCreature()) {

@@ -32,14 +32,15 @@ public:
 		if (player->getParent() != NULL)
 			return;
 
-		ManagedReference<CityRegion*> city = player->getCityRegion();
-		if (city == NULL)
+		ManagedReference<CityRegion*> city = player->getCityRegion().get();
+		CityManager* cityManager = player->getZoneServer()->getCityManager();
+		if (city == NULL || cityManager == NULL)
 			return;
 
 		if (!city->isMayor(player->getObjectID()))
 			return;
 
-		if (city->getSkillTrainerCount() >= (int) city->getCityRank() * 3) {
+		if (!cityManager->canSupportMoreTrainers(city)) {
 					player->sendSystemMessage("@city/city:no_more_trainers"); // Your city can't support any more trainers at its current rank!
 					return;
 		}
@@ -182,6 +183,9 @@ public:
 			city->subtractFromCityTreasury(1000);
 			city->addSkillTrainer(trainer);
 
+			if (!city->isRegistered()) {
+				zone->unregisterObjectWithPlanetaryMap(trainer);
+			}
 		}
 	}
 };

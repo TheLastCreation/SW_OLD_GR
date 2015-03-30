@@ -301,7 +301,11 @@ void BuildingObjectImplementation::notifyRemoveFromZone() {
 			/*obj->removeFromZone();
 
 			cell->removeObject(obj);*/
+			Locker objLocker(obj);
+
 			obj->destroyObjectFromWorld(true);
+
+			objLocker.release();
 
 			VectorMap<uint64, ManagedReference<SceneObject*> >* cont =
 					cell->getContainerObjects();
@@ -309,7 +313,7 @@ void BuildingObjectImplementation::notifyRemoveFromZone() {
 			//cont->drop(obj->getObjectID());
 
 			if (cont->size() > 0) {
-				SceneObject* test = cell->getContainerObject(0);
+				Reference<SceneObject*> test = cell->getContainerObject(0);
 
 				if (test == obj) {
 					Locker contLocker(cell->getContainerLock());
@@ -319,6 +323,8 @@ void BuildingObjectImplementation::notifyRemoveFromZone() {
 		}
 
 		if (signObject != NULL) {
+			Locker signLocker(signObject);
+
 			signObject->destroyObjectFromWorld(true);
 		}
 	}
@@ -1359,6 +1365,8 @@ void BuildingObjectImplementation::spawnChildSceneObject(String& templatePath, f
 	if (object == NULL || object->isCreatureObject())
 		return;
 
+	Locker objLocker(object);
+
 	object->initializePosition(x, z, y);
 	object->setDirection(dw, dx, dy, dz);
 
@@ -1374,8 +1382,11 @@ void BuildingObjectImplementation::spawnChildSceneObject(String& templatePath, f
 
 	if (cell != NULL) {
 		cell->transferObject(object, -1);
-	} else
+	} else {
 		zone->transferObject(object, -1, true);
+	}
+
+	objLocker.release();
 
 	object->createChildObjects();
 

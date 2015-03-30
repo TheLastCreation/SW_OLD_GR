@@ -1142,58 +1142,29 @@ int DirectorManager::spatialChat(lua_State* L) {
 	ZoneServer* zoneServer = ServerCore::getZoneServer();
 	ChatManager* chatManager = zoneServer->getChatManager();
 
-	CreatureObject* creature = (CreatureObject*)lua_touserdata(L, -2);
+	Reference<CreatureObject*> creature = (CreatureObject*)lua_touserdata(L, -2);
 
 	if (lua_islightuserdata(L, -1)) {
 		StringIdChatParameter* message = (StringIdChatParameter*)lua_touserdata(L, -1);
 
 		if (creature != NULL && message != NULL) {
-			class BroadcastMessageTask : public Task {
-				Reference<CreatureObject*> creature;
-				ChatManager* chatManager;
-				StringIdChatParameter message;
+			StringIdChatParameter taskMessage = *message;
 
-			public:
-				BroadcastMessageTask(CreatureObject* creature, ChatManager* chatManager, StringIdChatParameter* message) :
-					creature(creature), chatManager(chatManager), message(*message) {
+			EXECUTE_TASK_3(creature, chatManager, taskMessage, {
+				Locker locker(creature_p);
 
-				}
-
-				void run() {
-					Locker locker(creature);
-
-					chatManager->broadcastMessage(creature, message, 0, 0, 0);
-				}
-			};
-
-			BroadcastMessageTask* task = new BroadcastMessageTask(creature, chatManager, message);
-			task->execute();
+				chatManager_p->broadcastMessage(creature_p, taskMessage_p, 0, 0, 0);
+			});
 		}
 	} else {
 		String message = lua_tostring(L, -1);
 
 		if (creature != NULL) {
+			EXECUTE_TASK_3(creature, chatManager, message, {
+					Locker locker(creature_p);
 
-			class BroadcastMessageTask : public Task {
-				Reference<CreatureObject*> creature;
-				ChatManager* chatManager;
-				String message;
-
-			public:
-				BroadcastMessageTask(CreatureObject* creature, ChatManager* chatManager, const String& message) :
-					creature(creature), chatManager(chatManager), message(message) {
-
-				}
-
-				void run() {
-					Locker locker(creature);
-
-					chatManager->broadcastMessage(creature, message, 0, 0, 0);
-				}
-			};
-
-			BroadcastMessageTask* task = new BroadcastMessageTask(creature, chatManager, message);
-			task->execute();
+					chatManager_p->broadcastMessage(creature_p, message_p, 0, 0, 0);
+			});
 		}
 	}
 
@@ -1930,6 +1901,8 @@ int DirectorManager::spawnSceneObject(lua_State* L) {
 	ManagedReference<SceneObject*> object = zoneServer->createObject(script.hashCode(), 0);
 
 	if (object != NULL) {
+		Locker objLocker(object);
+
 		object->initializePosition(x, z, y);
 		object->setDirection(dw, dx, dy, dz);
 
@@ -1995,6 +1968,8 @@ int DirectorManager::spawnActiveArea(lua_State* L) {
 			return 1;
 		}
 
+		Locker locker(area);
+
 		area->initializePosition(x, z, y);
 		area->setRadius(radius);
 
@@ -2010,6 +1985,8 @@ int DirectorManager::spawnActiveArea(lua_State* L) {
 
 		area->setCellObjectID(cellID);
 
+		Locker zoneLocker(zone);
+		
 		zone->transferObject(area, -1, true);
 
 		area->_setUpdated(true); //mark updated so the GC doesnt delete it while in LUA
