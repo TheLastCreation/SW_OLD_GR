@@ -1,4 +1,4 @@
-tatooine_valarian_assasin_neutral_large_theater = Lair:new {
+ghomrassen_valarian_assasin_neutral_large_theater = Lair:new {
 	mobiles = {
 		{"valarian_assassin",1},
 		{"valarian_thief",1},
@@ -14,4 +14,4 @@ tatooine_valarian_assasin_neutral_large_theater = Lair:new {
 	buildingType = "theater"
 }
 
-addLairTemplate("tatooine_valarian_assasin_neutral_large_theater", tatooine_valarian_assasin_neutral_large_theater)
+addLairTemplate("ghomrassen_valarian_assasin_neutral_large_theater", ghomrassen_valarian_assasin_neutral_large_theater)

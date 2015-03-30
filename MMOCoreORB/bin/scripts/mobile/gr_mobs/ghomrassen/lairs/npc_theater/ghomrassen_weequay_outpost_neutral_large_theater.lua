@@ -1,4 +1,4 @@
-tatooine_weequay_outpost_neutral_large_theater = Lair:new {
+ghomrassen_weequay_outpost_neutral_large_theater = Lair:new {
 	mobiles = {
 		{"weequay_captain",1},
 		{"weequay_champion",1},
@@ -15,4 +15,4 @@ tatooine_weequay_outpost_neutral_large_theater = Lair:new {
 	buildingType = "theater"
 }
 
-addLairTemplate("tatooine_weequay_outpost_neutral_large_theater", tatooine_weequay_outpost_neutral_large_theater)
+addLairTemplate("ghomrassen_weequay_outpost_neutral_large_theater", ghomrassen_weequay_outpost_neutral_large_theater)

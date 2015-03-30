@@ -1,4 +1,4 @@
-tatooine_tusken_raider_village_neutral_large_theater = Lair:new {
+ghomrassen_tusken_raider_village_neutral_large_theater = Lair:new {
 	mobiles = {
 		{"tusken_bantha",1},
 		{"tusken_woman",1},
@@ -17,4 +17,4 @@ tatooine_tusken_raider_village_neutral_large_theater = Lair:new {
 	buildingType = "theater"
 }
 
-addLairTemplate("tatooine_tusken_raider_village_neutral_large_theater", tatooine_tusken_raider_village_neutral_large_theater)
+addLairTemplate("ghomrassen_tusken_raider_village_neutral_large_theater", ghomrassen_tusken_raider_village_neutral_large_theater)

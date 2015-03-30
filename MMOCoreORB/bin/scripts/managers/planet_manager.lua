@@ -386,3 +386,11 @@ taanab = {
 		{name = "South Starport", x = 4032.56, z = 37, y = -6234.47, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1}
 	}
 }
+ghomrassen = {
+	weatherEnabled = 1,
+
+		planetTravelPoints = {
+		{name = "Mos Rassen", x = -3383, z = 0, y = -5176, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
+		{name = "Mos Rassen Shuttleport", x = -3198, z = 0, y = -5294, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1}
+	}
+}

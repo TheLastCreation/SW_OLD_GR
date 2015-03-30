@@ -1,4 +1,4 @@
-tatooine_imperial_camp = Lair:new {
+ghomrassen_imperial_camp = Lair:new {
 	mobiles = {{"sand_trooper",3},{"stormtrooper_dewback",1}},
 	spawnLimit = 9,
 	buildingsVeryEasy = {"object/building/poi/anywhere_imperial_base_small_1.iff"},
@@ -9,4 +9,4 @@ tatooine_imperial_camp = Lair:new {
 	buildingType = "theater"
 }
 
-addLairTemplate("tatooine_imperial_camp", tatooine_imperial_camp)
+addLairTemplate("ghomrassen_imperial_camp", ghomrassen_imperial_camp)

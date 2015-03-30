@@ -1,4 +1,4 @@
-tatooine_outlaw_camp_neutral_medium_theater = Lair:new {
+ghomrassen_outlaw_camp_neutral_medium_theater = Lair:new {
 	mobiles = {{"fugitive",1},{"outlaw",1}},
 	spawnLimit = 12,
 	buildingsVeryEasy = {"object/building/poi/tatooine_fugitive_camp_large1.iff","object/building/poi/tatooine_fugitive_camp_large2.iff","object/building/poi/tatooine_fugitive_camp_large3.iff"},
@@ -9,4 +9,4 @@ tatooine_outlaw_camp_neutral_medium_theater = Lair:new {
 	buildingType = "theater"
 }
 
-addLairTemplate("tatooine_outlaw_camp_neutral_medium_theater", tatooine_outlaw_camp_neutral_medium_theater)
+addLairTemplate("ghomrassen_outlaw_camp_neutral_medium_theater", ghomrassen_outlaw_camp_neutral_medium_theater)

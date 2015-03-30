@@ -1,4 +1,4 @@
-tatooine_jabba_enforcer_camp_neutral_medium_theater = Lair:new {
+ghomrassen_jabba_enforcer_camp_neutral_medium_theater = Lair:new {
 	mobiles = {{"jabba_enforcer",1},{"jabba_thug",1}},
 	spawnLimit = 12,
 	buildingsVeryEasy = {"object/building/poi/tatooine_hutt_assassin_camp_medium1.iff","object/building/poi/tatooine_hutt_assassin_camp_medium2.iff"},
@@ -9,4 +9,4 @@ tatooine_jabba_enforcer_camp_neutral_medium_theater = Lair:new {
 	buildingType = "theater"
 }
 
-addLairTemplate("tatooine_jabba_enforcer_camp_neutral_medium_theater", tatooine_jabba_enforcer_camp_neutral_medium_theater)
+addLairTemplate("ghomrassen_jabba_enforcer_camp_neutral_medium_theater", ghomrassen_jabba_enforcer_camp_neutral_medium_theater)

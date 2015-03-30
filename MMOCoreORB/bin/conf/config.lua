@@ -98,6 +98,7 @@ ZonesEnabled = {
 	"endor",
 	--"endor_asommers",
 	--"floratest",
+	--"ghomrassen",
 	--"godclient_test",
 	--"hoth",
 	--"kaas",
@@ -197,7 +198,8 @@ TreFiles = {
 	"gr_publish_01_03.tre",
 	"gr_publish_02_01.tre",
 	"gr_publish_04_01.tre",
-	"gr_publish_04_02.tre"
+	"gr_publish_04_02.tre",
+	"ghomrassen.tre"
 }
 
 --Status Server Config

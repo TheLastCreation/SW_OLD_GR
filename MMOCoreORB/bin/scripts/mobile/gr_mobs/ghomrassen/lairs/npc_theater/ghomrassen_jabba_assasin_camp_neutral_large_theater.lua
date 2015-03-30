@@ -1,4 +1,4 @@
-tatooine_jabba_assasin_camp_neutral_large_theater = Lair:new {
+ghomrassen_jabba_assasin_camp_neutral_large_theater = Lair:new {
 	mobiles = {{"jabba_assassin",1},{"jabba_thief",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/building/poi/tatooine_hutt_assassin_camp_large1.iff","object/building/poi/tatooine_hutt_assassin_camp_large2.iff","object/building/poi/tatooine_hutt_assassin_camp_large3.iff","object/building/poi/tatooine_hutt_assassin_camp_large4.iff"},
@@ -9,4 +9,4 @@ tatooine_jabba_assasin_camp_neutral_large_theater = Lair:new {
 	buildingType = "theater"
 }
 
-addLairTemplate("tatooine_jabba_assasin_camp_neutral_large_theater", tatooine_jabba_assasin_camp_neutral_large_theater)
+addLairTemplate("ghomrassen_jabba_assasin_camp_neutral_large_theater", ghomrassen_jabba_assasin_camp_neutral_large_theater)

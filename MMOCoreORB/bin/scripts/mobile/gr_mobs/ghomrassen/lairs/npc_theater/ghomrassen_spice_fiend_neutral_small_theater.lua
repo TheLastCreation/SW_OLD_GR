@@ -1,4 +1,4 @@
-tatooine_spice_fiend_neutral_small_theater = Lair:new {
+ghomrassen_spice_fiend_neutral_small_theater = Lair:new {
 	mobiles = {{"spice_fiend",1}},
 	spawnLimit = 9,
 	buildingsVeryEasy = {"object/building/poi/tatooine_spicefiend_medium.iff","object/building/poi/tatooine_spicefiend_medium2.iff"},
@@ -9,4 +9,4 @@ tatooine_spice_fiend_neutral_small_theater = Lair:new {
 	buildingType = "theater"
 }
 
-addLairTemplate("tatooine_spice_fiend_neutral_small_theater", tatooine_spice_fiend_neutral_small_theater)
+addLairTemplate("ghomrassen_spice_fiend_neutral_small_theater", ghomrassen_spice_fiend_neutral_small_theater)
