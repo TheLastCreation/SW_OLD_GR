@@ -1,4 +1,4 @@
-tatooine_cupa_cupa_neutral_medium_boss_01 = Lair:new {
+ghomrassen_cupa_cupa_neutral_medium_boss_01 = Lair:new {
 	mobiles = {{"cu_pa",1}},
 	bossMobiles = {{"wonderous_cu_pa",1}},
 	spawnLimit = 15,
@@ -9,4 +9,4 @@ tatooine_cupa_cupa_neutral_medium_boss_01 = Lair:new {
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_garbage_small.iff"},
 }
 
-addLairTemplate("tatooine_cupa_cupa_neutral_medium_boss_01", tatooine_cupa_cupa_neutral_medium_boss_01)
+addLairTemplate("ghomrassen_cupa_cupa_neutral_medium_boss_01", ghomrassen_cupa_cupa_neutral_medium_boss_01)

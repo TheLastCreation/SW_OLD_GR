@@ -1,4 +1,4 @@
-tatooine_ronto_male_neutral_medium_boss_01 = Lair:new {
+ghomrassen_ronto_male_neutral_medium_boss_01 = Lair:new {
 	mobiles = {{"bull_ronto",1}},
 	bossMobiles = {{"furious_ronto",1}},
 	spawnLimit = 15,
@@ -9,4 +9,4 @@ tatooine_ronto_male_neutral_medium_boss_01 = Lair:new {
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_leaf_large_evil_fire_green.iff"}
 }
 
-addLairTemplate("tatooine_ronto_male_neutral_medium_boss_01", tatooine_ronto_male_neutral_medium_boss_01)
+addLairTemplate("ghomrassen_ronto_male_neutral_medium_boss_01", ghomrassen_ronto_male_neutral_medium_boss_01)

@@ -1,4 +1,4 @@
-tatooine_tatooine_mynock_lair_neutral_small = Lair:new {
+ghomrassen_tatooine_mynock_lair_neutral_small = Lair:new {
 	mobiles = {{"tatooine_mynock",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_garbage_small.iff","object/tangible/lair/base/trash_dark.iff","object/tangible/lair/base/objective_power_generator.iff","object/tangible/lair/base/objective_power_node.iff","object/tangible/lair/base/objective_power_transformer.iff"},
@@ -9,4 +9,4 @@ tatooine_tatooine_mynock_lair_neutral_small = Lair:new {
 
 }
 
-addLairTemplate("tatooine_tatooine_mynock_lair_neutral_small", tatooine_tatooine_mynock_lair_neutral_small)
+addLairTemplate("ghomrassen_tatooine_mynock_lair_neutral_small", ghomrassen_tatooine_mynock_lair_neutral_small)

@@ -1,4 +1,4 @@
-tatooine_mountain_squill_lair_neutral_medium = Lair:new {
+ghomrassen_mountain_squill_lair_neutral_medium = Lair:new {
 	mobiles = {{"mountain_squill",1},{"female_mountain_squill",1},{"young_mountain_squill",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_thicket_large.iff"},
@@ -8,4 +8,4 @@ tatooine_mountain_squill_lair_neutral_medium = Lair:new {
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_thicket_large.iff"}
 }
 
-addLairTemplate("tatooine_mountain_squill_lair_neutral_medium", tatooine_mountain_squill_lair_neutral_medium)
+addLairTemplate("ghomrassen_mountain_squill_lair_neutral_medium", ghomrassen_mountain_squill_lair_neutral_medium)

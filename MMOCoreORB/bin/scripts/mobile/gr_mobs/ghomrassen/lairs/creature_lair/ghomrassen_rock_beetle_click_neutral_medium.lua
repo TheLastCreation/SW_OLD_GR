@@ -1,4 +1,4 @@
-tatooine_rock_beetle_click_neutral_medium = Lair:new {
+ghomrassen_rock_beetle_click_neutral_medium = Lair:new {
 	mobiles = {{"rock_beetle",2},{"dune_beetle",2},{"large_rock_beetle",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_mound_large.iff"},
@@ -8,4 +8,4 @@ tatooine_rock_beetle_click_neutral_medium = Lair:new {
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_mound_large.iff"},
 }
 
-addLairTemplate("tatooine_rock_beetle_click_neutral_medium", tatooine_rock_beetle_click_neutral_medium)
+addLairTemplate("ghomrassen_rock_beetle_click_neutral_medium", ghomrassen_rock_beetle_click_neutral_medium)

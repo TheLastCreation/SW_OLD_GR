@@ -1,4 +1,4 @@
-tatooine_desert_razorback_razorback_neutral_medium_boss_01 = Lair:new {
+ghomrassen_desert_razorback_razorback_neutral_medium_boss_01 = Lair:new {
 	mobiles = {{"desert_razorback",1}},
 	bossMobiles = {{"razorback_felspur",1}},
 	spawnLimit = 15,
@@ -9,4 +9,4 @@ tatooine_desert_razorback_razorback_neutral_medium_boss_01 = Lair:new {
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_warren_small_evil_fire_red.iff"},
 }
 
-addLairTemplate("tatooine_desert_razorback_razorback_neutral_medium_boss_01", tatooine_desert_razorback_razorback_neutral_medium_boss_01)
+addLairTemplate("ghomrassen_desert_razorback_razorback_neutral_medium_boss_01", ghomrassen_desert_razorback_razorback_neutral_medium_boss_01)

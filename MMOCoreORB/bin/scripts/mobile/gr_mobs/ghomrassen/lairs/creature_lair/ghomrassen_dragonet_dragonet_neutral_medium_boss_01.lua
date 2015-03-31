@@ -1,4 +1,4 @@
-tatooine_dragonet_dragonet_neutral_medium_boss_01 = Lair:new {
+ghomrassen_dragonet_dragonet_neutral_medium_boss_01 = Lair:new {
 	mobiles = {{"dragonet",1}},
 	bossMobiles = {{"armodragon",1}},
 	spawnLimit = 15,
@@ -9,4 +9,4 @@ tatooine_dragonet_dragonet_neutral_medium_boss_01 = Lair:new {
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_rocks_large_fog_mustard.iff"},
 }
 
-addLairTemplate("tatooine_dragonet_dragonet_neutral_medium_boss_01", tatooine_dragonet_dragonet_neutral_medium_boss_01)
+addLairTemplate("ghomrassen_dragonet_dragonet_neutral_medium_boss_01", ghomrassen_dragonet_dragonet_neutral_medium_boss_01)

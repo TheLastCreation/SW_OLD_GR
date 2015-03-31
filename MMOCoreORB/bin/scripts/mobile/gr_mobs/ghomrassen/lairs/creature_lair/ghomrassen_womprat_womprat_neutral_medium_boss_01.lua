@@ -1,4 +1,4 @@
-tatooine_womprat_womprat_neutral_medium_boss_01 = Lair:new {
+ghomrassen_womprat_womprat_neutral_medium_boss_01 = Lair:new {
 	mobiles = {{"womp_rat",1}},
 	bossMobiles = {{"plague_rat",1}},
 	spawnLimit = 15,
@@ -9,4 +9,4 @@ tatooine_womprat_womprat_neutral_medium_boss_01 = Lair:new {
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_garbage_small_evil_fire_red.iff"}
 }
 
-addLairTemplate("tatooine_womprat_womprat_neutral_medium_boss_01", tatooine_womprat_womprat_neutral_medium_boss_01)
+addLairTemplate("ghomrassen_womprat_womprat_neutral_medium_boss_01", ghomrassen_womprat_womprat_neutral_medium_boss_01)

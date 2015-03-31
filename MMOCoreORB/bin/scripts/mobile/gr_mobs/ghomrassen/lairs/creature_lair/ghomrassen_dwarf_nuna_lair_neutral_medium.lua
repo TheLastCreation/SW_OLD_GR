@@ -1,4 +1,4 @@
-tatooine_dwarf_nuna_lair_neutral_medium = Lair:new {
+ghomrassen_dwarf_nuna_lair_neutral_medium = Lair:new {
 	mobiles = {{"dwarf_nuna",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_warren_small.iff"},
@@ -8,4 +8,4 @@ tatooine_dwarf_nuna_lair_neutral_medium = Lair:new {
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_warren_small.iff"},
 }
 
-addLairTemplate("tatooine_dwarf_nuna_lair_neutral_medium", tatooine_dwarf_nuna_lair_neutral_medium)
+addLairTemplate("ghomrassen_dwarf_nuna_lair_neutral_medium", ghomrassen_dwarf_nuna_lair_neutral_medium)

@@ -1,4 +1,4 @@
-tatooine_dragonet_lair_neutral_medium = Lair:new {
+ghomrassen_dragonet_lair_neutral_medium = Lair:new {
 	mobiles = {{"dragonet",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_rocks_large_evil_fire_small.iff"},
@@ -8,4 +8,4 @@ tatooine_dragonet_lair_neutral_medium = Lair:new {
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_rocks_large_evil_fire_small.iff"},
 }
 
-addLairTemplate("tatooine_dragonet_lair_neutral_medium", tatooine_dragonet_lair_neutral_medium)
+addLairTemplate("ghomrassen_dragonet_lair_neutral_medium", ghomrassen_dragonet_lair_neutral_medium)

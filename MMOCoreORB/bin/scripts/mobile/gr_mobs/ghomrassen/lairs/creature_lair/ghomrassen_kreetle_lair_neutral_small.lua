@@ -1,4 +1,4 @@
-tatooine_kreetle_lair_neutral_small = Lair:new {
+ghomrassen_kreetle_lair_neutral_small = Lair:new {
 	mobiles = {{"kreetle",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_brambles_small.iff"},
@@ -8,4 +8,4 @@ tatooine_kreetle_lair_neutral_small = Lair:new {
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_brambles_small.iff"}
 }
 
-addLairTemplate("tatooine_kreetle_lair_neutral_small", tatooine_kreetle_lair_neutral_small)
+addLairTemplate("ghomrassen_kreetle_lair_neutral_small", ghomrassen_kreetle_lair_neutral_small)

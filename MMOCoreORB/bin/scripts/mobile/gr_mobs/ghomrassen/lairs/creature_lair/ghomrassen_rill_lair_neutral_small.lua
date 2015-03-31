@@ -1,4 +1,4 @@
-tatooine_rill_lair_neutral_small = Lair:new {
+ghomrassen_rill_lair_neutral_small = Lair:new {
 	mobiles = {{"rill",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_rocks_small.iff"},
@@ -8,4 +8,4 @@ tatooine_rill_lair_neutral_small = Lair:new {
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_rocks_small.iff"},
 }
 
-addLairTemplate("tatooine_rill_lair_neutral_small", tatooine_rill_lair_neutral_small)
+addLairTemplate("ghomrassen_rill_lair_neutral_small", ghomrassen_rill_lair_neutral_small)

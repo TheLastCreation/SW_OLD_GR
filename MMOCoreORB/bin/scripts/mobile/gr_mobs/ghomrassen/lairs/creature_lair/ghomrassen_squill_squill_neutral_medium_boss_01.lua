@@ -1,4 +1,4 @@
-tatooine_squill_squill_neutral_medium_boss_01 = Lair:new {
+ghomrassen_squill_squill_neutral_medium_boss_01 = Lair:new {
 	mobiles = {{"squill",1}},
 	bossMobiles = {{"great_squill",1}},
 	spawnLimit = 15,
@@ -9,4 +9,4 @@ tatooine_squill_squill_neutral_medium_boss_01 = Lair:new {
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_thicket_small_evil_fire_red.iff"},
 }
 
-addLairTemplate("tatooine_squill_squill_neutral_medium_boss_01", tatooine_squill_squill_neutral_medium_boss_01)
+addLairTemplate("ghomrassen_squill_squill_neutral_medium_boss_01", ghomrassen_squill_squill_neutral_medium_boss_01)

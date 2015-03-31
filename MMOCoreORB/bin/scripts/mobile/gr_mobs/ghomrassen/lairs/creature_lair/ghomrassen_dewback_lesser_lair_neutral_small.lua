@@ -1,4 +1,4 @@
-tatooine_dewback_lesser_lair_neutral_small = Lair:new {
+ghomrassen_dewback_lesser_lair_neutral_small = Lair:new {
 	mobiles = {{"lesser_dewback",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_rock_shelter_small.iff"},
@@ -8,4 +8,4 @@ tatooine_dewback_lesser_lair_neutral_small = Lair:new {
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_rock_shelter_small.iff"},
 }
 
-addLairTemplate("tatooine_dewback_lesser_lair_neutral_small", tatooine_dewback_lesser_lair_neutral_small)
+addLairTemplate("ghomrassen_dewback_lesser_lair_neutral_small", ghomrassen_dewback_lesser_lair_neutral_small)

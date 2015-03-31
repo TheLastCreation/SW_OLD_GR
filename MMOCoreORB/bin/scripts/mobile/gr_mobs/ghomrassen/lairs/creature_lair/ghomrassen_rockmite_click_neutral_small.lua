@@ -1,4 +1,4 @@
-tatooine_rockmite_click_neutral_small = Lair:new {
+ghomrassen_rockmite_click_neutral_small = Lair:new {
 	mobiles = {{"rockmite",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_mound_small.iff"},
@@ -8,4 +8,4 @@ tatooine_rockmite_click_neutral_small = Lair:new {
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_mound_small.iff"},
 }
 
-addLairTemplate("tatooine_rockmite_click_neutral_small", tatooine_rockmite_click_neutral_small)
+addLairTemplate("ghomrassen_rockmite_click_neutral_small", ghomrassen_rockmite_click_neutral_small)

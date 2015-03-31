@@ -1,4 +1,4 @@
-tatooine_dune_lizard_dune_lizard_neutral_medium_boss_01 = Lair:new {
+ghomrassen_dune_lizard_dune_lizard_neutral_medium_boss_01 = Lair:new {
 	mobiles = {{"dune_lizard",1}},
 	bossMobiles = {{"sunstained_dune_lizard",1}},
 	spawnLimit = 15,
@@ -9,4 +9,4 @@ tatooine_dune_lizard_dune_lizard_neutral_medium_boss_01 = Lair:new {
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_rocks_large_evil_fire_red.iff"},
 }
 
-addLairTemplate("tatooine_dune_lizard_dune_lizard_neutral_medium_boss_01", tatooine_dune_lizard_dune_lizard_neutral_medium_boss_01)
+addLairTemplate("ghomrassen_dune_lizard_dune_lizard_neutral_medium_boss_01", ghomrassen_dune_lizard_dune_lizard_neutral_medium_boss_01)

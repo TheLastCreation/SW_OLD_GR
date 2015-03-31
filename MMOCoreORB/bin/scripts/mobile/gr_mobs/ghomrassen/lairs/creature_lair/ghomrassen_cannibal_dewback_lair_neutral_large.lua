@@ -1,4 +1,4 @@
-tatooine_cannibal_dewback_lair_neutral_large = Lair:new {
+ghomrassen_cannibal_dewback_lair_neutral_large = Lair:new {
 	mobiles = {{"cannibal_dewback",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_rock_shelter_large_fog_gray.iff"},
@@ -8,4 +8,4 @@ tatooine_cannibal_dewback_lair_neutral_large = Lair:new {
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_rock_shelter_large_fog_gray.iff"},
 }
 
-addLairTemplate("tatooine_cannibal_dewback_lair_neutral_large", tatooine_cannibal_dewback_lair_neutral_large)
+addLairTemplate("ghomrassen_cannibal_dewback_lair_neutral_large", ghomrassen_cannibal_dewback_lair_neutral_large)

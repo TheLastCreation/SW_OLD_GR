@@ -1,4 +1,4 @@
-tatooine_giant_canyon_krayt_dragon_lair_neutral_large = Lair:new {
+ghomrassen_giant_canyon_krayt_dragon_lair_neutral_large = Lair:new {
 	mobiles = {{"giant_canyon_krayt_dragon",1},{"canyon_krayt_dragon",2}},
 	spawnLimit = 9,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_bones_large_evil_fire_red.iff"},
@@ -8,4 +8,4 @@ tatooine_giant_canyon_krayt_dragon_lair_neutral_large = Lair:new {
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_bones_large_evil_fire_red.iff"},
 }
 
-addLairTemplate("tatooine_giant_canyon_krayt_dragon_lair_neutral_large", tatooine_giant_canyon_krayt_dragon_lair_neutral_large)
+addLairTemplate("ghomrassen_giant_canyon_krayt_dragon_lair_neutral_large", ghomrassen_giant_canyon_krayt_dragon_lair_neutral_large)

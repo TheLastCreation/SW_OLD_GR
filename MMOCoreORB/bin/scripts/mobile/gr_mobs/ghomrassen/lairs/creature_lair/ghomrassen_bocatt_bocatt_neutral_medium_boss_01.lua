@@ -1,4 +1,4 @@
-tatooine_bocatt_bocatt_neutral_medium_boss_01 = Lair:new {
+ghomrassen_bocatt_bocatt_neutral_medium_boss_01 = Lair:new {
 	mobiles = {{"bocatt",1}},
 	bossMobiles = {{"tormented_bocatt",1}},
 	spawnLimit = 15,
@@ -9,4 +9,4 @@ tatooine_bocatt_bocatt_neutral_medium_boss_01 = Lair:new {
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_brambles_small_evil_fire_small.iff"},
 }
 
-addLairTemplate("tatooine_bocatt_bocatt_neutral_medium_boss_01", tatooine_bocatt_bocatt_neutral_medium_boss_01)
+addLairTemplate("ghomrassen_bocatt_bocatt_neutral_medium_boss_01", ghomrassen_bocatt_bocatt_neutral_medium_boss_01)

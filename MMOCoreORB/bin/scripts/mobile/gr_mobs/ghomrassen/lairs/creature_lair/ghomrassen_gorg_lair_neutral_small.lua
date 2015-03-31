@@ -1,4 +1,4 @@
-tatooine_gorg_lair_neutral_small = Lair:new {
+ghomrassen_gorg_lair_neutral_small = Lair:new {
 	mobiles = {{"gorg",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_nest_small.iff"},
@@ -8,4 +8,4 @@ tatooine_gorg_lair_neutral_small = Lair:new {
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_nest_small.iff"},
 }
 
-addLairTemplate("tatooine_gorg_lair_neutral_small", tatooine_gorg_lair_neutral_small)
+addLairTemplate("ghomrassen_gorg_lair_neutral_small", ghomrassen_gorg_lair_neutral_small)

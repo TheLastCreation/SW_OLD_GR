@@ -1,4 +1,4 @@
-tatooine_dwarf_nuna_nuna_neutral_medium_boss_01 = Lair:new {
+ghomrassen_dwarf_nuna_nuna_neutral_medium_boss_01 = Lair:new {
 	mobiles = {{"dwarf_nuna",1}},
 	bossMobiles = {{"drooling_nuna",1}},
 	spawnLimit = 15,
@@ -9,4 +9,4 @@ tatooine_dwarf_nuna_nuna_neutral_medium_boss_01 = Lair:new {
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_warren_small_evil_fire_green.iff"},
 }
 
-addLairTemplate("tatooine_dwarf_nuna_nuna_neutral_medium_boss_01", tatooine_dwarf_nuna_nuna_neutral_medium_boss_01)
+addLairTemplate("ghomrassen_dwarf_nuna_nuna_neutral_medium_boss_01", ghomrassen_dwarf_nuna_nuna_neutral_medium_boss_01)

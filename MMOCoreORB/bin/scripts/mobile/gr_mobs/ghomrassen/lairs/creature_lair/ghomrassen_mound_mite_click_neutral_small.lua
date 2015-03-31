@@ -1,4 +1,4 @@
-tatooine_mound_mite_click_neutral_small = Lair:new {
+ghomrassen_mound_mite_click_neutral_small = Lair:new {
 	mobiles = {{"mound_mite",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_mound_small.iff","object/tangible/lair/base/poi_all_lair_insecthill_small.iff"},
@@ -8,4 +8,4 @@ tatooine_mound_mite_click_neutral_small = Lair:new {
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_mound_small.iff","object/tangible/lair/base/poi_all_lair_insecthill_small.iff"},
 }
 
-addLairTemplate("tatooine_mound_mite_click_neutral_small", tatooine_mound_mite_click_neutral_small)
+addLairTemplate("ghomrassen_mound_mite_click_neutral_small", ghomrassen_mound_mite_click_neutral_small)

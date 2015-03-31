@@ -1,4 +1,4 @@
-tatooine_mutant_womprat_lair_neutral_small = Lair:new {
+ghomrassen_mutant_womprat_lair_neutral_small = Lair:new {
 	mobiles = {{"mutant_womp_rat",1},{"variegated_womp_rat",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_garbage_small_fog_mustard.iff"},
@@ -8,4 +8,4 @@ tatooine_mutant_womprat_lair_neutral_small = Lair:new {
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_garbage_small_fog_mustard.iff"},
 }
 
-addLairTemplate("tatooine_mutant_womprat_lair_neutral_small", tatooine_mutant_womprat_lair_neutral_small)
+addLairTemplate("ghomrassen_mutant_womprat_lair_neutral_small", ghomrassen_mutant_womprat_lair_neutral_small)

@@ -1,4 +1,4 @@
-tatooine_dewback_dewback_neutral_medium_boss_01 = Lair:new {
+ghomrassen_dewback_dewback_neutral_medium_boss_01 = Lair:new {
 	mobiles = {{"dewback",1}},
 	bossMobiles = {{"sandreaver",1}},
 	spawnLimit = 15,
@@ -9,4 +9,4 @@ tatooine_dewback_dewback_neutral_medium_boss_01 = Lair:new {
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_rock_shelter_large_fog_mustard.iff"},
 }
 
-addLairTemplate("tatooine_dewback_dewback_neutral_medium_boss_01", tatooine_dewback_dewback_neutral_medium_boss_01)
+addLairTemplate("ghomrassen_dewback_dewback_neutral_medium_boss_01", ghomrassen_dewback_dewback_neutral_medium_boss_01)

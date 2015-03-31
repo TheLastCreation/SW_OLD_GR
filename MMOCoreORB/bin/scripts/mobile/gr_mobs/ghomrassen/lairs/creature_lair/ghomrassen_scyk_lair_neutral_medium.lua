@@ -1,4 +1,4 @@
-tatooine_scyk_lair_neutral_medium = Lair:new {
+ghomrassen_scyk_lair_neutral_medium = Lair:new {
 	mobiles = {{"scyk",1}},
 	spawnLimit = 15,
 buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_rocks_small_evil_fire_small.iff"},
@@ -8,4 +8,4 @@ buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_rocks_small_evil_fi
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_rocks_small_evil_fire_small.iff"},
 }
 
-addLairTemplate("tatooine_scyk_lair_neutral_medium", tatooine_scyk_lair_neutral_medium)
+addLairTemplate("ghomrassen_scyk_lair_neutral_medium", ghomrassen_scyk_lair_neutral_medium)

@@ -1,4 +1,4 @@
-tatooine_zucca_boar_zucca_neutral_medium_boss_01 = Lair:new {
+ghomrassen_zucca_boar_zucca_neutral_medium_boss_01 = Lair:new {
 	mobiles = {{"zucca_boar",1}},
 	bossMobiles = {{"blight_boar",1}},
 	spawnLimit = 15,
@@ -9,4 +9,4 @@ tatooine_zucca_boar_zucca_neutral_medium_boss_01 = Lair:new {
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_warren_small_evil_fire_small.iff"},
 }
 
-addLairTemplate("tatooine_zucca_boar_zucca_neutral_medium_boss_01", tatooine_zucca_boar_zucca_neutral_medium_boss_01)
+addLairTemplate("ghomrassen_zucca_boar_zucca_neutral_medium_boss_01", ghomrassen_zucca_boar_zucca_neutral_medium_boss_01)

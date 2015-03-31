@@ -1,4 +1,4 @@
-tatooine_jundland_eopie_lair_neutral_medium = Lair:new {
+ghomrassen_jundland_eopie_lair_neutral_medium = Lair:new {
 	mobiles = {{"jundland_eopie",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_mound_large_evil_fire_small.iff"},
@@ -8,4 +8,4 @@ tatooine_jundland_eopie_lair_neutral_medium = Lair:new {
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_mound_large_evil_fire_small.iff"},
 }
 
-addLairTemplate("tatooine_jundland_eopie_lair_neutral_medium", tatooine_jundland_eopie_lair_neutral_medium)
+addLairTemplate("ghomrassen_jundland_eopie_lair_neutral_medium", ghomrassen_jundland_eopie_lair_neutral_medium)

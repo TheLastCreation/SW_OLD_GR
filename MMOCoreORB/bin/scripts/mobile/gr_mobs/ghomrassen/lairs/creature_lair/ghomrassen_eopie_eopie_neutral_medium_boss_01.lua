@@ -1,4 +1,4 @@
-tatooine_eopie_eopie_neutral_medium_boss_01 = Lair:new {
+ghomrassen_eopie_eopie_neutral_medium_boss_01 = Lair:new {
 	mobiles = {{"eopie",1},{"dwarf_eopie",1}},
 	bossMobiles = {{"eopie_herdmaster",1}},
 	spawnLimit = 15,
@@ -9,4 +9,4 @@ tatooine_eopie_eopie_neutral_medium_boss_01 = Lair:new {
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_mound_large_fog_mustard.iff"},
 }
 
-addLairTemplate("tatooine_eopie_eopie_neutral_medium_boss_01", tatooine_eopie_eopie_neutral_medium_boss_01)
+addLairTemplate("ghomrassen_eopie_eopie_neutral_medium_boss_01", ghomrassen_eopie_eopie_neutral_medium_boss_01)

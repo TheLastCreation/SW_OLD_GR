@@ -1,4 +1,4 @@
-tatooine_mountain_worrt_lair_neutral_large = Lair:new {
+ghomrassen_mountain_worrt_lair_neutral_large = Lair:new {
 	mobiles = {{"mountain_worrt",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_dead_log_small_evil_fire_small.iff"},
@@ -8,4 +8,4 @@ tatooine_mountain_worrt_lair_neutral_large = Lair:new {
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_dead_log_small_evil_fire_small.iff"},
 }
 
-addLairTemplate("tatooine_mountain_worrt_lair_neutral_large", tatooine_mountain_worrt_lair_neutral_large)
+addLairTemplate("ghomrassen_mountain_worrt_lair_neutral_large", ghomrassen_mountain_worrt_lair_neutral_large)

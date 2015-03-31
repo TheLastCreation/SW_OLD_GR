@@ -1,4 +1,4 @@
-tatooine_giant_worrt_lair_neutral_medium = Lair:new {
+ghomrassen_giant_worrt_lair_neutral_medium = Lair:new {
 	mobiles = {{"giant_worrt",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_dead_log_large.iff"},
@@ -8,4 +8,4 @@ tatooine_giant_worrt_lair_neutral_medium = Lair:new {
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_dead_log_large.iff"},
 }
 
-addLairTemplate("tatooine_giant_worrt_lair_neutral_medium", tatooine_giant_worrt_lair_neutral_medium)
+addLairTemplate("ghomrassen_giant_worrt_lair_neutral_medium", ghomrassen_giant_worrt_lair_neutral_medium)

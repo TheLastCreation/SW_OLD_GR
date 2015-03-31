@@ -1,4 +1,4 @@
-tatooine_kreetle_over_death_neutral_medium_boss_01 = Lair:new {
+ghomrassen_kreetle_over_death_neutral_medium_boss_01 = Lair:new {
 	mobiles = {{"kreetle",1}},
 	bossMobiles = {{"death_kreetle",1}},
 	spawnLimit = 15,
@@ -9,4 +9,4 @@ tatooine_kreetle_over_death_neutral_medium_boss_01 = Lair:new {
 	buildingsVeryHard = {"object/tangible/lair/base/poi_all_lair_brambles_small_evil_fire_red.iff"}
 }
 
-addLairTemplate("tatooine_kreetle_over_death_neutral_medium_boss_01", tatooine_kreetle_over_death_neutral_medium_boss_01)
+addLairTemplate("ghomrassen_kreetle_over_death_neutral_medium_boss_01", ghomrassen_kreetle_over_death_neutral_medium_boss_01)
