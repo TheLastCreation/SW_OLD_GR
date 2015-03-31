@@ -93,7 +93,7 @@ public:
 		StringIdChatParameter startStringId("jedi_spam", "apply_forcespeed2");
 		StringIdChatParameter endStringId("jedi_spam", "remove_forcespeed2");
 
-		int duration = 360;
+		int duration = 460;
 
 		ManagedReference<Buff*> buff = new Buff(creature, buffcrc2, duration, BuffType::JEDI);
 		buff->setStartMessage(startStringId);

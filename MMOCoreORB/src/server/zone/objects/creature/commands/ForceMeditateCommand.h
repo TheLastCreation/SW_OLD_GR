@@ -94,7 +94,7 @@ public:
 		creature->sendSystemMessage("@teraskasi:med_begin");
 		Reference<ForceMeditateTask*> fmeditateTask = new ForceMeditateTask(player);
 		fmeditateTask->setMoodString(player->getMoodString());
-		player->addPendingTask("forcemeditate", fmeditateTask, 3500);
+		player->addPendingTask("forcemeditate", fmeditateTask, 2500);
 
 		player->setMeditateState();
 

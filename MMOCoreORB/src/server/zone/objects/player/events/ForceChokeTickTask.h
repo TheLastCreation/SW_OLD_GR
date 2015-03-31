@@ -29,7 +29,7 @@ public:
 		if(creature != NULL && creatureTarget != NULL) {
 			int amountOfTicks = 5;
 			if (counter < amountOfTicks && !creatureTarget->isIncapacitated() && !creatureTarget->isDead() && (creatureTarget->getPvpStatusBitmask() != CreatureFlag::NONE)) {
-				float damage = 500;
+				float damage = 850;
 				ManagedReference<SceneObject*> psg = creatureTarget->getSlottedObject("utility_belt");
 				if (psg != NULL && psg->isPsgArmorObject()) {
 						if (cast<ArmorObject*>(psg.get())->isVulnerable(1)){
