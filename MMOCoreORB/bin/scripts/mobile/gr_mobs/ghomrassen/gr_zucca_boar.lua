@@ -26,7 +26,7 @@ gr_zucca_boar = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/zucca_boar.iff"},
-	—-controlDeviceTemplate = "object/intangible/pet/pet_control.iff", -- zucca_boar_hue.iff bugged in client
+	--controlDeviceTemplate = "object/intangible/pet/pet_control.iff", -- zucca_boar_hue.iff bugged in client
 	lootGroups = {},
 	weapons = {},
 	conversationTemplate = "",

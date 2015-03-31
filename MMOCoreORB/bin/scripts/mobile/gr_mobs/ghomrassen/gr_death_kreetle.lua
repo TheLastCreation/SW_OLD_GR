@@ -1,5 +1,5 @@
 gr_death_kreetle = Creature:new {
-	customName = “Death Kreetle”,
+	customName = "Death Kreetle”,
 	socialGroup = "kreetle",
 	faction = "",
 	level = 90,

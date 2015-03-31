@@ -1,5 +1,5 @@
 gr_cave_beetle = Creature:new {
-	customName = “Cave Beetle",
+	customName = "Cave Beetle",
 	socialGroup = "beetle",
 	faction = "",
 	level = 80,
