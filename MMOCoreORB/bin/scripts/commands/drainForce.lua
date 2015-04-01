@@ -50,7 +50,7 @@ DrainForceCommand = {
 	
 	poolsToDamage = NONE,
 
-	damage = 100, --Force drained
+	damage = 200, --Force drained
 
 	range = 32
 	

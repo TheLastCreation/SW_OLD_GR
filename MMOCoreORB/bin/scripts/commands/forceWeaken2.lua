@@ -46,7 +46,7 @@ ForceWeaken2Command = {
         
             damage = 0,
 	speed = 4.0,
-	forceCost = 400,
+	forceCost = 300,
 	accuracySkillMod = "forceweaken_accuracy";
 	
 	
