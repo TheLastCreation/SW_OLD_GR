@@ -7,7 +7,7 @@ require("corvetteTicketTakerLogic")
 --GR Screenplays
 includeFile("gr_screenplays/generals_bunker.lua")
 includeFile("cities/ghomrassen_mos_rassen.lua")
-includeFile("static_spawns/ghomrassen_static_spawns_se.lua")
+includeFile("static_spawns/ghomrassen_static_spawns.lua")
 --includeFile("gr_screenplays/lok/kill_the_general.lua")
 
 -- Theme parks

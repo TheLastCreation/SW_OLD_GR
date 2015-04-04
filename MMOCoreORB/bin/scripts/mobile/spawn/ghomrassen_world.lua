@@ -1309,4 +1309,4 @@ ghomrassen_world = {
 	}
 }
 
-addSpawnGroup(“ghomrassen_world", ghomrassen_world);
+addSpawnGroup("ghomrassen_world", ghomrassen_world);
