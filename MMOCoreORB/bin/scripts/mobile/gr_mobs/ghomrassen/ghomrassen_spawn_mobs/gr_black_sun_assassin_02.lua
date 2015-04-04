@@ -1,7 +1,7 @@
 gr_black_sun_assassin_02 = Creature:new {
 --	objectName = "@mob/creature_names:mand_bunker_blksun_assassin",
 	customName = "Blacksun Assassin Scout",
-	socialGroup = "death_watch",
+	socialGroup = "",
 	faction = "",
 	level = 107,
 	chanceHit = 25.5,
@@ -22,7 +22,7 @@ gr_black_sun_assassin_02 = Creature:new {
 	tamingChance = 0,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
-	creatureBitmask = KILLER,
+	creatureBitmask = PACK + STALKER + KILLER,
 	optionsBitmask = 128,
 	diet = HERBIVORE,
 
@@ -50,7 +50,7 @@ gr_black_sun_assassin_02 = Creature:new {
 				{group = "crystals_premium", chance = 2500000},
 				{group = "jetpack_base", chance = 2500000}
 			},
-			lootChance = 100000000
+			lootChance = 50000000
 		},
 	},
 	weapons = {"pirate_weapons_heavy"},

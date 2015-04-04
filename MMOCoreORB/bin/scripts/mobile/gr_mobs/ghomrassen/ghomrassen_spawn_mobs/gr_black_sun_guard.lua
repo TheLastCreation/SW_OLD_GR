@@ -1,6 +1,6 @@
 gr_black_sun_guard = Creature:new {
-	objectName = "@mob/creature_names:mand_bunker_blksun_guard",
-	socialGroup = "death_watch",
+	customName = "Blacksun Guard",
+	socialGroup = "",
 	faction = "",
 	level = 96,
 	chanceHit = 0.95,
@@ -21,7 +21,7 @@ gr_black_sun_guard = Creature:new {
 	tamingChance = 0,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
-	creatureBitmask = KILLER,
+	creatureBitmask = PACK + STALKER + KILLER,
 	optionsBitmask = 128,
 	diet = HERBIVORE,
 
@@ -40,7 +40,7 @@ gr_black_sun_guard = Creature:new {
 				{group = "clothing_attachments", chance = 5000000},
 				{group = "armor_attachments", chance = 5000000}
 			},
-			lootChance = 100000000
+			lootChance = 50000000
 		},	
 		{
 			groups = {
@@ -49,7 +49,7 @@ gr_black_sun_guard = Creature:new {
 				{group = "crystals_premium", chance = 2500000},
 				{group = "jetpack_base", chance = 2500000}
 			},
-			lootChance = 100000000
+			lootChance = 50000000
 		},
 	},
 	weapons = {"pirate_weapons_heavy"},

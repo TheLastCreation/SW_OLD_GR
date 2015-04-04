@@ -40,12 +40,32 @@ WORLDSPAWNAREA      = 0x0010
 NOBUILDZONEAREA     = 0x0100
 
 
-ghomrassen_regions = {	
+ghomrassen_regions = {
+	{"blacksun_bunker",3006,-6168,{1,450},NOSPAWNAREA + NOBUILDZONEAREA,1},
+	{"cave_one",6102,-3829,{1,400},NOSPAWNAREA + NOBUILDZONEAREA,1},
 	{"mos_rassen",-3383,-5176,{1,900},NOSPAWNAREA + NOBUILDZONEAREA,1},
+	{"imperial_base",-6198,5007,{1,450},NOSPAWNAREA + NOBUILDZONEAREA,1},
+	{"imperial_bunker_1",421,1020,{1,450},NOSPAWNAREA + NOBUILDZONEAREA,1},
+	{"rebel_base_abandoned",2692,5909,{1,450},NOSPAWNAREA + NOBUILDZONEAREA,1},
+	{"tent_one",-6191,-1447,{1,200},NOSPAWNAREA + NOBUILDZONEAREA,1},
+	{"world_spawner",0,0,{1,-1},SPAWNAREA + WORLDSPAWNAREA,1,"ghomrassen_world",2048},
 }
 
 ghomrassen_static_spawns = {
-	--{"afroh_orah",60,-1211.37,12,-3637.48,26.5441,0, "neutral", "Afroh Orah","stationary"},
+	{"commoner",60,-3211.5,0,-5227.6,58,0, "conversation", "","stationary"},
+	{"commoner_tatooine",60,-3276,0.5,-5219.1,-172,0, "conversation", "","stationary"},
+	{"commoner_tatooine",60,-3276.8,0.5,-5220.8,15,0, "conversation", "","stationary"},
+	{"gr_slavemaster",60,-3287.8,0,-5134.3,141,0, "conversation", "","stationary"},
+	{"junk_dealer",0,-3242.5,0,-5217.8,8,0, "", "","stationary",JUNKGENERIC,JUNKCONVGENERIC},
+	{"moisture_farmer",300,-3250.6,0,-5175.2,75,0, "conversation", "","stationary"},
+	{"noble",300,-3270.4,0.5,-5251.4,-1,0, "conversation", "","stationary"},
+	{"scavenger",300,-3233.8,0.5,-5233.8,-82,0, "conversation", "","stationary"},
+	{"scavenger",300,-3248.4,0,-5174.6,-105,0, "conversation", "","stationary"},
+	{"slave",300,-3210.2,0,-5226.9,-127,0, "conversation", "","stationary"},
+	{"slave",300,-3286.5,0,-5136.0,-37,0, "conversation", "","stationary"},
+	{"smuggler",300,-3236.6,0.5,-5233.5,100,0, "conversation", "","stationary"},
+
+	--{"commoner_tatooine",60,-1.72179,0.6,-4.05766,360.011,4395396, "conversation", "", "stationary"},
 
 }
 

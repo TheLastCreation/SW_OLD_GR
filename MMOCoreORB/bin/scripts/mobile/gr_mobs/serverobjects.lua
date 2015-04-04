@@ -51,4 +51,5 @@ includeFile("gr_mobs/ghomrassen/gr_rockmite.lua")
 includeFile("gr_mobs/ghomrassen/gr_rogue_bantha.lua")
 includeFile("gr_mobs/ghomrassen/gr_ronto.lua")
 includeFile("gr_mobs/ghomrassen/gr_sand_beetle.lua")
-includeFile("gr_mobs/ghomrassen/gr_scyk.lua")
+includeFile("gr_mobs/ghomrassen/gr_slavemaster.lua")
+

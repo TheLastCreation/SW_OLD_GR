@@ -1,6 +1,6 @@
 gr_black_sun_thug = Creature:new {
-	objectName = "@mob/creature_names:mand_bunker_blksun_thug",
-	socialGroup = "death_watch",
+	customName = "Blacksun Thug",
+	socialGroup = "",
 	faction = "",
 	level = 86,
 	chanceHit = 0.85,
@@ -21,7 +21,7 @@ gr_black_sun_thug = Creature:new {
 	tamingChance = 0,
 	ferocity = 0,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
-	creatureBitmask = KILLER,
+	creatureBitmask = PACK + STALKER + KILLER,
 	optionsBitmask = 128,
 	diet = HERBIVORE,
 
@@ -40,7 +40,7 @@ gr_black_sun_thug = Creature:new {
 				{group = "clothing_attachments", chance = 5000000},
 				{group = "armor_attachments", chance = 5000000}
 			},
-			lootChance = 100000000
+			lootChance = 60000000
 		},	
 		{
 			groups = {
@@ -49,7 +49,7 @@ gr_black_sun_thug = Creature:new {
 				{group = "crystals_premium", chance = 2500000},
 				{group = "jetpack_base", chance = 2500000}
 			},
-			lootChance = 100000000
+			lootChance = 60000000
 		},
 	},
 	weapons = {"pirate_weapons_heavy"},
