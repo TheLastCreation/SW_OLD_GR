@@ -1,3 +1,5 @@
+--Ghomrassen
+includeFile("lair/creature_lair/ghomrassen_womprat_womprat_neutral_medium_boss_01.lua")
 
 includeFile("lair/creature_lair/corellia_bageraset_lair_neutral_medium.lua")
 includeFile("lair/creature_lair/corellia_bageraset_lair_neutral_medium_boss_01.lua")
