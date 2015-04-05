@@ -67,7 +67,7 @@ public:
 		range = 7;
 	}
 
-	bool canPerformSkill(CreatureObject* creature, CreatureObject* creatureTarget, RevivePack* revivePack) const {
+	bool canPerformSkill(CreatureObject* creature, CreatureObject* creatureTarget, RevivePack* revivePack) {
 		if (!creatureTarget->isDead()) {
 			creature->sendSystemMessage("@healing_response:healing_response_a4"); //Your target does not require resuscitation!
 			return 0;
@@ -119,14 +119,14 @@ public:
 		return true;
 	}
 
-	void parseModifier(const String& modifier, uint64& objectId) const {
+	void parseModifier(const String& modifier, uint64& objectId) {
 		if (!modifier.isEmpty())
 			objectId = Long::valueOf(modifier);
 		else
 			objectId = 0;
 	}
 
-	void awardXp(CreatureObject* creature, const String& type, int power) const {
+	void awardXp(CreatureObject* creature, const String& type, int power) {
 		if (!creature->isPlayerCreature())
 			return;
 
@@ -141,7 +141,7 @@ public:
 		playerManager->awardExperience(player, type, amount, true);
 	}
 
-	RevivePack* findRevivePack(CreatureObject* creature) const {
+	RevivePack* findRevivePack(CreatureObject* creature) {
 		SceneObject* inventory = creature->getSlottedObject("inventory");
 		int medicineUse = creature->getSkillMod("healing_ability");
 
@@ -170,7 +170,7 @@ public:
 		return NULL;
 	}
 
-	void doAnimations(CreatureObject* creature, CreatureObject* creatureTarget) const {
+	void doAnimations(CreatureObject* creature, CreatureObject* creatureTarget) {
 		creatureTarget->playEffect("clienteffect/healing_healwound.cef", "");
 
 		if (creature == creatureTarget)
@@ -179,7 +179,7 @@ public:
 			creature->doAnimation("heal_other");
 	}
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 
 		int result = doCommonMedicalCommandChecks(creature);
 

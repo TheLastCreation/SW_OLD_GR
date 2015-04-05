@@ -57,7 +57,7 @@ public:
 		: SquadLeaderCommand(name, server) {
 	}
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
@@ -102,7 +102,7 @@ public:
 		return SUCCESS;
 	}
 
-	int getWounds(CreatureObject* leader, GroupObject* group, int* wounds) const {
+	int getWounds(CreatureObject* leader, GroupObject* group, int* wounds) {
 		if (group == NULL || leader == NULL)
 			return 0;
 
@@ -136,7 +136,7 @@ public:
 		return sizeAffected;
 	}
 
-	bool distributeWounds(CreatureObject* leader, GroupObject* group, int* wounds, int sizeAffected) const {
+	bool distributeWounds(CreatureObject* leader, GroupObject* group, int* wounds, int sizeAffected) {
 		if (group == NULL || leader == NULL)
 			return false;
 

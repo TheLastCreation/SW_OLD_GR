@@ -18,7 +18,7 @@ class AffectorNoncollideFloraConstant : public ProceduralRule<'AFSC'>, public Af
 	float featheringAmount;
 
 public:
-	AffectorNoncollideFloraConstant() : familyId(0), var2(0), flag(0), featheringType(0), featheringAmount(0) {
+	AffectorNoncollideFloraConstant() {
 
 	}
 

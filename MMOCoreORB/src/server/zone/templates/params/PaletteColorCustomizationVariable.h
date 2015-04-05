@@ -17,6 +17,7 @@
 
 class PaletteColorCustomizationVariable : public RangedIntCustomizationVariable {
 protected:
+	StringParam variableName;
 	StringParam palettePathName;
 
 public:
@@ -30,7 +31,8 @@ public:
 		setType(PALETTECOLORCUSTOMIZATION);
 	}
 
-	PaletteColorCustomizationVariable(const PaletteColorCustomizationVariable& p) : RangedIntCustomizationVariable(p) {
+	PaletteColorCustomizationVariable(const PaletteColorCustomizationVariable& p) : RangedIntCustomizationVariable() {
+		variableName = p.variableName;
 		palettePathName = p.palettePathName;
 
 		setType(PALETTECOLORCUSTOMIZATION);
@@ -44,9 +46,8 @@ public:
 		if (this == &p)
 			return *this;
 
+		variableName = p.variableName;
 		palettePathName = p.palettePathName;
-
-		RangedIntCustomizationVariable::operator=(p);
 
 		return *this;
 	}

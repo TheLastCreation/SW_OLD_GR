@@ -55,13 +55,13 @@ SaberPolearmHit2Command = {
 		{}, 
 		{ "stun_defense", "resistance_states" }, 
 		{ "jedi_state_defense" }, 
-		50, 
+		20, 
 		100, 
-		45 
+		10 
 	  )
 	},
 
-	animationCRC = hashCode("combo_5a_medium"),
+	animationCRC = hashCode("combo_3a_medium"),
 
 	combatSpam = "saberpolearmhit2",
 	

@@ -60,7 +60,7 @@ public:
 		needsConsent = true;
 	}
 
-	void getCoordinate(SceneObject* object1, SceneObject* object2, float distanceFromObject1, WorldCoordinates* newPosition) const {
+	void getCoordinate(SceneObject* object1, SceneObject* object2, float distanceFromObject1, WorldCoordinates* newPosition) {
 		ManagedReference<SceneObject*> object1Cell = object1->getParent().get();
 		ManagedReference<SceneObject*> object2Cell = object2->getParent().get();
 		Vector3 object1Position = object1->getPosition();
@@ -108,7 +108,7 @@ public:
 		return;
 	}
 
-	void drag(CreatureObject* player, CreatureObject* targetPlayer, float maxRange, float maxMovement, bool needsConsent, bool canDragLiveTarget) const {
+	void drag(CreatureObject* player, CreatureObject* targetPlayer, float maxRange, float maxMovement, bool needsConsent, bool canDragLiveTarget) {
 		if (targetPlayer == NULL) {
 			return;
 		}
@@ -205,7 +205,7 @@ public:
 		player->sendSystemMessage(stringId);
 	}
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 
 		int result = doCommonMedicalCommandChecks(creature);
 

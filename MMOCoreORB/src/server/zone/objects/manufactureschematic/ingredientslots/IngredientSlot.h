@@ -119,7 +119,6 @@ public:
 	}
 
 	IngredientSlot(const IngredientSlot& slot) : Object(), Serializable(), Logger() {
-		slotName = slot.slotName;
 		requiredQuantity = slot.requiredQuantity;
 		identical = slot.identical;
 		optional = slot.optional;

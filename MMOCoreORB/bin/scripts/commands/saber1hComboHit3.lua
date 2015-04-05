@@ -44,11 +44,11 @@
 Saber1hComboHit3Command = {
         name = "saber1hcombohit3",
         
-    damageMultiplier = 3.5,
-	speedMultiplier = 3,
-	forceCostMultiplier = 2.25,
+    damageMultiplier = 3.0,
+	speedMultiplier = 1.5,
+	forceCostMultiplier = 3.5,
 
-	animationCRC = hashCode("showoff_1_light"),
+	animationCRC = hashCode("combo_5b_light"),
 	
 	stateEffects = {
 	  StateEffect( 

@@ -59,7 +59,7 @@ public:
 
 	}
 
-	int doQueueCommand(CreatureObject* player, const uint64& target, const UnicodeString& arguments) const {
+	int doQueueCommand(CreatureObject* player, const uint64& target, const UnicodeString& arguments) {
 
 		int cooldownMilli = 300000; // 5 min
 		int durationSec =  60; // 1 min

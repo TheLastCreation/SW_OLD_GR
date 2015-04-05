@@ -65,7 +65,8 @@ private:
 	short combineType;
 
 public:
-	ResourceWeight() : minValue(0), maxValue(0), precision(0), filler(true), combineType(0) {
+	ResourceWeight() {
+		filler = true;
 	}
 
 	~ResourceWeight() {

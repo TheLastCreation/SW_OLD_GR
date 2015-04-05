@@ -57,7 +57,7 @@ public:
 
 	}
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
@@ -124,12 +124,12 @@ public:
 		return SUCCESS;
 	}
 
-	void sendEmptyAttributes(CreatureObject* creature, uint64 objid) const {
+	void sendEmptyAttributes(CreatureObject* creature, uint64 objid) {
 		AttributeListMessage* msg = new AttributeListMessage(objid);
 		creature->sendMessage(msg);
 	}
 
-	void sendAttributes(CreatureObject* creature, SceneObject* object, int incr) const {
+	void sendAttributes(CreatureObject* creature, SceneObject* object, int incr) {
 		object->sendAttributeListTo(creature);
 
 		creature->notifyObservers(ObserverEventType::GETATTRIBUTESBATCHCOMMAND, object, incr);

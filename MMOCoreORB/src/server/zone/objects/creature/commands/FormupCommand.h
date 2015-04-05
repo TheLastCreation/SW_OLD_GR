@@ -55,7 +55,7 @@ public:
 		: SquadLeaderCommand(name, server) {
 	}
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
@@ -95,7 +95,7 @@ public:
 		return SUCCESS;
 	}
 
-	bool doFormUp(CreatureObject* leader, GroupObject* group) const {
+	bool doFormUp(CreatureObject* leader, GroupObject* group) {
 		if (leader == NULL || group == NULL)
 			return false;
 

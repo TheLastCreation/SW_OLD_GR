@@ -63,7 +63,6 @@ namespace login {
 
 		LoginPacketHandler() : Logger() {
 			server = NULL;
-			processServer = NULL;
 		}
 
 		LoginPacketHandler(const String& s, LoginProcessServerImplementation* serv);

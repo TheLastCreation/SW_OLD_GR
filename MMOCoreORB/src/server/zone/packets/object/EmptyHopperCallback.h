@@ -24,8 +24,9 @@ class EmptyHopperCallback : public MessageCallback {
 	ObjectControllerMessageCallback* objectControllerMain;
 public:
 	EmptyHopperCallback(ObjectControllerMessageCallback* objectControllerCallback) :
-		MessageCallback(objectControllerCallback->getClient(), objectControllerCallback->getServer()),
-		harvesterId(0), resourceId(0), quantity(0), byte1(0), byte2(0), objectControllerMain(objectControllerCallback) {
+		MessageCallback(objectControllerCallback->getClient(), objectControllerCallback->getServer()) {
+
+		objectControllerMain = objectControllerCallback;
 	}
 
 	void parse(Message* message) {

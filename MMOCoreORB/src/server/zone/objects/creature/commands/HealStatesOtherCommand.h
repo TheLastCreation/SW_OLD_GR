@@ -57,14 +57,14 @@ public:
 
 	}
 
-	void doAnimations(CreatureObject* creature, CreatureObject* creatureTarget) const {
+	void doAnimations(CreatureObject* creature, CreatureObject* creatureTarget) {
 		if (creatureTarget == creature)
 			creature->playEffect("clienteffect/pl_force_healing.cef", "");
 		 else
 			creature->doCombatAnimation(creatureTarget,String("force_healing_1").hashCode(),0,0xFF);
 	}
 
-	void sendStateMessage(CreatureObject* object, CreatureObject* target) const {
+	void sendStateMessage(CreatureObject* object, CreatureObject* target) {
 		if (!object->isPlayerCreature())
 			return;
 
@@ -82,7 +82,7 @@ public:
 //			creatureTarget->sendSystemMessage(msgTarget.toString());
 	}
 
-	bool canPerformSkill(CreatureObject* creature, CreatureObject* creatureTarget) const {
+	bool canPerformSkill(CreatureObject* creature, CreatureObject* creatureTarget) {
 		if ((!creatureTarget->hasState(CreatureState::STUNNED)) && (!creatureTarget->hasState(CreatureState::DIZZY)) && (!creatureTarget->hasState(CreatureState::INTIMIDATED)) && (!creatureTarget->hasState(CreatureState::BLINDED))) {
 			StringIdChatParameter stringId("healing_response", "healing_response_74");
 			stringId.setTT(creatureTarget->getObjectID());
@@ -105,7 +105,7 @@ public:
 		return true;
 	}
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 
 		int result = doCommonMedicalCommandChecks(creature);
 

@@ -83,14 +83,14 @@ public:
 		speed = 3.0;
 	}
 
-	void doAnimations(CreatureObject* creature, CreatureObject* creatureTarget) const {
+	void doAnimations(CreatureObject* creature, CreatureObject* creatureTarget) {
 		if (creatureTarget == creature)
 			creature->playEffect("clienteffect/pl_force_healing.cef", "");
 		else
 			creature->doCombatAnimation(creatureTarget,String("force_healing_1").hashCode(),0,0xFF);
 	}
 
-	void sendWoundMessage(CreatureObject* object, CreatureObject* target, int healthWound, int strengthWound, int constitutionWound) const {
+	void sendWoundMessage(CreatureObject* object, CreatureObject* target, int healthWound, int strengthWound, int constitutionWound) {
 		if (!object->isPlayerCreature())
 			return;
 
@@ -124,7 +124,7 @@ public:
 		creatureTarget->sendSystemMessage(msgTarget.toString());
 	}
 
-	bool canPerformSkill(CreatureObject* creature, CreatureObject* creatureTarget) const {
+	bool canPerformSkill(CreatureObject* creature, CreatureObject* creatureTarget) {
 		if (!creatureTarget->getWounds(CreatureAttribute::HEALTH) && !creatureTarget->getWounds(CreatureAttribute::STRENGTH) && !creatureTarget->getWounds(CreatureAttribute::CONSTITUTION)) {
 			creature->sendSystemMessage("Your target has no wounds of that type to heal."); //%NT has no wounds of that type to heal.
 			return false;
@@ -138,7 +138,7 @@ public:
 		return true;
 	}
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 
 		int result = doCommonMedicalCommandChecks(creature);
 
@@ -189,7 +189,7 @@ public:
 			return GENERALERROR;
 		}
 
-		float forceCost = MIN(((healedHealthWound + healedStrengthWound + healedConstitutionWound) / 15), 85);
+		forceCost = MIN(((healedHealthWound + healedStrengthWound + healedConstitutionWound) / 15), 85);
 
 		playerObject->setForcePower(playerObject->getForcePower() - forceCost); // Deduct force.
 

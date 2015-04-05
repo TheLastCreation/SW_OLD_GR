@@ -42,8 +42,6 @@ BlueprintEntry& BlueprintEntry::operator=(const BlueprintEntry& entry) {
 	serialNumber = entry.serialNumber;
 	identical = entry.identical;
 	quantity = entry.quantity;
-	inputHopper = entry.inputHopper;
-	matchingHopperItems = entry.matchingHopperItems;
 
 	return *this;
 }

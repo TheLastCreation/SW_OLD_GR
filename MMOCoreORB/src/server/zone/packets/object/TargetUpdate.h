@@ -18,8 +18,9 @@ class TargetUpdateCallback : public MessageCallback {
 	ObjectControllerMessageCallback* objectControllerMain;
 public:
 	TargetUpdateCallback(ObjectControllerMessageCallback* objectControllerCallback) :
-		MessageCallback(objectControllerCallback->getClient(), objectControllerCallback->getServer()),
-		size(0), target(0), objectControllerMain(objectControllerCallback) {
+		MessageCallback(objectControllerCallback->getClient(), objectControllerCallback->getServer()) {
+
+		objectControllerMain = objectControllerCallback;
 	}
 
 	void parse(Message* message) {

@@ -20,7 +20,7 @@ public:
 	}
 
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 
 		// Parse arguments (client arguments from SocialInternalCommand /socialInternal)
 		StringTokenizer tokenizer(arguments.toString());
@@ -78,7 +78,7 @@ public:
 		return SUCCESS;
 	}
 
-	int praise( AiAgent* pet ) const {
+	int praise( AiAgent* pet ){
 
 
 		// TODO: Random chance to change posture to sitting or laying down instead of happy animation
@@ -86,17 +86,17 @@ public:
 		return SUCCESS;
 	}
 
-	int shame( AiAgent* pet ) const {
+	int shame( AiAgent* pet ){
 		pet->doAnimation("ashamed");
 		return SUCCESS;
 	}
 
-	int alert( AiAgent* pet ) const {
+	int alert( AiAgent* pet ){
 		pet->doAnimation("alert");
 		return SUCCESS;
 	}
 
-	int summon( AiAgent* pet, PetControlDevice* controlDevice ) const {
+	int summon( AiAgent* pet, PetControlDevice* controlDevice ){
 
 		// Follow owner if command is trained
 		if( controlDevice->hasTrainedCommand( PetManager::FOLLOW ) ){

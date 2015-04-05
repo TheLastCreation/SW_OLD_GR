@@ -63,11 +63,11 @@ public:
 	}
 
 	//returns false on collision detection
-	bool checkCollision(SceneObject* object, Vector3& endPoint) const {
+	bool checkCollision(SceneObject* object, Vector3& endPoint) {
 		return CollisionManager::checkLineOfSightInParentCell(object, endPoint);
 	}
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
 

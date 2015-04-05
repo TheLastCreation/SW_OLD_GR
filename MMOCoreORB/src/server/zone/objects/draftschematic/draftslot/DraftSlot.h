@@ -75,7 +75,7 @@ public:
 	};
 
 public:
-	DraftSlot() : quantity(0), slotType(0), contribution(0) {
+	DraftSlot() {
 
 	}
 

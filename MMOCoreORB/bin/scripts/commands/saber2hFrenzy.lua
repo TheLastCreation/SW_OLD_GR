@@ -45,10 +45,10 @@ Saber2hFrenzyCommand = {
         name = "saber2hfrenzy",
         
     damageMultiplier = 3.5,
-	speedMultiplier = 3.5,
+	speedMultiplier = 2.0,
 	areaAction = true,
-	areaRange = 8,
-	forceCostMultiplier = 2.5,
+	areaRange = 7,
+	forceCostMultiplier = 2.0,
 
 		stateEffects = {
 	   StateEffect( 
@@ -56,27 +56,27 @@ Saber2hFrenzyCommand = {
 		{}, 
 		{ "blind_defense", "resistance_states" }, 
 		{ "jedi_state_defense" }, 
-		75, 
+		25, 
 		100, 
-		60
+		10
 	  ),
 	  StateEffect( 
 		DIZZY_EFFECT, 
 		{}, 
 		{ "dizzy_defense", "resistance_states" }, 
 		{ "jedi_state_defense" }, 
-		75, 
+		25, 
 		100, 
-		30
+		10
 	  ),
 	  StateEffect( 
 		STUN_EFFECT, 
 		{}, 
 		{ "stun_defense", "resistance_states" }, 
 		{ "jedi_state_defense" }, 
-		75, 
+		25, 
 		100, 
-		60
+		10
 	  )
 	},
 
