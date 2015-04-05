@@ -4,15 +4,15 @@ two_handed_sword_maul = {
 	customObjectName = "",
 	directObjectTemplate = "object/weapon/melee/2h_sword/2h_sword_maul.iff",
 	craftingValues = {
-		{"mindamage",47,96,0},
-		{"maxdamage",100,188,0},
-		{"attackspeed",9.1,6.3,0},
-		{"woundchance",2.4,4.2,0},
-		{"hitpoints",750,750,0},
-		{"zerorangemod",-5,5,0},
-		{"maxrangemod",-5,5,0},
+		{"mindamage",153,198,0},
+		{"maxdamage",235,436,0},
+		{"attackspeed",7.5,5.2,1},
+		{"woundchance",11,20,0},
+		{"hitpoints",750,1500,0},
+		{"zerorangemod",0,25,0},
+		{"midrangemod",0,25,0},
+		{"maxrangemod",0,25,0},
 		{"midrange",3,3,0},
-		{"midrangemod",-5,5,0},
 		{"maxrange",7,7,0},
 		{"attackhealthcost",23,14,0},
 		{"attackactioncost",47,28,0},
@@ -23,7 +23,7 @@ two_handed_sword_maul = {
 	customizationValues = {},
 
 	-- randomDotChance: The chance of this weapon object dropping with a random dot on it. Higher number means less chance. Set to 0 to always have a random dot.
-	randomDotChance = 25,
+	randomDotChance = 0,
 	junkDealerTypeNeeded = JUNKWEAPONS+JUNKJAWA,
 	junkMinValue = 25,
 	junkMaxValue = 45
