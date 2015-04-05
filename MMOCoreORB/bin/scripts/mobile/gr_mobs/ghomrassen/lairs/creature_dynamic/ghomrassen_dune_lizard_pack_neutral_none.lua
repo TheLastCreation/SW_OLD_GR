@@ -1,5 +1,5 @@
 ghomrassen_dune_lizard_pack_neutral_none = Lair:new {
-	mobiles = {{"dune_lizard",1}},
+	mobiles = {{"gr_dune_lizard",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {},
 	buildingsEasy = {},

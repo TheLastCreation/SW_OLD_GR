@@ -1,5 +1,5 @@
 ghomrassen_womprat_herd_neutral_none = Lair:new {
-	mobiles = {{"womp_rat",1},{"lesser_desert_womp_rat",1}},
+	mobiles = {{"gr_womp_rat",1},{"gr_lesser_desert_womp_rat",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {},
 	buildingsEasy = {},

@@ -1,5 +1,5 @@
 ghomrassen_wild_dune_boar_neutral_none = Lair:new {
-	mobiles = {{"wild_dune_boar",1}},
+	mobiles = {{"gr_wild_dune_boar",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {},
 	buildingsEasy = {},

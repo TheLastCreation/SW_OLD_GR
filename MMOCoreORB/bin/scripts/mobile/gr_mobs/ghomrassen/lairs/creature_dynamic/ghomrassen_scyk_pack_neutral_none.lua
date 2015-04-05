@@ -1,5 +1,5 @@
 ghomrassen_scyk_pack_neutral_none = Lair:new {
-	mobiles = {{"scyk",1}},
+	mobiles = {{"gr_scyk",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {},
 	buildingsEasy = {},

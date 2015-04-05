@@ -1,5 +1,5 @@
 ghomrassen_mountain_worrt_herd_neutral_none = Lair:new {
-	mobiles = {{"mountain_worrt",1}},
+	mobiles = {{"gr_mountain_worrt",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {},
 	buildingsEasy = {},

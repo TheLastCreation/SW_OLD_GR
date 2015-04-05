@@ -1,5 +1,5 @@
 ghomrassen_squill_malignant_neutral_none = Lair:new {
-	mobiles = {{"malignant_squill",1}},
+	mobiles = {{"gr_malignant_squill",1}},
 	spawnLimit = 9,
 	buildingsVeryEasy = {},
 	buildingsEasy = {},

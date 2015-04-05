@@ -1,5 +1,5 @@
 ghomrassen_rill_pack_neutral_none = Lair:new {
-	mobiles = {{"rill",1}},
+	mobiles = {{"gr_rill",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {},
 	buildingsEasy = {},

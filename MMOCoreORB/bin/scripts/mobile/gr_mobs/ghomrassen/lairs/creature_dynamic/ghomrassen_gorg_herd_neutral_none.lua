@@ -1,5 +1,5 @@
 ghomrassen_gorg_herd_neutral_none = Lair:new {
-	mobiles = {{"gorg",1}},
+	mobiles = {{"gr_gorg",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {},
 	buildingsEasy = {},

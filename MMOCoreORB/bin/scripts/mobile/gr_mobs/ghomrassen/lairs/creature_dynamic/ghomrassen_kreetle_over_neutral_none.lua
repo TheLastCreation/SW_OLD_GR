@@ -1,5 +1,5 @@
 ghomrassen_kreetle_over_neutral_none = Lair:new {
-	mobiles = {{"kreetle_swarmling",10},{"overkreetle",1}},
+	mobiles = {{"gr_kreetle_swarmling",10},{"gr_overkreetle",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {},
 	buildingsEasy = {},

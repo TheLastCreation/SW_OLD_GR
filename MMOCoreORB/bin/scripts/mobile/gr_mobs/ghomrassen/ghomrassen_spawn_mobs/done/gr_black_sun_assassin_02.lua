@@ -1,16 +1,17 @@
-gr_black_sun_guard = Creature:new {
-	customName = "Blacksun Guard",
+gr_black_sun_assassin_02 = Creature:new {
+--	objectName = "@mob/creature_names:mand_bunker_blksun_assassin",
+	customName = "Blacksun Assassin Scout",
 	socialGroup = "",
 	faction = "",
-	level = 96,
-	chanceHit = 0.95,
-	damageMin = 620,
-	damageMax = 950,
-	baseXp = 9057,
-	baseHAM = 20000,
-	baseHAMmax = 25000,
-	armor = 2,
-	resists = {40,40,60,35,55,70,35,40,55},
+	level = 86,
+	chanceHit = 1.85,
+	damageMin = 1050,
+	damageMax = 1675,
+	baseXp = 7057,
+	baseHAM = 36000,
+	baseHAMmax = 49000,
+	armor = 3,
+	resists = {30,30,30,35,35,30,35,30,35},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -25,7 +26,7 @@ gr_black_sun_guard = Creature:new {
 	optionsBitmask = 128,
 	diet = HERBIVORE,
 
-	templates = {"object/mobile/dressed_black_sun_guard.iff"},
+	templates = {"object/mobile/dressed_black_sun_assassin.iff"},
 	lootGroups = {
 		{
 			groups = {
@@ -40,7 +41,7 @@ gr_black_sun_guard = Creature:new {
 				{group = "clothing_attachments", chance = 5000000},
 				{group = "armor_attachments", chance = 5000000}
 			},
-			lootChance = 50000000
+			lootChance = 100000000
 		},	
 		{
 			groups = {
@@ -54,7 +55,7 @@ gr_black_sun_guard = Creature:new {
 	},
 	weapons = {"pirate_weapons_heavy"},
 	conversationTemplate = "",
-	attacks = merge(bountyhuntermaster,marksmanmaster,brawlermaster)
+	attacks = merge(riflemanmaster,pistoleermaster,carbineermaster,bountyhuntermaster)
 }
 
-CreatureTemplates:addCreatureTemplate(gr_black_sun_guard, "gr_black_sun_guard")
+CreatureTemplates:addCreatureTemplate(gr_black_sun_assassin_02, "gr_black_sun_assassin_02")

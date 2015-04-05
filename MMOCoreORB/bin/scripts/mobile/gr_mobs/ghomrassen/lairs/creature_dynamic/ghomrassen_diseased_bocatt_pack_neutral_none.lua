@@ -1,5 +1,5 @@
 ghomrassen_diseased_bocatt_pack_neutral_none = Lair:new {
-	mobiles = {{"diseased_bocatt",1}},
+	mobiles = {{"gr_diseased_bocatt",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {},
 	buildingsEasy = {},

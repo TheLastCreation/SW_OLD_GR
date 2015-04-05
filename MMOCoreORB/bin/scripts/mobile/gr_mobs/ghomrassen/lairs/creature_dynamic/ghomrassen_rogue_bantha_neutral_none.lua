@@ -1,5 +1,5 @@
 ghomrassen_rogue_bantha_neutral_none = Lair:new {
-	mobiles = {{"rogue_bantha",1}},
+	mobiles = {{"gr_rogue_bantha",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {},
 	buildingsEasy = {},

@@ -1,5 +1,5 @@
 ghomrassen_squill_pack_neutral_none = Lair:new {
-	mobiles = {{"squill",1}},
+	mobiles = {{"gr_squill",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {},
 	buildingsEasy = {},

@@ -1,5 +1,5 @@
 ghomrassen_rockmite_swarm_neutral_none = Lair:new {
-	mobiles = {{"rockmite",1}},
+	mobiles = {{"gr_rockmite",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {},
 	buildingsEasy = {},

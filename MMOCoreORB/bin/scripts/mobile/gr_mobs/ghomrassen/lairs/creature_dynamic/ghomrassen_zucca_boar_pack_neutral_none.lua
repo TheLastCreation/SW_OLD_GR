@@ -1,5 +1,5 @@
 ghomrassen_zucca_boar_pack_neutral_none = Lair:new {
-	mobiles = {{"zucca_boar",1}},
+	mobiles = {{"gr_zucca_boar",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {},
 	buildingsEasy = {},

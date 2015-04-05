@@ -1,5 +1,5 @@
 ghomrassen_bocatt_pack_neutral_none = Lair:new {
-	mobiles = {{"bocatt",1}},
+	mobiles = {{"gr_bocatt",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {},
 	buildingsEasy = {},

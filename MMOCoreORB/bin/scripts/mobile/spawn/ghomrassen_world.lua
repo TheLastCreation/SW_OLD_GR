@@ -2,16 +2,16 @@ ghomrassen_world = {
 
 	lairSpawns = {
 		{
-			lairTemplateName = "tatooine_outlaw_camp_neutral_medium_theater",
+			lairTemplateName = "ghomrassen_blacksun_assasin_neutral_large_theater",
 			spawnLimit = -1,
-			minDifficulty = 60,
-			maxDifficulty = 80,
+			minDifficulty = 80,
+			maxDifficulty = 100,
 			numberToSpawn = 0,
 			weighting = 15,
 			size = 25
 		},
 		{
-			lairTemplateName = "tatooine_womprat_womprat_neutral_medium_boss_01",
+			lairTemplateName = "ghomrassen_womprat_womprat_neutral_medium_boss_01",
 			spawnLimit = -1,
 			minDifficulty = 60,
 			maxDifficulty = 80,
@@ -19,7 +19,7 @@ ghomrassen_world = {
 			weighting = 8,
 			size = 20
 		},
-		{
+--[[		{
 			lairTemplateName = "tatooine_womprat_lair_neutral_small",
 			spawnLimit = -1,
 			minDifficulty = 60,
@@ -1305,7 +1305,7 @@ ghomrassen_world = {
 			numberToSpawn = 0,
 			weighting = 2,
 			size = 35
-		},
+		},]]--
 	}
 }
 

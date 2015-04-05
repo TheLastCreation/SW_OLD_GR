@@ -1,5 +1,5 @@
 ghomrassen_mound_mite_swarm_neutral_none = Lair:new {
-	mobiles = {{"mound_mite",1}},
+	mobiles = {{"gr_mound_mite",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {},
 	buildingsEasy = {},

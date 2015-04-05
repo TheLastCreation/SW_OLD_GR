@@ -1,5 +1,5 @@
 ghomrassen_dwarf_nuna_herd_neutral_none = Lair:new {
-	mobiles = {{"dwarf_nuna",1}},
+	mobiles = {{"gr_dwarf_nuna",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {},
 	buildingsEasy = {},

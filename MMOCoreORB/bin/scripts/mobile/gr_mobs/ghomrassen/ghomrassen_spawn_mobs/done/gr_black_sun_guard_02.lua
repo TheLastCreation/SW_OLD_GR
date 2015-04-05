@@ -1,16 +1,17 @@
-gr_black_sun_henchman = Creature:new {
-	objectName = "@mob/creature_names:mand_bunker_blksun_henchman",
+gr_black_sun_guard_02 = Creature:new {
+	--objectName = "@mob/creature_names:mand_bunker_blksun_guard",
+	customName = "Black Sun Sentry",
 	socialGroup = "death_watch",
 	faction = "",
-	level = 76,
-	chanceHit = 0.75,
-	damageMin = 520,
-	damageMax = 750,
-	baseXp = 7207,
-	baseHAM = 12000,
-	baseHAMmax = 15000,
-	armor = 1,
-	resists = {35,35,50,25,45,60,25,30,55},
+	level = 85,
+	chanceHit = 1.85,
+	damageMin = 900,
+	damageMax = 1050,
+	baseXp = 7081,
+	baseHAM = 18000,
+	baseHAMmax = 25000,
+	armor = 2,
+	resists = {30,30,30,35,35,30,35,30,35},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -25,7 +26,7 @@ gr_black_sun_henchman = Creature:new {
 	optionsBitmask = 128,
 	diet = HERBIVORE,
 
-	templates = {"object/mobile/dressed_black_sun_henchman.iff"},
+	templates = {"object/mobile/dressed_black_sun_guard.iff"},
 	lootGroups = {
 		{
 			groups = {
@@ -54,7 +55,7 @@ gr_black_sun_henchman = Creature:new {
 	},
 	weapons = {"pirate_weapons_heavy"},
 	conversationTemplate = "",
-	attacks = merge(bountyhuntermaster,marksmanmaster,brawlermaster)
+	attacks = merge(riflemanmaster,pistoleermaster,carbineermaster,bountyhuntermaster)
 }
 
-CreatureTemplates:addCreatureTemplate(gr_black_sun_henchman, "gr_black_sun_henchman")
+CreatureTemplates:addCreatureTemplate(gr_black_sun_guard_02, "gr_black_sun_guard_02")

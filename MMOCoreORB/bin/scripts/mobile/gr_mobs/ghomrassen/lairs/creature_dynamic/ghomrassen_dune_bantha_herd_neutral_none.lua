@@ -1,5 +1,5 @@
 ghomrassen_dune_bantha_herd_neutral_none = Lair:new {
-	mobiles = {{"dune_bantha",1}},
+	mobiles = {{"gr_dune_bantha",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {},
 	buildingsEasy = {},

@@ -1,5 +1,5 @@
 ghomrassen_matriarch_bantha_herd_neutral_none = Lair:new {
-	mobiles = {{"bantha_matriarch",1},{"bantha",1},{"dwarf_bantha",1}},
+	mobiles = {{"gr_bantha_matriarch",1},{"gr_bantha",1},{"gr_dwarf_bantha",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {},
 	buildingsEasy = {},

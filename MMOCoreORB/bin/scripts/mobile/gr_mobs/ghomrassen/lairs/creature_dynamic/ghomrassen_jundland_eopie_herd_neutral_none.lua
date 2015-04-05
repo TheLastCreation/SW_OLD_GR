@@ -1,5 +1,5 @@
 ghomrassen_jundland_eopie_herd_neutral_none = Lair:new {
-	mobiles = {{"jundland_eopie",1}},
+	mobiles = {{"gr_jundland_eopie",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {},
 	buildingsEasy = {},

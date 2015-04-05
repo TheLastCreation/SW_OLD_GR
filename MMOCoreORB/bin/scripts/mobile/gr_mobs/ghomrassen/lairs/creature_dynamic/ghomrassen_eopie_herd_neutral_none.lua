@@ -1,5 +1,5 @@
 ghomrassen_eopie_herd_neutral_none = Lair:new {
-	mobiles = {{"eopie",1},{"dwarf_eopie",1}},
+	mobiles = {{"gr_eopie",1},{"gr_dwarf_eopie",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {},
 	buildingsEasy = {},

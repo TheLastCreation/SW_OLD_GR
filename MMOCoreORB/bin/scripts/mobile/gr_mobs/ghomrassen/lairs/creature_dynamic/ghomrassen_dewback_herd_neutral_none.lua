@@ -1,5 +1,5 @@
 ghomrassen_dewback_herd_neutral_none = Lair:new {
-	mobiles = {{"dewback",1}},
+	mobiles = {{"gr_dewback",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {},
 	buildingsEasy = {},

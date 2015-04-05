@@ -1,5 +1,5 @@
 ghomrassen_dragonet_pack_neutral_none = Lair:new {
-	mobiles = {{"dragonet",1}},
+	mobiles = {{"gr_dragonet",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {},
 	buildingsEasy = {},

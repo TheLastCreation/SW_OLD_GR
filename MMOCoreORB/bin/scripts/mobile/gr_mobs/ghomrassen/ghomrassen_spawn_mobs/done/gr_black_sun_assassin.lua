@@ -1,16 +1,16 @@
-gr_black_sun_thug = Creature:new {
-	customName = "Blacksun Thug",
+gr_black_sun_assassin = Creature:new {
+	customName = "Blacksun Assassin",
 	socialGroup = "",
 	faction = "",
-	level = 86,
-	chanceHit = 0.85,
-	damageMin = 570,
-	damageMax = 850,
-	baseXp = 8130,
-	baseHAM = 13000,
-	baseHAMmax = 16000,
-	armor = 1,
-	resists = {40,40,60,35,55,70,35,40,55},
+	level = 84,
+	chanceHit = 1.75,
+	damageMin = 670,
+	damageMax = 1050,
+	baseXp = 7081,
+	baseHAM = 29000,
+	baseHAMmax = 36000,
+	armor = 2,
+	resists = {30,30,30,35,35,30,35,30,35},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -25,8 +25,8 @@ gr_black_sun_thug = Creature:new {
 	optionsBitmask = 128,
 	diet = HERBIVORE,
 
-	templates = {"object/mobile/dressed_black_sun_thug.iff"},
-		lootGroups = {
+	templates = {"object/mobile/dressed_black_sun_assassin.iff"},
+	lootGroups = {
 		{
 			groups = {
 				{group = "pistols", chance = 3333333},
@@ -40,7 +40,7 @@ gr_black_sun_thug = Creature:new {
 				{group = "clothing_attachments", chance = 5000000},
 				{group = "armor_attachments", chance = 5000000}
 			},
-			lootChance = 60000000
+			lootChance = 100000000
 		},	
 		{
 			groups = {
@@ -49,7 +49,7 @@ gr_black_sun_thug = Creature:new {
 				{group = "crystals_premium", chance = 2500000},
 				{group = "jetpack_base", chance = 2500000}
 			},
-			lootChance = 60000000
+			lootChance = 80000000
 		},
 	},
 	weapons = {"pirate_weapons_heavy"},
@@ -57,4 +57,4 @@ gr_black_sun_thug = Creature:new {
 	attacks = merge(bountyhuntermaster,marksmanmaster,brawlermaster)
 }
 
-CreatureTemplates:addCreatureTemplate(gr_black_sun_thug, "gr_black_sun_thug")
+CreatureTemplates:addCreatureTemplate(gr_black_sun_assassin, "gr_black_sun_assassin")

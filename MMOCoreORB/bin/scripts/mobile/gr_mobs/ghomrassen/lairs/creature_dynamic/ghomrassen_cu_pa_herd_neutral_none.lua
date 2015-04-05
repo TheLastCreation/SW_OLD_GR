@@ -1,5 +1,5 @@
 ghomrassen_cu_pa_herd_neutral_none = Lair:new {
-	mobiles = {{"cu_pa",1}},
+	mobiles = {{"gr_cu_pa",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {},
 	buildingsEasy = {},

@@ -1,5 +1,5 @@
 ghomrassen_womprat_slum_rat_neutral_none = Lair:new {
-	mobiles = {{"slum_rat",1}},
+	mobiles = {{"gr_slum_rat",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {},
 	buildingsEasy = {},
