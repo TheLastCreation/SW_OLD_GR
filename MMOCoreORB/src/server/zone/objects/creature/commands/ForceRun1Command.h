@@ -56,7 +56,7 @@ public:
 
 	}
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
 
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
@@ -102,8 +102,8 @@ public:
 		int duration = 120;
 
 		ManagedReference<Buff*> buff = new Buff(creature, forceRun1CRC, duration, BuffType::JEDI);
-		buff->setSpeedMultiplierMod(2.5f);
-		buff->setAccelerationMultiplierMod(2.5f);
+		buff->setSpeedMultiplierMod(1.5f);
+		buff->setAccelerationMultiplierMod(1.5f);
 		buff->setStartMessage(startStringId);
 		buff->setEndMessage(endStringId);
 		buff->setSkillModifier("force_run", 1);
