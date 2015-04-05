@@ -1,4 +1,4 @@
-death_watch_bloodguard = Creature:new {
+gr_death_watch_bloodguard = Creature:new {
 	objectName = "@mob/creature_names:mand_bunker_dthwatch_red",
 	socialGroup = "death_watch",
 	faction = "",
@@ -42,4 +42,4 @@ death_watch_bloodguard = Creature:new {
 	attacks = merge(bountyhuntermaster,marksmanmaster,brawlermaster)
 }
 
-CreatureTemplates:addCreatureTemplate(death_watch_bloodguard, "death_watch_bloodguard")
+CreatureTemplates:addCreatureTemplate(gr_death_watch_bloodguard, "gr_death_watch_bloodguard")

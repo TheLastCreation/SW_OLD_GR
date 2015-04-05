@@ -1,4 +1,4 @@
-death_watch_overlord = Creature:new {
+gr_death_watch_overlord = Creature:new {
 	objectName = "",
 	customName = "Drartih Oure (a Death Watch Overlord)",
 	socialGroup = "death_watch",
@@ -55,4 +55,4 @@ death_watch_overlord = Creature:new {
 	attacks = merge(riflemanmaster,fencermaster,marksmanmaster,brawlermaster)
 }
 
-CreatureTemplates:addCreatureTemplate(death_watch_overlord, "death_watch_overlord")
+CreatureTemplates:addCreatureTemplate(gr_death_watch_overlord, "gr_death_watch_overlord")
