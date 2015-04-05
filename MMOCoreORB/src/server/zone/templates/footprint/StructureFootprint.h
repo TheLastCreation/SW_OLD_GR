@@ -44,8 +44,6 @@ public:
 
 		rowChunkSize = sfp.rowChunkSize;
 		colChunkSize = sfp.colChunkSize;
-
-		rows = sfp.rows;
 	}
 
 	StructureFootprint& operator= (const StructureFootprint& sfp) {
@@ -60,8 +58,6 @@ public:
 
 		rowChunkSize = sfp.rowChunkSize;
 		colChunkSize = sfp.colChunkSize;
-
-		rows = sfp.rows;
 
 		return *this;
 	}

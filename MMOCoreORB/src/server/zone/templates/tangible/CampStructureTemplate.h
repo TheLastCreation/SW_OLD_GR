@@ -22,8 +22,7 @@ protected:
 	uint16 mindWoundRegenRate;
 
 public:
-	CampStructureTemplate() : experience(0), duration(0), radius(0), aggroMod(0), skillRequired(0), healthWoundRegenRate(0),
-		actionWoundRegenRate(0), mindWoundRegenRate(0) {
+	CampStructureTemplate() {
 
 	}
 

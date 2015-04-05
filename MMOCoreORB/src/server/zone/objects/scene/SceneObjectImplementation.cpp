@@ -164,10 +164,6 @@ void SceneObjectImplementation::initializePrivateData() {
 
 	zone = NULL;
 
-	containerType = 0;
-	containerVolumeLimit = 0;
-	containmentType = 0;
-
 	setGlobalLogging(true);
 	setLogging(false);
 

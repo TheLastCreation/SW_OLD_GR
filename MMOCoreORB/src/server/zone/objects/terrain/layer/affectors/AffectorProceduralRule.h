@@ -17,7 +17,8 @@ protected:
 	int affectorType;
 
 public:
-	AffectorProceduralRule() : affectorType(0) {
+	AffectorProceduralRule() {
+		affectorType = 0;
 	}
 
 	const static int HEIGHTTYPE = 0x100;

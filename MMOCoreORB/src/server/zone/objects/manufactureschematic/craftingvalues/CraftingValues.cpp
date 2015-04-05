@@ -56,12 +56,10 @@ CraftingValues::CraftingValues() {
 }
 
 
-CraftingValues::CraftingValues(const CraftingValues& values) : Object(), Serializable(), Logger(), slots(values.slots) {
+CraftingValues::CraftingValues(const CraftingValues& values) : Object(), Serializable(), Logger() {
 	valuesToSend = values.valuesToSend;
 	EMPTY = values.EMPTY;
 	doHide = values.doHide;
-	schematic = values.schematic;
-	player = values.player;
 
 	for (int i = 0; i < values.experimentalValuesMap.size(); ++i) {
 		VectorMapEntry<String, Reference<Subclasses*> > entry = values.experimentalValuesMap.elementAt(i);

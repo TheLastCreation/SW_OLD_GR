@@ -55,7 +55,7 @@ public:
 
 	}
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
@@ -121,7 +121,7 @@ public:
 
 private:
 
-	void doObjectDBQuery(CreatureObject* creature, String db, uint64 objectID) const {
+	void doObjectDBQuery(CreatureObject* creature, String db, uint64 objectID){
 		StringBuffer msg;
 		//info("doing object query for " + db + " with object " + String::valueOf(objectID),true);
 
@@ -169,7 +169,7 @@ private:
 		creature->sendSystemMessage(msg.toString());
 	}
 
-	void doSQLQuery(CreatureObject* creature, String db, uint64 objectID) const {
+	void doSQLQuery(CreatureObject* creature, String db, uint64 objectID){
 		StringBuffer selectStatement;
 		StringBuffer msg;
 

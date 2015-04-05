@@ -19,7 +19,7 @@ class AffectorFloraNonCollidableConstant : public ProceduralRule<'AFSN'>, public
 	float featheringAmount;
 
 public:
-	AffectorFloraNonCollidableConstant() : familyId(0), var2(0), flag(0), featheringType(0), featheringAmount(0) {
+	AffectorFloraNonCollidableConstant() {
 
 	}
 

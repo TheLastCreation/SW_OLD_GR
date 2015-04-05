@@ -18,7 +18,7 @@ class RadialClientItem {
 	UnicodeString command;
 
 public:
-	RadialClientItem() : index(0), parentid(0), radialid(0), callback(0) {
+	RadialClientItem() {
 
 	}
 
@@ -78,9 +78,9 @@ class ObjectMenuRequestCallback : public MessageCallback {
 
 public:
 	ObjectMenuRequestCallback(ObjectControllerMessageCallback* objectControllerCallback) :
-		MessageCallback(objectControllerCallback->getClient(), objectControllerCallback->getServer()), unknownSize(0),
-		objectID(0), playerID(0), counter(0), objectControllerMain(objectControllerCallback) {
+		MessageCallback(objectControllerCallback->getClient(), objectControllerCallback->getServer()) {
 
+		objectControllerMain = objectControllerCallback;
 	}
 
 	void parse(Message* message) {

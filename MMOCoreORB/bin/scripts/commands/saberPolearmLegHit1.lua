@@ -45,11 +45,11 @@ SaberPolearmLegHit1Command = {
         name = "saberpolearmleghit1",
         
                         
-    damageMultiplier = 1.5,
+    damageMultiplier = 1.2,
 	speedMultiplier = 1.5,
-	forceCostMultiplier = 1.25,
+	forceCostMultiplier = 1.2,
 
-	animationCRC = hashCode("combo_3a_medium"),
+	animationCRC = hashCode("combo_3d_medium"),
 
 	combatSpam = "saberpolearmleghit1",
 	

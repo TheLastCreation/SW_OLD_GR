@@ -56,7 +56,7 @@ public:
 
 	}
 
-	bool canPerformSkill(CreatureObject* creature) const {
+	bool canPerformSkill(CreatureObject* creature) {
 		if (!creature->hasDamage(CreatureAttribute::HEALTH)) {
 			creature->sendSystemMessage("@jedi_spam:no_damage_heal_self"); // You have no damage of that type.
 			return false;
@@ -65,7 +65,7 @@ public:
 		return true;
 	}
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 
 		int result = doCommonMedicalCommandChecks(creature);
 

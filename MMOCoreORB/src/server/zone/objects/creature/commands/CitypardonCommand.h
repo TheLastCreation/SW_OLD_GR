@@ -55,7 +55,7 @@ public:
 
 	}
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
 
@@ -66,14 +66,26 @@ public:
 
 		ManagedReference<SceneObject*> targetObject = zserv->getObject(target);
 
-		if (targetObject == NULL || !targetObject->isPlayerCreature() || targetObject == creature)
+		if (targetObject == NULL || !targetObject->isPlayerCreature()) {
+			try {
+				String targetFirstName;
+				UnicodeTokenizer tokenizer(arguments);
+				tokenizer.getStringToken(targetFirstName);
+
+				targetObject = zserv->getPlayerManager()->getPlayer(targetFirstName);
+			} catch (Exception& e) {
+				return INVALIDPARAMETERS;
+			}
+		}
+
+		if (targetObject == NULL || !targetObject->isPlayerCreature())
 			return INVALIDTARGET;
 
 		CreatureObject* targetCreature = cast<CreatureObject*>(targetObject.get());
 
-		ManagedReference<CityRegion*> city = creature->getCityRegion().get();
+		ManagedReference<CityRegion*> city = creature->getCityRegion();
 
-		if (city == NULL || city != targetObject->getCityRegion().get()) {
+		if (city == NULL) {
 			creature->sendSystemMessage("@city/city:not_in_city"); //You must be in a city to use this command.
 			return GENERALERROR;
 		}

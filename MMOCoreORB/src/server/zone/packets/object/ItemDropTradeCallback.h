@@ -19,9 +19,9 @@ class ItemDropTradeCallback : public MessageCallback {
 	ObjectControllerMessageCallback* objectControllerMain;
 public:
 	ItemDropTradeCallback(ObjectControllerMessageCallback* objectControllerCallback) :
-		MessageCallback(objectControllerCallback->getClient(), objectControllerCallback->getServer()),
-		targetToTrade(0), objectControllerMain(objectControllerCallback) {
+		MessageCallback(objectControllerCallback->getClient(), objectControllerCallback->getServer()) {
 
+		objectControllerMain = objectControllerCallback;
 	}
 
 	void parse(Message* message) {

@@ -26,10 +26,10 @@ protected:
 
 	uint8 statMigrationRequested;
 
-	uint32 bodySkillMod;
-	uint32 faceSkillMod;
-	uint32 markingsSkillMod;
-	uint32 hairSkillMod;
+	uint32 unk1;
+	uint32 unk2;
+	uint32 unk3;
+	uint32 unk4;
 
 	VectorMap<String, float> bodyAttributes;
 	VectorMap<String, uint32> colorAttributes;
@@ -37,9 +37,7 @@ protected:
 	String holoEmote;
 
 public:
-	ImageDesignData() : sessionID(0), timestamp(0), requiredPayment(0),
-		offeredPayment(0), designerAccepted(0), targetAccepted(0), statMigrationRequested(0),
-		bodySkillMod(0), faceSkillMod(0), markingsSkillMod(0), hairSkillMod(0) {
+	ImageDesignData() {
 
 	}
 
@@ -53,10 +51,10 @@ public:
 		designerAccepted = idd.designerAccepted;
 		targetAccepted = idd.targetAccepted;
 		statMigrationRequested = idd.statMigrationRequested;
-		bodySkillMod = idd.bodySkillMod;
-		faceSkillMod = idd.faceSkillMod;
-		markingsSkillMod = idd.markingsSkillMod;
-		hairSkillMod = idd.hairSkillMod;
+		unk1 = idd.unk1;
+		unk2 = idd.unk2;
+		unk3 = idd.unk3;
+		unk4 = idd.unk4;
 		bodyAttributes = idd.bodyAttributes;
 		colorAttributes = idd.colorAttributes;
 		holoEmote = idd.holoEmote;
@@ -75,10 +73,10 @@ public:
 		designerAccepted = idd.designerAccepted;
 		targetAccepted = idd.targetAccepted;
 		statMigrationRequested = idd.statMigrationRequested;
-		bodySkillMod = idd.bodySkillMod;
-		faceSkillMod = idd.faceSkillMod;
-		markingsSkillMod = idd.markingsSkillMod;
-		hairSkillMod = idd.hairSkillMod;
+		unk1 = idd.unk1;
+		unk2 = idd.unk2;
+		unk3 = idd.unk3;
+		unk4 = idd.unk4;
 		bodyAttributes = idd.bodyAttributes;
 		colorAttributes = idd.colorAttributes;
 		holoEmote = idd.holoEmote;
@@ -117,13 +115,13 @@ public:
 
 		statMigrationRequested = message->parseByte();
 
-		bodySkillMod = message->parseInt();
+		unk1 = message->parseInt();
 		//System::out << "unk1 " << unk1 << "\n";
-		faceSkillMod = message->parseInt();
+		unk2 = message->parseInt();
 		//System::out << "unk2 " << unk2 << "\n";
-		markingsSkillMod = message->parseInt();
+		unk3 = message->parseInt();
 		//System::out << "unk3 " << unk3 << "\n";
-		hairSkillMod = message->parseInt();
+		unk4 = message->parseInt();
 		//System::out << "unk4 " << unk4 << "\n";
 
 		int size = message->parseInt();
@@ -173,10 +171,10 @@ public:
 		message->insertByte(designerAccepted);
 		message->insertInt(targetAccepted);
 		message->insertByte(statMigrationRequested);
-		message->insertInt(bodySkillMod);
-		message->insertInt(faceSkillMod);
-		message->insertInt(markingsSkillMod);
-		message->insertInt(hairSkillMod);
+		message->insertInt(unk1);
+		message->insertInt(unk2);
+		message->insertInt(unk3);
+		message->insertInt(unk4);
 
 		int size = bodyAttributes.size();
 

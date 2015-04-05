@@ -68,8 +68,6 @@ public:
 		setLoggingName("ResourceSlot");
 		quantity = slot.quantity;
 		parents.setAllowDuplicateInsertPlan();
-		parents = slot.parents;
-		currentSpawn = slot.currentSpawn;
 	}
 
 	~ResourceSlot() {

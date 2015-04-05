@@ -22,7 +22,6 @@
 
 #include "server/zone/managers/creature/AiMap.h"
 #include "server/zone/managers/collision/CollisionManager.h"
-#include "server/zone/managers/reaction/ReactionManager.h"
 #include "server/zone/objects/intangible/PetControlDevice.h"
 
 //#include "server/zone/objects/creature/AiAgent.h"
@@ -847,8 +846,6 @@ int LuaAiAgent::assist(lua_State* L) {
 		return 0;
 
 	Locker locker(realObject);
-
-	realObject->sendReactionChat(ReactionManager::ASSIST);
 
 	realObject->setDefender(target);
 

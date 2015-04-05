@@ -10,38 +10,14 @@
 
 #include "engine/engine.h"
 
-#include "PathEdge.h"
-
 class PathGraph;
 
 class PathNode : public Object {
-	enum PathNodeType
-	{
-		CellPortal           = 0,
-		CellWaypoint         = 1,
-		CellPOI              = 2,
-
-		BuildingEntrance     = 3,
-		BuildingCell         = 4,
-		BuildingPortal       = 5,
-
-		CityBuildingEntrance = 6,
-		CityWaypoint         = 7,
-		CityPOI              = 8,
-		CityBuilding         = 9,
-		CityEntrance         = 10,
-
-		BuildingCellPart     = 11,
-
-		Invalid              = 12,
-	};
-
 	Vector<PathNode*> children;
 
 	uint32 id;
-	int var2, globalGraphNodeID;
-	PathNodeType type;
-	float x, z, y, radius;
+	int var2, globalGraphNodeID, var4;
+	float x, z, y, var8;
 
 	PathGraph* pathGraph;
 
@@ -49,9 +25,8 @@ public:
 	PathNode(PathGraph* graph) {
 		pathGraph = graph;
 		id = 0;
-		var2 = globalGraphNodeID = 0;
-		type = Invalid;
-		x = z = y = radius = 0;
+		var2 = globalGraphNodeID = var4 = 0;
+		x = z = y = var8 = 0;
 	}
 
 	inline void addChild(PathNode* node) {
@@ -62,23 +37,23 @@ public:
 		id = iffStream->getInt();
 		var2 = iffStream->getInt();
 		globalGraphNodeID = iffStream->getInt();
-		type = static_cast<PathNodeType>(iffStream->getInt());
+		var4 = iffStream->getInt();
 
 		x = iffStream->getFloat();
 		z = iffStream->getFloat();
 		y = iffStream->getFloat();
-		radius = iffStream->getFloat();
+		var8 = iffStream->getFloat();
 	}
 
-	inline float getX() const {
+	inline float getX() {
 		return x;
 	}
 
-	inline float getY() const {
+	inline float getY() {
 		return y;
 	}
 
-	inline float getZ() const {
+	inline float getZ() {
 		return z;
 	}
 
@@ -88,16 +63,8 @@ public:
 
 	uint32 getID();
 
-	inline Vector3 getPosition() const {
+	inline Vector3 getPosition() {
 		return Vector3(x, y, z);
-	}
-
-	inline float getRadius() const {
-		return radius;
-	}
-
-	inline PathNodeType getType() const {
-		return type;
 	}
 
 	Vector<PathNode*>* getNeighbors() {
@@ -110,6 +77,32 @@ public:
 
 	inline PathGraph* getPathGraph() {
 		return pathGraph;
+	}
+
+};
+
+
+class PathEdge : public Object  {
+	int from, to, var3, var4;
+
+public:
+	PathEdge() {
+
+	}
+
+	void readObject(IffStream* iffStream) {
+		from = iffStream->getInt();
+		to = iffStream->getInt();
+		var3 = iffStream->getInt();
+		var4 = iffStream->getInt();
+	}
+
+	inline int getFromConnection() {
+		return from;
+	}
+
+	inline int getToConnection() {
+		return to;
 	}
 
 };

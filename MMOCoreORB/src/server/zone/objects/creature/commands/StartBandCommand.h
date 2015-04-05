@@ -55,7 +55,7 @@ public:
 
 	}
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
@@ -234,7 +234,7 @@ public:
 		return SUCCESS;
 	}
 
-	bool canPlayInstrument(CreatureObject* creature, const uint64& target) const {
+	bool canPlayInstrument(CreatureObject* creature, const uint64& target) {
 		Reference<PlayerObject*> ghost = creature->getSlottedObject("ghost").castTo<PlayerObject*> ();
 
 		Reference<Instrument*> instrument = creature->getSlottedObject("hold_r").castTo<Instrument*> ();

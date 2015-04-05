@@ -46,9 +46,9 @@ Saber1hHit2Command = {
         
     damageMultiplier = 2.0,
 	speedMultiplier = 1.5,
-	forceCostMultiplier = 1.5,
+	forceCostMultiplier = 2.0,
 
-	animationCRC = hashCode("combo_jedi_2_light"),
+	animationCRC = hashCode("combo_3a_medium"),
 
 	combatSpam = "saber1hhit2",
 	
@@ -58,9 +58,9 @@ Saber1hHit2Command = {
 		{}, 
 		{ "blind_defense", "resistance_states" }, 
 		{ "jedi_state_defense" }, 
-		50, 
+		40, 
 		100, 
-		45 
+		10 
 	  )
 	},
 	

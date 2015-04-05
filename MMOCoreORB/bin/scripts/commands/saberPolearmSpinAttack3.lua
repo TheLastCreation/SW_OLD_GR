@@ -45,8 +45,8 @@ SaberPolearmSpinAttack3Command = {
         name = "saberpolearmspinattack3",
     
     damageMultiplier = 3.0,
-	speedMultiplier = 2.0,
-	forceCostMultiplier = 2.5,
+	speedMultiplier = 1.5,
+	forceCostMultiplier = 3.5,
 	areaAction = true,
 	areaRange = 7,
 	
@@ -56,7 +56,7 @@ SaberPolearmSpinAttack3Command = {
 		{ "postureDownRecovery" }, 
 		{ "posture_change_down_defense" }, 
 		{}, 
-		100, 
+		40, 
 		100, 
 		0 
 	  )

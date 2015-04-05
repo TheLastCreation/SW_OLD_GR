@@ -14,7 +14,7 @@ class ContainerTemplate : public SharedTangibleObjectTemplate {
 	bool lock;
 
 public:
-	ContainerTemplate() : lock(false) {
+	ContainerTemplate() {
 
 	}
 

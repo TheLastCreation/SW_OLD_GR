@@ -59,7 +59,7 @@ public:
 		range = 6;
 	}
 
-	void doAnimations(CreatureObject* creature, CreatureObject* creatureTarget) const {
+	void doAnimations(CreatureObject* creature, CreatureObject* creatureTarget) {
 		creatureTarget->playEffect("clienteffect/healing_healdamage.cef", "");
 
 		if (creature == creatureTarget)
@@ -68,7 +68,7 @@ public:
 			creature->doAnimation("heal_other");
 	}
 
-	void sendCureMessage(CreatureObject* object, CreatureObject* target) const {
+	void sendCureMessage(CreatureObject* object, CreatureObject* target) {
 		if (!object->isPlayerCreature())
 			return;
 
@@ -93,7 +93,7 @@ public:
 		}
 	}
 
-	bool canPerformSkill(CreatureObject* creature, CreatureObject* creatureTarget) const {
+	bool canPerformSkill(CreatureObject* creature, CreatureObject* creatureTarget) {
 		if (!creatureTarget->isBleeding()) {
 			if (creature == creatureTarget)
 				creature->sendSystemMessage("@healing_response:healing_response_78"); //You are not bleeding.
@@ -119,7 +119,7 @@ public:
 		return true;
 	}
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 
 		int result = doCommonMedicalCommandChecks(creature);
 

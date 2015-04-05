@@ -18,7 +18,7 @@ class ChatEnterRoomByIdCallback : public MessageCallback {
 
 public:
 	ChatEnterRoomByIdCallback(ZoneClientSession* client, ZoneProcessServer* server) :
-		MessageCallback(client, server), counter(0), roomID(0) {
+		MessageCallback(client, server) {
 	}
 
 	void parse(Message* message) {

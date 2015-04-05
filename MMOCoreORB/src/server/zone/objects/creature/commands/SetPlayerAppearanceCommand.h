@@ -55,7 +55,7 @@ public:
 
 	}
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
@@ -122,7 +122,7 @@ public:
 		return SUCCESS;
 	}
 
-	void sendSyntax(CreatureObject* creature) const {
+	void sendSyntax(CreatureObject* creature) {
 		creature->sendSystemMessage("SYNTAX: /setPlayerAppearance [player] [mobile object template with shared in filename or blank to reset]");
 		creature->sendSystemMessage("EXAMPLE: /setPlayerAppearance playerName object/mobile/shared_darth_vader.iff");
 		creature->sendSystemMessage("EXAMPLE RESET: /setPlayerAppearance playerName");

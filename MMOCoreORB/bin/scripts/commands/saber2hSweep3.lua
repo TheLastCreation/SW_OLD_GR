@@ -46,7 +46,7 @@ Saber2hSweep3Command = {
         
     damageMultiplier = 3.0,
 	speedMultiplier = 3.5,
-	forceCostMultiplier = 1.75,
+	forceCostMultiplier = 2.5,
 
 	stateEffects = {
 	  StateEffect( 
@@ -54,13 +54,13 @@ Saber2hSweep3Command = {
 		{ "postureDownRecovery" }, 
 		{ "posture_change_down_defense" }, 
 		{}, 
-		100, 
+		25, 
 		100, 
 		0 
 	  )
 	},
 
-	animationCRC = hashCode("lower_posture_2h_melee_3"),
+	animationCRC = hashCode("combo_3d_light"),
 
 	combatSpam = "saber2hsweep3",
 	

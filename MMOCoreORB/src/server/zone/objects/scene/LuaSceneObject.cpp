@@ -52,7 +52,6 @@ Luna<LuaSceneObject>::RegType LuaSceneObject::Register[] = {
 		{ "isPlayerCreature", &LuaSceneObject::isPlayerCreature },
 		{ "isCreature", &LuaSceneObject::isCreature },
 		{ "isBuildingObject", &LuaSceneObject::isBuildingObject },
-		{ "isActiveArea", &LuaSceneObject::isActiveArea },
 		{ "sendTo", &LuaSceneObject::sendTo },
 		{ "getCustomObjectName", &LuaSceneObject::getCustomObjectName },
 		{ "getDisplayedName", &LuaSceneObject::getDisplayedName },
@@ -476,8 +475,6 @@ int LuaSceneObject::updateDirection(lua_State* L) {
 }
 
 int LuaSceneObject::destroyObjectFromWorld(lua_State* L) {
-	Locker locker(realObject);
-
 	realObject->destroyObjectFromWorld(true);
 
 	return 0;
@@ -523,14 +520,6 @@ int LuaSceneObject::isCreature(lua_State* L) {
 
 int LuaSceneObject::isBuildingObject(lua_State* L) {
 	bool val = realObject->isBuildingObject();
-
-	lua_pushboolean(L, val);
-
-	return 1;
-}
-
-int LuaSceneObject::isActiveArea(lua_State* L) {
-	bool val = realObject->isActiveArea();
 
 	lua_pushboolean(L, val);
 

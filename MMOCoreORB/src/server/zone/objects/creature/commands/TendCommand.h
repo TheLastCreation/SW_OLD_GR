@@ -61,7 +61,7 @@ public:
 		speed = 0.0f;
 	}
 
-	void doAnimations(CreatureObject* creature, CreatureObject* creatureTarget) const {
+	void doAnimations(CreatureObject* creature, CreatureObject* creatureTarget) {
 		if (!effectName.isEmpty())
 			creatureTarget->playEffect(effectName, "");
 
@@ -71,7 +71,7 @@ public:
 			creature->doAnimation("heal_other");
 	}
 
-	void sendHealMessage(CreatureObject* creature, CreatureObject* creatureTarget, int healthDamage, int actionDamage) const {
+	void sendHealMessage(CreatureObject* creature, CreatureObject* creatureTarget, int healthDamage, int actionDamage) {
 		if (!creature->isPlayerCreature())
 			return;
 
@@ -106,7 +106,7 @@ public:
 		}
 	}
 
-	void sendWoundMessage(CreatureObject* creature, CreatureObject* creatureTarget, int poolAffected, int woundsHealed) const {
+	void sendWoundMessage(CreatureObject* creature, CreatureObject* creatureTarget, int poolAffected, int woundsHealed) {
 		if (!creature->isPlayerCreature())
 			return;
 
@@ -131,7 +131,7 @@ public:
 		}
 	}
 
-	void awardXp(CreatureObject* creature, const String& type, int power) const {
+	void awardXp(CreatureObject* creature, const String& type, int power) {
 		if (!creature->isPlayerCreature())
 			return;
 
@@ -146,7 +146,7 @@ public:
 		playerManager->awardExperience(player, type, amount, true);
 	}
 
-	uint8 findAttribute(CreatureObject* creature, uint8 startAttribute = 0) const {
+	uint8 findAttribute(CreatureObject* creature, uint8 startAttribute = 0) {
 		for (int i = startAttribute; i < 9; ++i) {
 			int wounds = creature->getWounds(i);
 
@@ -157,7 +157,7 @@ public:
 		return CreatureAttribute::UNKNOWN;
 	}
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 
 		int result = doCommonMedicalCommandChecks(creature);
 

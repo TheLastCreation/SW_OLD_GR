@@ -26,8 +26,9 @@ StructurePermissionList::StructurePermissionList() {
 	addList("VENDOR");
 }
 
-StructurePermissionList::StructurePermissionList(const StructurePermissionList& spl) : Object(), permissionLists(spl.permissionLists),
-		idPermissionLists(spl.idPermissionLists), ownerName(spl.ownerName), ownerID(spl.ownerID), lock() {
+StructurePermissionList::StructurePermissionList(const StructurePermissionList& spl) : Object() {
+	permissionLists = spl.permissionLists;
+	idPermissionLists = spl.idPermissionLists;
 }
 
 bool StructurePermissionList::toBinaryStream(ObjectOutputStream* stream) {

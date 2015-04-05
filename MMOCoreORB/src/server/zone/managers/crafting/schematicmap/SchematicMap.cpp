@@ -57,7 +57,7 @@ which carries forward this exception.
 //VectorMap<String, DraftSchematicGroup* > SchematicMap::groupMap;
 //ZoneServer* SchematicMap::zoneServer = NULL;
 
-SchematicMap::SchematicMap() : objectManager(NULL) {
+SchematicMap::SchematicMap() {
 
 	info("Loading schematics...");
 

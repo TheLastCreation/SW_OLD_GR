@@ -19,7 +19,7 @@ public:
 	}
 
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 
 		ManagedReference<PetControlDevice*> controlDevice = creature->getControlDevice().castTo<PetControlDevice*>();
 
@@ -83,12 +83,12 @@ public:
 		int shockHeal = 100 * trickNumber;
 
 		// Heal wounds
-		pet->healWound(player, CreatureAttribute::MIND, mindHeal, true, false);
-		pet->healWound(player, CreatureAttribute::FOCUS, focusHeal, true, false);
-		pet->healWound(player, CreatureAttribute::WILLPOWER, willHeal, true, false);
+		pet->addWounds(CreatureAttribute::MIND, -mindHeal);
+		pet->addWounds(CreatureAttribute::FOCUS, -focusHeal);
+		pet->addWounds(CreatureAttribute::WILLPOWER, -willHeal);
 
 		// Heal battle fatigue
-		pet->addShockWounds(-shockHeal, true, false);
+		pet->addShockWounds(-shockHeal);
 
 		// Heal damage
 		mindHeal = MIN( mindHeal, pet->getMaxHAM(CreatureAttribute::MIND) - pet->getHAM(CreatureAttribute::MIND) );

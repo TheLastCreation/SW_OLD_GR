@@ -18,7 +18,7 @@ public:
 		: QueueCommand(name, server) {
 	}
 
-	int doQueueCommand(CreatureObject* creature, const uint64& targetID, const UnicodeString& arguments) const {
+	int doQueueCommand(CreatureObject* creature, const uint64& targetID, const UnicodeString& arguments) {
 
 		ManagedReference<PetControlDevice*> controlDevice = creature->getControlDevice().castTo<PetControlDevice*>();
 

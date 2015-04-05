@@ -11,11 +11,6 @@
 HttpRequest::HttpRequest(HttpSession* session) {
 	// TODO Auto-generated constructor stub
 
-	remotePort = 0;
-	remoteIp = 0;
-	statusCode = 0;
-	ssl = false;
-
 	this->session = session;
 }
 

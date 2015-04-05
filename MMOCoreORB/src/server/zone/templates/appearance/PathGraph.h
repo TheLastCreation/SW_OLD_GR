@@ -14,23 +14,13 @@
 class FloorMesh;
 
 class PathGraph : public IffTemplate {
-	enum PathGraphType
-	{
-		Cell,
-		Building,
-		City,
-
-		None,
-	};
-
-
 	Vector<PathNode*> pathNodes;
 	//Vector<PathEdge> pathEdges;
 
-	PathGraphType type;
+	int unkownMetaInt;
 
-	Vector<int> edgeCounts;
-	Vector<int> edgeStarts;
+	Vector<int> ecnt;
+	Vector<int> estr;
 
 	FloorMesh* floorMesh;
 
@@ -40,7 +30,7 @@ protected:
 public:
 	PathGraph(FloorMesh* floor) {
 		floorMesh = floor;
-		type = None;
+		unkownMetaInt = 0;
 	}
 
 	~PathGraph() {
@@ -88,10 +78,6 @@ public:
 
 	inline FloorMesh* getFloorMesh() {
 		return floorMesh;
-	}
-
-	inline PathGraphType getType() const {
-		return type;
 	}
 
 };

@@ -55,7 +55,7 @@ public:
 		: SquadLeaderCommand(name, server) {
 	}
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
@@ -98,7 +98,7 @@ public:
 		return SUCCESS;
 	}
 
-	bool doSteadyAim(CreatureObject* leader, GroupObject* group, int amount) const {
+	bool doSteadyAim(CreatureObject* leader, GroupObject* group, int amount) {
 		if (leader == NULL || group == NULL)
 			return false;
 

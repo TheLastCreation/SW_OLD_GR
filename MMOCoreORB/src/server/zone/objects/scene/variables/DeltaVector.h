@@ -64,11 +64,6 @@ public:
 		vector = v.vector;
 		updateCounter = v.updateCounter;
 
-		if (mutex) {
-			delete mutex;
-			mutex = NULL;
-		}
-
 		return *this;
 	}
 

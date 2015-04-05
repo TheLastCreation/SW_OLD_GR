@@ -17,7 +17,7 @@ class DroidDeedTemplate : public DeedTemplate {
 	int species;
 
 public:
-	DroidDeedTemplate() : species(0) {
+	DroidDeedTemplate() {
 
 	}
 
