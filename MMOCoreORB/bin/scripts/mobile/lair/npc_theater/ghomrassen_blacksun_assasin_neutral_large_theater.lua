@@ -6,11 +6,11 @@ ghomrassen_blacksun_assasin_neutral_large_theater = Lair:new {
 		{"gr_black_sun_thug",1}
 	},
 	spawnLimit = 15,
-	buildingsVeryEasy = {"object/building/poi/anywhere_uberlair_imperial_01.iff",},
-	buildingsEasy = {"object/building/poi/anywhere_uberlair_imperial_01.iff",},
-	buildingsMedium = {"object/building/poi/anywhere_uberlair_imperial_01.iff",},
-	buildingsHard = {"object/building/poi/anywhere_uberlair_imperial_01.iff",},
-	buildingsVeryHard = {"object/building/poi/anywhere_uberlair_imperial_01.iff",},
+	buildingsVeryEasy = {"object/building/poi/anywhere_uberlair_imperial_01.iff"},
+	buildingsEasy = {"object/building/poi/anywhere_uberlair_imperial_01.iff"},
+	buildingsMedium = {"object/building/poi/anywhere_uberlair_imperial_01.iff"},
+	buildingsHard = {"object/building/poi/anywhere_uberlair_imperial_01.iff"},
+	buildingsVeryHard = {"object/building/poi/anywhere_uberlair_imperial_01.iff"},
 	buildingType = "theater"
 }
 

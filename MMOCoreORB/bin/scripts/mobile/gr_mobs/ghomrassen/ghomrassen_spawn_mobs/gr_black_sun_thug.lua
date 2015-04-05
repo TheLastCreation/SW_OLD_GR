@@ -1,6 +1,6 @@
 gr_black_sun_thug = Creature:new {
 	customName = "Blacksun Thug",
-	socialGroup = "",
+	socialGroup = "death_watch",
 	faction = "",
 	level = 86,
 	chanceHit = 1.85,
