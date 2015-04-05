@@ -1,5 +1,11 @@
 --Ghomrassen
+includeFile("lair/creature_lair/ghomrassen_bantha_dune_bantha_neutral_medium_boss_01.lua")
+includeFile("lair/creature_lair/ghomrassen_blacksun_lair_neutral_large.lua")
+includeFile("lair/creature_lair/ghomrassen_bocatt_bocatt_neutral_medium_boss_01.lua")
 includeFile("lair/creature_lair/ghomrassen_womprat_womprat_neutral_medium_boss_01.lua")
+includeFile("lair/creature_lair/ghomrassen_womprat_lair_neutral_small.lua")
+
+
 
 includeFile("lair/creature_lair/corellia_bageraset_lair_neutral_medium.lua")
 includeFile("lair/creature_lair/corellia_bageraset_lair_neutral_medium_boss_01.lua")

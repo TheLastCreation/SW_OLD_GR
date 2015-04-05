@@ -1,5 +1,5 @@
 gr_womp_rat = Creature:new {
-	objectName = "@mob/creature_names:womprat",
+	customName = "Womprat",
 	socialGroup = "rat",
 	faction = "",
 	level = 80,
@@ -26,8 +26,15 @@ gr_womp_rat = Creature:new {
 	diet = CARNIVORE,
 
 	templates = {"object/mobile/womp_rat.iff"},
-	controlDeviceTemplate = "object/intangible/pet/womp_rat_hue.iff",
-	lootGroups = {},
+	--controlDeviceTemplate = "object/intangible/pet/womp_rat_hue.iff",
+	lootGroups = {
+				groups = {
+				{group = "pistols", chance = 3333333},
+				{group = "rifles", chance = 3333333},
+				{group = "carbines", chance = 3333334}
+			},
+			lootChance = 100000000
+	},
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {

@@ -1,6 +1,6 @@
 ghomrassen_bantha_dune_bantha_neutral_medium_boss_01 = Lair:new {
-	mobiles = {{"dune_bantha",1}},
-	bossMobiles = {{"bonecracker_bantha",1}},
+	mobiles = {{"gr_dune_bantha",1}},
+	bossMobiles = {{"gr_bonecracker_bantha",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_rock_shelter_large_evil_fire_small.iff"},
 	buildingsEasy = {"object/tangible/lair/base/poi_all_lair_rock_shelter_large_evil_fire_small.iff"},
