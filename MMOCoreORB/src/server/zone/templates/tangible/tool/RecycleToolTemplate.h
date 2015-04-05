@@ -11,7 +11,7 @@ private:
 	Vector<String> resourceTypes;
 
 public:
-	RecycleToolTemplate() : toolType(0) {
+	RecycleToolTemplate() {
 
 	}
 
