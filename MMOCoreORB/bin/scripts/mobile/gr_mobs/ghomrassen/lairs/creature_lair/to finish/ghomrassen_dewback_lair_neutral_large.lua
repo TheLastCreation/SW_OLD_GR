@@ -1,5 +1,5 @@
 ghomrassen_dewback_lair_neutral_large = Lair:new {
-	mobiles = {{"dewback",1}},
+	mobiles = {{"gr_dewback",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_rock_shelter_large.iff"},
 	buildingsEasy = {"object/tangible/lair/base/poi_all_lair_rock_shelter_large.iff"},

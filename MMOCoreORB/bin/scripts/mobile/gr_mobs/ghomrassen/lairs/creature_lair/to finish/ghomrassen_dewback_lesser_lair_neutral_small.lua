@@ -1,5 +1,5 @@
 ghomrassen_dewback_lesser_lair_neutral_small = Lair:new {
-	mobiles = {{"lesser_dewback",1}},
+	mobiles = {{"gr_lesser_dewback",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_rock_shelter_small.iff"},
 	buildingsEasy = {"object/tangible/lair/base/poi_all_lair_rock_shelter_small.iff"},

@@ -1,5 +1,5 @@
 ghomrassen_diseased_bocatt_lair_neutral_medium = Lair:new {
-	mobiles = {{"diseased_bocatt",1}},
+	mobiles = {{"gr_diseased_bocatt",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_brambles_small_fog_green.iff"},
 	buildingsEasy = {"object/tangible/lair/base/poi_all_lair_brambles_small_fog_green.iff"},

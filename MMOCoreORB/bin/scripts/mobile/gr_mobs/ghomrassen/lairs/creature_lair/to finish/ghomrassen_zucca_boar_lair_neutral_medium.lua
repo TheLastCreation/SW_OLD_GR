@@ -1,5 +1,5 @@
 ghomrassen_zucca_boar_lair_neutral_medium = Lair:new {
-	mobiles = {{"zucca_boar",1}},
+	mobiles = {{"gr_zucca_boar",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_warren_small.iff"},
 	buildingsEasy = {"object/tangible/lair/base/poi_all_lair_warren_small.iff"},

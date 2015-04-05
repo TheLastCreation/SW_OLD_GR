@@ -1,5 +1,5 @@
 ghomrassen_greater_womprat_lair_neutral_medium = Lair:new {
-	mobiles = {{"greater_desert_womp_rat",1}},
+	mobiles = {{"gr_greater_desert_womp_rat",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_garbage_large.iff"},
 	buildingsEasy = {"object/tangible/lair/base/poi_all_lair_garbage_large.iff"},

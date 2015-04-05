@@ -1,5 +1,5 @@
 ghomrassen_gorg_lair_neutral_small = Lair:new {
-	mobiles = {{"gorg",1}},
+	mobiles = {{"gr_gorg",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_nest_small.iff"},
 	buildingsEasy = {"object/tangible/lair/base/poi_all_lair_nest_small.iff"},

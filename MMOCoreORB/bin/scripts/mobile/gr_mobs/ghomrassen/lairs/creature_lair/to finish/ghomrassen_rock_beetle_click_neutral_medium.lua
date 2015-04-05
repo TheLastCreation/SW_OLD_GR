@@ -1,5 +1,5 @@
 ghomrassen_rock_beetle_click_neutral_medium = Lair:new {
-	mobiles = {{"rock_beetle",2},{"dune_beetle",2},{"large_rock_beetle",1}},
+	mobiles = {{"gr_rock_beetle",2},{"gr_dune_beetle",2},{"gr_large_rock_beetle",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_mound_large.iff"},
 	buildingsEasy = {"object/tangible/lair/base/poi_all_lair_mound_large.iff"},

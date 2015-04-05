@@ -1,5 +1,5 @@
 ghomrassen_dwarf_nuna_lair_neutral_medium = Lair:new {
-	mobiles = {{"dwarf_nuna",1}},
+	mobiles = {{"gr_dwarf_nuna",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_warren_small.iff"},
 	buildingsEasy = {"object/tangible/lair/base/poi_all_lair_warren_small.iff"},

@@ -1,5 +1,5 @@
 ghomrassen_dune_bantha_lair_neutral_large = Lair:new {
-	mobiles = {{"dune_bantha",1}},
+	mobiles = {{"gr_dune_bantha",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_rock_shelter_large_evil_fire_small.iff"},
 	buildingsEasy = {"object/tangible/lair/base/poi_all_lair_rock_shelter_large_evil_fire_small.iff"},

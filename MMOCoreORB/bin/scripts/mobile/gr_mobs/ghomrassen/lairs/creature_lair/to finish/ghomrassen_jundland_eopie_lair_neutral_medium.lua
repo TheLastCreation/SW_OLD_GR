@@ -1,5 +1,5 @@
 ghomrassen_jundland_eopie_lair_neutral_medium = Lair:new {
-	mobiles = {{"jundland_eopie",1}},
+	mobiles = {{"gr_jundland_eopie",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_mound_large_evil_fire_small.iff"},
 	buildingsEasy = {"object/tangible/lair/base/poi_all_lair_mound_large_evil_fire_small.iff"},

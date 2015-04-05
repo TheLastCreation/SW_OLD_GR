@@ -1,5 +1,5 @@
 ghomrassen_kreetle_lair_neutral_small = Lair:new {
-	mobiles = {{"kreetle",1}},
+	mobiles = {{"gr_kreetle",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_brambles_small.iff"},
 	buildingsEasy = {"object/tangible/lair/base/poi_all_lair_brambles_small.iff"},

@@ -1,5 +1,5 @@
 ghomrassen_squill_lair_neutral_small = Lair:new {
-	mobiles = {{"squill",1}},
+	mobiles = {{"gr_squill",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_thicket_small.iff"},
 	buildingsEasy = {"object/tangible/lair/base/poi_all_lair_thicket_small.iff"},

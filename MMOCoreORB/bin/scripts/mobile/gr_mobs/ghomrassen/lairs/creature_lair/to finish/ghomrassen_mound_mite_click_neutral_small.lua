@@ -1,5 +1,5 @@
 ghomrassen_mound_mite_click_neutral_small = Lair:new {
-	mobiles = {{"mound_mite",1}},
+	mobiles = {{"gr_mound_mite",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_mound_small.iff","object/tangible/lair/base/poi_all_lair_insecthill_small.iff"},
 	buildingsEasy = {"object/tangible/lair/base/poi_all_lair_mound_small.iff","object/tangible/lair/base/poi_all_lair_insecthill_small.iff"},

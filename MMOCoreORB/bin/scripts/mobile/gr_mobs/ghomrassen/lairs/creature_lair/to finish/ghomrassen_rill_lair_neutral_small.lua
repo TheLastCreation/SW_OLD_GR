@@ -1,5 +1,5 @@
 ghomrassen_rill_lair_neutral_small = Lair:new {
-	mobiles = {{"rill",1}},
+	mobiles = {{"gr_rill",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_rocks_small.iff"},
 	buildingsEasy = {"object/tangible/lair/base/poi_all_lair_rocks_small.iff"},

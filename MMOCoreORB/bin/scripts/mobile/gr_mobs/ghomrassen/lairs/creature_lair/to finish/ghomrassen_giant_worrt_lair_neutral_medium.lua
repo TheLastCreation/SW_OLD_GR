@@ -1,5 +1,5 @@
 ghomrassen_giant_worrt_lair_neutral_medium = Lair:new {
-	mobiles = {{"giant_worrt",1}},
+	mobiles = {{"gr_giant_worrt",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_dead_log_large.iff"},
 	buildingsEasy = {"object/tangible/lair/base/poi_all_lair_dead_log_large.iff"},

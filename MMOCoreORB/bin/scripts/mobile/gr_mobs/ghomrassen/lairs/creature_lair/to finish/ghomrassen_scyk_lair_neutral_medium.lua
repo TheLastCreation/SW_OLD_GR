@@ -1,5 +1,5 @@
 ghomrassen_scyk_lair_neutral_medium = Lair:new {
-	mobiles = {{"scyk",1}},
+	mobiles = {{"gr_scyk",1}},
 	spawnLimit = 15,
 buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_rocks_small_evil_fire_small.iff"},
 	buildingsEasy = {"object/tangible/lair/base/poi_all_lair_rocks_small_evil_fire_small.iff"},

@@ -1,6 +1,6 @@
 ghomrassen_kreetle_over_death_neutral_medium_boss_01 = Lair:new {
-	mobiles = {{"kreetle",1}},
-	bossMobiles = {{"death_kreetle",1}},
+	mobiles = {{"gr_kreetle",1}},
+	bossMobiles = {{"gr_death_kreetle",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_brambles_small_evil_fire_red.iff"},
 	buildingsEasy = {"object/tangible/lair/base/poi_all_lair_brambles_small_evil_fire_red.iff"},

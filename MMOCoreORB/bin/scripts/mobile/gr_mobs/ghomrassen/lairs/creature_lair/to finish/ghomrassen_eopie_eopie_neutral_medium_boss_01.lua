@@ -1,5 +1,5 @@
 ghomrassen_eopie_eopie_neutral_medium_boss_01 = Lair:new {
-	mobiles = {{"eopie",1},{"dwarf_eopie",1}},
+	mobiles = {{"gr_eopie",1},{"gr_dwarf_eopie",1}},
 	bossMobiles = {{"eopie_herdmaster",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_mound_large_fog_mustard.iff"},

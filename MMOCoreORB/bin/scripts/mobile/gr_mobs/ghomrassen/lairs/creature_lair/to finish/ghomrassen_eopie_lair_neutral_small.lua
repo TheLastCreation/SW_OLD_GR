@@ -1,5 +1,5 @@
 ghomrassen_eopie_lair_neutral_small = Lair:new {
-	mobiles = {{"eopie",1}},
+	mobiles = {{"gr_eopie",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_mound_large.iff"},
 	buildingsEasy = {"object/tangible/lair/base/poi_all_lair_mound_large.iff"},

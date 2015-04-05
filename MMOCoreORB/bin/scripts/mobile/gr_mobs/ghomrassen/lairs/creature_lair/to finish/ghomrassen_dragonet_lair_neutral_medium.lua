@@ -1,5 +1,5 @@
 ghomrassen_dragonet_lair_neutral_medium = Lair:new {
-	mobiles = {{"dragonet",1}},
+	mobiles = {{"gr_dragonet",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_rocks_large_evil_fire_small.iff"},
 	buildingsEasy = {"object/tangible/lair/base/poi_all_lair_rocks_large_evil_fire_small.iff"},

@@ -1,5 +1,5 @@
 ghomrassen_bull_bantha_lair_neutral_large = Lair:new {
-	mobiles = {{"bull_bantha",1}},
+	mobiles = {{"gr_bull_bantha",1}},
 	spawnLimit = 15,
 	buildingsVeryEasy = {"object/tangible/lair/base/poi_all_lair_rock_shelter_large_evil_fire_green.iff"},
 	buildingsEasy = {"object/tangible/lair/base/poi_all_lair_rock_shelter_large_evil_fire_green.iff"},
