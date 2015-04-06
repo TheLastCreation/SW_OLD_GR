@@ -10,7 +10,18 @@ registerScreenPlay("GhomrassenStaticSpawnsScreenPlay", true)
 function GhomrassenStaticSpawnsScreenPlay:start()
 	if (isZoneEnabled("ghomrassen")) then
 		self:spawnMobiles()
+		self:spawnSceneObjects()
 	end
+end
+
+function GhomrassenStaticSpawnsScreenPlay:spawnSceneObjects()
+ 
+	--Blacksun Bunker
+	spawnSceneObject("ghomrassen", "object/tangible/terminal/terminal_elevator_down.iff", -8.469,-12,59.018,9995602,-0.707107,0,-0.707107,0)
+	spawnSceneObject("ghomrassen", "object/tangible/terminal/terminal_elevator_up.iff", -8.469,-20,59.018,9995602,-0.707107,0,-0.707107,0)
+	spawnSceneObject("ghomrassen", "object/tangible/terminal/terminal_elevator_down.iff", 75.4599,-20,58.9928,9995627,0.707107,0,-0.707107,0)
+	spawnSceneObject("ghomrassen", "object/tangible/terminal/terminal_elevator_up.iff", 75.4599,-50,58.9928,9995627,0.707107,0,-0.707107,0) 
+
 end
 
 function GhomrassenStaticSpawnsScreenPlay:spawnMobiles()
@@ -18,11 +29,7 @@ function GhomrassenStaticSpawnsScreenPlay:spawnMobiles()
 	--spawnMobile("corellia", "rebel_army_captain", 360,5.2,0.1,-3.6,-93,6036092)
 	
 
-	--Blacksun Bunker
-	spawnSceneObject("ghomrassen", "object/tangible/terminal/terminal_elevator_down.iff", -8.469,-12,59.018,9995602,-0.707107,0,-0.707107,0)
-	spawnSceneObject("ghomrassen", "object/tangible/terminal/terminal_elevator_up.iff", -8.469,-20,59.018,9995602,-0.707107,0,-0.707107,0)
-	spawnSceneObject("ghomrassen", "object/tangible/terminal/terminal_elevator_down.iff", 75.4599,-20,58.9928,9995627,0.707107,0,-0.707107,0)
-	spawnSceneObject("ghomrassen", "object/tangible/terminal/terminal_elevator_up.iff", 75.4599,-50,58.9928,9995627,0.707107,0,-0.707107,0)
+
 
 
 

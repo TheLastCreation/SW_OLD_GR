@@ -9,7 +9,17 @@ registerScreenPlay("GhomrassenMosRassenScreenPlay", true)
 function GhomrassenMosRassenScreenPlay:start()
 	if (isZoneEnabled("ghomrassen")) then
 		self:spawnMobiles()
+		self:spawnSceneObjects()
 	end
+end
+
+function GhomrassenMosRassenScreenPlay:spawnSceneObjects()
+ 
+	-- Starport
+    spawnSceneObject("ghomrassen", "object/static/particle/particle_distant_ships_imperial.iff", -3383, 400, -5176, 0, 1, 0, 0, 0)
+	-- Shuttleport
+    spawnSceneObject("ghomrassen", "object/static/particle/particle_distant_ships_imperial.iff", -3198, 400, -5294, 0, 1, 0, 0, 0)    
+
 end
 
 function GhomrassenMosRassenScreenPlay:spawnMobiles()
