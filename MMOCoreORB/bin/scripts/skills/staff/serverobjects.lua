@@ -42,6 +42,7 @@
 --true = 1, false = 0
 
 includeFile("staff/admin_base.lua")
+includeFile("staff/admin_decorator.lua")
 includeFile("staff/admin_debug_01.lua")
 includeFile("staff/admin_debug_02.lua")
 includeFile("staff/admin_debug_03.lua")
