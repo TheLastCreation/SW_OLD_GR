@@ -28,16 +28,7 @@ gr_kittle = Creature:new {
 
 	templates = {"object/mobile/kittle.iff"},
 	scale = 1.4,
-	lootGroups = {
-			{
-			groups = {
-				{group = "pistols", chance = 3333333},
-				{group = "rifles", chance = 3333333},
-				{group = "carbines", chance = 3333334}
-			},
-			lootChance = 80000000
-			},
-			}
+	lootGroups = {},
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
