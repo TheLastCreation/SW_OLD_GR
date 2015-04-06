@@ -56,11 +56,11 @@ public:
 
 	}
 
-	void sendInvalidParameterMessage(CreatureObject* creature) const {
+	void sendInvalidParameterMessage(CreatureObject* creature){
 		creature->sendSystemMessage("Invalid parameter. Format is /setFactionStanding <player> <faction name> <value>");
 	}
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
 

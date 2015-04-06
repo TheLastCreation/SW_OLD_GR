@@ -24,9 +24,9 @@ class MissionAcceptCallback : public MessageCallback {
 	ObjectControllerMessageCallback* objectControllerMain;
 public:
 	MissionAcceptCallback(ObjectControllerMessageCallback* objectControllerCallback) :
-		MessageCallback(objectControllerCallback->getClient(), objectControllerCallback->getServer()),
-		missionObjectID(0), terminalObjectID(0), terminalIndex(0), objectControllerMain(objectControllerCallback) {
+		MessageCallback(objectControllerCallback->getClient(), objectControllerCallback->getServer()) {
 
+		objectControllerMain = objectControllerCallback;
 	}
 
 	void parse(Message* message) {

@@ -16,7 +16,7 @@ ContainerObjectsMap::ContainerObjectsMap() {
 	oids = NULL;
 }
 
-ContainerObjectsMap::ContainerObjectsMap(const ContainerObjectsMap& c) : loadMutex() {
+ContainerObjectsMap::ContainerObjectsMap(const ContainerObjectsMap& c) {
 	operationMode = NORMAL_LOAD;
 	containerObjects.setNoDuplicateInsertPlan();
 

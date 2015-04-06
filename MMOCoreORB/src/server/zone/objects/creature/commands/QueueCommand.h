@@ -122,10 +122,10 @@ public:
 	/*
 	 * Checks each invalid locomotion with the player's current locomotion
 	 */
-	bool checkInvalidLocomotions(CreatureObject* creature) const;
+	bool checkInvalidLocomotions(CreatureObject* creature);
 
-	void onStateFail(CreatureObject* creature, uint32 actioncntr) const;
-	void onLocomotionFail(CreatureObject* creature, uint32 actioncntr) const;
+	void onStateFail(CreatureObject* creature, uint32 actioncntr);
+	void onLocomotionFail(CreatureObject* creature, uint32 actioncntr);
 
 	/**
 	 * Gets a string describing this commands syntax usage.
@@ -137,12 +137,12 @@ public:
 	/*
 	 * Unsuccessful command completion alerts the player of the invalid state, must clear the queue action from client queue
 	 */
-	virtual void onFail(uint32 actioncntr, CreatureObject* creature, uint32 errorNumber) const;
+	virtual void onFail(uint32 actioncntr, CreatureObject* creature, uint32 errorNumber);
 
 	/*
 	 * Successful command completion, must clear the queue action from client queue
 	 */
-	virtual void onComplete(uint32 actioncntr, CreatureObject* creature, float commandDuration) const;
+	virtual void onComplete(uint32 actioncntr, CreatureObject* creature, float commandDuration);
 
 	/*
 	 * Sets the invalid locomotions for this command.
@@ -160,12 +160,14 @@ public:
 	/*
 	 * Override me
 	 */
-	virtual int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const = 0;
+	virtual int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
+		return SUCCESS;
+	}
 
 	/*
 	 * Checks all states at once with a bitwise operation
 	 */
-	bool checkStateMask(CreatureObject* creature) const {
+	bool checkStateMask(CreatureObject* creature) {
 		return (creature->getStateBitmask() & stateMask) == 0;
 	}
 
@@ -173,7 +175,7 @@ public:
 	 * Returns duration of the command
 	 */
 
-	virtual float getCommandDuration(CreatureObject* object, const UnicodeString& arguments) const {
+	virtual float getCommandDuration(CreatureObject* object, const UnicodeString& arguments) {
 		// TODO: modify this value by skill, probably need to specify which skill affects what in luas
 		return defaultTime;
 	}
@@ -255,11 +257,11 @@ public:
 	}
 
 	//getters
-	inline uint64 getStateMask() const {
+	inline uint64 getStateMask() {
 		return stateMask;
 	}
 
-	inline bool requiresAdmin() const {
+	inline bool requiresAdmin() {
 		return admin == true;
 	}
 
@@ -267,45 +269,45 @@ public:
 		return target;
 	}*/
 
-	inline int getTargetType() const {
+	inline int getTargetType() {
 		return targetType;
 	}
 
-	inline uint32 getNameCRC() const {
+	inline uint32 getNameCRC() {
 		return nameCRC;
 	}
 
-	inline float getMaxRange() const {
+	inline float getMaxRange() {
 		return maxRangeToTarget;
 	}
 
-	inline String getQueueCommandName() const {
+	inline String& getQueueCommandName() {
 		return name;
 	}
 
-	inline String getCharacterAbility() const {
+	inline String& getCharacterAbility() {
 		return characterAbility;
 	}
 
-	inline float getDefaultTime() const {
+	inline float getDefaultTime() {
 		return defaultTime;
 	}
 
-	inline int getDefaultPriority() const {
+	inline int getDefaultPriority() {
 		return defaultPriority;
 	}
 
 	/*
 	 * @return True if the command has been disabled by the admins
 	 */
-	bool isDisabled() const {
+	bool isDisabled() {
 		return disabled;
 	}
 
 	/*
 	 * @return True if the command is supposed to be added to the combat queue.
 	 */
-	bool addToCombatQueue() const {
+	bool addToCombatQueue() {
 		return addToQueue;
 	}
 
@@ -317,7 +319,7 @@ public:
 		return false;
 	}
 
-	inline int getSkillModSize() const {
+	inline int getSkillModSize() {
 		return skillMods.size();
 	}
 
@@ -326,7 +328,7 @@ public:
 		return skillMods.get(skillMod);
 	}
 
-	inline int getCommandGroup() const {
+	inline int getCommandGroup() {
 		return commandGroup;
 	}
 
@@ -334,7 +336,7 @@ public:
 		skillMods.put(skillMod, value);
 	}
 	
-	bool isWearingArmor(CreatureObject* creo) const {
+	bool isWearingArmor(CreatureObject* creo) {
 		for (int i = 0; i < creo->getSlottedObjectsSize(); ++i) {
 			SceneObject* item = creo->getSlottedObject(i);
 			if (item != NULL && item->isArmorObject())
@@ -347,9 +349,9 @@ public:
 	virtual void handleBuff(SceneObject* creature, ManagedObject* object, int64 param) {
 	}
 
-	int doCommonMedicalCommandChecks(CreatureObject* creature) const;
+	int doCommonMedicalCommandChecks(CreatureObject* creature);
 
-	void checkForTef(CreatureObject* creature, CreatureObject* target) const;
+	void checkForTef(CreatureObject* creature, CreatureObject* target);
 };
 
 

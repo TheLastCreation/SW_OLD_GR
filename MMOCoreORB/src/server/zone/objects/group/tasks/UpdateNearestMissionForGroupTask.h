@@ -72,14 +72,14 @@ public:
 	}
 
 	void run() {
-		Reference<GroupObject*> group = groupRef.get();
+		GroupObject* group = groupRef.get();
 		if (group == NULL) {
 			return;
 		}
 		Locker locker(group);
 
 		// Filter the group by planet.
-		Vector<Reference<CreatureObject*> > groupMembersOnPlanet;
+		Vector<CreatureObject*> groupMembersOnPlanet;
 		for(int i = 0; i < group->getGroupSize(); i++) {
 			if (group->getGroupMember(i) != NULL && group->getGroupMember(i)->isPlayerCreature()) {
 				Reference<CreatureObject*> groupMember = (group->getGroupMember(i)).castTo<CreatureObject*>();
@@ -122,7 +122,7 @@ public:
 				for(int k = 0; k < datapad->getContainerObjectsSize(); k++) {
 					if (datapad->getContainerObject(k) != NULL && datapad->getContainerObject(k)->isMissionObject()) {
 						numberOfMissionsForMember++;
-						Reference<MissionObject*> mission = datapad->getContainerObject(k).castTo<MissionObject*>();
+						MissionObject* mission = datapad->getContainerObject(k).castTo<MissionObject*>();
 						if (mission->getWaypointToMission() != NULL && mission->getWaypointToMission()->getPlanetCRC() == planetCRC) {
 							missionsOnPlanet.add(mission);
 						}
@@ -135,7 +135,7 @@ public:
 		}
 
 		// Finally find the closest mission.
-		Reference<MissionObject*> nearestMission = NULL;
+		MissionObject* nearestMission = NULL;
 		if (missionsOnPlanet.size() == 1) {
 			nearestMission = missionsOnPlanet.get(0);
 		}
@@ -154,12 +154,9 @@ public:
 		// was not found then remove the nearest mission waypoint for all members.
 		for(int i = 0; i< groupMembersOnPlanet.size(); i++) {
 			CreatureObject* groupMember = groupMembersOnPlanet.get(i);
-
-			Locker clocker(groupMember, group);
-
 			if (groupMember->getPlayerObject() != NULL) {
 				PlayerObject* ghost = groupMember->getPlayerObject();
-
+				Locker clocker(ghost, group);
 				setPlayersNearestMissionForGroupWaypoint(ghost, nearestMission);
 			}
 		}
@@ -186,11 +183,7 @@ private:
 		if (nearestMissionForGroup == NULL) {
 			ghost->removeWaypointBySpecialType(WaypointObject::SPECIALTYPE_NEARESTMISSIONFORGROUP, true);
 		}
-
 		else {
-			Zone* zone = nearestMissionForGroup->getZone();
-			uint32 crc = zone ? zone->getZoneCRC() : 0;
-
 			ManagedReference<WaypointObject*> waypoint = ghost->getWaypointBySpecialType(WaypointObject::SPECIALTYPE_NEARESTMISSIONFORGROUP);
 			if (waypoint == NULL) {
 				ZoneServer* zoneServer = ghost->getZoneServer();
@@ -198,7 +191,7 @@ private:
 			}
 			waypoint->setCustomObjectName(UnicodeString("Nearest mission for group"), false);
 			waypoint->setSpecialTypeID(WaypointObject::SPECIALTYPE_NEARESTMISSIONFORGROUP);
-			waypoint->setPlanetCRC(crc);
+			waypoint->setPlanetCRC(nearestMissionForGroup->getZone()->getZoneCRC());
 			waypoint->setPosition(nearestMissionForGroup->getWaypointToMission()->getPositionX(),
 					nearestMissionForGroup->getWaypointToMission()->getPositionZ(),
 					nearestMissionForGroup->getWaypointToMission()->getPositionY());

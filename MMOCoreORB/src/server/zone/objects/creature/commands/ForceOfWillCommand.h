@@ -53,7 +53,7 @@ which carries forward this exception.
 
 class ForceOfWillCommand : public QueueCommand {
 
-	void doDowner(CreatureObject* player, int buffDownerValue, float duration) const {
+	void doDowner(CreatureObject* player, int buffDownerValue, float duration) {
 			String buffname = "skill.buff.forceofwill";
 			uint32 buffcrc = buffname.hashCode();
 			//StringIdChatParameter startMsg;
@@ -80,7 +80,7 @@ public:
 	}
 
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
 

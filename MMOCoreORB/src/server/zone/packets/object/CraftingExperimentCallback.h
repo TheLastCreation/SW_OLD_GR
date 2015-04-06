@@ -24,8 +24,9 @@ class CraftingExperimentCallback : public MessageCallback {
 	ObjectControllerMessageCallback* objectControllerMain;
 public:
 	CraftingExperimentCallback(ObjectControllerMessageCallback* objectControllerCallback) :
-		MessageCallback(objectControllerCallback->getClient(), objectControllerCallback->getServer()),
-		clientCounter(0), numRowsAttempted(0), objectControllerMain(objectControllerCallback) {
+		MessageCallback(objectControllerCallback->getClient(), objectControllerCallback->getServer()) {
+
+		objectControllerMain = objectControllerCallback;
 	}
 
 	void parse(Message* message) {

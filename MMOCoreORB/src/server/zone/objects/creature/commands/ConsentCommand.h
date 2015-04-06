@@ -66,7 +66,7 @@ public:
 		player->sendSystemMessage(stringId);
 	}
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 
 		//System::out << "entering ConsentCommand" << endl;
 		if (!checkStateMask(creature))

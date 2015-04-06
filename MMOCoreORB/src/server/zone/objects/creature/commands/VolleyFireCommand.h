@@ -56,7 +56,7 @@ public:
 		: SquadLeaderCommand(name, server) {
 	}
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
@@ -91,7 +91,7 @@ public:
 		return SUCCESS;
 	}
 
-	bool attemptVolleyFire(CreatureObject* player, uint64* target, int skillMod) const {
+	bool attemptVolleyFire(CreatureObject* player, uint64* target, int skillMod) {
 		if (player == NULL)
 			return false;
 
@@ -115,7 +115,7 @@ public:
 		return ret == SUCCESS;
 	}
 
-	bool doVolleyFire(CreatureObject* leader, GroupObject* group, uint64* target) const {
+	bool doVolleyFire(CreatureObject* leader, GroupObject* group, uint64* target) {
 		if (leader == NULL || group == NULL)
 			return false;
 

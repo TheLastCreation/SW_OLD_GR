@@ -68,7 +68,7 @@ public:
 		range = 6;
 	}
 
-	void deactivateWoundTreatment(CreatureObject* creature) const {
+	void deactivateWoundTreatment(CreatureObject* creature) {
 		float modSkill = (float)creature->getSkillMod("healing_wound_speed");
 
 		int delay = (int)round((modSkill * -(2.0f / 25.0f)) + 20.0f);
@@ -91,7 +91,7 @@ public:
 		creature->addPendingTask("woundTreatment", task, delay * 1000);
 	}
 
-	void doAnimations(CreatureObject* creature, CreatureObject* creatureTarget) const {
+	void doAnimations(CreatureObject* creature, CreatureObject* creatureTarget) {
 		creatureTarget->playEffect("clienteffect/healing_healwound.cef", "");
 
 		if (creature == creatureTarget)
@@ -100,7 +100,7 @@ public:
 			creature->doAnimation("heal_other");
 	}
 
-	void awardXp(CreatureObject* creature, const String& type, int power) const {
+	void awardXp(CreatureObject* creature, const String& type, int power) {
 		if (!creature->isPlayerCreature())
 			return;
 
@@ -115,7 +115,7 @@ public:
 		playerManager->awardExperience(player, type, amount, true);
 	}
 
-	void sendWoundMessage(CreatureObject* object, CreatureObject* target, uint8 attribute, uint32 woundsHealed) const {
+	void sendWoundMessage(CreatureObject* object, CreatureObject* target, uint8 attribute, uint32 woundsHealed) {
 		if (!object->isPlayerCreature())
 			return;
 
@@ -143,7 +143,7 @@ public:
 		}
 	}
 
-	bool canPerformSkill(CreatureObject* creature, CreatureObject* creatureTarget, WoundPack* woundPack) const {
+	bool canPerformSkill(CreatureObject* creature, CreatureObject* creatureTarget, WoundPack* woundPack) {
 		if (!creature->canTreatWounds()) {
 			creature->sendSystemMessage("@healing_response:enhancement_must_wait"); //You must wait before you can heal wounds or apply enhancements again.
 			return false;
@@ -203,7 +203,7 @@ public:
 		return true;
 	}
 
-	void parseModifier(const String& modifier, uint8& attribute, uint64& objectId) const {
+	void parseModifier(const String& modifier, uint8& attribute, uint64& objectId) {
 		if (!modifier.isEmpty()) {
 			StringTokenizer tokenizer(modifier);
 			tokenizer.setDelimeter("|");
@@ -222,7 +222,7 @@ public:
 		}
 	}
 
-	uint8 findAttribute(CreatureObject* creature, uint8 startAttribute = 0) const {
+	uint8 findAttribute(CreatureObject* creature, uint8 startAttribute = 0) {
 		for (int i = startAttribute; i < 9; ++i) {
 			int wounds = creature->getWounds(i);
 
@@ -234,7 +234,7 @@ public:
 	}
 
 
-	WoundPack* findWoundPack(CreatureObject* creature, uint8 attribute) const {
+	WoundPack* findWoundPack(CreatureObject* creature, uint8 attribute) {
 		SceneObject* inventory = creature->getSlottedObject("inventory");
 
 		int medicineUse = creature->getSkillMod("healing_ability");
@@ -264,7 +264,7 @@ public:
 		return NULL;
 	}
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 
 		int result = doCommonMedicalCommandChecks(creature);
 

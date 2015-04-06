@@ -28,7 +28,7 @@ public:
 		actionCRC = 0;
 	}
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
@@ -39,7 +39,7 @@ public:
 		return SUCCESS;
 	}
 
-	bool checkGroupLeader(CreatureObject* player, GroupObject* group) const {
+	bool checkGroupLeader(CreatureObject* player, GroupObject* group) {
 		if (player == NULL)
 			return false;
 
@@ -61,7 +61,7 @@ public:
 		return true;
 	}
 
-	bool isValidGroupAbilityTarget(CreatureObject* leader, CreatureObject* target) const {
+	bool isValidGroupAbilityTarget(CreatureObject* leader, CreatureObject* target) {
 		if (!target->isPlayerCreature())
 			return false;
 
@@ -114,7 +114,7 @@ public:
 		return true;
 	}
 */
-	float calculateGroupModifier(GroupObject* group) const {
+	float calculateGroupModifier(GroupObject* group) {
 		if (group == NULL)
 			return 0;
 
@@ -124,7 +124,7 @@ public:
 
 			return modifier;
     }
-    bool inflictHAM(CreatureObject* player, int health, int action, int mind) const {
+    bool inflictHAM(CreatureObject* player, int health, int action, int mind){
         if (player == NULL)
 			return false;
         if(health < 0 || action < 0 || mind < 0)
@@ -145,7 +145,7 @@ public:
         return true;
     }
 	
-    void sendCombatSpam(CreatureObject* player) const {
+    void sendCombatSpam(CreatureObject* player){
         if (player == NULL)
 			return;
         if(combatSpam == "")
@@ -185,7 +185,7 @@ public:
         return true;
     }
 
-	float getCommandDuration(CreatureObject* object, const UnicodeString& arguments) const {
+	float getCommandDuration(CreatureObject* object, const UnicodeString& arguments) {
 		return defaultTime;
 	}
 

@@ -19,7 +19,6 @@ class Random {
 
 public:
 	Random() {
-		table[0] = 0;
 		unknown = 0;
 		seed = 0;
 	}

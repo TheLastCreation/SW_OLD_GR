@@ -71,8 +71,9 @@ class CommandQueueRemoveCallback : public MessageCallback {
 public:
 
 	CommandQueueRemoveCallback(ObjectControllerMessageCallback* objectControllerCallback) :
-		MessageCallback(objectControllerCallback->getClient(), objectControllerCallback->getServer()),
-		size(0), actionCount(0), actionCRC(0), objectControllerMain(objectControllerCallback) {
+		MessageCallback(objectControllerCallback->getClient(), objectControllerCallback->getServer()) {
+
+		objectControllerMain = objectControllerCallback;
 	}
 
 	void parse(Message* message) {

@@ -18,34 +18,29 @@
 #include "server/zone/managers/collision/CollisionManager.h"
 #include "server/zone/packets/object/PlayClientEffectObjectMessage.h"
 
-#include "PackedVelocity.h"
-#include "PackedRotationRate.h"
-
 class ShipUpdateTransformCallback : public MessageCallback {
-	uint16 shipId;
+	uint16 unknownShort;
 
 	//PackedTransform dir is multiplied by 127, positions by 4.0958748
 	uint8 dirX, dirY, dirZ, dirW;
 	int16 posX, posZ, posY;
 
 	//PackedVelocity
-	//int16 velocitySpeed, velocityDirection;
-	PackedVelocity velocity;
+	int16 velA, velB;
 
 	//3 PackedRotationRate
-	PackedRotationRate yawRate, pitchRate, rollRate;
+	int8 rotA, rotB, rotC;
 
 	uint32 counter;
 
 public:
 	ShipUpdateTransformCallback(ZoneClientSession* client, ZoneProcessServer* server) :
-		MessageCallback(client, server), shipId(0), dirX(0), dirY(0), dirZ(0), dirW(0),
-		posX(0), posZ(0), posY(0), counter(0) {
+		MessageCallback(client, server) {
 	}
 
 	void parse(Message* message) {
 		//info(message->toStringData(), true);
-		shipId = message->parseShort();
+		unknownShort = message->parseShort();
 
 		dirX = message->parseByte();
 		dirY = message->parseByte();
@@ -56,11 +51,12 @@ public:
 		posZ = message->parseSignedShort();
 		posY = message->parseSignedShort();
 
-		velocity.parse(message);
+		velA = message->parseSignedShort();
+		velB = message->parseSignedShort();
 
-		yawRate.parse(message);
-		pitchRate.parse(message);
-		rollRate.parse(message);
+		rotA = message->parseSignedByte();
+		rotB = message->parseSignedByte();
+		rotC = message->parseSignedByte();
 
 		counter = message->parseInt();
 	}
@@ -154,8 +150,7 @@ public:
 
 		object->updateZone(false, false);
 
-		ShipUpdateTransformMessage* msga = new ShipUpdateTransformMessage(ship, dirX, dirY, dirZ, dirW, posX, posZ, posY,
-				velocity, yawRate, pitchRate, rollRate);
+		ShipUpdateTransformMessage* msga = new ShipUpdateTransformMessage(ship, dirX, dirY, dirZ, dirW, posX, posZ, posY, velA, velB, rotA, rotB, rotC);
 		object->broadcastMessage(msga, false);
 
 		ValidatedPosition* last = ghost->getLastValidatedPosition();

@@ -11,17 +11,20 @@
 #include "server/zone/objects/player/PlayerObject.h"
 
 class InsertedAsPilotCallback : public MessageCallback {
-	uint32 movementCounter;
+	uint32 unk;
+
 
 	ObjectControllerMessageCallback* objectControllerMain;
 public:
 	InsertedAsPilotCallback(ObjectControllerMessageCallback* objectControllerCallback) :
-		MessageCallback(objectControllerCallback->getClient(), objectControllerCallback->getServer()),
-		movementCounter(0), objectControllerMain(objectControllerCallback) {
+		MessageCallback(objectControllerCallback->getClient(), objectControllerCallback->getServer()) {
+
+		objectControllerMain = objectControllerCallback;
 	}
 
 	void parse(Message* message) {
-		movementCounter = message->parseInt();
+		unk = message->parseInt();
+
 	}
 
 	void run() {

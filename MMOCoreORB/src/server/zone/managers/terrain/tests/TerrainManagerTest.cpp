@@ -25,7 +25,7 @@ public:
 	TerrainManager* terrainManager;
 	Reference<MockZone*> mockZone;
 
-	TerrainManagerTest() : Logger("TerrainManagerTest"), terrainManager(NULL) {
+	TerrainManagerTest() : Logger("TerrainManagerTest") {
 		// Perform creation setup here.
 	}
 

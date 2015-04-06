@@ -56,7 +56,7 @@ public:
 
 	}
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
@@ -69,21 +69,12 @@ public:
 		}
 
 		ManagedReference<WeaponObject*> weapon = creature->getWeapon();
-		String animCRC = "";
 
-		if (weapon->isJediOneHandedWeapon()) {
-			animCRC = "knockdown_1h_melee_1";
-		} else if (weapon->isJediTwoHandedWeapon()) {
-			animCRC = "knockdown_2h_melee_1";
-		} else if (weapon->isJediPolearmWeapon()) {
-			animCRC = "knockdown_polearm_1";
-		} else {
+		if (!weapon->isJediWeapon()) {
 			return INVALIDWEAPON;
 		}
 
-		UnicodeString args = "animationCRC=" + String::valueOf(animCRC.hashCode()) + ";";
-
-		return doCombatAction(creature, target, args);
+		return doCombatAction(creature, target);
 	}
 
 };

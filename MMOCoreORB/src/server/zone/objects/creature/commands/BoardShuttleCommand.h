@@ -73,7 +73,7 @@ public:
 
 	}
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
 
@@ -100,7 +100,7 @@ public:
 
 		// Is there a shuttle object related to this point?
 		if (shuttle == NULL) {
-			creature->error("WARNING: Missing a shuttle object:" + closestPoint->toString());
+			error("WARNING: Missing a shuttle object:" + closestPoint->toString());
 
 			// Different error so it's obvious from in-game that the shuttle did not link to this travel point.
 			creature->sendSystemMessage("Shuttle destroyed by terrorists.");
@@ -250,7 +250,7 @@ public:
 	}
 
 private:
-	SortedVector<ManagedReference<TicketObject*> > findTicketsInInventory(CreatureObject* creature, PlanetTravelPoint* departurePoint) const {
+	SortedVector<ManagedReference<TicketObject*> > findTicketsInInventory(CreatureObject* creature, PlanetTravelPoint* departurePoint) {
 		SortedVector<ManagedReference<TicketObject*> > tickets;
 
 		ManagedReference<SceneObject*> inventory = creature->getSlottedObject("inventory");
@@ -281,7 +281,7 @@ private:
 		return tickets;
 	}
 
-	void sendTicketSelectionBoxTo(CreatureObject* creature, SortedVector<ManagedReference<TicketObject*> > tickets) const {
+	void sendTicketSelectionBoxTo(CreatureObject* creature, SortedVector<ManagedReference<TicketObject*> > tickets) {
 		//Make sure it's a player before sending it a sui box...
 		if (!creature->isPlayerCreature())
 			return;

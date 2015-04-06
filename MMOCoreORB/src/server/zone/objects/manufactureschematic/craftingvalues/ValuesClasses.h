@@ -88,7 +88,6 @@ public:
 		precision = val.precision;
 		locked = val.locked;
 		experimentalProperties = val.experimentalProperties;
-		combineType = val.combineType;
 	}
 
 	~Values(){

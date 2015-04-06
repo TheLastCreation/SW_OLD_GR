@@ -14,7 +14,7 @@ class GamblingTerminalTemplate : public SharedTangibleObjectTemplate {
 	int machineType;
 
 public:
-	GamblingTerminalTemplate() : machineType(0) {
+	GamblingTerminalTemplate() {
 
 	}
 

@@ -42,10 +42,6 @@ public:
 		randomDotChance = -1;
 		staticDotChance = -1;
 		staticDotType = -1;
-
-		junkDealerTypeNeeded = 0;
-		junkMinValue = 0;
-		junkMaxValue = 0;
 	}
 
 	void readObject(LuaObject* templateData) {

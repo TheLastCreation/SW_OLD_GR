@@ -44,9 +44,9 @@
 Saber1hHeadHit3Command = {
         name = "saber1hheadhit3",
         
-    damageMultiplier = 2.25,
-	speedMultiplier = 2.25,
-	forceCostMultiplier = 1.75,
+    damageMultiplier = 2.5,
+	speedMultiplier = 1.5,
+	forceCostMultiplier = 2.5,
 
 	animationCRC = hashCode("combo_5a_light"),
 
@@ -60,9 +60,9 @@ Saber1hHeadHit3Command = {
 		{}, 
 		{ "blind_defense", "resistance_states" }, 
 		{ "jedi_state_defense" }, 
-		60, 
+		40, 
 		100, 
-		60 
+		10 
 	  )
 	},
 
