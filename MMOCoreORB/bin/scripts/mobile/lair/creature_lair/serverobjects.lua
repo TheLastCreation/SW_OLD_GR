@@ -7,7 +7,7 @@ includeFile("lair/creature_lair/ghomrassen_womprat_womprat_neutral_medium_boss_0
 includeFile("lair/creature_lair/ghomrassen_womprat_lair_neutral_small.lua")
 
 
-ghomrassen_kittle_neutral_medium
+
 includeFile("lair/creature_lair/corellia_bageraset_lair_neutral_medium.lua")
 includeFile("lair/creature_lair/corellia_bageraset_lair_neutral_medium_boss_01.lua")
 includeFile("lair/creature_lair/corellia_canoid_lair_neutral_medium.lua")

@@ -29,20 +29,10 @@ gr_dune_bantha = Creature:new {
 	templates = {"object/mobile/bantha_hue.iff"},
 	--controlDeviceTemplate = "object/intangible/pet/bantha_hue.iff",
 	scale = 1.3,
-	lootGroups = {
-			{
-			groups = {
-				{group = "pistols", chance = 3333333},
-				{group = "rifles", chance = 3333333},
-				{group = "carbines", chance = 3333334}
-			},
-			lootChance = 80000000
-			},
-			}
+	lootGroups = {},
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
-		{"",""},
 		{"stunattack",""}
 	}
 }
