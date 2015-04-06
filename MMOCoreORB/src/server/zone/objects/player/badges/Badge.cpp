@@ -184,7 +184,8 @@ uint8  Badge::types[] = {
 		PROFESSION, //"pilot_neutral_naboo",
 		PROFESSION, //"pilot_corellia",
 		PROFESSION, //"pilot_tatooine",
-		EVENT //"bdg_accolate_home_show"
+		EVENT //"bdg_accolate_home_show",
+		MISC, //"bdg_racing_mosrassen_hills"
 };
 
 String Badge::names[] = {
@@ -327,5 +328,6 @@ String Badge::names[] = {
 		"pilot_neutral_naboo",
 		"pilot_corellia",
 		"pilot_tatooine",
-		"bdg_accolate_home_show"
+		"bdg_accolate_home_show",
+		"bdg_racing_mosrassen_hills"
 };

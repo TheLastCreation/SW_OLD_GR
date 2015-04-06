@@ -209,7 +209,8 @@ public:
 		PILOT_NEUTRAL_NABOO = 136,
 		PILOT_CORELLIA = 137,
 		PILOT_TATOOINE = 138,
-		BDG_ACCOLATE_HOME_SHOW = 139
+		BDG_ACCOLATE_HOME_SHOW = 139,
+		BDG_RACING_MOSRASSEN_HILLS = 140
 	};
 
 	//Types
@@ -232,7 +233,7 @@ public:
 		}
 
 		static int getID(const String& name) {
-			for (int i = 0; i < 140; i++) {
+			for (int i = 0; i < 141; i++) {
 				if (name.compareTo(names[i]) == 0)
 					return i;
 			}
@@ -241,7 +242,7 @@ public:
 		}
 
 		static bool exists(uint8 badgeID) {
-			return badgeID < 140;
+			return badgeID < 141;
 		}
 };
 
