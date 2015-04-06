@@ -16,9 +16,9 @@ end
 function GhomrassenMosRassenScreenPlay:spawnSceneObjects()
  
 	-- Starport
-    spawnSceneObject("ghomrassen", "object/static/particle/particle_distant_ships_imperial.iff", -3383, 400, -5176, 0, 1, 0, 0, 0)
+    spawnSceneObject("ghomrassen", "object/static/particle/particle_distant_ships.iff", -3383, 200, -5176, 0, 1, 0, 0, 0)
 	-- Shuttleport
-    spawnSceneObject("ghomrassen", "object/static/particle/particle_distant_ships_imperial.iff", -3198, 400, -5294, 0, 1, 0, 0, 0)    
+    spawnSceneObject("ghomrassen", "object/static/particle/particle_distant_ships.iff", -3198, 200, -5294, 0, 1, 0, 0, 0)    
 
 end
 

@@ -1,6 +1,7 @@
 includeFile("racetracks/agrilatswamp.lua")
 includeFile("racetracks/keren.lua")
 includeFile("racetracks/mosespa.lua")
+includeFile("racetracks/mosrassen.lua")
 includeFile("racetracks/narmle.lua")
 includeFile("racetracks/lok.lua")
 includeFile("racetracks/nashal.lua")
