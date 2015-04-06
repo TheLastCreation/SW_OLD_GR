@@ -1,4 +1,4 @@
-swarming_lesser_dewback = Creature:new {
+gr_swarming_lesser_dewback = Creature:new {
 	objectName = "@mob/creature_names:swarming_lesser_dewback",
 	socialGroup = "self",
 	faction = "",
@@ -35,4 +35,4 @@ swarming_lesser_dewback = Creature:new {
 	}
 }
 
-CreatureTemplates:addCreatureTemplate(swarming_lesser_dewback, "swarming_lesser_dewback")
+CreatureTemplates:addCreatureTemplate(gr_swarming_lesser_dewback, "gr_swarming_lesser_dewback")

@@ -1,4 +1,4 @@
-lesser_bocatt = Creature:new {
+gr_lesser_bocatt = Creature:new {
 	objectName = "@mob/creature_names:lesser_bocatt",
 	socialGroup = "bocatt",
 	faction = "",
@@ -37,4 +37,4 @@ lesser_bocatt = Creature:new {
 	}
 }
 
-CreatureTemplates:addCreatureTemplate(lesser_bocatt, "lesser_bocatt")
+CreatureTemplates:addCreatureTemplate(gr_lesser_bocatt, "gr_lesser_bocatt")

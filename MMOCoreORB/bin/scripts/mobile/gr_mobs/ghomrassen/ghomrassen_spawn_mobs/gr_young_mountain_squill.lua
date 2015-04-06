@@ -1,4 +1,4 @@
-young_mountain_squill = Creature:new {
+gr_young_mountain_squill = Creature:new {
 	objectName = "@mob/creature_names:young_mountain_squill",
 	socialGroup = "squill",
 	faction = "",
@@ -34,4 +34,4 @@ young_mountain_squill = Creature:new {
 	}
 }
 
-CreatureTemplates:addCreatureTemplate(young_mountain_squill, "young_mountain_squill")
+CreatureTemplates:addCreatureTemplate(gr_young_mountain_squill, "gr_young_mountain_squill")

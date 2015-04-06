@@ -1,4 +1,4 @@
-dwarf_nuna = Creature:new {
+gr_dwarf_nuna = Creature:new {
 	objectName = "@mob/creature_names:dwarf_nuna",
 	socialGroup = "nuna",
 	faction = "",
@@ -35,4 +35,4 @@ dwarf_nuna = Creature:new {
 	}
 }
 
-CreatureTemplates:addCreatureTemplate(dwarf_nuna, "dwarf_nuna")
+CreatureTemplates:addCreatureTemplate(gr_dwarf_nuna, "gr_dwarf_nuna")

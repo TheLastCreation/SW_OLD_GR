@@ -1,4 +1,4 @@
-lesser_dewback = Creature:new {
+gr_lesser_dewback = Creature:new {
 	objectName = "@mob/creature_names:lesser_dewback",
 	socialGroup = "dewback",
 	faction = "",
@@ -36,4 +36,4 @@ lesser_dewback = Creature:new {
 	}
 }
 
-CreatureTemplates:addCreatureTemplate(lesser_dewback, "lesser_dewback")
+CreatureTemplates:addCreatureTemplate(gr_lesser_dewback, "gr_lesser_dewback")

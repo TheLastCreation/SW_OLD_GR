@@ -1,4 +1,4 @@
-variegated_womp_rat = Creature:new {
+gr_variegated_womp_rat = Creature:new {
 	objectName = "@mob/creature_names:variegated_womprat",
 	socialGroup = "rat",
 	faction = "",
@@ -37,4 +37,4 @@ variegated_womp_rat = Creature:new {
 	}
 }
 
-CreatureTemplates:addCreatureTemplate(variegated_womp_rat, "variegated_womp_rat")
+CreatureTemplates:addCreatureTemplate(gr_variegated_womp_rat, "gr_variegated_womp_rat")

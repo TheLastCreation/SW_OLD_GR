@@ -1,4 +1,4 @@
-bonecracker_bantha = Creature:new {
+gr_bonecracker_bantha = Creature:new {
 	customName = "Bonecracker Bantha",
 	socialGroup = "bantha",
 	faction = "",
@@ -32,13 +32,13 @@ bonecracker_bantha = Creature:new {
 	lootGroups = {
 			{
 			groups = {
-				{group = "pistols", chance = 3333333},
-				{group = "rifles", chance = 3333333},
-				{group = "carbines", chance = 3333334}
-			},
+						{group = "pistols", chance = 3333333},
+						{group = "rifles", chance = 3333333},
+						{group = "carbines", chance = 3333334}
+					},
 			lootChance = 80000000
-			},
-	weapons = {},
+				},
+			}	weapons = {},
 	conversationTemplate = "",
 	attacks = {
 		{"intimidationattack",""},
@@ -46,4 +46,4 @@ bonecracker_bantha = Creature:new {
 	}
 }
 
-CreatureTemplates:addCreatureTemplate(bonecracker_bantha, "bonecracker_bantha")
+CreatureTemplates:addCreatureTemplate(gr_bonecracker_bantha, "gr_bonecracker_bantha")

@@ -1,4 +1,4 @@
-eopie = Creature:new {
+gr_eopie = Creature:new {
 	objectName = "@mob/creature_names:eopie",
 	socialGroup = "eopie",
 	faction = "",
@@ -35,4 +35,4 @@ eopie = Creature:new {
 	}
 }
 
-CreatureTemplates:addCreatureTemplate(eopie, "eopie")
+CreatureTemplates:addCreatureTemplate(gr_eopie, "gr_eopie")

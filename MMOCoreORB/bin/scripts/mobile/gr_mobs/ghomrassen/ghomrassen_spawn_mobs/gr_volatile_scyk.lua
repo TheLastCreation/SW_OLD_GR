@@ -1,4 +1,4 @@
-volatile_scyk = Creature:new {
+gr_volatile_scyk = Creature:new {
 	objectName = "@mob/creature_names:scyk_volatile",
 	socialGroup = "scyk",
 	faction = "",
@@ -36,4 +36,4 @@ volatile_scyk = Creature:new {
 	}
 }
 
-CreatureTemplates:addCreatureTemplate(volatile_scyk, "volatile_scyk")
+CreatureTemplates:addCreatureTemplate(gr_volatile_scyk, "gr_volatile_scyk")

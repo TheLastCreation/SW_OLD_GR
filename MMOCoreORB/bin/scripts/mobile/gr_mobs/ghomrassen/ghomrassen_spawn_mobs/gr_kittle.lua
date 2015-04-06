@@ -37,6 +37,7 @@ gr_kittle = Creature:new {
 			},
 			lootChance = 80000000
 			},
+			}
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {

@@ -38,6 +38,7 @@ gr_dune_bantha = Creature:new {
 			},
 			lootChance = 80000000
 			},
+			}
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
@@ -46,4 +47,4 @@ gr_dune_bantha = Creature:new {
 	}
 }
 
-CreatureTemplates:addCreatureTemplate(dune_bantha, "dune_bantha")
+CreatureTemplates:addCreatureTemplate(gr_dune_bantha, "gr_dune_bantha")

@@ -1,4 +1,4 @@
-bull_ronto = Creature:new {
+gr_bull_ronto = Creature:new {
 	objectName = "@mob/creature_names:ronto_male",
 	socialGroup = "ronto",
 	faction = "",
@@ -37,4 +37,4 @@ bull_ronto = Creature:new {
 	}
 }
 
-CreatureTemplates:addCreatureTemplate(bull_ronto, "bull_ronto")
+CreatureTemplates:addCreatureTemplate(gr_bull_ronto, "gr_bull_ronto")

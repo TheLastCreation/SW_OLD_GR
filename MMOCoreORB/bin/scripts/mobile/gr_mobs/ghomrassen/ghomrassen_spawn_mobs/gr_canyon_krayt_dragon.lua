@@ -1,4 +1,4 @@
-canyon_krayt_dragon = Creature:new {
+gr_canyon_krayt_dragon = Creature:new {
 	objectName = "@mob/creature_names:canyon_krayt_dragon",
 	socialGroup = "krayt",
 	faction = "",
@@ -54,4 +54,4 @@ canyon_krayt_dragon = Creature:new {
 	}
 }
 
-CreatureTemplates:addCreatureTemplate(canyon_krayt_dragon, "canyon_krayt_dragon")
+CreatureTemplates:addCreatureTemplate(gr_canyon_krayt_dragon, "gr_canyon_krayt_dragon")

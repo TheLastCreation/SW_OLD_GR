@@ -1,4 +1,4 @@
-tempest_rill = Creature:new {
+gr_tempest_rill = Creature:new {
 	objectName = "@mob/creature_names:rill_tempest",
 	socialGroup = "rill",
 	faction = "",
@@ -35,4 +35,4 @@ tempest_rill = Creature:new {
 	}
 }
 
-CreatureTemplates:addCreatureTemplate(tempest_rill, "tempest_rill")
+CreatureTemplates:addCreatureTemplate(gr_tempest_rill, "gr_tempest_rill")

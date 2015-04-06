@@ -1,4 +1,4 @@
-mountain_worrt = Creature:new {
+gr_mountain_worrt = Creature:new {
 	objectName = "@mob/creature_names:mountain_worrt",
 	socialGroup = "self",
 	faction = "",
@@ -37,4 +37,4 @@ mountain_worrt = Creature:new {
 	}
 }
 
-CreatureTemplates:addCreatureTemplate(mountain_worrt, "mountain_worrt")
+CreatureTemplates:addCreatureTemplate(gr_mountain_worrt, "gr_mountain_worrt")

@@ -1,4 +1,4 @@
-feral_bantha = Creature:new {
+gr_feral_bantha = Creature:new {
 	objectName = "@mob/creature_names:feral_bantha",
 	socialGroup = "bantha",
 	faction = "",
@@ -36,4 +36,4 @@ feral_bantha = Creature:new {
 	}
 }
 
-CreatureTemplates:addCreatureTemplate(feral_bantha, "feral_bantha")
+CreatureTemplates:addCreatureTemplate(gr_feral_bantha, "gr_feral_bantha")

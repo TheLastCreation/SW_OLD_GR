@@ -1,4 +1,4 @@
-razorback_felspur = Creature:new {
+gr_razorback_felspur = Creature:new {
 	objectName = "@mob/creature_names:desert_razorback_felspur",
 	socialGroup = "boar",
 	faction = "",
@@ -36,4 +36,4 @@ razorback_felspur = Creature:new {
 	}
 }
 
-CreatureTemplates:addCreatureTemplate(razorback_felspur, "razorback_felspur")
+CreatureTemplates:addCreatureTemplate(gr_razorback_felspur, "gr_razorback_felspur")

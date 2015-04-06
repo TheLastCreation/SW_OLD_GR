@@ -1,4 +1,4 @@
-squill = Creature:new {
+gr_squill = Creature:new {
 	objectName = "@mob/creature_names:squill",
 	socialGroup = "squill",
 	faction = "",
@@ -36,4 +36,4 @@ squill = Creature:new {
 	}
 }
 
-CreatureTemplates:addCreatureTemplate(squill, "squill")
+CreatureTemplates:addCreatureTemplate(gr_squill, "gr_squill")

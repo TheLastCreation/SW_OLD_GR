@@ -1,4 +1,4 @@
-tatooine_mynock = Creature:new {
+gr_tatooine_mynock = Creature:new {
 	objectName = "@mob/creature_names:tatooine_mynock",
 	socialGroup = "self",
 	faction = "",
@@ -34,4 +34,4 @@ tatooine_mynock = Creature:new {
 	}
 }
 
-CreatureTemplates:addCreatureTemplate(tatooine_mynock, "tatooine_mynock")
+CreatureTemplates:addCreatureTemplate(gr_tatooine_mynock, "gr_tatooine_mynock")

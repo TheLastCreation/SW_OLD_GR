@@ -1,4 +1,4 @@
-cannibal_dewback = Creature:new {
+gr_cannibal_dewback = Creature:new {
 	objectName = "@mob/creature_names:dewback_cannibal",
 	socialGroup = "dewback",
 	faction = "",
@@ -36,4 +36,4 @@ cannibal_dewback = Creature:new {
 	}
 }
 
-CreatureTemplates:addCreatureTemplate(cannibal_dewback, "cannibal_dewback")
+CreatureTemplates:addCreatureTemplate(gr_cannibal_dewback, "gr_cannibal_dewback")

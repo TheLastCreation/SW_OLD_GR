@@ -1,4 +1,4 @@
-dune_beetle = Creature:new {
+gr_dune_beetle = Creature:new {
 	objectName = "@mob/creature_names:dune_beetle",
 	socialGroup = "beetle",
 	faction = "",
@@ -35,4 +35,4 @@ dune_beetle = Creature:new {
 	}
 }
 
-CreatureTemplates:addCreatureTemplate(dune_beetle, "dune_beetle")
+CreatureTemplates:addCreatureTemplate(gr_dune_beetle, "gr_dune_beetle")

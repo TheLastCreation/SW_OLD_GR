@@ -1,4 +1,4 @@
-mound_mite = Creature:new {
+gr_mound_mite = Creature:new {
 	objectName = "@mob/creature_names:mound_mite",
 	socialGroup = "self",
 	faction = "",
@@ -37,4 +37,4 @@ mound_mite = Creature:new {
 	}
 }
 
-CreatureTemplates:addCreatureTemplate(mound_mite, "mound_mite")
+CreatureTemplates:addCreatureTemplate(gr_mound_mite, "gr_mound_mite")

@@ -1,4 +1,4 @@
-cu_pa = Creature:new {
+gr_cu_pa = Creature:new {
 	objectName = "@mob/creature_names:cu_pa",
 	socialGroup = "cu_pa",
 	faction = "",
@@ -36,4 +36,4 @@ cu_pa = Creature:new {
 	}
 }
 
-CreatureTemplates:addCreatureTemplate(cu_pa, "cu_pa")
+CreatureTemplates:addCreatureTemplate(gr_cu_pa, "gr_cu_pa")

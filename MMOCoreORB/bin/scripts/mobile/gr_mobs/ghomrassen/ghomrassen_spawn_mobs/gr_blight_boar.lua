@@ -1,4 +1,4 @@
-blight_boar = Creature:new {
+gr_blight_boar = Creature:new {
 	objectName = "@mob/creature_names:zucca_boar_blight",
 	socialGroup = "boar",
 	faction = "",
@@ -36,4 +36,4 @@ blight_boar = Creature:new {
 	}
 }
 
-CreatureTemplates:addCreatureTemplate(blight_boar, "blight_boar")
+CreatureTemplates:addCreatureTemplate(gr_blight_boar, "gr_blight_boar")

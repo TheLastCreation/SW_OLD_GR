@@ -1,4 +1,4 @@
-wasteland_cu_pa = Creature:new {
+gr_wasteland_cu_pa = Creature:new {
 	objectName = "@mob/creature_names:wasteland_cu_pa",
 	socialGroup = "cu_pa",
 	faction = "",
@@ -36,4 +36,4 @@ wasteland_cu_pa = Creature:new {
 	}
 }
 
-CreatureTemplates:addCreatureTemplate(wasteland_cu_pa, "wasteland_cu_pa")
+CreatureTemplates:addCreatureTemplate(gr_wasteland_cu_pa, "gr_wasteland_cu_pa")

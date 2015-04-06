@@ -1,4 +1,4 @@
-sandreaver = Creature:new {
+gr_sandreaver = Creature:new {
 	objectName = "@mob/creature_names:dewback_sandreaver",
 	socialGroup = "dewback",
 	faction = "",
@@ -36,4 +36,4 @@ sandreaver = Creature:new {
 	}
 }
 
-CreatureTemplates:addCreatureTemplate(sandreaver, "sandreaver")
+CreatureTemplates:addCreatureTemplate(gr_sandreaver, "gr_sandreaver")
