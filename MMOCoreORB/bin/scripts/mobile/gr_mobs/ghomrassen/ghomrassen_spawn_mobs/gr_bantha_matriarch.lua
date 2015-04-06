@@ -1,28 +1,28 @@
-bantha_matriarch = Creature:new {
+gr_bantha_matriarch = Creature:new {
 	objectName = "@mob/creature_names:matriarch_bantha",
 	socialGroup = "bantha",
 	faction = "",
-	level = 25,
+	level = 95,
 	chanceHit = 0.35,
-	damageMin = 230,
-	damageMax = 240,
-	baseXp = 2543,
-	baseHAM = 7700,
-	baseHAMmax = 8550,
-	armor = 0,
+	damageMin = 450,
+	damageMax = 670,
+	baseXp = 3467,
+	baseHAM = 13000,
+	baseHAMmax = 18000,
+	armor = 1,
 	resists = {135,110,10,150,-1,-1,-1,-1,-1},
 	meatType = "meat_herbivore",
-	meatAmount = 485,
+	meatAmount = 780,
 	hideType = "hide_wooly",
-	hideAmount = 365,
+	hideAmount = 780,
 	boneType = "bone_mammal",
-	boneAmount = 320,
+	boneAmount = 780,
 	milkType = "milk_wild",
-	milk = 265,
+	milk = 780,
 	tamingChance = 0,
 	ferocity = 4,
-	pvpBitmask = ATTACKABLE,
-	creatureBitmask = PACK + HERD,
+	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
+	creatureBitmask = PACK + STALKER,
 	optionsBitmask = 128,
 	diet = HERBIVORE,
 
@@ -37,4 +37,4 @@ bantha_matriarch = Creature:new {
 	}
 }
 
-CreatureTemplates:addCreatureTemplate(bantha_matriarch, "bantha_matriarch")
+CreatureTemplates:addCreatureTemplate(gr_bantha_matriarch, "gr_bantha_matriarch")

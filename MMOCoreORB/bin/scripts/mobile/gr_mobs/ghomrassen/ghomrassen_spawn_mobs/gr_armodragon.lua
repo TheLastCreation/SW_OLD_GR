@@ -1,4 +1,4 @@
-armodragon = Creature:new {
+gr_armodragon = Creature:new {
 	objectName = "@mob/creature_names:dragonet_armodragon",
 	socialGroup = "lizard",
 	faction = "",
@@ -37,4 +37,4 @@ armodragon = Creature:new {
 	}
 }
 
-CreatureTemplates:addCreatureTemplate(armodragon, "armodragon")
+CreatureTemplates:addCreatureTemplate(gr_armodragon, "gr_armodragon")
