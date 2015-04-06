@@ -5,7 +5,7 @@ me_dune_stalker_leader = Creature:new {
 	faction = "",
 	level = 14,
 	chanceHit = 0.32,
-	damageMin = 1130,
+	damageMin = 113,
 	damageMax = 180,
 	baseXp = 150,
 	baseHAM = 670,
@@ -37,12 +37,12 @@ me_dune_stalker_leader = Creature:new {
 									{group = "carbines", chance = 1500000},
 									{group = "pistols", chance = 1000000}
 								},
-								lootChance = 20000000
+								lootChance = 10000000
 					}
 				},
 	weapons = {"ranged_weapons"},
-	conversationTemplate = ""
-	--attacks = merge(brawlermaster,marksmanmaster)
+	conversationTemplate = "",
+	attacks = merge(brawlermaster,marksmanmaster)
 }
 
 CreatureTemplates:addCreatureTemplate(me_dune_stalker_leader, "me_dune_stalker_leader")

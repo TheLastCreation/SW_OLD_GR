@@ -236,200 +236,200 @@ object_mobile_som_shared_must_mining_droid_mark_03 = SharedCreatureObjectTemplat
 }
 ObjectTemplates:addClientTemplate(object_mobile_som_shared_must_mining_droid_mark_03, "object/mobile/som/shared_must_mining_droid_mark_03.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_must_salvage_bandit_01 = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_must_salvage_bandit_01.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_must_salvage_bandit_01, "object/mobile/som/shared_must_salvage_bandit_01.iff")
 --***********************************************************************************************************************************************************************
 object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
 	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
 }
 ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_must_salvage_bandit_leader_01 = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_must_salvage_bandit_leader_01.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_must_salvage_bandit_leader_01, "object/mobile/som/shared_must_salvage_bandit_leader_01.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_must_scout = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_must_scout.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_must_scout, "object/mobile/som/shared_must_scout.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_mustafarian_02 = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_mustafarian_02.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_mustafarian_02, "object/mobile/som/shared_mustafarian_02.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_mustafarian_m_01 = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_mustafarian_m_01.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_mustafarian_m_01, "object/mobile/som/shared_mustafarian_m_01.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_mustafarian_m_02 = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_mustafarian_m_02.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_mustafarian_m_02, "object/mobile/som/shared_mustafarian_m_02.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_naboo_historian = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_naboo_historian.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_naboo_historian, "object/mobile/som/shared_naboo_historian.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_neimoidian = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_neimoidian.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_neimoidian, "object/mobile/som/shared_neimoidian.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_npc_ithes_olok = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_npc_ithes_olok.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_npc_ithes_olok, "object/mobile/som/shared_npc_ithes_olok.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_npc_kweeta = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_npc_kweeta.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_npc_kweeta, "object/mobile/som/shared_npc_kweeta.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_obi_wan_ghost = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_obi_wan_ghost.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_obi_wan_ghost, "object/mobile/som/shared_obi_wan_ghost.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_orf_angler = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_orf_angler.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_orf_angler, "object/mobile/som/shared_orf_angler.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_orf_jundak = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_orf_jundak.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_orf_jundak, "object/mobile/som/shared_orf_jundak.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_orf_mawgax = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_orf_mawgax.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_orf_mawgax, "object/mobile/som/shared_orf_mawgax.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_orf_reptilian_flier = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_orf_reptilian_flier.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_orf_reptilian_flier, "object/mobile/som/shared_orf_reptilian_flier.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_orf_torton = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_orf_torton.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_orf_torton, "object/mobile/som/shared_orf_torton.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_orf_tulrus = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_orf_tulrus.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_orf_tulrus, "object/mobile/som/shared_orf_tulrus.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_orf_vesp = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_orf_vesp.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_orf_vesp, "object/mobile/som/shared_orf_vesp.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_orf_vir_vur = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_orf_vir_vur.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_orf_vir_vur, "object/mobile/som/shared_orf_vir_vur.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_orf_whisper_bird = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_orf_whisper_bird.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_orf_whisper_bird, "object/mobile/som/shared_orf_whisper_bird.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_orf_xandank = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_orf_xandank.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_orf_xandank, "object/mobile/som/shared_orf_xandank.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_pei_yi = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_pei_yi.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_pei_yi, "object/mobile/som/shared_pei_yi.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_reporter_jural = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_reporter_jural.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_reporter_jural, "object/mobile/som/shared_reporter_jural.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_reporter_talper = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_reporter_talper.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_reporter_talper, "object/mobile/som/shared_reporter_talper.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_ruins_aqualish = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_ruins_aqualish.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_ruins_aqualish, "object/mobile/som/shared_ruins_aqualish.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_ruins_human = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_ruins_human.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_ruins_human, "object/mobile/som/shared_ruins_human.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_ruins_ithorian = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_ruins_ithorian.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_ruins_ithorian, "object/mobile/som/shared_ruins_ithorian.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_ruins_leader = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_ruins_leader.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_ruins_leader, "object/mobile/som/shared_ruins_leader.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_ruins_rodian = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_ruins_rodian.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_ruins_rodian, "object/mobile/som/shared_ruins_rodian.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_ruins_weequay = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_ruins_weequay.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_ruins_weequay, "object/mobile/som/shared_ruins_weequay.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_scorching_terror = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_scorching_terror.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_scorching_terror, "object/mobile/som/shared_scorching_terror.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_sansii = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_sansii.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_sansii, "object/mobile/som/shared_sansii.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_sher_kar = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_sher_kar.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_sher_kar, "object/mobile/som/shared_sher_kar.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_som_alien_parasite = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_som_alien_parasite.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_som_alien_parasite, "object/mobile/som/shared_som_alien_parasite.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_som_ancient_guardian_droideka = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_som_ancient_guardian_droideka.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_som_ancient_guardian_droideka, "object/mobile/som/shared_som_ancient_guardian_droideka.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_som_ancient_guardian_ig = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_som_ancient_guardian_ig.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_som_ancient_guardian_ig, "object/mobile/som/shared_som_ancient_guardian_ig.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_som_crazed_mustafarian_hermit = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_som_crazed_mustafarian_hermit.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_som_crazed_mustafarian_hermit, "object/mobile/som/shared_som_crazed_mustafarian_hermit.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
+object_mobile_som_shared_som_dark_jedi_boss = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_som_dark_jedi_boss.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_8t88, "object/mobile/som/shared_8t88.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_som_dark_jedi_boss, "object/mobile/som/shared_som_dark_jedi_boss.iff")
 --***********************************************************************************************************************************************************************
 object_mobile_som_shared_8t88 = SharedCreatureObjectTemplate:new {
 	clientTemplateFileName = "object/mobile/som/shared_8t88.iff"
