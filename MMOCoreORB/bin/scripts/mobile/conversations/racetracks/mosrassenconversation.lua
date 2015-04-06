@@ -16,7 +16,7 @@ mosrassen_initial = ConvoScreen:new {
 		{"@conversation/racing_mos_rassen:s_2492930f","cs_jsPlumb_1_207"}
 	}
 }
-mosrassen_conversationtemplate:addScreen(lok_initial);
+mosrassen_conversationtemplate:addScreen(mosrassen_initial);
 cs_jsPlumb_1_29 = ConvoScreen:new {
 	id = "cs_jsPlumb_1_29",
 	leftDialog = "@conversation/racing_mos_rassen:s_392149e8",
