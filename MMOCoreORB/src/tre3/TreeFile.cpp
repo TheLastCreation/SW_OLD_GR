@@ -12,9 +12,6 @@
 TreeFile::TreeFile(TreeArchive* archive) : records() {
 	version = 0;
 	treeArchive = archive;
-	totalRecords = 0;
-	dataOffset = 0;
-
 }
 
 TreeFile::~TreeFile() {
