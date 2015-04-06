@@ -85,35 +85,36 @@ public:
 	TotalHealSelfCommand(const String& name, ZoneProcessServer* server)
 		: QueueCommand(name, server) {
 
-	forceCost = 0;
-	heal = 6000;
-		
-	healthHealed = 0;
-	actionHealed = 0;
-	mindHealed = 0;
-		
-	healthWoundHealed = 0;
-	strengthWoundHealed = 0;
-	constitutionWoundHealed = 0;		
-		
-	actionWoundHealed = 0;
-	quicknessWoundHealed = 0;
-	staminaWoundHealed = 0;	
+		forceCost = 0;
+		heal = 6000;
 
-	mindWoundHealed = 0;
-	focusWoundHealed = 0;
-	willpowerWoundHealed = 0;	
+		healthHealed = 0;
+		actionHealed = 0;
+		mindHealed = 0;
 
-	speed = 3.0f;
+		healthWoundHealed = 0;
+		strengthWoundHealed = 0;
+		constitutionWoundHealed = 0;
+
+		actionWoundHealed = 0;
+		quicknessWoundHealed = 0;
+		staminaWoundHealed = 0;
+
+		mindWoundHealed = 0;
+		focusWoundHealed = 0;
+		willpowerWoundHealed = 0;
+
+		speed = 3.0f;
+		range = 0;
 	
 	}
 	
-	void doAnimations(CreatureObject* creature) {
+	void doAnimations(CreatureObject* creature) const {
 			creature->playEffect("clienteffect/pl_force_healing.cef", "");
 	}
 		
 	
-	void sendWoundMessage(CreatureObject* creature, int healthWound, int actionWound, int mindWound, int strengthWound, int constitutionWound, int quicknessWound, int staminaWound, int focusWound, int willpowerWound) {
+	void sendWoundMessage(CreatureObject* creature, int healthWound, int actionWound, int mindWound, int strengthWound, int constitutionWound, int quicknessWound, int staminaWound, int focusWound, int willpowerWound) const {
 
 		StringBuffer msgPlayer, msgBody, msgTail;
 
@@ -149,7 +150,7 @@ public:
 
 	}
 	
-	void sendHealMessage(CreatureObject* creature, int healthDamage, int actionDamage, int mindDamage) {
+	void sendHealMessage(CreatureObject* creature, int healthDamage, int actionDamage, int mindDamage) const {
 
 		StringBuffer msgPlayer, msgBody, msgTail;
 
@@ -174,7 +175,7 @@ public:
 	}	
 		
 		
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
 
 		int result = doCommonMedicalCommandChecks(creature);
 
@@ -229,7 +230,7 @@ public:
 		}
 		
 		
-		forceCost = MIN(((healedHealth + healedAction + healedMind + healedHealthWound + healedStrengthWound + healedConstitutionWound + healedActionWound + healedQuicknessWound + healedStaminaWound + healedMindWound + healedFocusWound + healedWillpowerWound + healDisease + healPoison + healBleeding + healOnFire) / 20), 400);
+		float forceCost = MIN(((healedHealth + healedAction + healedMind + healedHealthWound + healedStrengthWound + healedConstitutionWound + healedActionWound + healedQuicknessWound + healedStaminaWound + healedMindWound + healedFocusWound + healedWillpowerWound + healDisease + healPoison + healBleeding + healOnFire) / 20), 400);
 
 		
 		playerObject->setForcePower(playerObject->getForcePower() - forceCost); // Deduct force.	
