@@ -1,7 +1,7 @@
 gr_slavemaster = Creature:new {
 	objectName = "@mob/creature_names:slavemaster",
-	socialGroup = "slaver",
-	faction = "thug",
+	socialGroup = "",
+	faction = "",
 	level = 40,
 	chanceHit = 0.240000,
 	damageMin = 300,
@@ -24,8 +24,9 @@ gr_slavemaster = Creature:new {
 	creatureBitmask = NONE,
 	diet = HERBIVORE,
 
-	templates = {"object/mobile/dressed_tatooine_trandoshan_slaver.iff",
-			"object/mobile/dressed_tatooine_slaver.iff"},
+	templates = {
+				"object/mobile/dressed_tatooine_trandoshan_slaver.iff",
+				"object/mobile/dressed_tatooine_slaver.iff"},
 	lootGroups = {
       	{
 			groups = {
