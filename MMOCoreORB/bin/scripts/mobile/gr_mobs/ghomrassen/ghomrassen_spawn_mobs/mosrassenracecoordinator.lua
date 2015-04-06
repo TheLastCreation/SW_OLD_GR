@@ -1,4 +1,4 @@
-lok_race_coordinator = Creature:new {
+mosrassen_race_coordinator = Creature:new {
 	objectName = "@event_perk:name_race_droid",
 	socialGroup = "",
 	faction = "",
@@ -28,9 +28,9 @@ lok_race_coordinator = Creature:new {
 	templates = {"object/mobile/3po_protocol_droid.iff"},
 	lootGroups = {},
 	weapons = {},
-	conversationTemplate = "lok_conversationtemplate",
+	conversationTemplate = "mosrassen_conversationtemplate",
 	attacks = {
 	}
 }
 
-CreatureTemplates:addCreatureTemplate(lok_race_coordinator, "lok_race_coordinator")
+CreatureTemplates:addCreatureTemplate(mosrassen_race_coordinator, "mosrassen_race_coordinator")

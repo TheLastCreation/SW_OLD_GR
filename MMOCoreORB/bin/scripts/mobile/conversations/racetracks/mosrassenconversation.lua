@@ -68,7 +68,7 @@ cs_jsPlumb_1_207 = ConvoScreen:new {
 	options = {
 	}
 }
-lok_conversationtemplate:addScreen(cs_jsPlumb_1_207);
+mosrassen_conversationtemplate:addScreen(cs_jsPlumb_1_207);
 mosrassen_jsPlumb_1_233 = ConvoScreen:new {
 	id = "cs_jsPlumb_1_233",
 	leftDialog = "@conversation/racing_mos_rassen:s_4b4fb2b7",
