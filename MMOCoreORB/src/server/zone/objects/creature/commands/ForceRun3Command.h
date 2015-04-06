@@ -56,7 +56,7 @@ public:
 
 	}
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
 
 		if (!checkStateMask(creature))
 			return INVALIDSTATE;
@@ -83,7 +83,7 @@ public:
 		}
 
 		// Force cost of skill.
-		int forceCost = 400;
+		int forceCost = 600;
 
 		//Check for and deduct Force cost.
 
@@ -104,8 +104,8 @@ public:
 		divider /= 4;
 
 		ManagedReference<Buff*> buff = new Buff(creature, forceRun3CRC, duration, BuffType::JEDI);
-		buff->setSpeedMultiplierMod(4.5f);
-		buff->setAccelerationMultiplierMod(4.5f);
+		buff->setSpeedMultiplierMod(3.5f);
+		buff->setAccelerationMultiplierMod(3.5f);
 		buff->setStartMessage(startStringId);
 		buff->setEndMessage(endStringId);
 		buff->setSkillModifier("force_run", 3);

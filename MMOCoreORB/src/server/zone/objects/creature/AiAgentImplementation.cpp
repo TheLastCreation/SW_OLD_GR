@@ -846,7 +846,7 @@ void AiAgentImplementation::queueDizzyFallEvent() {
 void AiAgentImplementation::addDefender(SceneObject* defender) {
 	unsigned int stateCopy = getFollowState();
 
-	if (defenderList.size() == 0 && defender != NULL) {
+	if ((defenderList.size() == 0 || getFollowObject() == NULL) && defender != NULL) {
 		showFlyText("npc_reaction/flytext", "threaten", 0xFF, 0, 0);
 		setFollowObject(defender);
 		if (defender->isCreatureObject() && threatMap != NULL)
@@ -2700,7 +2700,20 @@ void AiAgentImplementation::setCombatState() {
 	if (homeObject != NULL)
 		homeObject->notifyObservers(ObserverEventType::AIMESSAGE, _this.get(), ObserverEventType::STARTCOMBAT);
 
-	sendReactionChat(ReactionManager::ATTACKED);
+	ManagedReference<SceneObject*> followCopy = getFollowObject();
+	if (followCopy != NULL && followCopy->isTangibleObject()) {
+		ManagedReference<TangibleObject*> target = cast<TangibleObject*>(followCopy.get());
+		ManagedReference<AiAgent*> ai = _this.get();
+
+		EXECUTE_TASK_2(ai, target, {
+			Locker locker(ai_p);
+			Locker clocker(target_p, ai_p);
+
+			if (target_p->hasDefender(ai_p))
+				ai_p->sendReactionChat(ReactionManager::ATTACKED);
+		});
+
+	}
 
 	//broadcastInterrupt(ObserverEventType::STARTCOMBAT);
 

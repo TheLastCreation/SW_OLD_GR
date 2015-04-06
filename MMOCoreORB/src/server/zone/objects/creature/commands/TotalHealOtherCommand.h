@@ -85,37 +85,37 @@ public:
 	TotalHealOtherCommand(const String& name, ZoneProcessServer* server)
 		: QueueCommand(name, server) {
 
-	forceCost = 0;
-	heal = 6000;
+		forceCost = 0;
+		heal = 6000;
 
-	healthHealed = 0;
-	actionHealed = 0;
-	mindHealed = 0;
+		healthHealed = 0;
+		actionHealed = 0;
+		mindHealed = 0;
 
-	healthWoundHealed = 0;
-	strengthWoundHealed = 0;
-	constitutionWoundHealed = 0;
+		healthWoundHealed = 0;
+		strengthWoundHealed = 0;
+		constitutionWoundHealed = 0;
 
-	actionWoundHealed = 0;
-	quicknessWoundHealed = 0;
-	staminaWoundHealed = 0;
+		actionWoundHealed = 0;
+		quicknessWoundHealed = 0;
+		staminaWoundHealed = 0;
 
-	mindWoundHealed = 0;
-	focusWoundHealed = 0;
-	willpowerWoundHealed = 0;
+		mindWoundHealed = 0;
+		focusWoundHealed = 0;
+		willpowerWoundHealed = 0;
 
-	speed = 3.0f;
-
+		speed = 3.0f;
+		range = 0;
 	}
 
-	void doAnimations(CreatureObject* creature, CreatureObject* creatureTarget) {
+	void doAnimations(CreatureObject* creature, CreatureObject* creatureTarget) const {
 		if (creatureTarget == creature)
 			creature->playEffect("clienteffect/pl_force_healing.cef", "");
 		 else
 			creature->doCombatAnimation(creatureTarget,String("force_healing_1").hashCode(),0,0xFF);
 	}
 
-	void sendWoundMessage(CreatureObject* object, CreatureObject* target, int healthWound, int actionWound, int mindWound, int strengthWound, int constitutionWound, int quicknessWound, int staminaWound, int focusWound, int willpowerWound) {
+	void sendWoundMessage(CreatureObject* object, CreatureObject* target, int healthWound, int actionWound, int mindWound, int strengthWound, int constitutionWound, int quicknessWound, int staminaWound, int focusWound, int willpowerWound) const {
 		if (!object->isPlayerCreature())
 			return;
 
@@ -161,7 +161,7 @@ public:
 		creatureTarget->sendSystemMessage(msgTarget.toString());
 	}
 
-	void sendHealMessage(CreatureObject* object, CreatureObject* target, int healthDamage, int actionDamage, int mindDamage) {
+	void sendHealMessage(CreatureObject* object, CreatureObject* target, int healthDamage, int actionDamage, int mindDamage) const {
 		if (!object->isPlayerCreature())
 			return;
 
@@ -197,7 +197,7 @@ public:
 		creatureTarget->sendSystemMessage(msgTarget.toString());
 	}
 
-	bool canPerformSkill(CreatureObject* creature, CreatureObject* creatureTarget) {
+	bool canPerformSkill(CreatureObject* creature, CreatureObject* creatureTarget) const {
 		if (!creatureTarget->getWounds(CreatureAttribute::HEALTH) && !creatureTarget->getWounds(CreatureAttribute::STRENGTH) && !creatureTarget->getWounds(CreatureAttribute::CONSTITUTION) && !creatureTarget->getWounds(CreatureAttribute::ACTION) && !creatureTarget->getWounds(CreatureAttribute::QUICKNESS) && !creatureTarget->getWounds(CreatureAttribute::STAMINA) && !creatureTarget->getWounds(CreatureAttribute::MIND) && !creatureTarget->getWounds(CreatureAttribute::FOCUS) && !creatureTarget->getWounds(CreatureAttribute::WILLPOWER) && !creatureTarget->hasDamage(CreatureAttribute::HEALTH) && !creatureTarget->hasDamage(CreatureAttribute::ACTION) && !creatureTarget->hasDamage(CreatureAttribute::MIND) && !creatureTarget->hasState(CreatureState::STUNNED) && !creatureTarget->hasState(CreatureState::DIZZY) && !creatureTarget->hasState(CreatureState::INTIMIDATED) && !creatureTarget->hasState(CreatureState::BLINDED) && !creatureTarget->isPoisoned() && !creatureTarget->isDiseased() && !creatureTarget->isBleeding()) {
 			creature->sendSystemMessage("Your target has nothing of that type to heal."); //Your target has nothing of that type to heal.
 			return false;
@@ -211,7 +211,7 @@ public:
 		return true;
 	}
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
 
 		int result = doCommonMedicalCommandChecks(creature);
 
@@ -288,7 +288,7 @@ public:
 			return GENERALERROR;
 		}
 
-		forceCost = MIN(((healedHealth + healedAction + healedMind + healedHealthWound + healedStrengthWound + healedConstitutionWound + healedActionWound + healedQuicknessWound + healedStaminaWound + healedMindWound + healedFocusWound + healedWillpowerWound + healDisease + healPoison + healBleeding) / 20), 1000);
+		int forceCost = MIN(((healedHealth + healedAction + healedMind + healedHealthWound + healedStrengthWound + healedConstitutionWound + healedActionWound + healedQuicknessWound + healedStaminaWound + healedMindWound + healedFocusWound + healedWillpowerWound + healDisease + healPoison + healBleeding) / 20), 1000);
 
 		playerObject->setForcePower(playerObject->getForcePower() - forceCost); // Deduct force.
 

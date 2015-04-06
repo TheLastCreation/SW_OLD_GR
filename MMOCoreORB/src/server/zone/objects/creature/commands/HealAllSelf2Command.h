@@ -56,7 +56,7 @@ public:
 
 	}
 
-	bool canPerformSkill(CreatureObject* creature) {
+	bool canPerformSkill(CreatureObject* creature) const {
 		if ((!creature->hasDamage(CreatureAttribute::HEALTH)) && (!creature->hasDamage(CreatureAttribute::ACTION)) && (!creature->hasDamage(CreatureAttribute::MIND))) {
 			creature->sendSystemMessage("@jedi_spam:no_damage_heal_self"); // You have no damage of that type.
 			return false;
@@ -65,7 +65,7 @@ public:
 		return true;
 	}
 
-	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) {
+	int doQueueCommand(CreatureObject* creature, const uint64& target, const UnicodeString& arguments) const {
 
 		int result = doCommonMedicalCommandChecks(creature);
 
@@ -89,7 +89,7 @@ public:
 		int forceCostDeducted = forceCost;
 
 		// Lets see how much healing they are doing.
-		int healAmount = 1000;
+		int healAmount = 1500;
 
 		uint32 healthHealed = creature->healDamage(creature, CreatureAttribute::HEALTH, healAmount);
 		uint32 actionHealed = creature->healDamage(creature, CreatureAttribute::ACTION, healAmount);
