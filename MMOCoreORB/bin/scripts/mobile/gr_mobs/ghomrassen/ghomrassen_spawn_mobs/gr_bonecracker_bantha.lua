@@ -34,7 +34,7 @@ gr_bonecracker_bantha = Creature:new {
 	conversationTemplate = "",
 	attacks = {
 		{"intimidationattack",""},
-		{"stunattack",""}
+		{"stunattack",""},
 	}
 }
 
