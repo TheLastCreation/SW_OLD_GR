@@ -520,6 +520,12 @@ float CombatManager::getWeaponRangeModifier(float currentRange, WeaponObject* we
 		bigMod = (float) weapon->getIdealAccuracy();
 	}
 
+	if (currentRange >= maxRange)
+		return (float) weapon->getMaxRangeAccuracy();
+
+	if (currentRange <= minRange)
+		return smallMod;
+
 	// this assumes that we are attacking somewhere between point blank and ideal range
 	float smallRange = minRange;
 	float bigRange = idealRange;
@@ -533,8 +539,7 @@ float CombatManager::getWeaponRangeModifier(float currentRange, WeaponObject* we
 
 		smallRange = idealRange;
 		bigRange = maxRange;
-	} else if (currentRange <= minRange)
-		return smallMod;
+	}
 
 	if (bigRange == smallRange) // if they are equal, we know at least one is ideal, so just return the ideal accuracy mod
 		return weapon->getIdealAccuracy();
@@ -1346,8 +1351,9 @@ float CombatManager::calculateDamage(CreatureObject* attacker, WeaponObject* wea
 	// PvP Damage Reduction.
 	if (attacker->isPlayerCreature() && defender->isPlayerCreature()) {
 		damage *= 0.25;
-		if (damage < 40) damage = 40;
 	}
+
+	if (damage < 1) damage = 1;
 
 	//info("damage to be dealt is " + String::valueOf(damage), true);
 
@@ -1409,7 +1415,11 @@ int CombatManager::getHitChance(TangibleObject* attacker, CreatureObject* target
 	}
 	//info("Attacker total bonus is " + String::valueOf(bonusAccuracy), true);
 
-	int postureAccuracy = calculatePostureModifier(creoAttacker, weapon);
+	int postureAccuracy = 0;
+
+	if (creoAttacker != NULL)
+		postureAccuracy = calculatePostureModifier(creoAttacker, weapon);
+
 	//info("Attacker posture accuracy is " + String::valueOf(postureAccuracy), true);
 
 	int targetDefense = getDefenderDefenseModifier(targetCreature, weapon, attacker);
@@ -1462,7 +1472,7 @@ int CombatManager::getHitChance(TangibleObject* attacker, CreatureObject* target
 		targetDefense += cobMod;
 		//info("Final modified secondary defense is " + String::valueOf(targetDefense), true);
 
-		if (targetDefense > attackerAccuracy + weaponAccuracy + accuracyBonus + postureAccuracy + bonusAccuracy + attackerRoll) { // successful secondary defense, return type of defense
+		if (targetDefense > 50 + attackerAccuracy + weaponAccuracy + accuracyBonus + postureAccuracy + bonusAccuracy + attackerRoll) { // successful secondary defense, return type of defense
 
 			//info("Secondaries defenses prevailed", true);
 			// this means use defensive acuity, which mean random 1, 2, or 3
@@ -1582,15 +1592,15 @@ void CombatManager::applyStates(CreatureObject* creature, CreatureObject* target
 	if (targetCreature->isPlayerCreature() && targetCreature->getPvpStatusBitmask() == CreatureFlag::NONE)
 		return;
 
-	float accuracyMod = data.isStateOnlyAttack() ? creature->getSkillMod(data.getCommand()->getAccuracySkillMod()) : 0;
-
 	// loop through all the states in the command
 	for (int i = 0; i < stateEffects->size(); i++) {
 		StateEffect effect = stateEffects->get(i);
 		bool failed = false;
 		uint8 effectType = effect.getEffectType();
 
-		if (System::random(100) > effect.getStateChance()) continue; // effect didn't trigger this attack and don't send a message
+		float accuracyMod = effect.getStateChance();
+		if (data.isStateOnlyAttack())
+			accuracyMod += creature->getSkillMod(data.getCommand()->getAccuracySkillMod());
 
 		//Check for state immunity.
 		if (targetCreature->hasEffectImmunity(effectType))
@@ -1613,14 +1623,9 @@ void CombatManager::applyStates(CreatureObject* creature, CreatureObject* target
 				targetDefense += targetCreature->getSkillMod(defenseMods.get(j));
 
 			targetDefense -= targetCreature->calculateBFRatio();
+			targetDefense /= 1.5;
 
-			// now roll to see if it gets applied
-			int defDiff = targetDefense - 95;
-			float lRatio = MAX(0.5, targetCreature->getLevel() / MAX(1, creature->getLevel()));
-			if (defDiff > 0)
-				targetDefense = 95 + defDiff * 0.25 * lRatio;
-
-			if (targetDefense > 0 && System::random(100) < targetDefense - accuracyMod)
+			if (System::random(100) > accuracyMod - targetDefense)
 				failed = true;
 
 			// no reason to apply jedi defenses if primary defense was successful
@@ -1631,12 +1636,9 @@ void CombatManager::applyStates(CreatureObject* creature, CreatureObject* target
 				for (int j = 0; j < jediMods.size(); j++)
 					targetDefense += targetCreature->getSkillMod(jediMods.get(j));
 
-				// now roll again to see if it gets applied
-				defDiff = targetDefense - 95;
-				if (defDiff > 0)
-					targetDefense = 95 + defDiff * 0.25 * lRatio;
+				targetDefense /= 1.5;
 
-				if (targetDefense > 0 && System::random(100) < targetDefense - accuracyMod)
+				if (System::random(100) > accuracyMod - targetDefense)
 					failed = true;
 			}
 		}

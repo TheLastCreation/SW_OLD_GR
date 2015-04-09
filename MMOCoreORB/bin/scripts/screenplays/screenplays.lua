@@ -4,14 +4,6 @@ require("themeParkLogic")
 require("corvetteTicketGiverLogic")
 require("corvetteTicketTakerLogic")
 
---GR Screenplays
-includeFile("gr_screenplays/ghomrassen/ghomrassen_mos_rassen.lua")
-includeFile("gr_screenplays/ghomrassen/ghomrassen_static_spawns.lua")
-includeFile("gr_screenplays/lok/generals_bunker.lua")
---includeFile("gr_screenplays/lok/kill_the_general.lua")
-
-
-
 -- Theme parks
 includeFile("themepark/conversations/goru_conv_handler.lua")
 includeFile("themepark/conversations/mission_giver_conv_handler.lua")
@@ -77,7 +69,10 @@ includeFile("tasks/hero_of_tatooine/conversations/hermitConvoHandler.lua")
 includeFile("tasks/hero_of_tatooine/conversations/heroOfTatBountyHunterConvoHandler.lua")
 includeFile("tasks/hero_of_tatooine/conversations/heroOfTatFarmerConvoHandler.lua")
 includeFile("tasks/hero_of_tatooine/conversations/heroOfTatIntellectLiarConvoHandler.lua")
+includeFile("tasks/hero_of_tatooine/conversations/heroOfTatIntercomConvoHandler.lua")
 includeFile("tasks/hero_of_tatooine/conversations/heroOfTatMotherConvoHandler.lua")
+includeFile("tasks/hero_of_tatooine/conversations/heroOfTatPirateLeaderConvoHandler.lua")
+includeFile("tasks/hero_of_tatooine/conversations/heroOfTatRanchersWifeConvoHandler.lua")
 includeFile("tasks/hero_of_tatooine/heroOfTatooine.lua")
 includeFile("tasks/hero_of_tatooine/heroOfTatooineContainerComponents.lua")
 includeFile("tasks/hero_of_tatooine/heroOfTatooineMenuComponents.lua")

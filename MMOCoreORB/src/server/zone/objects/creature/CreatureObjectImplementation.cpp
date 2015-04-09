@@ -454,9 +454,9 @@ void CreatureObjectImplementation::sendNewbieTutorialRequest(
 }
 
 void CreatureObjectImplementation::sendNewbieTutorialEnableHudElement(
-		const String& ui, bool enable) {
+		const String& ui, bool enable, float blinkCount) {
 	NewbieTutorialEnableHudElement* message =
-			new NewbieTutorialEnableHudElement(ui, enable);
+			new NewbieTutorialEnableHudElement(ui, enable, blinkCount);
 	sendMessage(message);
 }
 
@@ -2259,8 +2259,8 @@ void CreatureObjectImplementation::setIntimidatedState(uint32 mod, uint32 crc, i
 		state->setStartFlyText("combat_effects", "go_intimidated", 0, 0xFF, 0);
 		state->setEndFlyText("combat_effects", "no_intimidated", 0xFF, 0, 0);
 
-		state->setSkillModifier("private_melee_defense", -50);
-		state->setSkillModifier("private_ranged_defense", -50);
+		state->setSkillModifier("private_melee_defense", -20);
+		state->setSkillModifier("private_ranged_defense", -20);
 
 		addBuff(state);
 	} else { // already have the intimidated state, so extend it. This is the buff that gets sent to the client
