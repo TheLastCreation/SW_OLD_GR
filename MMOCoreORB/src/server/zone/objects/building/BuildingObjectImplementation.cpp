@@ -57,6 +57,16 @@ void BuildingObjectImplementation::initializeTransientMembers() {
 	updatePaidAccessList();
 	
 	registeredPlayerIdList.removeAll();
+
+	if(isGCWBase()) {
+		SharedBuildingObjectTemplate* buildingTemplateData =
+				dynamic_cast<SharedBuildingObjectTemplate*> (getObjectTemplate());
+
+		// TODO:  remove.  this is just to correct existing bases
+		if(buildingTemplateData != NULL)
+			setPvpStatusBitmask(buildingTemplateData->getPvpStatusBitmask());
+
+	}
 	
 }
 
@@ -301,11 +311,7 @@ void BuildingObjectImplementation::notifyRemoveFromZone() {
 			/*obj->removeFromZone();
 
 			cell->removeObject(obj);*/
-			Locker objLocker(obj);
-
 			obj->destroyObjectFromWorld(true);
-
-			objLocker.release();
 
 			VectorMap<uint64, ManagedReference<SceneObject*> >* cont =
 					cell->getContainerObjects();
@@ -313,7 +319,7 @@ void BuildingObjectImplementation::notifyRemoveFromZone() {
 			//cont->drop(obj->getObjectID());
 
 			if (cont->size() > 0) {
-				Reference<SceneObject*> test = cell->getContainerObject(0);
+				SceneObject* test = cell->getContainerObject(0);
 
 				if (test == obj) {
 					Locker contLocker(cell->getContainerLock());
@@ -323,8 +329,6 @@ void BuildingObjectImplementation::notifyRemoveFromZone() {
 		}
 
 		if (signObject != NULL) {
-			Locker signLocker(signObject);
-
 			signObject->destroyObjectFromWorld(true);
 		}
 	}
@@ -367,21 +371,13 @@ bool BuildingObjectImplementation::isCityBanned(CreatureObject* player){
 
 bool BuildingObjectImplementation::isAllowedEntry(CreatureObject* player) {
 
-	if(isGCWBase()) {
+	if(isGCWBase()){
 		if (factionBaseType == GCWManager::STATICFACTIONBASE)
 			return true;
 
 		return checkContainerPermission(player,ContainerPermissions::WALKIN);
 	}
-
-	if (getLotSize() > 0) {
-		PlayerObject* ghost = player->getPlayerObject().get();
-
-		if (ghost != NULL && ghost->hasPvpTef()) {
-			return false;
-		}
-	}
-
+	
 	if (getOwnerObjectID() == player->getObjectID())
 		return true;
 
@@ -805,7 +801,7 @@ void BuildingObjectImplementation::onExit(CreatureObject* player, uint64 parenti
 uint32 BuildingObjectImplementation::getMaximumNumberOfPlayerItems() {
 	SharedStructureObjectTemplate* ssot = dynamic_cast<SharedStructureObjectTemplate*> (templateObject.get());
 	if (isCivicStructure() )
-		return 250;
+		return 400;
 
 	if (ssot == NULL)
 		return 0;
@@ -817,7 +813,7 @@ uint32 BuildingObjectImplementation::getMaximumNumberOfPlayerItems() {
 	if (lots == 0)
 		return MAXPLAYERITEMS;
 
-	return MIN(MAXPLAYERITEMS, lots * 100);
+	return MIN(MAXPLAYERITEMS, lots * 400);
 }
 
 bool BuildingObjectImplementation::transferObject(SceneObject* object, int containmentType, bool notifyClient, bool allowOverflow) {
@@ -1365,8 +1361,6 @@ void BuildingObjectImplementation::spawnChildSceneObject(String& templatePath, f
 	if (object == NULL || object->isCreatureObject())
 		return;
 
-	Locker objLocker(object);
-
 	object->initializePosition(x, z, y);
 	object->setDirection(dw, dx, dy, dz);
 
@@ -1382,11 +1376,8 @@ void BuildingObjectImplementation::spawnChildSceneObject(String& templatePath, f
 
 	if (cell != NULL) {
 		cell->transferObject(object, -1);
-	} else {
+	} else
 		zone->transferObject(object, -1, true);
-	}
-
-	objLocker.release();
 
 	object->createChildObjects();
 
