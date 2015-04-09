@@ -6,7 +6,7 @@ mosrassen_racetrack_screenplay = RaceTrack:new {
 	trackConfig={
 	  debugMode=1, -- 0 = off, 1 = print debug messages
 		planetName = "ghomrassen", -- The planet the Track is on
-		badgeToAward=BDG_RACING_MOSRASSEN_HILLS,  -- Badge to be awarded for best daily time-bdg_racing_mosrassen_hills
+		badgeToAward=140,  -- Badge to be awarded for best daily time-bdg_racing_mosrassen_hills
 		trackName="MRHRT",  -- Internal trackname , should be unique to the track
 		className="mosrassen_racetrack_screenplay", -- Class name of this class
 		trackCheckpoint="@theme_park/racing/racing:mosrassen_waypoint_name_checkpoint", --Waypoint names
@@ -16,24 +16,24 @@ mosrassen_racetrack_screenplay = RaceTrack:new {
     resetTime = (22*3600)+(10*60), --Time of day in seconds that track resets High Scores
 		waypointRadius=10, -- size of the waypoint observer
 		raceCoordinator = {x=-3377,y=-5297,z=0.0}, -- Location of the race coordinator. Note the Z coord is VERY important or conversations break
-		waypoints = { {x = -3860, y = -5343}, -- The coords of the waypoints
-					  {x = -4378, y = -5372},
-					  {x = -4499, y = -4903},
-					  {x = -4260, y = -4675},
-					  {x = -3936, y = -4611},
-					  {x = -3386, y = -4644},
-					  {x = -3191, y = -4399},
-					  {x = -3006, y = -4340},
-					  {x = -2855, y = -4550},
-					  {x = -2649, y = -4624},
-					  {x = -2574, y = -4861},
-					  {x = -2516, y = -5106},
-					  {x = -2604, y = -5335},
-					  {x = -2734, y = -5451},
-					  {x = -2956, y = -5521},
-					  {x = -3121, y = -5090},
-					  {x = -3373, y = -5044},
-					  {x = -3225, y = -5279}
+		waypoints = { {x = -4397, y = -5594}, -- The coords of the waypoints
+					  {x = -4461, y = -6118},
+					  {x = -4281, y = -6628},
+					  {x = -4806, y = -7028},
+					  {x = -5634, y = -7124},
+					  {x = -5642, y = -6185},
+					  {x = -6195, y = -5962},
+					  {x = -7290, y = -5204},
+					  {x = -7641, y = -4492},
+					  {x = -7290, y = -3940},
+					  {x = -6885, y = -3893},
+					  {x = -5966, y = -3966},
+					  {x = -4933, y = -3808},
+					  {x = -3696, y = -4050},
+					  {x = -3413, y = -4037},
+					  {x = -3071, y = -4392},
+					  {x = -3188, y = -5341},
+					  {x = -3377, y = -5293}
 					}
 		}
 }
