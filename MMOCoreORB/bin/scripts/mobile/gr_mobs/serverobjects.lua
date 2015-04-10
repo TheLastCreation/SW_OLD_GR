@@ -11,7 +11,9 @@ includeFile("gr_mobs/generals_bunker/nk_s_battle_droid_03.lua")
 includeFile("gr_mobs/generals_bunker/nk_mega_droid.lua")
 
 --Ghomrassen Lair & Mission Mobs
-
+includeFile("gr_mobs/ghomrassen/ghomrassen_spawn_mobs/ghom_smuggler.lua")
+includeFile("gr_mobs/ghomrassen/ghomrassen_spawn_mobs/ghom_tusken_sniper.lua")
+includeFile("gr_mobs/ghomrassen/ghomrassen_spawn_mobs/ghom_tusken_warrior.lua")
 includeFile("gr_mobs/ghomrassen/ghomrassen_spawn_mobs/gr_armodragon.lua")
 includeFile("gr_mobs/ghomrassen/ghomrassen_spawn_mobs/gr_bantha.lua")
 includeFile("gr_mobs/ghomrassen/ghomrassen_spawn_mobs/gr_bantha_matriarch.lua")
