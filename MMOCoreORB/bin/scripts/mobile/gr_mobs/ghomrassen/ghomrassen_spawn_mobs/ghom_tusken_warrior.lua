@@ -1,16 +1,16 @@
 ghom_tusken_warrior = Creature:new {
-	objectName = "@mob/creature_names:tusken_warrior",
+	customName = "Tusken Warrior",
 	socialGroup = "tusken_raider",
 	faction = "tusken_raider",
-	level = 38,
-	chanceHit = 0.43,
-	damageMin = 335,
-	damageMax = 380,
-	baseXp = 3824,
-	baseHAM = 9100,
-	baseHAMmax = 11100,
+	level = 85,
+	chanceHit = 0.35,
+	damageMin = 400,
+	damageMax = 600,
+	baseXp = 4219,
+	baseHAM = 15900,
+	baseHAMmax = 17200,
 	armor = 0,
-	resists = {45,30,25,30,-1,30,-1,-1,-1},
+	resists = {10,10,10,30,-1,30,-1,-1,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -19,7 +19,7 @@ ghom_tusken_warrior = Creature:new {
 	boneAmount = 0,
 	milk = 0,
 	tamingChance = 0,
-	ferocity = 0,
+	ferocity = 4,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER + STALKER,
 	optionsBitmask = 128,
@@ -37,9 +37,9 @@ ghom_tusken_warrior = Creature:new {
 				{group = "armor_attachments", chance = 500000},
 				{group = "clothing_attachments", chance = 500000},
 				{group = "color_crystals", chance = 500000},
-				{group = "crystals_poor", chance = 500000}
+				{group = "crystals_premium", chance = 500000}
 			},
-			lootChance = 2700000
+			lootChance = 10000000
 		}		
 	},
 	weapons = {"tusken_weapons"},

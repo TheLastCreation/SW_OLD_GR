@@ -26,9 +26,20 @@ end
 
 function GhomrassenStaticSpawnsScreenPlay:spawnMobiles()
 
-	--spawnMobile("corellia", "rebel_army_captain", 360,5.2,0.1,-3.6,-93,6036092)
+	spawnMobile("ghomrassen", "ghom_tusken_sniper", 300,-6197,39.7,-5917.6,-170,0)
+	spawnMobile("ghomrassen", "ghom_tusken_warrior", 300,-6208.7,40.0,-5912.5,124,0)	
+	spawnMobile("ghomrassen", "ghom_tusken_warrior", 300,-6227.1,41.6,-5906.3,132,0)
 	
-
+	spawnMobile("ghomrassen", "ghom_smuggler", 300,-6897.6,227.9,-3860.4,157,0)	
+	spawnMobile("ghomrassen", "ghom_smuggler", 300,-6874.5,224.0,-3833.8,179,0)
+	
+	spawnMobile("ghomrassen", "ghom_smuggler", 300,-3166.5,4.7,-4265.7,-135,0)
+	spawnMobile("ghomrassen", "ghom_smuggler", 300,-3174.7,4.7,-4261.0,-156,0)
+	spawnMobile("ghomrassen", "ghom_smuggler", 300,-3171.9,5.0,-4258.8,-128,0)
+	
+	
+	
+	
 	--spawnSceneObject("corellia", "object/tangible/furniture/all/frn_all_toolchest_lg_s01.iff", -1415.72, 85.2822, 1987.44, 0, -0.2, 0, 0.9, 0 )
 	--spawnSceneObject("corellia", "object/tangible/furniture/all/frn_all_toolchest_med_s01.iff", -1414.63, 85.2822, 1986.44, 0, -0.4, 0, 0.9, 0 )
 	--spawnSceneObject("corellia", "object/tangible/camp/campfire_logs_smoldering.iff", -1424.5, 85.2822, 1978.57, 0, 1, 0, 0, 0 )	

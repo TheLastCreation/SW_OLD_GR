@@ -1,16 +1,16 @@
 ghom_smuggler = Creature:new {
-	objectName = "@mob/creature_names:smuggler",
+	customName = "Smuggler",
 	socialGroup = "thug",
 	faction = "thug",
-	level = 14,
-	chanceHit = 0.3,
-	damageMin = 150,
-	damageMax = 160,
-	baseXp = 714,
-	baseHAM = 2000,
-	baseHAMmax = 3000,
+	level = 85,
+	chanceHit = 0.35,
+	damageMin = 400,
+	damageMax = 600,
+	baseXp = 4219,
+	baseHAM = 15900,
+	baseHAMmax = 17200,
 	armor = 0,
-	resists = {0,0,0,0,0,0,0,-1,-1},
+	resists = {10,10,10,30,-1,30,-1,-1,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -19,9 +19,10 @@ ghom_smuggler = Creature:new {
 	boneAmount = 0,
 	milk = 0,
 	tamingChance = 0,
-	ferocity = 0,
-	pvpBitmask = ATTACKABLE,
-	creatureBitmask = KILLER,
+	ferocity = 4,
+	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
+	creatureBitmask = PACK + KILLER + STALKER,
+	optionsBitmask = 128,
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/dressed_criminal_slicer_human_male_01.iff"},
@@ -38,9 +39,9 @@ ghom_smuggler = Creature:new {
 			lootChance = 2100000
 		}
 	},
-	weapons = {"pirate_weapons_medium"},
+	weapons = {"geonosian_mercenary_weapons"},
 	reactionStf = "@npc_reaction/slang",
-	attacks = merge(brawlermid,marksmanmid)
+	attacks = merge(marksmanmaster,brawlermaster,riflemanmaster)
 }
 
 CreatureTemplates:addCreatureTemplate(ghom_smuggler, "ghom_smuggler")
