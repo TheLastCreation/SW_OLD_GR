@@ -45,6 +45,13 @@
 --Children folder includes
 
 -- Server Objects
+includeFile("tangible/wearables/robe/robe_chronicle_master.iff")
+includeFile("tangible/wearables/robe/robe_jedi_padawan_generic.iff")
+includeFile("tangible/wearables/robe/robe_s32.iff")
+includeFile("tangible/wearables/robe/robe_s33.iff")
+includeFile("tangible/wearables/robe/exar_cultist_hood_up.iff")
+includeFile("tangible/wearables/robe/exar_cultist_hood_up_f.iff")
+
 includeFile("tangible/wearables/robe/aakuan_robe.lua")
 includeFile("tangible/wearables/robe/robe_inquisitor.lua")
 includeFile("tangible/wearables/robe/robe_jedi_dark_s01.lua")
