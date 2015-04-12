@@ -43,4 +43,4 @@
 object_tangible_tcg_series8_shared_vader_pod = SharedTangibleObjectTemplate:new {
  clientTemplateFileName = "object/tangible/tcg/series8/shared_vader_pod.iff"
 }
-ObjectTemplates:addClientTemplate(object_tangible_tcg_series8_shared_vader_pod, "object/tangible/beta/shared_vader_pod.iff")
+ObjectTemplates:addClientTemplate(object_tangible_tcg_series8_shared_vader_pod, "object/tangible/tcg/series8/shared_vader_pod.iff")
