@@ -32,4 +32,4 @@ object_tangible_wearables_robe_exar_cultist_hood_up = object_tangible_wearables_
 				attributeListComponent = "JediRobeAttributeListComponent",
 }
 
-ObjectTemplates:addTemplate(object_tangible_wearables_robe_robe_exar_cultist_hood_up, "object/tangible/wearables/robe/exar_cultist_hood_up.iff")
+ObjectTemplates:addTemplate(object_tangible_wearables_robe_exar_cultist_hood_up, "object/tangible/wearables/robe/exar_cultist_hood_up.iff")
