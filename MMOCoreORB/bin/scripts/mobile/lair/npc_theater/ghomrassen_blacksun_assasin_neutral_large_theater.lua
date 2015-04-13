@@ -6,11 +6,11 @@ ghomrassen_blacksun_assasin_neutral_large_theater = Lair:new {
 		{"gr_black_sun_thug",1}
 	},
 	spawnLimit = 15,
-	buildingsVeryEasy = {"object/building/poi/corellia_swoop_large1.iff","object/building/poi/corellia_swoop_large2.iff","object/building/poi/corellia_swoop_large3.iff"},
-	buildingsEasy = {"object/building/poi/corellia_swoop_large1.iff","object/building/poi/corellia_swoop_large2.iff","object/building/poi/corellia_swoop_large3.iff"},
-	buildingsMedium = {"object/building/poi/corellia_swoop_large1.iff","object/building/poi/corellia_swoop_large2.iff","object/building/poi/corellia_swoop_large3.iff"},
-	buildingsHard = {"object/building/poi/corellia_swoop_large1.iff","object/building/poi/corellia_swoop_large2.iff","object/building/poi/corellia_swoop_large3.iff"},
-	buildingsVeryHard = {"object/building/poi/corellia_swoop_large1.iff","object/building/poi/corellia_swoop_large2.iff","object/building/poi/corellia_swoop_large3.iff"},
+	buildingsVeryEasy = {"object/building/poi/tatooine_hutt_assassin_camp_small1.iff","object/building/poi/tatooine_hutt_assassin_camp_small2.iff"},
+	buildingsEasy = {"object/building/poi/tatooine_hutt_assassin_camp_small1.iff","object/building/poi/tatooine_hutt_assassin_camp_small2.iff"},
+	buildingsMedium = {"object/building/poi/tatooine_hutt_assassin_camp_small1.iff","object/building/poi/tatooine_hutt_assassin_camp_small2.iff"},
+	buildingsHard = {"object/building/poi/tatooine_hutt_assassin_camp_small1.iff","object/building/poi/tatooine_hutt_assassin_camp_small2.iff"},
+	buildingsVeryHard = {"object/building/poi/tatooine_hutt_assassin_camp_small1.iff","object/building/poi/tatooine_hutt_assassin_camp_small2.iff"},
 	buildingType = "theater"
 }
 
