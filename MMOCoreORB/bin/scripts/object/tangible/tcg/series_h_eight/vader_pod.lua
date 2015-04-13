@@ -41,7 +41,8 @@
 --this exception also makes it possible to release a modified version 
 
 
-object_tangible_tcg_series_h_eight_vader_pod = object_tangible_tcg_series_h_eight_vader_pod:new {
+
+object_tangible_tcg_series_h_eight_vader_pod = object_tangible_tcg_series8_shared_vader_pod:new {
 
 }
 
