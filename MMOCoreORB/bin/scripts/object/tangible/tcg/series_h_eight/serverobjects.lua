@@ -40,4 +40,4 @@
 --gives permission to release a modified version without this exception; 
 --this exception also makes it possible to release a modified version 
 
-includeFile("tangible/tcg/series8/vader_pod.lua")
+includeFile("tangible/tcg/series_h_eight/vader_pod.lua")

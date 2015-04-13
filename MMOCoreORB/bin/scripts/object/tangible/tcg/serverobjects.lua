@@ -40,10 +40,10 @@
 --gives permission to release a modified version without this exception; 
 --this exception also makes it possible to release a modified version 
 
---includeFile("tangible/tcg/series1/serverobjects.lua")
---includeFile("tangible/tcg/series3/serverobjects.lua")
---includeFile("tangible/tcg/series4/serverobjects.lua")
---includeFile("tangible/tcg/series5/serverobjects.lua")
---includeFile("tangible/tcg/series6/serverobjects.lua")
---includeFile("tangible/tcg/series7/serverobjects.lua")
-includeFile("tangible/tcg/series8/serverobjects.lua")
+--includeFile("tangible/tcg/series_a_one/serverobjects.lua")
+--includeFile("tangible/tcg/series_c_three/serverobjects.lua")
+--includeFile("tangible/tcg/series_d_four/serverobjects.lua")
+--includeFile("tangible/tcg/series_e_five/serverobjects.lua")
+--includeFile("tangible/tcg/series_f_six/serverobjects.lua")
+--includeFile("tangible/tcg/series_g_seven/serverobjects.lua")
+includeFile("tangible/tcg/series_h_eight/serverobjects.lua")
