@@ -55,15 +55,18 @@ class ActiveArea extends SceneObject {
 	protected boolean noBuildArea;
 
 	protected boolean campingPermitted;
-	
+
 	protected boolean municipalZone;
-	
+
 	protected unsigned long cellObjectID;
-	
+
 	protected boolean noSpawnArea;
-	
+
 	protected AreaShape areaShape;
-	
+
+	@dereferenced
+	protected transient Vector<SceneObject> attachedScenery;
+
 	public ActiveArea() {		
 		cellObjectID = 0;
 		
@@ -199,4 +202,8 @@ class ActiveArea extends SceneObject {
 	
 	@dirty
 	public native boolean intersectsWith(ActiveArea area);
+
+	public void attachScenery(SceneObject scene) {
+		attachedScenery.add(scene);
+	}
 }

@@ -732,17 +732,17 @@ bool AiAgentImplementation::validateStateAttack(CreatureObject* target, unsigned
 			}
 			break;
 		case CommandEffect::KNOCKDOWN:
-			if (!target->isKnockedDown()) {
+			if (!target->isKnockedDown() && target->checkPostureChangeRecovery()) {
 				return true;
 			}
 			break;
 		case CommandEffect::POSTUREUP:
-			if (!target->isStanding()) {
+			if (!target->isStanding() && target->checkPostureChangeRecovery()) {
 				return true;
 			}
 			break;
 		case CommandEffect::POSTUREDOWN:
-			if (!target->isProne()) {
+			if (!target->isProne() && target->checkPostureChangeRecovery()) {
 				return true;
 			}
 			break;
@@ -1011,8 +1011,13 @@ void AiAgentImplementation::notifyDespawn(Zone* zone) {
 		moveEvent = NULL;
 	}
 
-	for (int i = 0; i < movementMarkers.size(); ++i)
-		movementMarkers.get(i)->destroyObjectFromWorld(false);
+	mLocker.release();
+
+	for (int i = 0; i < movementMarkers.size(); ++i) {
+		ManagedReference<SceneObject*> marker = movementMarkers.get(i);
+		Locker clocker(marker, _this.get());
+		marker->destroyObjectFromWorld(false);
+	}
 
 	SceneObject* creatureInventory = getSlottedObject("inventory");
 
@@ -1403,12 +1408,17 @@ bool AiAgentImplementation::findNextPosition(float maxDistance, bool walk) {
 
 #ifdef SHOW_NEXT_POSITION
 			if (showNextMovementPosition) {
-				for (int i = 0; i < movementMarkers.size(); ++i)
-					movementMarkers.get(i)->destroyObjectFromWorld(false);
+				for (int i = 0; i < movementMarkers.size(); ++i) {
+					ManagedReference<SceneObject*> marker = movementMarkers.get(i);
+					Locker clocker(marker, _this.get());
+					marker->destroyObjectFromWorld(false);
+				}
 
 				movementMarkers.removeAll();
 
 				Reference<SceneObject*> movementMarker = getZoneServer()->createObject(String("object/path_waypoint/path_waypoint.iff").hashCode(), 0);
+
+				Locker clocker(movementMarker, _this.get());
 
 				movementMarker->initializePosition(nextPositionDebug.getX(), nextPositionDebug.getZ(), nextPositionDebug.getY());
 				StringBuffer msg;
@@ -1425,11 +1435,16 @@ bool AiAgentImplementation::findNextPosition(float maxDistance, bool walk) {
 
 				movementMarkers.add(movementMarker);
 
+				clocker.release();
+
 				for (int i = 0; i < path->size(); ++i) {
 					WorldCoordinates* coord = &path->get(i);
 					SceneObject* coordCell = coord->getCell();
 
 					movementMarker = getZoneServer()->createObject(String("object/path_waypoint/path_waypoint.iff").hashCode(), 0);
+
+					Locker clocker(movementMarker, _this.get());
+
 					movementMarker->initializePosition(coord->getPoint().getX(), coord->getPoint().getZ(), coord->getPoint().getY());
 
 					if (coordCell != NULL) {
@@ -1630,15 +1645,19 @@ float AiAgentImplementation::getMaxDistance() {
 		return followCopy != NULL ? getAggroRadius()*2 : 25;
 		break;
 	case AiAgent::FOLLOWING:
-		// stop in weapons range
 		if (followCopy == NULL)
 			return 0.1f;
 
-		if (!CollisionManager::checkLineOfSight(_this.get(), followCopy)) {
-			return 0.1f;
-		} else if (getWeapon() != NULL ) {
-			float weapMaxRange = MIN(getWeapon()->getIdealRange(), getWeapon()->getMaxRange());
-			return MAX(0.1f, weapMaxRange + getTemplateRadius() + followCopy->getTemplateRadius() - 2);
+		if (isInCombat()) {
+			// stop in weapons range
+			if (!CollisionManager::checkLineOfSight(_this.get(), followCopy)) {
+				return 0.1f;
+			} else if (getWeapon() != NULL ) {
+				float weapMaxRange = MIN(getWeapon()->getIdealRange(), getWeapon()->getMaxRange());
+				return MAX(0.1f, weapMaxRange + getTemplateRadius() + followCopy->getTemplateRadius() - 2);
+			}
+		} else {
+			return 1 + getTemplateRadius() + followCopy->getTemplateRadius();
 		}
 		break;
 	}

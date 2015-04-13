@@ -172,7 +172,7 @@ int CombatManager::doCombatAction(CreatureObject* attacker, WeaponObject* weapon
 
 	//info("past start combat", true);
 
-	if (attacker->hasAttackDelay() || !attacker->checkKnockdownRecovery())
+	if (attacker->hasAttackDelay() || !attacker->checkPostureChangeDelay())
 		return -3;
 
 	//info("past delay", true);
@@ -287,8 +287,6 @@ int CombatManager::doTargetCombatAction(CreatureObject* attacker, WeaponObject* 
 		data.getCommand()->sendAttackCombatSpam(attacker, defender, hitVal, damage, data);
 	}
 
-	broadcastCombatAction(attacker, defender, weapon, data, hitVal);
-
 	switch (hitVal) {
 	case MISS:
 		doMiss(attacker, weapon, defender, damage);
@@ -306,7 +304,8 @@ int CombatManager::doTargetCombatAction(CreatureObject* attacker, WeaponObject* 
 		break;
 	case COUNTER: {
 		doCounterAttack(attacker, weapon, defender, damage);
-		defender->executeObjectControllerAction(String("attack").hashCode(), attacker->getObjectID(), "");
+		if (!defender->hasState(CreatureState::PEACE))
+			defender->executeObjectControllerAction(String("attack").hashCode(), attacker->getObjectID(), "");
 		damageMultiplier = 0.0f;
 		break;}
 	case RICOCHET:
@@ -334,6 +333,8 @@ int CombatManager::doTargetCombatAction(CreatureObject* attacker, WeaponObject* 
 		applyDots(attacker, defender, data, damage);
 		applyWeaponDots(attacker, defender, weapon, damage);
 	}
+
+	broadcastCombatAction(attacker, defender, weapon, data, hitVal);
 
 	//Send defensive buff combat spam last.
 	if (!foodMitigation.isEmpty())
@@ -408,7 +409,8 @@ int CombatManager::doTargetCombatAction(TangibleObject* attacker, WeaponObject* 
 		break;
 	case COUNTER:
 		doCounterAttack(attacker, weapon, defenderObject, damage);
-		defenderObject->executeObjectControllerAction(String("attack").hashCode(), attacker->getObjectID(), "");
+		if (!defenderObject->hasState(CreatureState::PEACE))
+			defenderObject->executeObjectControllerAction(String("attack").hashCode(), attacker->getObjectID(), "");
 		damageMultiplier = 0.0f;
 		break;
 	case RICOCHET:
@@ -1592,6 +1594,17 @@ void CombatManager::applyStates(CreatureObject* creature, CreatureObject* target
 	if (targetCreature->isPlayerCreature() && targetCreature->getPvpStatusBitmask() == CreatureFlag::NONE)
 		return;
 
+	int playerLevel = 0;
+	if (targetCreature->isPlayerCreature()) {
+		ZoneServer* server = targetCreature->getZoneServer();
+		if (server != NULL) {
+			PlayerManager* pManager = server->getPlayerManager();
+			if (pManager != NULL) {
+				playerLevel = pManager->calculatePlayerLevel(targetCreature) - 5;
+			}
+		}
+	}
+
 	// loop through all the states in the command
 	for (int i = 0; i < stateEffects->size(); i++) {
 		StateEffect effect = stateEffects->get(i);
@@ -1624,6 +1637,7 @@ void CombatManager::applyStates(CreatureObject* creature, CreatureObject* target
 
 			targetDefense -= targetCreature->calculateBFRatio();
 			targetDefense /= 1.5;
+			targetDefense += playerLevel;
 
 			if (System::random(100) > accuracyMod - targetDefense)
 				failed = true;
@@ -1637,6 +1651,7 @@ void CombatManager::applyStates(CreatureObject* creature, CreatureObject* target
 					targetDefense += targetCreature->getSkillMod(jediMods.get(j));
 
 				targetDefense /= 1.5;
+				targetDefense += playerLevel;
 
 				if (System::random(100) > accuracyMod - targetDefense)
 					failed = true;

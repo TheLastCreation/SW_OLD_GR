@@ -64,6 +64,9 @@ which carries forward this exception.
 #include "server/zone/objects/creature/commands/pet/PetRepairCommand.h"
 #include "server/zone/objects/creature/commands/pet/PetThrowCommand.h"
 #include "server/zone/objects/creature/commands/pet/PetHarvestCommand.h"
+#include "server/zone/objects/creature/commands/pet/PetPatrolCommand.h"
+#include "server/zone/objects/creature/commands/pet/PetClearPatrolPointsCommand.h"
+#include "server/zone/objects/creature/commands/pet/PetGetPatrolPointCommand.h"
 
 #include "server/zone/objects/creature/CreatureState.h"
 #include "server/zone/objects/creature/CreaturePosture.h"
@@ -370,6 +373,9 @@ void CommandConfigManager::registerSpecialCommands(CommandList* sCommands) {
 	createCommand(String("petRepair").toLowerCase())->setCommandGroup(0xe1c9a54a);
 	createCommand(String("petThrow").toLowerCase())->setCommandGroup(0xe1c9a54a);
 	createCommand(String("petHarvest").toLowerCase())->setCommandGroup(0xe1c9a54a);
+	createCommand(String("petPatrol").toLowerCase())->setCommandGroup(0xe1c9a54a);
+	createCommand(String("petClearPatrolPoints").toLowerCase())->setCommandGroup(0xe1c9a54a);
+	createCommand(String("petGetPatrolPoint").toLowerCase())->setCommandGroup(0xe1c9a54a);
 }
 
 void CommandConfigManager::registerFunctions() {
@@ -482,6 +488,7 @@ void CommandConfigManager::registerGlobals() {
 	setGlobalInt("HEALTHDEGRADE_EFFECT", CommandEffect::HEALTHDEGRADE);
 	setGlobalInt("ACTIONDEGRADE_EFFECT", CommandEffect::ACTIONDEGRADE);
 	setGlobalInt("MINDDEGRADE_EFFECT", CommandEffect::MINDDEGRADE);
+	setGlobalInt("REMOVE_COVER_EFFECT", CommandEffect::REMOVECOVER);
 
 	// trails
 	setGlobalInt("NOTRAIL", CombatManager::NOTRAIL);
@@ -642,18 +649,32 @@ void CommandConfigManager::parseVariableData(String varName, LuaObject &command,
 				Logger::console.error("unknown variable " + varName + " in squadleader command " + slashCommand->getQueueCommandName());
 				command.pop();
 			}
-
 		} else {
-			Logger::console.error("unknown variable " + varName + " in combat command " + slashCommand->getQueueCommandName());
+			Logger::console.error("unknown variable " + varName + " in combat queue command " + slashCommand->getQueueCommandName());
 			command.pop();
 		}
-
 	} else if (slashCommand->isForceHealCommand()) {
 		ForceHealQueueCommand* healCommand = cast<ForceHealQueueCommand*>(slashCommand);
 		if (varName == "forceCost")
 			healCommand->setForceCost(Lua::getIntParameter(L));
 		else {
 			Logger::console.error("unknown variable " + varName + " in force healing command " + slashCommand->getQueueCommandName());
+			command.pop();
+		}
+	} else if (slashCommand->isJediQueueCommand()) {
+		JediQueueCommand* jediCommand = cast<JediQueueCommand*>(slashCommand);
+		if (varName == "forceCost")
+			jediCommand->setForceCost(Lua::getIntParameter(L));
+		else if (varName == "duration")
+			jediCommand->setDuration(Lua::getIntParameter(L));
+		else if (varName == "animationCRC")
+			jediCommand->setAnimationCRC(Lua::getUnsignedIntParameter(L));
+		else if (varName == "clientEffect")
+			jediCommand->setClientEffect(Lua::getStringParameter(L));
+		else if (varName == "speedMod")
+			jediCommand->setSpeedMod(Lua::getFloatParameter(L));
+		else {
+			Logger::console.error("unknown variable " + varName + " in jedi queue command " + slashCommand->getQueueCommandName());
 			command.pop();
 		}
 	} else {
@@ -1137,7 +1158,8 @@ void CommandConfigManager::registerCommands() {
 	commandFactory.registerCommand<MindBlast1Command>(String("mindBlast1").toLowerCase());
 	commandFactory.registerCommand<MindBlast2Command>(String("mindBlast2").toLowerCase());
 	commandFactory.registerCommand<MindShot1Command>(String("mindShot1").toLowerCase());
-	commandFactory.registerCommand<MindShot2Command>(String("mindShot2").toLowerCase());		commandFactory.registerCommand<MinefieldAttackCommand>(String("minefieldAttack").toLowerCase());
+	commandFactory.registerCommand<MindShot2Command>(String("mindShot2").toLowerCase());
+	commandFactory.registerCommand<MinefieldAttackCommand>(String("minefieldAttack").toLowerCase());
 	commandFactory.registerCommand<MoneyCommand>(String("money").toLowerCase());
 	commandFactory.registerCommand<MountCommand>(String("mount").toLowerCase());
 	commandFactory.registerCommand<MoveFurnitureCommand>(String("moveFurniture").toLowerCase());
@@ -1550,4 +1572,7 @@ void CommandConfigManager::registerCommands() {
 	commandFactory.registerCommand<PetRepairCommand>(String("petRepair").toLowerCase());
 	commandFactory.registerCommand<PetThrowCommand>(String("petThrow").toLowerCase());
 	commandFactory.registerCommand<PetHarvestCommand>(String("petHarvest").toLowerCase());
+	commandFactory.registerCommand<PetPatrolCommand>(String("petPatrol").toLowerCase());
+	commandFactory.registerCommand<PetClearPatrolPointsCommand>(String("petClearPatrolPoints").toLowerCase());
+	commandFactory.registerCommand<PetGetPatrolPointCommand>(String("petGetPatrolPoint").toLowerCase());
 }
