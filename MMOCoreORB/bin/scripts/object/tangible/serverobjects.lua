@@ -107,6 +107,7 @@ includeFile("tangible/space/serverobjects.lua")
 includeFile("tangible/spawning/serverobjects.lua")
 includeFile("tangible/speaker/serverobjects.lua")
 includeFile("tangible/survey_tool/serverobjects.lua")
+includeFile("tangible/tcg/serverobjects.lua")
 includeFile("tangible/terminal/serverobjects.lua")
 includeFile("tangible/test/serverobjects.lua")
 includeFile("tangible/theme_park/serverobjects.lua")
@@ -119,6 +120,6 @@ includeFile("tangible/vendor/serverobjects.lua")
 includeFile("tangible/veteran_reward/serverobjects.lua")
 includeFile("tangible/wearables/serverobjects.lua")
 includeFile("tangible/weather_object/serverobjects.lua")
-includeFile("tangible/tcg/serverobjects.lua")
+
 
 -- Server Objects
