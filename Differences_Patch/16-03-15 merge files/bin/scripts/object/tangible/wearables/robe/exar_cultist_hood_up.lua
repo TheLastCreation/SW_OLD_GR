@@ -25,10 +25,10 @@ object_tangible_wearables_robe_exar_cultist_hood_up = object_tangible_wearables_
 				    {"jedi_force_power_regen", 10}
 				},
 
-				noTrade = 0,
+				noTrade = 1,
 
 				objectMenuComponent = {"cpp", "RobeObjectMenuComponent"},
-				certificationsRequired = {"force_title_jedi_rank_02"},
+				certificationsRequired = {"force_title_jedi_rank_10"},
 				attributeListComponent = "JediRobeAttributeListComponent",
 }
 
