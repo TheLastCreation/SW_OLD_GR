@@ -91,7 +91,7 @@ ObjectTemplates:addClientTemplate(object_mobile_som_shared_cww8a_battle_droid, "
 object_mobile_som_shared_cww8a_eradicator. = SharedCreatureObjectTemplate:new {
 	clientTemplateFileName = "object/mobile/som/shared_cww8a_eradicator..iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_cww8a_eradicator., "object/mobile/som/shared_cww8a_eradicator..iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_cww8a_eradicator, "object/mobile/som/shared_cww8a_eradicator..iff")
 --***********************************************************************************************************************************************************************
 object_mobile_som_shared_deathsting = SharedCreatureObjectTemplate:new {
 	clientTemplateFileName = "object/mobile/som/shared_deathsting.iff"
