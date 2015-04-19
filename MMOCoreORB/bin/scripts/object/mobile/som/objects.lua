@@ -89,9 +89,9 @@ object_mobile_som_shared_cww8a_battle_droid = SharedCreatureObjectTemplate:new {
 ObjectTemplates:addClientTemplate(object_mobile_som_shared_cww8a_battle_droid, "object/mobile/som/shared_cww8a_battle_droid.iff")
 --***********************************************************************************************************************************************************************
 object_mobile_som_shared_cww8a_eradicator = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_cww8a_eradicator..iff"
+	clientTemplateFileName = "object/mobile/som/shared_cww8a_eradicator.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_cww8a_eradicator, "object/mobile/som/shared_cww8a_eradicator..iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_cww8a_eradicator, "object/mobile/som/shared_cww8a_eradicator.iff")
 --***********************************************************************************************************************************************************************
 object_mobile_som_shared_deathsting = SharedCreatureObjectTemplate:new {
 	clientTemplateFileName = "object/mobile/som/shared_deathsting.iff"
@@ -132,6 +132,11 @@ object_mobile_som_shared_ig106 = SharedCreatureObjectTemplate:new {
 	clientTemplateFileName = "object/mobile/som/shared_ig106.iff"
 }
 ObjectTemplates:addClientTemplate(object_mobile_som_shared_ig106, "object/mobile/som/shared_ig106.iff")
+--***********************************************************************************************************************************************************************
+object_mobile_som_shared_jundak = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_jundak.iff"
+}
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_jundak, "object/mobile/som/shared_jundak.iff")
 --***********************************************************************************************************************************************************************
 object_mobile_som_shared_jundak_devourer = SharedCreatureObjectTemplate:new {
 	clientTemplateFileName = "object/mobile/som/shared_jundak_devourer.iff"
