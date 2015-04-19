@@ -1,18 +1,17 @@
 coyn_captain = Creature:new {
-	--objectName = "@mob/creature_names:som_coyn_captain",
-	customName = "Coyn Captain",
+	customName = “Coyn Captain",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",
-	level = 50,
-	chanceHit = 0.28,
-	damageMin = 90,
-	damageMax = 110,
-	baseXp = 1514,
-	baseHAM = 5000,
-	baseHAMmax = 6630,
-	armor = 1,
-	resists = {25,25,25,25,25,25,25,-1,-1},
+	level = 70,
+	chanceHit = 0.27,
+	damageMin = 550,
+	damageMax = 800,
+	baseXp = 235,
+	baseHAM = 16000,
+	baseHAMmax = 19000,
+	armor = 0,
+	resists = {0,0,0,0,0,0,0,-1,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -22,18 +21,21 @@ coyn_captain = Creature:new {
 	milk = 0,
 	tamingChance = 0,
 	ferocity = 0,
-	pvpBitmask = ATTACKABLE, -- + ATTACKABLE + ENEMY,
-	creatureBitmask = NONE, --KILLER + STALKER,
+	pvpBitmask = ATTACKABLE,
+	creatureBitmask = PACK + STALKER,
 	optionsBitmask = 128,
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/som/coyn_captain.iff"},
-		
-	lootGroups = {},
-	--scale = 1.25,
-	weapons = {""},
+	lootGroups = {
+		{
+			groups = {},
+			lootChance = 2100000
+		}
+	},
+	weapons = {"pirate_weapons_light"},
 	conversationTemplate = "",
-	--attacks = merge(lightsabermaster,forcepowermaster)
+	attacks = merge(marksmannovice,brawlernovice)
 }
 
 CreatureTemplates:addCreatureTemplate(coyn_captain, "coyn_captain")
