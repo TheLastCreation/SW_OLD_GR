@@ -1,5 +1,6 @@
 black_sun_thug = Creature:new {
 	objectName = "@mob/creature_names:mand_bunker_blksun_thug",
+	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "death_watch",
 	faction = "",
 	level = 86,
@@ -10,7 +11,7 @@ black_sun_thug = Creature:new {
 	baseHAM = 13000,
 	baseHAMmax = 16000,
 	armor = 1,
-	resists = {40,40,60,35,55,70,35,40,55},
+	resists = {40,40,60,35,55,70,35,40,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -26,31 +27,20 @@ black_sun_thug = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/dressed_black_sun_thug.iff"},
-		lootGroups = {
+	lootGroups = {
 		{
 			groups = {
-				{group = "pistols", chance = 3333333},
-				{group = "rifles", chance = 3333333},
-				{group = "carbines", chance = 3333334}
+				{group = "junk", chance = 6500000},
+				{group = "pistols", chance = 750000},
+				{group = "rifles", chance = 750000},
+				{group = "carbines", chance = 750000},
+				{group = "bounty_hunter_armor", chance = 200000},
+				{group = "jetpack_base", chance = 50000},
+				{group = "wearables_common", chance = 500000},
+				{group = "wearables_uncommon", chance = 500000}
 			},
-			lootChance = 100000000
-		},
-		{
-			groups = {
-				{group = "clothing_attachments", chance = 5000000},
-				{group = "armor_attachments", chance = 5000000}
-			},
-			lootChance = 100000000
-		},	
-		{
-			groups = {
-				{group = "jetpack_parts", chance = 2500000},				
-				{group = "bounty_hunter_armor", chance = 2500000},
-				{group = "crystals_premium", chance = 2500000},
-				{group = "jetpack_base", chance = 2500000}
-			},
-			lootChance = 100000000
-		},
+			lootChance = 3500000
+		}
 	},
 	weapons = {"pirate_weapons_heavy"},
 	conversationTemplate = "",

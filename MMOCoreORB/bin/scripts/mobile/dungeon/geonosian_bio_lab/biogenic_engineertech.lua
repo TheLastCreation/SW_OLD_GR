@@ -24,7 +24,7 @@ biogenic_engineertech = Creature:new {
 	creatureBitmask = NONE,
 	optionsBitmask = 392,
 	diet = HERBIVORE,
-	
+
 	templates = {
 		"object/mobile/dressed_geonosian_scientist_01.iff",
 		"object/mobile/dressed_geonosian_scientist_02.iff"},
