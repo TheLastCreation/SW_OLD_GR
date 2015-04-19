@@ -44,3 +44,8 @@ object_tangible_tcg_series8_shared_vader_pod = SharedTangibleObjectTemplate:new 
  clientTemplateFileName = "object/tangible/tcg/series8/shared_vader_pod.iff"
 }
 ObjectTemplates:addClientTemplate(object_tangible_tcg_series8_shared_vader_pod, "object/tangible/tcg/series8/shared_vader_pod.iff")
+
+object_tangible_tcg_series8_shared_decorative_bespin_glass_sculpture = SharedTangibleObjectTemplate:new {
+ clientTemplateFileName = "object/tangible/tcg/series8/shared_decorative_bespin_glass_sculpture.iff"
+}
+ObjectTemplates:addClientTemplate(object_tangible_tcg_series8_shared_decorative_bespin_glass_sculpture, "object/tangible/tcg/series8/shared_decorative_bespin_glass_sculpture.iff")
