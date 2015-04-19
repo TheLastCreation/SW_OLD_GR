@@ -528,10 +528,10 @@ object_mobile_som_shared_som_pwwoz_thug_1 = SharedCreatureObjectTemplate:new {
 }
 ObjectTemplates:addClientTemplate(object_mobile_som_shared_som_pwwoz_thug_1, "object/mobile/som/shared_som_pwwoz_thug_1.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_som_pwwoz_thug_2.lua = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_som_pwwoz_thug_2.lua.iff"
+object_mobile_som_shared_som_pwwoz_thug_2 = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_som_pwwoz_thug_2.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_som_pwwoz_thug_2.lua, "object/mobile/som/shared_som_pwwoz_thug_2.lua.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_som_pwwoz_thug_2, "object/mobile/som/shared_som_pwwoz_thug_2.iff")
 --***********************************************************************************************************************************************************************
 object_mobile_som_shared_som_trinity_assassin_ithorian_male = SharedCreatureObjectTemplate:new {
 	clientTemplateFileName = "object/mobile/som/shared_som_trinity_assassin_ithorian_male.iff"

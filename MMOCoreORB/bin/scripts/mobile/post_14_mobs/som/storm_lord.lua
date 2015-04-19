@@ -1,5 +1,5 @@
 storm_lord = Creature:new {
-	customName = "storm_lord",
+	customName = "Storm Lord",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",
@@ -27,12 +27,7 @@ storm_lord = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/som/storm_lord.iff"},
-	lootGroups = {
-		{
-			groups = {},
-			lootChance = 2100000
-		}
-	},
+	lootGroups = {},
 	weapons = {"pirate_weapons_light"},
 	conversationTemplate = "",
 	attacks = merge(marksmannovice,brawlernovice)
