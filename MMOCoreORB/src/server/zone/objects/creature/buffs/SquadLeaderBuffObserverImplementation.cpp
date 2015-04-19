@@ -12,8 +12,6 @@
 
 #include "server/zone/objects/creature/CreatureObject.h"
 
-#include "server/zone/objects/group/GroupObject.h"
-
 int SquadLeaderBuffObserverImplementation::notifyObserverEvent(unsigned int eventType, Observable* observable, ManagedObject* arg1, int64 arg2) {
 	if (eventType != ObserverEventType::PARENTCHANGED)
 		return 0;
@@ -28,7 +26,7 @@ int SquadLeaderBuffObserverImplementation::notifyObserverEvent(unsigned int even
 		return 1;
 
 	ManagedReference<CreatureObject*> leader = buff->getLeader();
-	if (leader == NULL || player->getGroup() == NULL || player->getGroup()->getLeader() != leader) {
+	if (leader == NULL) {
 		player->removeBuff(buff->getBuffCRC());
 		return 1;
 	}

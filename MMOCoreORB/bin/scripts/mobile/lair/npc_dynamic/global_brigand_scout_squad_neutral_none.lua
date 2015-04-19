@@ -6,7 +6,6 @@ global_brigand_scout_squad_neutral_none = Lair:new {
 	buildingsMedium = {},
 	buildingsHard = {},
 	buildingsVeryHard = {},
-	mobType = "npc",
 	buildingType = "none"
 }
 

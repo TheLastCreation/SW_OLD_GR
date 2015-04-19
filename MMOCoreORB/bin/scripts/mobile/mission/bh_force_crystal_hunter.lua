@@ -1,6 +1,5 @@
 bh_force_crystal_hunter = Creature:new {
 	objectName = "@mob/creature_names:dark_force_crystal_hunter",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "kun",
 	faction = "",
 	level = 115,

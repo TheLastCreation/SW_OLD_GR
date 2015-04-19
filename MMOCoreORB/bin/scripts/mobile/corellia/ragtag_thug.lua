@@ -1,6 +1,5 @@
 ragtag_thug = Creature:new {
 	objectName = "",
-	randomNameType = NAME_GENERIC_TAG,
 	customName = "a Ragtag thug",
 	socialGroup = "ragtag",
 	faction = "thug",
@@ -27,9 +26,9 @@ ragtag_thug = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {
-		"object/mobile/dressed_hooligan_rodian_female_01.iff",
-		"object/mobile/dressed_criminal_thug_human_female_01.iff"
-	},
+				"object/mobile/dressed_hooligan_rodian_female_01.iff",
+				"object/mobile/dressed_criminal_thug_human_female_01.iff"
+				},
 	lootGroups = {
 		{
 			groups = {

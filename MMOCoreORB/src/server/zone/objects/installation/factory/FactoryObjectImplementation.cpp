@@ -554,7 +554,7 @@ void FactoryObjectImplementation::createNewObject() {
 	if (crate == NULL)
 		crate = createNewFactoryCrate(prototype);
 	else {
-		Locker clocker(crate, _this.get());
+		Locker locker(crate);
 		crate->setUseCount(crate->getUseCount() + 1, false);
 
 		FactoryCrateObjectDeltaMessage3* dfcty3 = new FactoryCrateObjectDeltaMessage3(crate);
@@ -572,7 +572,6 @@ void FactoryObjectImplementation::createNewObject() {
 	currentRunCount++;
 
 	if (schematic->getManufactureLimit() < 1) {
-		Locker clocker(schematic, _this.get());
 		schematic->destroyObjectFromWorld(true);
 		schematic->destroyObjectFromDatabase(true);
 		stopFactory("manf_done", getDisplayedName(), "", currentRunCount);

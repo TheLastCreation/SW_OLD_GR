@@ -269,12 +269,8 @@ void AiAgentImplementation::loadTemplateData(CreatureTemplate* templateData) {
 		} else {
 			String newName = nm->makeCreatureName(npcTemplate->getRandomNameType());
 			newName += " (";
-
-			if (objectName == "")
-				newName += templateData->getCustomName();
-			else
-				newName += StringIdManager::instance()->getStringId(objectName.getFullPath().hashCode()).toString();
-
+			newName += StringIdManager::instance()->getStringId(objectName.getFullPath().hashCode()).toString();
+			StringIdManager::instance()->getStringId(objectName.getFullPath().hashCode()).toString();
 			newName += ")";
 			setCustomObjectName(newName, false);
 		}
@@ -1584,7 +1580,7 @@ void AiAgentImplementation::doMovement() {
 
 bool AiAgentImplementation::generatePatrol(int num, float dist) {
 	clearPatrolPoints();
-	clearSavedPatrolPoints();
+	savedPatrolPoints.removeAll();
 
 	SortedVector<ManagedReference<QuadTreeEntry*> > closeObjects;
 
@@ -1710,7 +1706,7 @@ int AiAgentImplementation::setDestination() {
 	case AiAgent::PATROLLING:
 		if (getPatrolPointSize() == 0) {
 			setPatrolPoints(savedPatrolPoints);
-			clearSavedPatrolPoints();
+			savedPatrolPoints.removeAll();
 		}
 
 		break;

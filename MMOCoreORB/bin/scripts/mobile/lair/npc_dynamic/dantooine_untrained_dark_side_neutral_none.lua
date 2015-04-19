@@ -6,7 +6,6 @@ dantooine_untrained_dark_side_neutral_none = Lair:new {
 	buildingsMedium = {},
 	buildingsHard = {},
 	buildingsVeryHard = {},
-	mobType = "npc",
 	buildingType = "none"
 }
 

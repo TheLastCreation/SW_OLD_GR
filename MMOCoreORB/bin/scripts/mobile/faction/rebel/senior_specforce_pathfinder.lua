@@ -1,6 +1,5 @@
 senior_specforce_pathfinder = Creature:new {
 	objectName = "@mob/creature_names:senior_specforce_pathfinder",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "rebel",
 	faction = "rebel",
 	level = 20,
@@ -26,11 +25,11 @@ senior_specforce_pathfinder = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/dressed_rebel_specforce_pathfinder_human_male_01.iff",
-		"object/mobile/dressed_rebel_specforce_pathfinder_moncal_female_01.iff",
-		"object/mobile/dressed_rebel_specforce_pathfinder_rodian_female_01.iff",
-		"object/mobile/dressed_rebel_specforce_pathfinder_twk_female_01.iff",
-		"object/mobile/dressed_rebel_specforce_pathfinder_twk_male_01.iff",
-		"object/mobile/dressed_rebel_specforce_pathfinder_zabrak_female_fat_01.iff",},
+	             "object/mobile/dressed_rebel_specforce_pathfinder_moncal_female_01.iff",
+	             "object/mobile/dressed_rebel_specforce_pathfinder_rodian_female_01.iff",
+	             "object/mobile/dressed_rebel_specforce_pathfinder_twk_female_01.iff",
+	             "object/mobile/dressed_rebel_specforce_pathfinder_twk_male_01.iff",
+	             "object/mobile/dressed_rebel_specforce_pathfinder_zabrak_female_fat_01.iff",},
 	lootGroups = {
 		{
 			groups = {
@@ -49,7 +48,7 @@ senior_specforce_pathfinder = Creature:new {
 	},
 	weapons = {"imperial_weapons_medium"},
 	reactionStf = "@npc_reaction/military",
-	personalityStf = "@hireling/hireling_military",
+	personalityStf = "@hireling/hireling_military",			
 	attacks = merge(brawlermaster,marksmanmaster)
 }
 

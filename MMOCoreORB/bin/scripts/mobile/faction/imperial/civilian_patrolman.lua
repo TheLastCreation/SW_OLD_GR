@@ -1,6 +1,5 @@
 civilian_patrolman = Creature:new {
 	objectName = "@mob/creature_names:imperial_civil_patrolman",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "imperial",
 	faction = "imperial",
 	level = 6,
@@ -31,7 +30,7 @@ civilian_patrolman = Creature:new {
 	weapons = {"imperial_weapons_light"},
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/military",
-	personalityStf = "@hireling/hireling_military",
+	personalityStf = "@hireling/hireling_military",	
 	attacks = merge(marksmannovice,brawlernovice)
 }
 

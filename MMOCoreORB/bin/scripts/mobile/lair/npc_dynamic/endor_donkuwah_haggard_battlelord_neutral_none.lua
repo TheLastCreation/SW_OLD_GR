@@ -10,7 +10,6 @@ endor_donkuwah_haggard_battlelord_neutral_none = Lair:new {
 	buildingsMedium = {},
 	buildingsHard = {},
 	buildingsVeryHard = {},
-	mobType = "npc",
 	buildingType = "none"
 }
 

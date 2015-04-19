@@ -221,6 +221,4 @@ int VendorMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject,
 	default:
 		return 0;
 	};
-
-	return 0;
 }

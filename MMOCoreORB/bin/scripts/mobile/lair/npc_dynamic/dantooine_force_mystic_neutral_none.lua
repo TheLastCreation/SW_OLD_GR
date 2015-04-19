@@ -6,7 +6,6 @@ dantooine_force_mystic_neutral_none = Lair:new {
 	buildingsMedium = {},
 	buildingsHard = {},
 	buildingsVeryHard = {},
-	mobType = "npc",
 	buildingType = "none"
 }
 

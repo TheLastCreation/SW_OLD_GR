@@ -6,7 +6,6 @@ rori_garyn_raiders_platoon_neutral_none = Lair:new {
 	buildingsMedium = {},
 	buildingsHard = {},
 	buildingsVeryHard = {},
-	mobType = "npc",
 	buildingType = "none"
 }
 

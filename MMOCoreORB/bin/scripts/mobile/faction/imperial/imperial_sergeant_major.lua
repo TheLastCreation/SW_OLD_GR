@@ -1,6 +1,5 @@
 imperial_sergeant_major = Creature:new {
 	objectName = "@mob/creature_names:imperial_sergeant_major",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "imperial",
 	faction = "imperial",
 	level = 19,

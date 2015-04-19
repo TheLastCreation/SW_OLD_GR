@@ -68,8 +68,6 @@ public:
 			return GENERALERROR;
 		}
 
-		Locker locker(player, pet);
-
 		// Check player HAM
 		int actionCost = player->calculateCostAdjustment(CreatureAttribute::QUICKNESS, 50 * trickNumber );
 		int mindCost = player->calculateCostAdjustment(CreatureAttribute::FOCUS, 50 * trickNumber );

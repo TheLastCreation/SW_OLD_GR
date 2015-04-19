@@ -1,6 +1,5 @@
 bith_assassin = Creature:new {
 	objectName = "@mob/creature_names:assassin",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "bith",
 	faction = "",
 	level = 18,
@@ -28,7 +27,7 @@ bith_assassin = Creature:new {
 
 	templates = {"object/mobile/dressed_cobral_hooligan_bith_female_01.iff"},
 	lootGroups = {
-		{
+      	{
 			groups = {
 				{group = "junk", chance = 4000000},
 				{group = "wearables_common", chance = 3000000},

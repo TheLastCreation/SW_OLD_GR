@@ -1,6 +1,5 @@
 mos_taike_veteran_guard = Creature:new {
 	objectName = "@mob/creature_names:mos_taike_guard_old",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "townsperson",
 	faction = "townsperson",
 	level = 21,

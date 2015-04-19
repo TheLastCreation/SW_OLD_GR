@@ -1,6 +1,5 @@
 lost_aqualish_marshall = Creature:new {
 	objectName = "@mob/creature_names:lost_aqualish_marshal",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "lost_aqualish",
 	faction = "lost_aqualish",
 	level = 25,

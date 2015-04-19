@@ -1,6 +1,5 @@
 proficient_gondula_worker = Creature:new {
 	objectName = "@mob/creature_names:proficient_gondula_worker",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "gondula_tribe",
 	faction = "gondula_tribe",
 	level = 35,

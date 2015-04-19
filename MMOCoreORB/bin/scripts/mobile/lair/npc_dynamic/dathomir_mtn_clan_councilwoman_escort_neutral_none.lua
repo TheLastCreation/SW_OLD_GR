@@ -10,7 +10,6 @@ dathomir_mtn_clan_councilwoman_escort_neutral_none = Lair:new {
 	buildingsMedium = {},
 	buildingsHard = {},
 	buildingsVeryHard = {},
-	mobType = "npc",
 	buildingType = "none"
 }
 

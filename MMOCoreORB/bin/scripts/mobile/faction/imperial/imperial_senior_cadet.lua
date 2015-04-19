@@ -1,6 +1,5 @@
 imperial_senior_cadet = Creature:new {
 	objectName = "@mob/creature_names:imperial_senior_cadet",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "imperial",
 	faction = "imperial",
 	level = 10,
@@ -51,7 +50,7 @@ imperial_senior_cadet = Creature:new {
 	},
 	weapons = {"ranged_weapons"},
 	reactionStf = "@npc_reaction/military",
-	personalityStf = "@hireling/hireling_military",
+	personalityStf = "@hireling/hireling_military",	
 	attacks = merge(brawlernovice,marksmannovice)
 }
 

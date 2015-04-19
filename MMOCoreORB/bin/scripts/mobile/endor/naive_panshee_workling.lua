@@ -1,6 +1,5 @@
 naive_panshee_workling = Creature:new {
 	objectName = "@mob/creature_names:naive_panshee_workling",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "panshee_tribe",
 	faction = "panshee_tribe",
 	level = 10,
@@ -29,8 +28,8 @@ naive_panshee_workling = Creature:new {
 		"object/mobile/dressed_ewok_f_01.iff",
 		"object/mobile/dressed_ewok_m_01.iff"},
 	lootGroups = {
-		{
-			groups = {
+		 {
+	        groups = {
 				{group = "ewok", chance = 10000000}
 			},
 			lootChance = 3000000

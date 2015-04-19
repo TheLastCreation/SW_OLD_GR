@@ -16,7 +16,7 @@ public:
 	}
 
 	void run() {
-		if (zone->getZoneServer()->isServerLoading()) {
+		if (!zone->hasManagersStarted()) {
 			schedule(1000);
 			return;
 		}

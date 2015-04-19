@@ -1,6 +1,5 @@
 weak_mercenary = Creature:new {
 	objectName = "@mob/creature_names:mercenary_weak",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "lok_mercenaries",
 	faction = "lok_mercenaries",
 	level = 34,
@@ -27,10 +26,10 @@ weak_mercenary = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {
-		"object/mobile/dressed_mercenary_weak_hum_m.iff",
-		"object/mobile/dressed_mercenary_weak_hum_f.iff",
-		"object/mobile/dressed_mercenary_weak_rod_m.iff"
-	},
+			"object/mobile/dressed_mercenary_weak_hum_m.iff",
+			"object/mobile/dressed_mercenary_weak_hum_f.iff",
+			"object/mobile/dressed_mercenary_weak_rod_m.iff"
+			},
 	lootGroups = {},
 	weapons = {"rebel_weapons_medium"},
 	conversationTemplate = "",

@@ -1,6 +1,5 @@
 tough_wookiee_brawler = Creature:new {
 	objectName = "@mob/creature_names:brawler",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "mercenary",
 	faction = "",
 	level = 14,
@@ -28,7 +27,7 @@ tough_wookiee_brawler = Creature:new {
 
 	templates = {"object/mobile/wookiee_male.iff"},
 	lootGroups = {
-		{
+      		{
 			groups = {
 				{group = "junk", chance = 4000000},
 				{group = "wearables_common", chance = 3000000},

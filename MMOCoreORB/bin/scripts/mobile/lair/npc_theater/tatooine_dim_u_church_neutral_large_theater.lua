@@ -6,7 +6,6 @@ tatooine_dim_u_church_neutral_large_theater = Lair:new {
 	buildingsMedium = {"object/building/poi/tatooine_dim_u_large1.iff","object/building/poi/tatooine_dim_u_large2.iff"},
 	buildingsHard = {"object/building/poi/tatooine_dim_u_large1.iff","object/building/poi/tatooine_dim_u_large2.iff"},
 	buildingsVeryHard = {"object/building/poi/tatooine_dim_u_large1.iff","object/building/poi/tatooine_dim_u_large2.iff"},
-	mobType = "npc",
 	buildingType = "theater"
 }
 

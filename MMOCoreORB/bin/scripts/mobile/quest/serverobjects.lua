@@ -1,5 +1,4 @@
 includeFile("quest/archeologist.lua")
-includeFile("quest/audience_member.lua")
 includeFile("quest/chadra_fan_assassin.lua")
 includeFile("quest/chadra_fan_female.lua")
 includeFile("quest/chadra_fan_male.lua")

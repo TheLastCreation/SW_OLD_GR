@@ -1,6 +1,5 @@
 rorgungan_scout = Creature:new {
 	objectName = "@mob/creature_names:rorgungan_scout",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "rorgungan",
 	faction = "rorgungan",
 	level = 12,
@@ -26,7 +25,7 @@ rorgungan_scout = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/gungan_s04_male.iff"},
-
+	
 	lootGroups = {
 		{
 			groups = {

@@ -130,8 +130,6 @@ bool CombatManager::attemptPeace(CreatureObject* attacker) {
 }
 
 void CombatManager::forcePeace(CreatureObject* attacker) {
-	assert(attacker->isLockedByCurrentThread());
-
 	DeltaVector<ManagedReference<SceneObject*> >* defenderList = attacker->getDefenderList();
 
 	for (int i = 0; i < defenderList->size(); ++i) {
@@ -322,10 +320,8 @@ int CombatManager::doTargetCombatAction(CreatureObject* attacker, WeaponObject* 
 	applyStates(attacker, defender, data);
 
 	// Return if it's a state only attack (intimidate, warcry, wookiee roar) so they don't apply dots or break combat delays
-	if (data.isStateOnlyAttack()) {
-		broadcastCombatAction(attacker, defender, weapon, data, hitVal);
+	if (data.isStateOnlyAttack())
 		return 0;
-	}
 
 	if (defender->hasAttackDelay())
 		defender->removeAttackDelay();
@@ -1662,16 +1658,8 @@ void CombatManager::applyStates(CreatureObject* creature, CreatureObject* target
 			}
 		}
 
-		if (!failed) {
-			if (effectType == CommandEffect::NEXTATTACKDELAY) {
-				StringIdChatParameter stringId("combat_effects", "delay_applied_other");
-				stringId.setTT(targetCreature);
-				stringId.setDI(effect.getStateLength());
-				creature->sendSystemMessage(stringId);
-			}
-
+		if (!failed)
 			data.getCommand()->applyEffect(targetCreature, effectType, effect.getStateStrength(), data.getCommandCRC());
-		}
 
 		// can move this to scripts, but only these states have fail messages
 		if (failed) {
@@ -1684,10 +1672,10 @@ void CombatManager::applyStates(CreatureObject* creature, CreatureObject* target
 				creature->sendSystemMessage("@cbt_spam:posture_change_fail");
 				break;
 			case CommandEffect::NEXTATTACKDELAY:
-				targetCreature->showFlyText("combat_effects", "warcry_miss", 0xFF, 0, 0 );
+				creature->sendSystemMessage("@combat_effects:warcry_miss");
 				break;
 			case CommandEffect::INTIMIDATE:
-				targetCreature->showFlyText("combat_effects", "intimidated_miss", 0xFF, 0, 0 );
+				creature->sendSystemMessage("@combat_effects:intimidated_miss");
 				break;
 			default:
 				break;

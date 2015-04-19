@@ -1,6 +1,5 @@
 gungan_hermit = Creature:new {
 	objectName = "@mob/creature_names:gungan_hermit",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "gungan",
 	faction = "gungan",
 	level = 7,
@@ -28,7 +27,7 @@ gungan_hermit = Creature:new {
 
 	templates = {"object/mobile/gungan_male.iff"},
 	lootGroups = {
-		{
+	    {
 			groups = {
 				{group = "junk", chance = 4000000},
 				{group = "gungan_common", chance = 2000000},
@@ -36,7 +35,7 @@ gungan_hermit = Creature:new {
 				{group = "loot_kit_parts", chance = 2000000}
 			},
 			lootChance = 3200000
-		}
+		}				
 	},
 	weapons = {"pirate_weapons_medium"},
 	conversationTemplate = "",

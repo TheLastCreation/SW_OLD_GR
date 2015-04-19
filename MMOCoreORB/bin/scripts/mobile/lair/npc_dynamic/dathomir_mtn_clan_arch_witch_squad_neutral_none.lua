@@ -9,7 +9,6 @@ dathomir_mtn_clan_arch_witch_squad_neutral_none = Lair:new {
 	buildingsMedium = {},
 	buildingsHard = {},
 	buildingsVeryHard = {},
-	mobType = "npc",
 	buildingType = "none"
 }
 

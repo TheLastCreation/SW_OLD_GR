@@ -1,6 +1,5 @@
 bh_pirate_captain = Creature:new {
 	objectName = "",
-	randomNameType = NAME_GENERIC_TAG,
 	customName = "a Pirate Captain",
 	socialGroup = "pirate",
 	faction = "",
@@ -28,8 +27,8 @@ bh_pirate_captain = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/dressed_criminal_slicer_human_male_01.iff",
-		"object/mobile/dressed_criminal_smuggler_human_male_01.iff",
-		"object/mobile/dressed_criminal_smuggler_human_female_01.iff"},
+			"object/mobile/dressed_criminal_smuggler_human_male_01.iff",
+			"object/mobile/dressed_criminal_smuggler_human_female_01.iff"},
 	lootGroups = {
 		{
 			groups = {

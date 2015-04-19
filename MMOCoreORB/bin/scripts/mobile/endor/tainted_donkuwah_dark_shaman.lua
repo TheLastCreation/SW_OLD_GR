@@ -1,6 +1,5 @@
 tainted_donkuwah_dark_shaman = Creature:new {
 	objectName = "@mob/creature_names:tainted_donkuwah_dark_shaman",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "donkuwah_tribe",
 	faction = "donkuwah_tribe",
 	level = 45,
@@ -27,11 +26,11 @@ tainted_donkuwah_dark_shaman = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {
-		"object/mobile/dulok_male.iff",
-		"object/mobile/dulok_female.iff"},
+			"object/mobile/dulok_male.iff",
+			"object/mobile/dulok_female.iff"},
 	lootGroups = {
-		{
-			groups = {
+		 {
+	        groups = {
 				{group = "donkuwah_common", chance = 9000000},
 				{group = "wearables_uncommon", chance = 1000000},
 			},

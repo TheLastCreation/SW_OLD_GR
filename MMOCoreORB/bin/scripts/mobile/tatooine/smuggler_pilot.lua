@@ -1,6 +1,5 @@
 smuggler_pilot = Creature:new {
 	objectName = "@npc_spawner_n:smuggler_pilot",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "townsperson",
 	faction = "townsperson",
 	level = 10,

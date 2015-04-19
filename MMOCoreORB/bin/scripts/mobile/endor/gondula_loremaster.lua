@@ -1,6 +1,5 @@
 gondula_loremaster = Creature:new {
 	objectName = "@mob/creature_names:gondula_loremaster",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "gondula_tribe",
 	faction = "gondula_tribe",
 	level = 20,
@@ -34,8 +33,8 @@ gondula_loremaster = Creature:new {
 		"object/mobile/dressed_ewok_m_10.iff",
 		"object/mobile/dressed_ewok_m_12.iff"},
 	lootGroups = {
-		{
-			groups = {
+		 {
+	        groups = {
 				{group = "ewok", chance = 10000000}
 			},
 			lootChance = 3000000

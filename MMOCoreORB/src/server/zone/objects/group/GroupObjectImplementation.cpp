@@ -17,6 +17,7 @@
 #include "server/zone/objects/creature/CreatureObject.h"
 #include "server/zone/ZoneProcessServer.h"
 #include "server/zone/ZoneServer.h"
+#include "server/zone/objects/player/events/SquadLeaderBonusTask.h"
 #include "server/zone/managers/objectcontroller/ObjectController.h"
 #include "server/zone/objects/group/RemovePetsFromGroupTask.h"
 #include "server/zone/objects/group/tasks/UpdateNearestMissionForGroupTask.h"
@@ -299,6 +300,7 @@ void GroupObjectImplementation::addGroupModifiers() {
 
 		addGroupModifiers(player);
 	}
+	scheduleSquadLeaderBonusTask();
 }
 
 void GroupObjectImplementation::removeGroupModifiers() {
@@ -497,6 +499,22 @@ void GroupObjectImplementation::scheduleUpdateNearestMissionForGroup(unsigned in
 	else {
 		task->schedule(30000);
 	}
+}
+
+void GroupObjectImplementation::scheduleSquadLeaderBonusTask() {
+	Reference<CreatureObject*> leader = (getLeader()).castTo<CreatureObject*>();
+
+	if (leader == NULL)
+		return;
+
+	if (!leader->isPlayerCreature())
+		return;
+
+	if (squadLeaderBonusTask == NULL)
+		squadLeaderBonusTask = new SquadLeaderBonusTask(leader);
+
+	if (!squadLeaderBonusTask->isScheduled())
+		squadLeaderBonusTask->schedule(300000);
 }
 
 void GroupObjectImplementation::updateLootRules() {

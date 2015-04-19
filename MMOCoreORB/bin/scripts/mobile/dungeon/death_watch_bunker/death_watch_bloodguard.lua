@@ -1,6 +1,5 @@
 death_watch_bloodguard = Creature:new {
 	objectName = "@mob/creature_names:mand_bunker_dthwatch_red",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "death_watch",
 	faction = "",
 	level = 121,
@@ -11,7 +10,7 @@ death_watch_bloodguard = Creature:new {
 	baseHAM = 50000,
 	baseHAMmax = 50000,
 	armor = 2,
-	resists = {55,55,70,60,30,30,100,40,-1},
+	resists = {40,55,70,60,30,30,50,40,55},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -30,10 +29,12 @@ death_watch_bloodguard = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "death_watch_bunker_commoners", chance = 6000000},
-				{group = "death_watch_bunker_lieutenants", chance = 4000000}
+				{group = "death_watch_bunker_commoners", chance = 500000},
+				{group = "death_watch_bunker_lieutenants", chance = 3750000},
+				{group = "mandalorian_schemes", chance = 3750000},
+				{group = "crystals_premium", chance = 2000000}
 			},
-			lootChance = 1000000
+			lootChance = 10000000
 		}
 	},
 	weapons = {"pirate_weapons_heavy"},

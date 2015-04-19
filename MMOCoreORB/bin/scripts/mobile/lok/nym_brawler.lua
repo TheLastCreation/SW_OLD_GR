@@ -1,6 +1,5 @@
 nym_brawler = Creature:new {
 	objectName = "@mob/creature_names:nym_brawler",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "nym",
 	faction = "nym",
 	level = 25,
@@ -27,12 +26,12 @@ nym_brawler = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/dressed_nym_brawler_hum_f.iff",
-		"object/mobile/dressed_nym_brawler_hum_m.iff",
-		"object/mobile/dressed_nym_brawler_nikto_m.iff",
-		"object/mobile/dressed_nym_brawler_rod_f.iff",
-		"object/mobile/dressed_nym_brawler_rod_m.iff"},
+				"object/mobile/dressed_nym_brawler_hum_m.iff",
+				"object/mobile/dressed_nym_brawler_nikto_m.iff",
+				"object/mobile/dressed_nym_brawler_rod_f.iff",
+				"object/mobile/dressed_nym_brawler_rod_m.iff"},
 	lootGroups = {
-		{
+	    {
 			groups = {
 				{group = "junk", chance = 6500000},
 				{group = "nyms_common", chance = 1000000},

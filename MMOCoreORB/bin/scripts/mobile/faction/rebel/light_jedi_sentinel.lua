@@ -1,8 +1,7 @@
 light_jedi_sentinel = Creature:new {
 	objectName = "@mob/creature_names:light_jedi_sentinel",
-	randomNameType = NAME_GENERIC_TAG,
-	socialGroup = "self",
-	faction = "",
+	socialGroup = "rebel",
+	faction = "rebel",
 	level = 301,
 	chanceHit = 30,
 	damageMin = 2645,
@@ -36,10 +35,25 @@ light_jedi_sentinel = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "holocron_light", chance = 10000000}
+				{group = "holocron_dark", chance = 600000},
+				{group = "holocron_light", chance = 600000},
+				{group = "crystals_premium", chance = 600000},
+				{group = "rifles", chance = 1300000},
+				{group = "pistols", chance = 1300000},
+				{group = "melee_weapons", chance = 1300000},
+				{group = "armor_attachments", chance = 1100000},
+				{group = "clothing_attachments", chance = 1100000},
+				{group = "carbines", chance = 1300000},
+				{group = "wearables_scarce", chance = 800000}				
 			},
-			lootChance = 500000
-		}
+			lootChance = 8500000
+		},
+		{
+			groups = {
+				{group = "crystal_named", chance = 10000000}				
+			},
+			lootChance = 100000000
+		},
 	},
 	weapons = {"light_jedi_weapons"},
 	conversationTemplate = "",

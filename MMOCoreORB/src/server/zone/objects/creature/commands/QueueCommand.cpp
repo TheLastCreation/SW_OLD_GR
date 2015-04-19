@@ -10,7 +10,6 @@
 #include "server/zone/objects/player/PlayerObject.h"
 #include "server/zone/objects/player/FactionStatus.h"
 #include "server/zone/objects/tangible/weapon/WeaponObject.h"
-#include "server/zone/managers/combat/CombatManager.h"
 
 QueueCommand::QueueCommand(const String& skillname, ZoneProcessServer* serv) : Logger() {
 	server = serv;
@@ -194,7 +193,7 @@ int QueueCommand::doCommonMedicalCommandChecks(CreatureObject* creature) const {
 	if (!checkInvalidLocomotions(creature))
 		return INVALIDLOCOMOTION;
 
-	if (creature->hasAttackDelay() || !creature->checkPostureChangeDelay()) // no message associated with this
+	if (creature->hasAttackDelay()) // no message associated with this
 		return GENERALERROR;
 
 	if (creature->isProne() || creature->isMeditating() || creature->isSwimming()) {
@@ -221,8 +220,7 @@ void QueueCommand::checkForTef(CreatureObject* creature, CreatureObject* target)
 	if (target->isPlayerCreature()) {
 		PlayerObject* targetGhost = target->getPlayerObject().get();
 
-		if (!CombatManager::instance()->areInDuel(creature, target)
-				&& targetGhost != NULL && targetGhost->getFactionStatus() == FactionStatus::OVERT) {
+		if (targetGhost != NULL && targetGhost->getFactionStatus() == FactionStatus::OVERT) {
 			ghost->updateLastPvpCombatActionTimestamp();
 		}
 	} else if (target->isPet()) {
@@ -231,8 +229,7 @@ void QueueCommand::checkForTef(CreatureObject* creature, CreatureObject* target)
 		if (owner != NULL && owner->isPlayerCreature()) {
 			PlayerObject* ownerGhost = owner->getPlayerObject().get();
 
-			if (!CombatManager::instance()->areInDuel(creature, owner)
-					&& ownerGhost != NULL && ownerGhost->getFactionStatus() == FactionStatus::OVERT) {
+			if (ownerGhost != NULL && ownerGhost->getFactionStatus() == FactionStatus::OVERT) {
 				ghost->updateLastPvpCombatActionTimestamp();
 			}
 		}

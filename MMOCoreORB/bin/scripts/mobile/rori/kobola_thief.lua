@@ -1,6 +1,5 @@
 kobola_thief = Creature:new {
 	objectName = "@mob/creature_names:kobola_thief",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "kobola",
 	faction = "kobola",
 	level = 9,

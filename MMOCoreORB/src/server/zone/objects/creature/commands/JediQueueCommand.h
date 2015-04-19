@@ -22,8 +22,6 @@ protected:
 	String clientEffect;
 	float speedMod;
 
-	Vector<uint32> buffCRCs;
-
 public:
 	JediQueueCommand(const String& name, ZoneProcessServer* server) : QueueCommand(name, server) {
 		forceCost = 0;
@@ -41,14 +39,14 @@ public:
 		return true;
 	}
 
-	int doJediSelfBuffCommand(CreatureObject* creature) const {
+	int doJediSelfBuffCommand(CreatureObject* creature, Vector<uint32> buffCRCs, VectorMap<String, int> skillMods) const {
 		// Do checks first.
 		int res = doCommonJediSelfChecks(creature);
 
 		if (res != SUCCESS)
 			return res;
 
-		ManagedReference<Buff*> buff = createJediSelfBuff(creature);
+		ManagedReference<Buff*> buff = createJediSelfBuff(creature, buffCRCs, skillMods);
 
 		// Return if buff is NOT valid.
 		if (buff == NULL)
@@ -93,7 +91,7 @@ public:
 		return SUCCESS;
 	}
 
-	ManagedReference<Buff*> createJediSelfBuff(CreatureObject* creature) const {
+	ManagedReference<Buff*> createJediSelfBuff(CreatureObject* creature, Vector<uint32> buffCRCs, VectorMap<String, int> skillMods) const {
 
 		// Check for current buff and other buffs supplied in the vector. If they have any, return error.
 		for (int i=0; i < buffCRCs.size(); ++i) {

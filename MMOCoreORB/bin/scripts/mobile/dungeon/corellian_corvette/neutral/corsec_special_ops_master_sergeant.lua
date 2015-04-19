@@ -1,6 +1,5 @@
 corsec_special_ops_master_sergeant = Creature:new {
 	objectName = "@mob/creature_names:corsec_master_sergeant_aggro",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "corsec",
 	faction = "corsec",
 	level = 140,
@@ -27,13 +26,13 @@ corsec_special_ops_master_sergeant = Creature:new {
 	diet = HERBIVORE,
 
 	templates = { "object/mobile/dressed_corsec_officer_human_male_01.iff",
-		"object/mobile/dressed_corsec_officer_human_female_01.iff"},
+			"object/mobile/dressed_corsec_officer_human_female_01.iff"},
 	lootGroups = {
-		{
+	  {
 			groups = {
 				{group = "junk", chance = 4500000},
 				{group = "wearables_rare", chance = 1000000},
-				{group = "clothing_attachments", chance = 250000},
+                                {group = "clothing_attachments", chance = 250000},
 				{group = "armor_attachments", chance = 250000},
 				{group = "corsec_weapons", chance = 2500000},
 				{group = "crystals_premium", chance = 650000},

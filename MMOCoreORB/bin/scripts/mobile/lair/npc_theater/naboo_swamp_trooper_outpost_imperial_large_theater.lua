@@ -6,7 +6,6 @@ naboo_swamp_trooper_outpost_imperial_large_theater = Lair:new {
 	buildingsMedium = {"object/building/poi/naboo_swamhunt_large1.iff","object/building/poi/naboo_swamhunt_large2.iff"},
 	buildingsHard = {"object/building/poi/naboo_swamhunt_large1.iff","object/building/poi/naboo_swamhunt_large2.iff"},
 	buildingsVeryHard = {"object/building/poi/naboo_swamhunt_large1.iff","object/building/poi/naboo_swamhunt_large2.iff"},
-	mobType = "npc",
 	buildingType = "theater"
 }
 

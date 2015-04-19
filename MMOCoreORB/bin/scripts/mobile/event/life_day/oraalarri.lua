@@ -1,6 +1,7 @@
 oraalarri = Creature:new {
 	customName = "Oraalarri the Elder",
 	socialGroup = "townsperson",
+	pvpFaction = "townsperson",
 	faction = "townsperson",
 	level = 4,
 	chanceHit = 0.24,

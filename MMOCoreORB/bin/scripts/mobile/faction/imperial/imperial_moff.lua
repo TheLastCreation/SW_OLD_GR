@@ -1,7 +1,6 @@
 imperial_moff = Creature:new {
 	objectName = "",
-	randomNameType = NAME_GENERIC_TAG,
-	customName = "an Imperial Moff",
+	customName = "Imperial Moff",
 	socialGroup = "imperial",
 	faction = "imperial",
 	level = 28,
@@ -47,7 +46,7 @@ imperial_moff = Creature:new {
 	weapons = {"imperial_weapons_heavy"},
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/military",
-	personalityStf = "@hireling/hireling_military",
+	personalityStf = "@hireling/hireling_military",	
 	attacks = merge(riflemanmaster,carbineermaster,brawlermaster)
 }
 

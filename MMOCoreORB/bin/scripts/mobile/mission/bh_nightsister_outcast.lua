@@ -1,6 +1,5 @@
 bh_nightsister_outcast = Creature:new {
 	objectName = "@mob/creature_names:nightsister_outcast",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "nightsister",
 	faction = "nightsister",
 	level = 81,

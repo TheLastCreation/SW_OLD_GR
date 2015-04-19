@@ -1,6 +1,5 @@
 rogue = Creature:new {
 	objectName = "@mob/creature_names:rogue",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "thug",
 	faction = "thug",
 	level = 9,
@@ -44,7 +43,7 @@ rogue = Creature:new {
 		"object/mobile/dressed_criminal_thug_zabrak_female_01.iff"
 	},
 	lootGroups = {
-		{
+      		{
 			groups = {
 				{group = "junk", chance = 4000000},
 				{group = "wearables_common", chance = 3000000},

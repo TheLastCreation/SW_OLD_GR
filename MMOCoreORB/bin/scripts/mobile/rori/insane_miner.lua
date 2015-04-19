@@ -1,6 +1,5 @@
 insane_miner = Creature:new {
 	objectName = "",
-	randomNameType = NAME_GENERIC_TAG,
 	customName = "an Insane Miner",
 	socialGroup = "self",
 	faction = "",
@@ -28,7 +27,7 @@ insane_miner = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/dressed_kobola_miner_human_male_01.iff",
-		"object/mobile/dressed_kobola_miner_human_female_01.iff"
+				 "object/mobile/dressed_kobola_miner_human_female_01.iff"
 	},
 	lootGroups = {},
 	weapons = {"pirate_weapons_medium"},

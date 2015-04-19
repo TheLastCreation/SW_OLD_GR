@@ -1,6 +1,5 @@
 gunrunner = Creature:new {
 	objectName = "@mob/creature_names:gunrunner",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "mercenary",
 	faction = "",
 	level = 10,

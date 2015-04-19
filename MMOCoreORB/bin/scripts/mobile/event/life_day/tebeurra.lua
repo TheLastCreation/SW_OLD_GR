@@ -1,6 +1,7 @@
 tebeurra = Creature:new {
 	customName = "Tebeurra",
 	socialGroup = "townsperson",
+	pvpFaction = "townsperson",
 	faction = "townsperson",
 	level = 4,
 	chanceHit = 0.24,

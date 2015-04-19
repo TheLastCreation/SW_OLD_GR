@@ -1,6 +1,5 @@
 imperial_noncom = Creature:new {
 	objectName = "@mob/creature_names:imperial_noncom",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "imperial",
 	faction = "imperial",
 	level = 14,
@@ -46,7 +45,7 @@ imperial_noncom = Creature:new {
 	},
 	weapons = {"imperial_weapons_light"},
 	reactionStf = "@npc_reaction/military",
-	personalityStf = "@hireling/hireling_military",
+	personalityStf = "@hireling/hireling_military",	
 	attacks = merge(brawlermid,marksmanmid)
 }
 

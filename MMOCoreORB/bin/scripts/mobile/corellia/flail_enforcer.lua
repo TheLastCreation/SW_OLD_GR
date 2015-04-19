@@ -1,6 +1,5 @@
 flail_enforcer = Creature:new {
 	objectName = "",
-	randomNameType = NAME_GENERIC_TAG,
 	customName = "a Flail enforcer",
 	socialGroup = "flail",
 	faction = "flail",

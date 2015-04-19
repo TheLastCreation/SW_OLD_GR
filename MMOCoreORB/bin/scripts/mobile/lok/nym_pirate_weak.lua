@@ -1,6 +1,5 @@
 nym_pirate_weak = Creature:new {
 	objectName = "@mob/creature_names:nym_pirate_weak",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "nym",
 	faction = "nym",
 	level = 26,
@@ -26,11 +25,11 @@ nym_pirate_weak = Creature:new {
 	optionsBitmask = 128,
 	diet = HERBIVORE,
 
-	templates = {"object/mobile/dressed_nym_pirate_weak_hum_f.iff",
-		"object/mobile/dressed_nym_pirate_weak_rod_m.iff",
-		"object/mobile/dressed_nym_pirate_weak_nikto_m.iff",
-		"object/mobile/dressed_nym_pirate_weak_hum_m.iff",
-		"object/mobile/dressed_nym_pirate_weak_rod_f.iff"},
+	templates = {"object/mobile/dressed_nym_pirate_weak_hum_f.iff", 
+				"object/mobile/dressed_nym_pirate_weak_rod_m.iff",
+				"object/mobile/dressed_nym_pirate_weak_nikto_m.iff",
+				"object/mobile/dressed_nym_pirate_weak_hum_m.iff",
+				"object/mobile/dressed_nym_pirate_weak_rod_f.iff"},
 	lootGroups = {
 		{
 			groups = {

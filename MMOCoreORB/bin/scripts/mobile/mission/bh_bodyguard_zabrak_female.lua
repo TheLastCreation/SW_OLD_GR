@@ -1,6 +1,5 @@
 bh_bodyguard_zabrak_female = Creature:new {
 	objectName = "@mob/creature_names:bodyguard",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "thug",
 	faction = "thug",
 	level = 18,

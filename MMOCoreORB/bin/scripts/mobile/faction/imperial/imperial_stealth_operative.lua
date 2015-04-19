@@ -1,6 +1,5 @@
 imperial_stealth_operative = Creature:new {
 	objectName = "@mob/creature_names:assassin_mission_recruiter_imperial",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "imperial",
 	faction = "imperial",
 	level = 16,
@@ -28,7 +27,7 @@ imperial_stealth_operative = Creature:new {
 
 	templates = {"object/mobile/dressed_imperial_soldier_m.iff"},
 	lootGroups = {
-		{}
+		{}			
 	},
 	weapons = {},
 	conversationTemplate = "",

@@ -1,6 +1,5 @@
 tainted_korga_dark_shaman = Creature:new {
 	objectName = "@mob/creature_names:tainted_korga_dark_shaman",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "korga_tribe",
 	faction = "korga_tribe",
 	level = 24,
@@ -28,8 +27,8 @@ tainted_korga_dark_shaman = Creature:new {
 
 	templates = {"object/mobile/dulok_male.iff"},
 	lootGroups = {
-		{
-			groups = {
+		 {
+	        groups = {
 				{group = "ewok", chance = 9000000},
 				{group = "wearables_uncommon", chance = 1000000},
 			},

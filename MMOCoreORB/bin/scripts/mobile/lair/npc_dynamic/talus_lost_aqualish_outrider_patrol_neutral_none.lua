@@ -6,7 +6,6 @@ talus_lost_aqualish_outrider_patrol_neutral_none = Lair:new {
 	buildingsMedium = {},
 	buildingsHard = {},
 	buildingsVeryHard = {},
-	mobType = "npc",
 	buildingType = "none"
 }
 

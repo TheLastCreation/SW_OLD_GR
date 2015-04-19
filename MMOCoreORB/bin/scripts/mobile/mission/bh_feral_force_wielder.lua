@@ -1,6 +1,5 @@
 bh_feral_force_wielder = Creature:new {
 	objectName = "@mob/creature_names:feral_force_wilder",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "force",
 	faction = "",
 	level = 115,
@@ -65,7 +64,7 @@ bh_feral_force_wielder = Creature:new {
 				{group = "clothing_attachments", chance = 1500000}
 			},
 			lootChance = 6000000
-		},
+		},			
 	},
 	weapons = {"mixed_force_weapons"},
 	conversationTemplate = "",

@@ -1,6 +1,5 @@
 bh_spice_fiend = Creature:new {
 	objectName = "@mob/creature_names:spice_fiend",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "thug",
 	faction = "thug",
 	level = 8,

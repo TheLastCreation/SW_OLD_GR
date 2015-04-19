@@ -6,7 +6,6 @@ dathomir_escaped_mtn_clan_slaves_neutral_none = Lair:new {
 	buildingsMedium = {},
 	buildingsHard = {},
 	buildingsVeryHard = {},
-	mobType = "npc",
 	buildingType = "none"
 }
 

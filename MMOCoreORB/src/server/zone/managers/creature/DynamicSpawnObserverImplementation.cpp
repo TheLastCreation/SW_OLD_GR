@@ -119,8 +119,6 @@ void DynamicSpawnObserverImplementation::spawnInitialMobiles(SceneObject* buildi
 			} else {
 				AiAgent* ai = cast<AiAgent*>( creo.get());
 
-				Locker clocker(ai, building);
-
 				ai->setDespawnOnNoPlayerInRange(false);
 				ai->setHomeLocation(x, z, y);
 				ai->setRespawnTimer(0);

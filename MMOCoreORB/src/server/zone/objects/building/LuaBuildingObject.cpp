@@ -109,8 +109,6 @@ int LuaBuildingObject::spawnChildCreature(lua_State* L) {
 	int respawnTimer = lua_tointeger(L, -6);
 	String mobile = lua_tostring(L, -7);
 
-	Locker locker(realObject);
-
 	realObject->spawnChildCreature(mobile, respawnTimer, x, z, y, heading, parentID);
 
 	return 0;

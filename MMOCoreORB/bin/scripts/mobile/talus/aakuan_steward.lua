@@ -1,6 +1,5 @@
 aakuan_steward = Creature:new {
 	objectName = "@mob/creature_names:aakuan_steward",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "aakuans",
 	faction = "aakuans",
 	level = 14,

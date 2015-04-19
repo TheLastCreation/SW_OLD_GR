@@ -1,6 +1,5 @@
 death_watch_wraith = Creature:new {
 	objectName = "@mob/creature_names:mand_bunker_dthwatch_silver",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "death_watch",
 	faction = "",
 	level = 178,
@@ -8,10 +7,10 @@ death_watch_wraith = Creature:new {
 	damageMin = 1020,
 	damageMax = 1750,
 	baseXp = 16794,
-	baseHAM = 120000,
-	baseHAMmax = 120000,
+	baseHAM = 50000,
+	baseHAMmax = 50000,
 	armor = 2,
-	resists = {75,75,90,80,45,45,100,70,-1},
+	resists = {40,75,90,80,45,45,50,70,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -30,12 +29,13 @@ death_watch_wraith = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "death_watch_bunker_commoners",   chance = 6300000},
+				{group = "death_watch_bunker_commoners",   chance = 5800000},
 				{group = "death_watch_bunker_lieutenants", chance = 3500000},
 				{group = "death_watch_bunker_ingredient_protective",  chance = 100000},
+				{group = "mandalorian_schemes", chance = 500000},
 				{group = "death_watch_bunker_ingredient_binary",  chance = 100000}
 			},
-			lootChance = 1500000
+			lootChance = 10000000
 		}
 	},
 	weapons = {"pirate_weapons_heavy"},

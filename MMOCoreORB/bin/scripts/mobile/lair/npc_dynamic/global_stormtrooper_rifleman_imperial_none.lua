@@ -6,7 +6,6 @@ global_stormtrooper_rifleman_imperial_none = Lair:new {
 	buildingsMedium = {},
 	buildingsHard = {},
 	buildingsVeryHard = {},
-	mobType = "npc",
 	buildingType = "none"
 }
 

@@ -1,6 +1,5 @@
 ewok_outcast = Creature:new {
 	objectName = "@mob/creature_names:ewok_outcast",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "self",
 	faction = "gondula_tribe",
 	level = 31,
@@ -28,8 +27,8 @@ ewok_outcast = Creature:new {
 
 	templates = {"object/mobile/dressed_ewok_m_04.iff"},
 	lootGroups = {
-		{
-			groups = {
+		 {
+	        groups = {
 				{group = "ewok", chance = 10000000}
 			},
 			lootChance = 1000000

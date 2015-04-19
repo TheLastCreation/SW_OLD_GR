@@ -1,6 +1,5 @@
 binayre_scalawag = Creature:new {
 	objectName = "@mob/creature_names:binayre_scalawag",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "binayre",
 	faction = "binayre",
 	level = 11,

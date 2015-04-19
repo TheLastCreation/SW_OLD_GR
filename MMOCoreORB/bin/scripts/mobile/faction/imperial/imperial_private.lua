@@ -1,6 +1,5 @@
 imperial_private = Creature:new {
 	objectName = "@mob/creature_names:imperial_private",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "imperial",
 	faction = "imperial",
 	level = 15,
@@ -51,7 +50,7 @@ imperial_private = Creature:new {
 	},
 	weapons = {"imperial_weapons_light"},
 	reactionStf = "@npc_reaction/military",
-	personalityStf = "@hireling/hireling_military",
+	personalityStf = "@hireling/hireling_military",	
 	attacks = merge(brawlermid,marksmanmid)
 }
 

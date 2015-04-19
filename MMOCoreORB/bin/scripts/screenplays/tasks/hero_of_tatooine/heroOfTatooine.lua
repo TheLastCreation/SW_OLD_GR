@@ -332,7 +332,7 @@ function HeroOfTatooineScreenPlay:doIntellectSpawn()
 end
 
 function HeroOfTatooineScreenPlay:getIntellectLiarName(liarNum)
-	local liarId = readData("hero_of_tat:liar_" .. liarNum + 1)
+	local liarId = readData("hero_of_tat:liar_" .. liarNum)
 	local pLiar = getSceneObject(liarId)
 
 	if (pLiar == nil) then
@@ -970,17 +970,16 @@ function HeroOfTatooineScreenPlay:doHonorFail(pPlayer)
 	--House shake effect
 	playClientEffectLoc(SceneObject(pPlayer):getObjectID(), "clienteffect/cr_bodyfall_huge.cef", "tatooine", -4.8, 0.3, -2.3, 4005941)
 
-	createEvent(500, "HeroOfTatooineScreenPlay", "doStartPatrol", pPirate1)
-	createEvent(500, "HeroOfTatooineScreenPlay", "doStartPatrol", pPirate2)
+	AiAgent(pPirate1):setAiTemplate("manualescortwalk") -- Don't move unless patrol point is added to list, walking speed
+	AiAgent(pPirate1):setFollowState(4) -- Patrolling
+	HeroOfTatooineScreenPlay:doHonorStep(pPirate1)
 
-	createEvent(3500, "HeroOfTatooineScreenPlay", "doFailHonorPhase", pPlayer)
+	AiAgent(pPirate2):setAiTemplate("manualescortwalk") -- Don't move unless patrol point is added to list, walking speed
+	AiAgent(pPirate2):setFollowState(4) -- Patrolling
+	HeroOfTatooineScreenPlay:doHonorStep(pPirate2)
+
+	createEvent(3000, "HeroOfTatooineScreenPlay", "doFailHonorPhase", pPlayer)
 	createEvent(120000, "HeroOfTatooineScreenPlay", "doRanchHouseCleanup", pPlayer)
-end
-
-function HeroOfTatooineScreenPlay:doStartPatrol(pNpc)
-	AiAgent(pNpc):setAiTemplate("manualescortwalk") -- Don't move unless patrol point is added to list, walking speed
-	AiAgent(pNpc):setFollowState(4) -- Patrolling
-	HeroOfTatooineScreenPlay:doHonorStep(pNpc)
 end
 
 function HeroOfTatooineScreenPlay:doFailHonorPhase(pPlayer)
@@ -1249,9 +1248,17 @@ function HeroOfTatooineScreenPlay:doHonorSuccess(pPlayer)
 		CreatureObject(pWife):setOptionsBitmask(128) -- No longer conversable
 	end
 
-	createEvent(500, "HeroOfTatooineScreenPlay", "doStartPatrol", pRancher)
-	createEvent(500, "HeroOfTatooineScreenPlay", "doStartPatrol", pTrooper1)
-	createEvent(500, "HeroOfTatooineScreenPlay", "doStartPatrol", pTrooper2)
+	AiAgent(pRancher):setAiTemplate("manualescortwalk") -- Don't move unless patrol point is added to list, walking speed
+	AiAgent(pRancher):setFollowState(4) -- Patrolling
+	HeroOfTatooineScreenPlay:doHonorStep(pRancher)
+
+	AiAgent(pTrooper1):setAiTemplate("manualescortwalk") -- Don't move unless patrol point is added to list, walking speed
+	AiAgent(pTrooper1):setFollowState(4) -- Patrolling
+	HeroOfTatooineScreenPlay:doHonorStep(pTrooper1)
+
+	AiAgent(pTrooper2):setAiTemplate("manualescortwalk") -- Don't move unless patrol point is added to list, walking speed
+	AiAgent(pTrooper2):setFollowState(4) -- Patrolling
+	HeroOfTatooineScreenPlay:doHonorStep(pTrooper2)
 
 	createEvent(120000, "HeroOfTatooineScreenPlay", "doRanchHouseCleanup", pPlayer)
 end
@@ -1275,8 +1282,13 @@ function HeroOfTatooineScreenPlay:doHonorSuccessPirates()
 	createObserver(DESTINATIONREACHED, "HeroOfTatooineScreenPlay", "honorDestReached", pPirate1)
 	createObserver(DESTINATIONREACHED, "HeroOfTatooineScreenPlay", "honorDestReached", pPirate2)
 
-	createEvent(500, "HeroOfTatooineScreenPlay", "doStartPatrol", pPirate1)
-	createEvent(500, "HeroOfTatooineScreenPlay", "doStartPatrol", pPirate2)
+	AiAgent(pPirate1):setAiTemplate("manualescortwalk") -- Don't move unless patrol point is added to list, walking speed
+	AiAgent(pPirate1):setFollowState(4) -- Patrolling
+	HeroOfTatooineScreenPlay:doHonorStep(pPirate1)
+
+	AiAgent(pPirate2):setAiTemplate("manualescortwalk") -- Don't move unless patrol point is added to list, walking speed
+	AiAgent(pPirate2):setFollowState(4) -- Patrolling
+	HeroOfTatooineScreenPlay:doHonorStep(pPirate2)
 end
 
 function HeroOfTatooineScreenPlay:onEnteredRanchHouse(pHouse, pObject)

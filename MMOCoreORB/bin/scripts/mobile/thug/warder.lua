@@ -1,6 +1,5 @@
 warder = Creature:new {
 	objectName = "",
-	randomNameType = NAME_GENERIC_TAG,
 	customName = "a Warder",
 	socialGroup = "wilder",
 	faction = "",
@@ -29,7 +28,7 @@ warder = Creature:new {
 
 	templates = {"object/mobile/dressed_aakuan_warder_zabrak_male_01.iff"},
 	lootGroups = {
-		{
+      		{
 			groups = {
 				{group = "junk", chance = 4000000},
 				{group = "wearables_common", chance = 3000000},

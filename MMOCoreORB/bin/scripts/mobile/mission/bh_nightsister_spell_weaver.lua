@@ -1,6 +1,5 @@
 bh_nightsister_spell_weaver = Creature:new {
 	objectName = "@mob/creature_names:nightsister_spell_weaver",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "nightsister",
 	faction = "nightsister",
 	level = 107,

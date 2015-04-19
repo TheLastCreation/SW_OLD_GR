@@ -1,6 +1,5 @@
 marooned_pirate = Creature:new {
 	objectName = "@mob/creature_names:marooned_pirate",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "pirate",
 	faction = "pirate",
 	level = 19,
@@ -34,7 +33,7 @@ marooned_pirate = Creature:new {
 		"object/mobile/dressed_marooned_pirate_rod_f.iff",
 		"object/mobile/dressed_marooned_pirate_rod_m.iff",
 		"object/mobile/dressed_marooned_pirate_tran_m.iff"
-	},
+		},
 	lootGroups = {
 		{
 			groups = {

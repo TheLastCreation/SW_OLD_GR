@@ -1,6 +1,5 @@
 bith_musician = Creature:new {
-	objectName = "",
-	randomNameType = NAME_GENERIC_TAG,
+	objectName = "@npc_name:bith_base_male",
 	customName = "a Bith Musician",
 	socialGroup = "townsperson",
 	faction = "townsperson",

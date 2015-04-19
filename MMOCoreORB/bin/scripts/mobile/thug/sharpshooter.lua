@@ -1,6 +1,5 @@
 sharpshooter = Creature:new {
 	objectName = "@mob/creature_names:sharpshooter",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "mercenary",
 	faction = "",
 	level = 16,
@@ -26,9 +25,9 @@ sharpshooter = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/dressed_criminal_thug_rodian_male_01.iff",
-		"object/mobile/dressed_criminal_thug_rodian_female_01.iff"},
+				 "object/mobile/dressed_criminal_thug_rodian_female_01.iff"},
 	lootGroups = {
-		{
+      	{
 			groups = {
 				{group = "junk", chance = 4000000},
 				{group = "wearables_common", chance = 3000000},

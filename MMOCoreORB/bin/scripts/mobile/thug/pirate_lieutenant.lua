@@ -1,6 +1,5 @@
 pirate_lieutenant = Creature:new {
 	objectName = "@mob/creature_names:pirate_lieutenant",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "pirate",
 	faction = "pirate",
 	level = 15,
@@ -46,7 +45,7 @@ pirate_lieutenant = Creature:new {
 		"object/mobile/dressed_criminal_thug_zabrak_female_01.iff"
 	},
 	lootGroups = {
-		{
+      	{
 			groups = {
 				{group = "junk", chance = 4000000},
 				{group = "wearables_common", chance = 3000000},

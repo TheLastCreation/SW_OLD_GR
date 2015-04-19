@@ -1,6 +1,5 @@
 rodian_clan_warchief = Creature:new {
 	objectName = "@mob/creature_names:rodian_clan_warchief",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "rodian",
 	faction = "",
 	level = 13,
@@ -28,7 +27,7 @@ rodian_clan_warchief = Creature:new {
 
 	templates = {"object/mobile/dressed_tatooine_rodian_clan_warchief.iff"},
 	lootGroups = {
-		{
+      	{
 			groups = {
 				{group = "junk", chance = 3000000},
 				{group = "wearables_common", chance = 2000000},

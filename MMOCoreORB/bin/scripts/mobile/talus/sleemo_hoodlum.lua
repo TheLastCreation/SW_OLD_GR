@@ -1,6 +1,5 @@
 sleemo_hoodlum = Creature:new {
 	objectName = "@mob/creature_names:sleemo_hoodlum",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "sleemo_gang",
 	faction = "",
 	level = 6,
@@ -26,9 +25,9 @@ sleemo_hoodlum = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/dressed_criminal_thug_human_male_02.iff",
-		"object/mobile/dressed_crook_zabrak_male_01.iff",
-		"object/mobile/dressed_criminal_thug_zabrak_male_01.iff",
-		"object/mobile/dressed_desperado_bith_female_01.iff"},
+				"object/mobile/dressed_crook_zabrak_male_01.iff",
+				"object/mobile/dressed_criminal_thug_zabrak_male_01.iff",
+				"object/mobile/dressed_desperado_bith_female_01.iff"},
 	lootGroups = {
 		{
 			groups = {

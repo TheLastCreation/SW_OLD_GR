@@ -10,7 +10,6 @@ dathomir_nightsister_spell_weaver_escort_neutral_none = Lair:new {
 	buildingsMedium = {},
 	buildingsHard = {},
 	buildingsVeryHard = {},
-	mobType = "npc",
 	buildingType = "none"
 }
 

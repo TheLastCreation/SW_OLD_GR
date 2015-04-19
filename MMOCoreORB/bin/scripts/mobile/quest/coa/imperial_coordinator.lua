@@ -1,6 +1,5 @@
 imperial_coordinator = Creature:new {
 	objectName = "@mob/creature_names:coa2_imperial_coordinator",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "imperial",
 	faction = "imperial",
 	level = 25,

@@ -6,7 +6,6 @@ dantooine_kunga_scout_neutral_none = Lair:new {
 	buildingsMedium = {},
 	buildingsHard = {},
 	buildingsVeryHard = {},
-	missionBuilding = "object/tangible/lair/base/objective_dantari_monolith.iff",
 	mobType = "npc",
 	buildingType = "none"
 }

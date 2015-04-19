@@ -67,7 +67,7 @@ int DroidCustomKitObjectMenuComponent::handleObjectMenuSelect(SceneObject* scene
 		ManagedReference<CreatureObject*> targetOwner = server->getObject(ownerID, true).castTo<CreatureObject*>();
 		if (targetOwner != NULL)
 		{
-			Locker crossLock(targetOwner, player);
+			Locker crossLock(targetOwner, sceneObject);
 			ManagedReference<PlayerObject*> ghostOwner = targetOwner->getPlayerObject();
 			for (int i = 0; i < ghostOwner->getConsentListSize(); ++i) {
 				String entryName = ghostOwner->getConsentName(i);
@@ -84,8 +84,6 @@ int DroidCustomKitObjectMenuComponent::handleObjectMenuSelect(SceneObject* scene
 		}
 	}
 	//end permission check
-
-	Locker clocker(droid, player);
 
 	String appearanceFilename = target->getObjectTemplate()->getAppearanceFilename();
 	VectorMap<String, Reference<CustomizationVariable*> > variables;

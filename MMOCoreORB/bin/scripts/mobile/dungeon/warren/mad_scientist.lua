@@ -1,6 +1,5 @@
 mad_scientist = Creature:new {
 	objectName = "",
-	randomNameType = NAME_GENERIC_TAG,
 	customName = "a Mad Scientist",
 	socialGroup = "warren_scientist",
 	faction = "",

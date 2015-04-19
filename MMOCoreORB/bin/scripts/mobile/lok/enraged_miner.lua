@@ -1,6 +1,5 @@
 enraged_miner = Creature:new {
 	objectName = "",
-	randomNameType = NAME_GENERIC_TAG,
 	customName = "an Enraged Miner",
 	socialGroup = "",
 	faction = "",

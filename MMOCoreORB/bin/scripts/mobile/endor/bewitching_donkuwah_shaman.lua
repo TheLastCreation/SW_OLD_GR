@@ -1,6 +1,5 @@
 bewitching_donkuwah_shaman = Creature:new {
 	objectName = "@mob/creature_names:bewitching_donkuwah_shaman",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "donkuwah_tribe",
 	faction = "donkuwah_tribe",
 	level = 21,
@@ -27,10 +26,10 @@ bewitching_donkuwah_shaman = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {
-		"object/mobile/dulok_male.iff"},
+			"object/mobile/dulok_male.iff"},
 	lootGroups = {
-		{
-			groups = {
+		 {
+	        groups = {
 				{group = "donkuwah_common", chance = 10000000}
 			},
 			lootChance = 2300000

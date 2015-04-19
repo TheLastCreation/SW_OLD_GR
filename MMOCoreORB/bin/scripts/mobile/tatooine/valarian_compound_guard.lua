@@ -1,6 +1,5 @@
 valarian_compound_guard = Creature:new {
 	objectName = "@mob/creature_names:valarian_compound_guard",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "valarian",
 	faction = "valarian",
 	level = 12,

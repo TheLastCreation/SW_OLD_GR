@@ -1,6 +1,5 @@
 imperial_observer = Creature:new {
 	objectName = "@mob/creature_names:geonosian_imperial_observer",
-	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "imperial",
 	faction = "imperial",
 	level = 53,
