@@ -1,5 +1,5 @@
 asn_121 = Creature:new {
-	customName = “ASN-121",
+	customName = "ASN-121",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

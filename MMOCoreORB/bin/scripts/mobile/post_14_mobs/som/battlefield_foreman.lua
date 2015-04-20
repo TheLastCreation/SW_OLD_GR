@@ -1,5 +1,5 @@
 battlefield_foreman = Creature:new {
-	customName = “Battlefield Foreman",
+	customName = "Battlefield Foreman",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

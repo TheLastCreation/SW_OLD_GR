@@ -1,5 +1,5 @@
 cinderclaw = Creature:new {
-	customName = “Cinderclaw",
+	customName = "Cinderclaw",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

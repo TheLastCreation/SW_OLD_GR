@@ -1,5 +1,5 @@
 naboo_historian = Creature:new {
-	customName = “Historian",
+	customName = "Historian",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

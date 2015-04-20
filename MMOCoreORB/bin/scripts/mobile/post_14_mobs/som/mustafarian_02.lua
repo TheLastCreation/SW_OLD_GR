@@ -1,5 +1,5 @@
 mustafarian_02 = Creature:new {
-	customName = “Mustafarian",
+	customName = "Mustafarian",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

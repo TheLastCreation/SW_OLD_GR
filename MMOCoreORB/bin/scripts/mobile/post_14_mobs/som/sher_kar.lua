@@ -1,5 +1,5 @@
 sher_kar = Creature:new {
-	customName = “Sher Kar",
+	customName = "Sher Kar",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

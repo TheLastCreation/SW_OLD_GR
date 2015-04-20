@@ -1,5 +1,5 @@
 npc_kweeta = Creature:new {
-	customName = “Kweeta",
+	customName = "Kweeta",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

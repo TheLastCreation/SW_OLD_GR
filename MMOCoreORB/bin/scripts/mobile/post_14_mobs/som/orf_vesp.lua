@@ -1,5 +1,5 @@
 orf_vesp = Creature:new {
-	customName = “Vesp",
+	customName = "Vesp",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

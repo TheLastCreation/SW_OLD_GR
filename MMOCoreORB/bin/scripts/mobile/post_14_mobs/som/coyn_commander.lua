@@ -1,5 +1,5 @@
 coyn_commander = Creature:new {
-	customName = “Coyn Commander",
+	customName = "Coyn Commander",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

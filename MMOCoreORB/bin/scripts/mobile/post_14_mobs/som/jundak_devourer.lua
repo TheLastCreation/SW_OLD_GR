@@ -1,5 +1,5 @@
 jundak_devourer = Creature:new {
-	customName = “Jundak Devourer",
+	customName = "Jundak Devourer",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

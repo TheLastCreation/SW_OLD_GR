@@ -1,5 +1,5 @@
 som_alien_parasite = Creature:new {
-	customName = “Alien Parasite",
+	customName = "Alien Parasite",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

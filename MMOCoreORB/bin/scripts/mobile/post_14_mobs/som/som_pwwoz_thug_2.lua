@@ -1,5 +1,5 @@
-som_pwwoz_thug_2.lua = Creature:new {
-	customName = "som_pwwoz_thug_2.lua",
+som_pwwoz_thug_2 = Creature:new {
+	customName = "som_pwwoz_thug_2",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",
@@ -38,4 +38,4 @@ som_pwwoz_thug_2.lua = Creature:new {
 	attacks = merge(marksmannovice,brawlernovice)
 }
 
-CreatureTemplates:addCreatureTemplate(som_pwwoz_thug_2.lua, "som_pwwoz_thug_2.lua")
+CreatureTemplates:addCreatureTemplate(som_pwwoz_thug_2, "som_pwwoz_thug_2")

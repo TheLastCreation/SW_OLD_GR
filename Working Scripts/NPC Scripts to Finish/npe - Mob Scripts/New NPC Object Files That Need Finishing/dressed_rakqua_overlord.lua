@@ -1,5 +1,3 @@
-object_mobile_exar_kun = object_mobile_shared_exar_kun:new {
-
+object_mobile_npe_dressed_dungeon_medical = object_mobile_npe_shared_dressed_dungeon_medical:new {
 }
-
-ObjectTemplates:addTemplate(object_mobile_exar_kun, "object/mobile/exar_kun.iff")
+ObjectTemplates:addTemplate(object_mobile_npe_dressed_dungeon_medical, "object/mobile/npe/dressed_dungeon_medical.iff")

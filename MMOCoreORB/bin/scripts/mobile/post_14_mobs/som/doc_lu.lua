@@ -1,5 +1,5 @@
 doc_lu = Creature:new {
-	customName = “doc_lu",
+	customName = "doc_lu",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

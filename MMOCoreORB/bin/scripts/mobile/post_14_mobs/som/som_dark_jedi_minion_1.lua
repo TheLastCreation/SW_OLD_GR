@@ -1,5 +1,5 @@
 som_dark_jedi_minion_1 = Creature:new {
-	customName = “Dark Jedi Minion",
+	customName = "Dark Jedi Minion",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

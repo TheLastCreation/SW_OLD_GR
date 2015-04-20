@@ -1,5 +1,5 @@
 sansii = Creature:new {
-	customName = “Sansii",
+	customName = "Sansii",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

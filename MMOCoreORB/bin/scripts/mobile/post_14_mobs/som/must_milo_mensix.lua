@@ -1,5 +1,5 @@
 must_milo_mensix = Creature:new {
-	customName = “Milo Mensix",
+	customName = "Milo Mensix",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

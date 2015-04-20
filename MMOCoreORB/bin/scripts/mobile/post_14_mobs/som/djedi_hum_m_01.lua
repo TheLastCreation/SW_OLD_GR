@@ -1,5 +1,5 @@
 djedi_hum_m_01 = Creature:new {
-	customName = “Dark Jedi”,
+	customName = "Dark Jedi”,
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

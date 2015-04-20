@@ -1,5 +1,5 @@
 diskret_stahn = Creature:new {
-	customName = “Diskret Stahn",
+	customName = "Diskret Stahn",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

@@ -1,5 +1,5 @@
 kubaza_beetle = Creature:new {
-	customName = “Kubaza Beetle",
+	customName = "Kubaza Beetle",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

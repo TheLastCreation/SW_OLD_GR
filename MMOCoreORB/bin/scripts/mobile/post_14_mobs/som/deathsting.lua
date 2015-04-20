@@ -1,5 +1,5 @@
 deathsting = Creature:new {
-	customName = “Deathsting",
+	customName = "Deathsting",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

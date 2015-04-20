@@ -1,5 +1,5 @@
 som_crazed_mustafarian_hermit = Creature:new {
-	customName = “Crazed Mustafarian Hermit",
+	customName = "Crazed Mustafarian Hermit",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

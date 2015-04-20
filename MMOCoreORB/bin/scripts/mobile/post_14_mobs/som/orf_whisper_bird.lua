@@ -1,5 +1,5 @@
 orf_whisper_bird = Creature:new {
-	customName = “Whisper Bird",
+	customName = "Whisper Bird",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

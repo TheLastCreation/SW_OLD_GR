@@ -1,5 +1,5 @@
 obi_wan_ghost = Creature:new {
-	customName = “Obi Wan",
+	customName = "Obi Wan",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

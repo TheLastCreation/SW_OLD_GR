@@ -1,5 +1,5 @@
 lava_flea_smoldering = Creature:new {
-	customName = “Smoldering Lava Flea",
+	customName = "Smoldering Lava Flea",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

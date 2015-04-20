@@ -1,5 +1,5 @@
 som_ancient_guardian_droideka = Creature:new {
-	customName = “Ancient Guardian Droideka",
+	customName = "Ancient Guardian Droideka",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

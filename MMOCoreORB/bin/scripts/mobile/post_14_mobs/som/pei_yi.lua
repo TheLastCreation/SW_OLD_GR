@@ -1,5 +1,5 @@
 pei_yi = Creature:new {
-	customName = “Pei Yi",
+	customName = "Pei Yi",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

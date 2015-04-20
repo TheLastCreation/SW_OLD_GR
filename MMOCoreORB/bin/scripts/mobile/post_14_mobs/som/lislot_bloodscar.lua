@@ -1,5 +1,5 @@
 lislot_bloodscar = Creature:new {
-	customName = “Lislot Bloodscar",
+	customName = "Lislot Bloodscar",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

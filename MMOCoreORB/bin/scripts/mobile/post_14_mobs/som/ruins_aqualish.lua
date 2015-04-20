@@ -1,5 +1,5 @@
 ruins_aqualish = Creature:new {
-	customName = “Aqualish",
+	customName = "Aqualish",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

@@ -1,5 +1,5 @@
 neimoidian = Creature:new {
-	customName = “Neimoidian",
+	customName = "Neimoidian",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

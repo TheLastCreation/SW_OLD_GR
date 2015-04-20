@@ -1,5 +1,5 @@
 master_kah = Creature:new {
-	customName = “Master Kah",
+	customName = "Master Kah",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

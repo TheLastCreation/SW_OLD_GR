@@ -1,5 +1,5 @@
 must_mining_droid_mark_02 = Creature:new {
-	customName = “Mark II Mining Droid",
+	customName = "Mark II Mining Droid",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

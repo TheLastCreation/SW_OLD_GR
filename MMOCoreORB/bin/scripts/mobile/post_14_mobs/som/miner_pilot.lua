@@ -1,5 +1,5 @@
 miner_pilot = Creature:new {
-	customName = “Miner Pilot",
+	customName = "Miner Pilot",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

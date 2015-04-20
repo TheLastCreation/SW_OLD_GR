@@ -1,5 +1,3 @@
-object_mobile_exar_kun = object_mobile_shared_exar_kun:new {
-
+object_mobile_npe_dressed_npe_pilot_train = object_mobile_npe_shared_dressed_npe_pilot_train:new {
 }
-
-ObjectTemplates:addTemplate(object_mobile_exar_kun, "object/mobile/exar_kun.iff")
+ObjectTemplates:addTemplate(object_mobile_npe_dressed_npe_pilot_train, "object/mobile/npe/dressed_npe_pilot_train.iff")

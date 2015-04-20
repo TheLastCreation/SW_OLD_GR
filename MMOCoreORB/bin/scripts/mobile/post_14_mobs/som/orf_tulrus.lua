@@ -1,5 +1,5 @@
 orf_tulrus = Creature:new {
-	customName = “Tulrus",
+	customName = "Tulrus",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

@@ -1,5 +1,5 @@
 orf_torton = Creature:new {
-	customName = “Torton",
+	customName = "Torton",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

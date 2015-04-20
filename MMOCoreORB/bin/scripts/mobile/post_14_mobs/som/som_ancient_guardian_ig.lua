@@ -1,5 +1,5 @@
-ancient_guardian_ig = Creature:new {
-	customName = “Ancient Guardian IG”,
+som_ancient_guardian_ig = Creature:new {
+	customName = "Ancient Guardian IG”,
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",
@@ -26,7 +26,7 @@ ancient_guardian_ig = Creature:new {
 	optionsBitmask = 128,
 	diet = HERBIVORE,
 
-	templates = {"object/mobile/som/ancient_guardian_ig.iff"},
+	templates = {"object/mobile/som/som_ancient_guardian_ig.iff"},
 	lootGroups = {
 		{
 			groups = {},
@@ -38,4 +38,4 @@ ancient_guardian_ig = Creature:new {
 	attacks = merge(marksmannovice,brawlernovice)
 }
 
-CreatureTemplates:addCreatureTemplate(ancient_guardian_ig, "ancient_guardian_ig")
+CreatureTemplates:addCreatureTemplate(som_ancient_guardian_ig, "som_ancient_guardian_ig")

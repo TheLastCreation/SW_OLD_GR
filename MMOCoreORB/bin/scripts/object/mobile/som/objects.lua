@@ -383,10 +383,10 @@ object_mobile_som_shared_som_ancient_guardian_droideka = SharedCreatureObjectTem
 }
 ObjectTemplates:addClientTemplate(object_mobile_som_shared_som_ancient_guardian_droideka, "object/mobile/som/shared_som_ancient_guardian_droideka.iff")
 --***********************************************************************************************************************************************************************
-object_mobile_som_shared_ancient_guardian_ig = SharedCreatureObjectTemplate:new {
-	clientTemplateFileName = "object/mobile/som/shared_ancient_guardian_ig.iff"
+object_mobile_som_shared_som_ancient_guardian_ig = SharedCreatureObjectTemplate:new {
+	clientTemplateFileName = "object/mobile/som/shared_som_ancient_guardian_ig.iff"
 }
-ObjectTemplates:addClientTemplate(object_mobile_som_shared_ancient_guardian_ig, "object/mobile/som/shared_ancient_guardian_ig.iff")
+ObjectTemplates:addClientTemplate(object_mobile_som_shared_som_ancient_guardian_ig, "object/mobile/som/shared_som_ancient_guardian_ig.iff")
 --***********************************************************************************************************************************************************************
 object_mobile_som_shared_som_crazed_mustafarian_hermit = SharedCreatureObjectTemplate:new {
 	clientTemplateFileName = "object/mobile/som/shared_som_crazed_mustafarian_hermit.iff"

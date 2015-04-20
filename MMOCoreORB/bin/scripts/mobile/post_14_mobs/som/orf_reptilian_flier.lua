@@ -1,5 +1,5 @@
 orf_reptilian_flier = Creature:new {
-	customName = “Reptilian Flier",
+	customName = "Reptilian Flier",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

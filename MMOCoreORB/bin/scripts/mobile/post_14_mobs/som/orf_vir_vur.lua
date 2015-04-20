@@ -1,5 +1,5 @@
 orf_vir_vur = Creature:new {
-	customName = “Vir Vur",
+	customName = "Vir Vur",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

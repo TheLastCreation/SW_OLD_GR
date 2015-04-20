@@ -1,5 +1,5 @@
 orf_xandank = Creature:new {
-	customName = “Xandank",
+	customName = "Xandank",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

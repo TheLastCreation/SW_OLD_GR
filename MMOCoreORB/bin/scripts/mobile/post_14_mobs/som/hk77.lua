@@ -1,5 +1,5 @@
 hk77 = Creature:new {
-	customName = “HK-77",
+	customName = "HK-77",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

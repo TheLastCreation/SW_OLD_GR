@@ -1,5 +1,5 @@
 jundak = Creature:new {
-	customName = “Jundak",
+	customName = "Jundak",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

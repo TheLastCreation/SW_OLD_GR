@@ -1,5 +1,5 @@
 npc_ithes_olok = Creature:new {
-	customName = “Ithes Olok",
+	customName = "Ithes Olok",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

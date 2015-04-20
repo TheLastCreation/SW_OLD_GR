@@ -1,5 +1,5 @@
 scorching_terror = Creature:new {
-	customName = “Scorching Terror",
+	customName = "Scorching Terror",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",
