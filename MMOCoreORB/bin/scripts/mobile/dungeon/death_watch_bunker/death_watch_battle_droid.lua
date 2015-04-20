@@ -7,10 +7,10 @@ death_watch_battle_droid = Creature:new {
 	damageMin = 795,
 	damageMax = 1300,
 	baseXp = 12612,
-	baseHAM = 65000,
-	baseHAMmax = 65000,
+	baseHAM = 56000,
+	baseHAMmax = 68000,
 	armor = 2,
-	resists = {45,75,100,60,100,25,40,85,-1},
+	resists = {75,75,100,60,100,25,40,85,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -32,11 +32,9 @@ death_watch_battle_droid = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "armor_attachments", chance = 4500000},
-				{group = "death_watch_bunker_commoners", chance = 1000000},
-				{group = "clothing_attachments", chance = 4500000}
+				{group = "death_watch_bunker_commoners", chance = 10000000}
 			},
-			lootChance = 10000000
+			lootChance = 500000
 		}
 	},
 	weapons = {"battle_droid_weapons"},

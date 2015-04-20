@@ -922,6 +922,8 @@ void PlayerManagerImplementation::sendPlayerToCloner(CreatureObject* player, uin
 			if (item != NULL && item->isTangibleObject()) {
 				ManagedReference<TangibleObject*> obj = cast<TangibleObject*>(item);
 
+				Locker clocker(obj, player);
+
 				if (obj->getOptionsBitmask() & OptionBitmask::INSURED) {
 					//1% Decay for insured items
 					obj->inflictDamage(obj, 0, 0.01 * obj->getMaxCondition(), true, true);
@@ -3407,6 +3409,43 @@ void PlayerManagerImplementation::fixHAM(CreatureObject* player) {
 
 				player->setMaxHAM(i, calculated, false);
 			}
+		}
+	} catch (Exception& e) {
+		error(e.getMessage());
+	}
+}
+
+void PlayerManagerImplementation::fixBuffSkillMods(CreatureObject* player) {
+	Locker locker(player);
+
+	try {
+		GroupObject* grp = player->getGroup();
+		if (grp != NULL)
+			GroupManager::instance()->leaveGroup(grp, player);
+
+		Reference<Buff*> buff = player->getBuff(String("squadleader").hashCode());
+		if (buff != NULL)
+			player->removeBuff(buff);
+
+		if (player->getSkillModList() == NULL)
+			return;
+
+		SkillModGroup* smodGroup = player->getSkillModList()->getSkillModGroup(SkillModManager::BUFF);
+		smodGroup->removeAll();
+
+		BuffList* buffs = player->getBuffList();
+
+		for (int i = 0; i < buffs->getBuffListSize(); i++) {
+			ManagedReference<Buff*> buff = buffs->getBuffByIndex(i);
+
+			buff->setModsApplied(true);
+
+			buff->applySkillModifiers();
+		}
+
+		if (grp != NULL && grp->getLeader() != NULL) {
+			player->updateGroupInviterID(grp->getLeader()->getObjectID());
+			GroupManager::instance()->joinGroup(player);
 		}
 	} catch (Exception& e) {
 		error(e.getMessage());

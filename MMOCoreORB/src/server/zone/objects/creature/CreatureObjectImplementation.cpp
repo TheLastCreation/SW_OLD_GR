@@ -1,46 +1,6 @@
 /*
- Copyright (C) 2007 <SWGEmu>
-
- This File is part of Core3.
-
- This program is free software; you can redistribute
- it and/or modify it under the terms of the GNU Lesser
- General Public License as published by the Free Software
- Foundation; either version 2 of the License,
- or (at your option) any later version.
-
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- See the GNU Lesser General Public License for
- more details.
-
- You should have received a copy of the GNU Lesser General
- Public License along with this program; if not, write to
- the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
-
- Linking Engine3 statically or dynamically with other modules
- is making a combined work based on Engine3.
- Thus, the terms and conditions of the GNU Lesser General Public License
- cover the whole combination.
-
- In addition, as a special exception, the copyright holders of Engine3
- give you permission to combine Engine3 program with free software
- programs or libraries that are released under the GNU LGPL and with
- code included in the standard release of Core3 under the GNU LGPL
- license (or modified versions of such code, with unchanged license).
- You may copy and distribute such a system following the terms of the
- GNU LGPL for Engine3 and the licenses of the other code concerned,
- provided that you include the source code of that other code when
- and as the GNU LGPL requires distribution of source code.
-
- Note that people who make modified versions of Engine3 are not obligated
- to grant this special exception for their modified versions;
- it is their choice whether to do so. The GNU Lesser General Public License
- gives permission to release a modified version without this exception;
- this exception also makes it possible to release a modified version
- which carries forward this exception.
- */
+ 				Copyright <SWGEmu>
+		See file COPYING for copying conditions. */
 
 #include "server/zone/objects/creature/CreatureObject.h"
 #include "CreatureState.h"
@@ -69,6 +29,7 @@
 #include "server/zone/packets/object/PostureMessage.h"
 #include "server/zone/packets/object/SitOnObject.h"
 #include "server/zone/packets/object/CommandQueueRemove.h"
+#include "server/zone/packets/object/CommandQueueAdd.h"
 #include "server/zone/packets/object/CombatAction.h"
 #include "server/zone/packets/object/WeaponRanges.h"
 #include "server/zone/packets/player/PlayMusicMessage.h"
@@ -140,6 +101,8 @@ void CreatureObjectImplementation::initializeTransientMembers() {
 	groupInviteCounter = 0;
 	currentWeather = 0;
 	currentWind = 0;
+
+	lastActionCounter = 0x40000000;
 
 	setContainerOwnerID(getObjectID());
 	setMood(moodID);
@@ -216,8 +179,6 @@ void CreatureObjectImplementation::loadTemplateData(
 	SharedCreatureObjectTemplate* creoData =
 			dynamic_cast<SharedCreatureObjectTemplate*> (templateData);
 
-	gender = creoData->getGender();
-	species = creoData->getSpecies();
 	slopeModPercent = creoData->getSlopeModPercent();
 	slopeModAngle = creoData->getSlopeModAngle();
 	swimHeight = creoData->getSwimHeight();
@@ -1498,7 +1459,7 @@ void CreatureObjectImplementation::setPosture(int newPosture, bool notifyClient)
 
 		broadcastMessages(&messages, true);
 
-		if (isPlayerCreature() || isAiAgent()) {
+		if (!isProbotSpecies() && (isPlayerCreature() || isAiAgent())) {
 			switch (posture) {
 			case CreaturePosture::UPRIGHT:
 				sendStateCombatSpam("cbt_spam", "stand", 11);
@@ -1831,7 +1792,8 @@ float CreatureObjectImplementation::getTerrainNegotiation() {
 
 void CreatureObjectImplementation::enqueueCommand(unsigned int actionCRC,
 		unsigned int actionCount, uint64 targetID,
-		const UnicodeString& arguments, int priority) {
+		const UnicodeString& arguments, int priority,
+		int compareCounter) {
 	ManagedReference<ObjectController*> objectController =
 			getZoneServer()->getObjectController();
 
@@ -1878,6 +1840,9 @@ void CreatureObjectImplementation::enqueueCommand(unsigned int actionCRC,
 	action = new CommandQueueAction(_this.get(), targetID, actionCRC, actionCount,
 			arguments);
 
+	if (compareCounter >= 0)
+		action->setCompareToCounter((int)compareCounter);
+
 	if (commandQueue->size() != 0 || !nextAction.isPast()) {
 		if (commandQueue->size() == 0) {
 			Reference<CommandQueueActionEvent*> e =
@@ -1900,6 +1865,24 @@ void CreatureObjectImplementation::enqueueCommand(unsigned int actionCRC,
 		commandQueue->put(action.get());
 		activateQueueAction();
 	}
+}
+
+void CreatureObjectImplementation::sendCommand(const String& action, const UnicodeString& args, uint64 targetID, int priority) {
+	sendCommand(action.hashCode(), args, targetID, priority);
+}
+
+void CreatureObjectImplementation::sendCommand(uint32 crc, const UnicodeString& args, uint64 targetID, int priority) {
+	uint32 nextCounter = incrementLastActionCounter();
+	CommandQueueAdd* msg = new CommandQueueAdd(_this.get(), crc, nextCounter);
+	sendMessage(msg);
+
+	int compareCnt = -1;
+	if (commandQueue->size() == 0 || priority == QueueCommand::FRONT)
+		compareCnt = 0;
+	else if (priority == QueueCommand::NORMAL)
+		compareCnt = commandQueue->get(commandQueue->size() - 1)->getCompareToCounter() + 1;
+
+	enqueueCommand(crc, nextCounter, targetID, args, priority, compareCnt);
 }
 
 void CreatureObjectImplementation::activateImmediateAction() {
@@ -2038,6 +2021,7 @@ void CreatureObjectImplementation::notifyLoadFromDatabase() {
 		return;
 
 	getZoneServer()->getPlayerManager()->fixHAM(_this.get());
+	getZoneServer()->getPlayerManager()->fixBuffSkillMods(_this.get());
 
 	for (int i = 0; i < creatureBuffs.getBuffListSize(); ++i) {
 		ManagedReference<Buff*> buff = creatureBuffs.getBuffByIndex(i);
@@ -2263,12 +2247,6 @@ void CreatureObjectImplementation::setIntimidatedState(uint32 mod, uint32 crc, i
 	} else { // already have this intimidation buff, don't keep stacking the multiplier, but do extend the duration
 		Reference<Buff*> buff = getBuff(crc);
 
-		if (buff == NULL) { // this shouldn't happen, but if it does, we want to make sure intim gets set
-			removeBuff(crc);
-			setIntimidatedState(mod, crc, durationSeconds);
-			return;
-		}
-
 		if (buff->getTimeLeft() < durationSeconds)
 			buff->renew(durationSeconds);
 	}
@@ -2287,10 +2265,16 @@ void CreatureObjectImplementation::setIntimidatedState(uint32 mod, uint32 crc, i
 		Reference<Buff*> state = getBuff(Long::hashCode(CreatureState::INTIMIDATED));
 
 		if (state == NULL) { // this shouldn't happen, but if it does, we want to make sure intim gets set
-			removeStateBuff(CreatureState::INTIMIDATED);
+			//removeStateBuff(CreatureState::INTIMIDATED);
+			//setIntimidatedState(mod, crc, durationSeconds);
+			error("no intimidate state buff in setIntimidatedState");
+			clearState(CreatureState::INTIMIDATED);
+			removeBuff(crc);
 			setIntimidatedState(mod, crc, durationSeconds);
 			return;
 		}
+		// the intimidate flytext should show up everytime it succeeds
+		showFlyText("combat_effects", "go_intimidated", 0, 0xFF, 0);
 
 		state->addSecondaryBuffCRC(crc);
 
@@ -2389,7 +2373,6 @@ void CreatureObjectImplementation::addBuff(Buff* buff) {
 }
 
 bool CreatureObjectImplementation::removeBuff(uint32 buffcrc) {
-
 	Reference<Buff*> buff = getBuff(buffcrc);
 
 	//BuffList::removeBuff checks to see if the buffcrc exists in the map.
@@ -2402,6 +2385,14 @@ bool CreatureObjectImplementation::removeBuff(uint32 buffcrc) {
 			removeBuff(secondaryCRCs->get(i));
 		}
 	}
+
+	return ret;
+}
+
+bool CreatureObjectImplementation::removeStateBuff(uint64 state) {
+	bool ret = removeBuff(Long::hashCode(state));
+
+	assert(!hasState(state));
 
 	return ret;
 }
@@ -2819,6 +2810,9 @@ bool CreatureObjectImplementation::isAttackableBy(CreatureObject* object) {
 	if (areInDuel)
 		return true;
 
+	if (getGroupID() != 0 && getGroupID() == object->getGroupID())
+		return false;
+
 	if ((pvpStatusBitmask & CreatureFlag::OVERT) && (object->getPvpStatusBitmask() & CreatureFlag::OVERT) && object->getFaction() != getFaction())
 		return true;
 
@@ -3201,4 +3195,22 @@ bool CreatureObjectImplementation::hasDotImmunity(uint32 dotType) {
 	}
 
 	return false;
+}
+
+int CreatureObjectImplementation::getSpecies() {
+	SharedCreatureObjectTemplate* creoData = templateObject.castTo<SharedCreatureObjectTemplate*>().get();
+
+	if (creoData == NULL)
+		return -1;
+
+	return creoData->getSpecies();
+}
+
+int CreatureObjectImplementation::getGender() {
+	SharedCreatureObjectTemplate* creoData = templateObject.castTo<SharedCreatureObjectTemplate*>().get();
+
+	if (creoData == NULL)
+		return -1;
+
+	return creoData->getGender();
 }

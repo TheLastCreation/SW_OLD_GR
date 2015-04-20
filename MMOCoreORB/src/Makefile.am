@@ -411,6 +411,7 @@ core3_SOURCES =	$(core3_IDLS) \
 		server/zone/objects/tangible/LuaTangibleObject.cpp \
 		server/zone/managers/creature/LairObserverImplementation.cpp \
 		server/zone/managers/creature/DynamicSpawnObserverImplementation.cpp \
+		server/zone/managers/creature/SpawnObserverImplementation.cpp \
 		server/zone/managers/customization/CustomizationIdManager.cpp \
 		server/zone/managers/director/ScreenPlayObserverImplementation.cpp \
 		server/zone/managers/director/PersistentEventImplementation.cpp \
@@ -715,6 +716,8 @@ core3_SOURCES =	$(core3_IDLS) \
 		server/zone/objects/scene/variables/StringIdParameter.cpp \
 		server/zone/objects/scene/variables/CustomizationVariables.cpp \
 		server/zone/objects/scene/variables/ContainerObjectsMap.cpp \
+		server/zone/objects/scene/variables/PendingTasksMap.cpp \
+		server/zone/objects/scene/variables/OrderedTaskExecutioner.cpp \
 		server/zone/objects/cell/CellObjectImplementation.cpp \
 		server/zone/objects/installation/InstallationObjectImplementation.cpp \
 		server/zone/objects/building/BuildingObjectImplementation.cpp \

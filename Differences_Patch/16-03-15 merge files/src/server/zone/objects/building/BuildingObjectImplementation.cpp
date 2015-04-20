@@ -1,9 +1,6 @@
 /*
- * BuildingObjectImplementation.cpp
- *
- *  Created on: 23/07/2009
- *      Author: TheAnswer
- */
+				Copyright <SWGEmu>
+		See file COPYING for copying conditions. */
 
 #include "server/zone/objects/building/BuildingObject.h"
 #include "server/zone/Zone.h"

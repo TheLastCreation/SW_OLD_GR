@@ -130,6 +130,8 @@ bool CombatManager::attemptPeace(CreatureObject* attacker) {
 }
 
 void CombatManager::forcePeace(CreatureObject* attacker) {
+	assert(attacker->isLockedByCurrentThread());
+
 	DeltaVector<ManagedReference<SceneObject*> >* defenderList = attacker->getDefenderList();
 
 	for (int i = 0; i < defenderList->size(); ++i) {
@@ -320,8 +322,10 @@ int CombatManager::doTargetCombatAction(CreatureObject* attacker, WeaponObject* 
 	applyStates(attacker, defender, data);
 
 	// Return if it's a state only attack (intimidate, warcry, wookiee roar) so they don't apply dots or break combat delays
-	if (data.isStateOnlyAttack())
+	if (data.isStateOnlyAttack()) {
+		broadcastCombatAction(attacker, defender, weapon, data, hitVal);
 		return 0;
+	}
 
 	if (defender->hasAttackDelay())
 		defender->removeAttackDelay();
@@ -1590,6 +1594,7 @@ bool CombatManager::applySpecialAttackCost(CreatureObject* attacker, WeaponObjec
 
 void CombatManager::applyStates(CreatureObject* creature, CreatureObject* targetCreature, const CreatureAttackData& data) {
 	VectorMap<uint8, StateEffect>* stateEffects = data.getStateEffects();
+	int stateAccuracyBonus = data.getStateAccuracyBonus();
 
 	if (targetCreature->isPlayerCreature() && targetCreature->getPvpStatusBitmask() == CreatureFlag::NONE)
 		return;
@@ -1611,7 +1616,7 @@ void CombatManager::applyStates(CreatureObject* creature, CreatureObject* target
 		bool failed = false;
 		uint8 effectType = effect.getEffectType();
 
-		float accuracyMod = effect.getStateChance();
+		float accuracyMod = effect.getStateChance() + stateAccuracyBonus;
 		if (data.isStateOnlyAttack())
 			accuracyMod += creature->getSkillMod(data.getCommand()->getAccuracySkillMod());
 
@@ -1658,8 +1663,16 @@ void CombatManager::applyStates(CreatureObject* creature, CreatureObject* target
 			}
 		}
 
-		if (!failed)
+		if (!failed) {
+			if (effectType == CommandEffect::NEXTATTACKDELAY) {
+				StringIdChatParameter stringId("combat_effects", "delay_applied_other");
+				stringId.setTT(targetCreature);
+				stringId.setDI(effect.getStateLength());
+				creature->sendSystemMessage(stringId);
+			}
+
 			data.getCommand()->applyEffect(targetCreature, effectType, effect.getStateStrength(), data.getCommandCRC());
+		}
 
 		// can move this to scripts, but only these states have fail messages
 		if (failed) {
@@ -1672,10 +1685,10 @@ void CombatManager::applyStates(CreatureObject* creature, CreatureObject* target
 				creature->sendSystemMessage("@cbt_spam:posture_change_fail");
 				break;
 			case CommandEffect::NEXTATTACKDELAY:
-				creature->sendSystemMessage("@combat_effects:warcry_miss");
+				targetCreature->showFlyText("combat_effects", "warcry_miss", 0xFF, 0, 0 );
 				break;
 			case CommandEffect::INTIMIDATE:
-				creature->sendSystemMessage("@combat_effects:intimidated_miss");
+				targetCreature->showFlyText("combat_effects", "intimidated_miss", 0xFF, 0, 0 );
 				break;
 			default:
 				break;

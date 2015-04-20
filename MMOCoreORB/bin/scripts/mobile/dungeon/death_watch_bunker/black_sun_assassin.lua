@@ -1,5 +1,6 @@
 black_sun_assassin = Creature:new {
 	objectName = "@mob/creature_names:mand_bunker_blksun_assassin",
+	randomNameType = NAME_GENERIC_TAG,
 	socialGroup = "death_watch",
 	faction = "",
 	level = 107,
@@ -10,7 +11,7 @@ black_sun_assassin = Creature:new {
 	baseHAM = 29000,
 	baseHAMmax = 36000,
 	armor = 2,
-	resists = {40,55,70,45,75,80,55,45,55},
+	resists = {55,55,70,45,75,80,55,45,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -29,28 +30,17 @@ black_sun_assassin = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "pistols", chance = 3333333},
-				{group = "rifles", chance = 3333333},
-				{group = "carbines", chance = 3333334}
+				{group = "junk", chance = 6500000},
+				{group = "pistols", chance = 750000},
+				{group = "rifles", chance = 750000},
+				{group = "carbines", chance = 750000},
+				{group = "bounty_hunter_armor", chance = 200000},
+				{group = "jetpack_base", chance = 50000},
+				{group = "wearables_common", chance = 500000},
+				{group = "wearables_uncommon", chance = 500000}
 			},
-			lootChance = 100000000
-		},
-		{
-			groups = {
-				{group = "clothing_attachments", chance = 5000000},
-				{group = "armor_attachments", chance = 5000000}
-			},
-			lootChance = 100000000
-		},	
-		{
-			groups = {
-				{group = "jetpack_parts", chance = 2500000},				
-				{group = "bounty_hunter_armor", chance = 2500000},
-				{group = "crystals_premium", chance = 2500000},
-				{group = "jetpack_base", chance = 2500000}
-			},
-			lootChance = 100000000
-		},
+			lootChance = 3500000
+		}
 	},
 	weapons = {"pirate_weapons_heavy"},
 	conversationTemplate = "",
