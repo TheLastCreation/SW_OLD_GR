@@ -1,4 +1,4 @@
-8t88 = Creature:new {
+droid_8t88 = Creature:new {
 	customName = "8T-88",
 	socialGroup = "",
 	pvpFaction = "",
@@ -38,4 +38,4 @@
 	attacks = merge(marksmannovice,brawlernovice)
 }
 
-CreatureTemplates:addCreatureTemplate(8t88, "8t88")
+CreatureTemplates:addCreatureTemplate(droid_8t88, "droid_8t88")

@@ -1,5 +1,5 @@
 blackguard_wilder = Creature:new {
-	customName = “Blackguard Wilder",
+	customName = "Blackguard Wilder",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

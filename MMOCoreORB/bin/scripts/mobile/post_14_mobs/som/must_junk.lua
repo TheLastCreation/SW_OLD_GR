@@ -1,5 +1,5 @@
 must_junk = Creature:new {
-	customName = "Junk Dealer”,
+	customName = "Junk Dealer",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

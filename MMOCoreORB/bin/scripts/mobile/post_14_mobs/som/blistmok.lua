@@ -1,5 +1,5 @@
 blistmok = Creature:new {
-	customName = “Blistmok",
+	customName = "Blistmok",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",

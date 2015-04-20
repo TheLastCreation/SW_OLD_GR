@@ -1,5 +1,5 @@
 coyn_shock = Creature:new {
-	customName = "Coyn Shock Trooper”,
+	customName = "Coyn Shock Trooper",
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",
