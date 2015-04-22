@@ -563,6 +563,25 @@ void BuildingObjectImplementation::addCell(CellObject* cell, uint32 cellNumber) 
 	cell->setCellNumber(cellNumber);
 }
 
+CellObject* BuildingObjectImplementation::getCell(const String& cellName) {
+	SharedBuildingObjectTemplate* buildingTemplate = templateObject.castTo<SharedBuildingObjectTemplate*>();
+
+	if (buildingTemplate == NULL)
+		return NULL;
+
+	PortalLayout* portalLayout = buildingTemplate->getPortalLayout();
+
+	if (portalLayout == NULL)
+		return NULL;
+
+	int index = portalLayout->getCellID(cellName);
+
+	if (index == -1 || index == 0)
+		return NULL;
+
+	return getCell(index);
+}
+
 void BuildingObjectImplementation::destroyObjectFromDatabase(
 	bool destroyContainedObjects) {
 
@@ -805,7 +824,7 @@ void BuildingObjectImplementation::onExit(CreatureObject* player, uint64 parenti
 uint32 BuildingObjectImplementation::getMaximumNumberOfPlayerItems() {
 	SharedStructureObjectTemplate* ssot = dynamic_cast<SharedStructureObjectTemplate*> (templateObject.get());
 	if (isCivicStructure() )
-		return 400;
+		return 250;
 
 	if (ssot == NULL)
 		return 0;
@@ -817,7 +836,7 @@ uint32 BuildingObjectImplementation::getMaximumNumberOfPlayerItems() {
 	if (lots == 0)
 		return MAXPLAYERITEMS;
 
-	return MIN(MAXPLAYERITEMS, lots * 400);
+	return MIN(MAXPLAYERITEMS, lots * 100);
 }
 
 bool BuildingObjectImplementation::transferObject(SceneObject* object, int containmentType, bool notifyClient, bool allowOverflow) {
@@ -1562,6 +1581,8 @@ void BuildingObjectImplementation::changeSign( SignTemplate* signConfig ){
 		return;
 	}
 
+	Locker clocker(signObject, _this.get());
+
 	Vector3 signPosition = signConfig->getPosition();
 	childObjects.put(signSceno);
 	signObject->initializePosition(signPosition.getX(), signPosition.getZ(), signPosition.getY());
@@ -1596,6 +1617,8 @@ void BuildingObjectImplementation::changeSign( SignTemplate* signConfig ){
 	permissions->setDefaultDenyPermission(ContainerPermissions::MOVECONTAINER);
 	permissions->setDenyPermission("owner", ContainerPermissions::MOVECONTAINER);
 
+	clocker.release();
+
 	// Remove old sign (but save its name)
 	UnicodeString signName = "@sign_name:sign";
 	SignObject* oldSign = getSignObject();
@@ -1610,6 +1633,8 @@ void BuildingObjectImplementation::changeSign( SignTemplate* signConfig ){
 		oldSign->destroyObjectFromDatabase(true);
 
 	}
+
+	Locker clocker2(signObject, _this.get());
 
 	// Finish initializing new sign
 	signObject->initializeChildObject(_this.get());  // should call BuildingObject::setSignObject
