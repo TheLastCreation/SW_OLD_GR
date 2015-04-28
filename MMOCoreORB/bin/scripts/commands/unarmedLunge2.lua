@@ -57,6 +57,8 @@ UnarmedLunge2Command = {
 	combatSpam = "lungeshiak",
 
 	range = 20,
+	
+	weaponType = UNARMEDWEAPON,
 
 	stateEffects = {
 	  StateEffect( 
@@ -64,7 +66,7 @@ UnarmedLunge2Command = {
 		{ "knockdownRecovery", "lastKnockdown" }, 
 		{ "knockdown_defense" }, 
 		{}, 
-		50, 
+		100, 
 		100, 
 		0 
 	  )

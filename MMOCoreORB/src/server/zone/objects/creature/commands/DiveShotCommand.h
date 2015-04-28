@@ -24,24 +24,15 @@ public:
 		if (!checkInvalidLocomotions(creature))
 			return INVALIDLOCOMOTION;
 
-		ManagedReference<WeaponObject*> weapon = creature->getWeapon();
-
-		if (!weapon->isPistolWeapon()) {
-			return INVALIDWEAPON;
-		}
-
 		int ret = doCombatAction(creature, target);
 
 		if (ret != SUCCESS)
 			return ret;
 
-		if (!creature->checkDizzyDelay() && creature->isDizzied()) {
+		if (creature->isDizzied() && System::random(100) < 85) {
 			creature->queueDizzyFallEvent();
 		} else {
 			creature->setPosture(CreaturePosture::PRONE, false);
-
-			if (creature->isDizzied())
-				creature->queueDizzyFallEvent();
 
 			CreatureObjectDeltaMessage3* pmsg = new CreatureObjectDeltaMessage3(creature);
 			pmsg->updatePosture();

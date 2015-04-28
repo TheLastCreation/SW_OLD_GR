@@ -65,7 +65,7 @@ PolearmHit3Command = {
 		{ "postureDownRecovery" }, 
 		{ "posture_change_down_defense" }, 
 		{}, 
-		30, 
+		100, 
 		100, 
 		0 
 	  )
@@ -74,6 +74,8 @@ PolearmHit3Command = {
 	animationCRC = hashCode("combo_5a_medium"),
 
 	combatSpam = "bonebreaker",
+	
+	weaponType = POLEARMWEAPON,
 
 	range = -1
 }

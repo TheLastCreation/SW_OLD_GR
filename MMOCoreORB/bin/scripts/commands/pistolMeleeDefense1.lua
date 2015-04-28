@@ -57,7 +57,7 @@ PistolMeleeDefense1Command = {
 		{ "knockdownRecovery", "lastKnockdown" }, 
 		{ "knockdown_defense" }, 
 		{}, 
-		10, 
+		100, 
 		100, 
 		0 
 	  )
@@ -68,8 +68,10 @@ PistolMeleeDefense1Command = {
 	animationCRC = hashCode("ranged_melee_light"),
 
 	combatSpam = "pistolwhip",
+	
+	weaponType = PISTOLWEAPON,
 
-	range = 5
+	range = 10
 }
 
 AddCommand(PistolMeleeDefense1Command)

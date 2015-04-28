@@ -2338,9 +2338,6 @@ void CreatureObjectImplementation::queueDizzyFallEvent() {
 	if (hasDizzyEvent())
 		return;
 
-	if (checkDizzyDelay())
-		updateDizzyDelay();
-
 	dizzyFallDownEvent = new DizzyFallDownEvent(_this.get());
 	dizzyFallDownEvent->schedule(200);
 }
@@ -3089,6 +3086,8 @@ void CreatureObjectImplementation::setFaction(unsigned int crc) {
 void CreatureObjectImplementation::destroyPlayerCreatureFromDatabase(bool destroyContainedObjects) {
 	if (!isPlayerCreature())
 		return;
+
+	clearBuffs(false);
 
 	if(dataObjectComponent != NULL) {
 		dataObjectComponent->notifyObjectDestroyingFromDatabase();

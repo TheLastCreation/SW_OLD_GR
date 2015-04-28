@@ -573,8 +573,14 @@ void PetManagerImplementation::killPet(TangibleObject* attacker, AiAgent* pet) {
 	pet->updateLocomotion();
 
 	pet->updateTimeOfDeath();
-	pet->clearBuffs(false);
 
+	Reference<AiAgent*> petAgent = pet;
+
+	EXECUTE_TASK_1(petAgent, {
+			Locker locker(petAgent_p);
+
+			petAgent_p->clearBuffs(false);
+	});
 
 
 	ManagedReference<PetControlDevice*> petControlDevice = pet->getControlDevice().get().castTo<PetControlDevice*>();
@@ -588,6 +594,8 @@ void PetManagerImplementation::killPet(TangibleObject* attacker, AiAgent* pet) {
 				Reference<PetControlDeviceStoreObjectTask*> task = new PetControlDeviceStoreObjectTask(petControlDevice, owner, true);
 				task->execute();
 			}
+
+			Locker locker(petControlDevice);
 
 			petControlDevice->destroyObjectFromWorld(true);
 			petControlDevice->destroyObjectFromDatabase(true);

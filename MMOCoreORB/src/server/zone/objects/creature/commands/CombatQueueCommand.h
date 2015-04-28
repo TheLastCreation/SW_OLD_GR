@@ -60,6 +60,8 @@ protected:
 	uint8 attackType;
 	uint8 trails;
 
+	uint32 weaponType;
+
 public:
 
 	CombatQueueCommand(const String& name, ZoneProcessServer* server) : QueueCommand(name, server) {
@@ -95,6 +97,8 @@ public:
 
 		attackType = CombatManager::WEAPONATTACK;
 		trails = CombatManager::DEFAULTTRAIL;
+
+		weaponType = CombatManager::ANYWEAPON;
 	}
 
 	int doCombatAction(CreatureObject* creature, const uint64& target, const UnicodeString& arguments = "", ManagedReference<WeaponObject*> weapon = NULL) const {
@@ -114,6 +118,9 @@ public:
 				weapon = creature->getWeapon();
 			}
 		}
+
+		if (!(getWeaponType() & weapon->getWeaponBitmask()))
+			return INVALIDWEAPON;
 
 		if (checkRange == -1)
 			checkRange = MAX(10.f, weapon->getMaxRange());
@@ -420,7 +427,7 @@ public:
 		for (int j = 0; j < defenseMods.size(); j++)
 			targetDefense += creature->getSkillMod(defenseMods.get(j));
 
-		uint32 duration = MAX(5, effect.getStateLength()*(1.f-targetDefense/100.f));
+		uint32 duration = MAX(5, effect.getStateLength()*(1.f-targetDefense/120.f));
 
 		switch (effectType) {
 		case CommandEffect::BLIND:
@@ -593,6 +600,18 @@ public:
 
 	void setTrails(uint8 trails) {
 		this->trails = trails;
+	}
+
+	uint32 getWeaponType() const {
+		return weaponType;
+	}
+
+	void setWeaponType(uint32 weaponType) {
+		this->weaponType = weaponType;
+	}
+
+	bool validateWeapon(WeaponObject* weapon) {
+		return true;
 	}
 
 };

@@ -64,7 +64,7 @@ FullAutoArea1Command = {
 		{}, 
 		{ "dizzy_defense", "resistance_states" }, 
 		{ "jedi_state_defense" }, 
-		5, 
+		30, 
 		100, 
 		30 
 	  ),
@@ -73,7 +73,7 @@ FullAutoArea1Command = {
 		{}, 
 		{ "blind_defense", "resistance_states" }, 
 		{ "jedi_state_defense" }, 
-		5, 
+		30, 
 		100, 
 		40 
 	  ),
@@ -82,13 +82,15 @@ FullAutoArea1Command = {
 		{}, 
 		{ "stun_defense", "resistance_states" }, 
 		{ "jedi_state_defense" }, 
-		5, 
+		30, 
 		100, 
 		30 
 	  )
 	},
 
 	poolsToDamage = RANDOM_ATTRIBUTE,
+	
+	weaponType = CARBINEWEAPON,
 
 	range = -1
 }

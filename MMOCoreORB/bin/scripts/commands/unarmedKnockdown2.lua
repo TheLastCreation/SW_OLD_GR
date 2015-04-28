@@ -66,7 +66,7 @@ UnarmedKnockdown2Command = {
 		{ "knockdownRecovery", "lastKnockdown" }, 
 		{ "knockdown_defense" }, 
 		{}, 
-		40, 
+		100, 
 		100, 
 		0 
 	  )
@@ -75,6 +75,8 @@ UnarmedKnockdown2Command = {
 	animationCRC = hashCode("attack_special_hammerfist_light"),
 
 	combatSpam = "chargingwampa",
+	
+	weaponType = UNARMEDWEAPON,
 
 	range = -1
 }

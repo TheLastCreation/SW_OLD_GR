@@ -66,7 +66,7 @@ Melee2hArea3Command = {
 		{ "postureDownRecovery" }, 
 		{ "posture_change_down_defense" }, 
 		{}, 
-		15, 
+		100, 
 		100, 
 		0 
 	  )
@@ -78,6 +78,8 @@ Melee2hArea3Command = {
 	animationCRC = hashCode("combo_3a_light"),
 
 	combatSpam = "domination",
+	
+	weaponType = TWOHANDMELEEWEAPON,
 
 	range = -1
 }

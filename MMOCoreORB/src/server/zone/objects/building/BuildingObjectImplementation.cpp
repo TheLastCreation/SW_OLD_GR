@@ -1136,6 +1136,8 @@ void BuildingObjectImplementation::payAccessFee(CreatureObject* player) {
 }
 
 void BuildingObjectImplementation::setAccessFee(int fee, int duration) {
+	Locker acessLock(&paidAccessListMutex);
+
 	accessFee = fee;
 	accessDuration = duration;
 	lastAccessFeeChange = time(0);
@@ -1243,6 +1245,8 @@ void BuildingObjectImplementation::createChildObjects(){
 
 			if (obj == NULL )
 				continue;
+
+			Locker crossLocker(obj, _this.get());
 
 			if(obj->isCreatureObject()) {
 				obj->destroyObjectFromDatabase(true);
@@ -1533,6 +1537,8 @@ void BuildingObjectImplementation::destroyChildObjects() {
 		if (child == NULL)
 			continue;
 
+		Locker clocker(child, _this.get());
+
 		childObjects.drop(child);
 		child->destroyObjectFromDatabase(true);
 		child->destroyObjectFromWorld(true);
@@ -1545,6 +1551,8 @@ void BuildingObjectImplementation::destroyChildObjects() {
 
 		if (child == NULL)
 			continue;
+
+		Locker clocker(child, _this.get());
 
 		if (child->isAiAgent()) {
 			AiAgent* ai = cast<AiAgent*>(child.get());

@@ -60,7 +60,7 @@ StartleShot2Command = {
 		{ "postureUpRecovery" }, 
 		{ "posture_change_up_defense" }, 
 		{}, 
-		60, 
+		100, 
 		100, 
 		0 
 	  )
@@ -71,6 +71,8 @@ StartleShot2Command = {
 	animationCRC = hashCode("fire_defender_posture_change_up"),
 
 	combatSpam = "startleshot",
+	
+	weaponType = RIFLEWEAPON,
 
 	range = -1
 }

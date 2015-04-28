@@ -69,7 +69,7 @@ FlushingShot2Command = {
 		{ "postureUpRecovery" }, 
 		{ "posture_change_up_defense" }, 
 		{}, 
-		20, 
+		100, 
 		100, 
 		0 
 	  )
@@ -80,6 +80,8 @@ FlushingShot2Command = {
 	animationCRC = hashCode("fire_area_medium"),
 
 	combatSpam = "flushingvolley",
+	
+	weaponType = RIFLEWEAPON,
 
 	range = -1
 }

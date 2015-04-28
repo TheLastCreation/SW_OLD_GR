@@ -64,13 +64,15 @@ WildShot2Command = {
 		{}, 
 		{ "stun_defense", "resistance_states" }, 
 		{ "jedi_state_defense" }, 
-		30, 
+		50, 
 		100, 
 		30 
 	  )
 	},
 
 	poolsToDamage = RANDOM_ATTRIBUTE,
+	
+	weaponType = CARBINEWEAPON,
 
 	range = -1
 }

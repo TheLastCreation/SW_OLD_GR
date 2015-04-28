@@ -57,6 +57,8 @@ UnarmedLunge1Command = {
 	combatSpam = "ridingbantha",
 
 	range = 20,
+	
+	weaponType = UNARMEDWEAPON,
 
 	stateEffects = {
 	  StateEffect( 
@@ -64,7 +66,7 @@ UnarmedLunge1Command = {
 		{ "postureDownRecovery" }, 
 		{ "posture_change_down_defense" }, 
 		{}, 
-		40, 
+		100, 
 		100, 
 		0 
 	  )
