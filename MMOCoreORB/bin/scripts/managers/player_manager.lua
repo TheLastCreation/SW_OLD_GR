@@ -45,10 +45,10 @@
 -----------------------------------
 
 --Blue frog / GM buff values
-performanceBuff = 1000
-medicalBuff = 1900
-performanceDuration = 7200 -- in seconds
-medicalDuration = 7200 -- in seconds
+performanceBuff = 500
+medicalBuff = 500
+performanceDuration = 3600 -- in seconds
+medicalDuration = 3600 -- in seconds
 
 --Sets the experience multiplier while grouped
 groupExpMultiplier = 8.5
