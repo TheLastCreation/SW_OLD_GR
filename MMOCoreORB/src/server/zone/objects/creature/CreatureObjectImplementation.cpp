@@ -3213,3 +3213,19 @@ int CreatureObjectImplementation::getGender() {
 
 	return creoData->getGender();
 }
+
+void CreatureObjectImplementation::updateVehiclePosition(bool sendPackets) {
+	ManagedReference<SceneObject*> parent = getParent().get();
+
+	if (parent == NULL || (!parent->isVehicleObject() && !parent->isMount()))
+		return;
+
+	CreatureObject* creo = cast<CreatureObject*>(parent.get());
+
+	if (creo != NULL) {
+		Locker clocker(creo, _this.get());
+		creo->setCurrentSpeed(getCurrentSpeed());
+	}
+
+	TangibleObjectImplementation::updateVehiclePosition(sendPackets);
+}

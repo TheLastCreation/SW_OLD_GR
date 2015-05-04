@@ -417,7 +417,11 @@ void InstallationObjectImplementation::updateHopper(Time& workingTime, bool shut
 
 
 	if(harvestAmount > 0 || !isOperating()) {
+		Locker spawnLocker(currentSpawn);
+
 		currentSpawn->extractResource(getZone()->getZoneName(), harvestAmount);
+
+		spawnLocker.release();
 
 		updateResourceContainerQuantity(container, (currentQuantity + harvestAmount), true);
 	}
@@ -589,12 +593,15 @@ void InstallationObjectImplementation::destroyObjectFromDatabase(bool destroyCon
 
 	ManagedReference<SceneObject*> deed = getZoneServer()->getObject(deedObjectID);
 
-	if (deed != NULL)
+	if (deed != NULL) {
+		Locker locker(deed);
 		deed->destroyObjectFromDatabase(true);
+	}
 
 	for (int i = 0; i < resourceHopper.size(); ++i) {
 		ResourceContainer* container = resourceHopper.get(i);
 
+		Locker locker(container);
 		container->destroyObjectFromDatabase(true);
 	}
 }

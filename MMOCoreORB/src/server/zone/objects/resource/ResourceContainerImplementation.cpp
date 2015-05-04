@@ -72,7 +72,13 @@ void ResourceContainerImplementation::setQuantity(uint32 quantity, bool doNotify
 	if (newStackSize > 0) {
 		if (parent != NULL) {
 
+			Locker locker(spawnObject);
+
 			ResourceContainer* harvestedResource = spawnObject->createResource(newStackSize);
+
+			locker.release();
+
+			Locker clocker(harvestedResource, _this.get());
 
 			if (parent->transferObject(harvestedResource, -1, true)) {
 				parent->broadcastObject(harvestedResource, true);
@@ -106,10 +112,16 @@ void ResourceContainerImplementation::split(int newStackSize) {
 	if (sceneParent == NULL)
 		return;
 
+	Locker locker(spawnObject);
+
 	ManagedReference<ResourceContainer*> newResource = spawnObject->createResource(newStackSize);
+
+	locker.release();
 
 	if(newResource == NULL)
 		return;
+
+	Locker rlocker(newResource);
 
 	if (newResource->getSpawnObject() == NULL) {
 		newResource->destroyObjectFromDatabase(true);
@@ -136,10 +148,16 @@ void ResourceContainerImplementation::split(int newStackSize, CreatureObject* pl
 	if (inventory == NULL)
 		return;
 
+	Locker locker(spawnObject);
+
 	ManagedReference<ResourceContainer*> newResource = spawnObject->createResource(newStackSize);
+
+	locker.release();
 
 	if (newResource == NULL)
 		return;
+
+	Locker rlocker(newResource);
 
 	if (newResource->getSpawnObject() == NULL) {
 		newResource->destroyObjectFromDatabase(true);
@@ -158,16 +176,12 @@ void ResourceContainerImplementation::split(int newStackSize, CreatureObject* pl
 
 void ResourceContainerImplementation::combine(ResourceContainer* fromContainer) {
 	Locker _locker(_this.get());
-
-	ManagedReference<SceneObject*> parent =
-			fromContainer->getParent().get();
+	Locker clocker(fromContainer, _this.get());
 
 	setQuantity(getQuantity() + fromContainer->getQuantity());
 	fromContainer->setQuantity(0);
 
-	//parent->removeObject(fromContainer, true);
 	fromContainer->destroyObjectFromWorld(true);
-
 	fromContainer->destroyObjectFromDatabase(true);
 }
 

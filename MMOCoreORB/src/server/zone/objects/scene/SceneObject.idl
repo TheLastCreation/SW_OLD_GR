@@ -817,7 +817,7 @@ class SceneObject extends QuadTreeEntry implements Logger {
 	@dirty
 	public native float getDistanceTo(Coordinate coordinate);
 	
-	public native void updateVehiclePosition(boolean sendPackets);
+	public abstract native void updateVehiclePosition(boolean sendPackets);
 	
 	@dirty
 	public native void playEffect(final string file, final string aux);
@@ -1644,35 +1644,43 @@ class SceneObject extends QuadTreeEntry implements Logger {
 	public ContainerPermissions getContainerPermissions() {
 		return containerPermissions;
 	}
-	
+
+	@preLocked
 	public void setContainerDefaultAllowPermission(unsigned short perm) {
 		containerPermissions.setDefaultAllowPermission(perm);
 	}
-	
+
+	@preLocked
 	public void clearContainerDefaultAllowPermission(unsigned short perm) {
 		containerPermissions.clearDefaultAllowPermission(perm);
 	}
-	
+
+	@preLocked
 	public void setContainerDefaultDenyPermission(unsigned short perm) {
 		containerPermissions.setDefaultDenyPermission(perm);
 	}
-	
+
+	@preLocked
 	public void clearContainerDefaultDenyPermission(unsigned short perm) {
 		containerPermissions.clearDefaultDenyPermission(perm);
 	}
-	
+
+	@preLocked
 	public void setContainerInheritPermissionsFromParent(boolean val) {
 		containerPermissions.setInheritPermissionsFromParent(val);
 	}
-	
+
+	@preLocked
 	public void setContainerOwnerID(unsigned long id) {
 		containerPermissions.setOwner(id);
 	}
-	
+
+	@preLocked
 	public void setContainerAllowPermission(final string group, unsigned short perm) {
 		containerPermissions.setAllowPermission(group, perm);
 	}
-	
+
+	@preLocked
 	public void setContainerDenyPermission(final string group, unsigned short perm) {
 		containerPermissions.setDenyPermission(group, perm);
 	}

@@ -682,6 +682,8 @@ class CreatureObject extends TangibleObject {
 	 */
 	@preLocked
 	public native void clearBuffs(boolean updateclient);
+	
+	public native void updateVehiclePosition(boolean sendPackets);
 
 	@preLocked
 	public native void addWearableObject(TangibleObject object, boolean notifyClient = true);
@@ -1685,6 +1687,7 @@ class CreatureObject extends TangibleObject {
 	}
 
 	@read
+	@reference
 	public GroupObject getGroup() {
 		return group;
 	}
@@ -1803,7 +1806,6 @@ class CreatureObject extends TangibleObject {
 	public native int getSkillModOfType(final string skillmod, final unsigned int modType);
 
 	@dirty
-	@preLocked
 	public boolean hasSkill(final string skill) {
 		return skillList.containsSkill(skill);
 	}

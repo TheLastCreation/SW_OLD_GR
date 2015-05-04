@@ -21,6 +21,7 @@ NameManager::NameManager() {
 	fillNames();
 
 	setLogging(false);
+	setLoggingName("NameManager");
 }
 
 NameManager::NameManager(ZoneProcessServer* serv) : Logger("NameManager") {
@@ -179,7 +180,7 @@ void NameManager::fillNames() {
 
 		info("parsing restricted names list: restrictednames.lst", true);
 
-		BannedNameSet* setp;
+		BannedNameSet* setp = NULL;
 
 		String line;
 		bool isset = false;

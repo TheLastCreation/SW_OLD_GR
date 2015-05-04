@@ -440,7 +440,7 @@ void AiAgentImplementation::setLevel(int lvl, bool randomHam) {
 	int baseHamMax = ((float)npcTemplate->getBaseHAMmax()) * ratio;
 	int baseHam = ((float)npcTemplate->getBaseHAM()) * ratio;
 
-	int ham;
+	int ham = 0;
 
 	for (int i = 0; i < 9; ++i) {
 		if (i % 3 == 0) {
@@ -1072,6 +1072,7 @@ void AiAgentImplementation::notifyDespawn(Zone* zone) {
 	SceneObject* creatureInventory = getSlottedObject("inventory");
 
 	if (creatureInventory != NULL) {
+		Locker clocker(creatureInventory, _this.get());
 		creatureInventory->setContainerOwnerID(0);
 	}
 
