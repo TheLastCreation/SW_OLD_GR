@@ -47,14 +47,14 @@ float VisibilityManager::calculateVisibilityIncrease(CreatureObject* creature) {
 		SortedVector<ManagedReference<QuadTreeEntry* > > closeObjects;
 		CloseObjectsVector* closeObjectsVector = (CloseObjectsVector*) creature->getCloseObjects();
 		if (closeObjectsVector == NULL) {
-			zone->getInRangeObjects(creature->getWorldPositionX(), creature->getWorldPositionY(), 45, &closeObjects, true);
+			zone->getInRangeObjects(creature->getWorldPositionX(), creature->getWorldPositionY(), 35, &closeObjects, true);
 		} else {
 			closeObjectsVector->safeCopyTo(closeObjects);
 		}
 
 		for (int i = 0; i < closeObjects.size(); ++i) {
 			SceneObject* obj = cast<SceneObject*>(closeObjects.get(i).get());
-			if (obj->isCreatureObject() && creature->isInRange(obj, 45)) {
+			if (obj->isCreatureObject() && creature->isInRange(obj, 35)) {
 				ManagedReference<CreatureObject*> c = cast<CreatureObject*>(obj);
 				if (c->isNonPlayerCreatureObject()) {
 					if (creature->getFaction() == 0 || (c->getFaction() != factionImperial && c->getFaction() != factionRebel)) {
