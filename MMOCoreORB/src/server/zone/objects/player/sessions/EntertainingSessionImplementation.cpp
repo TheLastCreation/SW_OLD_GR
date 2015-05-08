@@ -103,6 +103,8 @@ void EntertainingSessionImplementation::doEntertainerPatronEffects() {
 				} else { //patron is not in range, force to stop listening
 					ManagedReference<PlayerManager*> playerManager = patron->getZoneServer()->getPlayerManager();
 
+					Locker locker(patron, entertainer.get());
+
 					if (dancing) {
 						if (playerManager != NULL)
 							playerManager->stopWatch(patron, creo->getObjectID(), true, false, false, true);
@@ -409,11 +411,12 @@ void EntertainingSessionImplementation::startPlayingMusic(const String& song, co
 	ManagedReference<GroupObject*> group = entertainer->getGroup();
 
 	if (group != NULL) {
-		if (group->getBandSong() != song)
+		if (group->getBandSong() != song) {
 
-			Locker locker(group);
+			Locker clocker(group, entertainer);
 
 			group->setBandSong(song);
+		}
 	}
 
 	sendEntertainingUpdate(entertainer, 0.0125, instrumentAnimation, 0x07352BAC, instrid);

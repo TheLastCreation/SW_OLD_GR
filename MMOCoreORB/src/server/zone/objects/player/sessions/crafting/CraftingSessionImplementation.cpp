@@ -491,6 +491,9 @@ void CraftingSessionImplementation::addIngredient(TangibleObject* tano, int slot
 		/// Add Components to crafted object
 		String craftingComponentsPath = "object/tangible/crafting/crafting_components_container.iff";
 		craftingComponents = crafter->getZoneServer()->createObject(craftingComponentsPath.hashCode(), 1);
+
+		Locker componentsLocker(craftingComponents);
+
 		craftingComponents->setSendToClient(false);
 		craftingTool->transferObject(craftingComponents, 4, false);
 
@@ -505,6 +508,8 @@ void CraftingSessionImplementation::addIngredient(TangibleObject* tano, int slot
 		//String craftingComponentsSatchelPath = "object/tangible/container/base/base_container_volume.iff";
 		String craftingComponentsSatchelPath = "object/tangible/hopper/crafting_station_hopper/crafting_station_ingredient_hopper_large.iff";
 		craftingComponentsSatchel = crafter->getZoneServer()->createObject(craftingComponentsSatchelPath.hashCode(), 1);
+
+		Locker satchelLocker(craftingComponentsSatchel, craftingComponents);
 
 		craftingComponentsSatchel->setContainerInheritPermissionsFromParent(false);
 		craftingComponentsSatchel->setContainerDefaultDenyPermission(ContainerPermissions::OPEN + ContainerPermissions::MOVEIN + ContainerPermissions::MOVEOUT + ContainerPermissions::MOVECONTAINER);
@@ -698,10 +703,15 @@ void CraftingSessionImplementation::initialAssembly(int clientCounter) {
 		if (tano == NULL)
 			continue;
 
+		uint32 tanoCRC = prototype->getClientObjectCRC();
+		uint32 visSlot = draftSchematic->getAppearance(i).hashCode();
+
 		// we know that we can only have one component per hardpoint slot, so don't worry about checking them
-		ComponentMapEntry entry = ComponentMap::instance()->get(tano->getClientObjectCRC());
-		if (entry.getId() > 0)
-			prototype->addVisibleComponent(entry.getId(), false);
+		if (visSlot > 0) {
+			uint32 id = ComponentMap::instance()->getVisibleCRC(tanoCRC, visSlot);
+			if (id > 0)
+				prototype->addVisibleComponent(id, false);
+		}
 	}
 
 	if (prototype->getVisibleComponents() != NULL && prototype->getVisibleComponents()->size() > 0) {
