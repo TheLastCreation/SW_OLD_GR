@@ -511,12 +511,17 @@ void PlayerManagerImplementation::createTutorialBuilding(CreatureObject* player)
 	String cell = "object/cell/cell.iff";
 
 	Reference<BuildingObject*> tutorial = server->createObject(tut.hashCode(), 1).castTo<BuildingObject*>();
+	
+	Locker locker(tutorial);
+	
 	tutorial->createCellObjects();
 	tutorial->setPublicStructure(true);
 
 	tutorial->initializePosition(System::random(5000), 0, System::random(5000));
 	zone->transferObject(tutorial, -1, true);
 
+	locker.release();
+	
 	SceneObject* cellTut = tutorial->getCell(11);
 
 	SceneObject* cellTutPlayer = tutorial->getCell(1);
@@ -4616,7 +4621,7 @@ bool PlayerManagerImplementation::shouldDeleteCharacter(uint64 characterID, int 
 
 		if(result == NULL) {
 			error("ERROR WHILE LOOKING UP CHARACTER IN SQL TABLE");
-		} else if (result.get()->getRowsAffected() > 0 ) {
+		} else if (result.get()->getRowsAffected() > 1 ) {
 
 			error("More than one character with oid = " + String::valueOf(characterID) + " in galaxy " + String::valueOf(galaxyID));
 			return false;
