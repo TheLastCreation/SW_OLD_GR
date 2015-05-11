@@ -49,7 +49,7 @@ shuttleportLandingTime = 11
 starportLandingTime = 14
 
 --Time, in seconds, that a shuttle is landed for
-shuttleportLandedTime = 50
+shuttleportLandedTime = 40
 starportLandedTime = 120
 
 
