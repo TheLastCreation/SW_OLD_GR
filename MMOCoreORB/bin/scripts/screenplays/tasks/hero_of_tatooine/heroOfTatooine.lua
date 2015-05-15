@@ -382,7 +382,7 @@ function HeroOfTatooineScreenPlay:handleSuiImplication(pPlayer, pSui, cancelPres
 
 	local liarNum = arg0 + 1
 	return ObjectManager.withCreatureAndPlayerObject(pPlayer, function(player, playerObject)
-		if (liarNum == 4) then
+		if (liarNum == 3) then
 			local pInventory = SceneObject(pPlayer):getSlottedObject("inventory")
 
 			if (pInventory == nil) then
@@ -1121,9 +1121,9 @@ function HeroOfTatooineScreenPlay:honorDestReached(pAgent)
 					CreatureObject(pWife):setPosture(13)
 				end
 
-				CreatureObject(agentID):doAnimation("cheer")
+				CreatureObject(pAgent):doAnimation("cheer")
 			else
-				CreatureObject(agentID):doAnimation("wave_finger_warning")
+				CreatureObject(pAgent):doAnimation("wave_finger_warning")
 			end
 		end
 	elseif (agentID == rancherID) then

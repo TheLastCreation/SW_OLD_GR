@@ -230,7 +230,7 @@ class AiAgent extends CreatureObject {
 	 * @post { this is locked }
 	 */
 	@preLocked
-	public native void activateAwarenessEvent();
+	public native void activateAwarenessEvent(unsigned long delay = 1000);
 
 	/**
 	 * Executes an AI interrupt in a separate thread (to shed locks)
@@ -871,7 +871,7 @@ class AiAgent extends CreatureObject {
 		}
 
 		float newValue = value - (value * (super.shockWounds - 500) * 0.001);
-			
+
 		return newValue;
 	}
 
@@ -1315,4 +1315,13 @@ class AiAgent extends CreatureObject {
 	public void setReactionRank(int rank) {
 		reactionRank = rank;
 	}
+	
+	@dirty
+	public int getHamMaximum() {
+		return npcTemplate.get().getBaseHAMmax();
+	}
+	@dirty
+	public int getHamBase() {
+		return npcTemplate.get().getBaseHAM();
+	}	
 }

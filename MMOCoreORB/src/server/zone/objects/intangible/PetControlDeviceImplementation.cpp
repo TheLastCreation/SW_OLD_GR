@@ -767,6 +767,11 @@ void PetControlDeviceImplementation::fillAttributeList(AttributeListMessage* alm
 		ManagedReference<DroidObject*> droid = this->controlledObject.get().castTo<DroidObject*>();
 
 		if (droid != NULL) {
+			alm->insertAttribute("challenge_level", droid->getLevel());
+			alm->insertAttribute("creature_health", droid->getHAM(0));
+			alm->insertAttribute("creature_action", droid->getHAM(3));
+			alm->insertAttribute("creature_mind", droid->getHAM(6));
+
 			droid->fillAttributeList(alm, object);
 		}
 	} else {
