@@ -56,14 +56,14 @@ object_installation_faction_perk_turret_dish_sm = object_installation_faction_pe
 	rating = HEAVY,
 
 	kinetic = 75,
-	energy = 95,
+	energy = 75,
 	electricity = 75,
-	stun = 100,
+	stun = 80,
 	blast = -1,
 	heat = 75,
 	cold = 75,
 	acid = 75,
-	lightSaber =100,
+	lightSaber =75,
 	chanceHit = 4,
 	weapon = "object/weapon/ranged/turret/turret_block_large.iff",
 }

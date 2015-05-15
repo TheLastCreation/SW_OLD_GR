@@ -54,15 +54,15 @@ object_installation_faction_perk_turret_tower_sm = object_installation_faction_p
 	-- LIGHT, MEDIUM, HEAVY
 	rating = HEAVY,
 
-	kinetic = 90,
-	energy = 95,
-	electricity = 90,
-	stun = 100,
+	kinetic = 75,
+	energy = 75,
+	electricity = 75,
+	stun = 80,
 	blast = -1,
-	heat = 90,
-	cold = 90,
-	acid = 90,
-	lightSaber =100,
+	heat = 75,
+	cold = 75,
+	acid = 75,
+	lightSaber =75,
 	chanceHit = 4,
 	weapon = "object/weapon/ranged/turret/turret_block_large.iff",
 }
