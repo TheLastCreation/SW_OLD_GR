@@ -7,8 +7,8 @@ krayt_dragon_adolescent = Creature:new {
 	damageMin = 2270,
 	damageMax = 4250,
 	baseXp = 28549,
-	baseHAM = 410000,
-	baseHAMmax = 501000,
+	baseHAM = 310000,
+	baseHAMmax = 401000,
 	armor = 3,
 	resists = {195,195,195,195,195,195,195,195,-1},
 	meatType = "meat_carnivore",
@@ -33,7 +33,7 @@ krayt_dragon_adolescent = Creature:new {
 				{group = "krayt_dragon_common", chance = 6000000},
 				{group = "krayt_tissue_uncommon", chance = 4000000}				
 			},
-			lootChance = 5000000
+			lootChance = 9000000
 		},
 		{
 	        groups = {
@@ -43,7 +43,7 @@ krayt_dragon_adolescent = Creature:new {
 				{group = "rifles", chance = 2000000},
 				{group = "wearables_all", chance = 2000000},				
 			},
-			lootChance = 2500000
+			lootChance = 9500000
 		}
 	},
 	weapons = {},
