@@ -672,16 +672,20 @@ SceneObject* AiAgentImplementation::getTargetFromDefenders() {
 bool AiAgentImplementation::validateTarget() {
 	ManagedReference<SceneObject*> followCopy = getFollowObject();
 
-	if (followCopy == NULL)
+	return validateTarget(followCopy);
+}
+
+bool AiAgentImplementation::validateTarget(SceneObject* target) {
+	if (target == NULL)
 		return false;
 
-	if (!followCopy->isInRange(_this.get(), 128))
+	if (!target->isInRange(_this.get(), 128))
 		return false;
 
-	if (followCopy->isCreatureObject() && (!followCopy.castTo<CreatureObject*>()->isAttackableBy(_this.get()) || followCopy.castTo<CreatureObject*>()->isDead() || followCopy.castTo<CreatureObject*>()->isIncapacitated()))
+	if (target->isCreatureObject() && (!cast<CreatureObject*>(target)->isAttackableBy(_this.get()) || cast<CreatureObject*>(target)->isDead() || cast<CreatureObject*>(target)->isIncapacitated()))
 		return false;
 
-	if (followCopy->isTangibleObject() && (!followCopy.castTo<TangibleObject*>()->isAttackableBy(_this.get()) || followCopy.castTo<TangibleObject*>()->isDestroyed()))
+	if (target->isTangibleObject() && (!cast<TangibleObject*>(target)->isAttackableBy(_this.get()) || cast<TangibleObject*>(target)->isDestroyed()))
 		return false;
 
 	return true;
@@ -2763,28 +2767,43 @@ void AiAgentImplementation::broadcastInterrupt(int64 msg) {
 	if (zone == NULL)
 		return;
 
-	SortedVector<ManagedReference<QuadTreeEntry*> > closeAiAgents;
+	Reference<AiAgent*> aiAgent = _this.get();
 
-	try {
-		if (closeobjects == NULL) {
-			info("Null closeobjects vector in AiAgentImplementation::broadcastInterrupt", true);
-			zone->getInRangeObjects(getPositionX(), getPositionY(), 192, &closeAiAgents, true);
-		} else {
-			closeAiAgents.removeAll(closeobjects->size(), 10);
-			closeobjects->safeCopyTo(closeAiAgents);
-		}
-	} catch (Exception& e) {
+	EXECUTE_TASK_2(aiAgent, msg, {
+			SortedVector<ManagedReference<QuadTreeEntry*> > closeAiAgents;
 
-	}
+			CloseObjectsVector* closeobjects = (CloseObjectsVector*) aiAgent_p->getCloseObjects();
+			Zone* zone = aiAgent_p->getZone();
 
-	for (int i = 0; i < closeAiAgents.size(); ++i) {
-		AiAgent* agent = cast<AiAgent*>(closeAiAgents.get(i).get());
+			if (zone == NULL)
+				return;
 
-		if (_this.get() == agent || agent == NULL)
-			continue;
+			try {
+				if (closeobjects == NULL) {
+					aiAgent_p->info("Null closeobjects vector in AiAgentImplementation::broadcastInterrupt", true);
+					zone->getInRangeObjects(aiAgent_p->getPositionX(), aiAgent_p->getPositionY(), 192, &closeAiAgents, true);
+				} else {
+					closeAiAgents.removeAll(closeobjects->size(), 10);
+					closeobjects->safeCopyTo(closeAiAgents);
+				}
+			} catch (Exception& e) {
 
-		agent->activateInterrupt(_this.get(), msg);
-	}
+			}
+
+			for (int i = 0; i < closeAiAgents.size(); ++i) {
+				AiAgent* agent = cast<AiAgent*>(closeAiAgents.get(i).get());
+
+				if (aiAgent_p == agent || agent == NULL)
+					continue;
+
+				Locker locker(agent);
+
+				Locker crossLocker(aiAgent_p, agent);
+
+				agent->interrupt(aiAgent_p, msg_p);
+			}
+	});
+
 }
 
 void AiAgentImplementation::setCombatState() {

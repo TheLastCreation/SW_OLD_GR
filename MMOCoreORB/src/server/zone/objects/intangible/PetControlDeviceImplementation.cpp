@@ -1,5 +1,6 @@
 #include "server/zone/objects/intangible/PetControlDevice.h"
 #include "server/zone/objects/intangible/PetControlObserver.h"
+#include "server/zone/objects/intangible/tasks/EnqueuePetCommand.h"
 #include "server/zone/managers/objectcontroller/ObjectController.h"
 #include "server/zone/managers/group/GroupManager.h"
 #include "server/zone/managers/creature/PetManager.h"
@@ -40,8 +41,8 @@ void PetControlDeviceImplementation::callObject(CreatureObject* player) {
 	}
 
 	if (player->getParent() != NULL) {
-		ManagedReference<SceneObject*> strongRef = player->getParentRecursively(SceneObjectType::BUILDING);
-		ManagedReference<BuildingObject*> building;
+		ManagedReference<SceneObject*> strongRef = player->getRootParent().get();
+		ManagedReference<BuildingObject*> building = NULL;
 
 		if (strongRef != NULL)
 			building = strongRef.castTo<BuildingObject*>();
@@ -245,6 +246,8 @@ void PetControlDeviceImplementation::callObject(CreatureObject* player) {
 		player->getCooldownTimerMap()->updateToCurrentAndAddMili("petCallOrStoreCooldown", 1000); // 1 sec
 	}
 
+	EnqueuePetCommand* enqueueCommand = new EnqueuePetCommand(pet, String("petFollow").toLowerCase().hashCode(), "", player->getObjectID(), 1);
+	enqueueCommand->execute();
 }
 
 int PetControlDeviceImplementation::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
@@ -365,18 +368,8 @@ void PetControlDeviceImplementation::spawnObject(CreatureObject* player) {
 		// Submit new power task
 		Reference<Task*> droidPowerTask = new DroidPowerTask( droid );
 		droid->addPendingTask("droid_power", droidPowerTask, 120000); // 2 min
-		if( droid->hasPower() ){
-			// TODO Temporarily set to autofollow player
-			droid->setFollowObject(player);
-			droid->storeFollowObject();
-		}
-		else{
-			droid->handleLowPower();
-		}
-	} else {
-		pet->setFollowObject(player);
-		pet->storeFollowObject();
 	}
+
 	pet->setHomeLocation(player->getPositionX(), player->getPositionZ(), player->getPositionY(), (parent != NULL && parent->isCellObject()) ? parent : NULL);
 	pet->setNextStepPosition(player->getPositionX(), player->getPositionZ(), player->getPositionY(), (parent != NULL && parent->isCellObject()) ? parent : NULL);
 	pet->clearPatrolPoints();

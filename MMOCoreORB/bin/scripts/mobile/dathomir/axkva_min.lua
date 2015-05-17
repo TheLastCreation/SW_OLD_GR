@@ -38,7 +38,7 @@ axkva_min = Creature:new {
 				{group = "melee_weapons", chance = 2000000},
 				{group = "armor_attachments", chance = 500000},
 				{group = "clothing_attachments", chance = 500000},
-				{group = "wearables_scarce", chance = 500000}
+				{group = "holocron_dark", chance = 500000}
 			},
 			lootChance = 7000000
 		},
@@ -46,7 +46,7 @@ axkva_min = Creature:new {
 			groups = {
 				{group = "axkva_min", chance = 10000000},
 			},
-			lootChance = 5000000
+			lootChance = 9000000
 		}
 	},
 	weapons = {"mixed_force_weapons"},

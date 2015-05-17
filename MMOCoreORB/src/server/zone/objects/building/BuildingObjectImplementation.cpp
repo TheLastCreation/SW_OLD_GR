@@ -633,9 +633,12 @@ void BuildingObjectImplementation::destroyObjectFromDatabase(
 
 		if (child == NULL)
 			continue;
+          
+          	Locker locker(child);
 
 		if (child->isAiAgent()) {
 			AiAgent* ai = cast<AiAgent*>(child.get());
+                  
 			ai->setRespawnTimer(0);
 		}
 
