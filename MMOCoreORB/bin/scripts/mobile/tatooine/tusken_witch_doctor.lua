@@ -29,7 +29,7 @@ tusken_witch_doctor = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "holocron_dark", chance = 1500000},
+				{group = "junk", chance = 1500000},
 				{group = "tusken_common", chance = 3000000},
 				{group = "wearables_scarce", chance = 2000000},				
 				{group = "bone_armor", chance = 750000},
@@ -39,7 +39,7 @@ tusken_witch_doctor = Creature:new {
 				{group = "color_crystals", chance = 500000},
 				{group = "crystals_premium", chance = 500000}
 			},
-			lootChance = 8000000
+			lootChance = 6000000
 		}	
 	},
 	weapons = {"tusken_weapons"},
