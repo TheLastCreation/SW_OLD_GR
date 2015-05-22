@@ -33,7 +33,8 @@ naboo_gunrunner = Creature:new {
 				{group = "wearables_common", chance = 2000000},
 				{group = "tailor_components", chance = 2000000},
 				{group = "loot_kit_parts", chance = 2000000}
-			}
+			},
+			lootChance = 3200000
 		}
 	},
 	weapons = {"ranged_weapons"},

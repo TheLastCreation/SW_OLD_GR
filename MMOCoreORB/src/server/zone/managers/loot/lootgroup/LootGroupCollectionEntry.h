@@ -36,12 +36,8 @@ public:
 		return *this;
 	}
 
-	void readObject(LuaObject* lua, int level) {
+	void readObject(LuaObject* lua) {
 		lootChance = lua->getIntField("lootChance");
-
-		if (lootChance == 0) {
-			lootChance = 2000000 + (level * 20000); // 20% + (0.2% * level)
-		}
 
 		LuaObject luagroups = lua->getObjectField("groups");
 		lootGroups.readObject(&luagroups);

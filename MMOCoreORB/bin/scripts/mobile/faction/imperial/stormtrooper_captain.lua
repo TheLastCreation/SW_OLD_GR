@@ -41,7 +41,8 @@ stormtrooper_captain = Creature:new {
 				{group = "imperial_officer_common", chance = 450000},
 				{group = "stormtrooper_common", chance = 700000},
 				{group = "wearables_common", chance = 1000000}
-			}
+			},
+			lootChance = 2800000
 		}
 	},
 	weapons = {"stormtrooper_weapons"},

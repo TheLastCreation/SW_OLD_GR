@@ -35,7 +35,8 @@ moisture_thief = Creature:new {
 				{group = "loot_kit_parts", chance = 1500000},
 				{group = "printer_parts", chance = 1000000},
 				{group = "pistols", chance = 2000000},
-			}
+			},
+			lootChance = 2200000
 		}
 	},
 	weapons = {"rebel_weapons_light"},

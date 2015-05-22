@@ -41,7 +41,8 @@ hutt_expeditonary_force_member = Creature:new {
 				{group = "clothing_attachments", chance = 200000},
 				{group = "armor_attachments", chance = 200000},
 				{group = "hutt_exp_common", chance = 2000000}
-			}
+			},
+			lootChance = 2500000
 		}
 	},
 	weapons = {"ranged_weapons"},

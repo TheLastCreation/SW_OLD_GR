@@ -29,16 +29,7 @@ bedraggled_pubam_laborer = Creature:new {
 	templates = {
 		"object/mobile/dulok_male.iff",
 		"object/mobile/dulok_female.iff"},
-	lootGroups = {
-		{
-			groups = {
-				{group = "ewok", chance = 9100000},
-				{group = "armor_attachments", chance = 450000},
-				{group = "clothing_attachments", chance = 450000}
-			},
-			lootChance = 1420000
-		}
-	},
+	lootGroups = {},
 	weapons = {},
 	conversationTemplate = "",
 	attacks = brawlermaster

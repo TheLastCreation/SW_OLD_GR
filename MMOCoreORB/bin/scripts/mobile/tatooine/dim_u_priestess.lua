@@ -35,7 +35,8 @@ dim_u_priestess = Creature:new {
 				{group = "tailor_components", chance = 1500000},
 				{group = "loot_kit_parts", chance = 1500000},
 				{group = "dim_u_common", chance = 500000}
-			}
+			},
+			lootChance = 2200000
 		}
 	},
 	weapons = {},

@@ -29,15 +29,7 @@ grungy_pubam_laborer = Creature:new {
 	templates = {
 		"object/mobile/dulok_male.iff",
 		"object/mobile/dulok_female.iff"},
-	lootGroups = {
-		{
-			groups = {
-				{group = "ewok", chance = 9000000},
-				{group = "wearables_uncommon", chance = 1000000},
-			},
-			lootChance = 1900000
-		}
-	},
+	lootGroups = {},
 	weapons = {},
 	conversationTemplate = "",
 	attacks = brawlermaster

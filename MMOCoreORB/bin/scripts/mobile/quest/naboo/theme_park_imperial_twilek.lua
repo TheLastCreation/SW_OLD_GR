@@ -26,16 +26,7 @@ theme_park_imperial_twilek = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/dressed_commoner_fat_twilek_male_02.iff"},
-	lootGroups = {
-		{
-			groups = {
-				{group = "junk", chance = 5000000},
-				{group = "tailor_components", chance = 2000000},
-				{group = "loot_kit_parts", chance = 2000000},
-				{group = "wearables_common", chance = 1000000}
-			}
-		}
-	},
+	lootGroups = {},
 	weapons = {},
 	conversationTemplate = "",
 	attacks = brawlermaster

@@ -222,7 +222,7 @@ void QueueCommand::checkForTef(CreatureObject* creature, CreatureObject* target)
 		PlayerObject* targetGhost = target->getPlayerObject().get();
 
 		if (!CombatManager::instance()->areInDuel(creature, target)
-				&& targetGhost != NULL && targetGhost->getFactionStatus() == FactionStatus::OVERT && targetGhost->hasPvpTef()) {
+				&& targetGhost != NULL && targetGhost->getFactionStatus() == FactionStatus::OVERT) {
 			ghost->updateLastPvpCombatActionTimestamp();
 		}
 	} else if (target->isPet()) {
@@ -232,7 +232,7 @@ void QueueCommand::checkForTef(CreatureObject* creature, CreatureObject* target)
 			PlayerObject* ownerGhost = owner->getPlayerObject().get();
 
 			if (!CombatManager::instance()->areInDuel(creature, owner)
-					&& ownerGhost != NULL && ownerGhost->getFactionStatus() == FactionStatus::OVERT && ownerGhost->hasPvpTef()) {
+					&& ownerGhost != NULL && ownerGhost->getFactionStatus() == FactionStatus::OVERT) {
 				ghost->updateLastPvpCombatActionTimestamp();
 			}
 		}

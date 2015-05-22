@@ -32,16 +32,7 @@ dathomir_prisoner = Creature:new {
 		"object/mobile/dressed_dathomir_prisoner_03.iff",
 		"object/mobile/dressed_dathomir_prisoner_02.iff",
 		"object/mobile/dressed_dathomir_prisoner_01.iff"},
-	lootGroups = {
-		{
-			groups = {
-				{group = "junk", chance = 4000000},
-				{group = "wearables_common", chance = 3000000},
-				{group = "loot_kit_parts", chance = 2000000},
-				{group = "tailor_components", chance = 1000000},
-			}
-		}
-	},
+	lootGroups = {},
 	weapons = {},
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/townperson",

@@ -22,7 +22,7 @@ lian_rebel_specforce_urban_guerrilla = Creature:new {
 	ferocity = 0,
 	pvpBitmask = ATTACKABLE,
 	creatureBitmask = PACK + KILLER + STALKER,
-	optionsBitmask = 128,
+	optionsBitmask = 136,
 	diet = HERBIVORE,
 
 	templates = {
@@ -49,7 +49,7 @@ lian_rebel_specforce_urban_guerrilla = Creature:new {
 		}	
 	},
 	weapons = {"rebel_weapons_medium"},
-	conversationTemplate = "",
+	conversationTemplate = "lian_byrne_mission_target_convotemplate",
 	attacks = merge(marksmanmaster,brawlermaster)
 }
 

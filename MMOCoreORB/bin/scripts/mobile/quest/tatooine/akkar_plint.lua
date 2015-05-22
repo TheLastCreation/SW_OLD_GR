@@ -27,18 +27,7 @@ akkar_plint = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/dressed_tatooine_jabba_henchman.iff"},
-	lootGroups = {
-		{
-			groups = {
-				{group = "junk", chance = 1500000},
-				{group = "wearables_common", chance = 2000000},
-				{group = "pistols", chance = 2000000},
-				{group = "tailor_components", chance = 1500000},
-				{group = "loot_kit_parts", chance = 1500000},
-				{group = "jabba_common", chance = 1500000}
-			}
-		}
-	},
+	lootGroups = {},
 	weapons = {"pirate_weapons_light"},
 	conversationTemplate = "",
 	attacks = merge(marksmanmaster,brawlermaster)

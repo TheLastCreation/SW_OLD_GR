@@ -200,11 +200,7 @@ public:
 			}
 			droid->setFollowObject(owner);
 			droid->storeFollowObject();
-			if (module->hasMoreTargets()) {
-				reschedule(10); // we have mroe targets just recheck it
-			} else {
-				reschedule(1000);
-			}
+			reschedule(1000);
 		} else {
 			droid->setFollowObject(owner);
 			droid->storeFollowObject();

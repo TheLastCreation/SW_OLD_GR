@@ -2,13 +2,13 @@ krayt_dragon_ancient = Creature:new {
 	objectName = "@mob/creature_names:krayt_dragon_ancient",
 	socialGroup = "krayt",
 	faction = "",
-	level = 336,
+	level = 250,
 	chanceHit = 30.0,
 	damageMin = 2270,
 	damageMax = 4250,
 	baseXp = 28549,
-	baseHAM = 410000,
-	baseHAMmax = 501000,
+	baseHAM = 210000,
+	baseHAMmax = 301000,
 	armor = 3,
 	resists = {195,195,195,195,165,195,195,195,-1},
 	meatType = "meat_carnivore",
@@ -18,7 +18,7 @@ krayt_dragon_ancient = Creature:new {
 	boneType = "bone_mammal",
 	boneAmount = 905,
 	milk = 0,
-	tamingChance = 0,
+	tamingChance = 100,
 	ferocity = 30,
 	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
 	creatureBitmask = PACK + KILLER + STALKER,
@@ -33,7 +33,7 @@ krayt_dragon_ancient = Creature:new {
 				{group = "krayt_dragon_common", chance = 3300000},
 				{group = "pearls_flawless", chance = 3400000}				
 			},
-			lootChance = 6500000
+			lootChance = 9500000
 		},
 		{
 	        groups = {
@@ -43,7 +43,7 @@ krayt_dragon_ancient = Creature:new {
 				{group = "rifles", chance = 2000000},
 				{group = "wearables_all", chance = 2000000},				
 			},
-			lootChance = 3500000
+			lootChance = 9500000
 		}
 	},
 	weapons = {},

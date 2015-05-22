@@ -34,7 +34,8 @@ gungan_outcast = Creature:new {
 				{group = "gungan_common", chance = 2000000},
 				{group = "tailor_components", chance = 2000000},
 				{group = "loot_kit_parts", chance = 2000000}
-			}
+			},
+			lootChance = 3200000
 		}
 	},
 	weapons = {"rebel_weapons_medium"},

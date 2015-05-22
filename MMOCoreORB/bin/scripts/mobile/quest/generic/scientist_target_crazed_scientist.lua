@@ -35,16 +35,7 @@ scientist_target_crazed_scientist = Creature:new {
 		"object/mobile/dressed_combatmedic_trainer_rodian_male_01.iff",
 		"object/mobile/dressed_mercenary_medic_rodian_female_01.iff"
 	},
-	lootGroups = {
-		{
-			groups = {
-				{group = "junk", chance = 6000000},
-				{group = "wearables_common", chance = 2000000},
-				{group = "pistols", chance = 1000000},
-				{group = "melee_weapons", chance = 1000000},
-			}
-		}
-	},
+	lootGroups = {},
 	weapons = {"pirate_weapons_light"},
 	conversationTemplate = "",
 	attacks = merge(marksmannovice,brawlernovice)

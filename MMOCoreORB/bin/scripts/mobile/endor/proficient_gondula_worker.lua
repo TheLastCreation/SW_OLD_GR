@@ -36,14 +36,7 @@ proficient_gondula_worker = Creature:new {
 		"object/mobile/dressed_ewok_f_09.iff",
 		"object/mobile/dressed_ewok_f_12.iff",
 		"object/mobile/dressed_ewok_m_01.iff"},
-	lootGroups = {
-		{
-			groups = {
-				{group = "ewok", chance = 10000000}
-			},
-			lootChance = 1700000
-		}
-	},
+	lootGroups = {},
 	weapons = {"ewok_weapons"},
 	conversationTemplate = "",
 	attacks = merge(riflemanmaster,brawlermaster)

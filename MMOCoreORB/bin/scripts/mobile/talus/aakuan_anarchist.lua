@@ -40,7 +40,8 @@ aakuan_anarchist = Creature:new {
 				{group = "rifles", chance = 300000},
 				{group = "carbines", chance = 300000},
 				{group = "pistols", chance = 300000}
-			}
+			},
+			lootChance = 2200000
 		}
 	},
 	weapons = {"melee_weapons"},

@@ -28,7 +28,17 @@ slicer = Creature:new {
 	templates = {"object/mobile/dressed_criminal_assassin_human_female_01.iff",
 		"object/mobile/dressed_criminal_pirate_human_male_01.iff",
 		"object/mobile/dressed_criminal_slicer_human_female_01.iff" },
-	lootGroups = {},
+	lootGroups = {
+		{
+			groups = {
+				{group = "junk", chance = 4000000},
+				{group = "wearables_common", chance = 3000000},
+				{group = "loot_kit_parts", chance = 2000000},
+				{group = "tailor_components", chance = 1000000},
+			},
+			lootChance = 3000000
+		}
+	},
 	weapons = {"pirate_weapons_light"},
 	attacks = merge(marksmannovice,brawlernovice)
 }

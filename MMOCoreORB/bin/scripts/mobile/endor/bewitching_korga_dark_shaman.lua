@@ -29,14 +29,7 @@ bewitching_korga_dark_shaman = Creature:new {
 	templates = {
 		"object/mobile/dulok_male.iff",
 		"object/mobile/dulok_female.iff"},
-	lootGroups = {
-		{
-			groups = {
-				{group = "ewok", chance = 10000000}
-			},
-			lootChance = 1760000
-		}
-	},
+	lootGroups = {},
 	weapons = {},
 	conversationTemplate = "",
 	attacks = brawlermaster

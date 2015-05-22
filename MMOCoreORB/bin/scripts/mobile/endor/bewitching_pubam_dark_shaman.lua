@@ -28,14 +28,7 @@ bewitching_pubam_dark_shaman = Creature:new {
 
 	templates = {
 		"object/mobile/dulok_male.iff"},
-	lootGroups = {
-		 {
-	        groups = {
-				{group = "ewok", chance = 10000000}
-			},
-			lootChance = 1600000
-		}
-	},
+	lootGroups = {},
 	weapons = {},
 	conversationTemplate = "",
 	attacks = brawlermaster

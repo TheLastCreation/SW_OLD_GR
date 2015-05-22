@@ -29,14 +29,7 @@ beguiling_pubam_scout = Creature:new {
 	templates = {
 		"object/mobile/dulok_male.iff",
 		"object/mobile/dulok_female.iff"},
-	lootGroups = {
-		{
-			groups = {
-				{group = "ewok", chance = 10000000}
-			},
-			lootChance = 1500000
-		}
-	},
+	lootGroups = {},
 	weapons = {},
 	conversationTemplate = "",
 	attacks = brawlermaster

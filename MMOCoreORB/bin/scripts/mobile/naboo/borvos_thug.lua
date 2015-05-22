@@ -37,7 +37,8 @@ borvos_thug = Creature:new {
 				{group = "rifles", chance = 500000},
 				{group = "carbines", chance = 500000},
 				{group = "borvos_common", chance = 2800000}
-			}
+			},
+			lootChance = 2500000
 		}
 	},
 	weapons = {"pirate_weapons_light"},

@@ -28,13 +28,14 @@ triggo_binz = Creature:new {
 	templates = {"object/mobile/dressed_criminal_organized_twilek_male_01.iff"},
 	lootGroups = {
 		{
-			groups = {
-				{group = "junk", chance = 6000000},
-				{group = "rifles", chance = 1000000},
-				{group = "pistols", chance = 1000000},
-				{group = "melee_weapons", chance = 1000000},
-				{group = "carbines", chance = 1000000},
-			}
+	        groups = {
+			{group = "junk", chance = 6000000},
+			{group = "rifles", chance = 1000000},
+			{group = "pistols", chance = 1000000},
+			{group = "melee_weapons", chance = 1000000},
+			{group = "carbines", chance = 1000000},
+		},
+			lootChance = 2600000
 		}
 },
 	weapons = {"pirate_weapons_light"},

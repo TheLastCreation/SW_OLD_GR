@@ -27,17 +27,7 @@ warehouse_thug_coa3 = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/dressed_tatooine_jabba_thug.iff"},
-	lootGroups = {
-		{
-			groups = {
-				{group = "junk", chance = 2000000},
-				{group = "wearables_common", chance = 2000000},
-				{group = "melee_weapons", chance = 2000000},
-				{group = "tailor_components", chance = 2000000},
-				{group = "loot_kit_parts", chance = 2000000}
-			}
-		}
-	},
+	lootGroups = {},
 	weapons = {},
 	conversationTemplate = "",
 	attacks = merge(brawlermaster,marksmanmaster)

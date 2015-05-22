@@ -45,7 +45,8 @@ specforce_lieutenant = Creature:new {
 				{group = "armor_attachments", chance = 100000},
 				{group = "rebel_officer_common", chance = 450000},
 				{group = "wearables_common", chance = 1000000}
-			}
+			},
+			lootChance = 3000000
 		}
 	},
 	weapons = {"imperial_weapons_medium"},

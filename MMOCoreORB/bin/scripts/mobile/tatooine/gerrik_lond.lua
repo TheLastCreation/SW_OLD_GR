@@ -26,16 +26,7 @@ gerrik_lond = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/gerrick_lond.iff"},
-	lootGroups = {
-		{
-			groups = {
-				{group = "junk", chance = 4000000},
-				{group = "wearables_common", chance = 3000000},
-				{group = "loot_kit_parts", chance = 2000000},
-				{group = "tailor_components", chance = 1000000},
-			}
-		}
-	},
+	lootGroups = {},
 	weapons = {},
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/slang",

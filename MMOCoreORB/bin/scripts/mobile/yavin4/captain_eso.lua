@@ -26,18 +26,7 @@ captain_eso = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/dressed_captain_eso.iff"},
-	lootGroups = {
-		{
-			groups = {
-				{group = "junk", chance = 5000000},
-				{group = "rifles", chance = 1000000},
-				{group = "pistols", chance = 1000000},
-				{group = "melee_weapons", chance = 1000000},
-				{group = "carbines", chance = 1000000},
-				{group = "wearables_common", chance = 1000000}
-			}
-		}
-	},
+	lootGroups = {},
 	weapons = {"imperial_weapons_heavy"},
 	conversationTemplate = "",
 	reactionStf = "@npc_reaction/military",

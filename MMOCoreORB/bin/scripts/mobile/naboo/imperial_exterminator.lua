@@ -37,7 +37,8 @@ imperial_exterminator = Creature:new {
 				{group = "pistols", chance = 1000000},
 				{group = "clothing_attachments", chance = 150000},
 				{group = "armor_attachments", chance = 150000}
-			}
+			},
+			lootChance = 2500000
 		}
 	},
 	weapons = {"imperial_weapons_heavy"},

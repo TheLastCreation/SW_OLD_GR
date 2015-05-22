@@ -36,7 +36,8 @@ desert_demon_leader = Creature:new {
 				{group = "loot_kit_parts", chance = 1500000},
 				{group = "printer_parts", chance = 1000000},
 				{group = "desert_demon_common", chance = 1500000}
-			}
+			},
+			lootChance = 2200000
 		}
 	},
 	weapons = {"pirate_weapons_medium"},

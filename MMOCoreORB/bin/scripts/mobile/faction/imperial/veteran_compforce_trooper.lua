@@ -26,21 +26,7 @@ veteran_compforce_trooper = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/dressed_stormtrooper_groupleader_m.iff"},
-	lootGroups = {
-		{
-			groups = {
-				{group = "color_crystals", chance = 100000},
-				{group = "junk", chance = 6200000},
-				{group = "rifles", chance = 700000},
-				{group = "pistols", chance = 700000},
-				{group = "melee_weapons", chance = 550000},
-				{group = "carbines", chance = 700000},
-				{group = "clothing_attachments", chance = 25000},
-				{group = "armor_attachments", chance = 25000},
-				{group = "wearables_common", chance = 1000000}
-			}
-		}
-	},
+	lootGroups = {},
 	weapons = {"imperial_weapons_heavy"},
 	reactionStf = "@npc_reaction/military",
 	personalityStf = "@hireling/hireling_military",
