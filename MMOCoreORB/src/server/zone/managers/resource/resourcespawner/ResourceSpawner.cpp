@@ -785,6 +785,8 @@ void ResourceSpawner::sendSurvey(CreatureObject* player, const String& resname) 
 		if (waypoint == NULL)
 			waypoint = ( server->createObject(0xc456e788, 1)).castTo<WaypointObject*>();
 
+		Locker locker(waypoint);
+
 		// Update new waypoint
 		waypoint->setCustomObjectName(UnicodeString("Resource Survey"), false);
 		waypoint->setPlanetCRC(player->getZone()->getZoneCRC());
@@ -1024,6 +1026,8 @@ bool ResourceSpawner::addResourceToPlayerInventory(CreatureObject* player, Resou
 		inventory->broadcastObject(harvestedResource, true);
 		return true;
 	} else {
+          	Locker resLocker(harvestedResource);
+          
 		harvestedResource->destroyObjectFromDatabase(true);
 		return false;
 	}
