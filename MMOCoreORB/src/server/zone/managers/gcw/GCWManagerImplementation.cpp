@@ -99,7 +99,7 @@ void GCWManagerImplementation::start() {
 	loadLuaConfig();
 
 	// randomize a bit so every zone doesn't run it's check at the same time
-	uint64 timer = (System::random(gcwCheckTimer / 10) + gcwCheckTimer) * 1000;
+	uint64 timer = (uint64)(System::random(gcwCheckTimer / 10) + gcwCheckTimer) * 1000;
 
 	CheckGCWTask* task = new CheckGCWTask(_this.get());
 	task->schedule(timer);
@@ -498,7 +498,7 @@ void GCWManagerImplementation::scheduleBaseDestruction(BuildingObject* building,
 		Locker block(building);
 
 		StringIdChatParameter destroyMessage("@faction/faction_hq/faction_hq_response:terminal_response40"); // COUNTDOWN INITIATED: estimated time to detonation: %DI minutes.
-		int minutesRemaining = ceil(this->destructionTimer/60);
+		int minutesRemaining = (int) ceil((double)this->destructionTimer / (double)60);
 		destroyMessage.setDI(minutesRemaining);
 		broadcastBuilding(building, destroyMessage);
 		baseData->setState(DestructibleBuildingDataComponent::SHUTDOWNSEQUENCE);
@@ -1930,20 +1930,18 @@ void GCWManagerImplementation::notifyInstallationDestruction(InstallationObject*
 		Locker _lock(installation);
 		Locker clock(building, installation);
 
-		DestructibleBuildingDataComponent* baseData = getDestructibleBuildingData(building);
-
-		if(baseData != NULL){
-			if(building->containsChildObject(installation)){
-				//info("removed child",true);
-				building->getChildObjects()->removeElement(installation);
-			}
+		if(building->containsChildObject(installation)){
+			//info("removed child",true);
+			building->getChildObjects()->removeElement(installation);
 		}
 
-		if( baseData->hasTurret(installation->getObjectID())){
+		DestructibleBuildingDataComponent* baseData = getDestructibleBuildingData(building);
+
+		if (baseData != NULL && baseData->hasTurret(installation->getObjectID())){
 			if(installation->isTurret())
 				notifyTurretDestruction(building, installation);
 
-		} else if (baseData->hasMinefield(installation->getObjectID())){
+		} else if (baseData != NULL && baseData->hasMinefield(installation->getObjectID())){
 
 			if (installation->isMinefield())
 				notifyMinefieldDestruction(building, installation);
@@ -2313,10 +2311,8 @@ void GCWManagerImplementation::performDonateMinefield(BuildingObject* building, 
 
 		block.release();
 
-		if(deed != NULL) {
-			Locker clock(deed, creature);
-			deed->destroyObjectFromWorld(true);
-		}
+		Locker clock(deed, creature);
+		deed->destroyObjectFromWorld(true);
 	}
 }
 
@@ -2384,10 +2380,8 @@ void GCWManagerImplementation::performDonateTurret(BuildingObject* building, Cre
 		verifyTurrets(building);
 		block.release();
 
-		if(turretDeed != NULL) {
-			Locker clock(turretDeed, creature);
-			turretDeed->destroyObjectFromWorld(true);
-		}
+		Locker clock(turretDeed, creature);
+		turretDeed->destroyObjectFromWorld(true);
 	}
 }
 
@@ -2420,8 +2414,7 @@ uint64 GCWManagerImplementation::addChildInstallationFromDeed(BuildingObject* bu
 
 	TangibleObject* tano = cast<TangibleObject*>(obj.get());
 
-	if(tano != NULL)
-		tano->setFaction(building->getFaction());
+	tano->setFaction(building->getFaction());
 
 	tano->setPvpStatusBitmask(building->getPvpStatusBitmask() | tano->getPvpStatusBitmask());
 

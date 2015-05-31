@@ -173,7 +173,7 @@ void PlayerObjectImplementation::unload() {
 	notifyOffline();
 
 	if (creature->isRidingMount()) {
-		creature->executeObjectControllerAction(String("dismount").hashCode());
+		creature->executeObjectControllerAction(STRING_HASHCODE("dismount"));
 	}
 
 	unloadSpawnedChildren();
@@ -264,6 +264,7 @@ void PlayerObjectImplementation::sendBaselinesTo(SceneObject* player) {
 
 void PlayerObjectImplementation::notifySceneReady() {
 	teleporting = false;
+	onLoadScreen = false;
 
 	BaseMessage* msg = new CmdSceneReady();
 	sendMessage(msg);
@@ -306,7 +307,7 @@ void PlayerObjectImplementation::notifySceneReady() {
 
 	ZoneServer* zoneServer = getZoneServer();
 
-	if (zoneServer != NULL && zoneServer->isServerLoading())
+	if (zoneServer == NULL || zoneServer->isServerLoading())
 		return;
 
 	// Leave all planet chat rooms
@@ -1580,7 +1581,7 @@ void PlayerObjectImplementation::doRecovery() {
 
 	if (creature->isInCombat() && creature->getTargetID() != 0 && !creature->isPeaced()
 			&& (commandQueue->size() == 0) && creature->isNextActionPast() && !creature->isDead() && !creature->isIncapacitated()) {
-		creature->sendCommand(String("attack").hashCode(), "", creature->getTargetID());
+		creature->sendCommand(STRING_HASHCODE("attack"), "", creature->getTargetID());
 	}
 
 	if (!getZoneServer()->isServerLoading()) {
@@ -1609,7 +1610,7 @@ void PlayerObjectImplementation::activateForcePowerRegen() {
 
 		float timer = getForcePowerRegen() / 5;
 		float scheduledTime = 10 / timer;
-		uint64 miliTime = scheduledTime * 1000;
+		uint64 miliTime = static_cast<uint64>(scheduledTime * 1000.f);
 		forceRegenerationEvent->schedule(miliTime);
 	}
 }

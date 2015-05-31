@@ -424,7 +424,7 @@ void BuildingObjectImplementation::notifyObjectInsertedToZone(SceneObject* objec
 
 		if ((obj->isCreatureObject() && isPublicStructure()) || isStaticBuilding()) {
 
-			if (obj->getRootParent().get() != _this.get()) {
+			if (obj->getRootParent().get() != _this.getReferenceUnsafe()) {
 
 				if (object->getCloseObjects() != NULL)
 					object->addInRangeObject(obj, false);
@@ -1288,7 +1288,7 @@ void BuildingObjectImplementation::createChildObjects(){
 
 			} else {
 
-				if( (obj->isTurret() || obj->isMinefield() || obj->isDetector()) && !gcwMan->shouldSpawnDefenses() ){
+				if( (obj->isTurret() || obj->isMinefield() || obj->isDetector()) && gcwMan != NULL && !gcwMan->shouldSpawnDefenses() ){
 
 					if(obj->isTurret())
 						gcwMan->addTurret(_this.get(),NULL);
@@ -1654,4 +1654,12 @@ void BuildingObjectImplementation::changeSign( SignTemplate* signConfig ){
 
 	// Set to old sign name
 	setCustomObjectName( signName, true );
+}
+
+BuildingObject* BuildingObject::asBuildingObject() {
+	return this;
+}
+
+BuildingObject* BuildingObjectImplementation::asBuildingObject() {
+	return _this.getReferenceUnsafeStaticCast();
 }

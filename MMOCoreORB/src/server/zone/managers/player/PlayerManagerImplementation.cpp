@@ -320,15 +320,11 @@ void PlayerManagerImplementation::loadNameMap() {
 bool PlayerManagerImplementation::existsName(const String& name) {
 	bool res = false;
 
-	rlock();
-
 	try {
 		res = nameMap->containsKey(name.toLowerCase());
 	} catch (DatabaseException& e) {
 		error(e.getMessage());
 	}
-
-	runlock();
 
 	return res;
 }
@@ -387,11 +383,12 @@ bool PlayerManagerImplementation::kickUser(const String& name, const String& adm
 Reference<CreatureObject*> PlayerManagerImplementation::getPlayer(const String& name) {
 	uint64 oid = 0;
 
-	rlock();
-
-	oid = nameMap->get(name.toLowerCase());
-
-	runlock();
+	try {
+		oid = nameMap->get(name.toLowerCase());
+	} catch (ArrayIndexOutOfBoundsException& ex) {
+		// `oid` is initialized with zero so the method will return NULL after unlocking.
+		error("Didn't find player " +  name);
+	}
 
 	if (oid == 0)
 		return NULL;
@@ -407,11 +404,7 @@ Reference<CreatureObject*> PlayerManagerImplementation::getPlayer(const String& 
 uint64 PlayerManagerImplementation::getObjectID(const String& name) {
 	uint64 oid = 0;
 
-	rlock();
-
 	oid = nameMap->get(name.toLowerCase());
-
-	runlock();
 
 	return oid;
 }
@@ -507,13 +500,12 @@ bool PlayerManagerImplementation::checkPlayerName(MessageCallback* messageCallba
 void PlayerManagerImplementation::createTutorialBuilding(CreatureObject* player) {
 	Zone* zone = server->getZone("tutorial");
 
-	String tut = "object/building/general/newbie_hall.iff";
-	String cell = "object/cell/cell.iff";
+//	const static String cell = "object/cell/cell.iff";
 
-	Reference<BuildingObject*> tutorial = server->createObject(tut.hashCode(), 1).castTo<BuildingObject*>();
-	
+	Reference<BuildingObject*> tutorial = server->createObject(STRING_HASHCODE("object/building/general/newbie_hall.iff"), 1).castTo<BuildingObject*>();
+
 	Locker locker(tutorial);
-	
+
 	tutorial->createCellObjects();
 	tutorial->setPublicStructure(true);
 
@@ -521,7 +513,7 @@ void PlayerManagerImplementation::createTutorialBuilding(CreatureObject* player)
 	zone->transferObject(tutorial, -1, true);
 
 	locker.release();
-	
+
 	SceneObject* cellTut = tutorial->getCell(11);
 
 	SceneObject* cellTutPlayer = tutorial->getCell(1);
@@ -539,10 +531,7 @@ void PlayerManagerImplementation::createTutorialBuilding(CreatureObject* player)
 void PlayerManagerImplementation::createSkippedTutorialBuilding(CreatureObject* player) {
 	Zone* zone = server->getZone("tutorial");
 
-	String tut = "object/building/general/newbie_hall_skipped.iff";
-	String cell = "object/cell/cell.iff";
-
-	Reference<BuildingObject*> tutorial = server->createObject(tut.hashCode(), 1).castTo<BuildingObject*>();
+	Reference<BuildingObject*> tutorial = server->createObject(STRING_HASHCODE("object/building/general/newbie_hall_skipped.iff"), 1).castTo<BuildingObject*>();
 
 	Locker locker(tutorial);
 
@@ -552,7 +541,7 @@ void PlayerManagerImplementation::createSkippedTutorialBuilding(CreatureObject* 
 
 	locker.release();
 
-	Reference<SceneObject*> travelTutorialTerminal = server->createObject((uint32)String("object/tangible/beta/beta_terminal_warp.iff").hashCode(), 1);
+	Reference<SceneObject*> travelTutorialTerminal = server->createObject(STRING_HASHCODE("object/tangible/beta/beta_terminal_warp.iff"), 1);
 
 	SceneObject* cellTut = tutorial->getCell(1);
 
@@ -620,7 +609,7 @@ int PlayerManagerImplementation::notifyDestruction(TangibleObject* destructor, T
 
 	if (playerCreature->isRidingMount()) {
 		playerCreature->updateCooldownTimer("mount_dismount", 0);
-		playerCreature->executeObjectControllerAction(String("dismount").hashCode());
+		playerCreature->executeObjectControllerAction(STRING_HASHCODE("dismount"));
 	}
 
 	PlayerObject* ghost = playerCreature->getPlayerObject();
@@ -656,12 +645,8 @@ int PlayerManagerImplementation::notifyDestruction(TangibleObject* destructor, T
 
 		StringIdChatParameter stringId;
 
-		if (destructor != NULL) {
-			stringId.setStringId("base_player", "prose_victim_incap");
-			stringId.setTT(destructor->getObjectID());
-		} else {
-			stringId.setStringId("base_player", "victim_incapacitated");
-		}
+		stringId.setStringId("base_player", "prose_victim_incap");
+		stringId.setTT(destructor->getObjectID());
 
 		playerCreature->sendSystemMessage(stringId);
 
@@ -685,7 +670,7 @@ void PlayerManagerImplementation::killPlayer(TangibleObject* attacker, CreatureO
 
 	if (player->isRidingMount()) {
 		player->updateCooldownTimer("mount_dismount", 0);
-		player->executeObjectControllerAction(String("dismount").hashCode());
+		player->executeObjectControllerAction(STRING_HASHCODE("dismount"));
 	}
 
 	player->clearDots();
@@ -913,7 +898,7 @@ void PlayerManagerImplementation::sendPlayerToCloner(CreatureObject* player, uin
 		ghost->setFactionStatus(FactionStatus::OVERT);
 	}else{
 		ghost->setFactionStatus(FactionStatus::ONLEAVE);
-	}
+	}	
 	// Decay
 	if (typeofdeath == 0) {
 		SortedVector<ManagedReference<SceneObject*> > insurableItems = getInsurableItems(player, false);
@@ -1095,10 +1080,10 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 		uint32 entryTotalDamage = entry->getTotalDamage();
 
 		CreatureObject* attacker = threatMap->elementAt(i).getKey();
-		if (!attacker->isPlayerCreature())
+		if (attacker == NULL || !attacker->isPlayerCreature())
 			continue;
 
-		if (attacker == NULL || (attacker->isPlayerCreature() && !destructedObject->isInRange(attacker, 80)))
+		if (!destructedObject->isInRange(attacker, 80))
 			continue;
 
 		ManagedReference<GroupObject*> group = attacker->getGroup();
@@ -1189,6 +1174,9 @@ bool PlayerManagerImplementation::checkEncumbrancies(CreatureObject* player, Arm
 	int healthEncumb = armor->getHealthEncumbrance();
 	int actionEncumb = armor->getActionEncumbrance();
 	int mindEncumb = armor->getMindEncumbrance();
+
+	if (healthEncumb <= 0 && actionEncumb <= 0 && mindEncumb <= 0)
+		return true;
 
 	if (healthEncumb >= strength || healthEncumb >= constitution ||
 			actionEncumb >= quickness || actionEncumb >= stamina ||
@@ -1951,11 +1939,13 @@ int PlayerManagerImplementation::healEnhance(CreatureObject* enhancer, CreatureO
 		}
 	}
 
-	Reference<Buff*> buff = new Buff(patient, buffname.hashCode(), duration, BuffType::MEDICAL);
+	Reference<Buff*> buff = new Buff(patient, buffcrc, duration, BuffType::MEDICAL);
 
-	if(BuffAttribute::isProtection(attribute))
+	Locker locker(buff);
+
+	if(BuffAttribute::isProtection(attribute)) {
 		buff->setSkillModifier(BuffAttribute::getProtectionString(attribute), buffvalue);
-	else{
+	} else {
 		buff->setAttributeModifier(attribute, buffvalue);
 		buff->setFillAttributesOnBuff(true);
 	}
@@ -2765,6 +2755,9 @@ int PlayerManagerImplementation::checkSpeedHackSecondTest(CreatureObject* player
 			lastValidatedPosition->setParent(0);
 
 		ghost->updateServerLastMovementStamp();
+
+		if (ghost->isOnLoadScreen())
+			ghost->setOnLoadScreen(false);
 	}
 
 	return ret;
@@ -2829,7 +2822,7 @@ void PlayerManagerImplementation::lootAll(CreatureObject* player, CreatureObject
 	for (int i = totalItems - 1; i >= 0; --i) {
 		SceneObject* object = creatureInventory->getContainerObject(i);
 
-		player->executeObjectControllerAction(String("transferitemmisc").hashCode(), object->getObjectID(), stringArgs);
+		player->executeObjectControllerAction(STRING_HASHCODE("transferitemmisc"), object->getObjectID(), stringArgs);
 	}
 
 	if (creatureInventory->getContainerObjectsSize() <= 0) {
@@ -3385,8 +3378,11 @@ void PlayerManagerImplementation::fixHAM(CreatureObject* player) {
 			}
 		}
 
-		if (powerBoost != NULL)
+		if (powerBoost != NULL) {
+			Locker buffLocker(powerBoost);
+
 			player->removeBuff(powerBoost);
+		}
 
 		int encumbranceType = -1;
 
@@ -3425,9 +3421,11 @@ void PlayerManagerImplementation::fixBuffSkillMods(CreatureObject* player) {
 		if (grp != NULL)
 			GroupManager::instance()->leaveGroup(grp, player);
 
-		Reference<Buff*> buff = player->getBuff(String("squadleader").hashCode());
-		if (buff != NULL)
+		Reference<Buff*> buff = player->getBuff(STRING_HASHCODE("squadleader"));
+		if (buff != NULL) {
+			Locker locker(buff);
 			player->removeBuff(buff);
+		}
 
 		if (player->getSkillModList() == NULL)
 			return;
@@ -3439,6 +3437,8 @@ void PlayerManagerImplementation::fixBuffSkillMods(CreatureObject* player) {
 
 		for (int i = 0; i < buffs->getBuffListSize(); i++) {
 			ManagedReference<Buff*> buff = buffs->getBuffByIndex(i);
+
+			Locker clocker(buff, player);
 
 			buff->setModsApplied(true);
 
@@ -4295,7 +4295,7 @@ void PlayerManagerImplementation::generateVeteranReward(CreatureObject* player )
 
 	// If player is eligible for another reward, kick off selection
 	if( getEligibleMilestone( playerGhost, account ) >= 0 ){
-		player->enqueueCommand(String("claimveteranreward").hashCode(), 0, 0, "");
+		player->enqueueCommand(STRING_HASHCODE("claimveteranreward"), 0, 0, "");
 	}
 }
 
@@ -4523,7 +4523,7 @@ void PlayerManagerImplementation::getCleanupCharacterCount(){
 	int galaxyID = server->getGalaxyID();
 
 	while(iterator.getNextKeyAndValue(objectID, &objectData)){
-		if(Serializable::getVariable<String>(String("_className").hashCode(), &className, &objectData)){
+		if(Serializable::getVariable<String>(STRING_HASHCODE("_className"), &className, &objectData)){
 			if(className == "CreatureObject"){
 				playerCount++;
 
@@ -4571,7 +4571,7 @@ void PlayerManagerImplementation::cleanupCharacters(){
 	int galaxyID = server->getGalaxyID();
 
 	while(iterator.getNextKeyAndValue(objectID, &objectData) && deletedCount < 400 ){
-		if(Serializable::getVariable<String>(String("_className").hashCode(), &className, &objectData)){
+		if(Serializable::getVariable<String>(STRING_HASHCODE("_className"), &className, &objectData)){
 			if(className == "CreatureObject"){
 				playerCount++;
 
@@ -4621,7 +4621,7 @@ bool PlayerManagerImplementation::shouldDeleteCharacter(uint64 characterID, int 
 
 		if(result == NULL) {
 			error("ERROR WHILE LOOKING UP CHARACTER IN SQL TABLE");
-		} else if (result.get()->getRowsAffected() > 1 ) {
+		} else if (result.get()->getRowsAffected() > 1) {
 
 			error("More than one character with oid = " + String::valueOf(characterID) + " in galaxy " + String::valueOf(galaxyID));
 			return false;
@@ -4648,7 +4648,7 @@ bool PlayerManagerImplementation::doBurstRun(CreatureObject* player, float hamMo
 		return false;
 	}
 
-	if (player->hasBuff(String("gallop").hashCode()) || player->hasBuff(String("burstrun").hashCode()) || player->hasBuff(String("retreat").hashCode())) {
+	if (player->hasBuff(STRING_HASHCODE("gallop")) || player->hasBuff(STRING_HASHCODE("burstrun")) || player->hasBuff(STRING_HASHCODE("retreat"))) {
 		player->sendSystemMessage("@combat_effects:burst_run_no"); // You cannot burst run right now.
 		return false;
 	}
@@ -4678,7 +4678,7 @@ bool PlayerManagerImplementation::doBurstRun(CreatureObject* player, float hamMo
 		return false;
 	}
 
-	uint32 crc = String("burstrun").hashCode();
+	uint32 crc = STRING_HASHCODE("burstrun");
 	float hamCost = 100.0f;
 	float duration = 30;
 	float cooldown = 300;
@@ -4716,12 +4716,17 @@ bool PlayerManagerImplementation::doBurstRun(CreatureObject* player, float hamMo
 	StringIdChatParameter endStringId("cbt_spam", "burstrun_stop_single");
 
 	ManagedReference<Buff*> buff = new Buff(player, crc, duration, BuffType::SKILL);
+
+	Locker locker(buff);
+
 	buff->setSpeedMultiplierMod(1.822f);
 	buff->setAccelerationMultiplierMod(1.822f);
+
 	if (cooldownModifier == 0.f)
 		buff->setStartMessage(startStringId);
 	else
 		buff->setStartMessage(modifiedStartStringId);
+
 	buff->setEndMessage(endStringId);
 
 	StringIdChatParameter startSpam("cbt_spam", "burstrun_start");
@@ -4748,6 +4753,9 @@ bool PlayerManagerImplementation::doEnhanceCharacter(uint32 crc, CreatureObject*
 		return false;
 
 	ManagedReference<Buff*> buff = new Buff(player, crc, duration, buffType);
+
+	Locker locker(buff);
+
 	buff->setAttributeModifier(attribute, amount);
 	player->addBuff(buff);
 

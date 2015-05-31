@@ -607,7 +607,7 @@ void CreatureObjectImplementation::addMountedCombatSlow() {
 	if (!isPlayerCreature() || !isRidingMount() || !isInCombat())
 		return;
 
-	uint32 crc = String("mounted_combat_slow").hashCode();
+	uint32 crc = STRING_HASHCODE("mounted_combat_slow");
 
 	if (hasBuff(crc))
 		return;
@@ -625,7 +625,7 @@ void CreatureObjectImplementation::addMountedCombatSlow() {
 	if (!parent->isMount())
 		return;
 
-	if (hasBuff(String("gallop").hashCode())) {
+	if (hasBuff(STRING_HASHCODE("gallop"))) {
 		sendSystemMessage("@combat_effects:no_combat_while_galloping"); // You cannot attack or react to an attack while galloping. Use /gallopStop to stop galloping.
 		return;
 	}
@@ -654,7 +654,7 @@ void CreatureObjectImplementation::addMountedCombatSlow() {
 
 			float magnitude = newSpeed / oldSpeed;
 
-			uint32 crc = String("mounted_combat_slow").hashCode();
+			uint32 crc = STRING_HASHCODE("mounted_combat_slow");
 			StringIdChatParameter startStringId("combat_effects", "mount_slow_for_combat"); // Your mount slows down to prepare for combat.
 			StringIdChatParameter endStringId("combat_effects", "mount_speed_after_combat"); // Your mount speeds up.
 
@@ -688,7 +688,7 @@ void CreatureObjectImplementation::removeMountedCombatSlow() {
 	EXECUTE_TASK_1(creo, {
 			Locker locker(creo_p);
 
-			uint32 crc = String("mounted_combat_slow").hashCode();
+			uint32 crc = STRING_HASHCODE("mounted_combat_slow");
 			creo_p->removeBuff(crc);
 
 			ManagedReference<CreatureObject*> parent = creo_p->getParent().get().castTo<CreatureObject*>();
@@ -986,7 +986,7 @@ void CreatureObjectImplementation::setHAM(int type, int value,
 
 int CreatureObjectImplementation::inflictDamage(TangibleObject* attacker, int damageType, float damage, bool destroy, const String& xp, bool notifyClient) {
 	if (attacker->isCreatureObject()) {
-		CreatureObject* creature = cast<CreatureObject*>( attacker);
+		CreatureObject* creature = attacker->asCreatureObject();
 
 		if (damage > 0) {
 			getThreatMap()->addDamage(creature, damage, xp);
@@ -2126,7 +2126,7 @@ void CreatureObjectImplementation::doAnimation(const String& anim) {
 }
 
 void CreatureObjectImplementation::dismount() {
-	executeObjectControllerAction(String("dismount").hashCode());
+	executeObjectControllerAction(STRING_HASHCODE("dismount"));
 }
 
 float CreatureObjectImplementation::calculateBFRatio() {
@@ -2220,7 +2220,7 @@ void CreatureObjectImplementation::setBerserkedState(uint32 duration) {
 }
 void CreatureObjectImplementation::setStunnedState(int durationSeconds) {
 	if (!hasState(CreatureState::STUNNED)) {
-		Reference<StateBuff*> state = new StateBuff(_this.get(), CreatureState::STUNNED, durationSeconds, String("stunstate").hashCode());
+		Reference<StateBuff*> state = new StateBuff(_this.get(), CreatureState::STUNNED, durationSeconds, STRING_HASHCODE("stunstate"));
 
 		Locker locker(state);
 
@@ -2233,7 +2233,7 @@ void CreatureObjectImplementation::setStunnedState(int durationSeconds) {
 
 		locker.release();
 
-		Reference<PrivateSkillMultiplierBuff*> multBuff = new PrivateSkillMultiplierBuff(_this.get(), String("stunstate").hashCode(), durationSeconds, BuffType::STATE);
+		Reference<PrivateSkillMultiplierBuff*> multBuff = new PrivateSkillMultiplierBuff(_this.get(), STRING_HASHCODE("stunstate"), durationSeconds, BuffType::STATE);
 
 		Locker blocker(multBuff);
 
@@ -2726,7 +2726,7 @@ bool CreatureObjectImplementation::isAggressiveTo(CreatureObject* object) {
 	if (ghost == NULL || targetGhost == NULL)
 		return false;
 
-	if (ghost->isTeleporting())
+	if (ghost->isOnLoadScreen())
 		return false;
 
 	if (CombatManager::instance()->areInDuel(object, _this.get()))
@@ -2747,7 +2747,7 @@ bool CreatureObjectImplementation::isAggressiveTo(CreatureObject* object) {
 
 bool CreatureObjectImplementation::isAttackableBy(TangibleObject* object) {
 	if(object->isCreatureObject())
-		return isAttackableBy(cast<CreatureObject*>(object));
+		return isAttackableBy(object->asCreatureObject());
 
 	// TODO (dannuic): this will prevent TANOs from attacking mobs (turrets, minefields, etc)
 	if(this->isAiAgent()) {
@@ -2759,7 +2759,7 @@ bool CreatureObjectImplementation::isAttackableBy(TangibleObject* object) {
 	if(ghost == NULL)
 		return false;
 
-	if (ghost->isTeleporting())
+	if (ghost->isOnLoadScreen())
 		return false;
 
 	if (isDead() || isIncapacitated() || isInvisible())
@@ -2799,7 +2799,7 @@ bool CreatureObjectImplementation::isAttackableBy(CreatureObject* object) {
 	if (isPlayerCreature()) {
 		PlayerObject* ghost = getPlayerObject();
 
-		if (ghost != NULL && ghost->isTeleporting()) {
+		if (ghost != NULL && ghost->isOnLoadScreen()) {
 			return false;
 		}
 	}
@@ -3035,11 +3035,11 @@ int CreatureObjectImplementation::handleObjectMenuSelect(CreatureObject* player,
 	if (isDead() && !isPet()) {
 		switch (selectedID) {
 		case 35:
-			player->executeObjectControllerAction(String("loot").hashCode(), getObjectID(), "");
+			player->executeObjectControllerAction(STRING_HASHCODE("loot"), getObjectID(), "");
 
 			return 0;
 		case 36:
-			player->executeObjectControllerAction(String("loot").hashCode(), getObjectID(), "all");
+			player->executeObjectControllerAction(STRING_HASHCODE("loot"), getObjectID(), "all");
 
 			return 0;
 		}
@@ -3274,4 +3274,12 @@ void CreatureObjectImplementation::updateVehiclePosition(bool sendPackets) {
 	}
 
 	TangibleObjectImplementation::updateVehiclePosition(sendPackets);
+}
+
+CreatureObject* CreatureObjectImplementation::asCreatureObject() {
+	return _this.getReferenceUnsafeStaticCast();
+}
+
+CreatureObject* CreatureObject::asCreatureObject() {
+	return this;
 }

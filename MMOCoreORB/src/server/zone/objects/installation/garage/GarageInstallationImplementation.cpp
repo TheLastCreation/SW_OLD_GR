@@ -17,13 +17,16 @@ void GarageInstallationImplementation::createChildObjects() {
 	float positionY = coordinates.getPositionY();
 	float positionZ = coordinates.getPositionZ();
 
-	uint32 garageAreaTemplateCRC = String("object/garage_area.iff").hashCode();
+	uint32 garageAreaTemplateCRC = STRING_HASHCODE("object/garage_area.iff");
 	ManagedReference<SceneObject*> obj = server->getZoneServer()->createObject(garageAreaTemplateCRC, 1);
 
 	if (obj == NULL)
 		return;
 
 	ActiveArea* activeArea = cast<ActiveArea*>( obj.get());
+
+	if (activeArea == NULL)
+		return;
 
 	Locker clocker(activeArea, _this.get());
 

@@ -502,7 +502,7 @@ void AiAgentImplementation::doAwarenessCheck() {
 		AiAgent* thisObject = _this.get();
 
 		for (int i = 0; i < closeObjects.size(); ++i) {
-			CreatureObject* target = closeObjects.get(i).castTo<CreatureObject*>();
+			CreatureObject* target = cast<CreatureObject*>(closeObjects.get(i).get());
 
 			if (thisObject == target || target == NULL)
 				continue;
@@ -596,7 +596,7 @@ void AiAgentImplementation::selectSpecialAttack(int attackNum) {
 
 void AiAgentImplementation::selectDefaultAttack() {
 	if (npcTemplate == NULL)
-		nextActionCRC = String("defaultattack").hashCode();
+		nextActionCRC = STRING_HASHCODE("defaultattack");
 	else
 		nextActionCRC = npcTemplate->getDefaultAttack().hashCode();
 
@@ -619,7 +619,7 @@ bool AiAgentImplementation::validateStateAttack() {
 	if (followCopy == NULL || !followCopy->isCreatureObject())
 		return false;
 
-	return validateStateAttack(followCopy.castTo<CreatureObject*>(), nextActionCRC);
+	return validateStateAttack(followCopy->asCreatureObject(), nextActionCRC);
 }
 
 SceneObject* AiAgentImplementation::getTargetFromMap() {
@@ -643,7 +643,7 @@ SceneObject* AiAgentImplementation::getTargetFromDefenders() {
 			SceneObject* tarObj = defenderList.get(i);
 
 			if (tarObj != NULL && tarObj->isCreatureObject()) {
-				CreatureObject* targetCreature = cast<CreatureObject*>(tarObj);
+				CreatureObject* targetCreature = tarObj->asCreatureObject();
 
 				if (!targetCreature->isDead() && !targetCreature->isIncapacitated() && targetCreature->getDistanceTo(_this.get()) < 128.f && targetCreature->isAttackableBy(_this.get())) {
 					target = targetCreature;
@@ -682,10 +682,14 @@ bool AiAgentImplementation::validateTarget(SceneObject* target) {
 	if (!target->isInRange(_this.get(), 128))
 		return false;
 
-	if (target->isCreatureObject() && (!cast<CreatureObject*>(target)->isAttackableBy(_this.get()) || cast<CreatureObject*>(target)->isDead() || cast<CreatureObject*>(target)->isIncapacitated()))
+	CreatureObject* targetCreatureObject = target->asCreatureObject();
+
+	if (targetCreatureObject != NULL && (!targetCreatureObject->isAttackableBy(_this.getReferenceUnsafeStaticCast()) || targetCreatureObject->isDead() || targetCreatureObject->isIncapacitated()))
 		return false;
 
-	if (target->isTangibleObject() && (!cast<TangibleObject*>(target)->isAttackableBy(_this.get()) || cast<TangibleObject*>(target)->isDestroyed()))
+	TangibleObject* targetTangibleObject = target->asTangibleObject();
+
+	if (targetTangibleObject != NULL && (!targetTangibleObject->isAttackableBy(_this.getReferenceUnsafeStaticCast()) || targetTangibleObject->isDestroyed()))
 		return false;
 
 	return true;
@@ -705,11 +709,11 @@ int AiAgentImplementation::handleObjectMenuSelect(CreatureObject* player, byte s
 	if (isDead() && !isPet()) {
 		switch (selectedID) {
 		case 35:
-			player->executeObjectControllerAction(String("loot").hashCode(), getObjectID(), "");
+			player->executeObjectControllerAction(STRING_HASHCODE("loot"), getObjectID(), "");
 
 			return 0;
 		case 36:
-			player->executeObjectControllerAction(String("loot").hashCode(), getObjectID(), "all");
+			player->executeObjectControllerAction(STRING_HASHCODE("loot"), getObjectID(), "all");
 
 			return 0;
 		}
@@ -928,7 +932,7 @@ void AiAgentImplementation::addDefender(SceneObject* defender) {
 		showFlyText("npc_reaction/flytext", "threaten", 0xFF, 0, 0);
 		setFollowObject(defender);
 		if (defender->isCreatureObject() && threatMap != NULL)
-			threatMap->addAggro(cast<CreatureObject*>(defender), 1);
+			threatMap->addAggro(defender->asCreatureObject(), 1);
 	} else if (stateCopy <= STALKING) {
 		setFollowState(AiAgent::FOLLOWING);
 	}
@@ -945,7 +949,7 @@ void AiAgentImplementation::removeDefender(SceneObject* defender) {
 		return;
 
 	if (defender->isCreatureObject())
-		getThreatMap()->dropDamage(cast<CreatureObject*>(defender));
+		getThreatMap()->dropDamage(defender->asCreatureObject());
 
 	if (getFollowObject() == defender) {
 		CreatureObject* target = getThreatMap()->getHighestThreatCreature();
@@ -953,7 +957,7 @@ void AiAgentImplementation::removeDefender(SceneObject* defender) {
 		if (target == NULL && defenderList.size() > 0) {
 			SceneObject* tarObj = defenderList.get(0);
 			if (tarObj != NULL && tarObj->isCreatureObject())
-				target = cast<CreatureObject*>(tarObj);
+				target = tarObj->asCreatureObject();
 		}
 
 		if (target != NULL)
@@ -984,13 +988,13 @@ void AiAgentImplementation::clearCombatState(bool clearDefenders) {
 void AiAgentImplementation::notifyInsert(QuadTreeEntry* entry) {
 	SceneObject* scno = cast<SceneObject*>( entry);
 
-	if (scno == _this.get())
+	if (scno == _this.getReferenceUnsafeStaticCast())
 		return;
 
-	if (scno == NULL || !scno->isCreatureObject())
+	if (scno == NULL)
 		return;
 
-	CreatureObject* creo = cast<CreatureObject*>(scno);
+	CreatureObject* creo = scno->asCreatureObject();
 	if (creo != NULL && !creo->isInvisible() && creo->isPlayerCreature()) {
 		int newValue = (int) numberOfPlayersInRange.increment();
 		activateMovementEvent();
@@ -1083,14 +1087,14 @@ void AiAgentImplementation::notifyDespawn(Zone* zone) {
 
 	for (int i = 0; i < movementMarkers.size(); ++i) {
 		ManagedReference<SceneObject*> marker = movementMarkers.get(i);
-		Locker clocker(marker, _this.get());
+		Locker clocker(marker, _this.getReferenceUnsafeStaticCast());
 		marker->destroyObjectFromWorld(false);
 	}
 
 	SceneObject* creatureInventory = getSlottedObject("inventory");
 
 	if (creatureInventory != NULL) {
-		Locker clocker(creatureInventory, _this.get());
+		Locker clocker(creatureInventory, _this.getReferenceUnsafeStaticCast());
 		creatureInventory->setContainerOwnerID(0);
 	}
 
@@ -1153,7 +1157,7 @@ void AiAgentImplementation::notifyDespawn(Zone* zone) {
 		respawn = System::random(respawn) + (respawn / 2.f);
 	}
 
-	Reference<Task*> task = new RespawnCreatureTask(_this.get(), zone, level);
+	Reference<Task*> task = new RespawnCreatureTask(_this.getReferenceUnsafeStaticCast(), zone, level);
 	task->schedule(respawn);
 }
 
@@ -1488,7 +1492,7 @@ bool AiAgentImplementation::findNextPosition(float maxDistance, bool walk) {
 
 				movementMarkers.removeAll();
 
-				Reference<SceneObject*> movementMarker = getZoneServer()->createObject(String("object/path_waypoint/path_waypoint.iff").hashCode(), 0);
+				Reference<SceneObject*> movementMarker = getZoneServer()->createObject(STRING_HASHCODE("object/path_waypoint/path_waypoint.iff"), 0);
 
 				Locker clocker(movementMarker, _this.get());
 
@@ -1513,7 +1517,7 @@ bool AiAgentImplementation::findNextPosition(float maxDistance, bool walk) {
 					WorldCoordinates* coord = &path->get(i);
 					SceneObject* coordCell = coord->getCell();
 
-					movementMarker = getZoneServer()->createObject(String("object/path_waypoint/path_waypoint.iff").hashCode(), 0);
+					movementMarker = getZoneServer()->createObject(STRING_HASHCODE("object/path_waypoint/path_waypoint.iff"), 0);
 
 					Locker clocker(movementMarker, _this.get());
 
@@ -1832,7 +1836,7 @@ bool AiAgentImplementation::isScentMasked(CreatureObject* target) {
 	if (effectiveTarget == NULL) {
 		return false;
 	}
-	if (!effectiveTarget->hasBuff(String("skill_buff_mask_scent_self").hashCode())) {
+	if (!effectiveTarget->hasBuff(STRING_HASHCODE("skill_buff_mask_scent_self"))) {
 		if(camouflagedObjects.contains(effectiveTarget)) camouflagedObjects.removeElement(effectiveTarget);
 		return false;
 	}
@@ -1881,7 +1885,7 @@ bool AiAgentImplementation::isConcealed(CreatureObject* target) {
 		return false;
 	}
 
-	if (!effectiveTarget->hasBuff(String("skill_buff_mask_scent").hashCode())) {
+	if (!effectiveTarget->hasBuff(STRING_HASHCODE("skill_buff_mask_scent"))) {
 		if(camouflagedObjects.contains(effectiveTarget)) camouflagedObjects.removeElement(effectiveTarget);
 		return false;
 	}
@@ -2036,7 +2040,7 @@ int AiAgentImplementation::inflictDamage(TangibleObject* attacker, int damageTyp
 	activateRecovery();
 	
 	if (attacker->isCreatureObject()) {
-		CreatureObject* creature = cast<CreatureObject*>( attacker);
+		CreatureObject* creature = attacker->asCreatureObject();
 
 		if (damage > 0) {
 			getThreatMap()->addDamage(creature, damage);
@@ -2052,7 +2056,7 @@ int AiAgentImplementation::inflictDamage(TangibleObject* attacker, int damageTyp
 	activateRecovery();
 
 	if (attacker->isCreatureObject()) {
-		CreatureObject* creature = cast<CreatureObject*>( attacker);
+		CreatureObject* creature = attacker->asCreatureObject();
 
 		if (damage > 0) {
 			getThreatMap()->addDamage(creature, damage, xp);
@@ -2574,7 +2578,7 @@ void AiAgentImplementation::setupBehaviorTree(AiTemplate* aiTemplate) {
 	// now set parents
 	for (int i = 0; i < parents.size(); i++) {
 		VectorMapEntry<uint32, Vector<uint32> >& element = parents.elementAt(i);
-		if (element.getKey() == String("none").hashCode()) // this is the parent of the root node, just skip it.
+		if (element.getKey() == STRING_HASHCODE("none")) // this is the parent of the root node, just skip it.
 			continue;
 
 		Behavior* b = behaviors.get(element.getKey());
@@ -2601,7 +2605,7 @@ void AiAgentImplementation::setupBehaviorTree(AiTemplate* aiTemplate) {
 	}
 
 	// now tree is complete, set the root node as the current node
-	Vector<uint32>& roots = parents.get(String("none").hashCode());
+	Vector<uint32>& roots = parents.get(STRING_HASHCODE("none"));
 	if (roots.size() > 1) {
 		error("Multiple root nodes in tree: " + aiTemplate->getTemplateName());
 		return; // all References will be lost here
@@ -2642,8 +2646,8 @@ void AiAgentImplementation::setupBehaviorTree(AiTemplate* getTarget, AiTemplate*
 
 	CompositeBehavior* rootSelector = cast<CompositeBehavior*>(AiMap::instance()->createNewInstance(_this.get(), name, AiMap::SELECTORBEHAVIOR));
 	CompositeBehavior* attackSequence = cast<CompositeBehavior*>(AiMap::instance()->createNewInstance(_this.get(), name, AiMap::SEQUENCEBEHAVIOR));
-	rootSelector->setID(String("root").hashCode());
-	attackSequence->setID(String("attackSequence").hashCode());
+	rootSelector->setID(STRING_HASHCODE("root"));
+	attackSequence->setID(STRING_HASHCODE("attackSequence"));
 
 	addBehaviorToTree(attackSequence, rootSelector);
 
@@ -2659,8 +2663,8 @@ void AiAgentImplementation::setupBehaviorTree(AiTemplate* getTarget, AiTemplate*
 	setupBehaviorTree(idle);
 	addCurrentBehaviorToTree(rootSelector);
 
-	behaviors.put(String("root").hashCode(), rootSelector);
-	behaviors.put(String("attackSequence").hashCode(), attackSequence);
+	behaviors.put(STRING_HASHCODE("root"), rootSelector);
+	behaviors.put(STRING_HASHCODE("attackSequence"), attackSequence);
 
 	resetBehaviorList();
 
@@ -2723,7 +2727,7 @@ void AiAgentImplementation::resetBehaviorList() {
 	if (b != NULL)
 		b->end();
 
-	currentBehaviorID = String("root").hashCode();
+	currentBehaviorID = STRING_HASHCODE("root");
 	b = behaviors.get(currentBehaviorID);
 	if (b == NULL)
 		return;
@@ -2949,7 +2953,7 @@ void AiAgentImplementation::restoreFollowObject() {
 		setOblivious();
 	} else if (getCloseObjects() != NULL && !getCloseObjects()->contains(obj.get())) {
 		setOblivious();
-	} else if (obj->isCreatureObject() && cast<CreatureObject*>(obj.get())->isInvisible()) {
+	} else if (obj->isCreatureObject() && obj->asCreatureObject()->isInvisible()) {
 		setOblivious();
 	} else {
 		setFollowObject(obj);
@@ -2991,7 +2995,7 @@ float AiAgentImplementation::getEffectiveResist() {
 	if (!isSpecialProtection(WeaponObject::ENERGY) && getEnergy() > 0)
 		return getEnergy();
 	if (!isSpecialProtection(WeaponObject::HEAT) && getHeat() > 0)
-		return getLightSaber();
+		return getHeat();
 	if (!isSpecialProtection(WeaponObject::KINETIC) && getKinetic() > 0)
 		return getKinetic();
 	if (!isSpecialProtection(WeaponObject::LIGHTSABER) && getLightSaber() > 0)

@@ -110,7 +110,7 @@ public:
 		// Apply buff if this is a pet specific food
 		if( consumable->getSpeciesRestriction() == "pets" ){
 
-			unsigned int buffCRC = String("petFoodBuff").hashCode();
+			unsigned int buffCRC = STRING_HASHCODE("petFoodBuff");
 
 			// Check if pet already has buff
 			if ( pet->hasBuff(buffCRC) ){
@@ -119,6 +119,9 @@ public:
 			}
 			else{
 				ManagedReference<Buff*> buff = new Buff(pet, buffCRC, consumable->getDuration(), BuffType::FOOD);
+
+				Locker blocker(buff);
+
 				consumable->setModifiers(buff, false);
 				pet->addBuff(buff);
 				player->sendSystemMessage("Your pet is fortified by the food!");
