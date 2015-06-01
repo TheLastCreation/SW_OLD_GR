@@ -1519,5 +1519,5 @@ includeFile("items/swggr_custom/ns_pants_type_01.lua")
 includeFile("items/swggr_custom/ns_pants_type_02.lua")
 includeFile("items/swggr_custom/ns_shirt_type_01.lua")
 includeFile("items/swggr_custom/ns_shirt_type_02.lua")
-includeFile("items/swggr_custom/vehicle_deeds/pod_racer_two_deed.lua")
+includeFile("items/swggr_custom/vehicle_deeds/pod_racer_one_deed.lua")
 
