@@ -33,7 +33,9 @@ function Yavin4StaticSpawnsScreenPlay:spawnMobiles()
 	-- The Great Massassi Temple (-2998 -2958)
 
 	-- Inside
-	spawnMobile("yavin4", "acklay_elder", 200,  -03, 55.0, -443, 0, 3465362)
+	spawnMobile("yavin4", "acklay_elder", 200,  0.1, 55.0, -35.7, -1, 3465362)
+	spawnMobile("yavin4", "acklay", 200,  -0.1, 55.0, 2.4, 0, 3465362)
+	spawnMobile("yavin4", "nk_droideka", 200, 0.1, 57.0, 59.8, -2,  3465362)
 	
 	
 end
