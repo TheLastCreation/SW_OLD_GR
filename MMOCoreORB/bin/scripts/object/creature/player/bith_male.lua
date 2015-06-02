@@ -41,29 +41,25 @@
 --this exception also makes it possible to release a modified version 
 
 
+object_creature_player_bith_male = object_creature_player_shared_bith_male:new {
+	baseHAM = { 0, 0, 0, 0, 0, 150, 300, 300, 150 },
+	gameObjectType = 1033,
+	zoneComponent = "PlayerZoneComponent",
+	objectMenuComponent = {"cpp", "PlayerObjectMenuComponent"},
+	containerComponent = {"cpp", "PlayerContainerComponent"},
+	pvpStatusBitmask = PLAYER,
+	templateType = PLAYERCREATURE,
+	childObjects = {
+		{templateFile = "object/player/player.iff", x = 0, z = 0, y = 0, ox = 0, oy = 0, oz = 0, ow = 0, cellid = -1, containmentType = 4},
+		{templateFile = "object/tangible/inventory/character_inventory.iff", x = 0, z = 0, y = 0, ox = 0, oy = 0, oz = 0, ow = 0, cellid = -1, containmentType = 4},
+		{templateFile = "object/tangible/datapad/character_datapad.iff", x = 0, z = 0, y = 0, ox = 0, oy = 0, oz = 0, ow = 0, cellid = -1, containmentType = 4},
+		{templateFile = "object/tangible/mission_bag/mission_bag.iff", x = 0, z = 0, y = 0, ox = 0, oy = 0, oz = 0, ow = 0, cellid = -1, containmentType = 4},
+		{templateFile = "object/weapon/melee/unarmed/unarmed_default_player.iff", x = 0, z = 0, y = 0, ox = 0, oy = 0, oz = 0, ow = 0, cellid = -1, containmentType = 4},
+		{templateFile = "object/tangible/bank/character_bank.iff", x = 0, z = 0, y = 0, ox = 0, oy = 0, oz = 0, ow = 0, cellid = -1, containmentType = 4}
+	},
+	defaultLanguage = 1,
+	startingItems = { },
+	startingSkills = { "species_moncal", "social_language_basic_comprehend", "social_language_basic_speak" , "social_language_moncalamari_comprehend", "social_language_moncalamari_speak" }
+}
 
---Children folder includes
-includeFile("creature/player/base/serverobjects.lua")
-
--- Server Objects
-includeFile("creature/player/bith_male.lua")
-includeFile("creature/player/bothan_female.lua")
-includeFile("creature/player/bothan_male.lua")
-includeFile("creature/player/human_female.lua")
-includeFile("creature/player/human_male.lua")
-includeFile("creature/player/ithorian_female.lua")
-includeFile("creature/player/ithorian_male.lua")
-includeFile("creature/player/moncal_female.lua")
-includeFile("creature/player/moncal_male.lua")
-includeFile("creature/player/rodian_female.lua")
-includeFile("creature/player/rodian_male.lua")
-includeFile("creature/player/sullustan_female.lua")
-includeFile("creature/player/sullustan_male.lua")
-includeFile("creature/player/trandoshan_female.lua")
-includeFile("creature/player/trandoshan_male.lua")
-includeFile("creature/player/twilek_female.lua")
-includeFile("creature/player/twilek_male.lua")
-includeFile("creature/player/wookiee_female.lua")
-includeFile("creature/player/wookiee_male.lua")
-includeFile("creature/player/zabrak_female.lua")
-includeFile("creature/player/zabrak_male.lua")
+ObjectTemplates:addTemplate(object_creature_player_bith_male, "object/creature/player/bith_male.iff")
