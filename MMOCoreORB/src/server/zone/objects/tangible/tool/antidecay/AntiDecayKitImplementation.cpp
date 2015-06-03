@@ -65,7 +65,7 @@ void AntiDecayKitImplementation::doApplyAntiDecay(CreatureObject* player)
 	}
 
 	tano->setConditionDamage(0);
-	tano->applyAntiDecayKit(player, _this.getReferenceUnsafeStaticCast());
+	tano->applyAntiDecayKit(player, _this.get());
 
 	inventory->transferObject(tano, -1, false);
 	tano->sendTo(player, true);

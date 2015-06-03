@@ -235,7 +235,7 @@ SceneObject* CreatureManagerImplementation::spawnDynamicSpawn(unsigned int lairT
 }
 
 void CreatureManagerImplementation::spawnRandomCreature(int number, float x, float z, float y, uint64 parentID) {
-	Locker locker(_this.getReferenceUnsafeStaticCast());
+	Locker locker(_this.get());
 
 	if (reservePool.size() != 0) {
 		int id = System::random(reservePool.size() - 1);
@@ -1166,6 +1166,7 @@ void CreatureManagerImplementation::sample(Creature* creature, CreatureObject* p
 }
 
 bool CreatureManagerImplementation::addWearableItem(CreatureObject* creature, TangibleObject* clothing) {
+
 	if (!clothing->isWearableObject() && !clothing->isWeaponObject())
 		return false;
 
@@ -1196,10 +1197,10 @@ bool CreatureManagerImplementation::addWearableItem(CreatureObject* creature, Ta
 		return false;
 
 	for (int i = 0; i < clothing->getArrangementDescriptorSize(); ++i) {
-		const Vector<String>* descriptors = clothing->getArrangementDescriptor(i);
+		Vector<String> descriptors = clothing->getArrangementDescriptor(i);
 
-		for (int j = 0; j < descriptors->size(); ++j) {
-			ManagedReference<SceneObject*> slot = creature->getSlottedObject(descriptors->get(j));
+		for (int j = 0; j < descriptors.size(); ++j) {
+			ManagedReference<SceneObject*> slot = creature->getSlottedObject(descriptors.get(j));
 
 			if (slot != NULL) {
 				Locker locker(slot);

@@ -35,7 +35,7 @@ Vector<WorldCoordinates>* PathFinderManager::findPath(const WorldCoordinates& po
 		return findPathFromCellToWorld(pointA, pointB);
 	} else if (cellA == NULL && cellB != NULL) { // world -> cell
 		return findPathFromWorldToCell(pointA, pointB);
-	} else /* if (cellA != NULL && cellB != NULL) */ { // cell -> cell, the only left option
+	} else if (cellA != NULL && cellB != NULL) { // cell -> cell
 		return findPathFromCellToCell(pointA, pointB);
 	}
 

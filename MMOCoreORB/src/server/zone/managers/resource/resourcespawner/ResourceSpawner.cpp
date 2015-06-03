@@ -1026,7 +1026,7 @@ bool ResourceSpawner::addResourceToPlayerInventory(CreatureObject* player, Resou
 		return false;
 	}
 	// Create New resource container if one isn't found in inventory
-	Reference<ResourceContainer*> harvestedResource = resourceSpawn->createResource(unitsExtracted);
+	ResourceContainer* harvestedResource = resourceSpawn->createResource(unitsExtracted);
 
 	if (inventory->transferObject(harvestedResource, -1, false)) {
 		inventory->broadcastObject(harvestedResource, true);
@@ -1039,7 +1039,7 @@ bool ResourceSpawner::addResourceToPlayerInventory(CreatureObject* player, Resou
 	}
 }
 
-Reference<ResourceContainer*> ResourceSpawner::harvestResource(CreatureObject* player,
+ResourceContainer* ResourceSpawner::harvestResource(CreatureObject* player,
 		const String& type, const int quantity) {
 
 	String zoneName = player->getZone()->getZoneName();

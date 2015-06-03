@@ -36,10 +36,10 @@ void FactoryCrateImplementation::sendBaselinesTo(SceneObject* player) {
 	msg << "sending cell number " << cellNumber << " baselines";
 	info(msg.toString(), true);*/
 
-	BaseMessage* fctyMsg3 = new FactoryCrateObjectMessage3(_this.getReferenceUnsafeStaticCast());
+	BaseMessage* fctyMsg3 = new FactoryCrateObjectMessage3(_this.get());
 	player->sendMessage(fctyMsg3);
 
-	BaseMessage* fctyMsg6 = new FactoryCrateObjectMessage6(_this.getReferenceUnsafeStaticCast());
+	BaseMessage* fctyMsg6 = new FactoryCrateObjectMessage6(_this.get());
 	player->sendMessage(fctyMsg6);
 
 }
@@ -132,7 +132,7 @@ String FactoryCrateImplementation::getSerialNumber() {
 
 bool FactoryCrateImplementation::extractObjectToParent() {
 
-	Locker locker(_this.getReferenceUnsafeStaticCast());
+	Locker locker(_this.get());
 
 	if(getUseCount() < 1) {
 		this->setUseCount(0, true);
@@ -184,7 +184,7 @@ bool FactoryCrateImplementation::extractObjectToParent() {
 
 Reference<TangibleObject*> FactoryCrateImplementation::extractObject(int count) {
 
-	Locker locker(_this.getReferenceUnsafeStaticCast());
+	Locker locker(_this.get());
 
 	if(count > getUseCount())
 		return NULL;
@@ -295,7 +295,7 @@ void FactoryCrateImplementation::setUseCount(uint32 newUseCount, bool notifyClie
 	if (!notifyClient)
 		return;
 
-	FactoryCrateObjectDeltaMessage3* dfcty3 = new FactoryCrateObjectDeltaMessage3(_this.getReferenceUnsafeStaticCast());
+	FactoryCrateObjectDeltaMessage3* dfcty3 = new FactoryCrateObjectDeltaMessage3(_this.get());
 	dfcty3->setQuantity(newUseCount);
 	dfcty3->close();
 

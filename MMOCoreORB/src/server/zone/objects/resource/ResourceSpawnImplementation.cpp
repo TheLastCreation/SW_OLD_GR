@@ -242,7 +242,7 @@ Reference<ResourceContainer*> ResourceSpawnImplementation::createResource(int un
 
    	Locker locker(newResource);
 
-   	newResource->setSpawnObject(_this.getReferenceUnsafeStaticCast());
+   	newResource->setSpawnObject(_this.get());
 
    	if (units != 0)
    		newResource->setQuantity(units);

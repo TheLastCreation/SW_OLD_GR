@@ -238,19 +238,19 @@ void PlayerObjectImplementation::unload() {
 
 	updateToDatabase();
 	/*StringBuffer msg;
-	msg << "remaining ref count: " << _this.getReferenceUnsafeStaticCast()->getReferenceCount();
+	msg << "remaining ref count: " << _this.get()->getReferenceCount();
 	info(msg.toString(), true);
 
-	_this.getReferenceUnsafeStaticCast()->printReferenceHolders();*/
+	_this.get()->printReferenceHolders();*/
 }
 
 void PlayerObjectImplementation::sendBaselinesTo(SceneObject* player) {
 	info("sending player object baselines");
 
-	BaseMessage* play3 = new PlayerObjectMessage3(_this.getReferenceUnsafeStaticCast());
+	BaseMessage* play3 = new PlayerObjectMessage3(_this.get());
 	player->sendMessage(play3);
 
-	BaseMessage* play6 = new PlayerObjectMessage6(_this.getReferenceUnsafeStaticCast());
+	BaseMessage* play6 = new PlayerObjectMessage6(_this.get());
 	player->sendMessage(play6);
 
 	if (player == parent.get().get()) {
@@ -355,13 +355,13 @@ void PlayerObjectImplementation::sendFriendLists() {
 	friendList.resetUpdateCounter();
 	ignoreList.resetUpdateCounter();
 
-	FriendsListMessage* flist = new FriendsListMessage(_this.getReferenceUnsafeStaticCast());
+	FriendsListMessage* flist = new FriendsListMessage(_this.get());
 	getParent().get()->sendMessage(flist);
 
-	IgnoreListMessage* ilist = new IgnoreListMessage(_this.getReferenceUnsafeStaticCast());
+	IgnoreListMessage* ilist = new IgnoreListMessage(_this.get());
 	getParent().get()->sendMessage(ilist);
 
-	DeltaMessage* delta = new PlayerObjectDeltaMessage9(_this.getReferenceUnsafeStaticCast());
+	DeltaMessage* delta = new PlayerObjectDeltaMessage9(_this.get());
 	friendList.insertToDeltaMessage(delta);
 	ignoreList.insertToDeltaMessage(delta);
 	delta->close();
@@ -383,7 +383,7 @@ bool PlayerObjectImplementation::setCharacterBit(uint32 bit, bool notifyClient) 
 		characterBitmask |= bit;
 
 		if (notifyClient) {
-			PlayerObjectDeltaMessage3* delta = new PlayerObjectDeltaMessage3(_this.getReferenceUnsafeStaticCast());
+			PlayerObjectDeltaMessage3* delta = new PlayerObjectDeltaMessage3(_this.get());
 			delta->updateCharacterBitmask(characterBitmask);
 			delta->close();
 
@@ -419,7 +419,7 @@ bool PlayerObjectImplementation::clearCharacterBit(uint32 bit, bool notifyClient
 		characterBitmask &= ~bit;
 
 		if (notifyClient) {
-			PlayerObjectDeltaMessage3* delta = new PlayerObjectDeltaMessage3(_this.getReferenceUnsafeStaticCast());
+			PlayerObjectDeltaMessage3* delta = new PlayerObjectDeltaMessage3(_this.get());
 			delta->updateCharacterBitmask(characterBitmask);
 			delta->close();
 
@@ -438,7 +438,7 @@ void PlayerObjectImplementation::sendBadgesResponseTo(CreatureObject* player) {
 
 void PlayerObjectImplementation::awardBadge(uint32 badge) {
 	PlayerManager* playerManager = getZoneServer()->getPlayerManager();
-	playerManager->awardBadge(_this.getReferenceUnsafeStaticCast(), badge);
+	playerManager->awardBadge(_this.get(), badge);
 }
 
 void PlayerObjectImplementation::setFactionStatus(int status) {
@@ -460,12 +460,15 @@ void PlayerObjectImplementation::setFactionStatus(int status) {
 			pvpStatusBitmask -= CreatureFlag::BLINK_GREEN;*/
 
 		creature->setPvpStatusBitmask(pvpStatusBitmask);
+	} else if (factionStatus == FactionStatus::CHANGINGSTATUS) {
+		creature->setPvpStatusBitmask(pvpStatusBitmask | CreatureFlag::CHANGEFACTIONSTATUS);
 	} else if (factionStatus == FactionStatus::OVERT) {
 
-		if(!(pvpStatusBitmask & CreatureFlag::OVERT)) {
+		if(!(pvpStatusBitmask & CreatureFlag::OVERT))
 			creature->addCooldown("declare_overt_cooldown",GCWManagerImplementation::overtCooldown*1000);
+
+		if (!(pvpStatusBitmask & CreatureFlag::OVERT))
 			pvpStatusBitmask |= CreatureFlag::OVERT;
-		}
 
 		if (pvpStatusBitmask & CreatureFlag::CHANGEFACTIONSTATUS)
 			pvpStatusBitmask -= CreatureFlag::CHANGEFACTIONSTATUS;
@@ -549,7 +552,7 @@ int PlayerObjectImplementation::addExperience(const String& xpType, int xp, bool
 
 	int valueToAdd = xp;
 
-	Locker locker(_this.getReferenceUnsafeStaticCast());
+	Locker locker(_this.get());
 
 	if (experienceList.contains(xpType)) {
 		xp += experienceList.get(xpType);
@@ -628,17 +631,15 @@ void PlayerObjectImplementation::setWaypoint(WaypointObject* waypoint, bool noti
 
 void PlayerObjectImplementation::addWaypoint(WaypointObject* waypoint, bool checkName, bool notifyClient) {
 	uint64 waypointID = waypoint->getObjectID();
-
-	if (waypointList.contains(waypointID)) {
-		updateWaypoint(waypointID);
-		return;
-	}
-
 	int specialTypeID = waypoint->getSpecialTypeID();
 	bool doRemove = false;
 	bool destroy = false;
 
-	if (checkName) {
+	if (waypointList.contains(waypointID)) {
+		doRemove = true;
+	}
+
+	if (!doRemove && checkName) {
 		String name = waypoint->getCustomObjectName().toString();
 		waypointID = waypointList.find(name);
 
@@ -736,7 +737,7 @@ WaypointObject* PlayerObjectImplementation::addWaypoint(const String& planet, fl
 
 void PlayerObjectImplementation::addAbility(Ability* ability, bool notifyClient) {
 	if (notifyClient) {
-		PlayerObjectDeltaMessage9* msg = new PlayerObjectDeltaMessage9(_this.getReferenceUnsafeStaticCast());
+		PlayerObjectDeltaMessage9* msg = new PlayerObjectDeltaMessage9(_this.get());
 		msg->startUpdate(0);
 		abilityList.add(ability, msg, 1);
 		msg->close();
@@ -751,7 +752,7 @@ void PlayerObjectImplementation::addAbilities(Vector<Ability*>& abilities, bool 
 		return;
 
 	if (notifyClient) {
-		PlayerObjectDeltaMessage9* msg = new PlayerObjectDeltaMessage9(_this.getReferenceUnsafeStaticCast());
+		PlayerObjectDeltaMessage9* msg = new PlayerObjectDeltaMessage9(_this.get());
 		msg->startUpdate(0);
 
 		abilityList.add(abilities.get(0), msg, abilities.size());
@@ -775,7 +776,7 @@ void PlayerObjectImplementation::removeAbility(Ability* ability, bool notifyClie
 		return;
 
 	if (notifyClient) {
-		PlayerObjectDeltaMessage9* msg = new PlayerObjectDeltaMessage9(_this.getReferenceUnsafeStaticCast());
+		PlayerObjectDeltaMessage9* msg = new PlayerObjectDeltaMessage9(_this.get());
 		msg->startUpdate(0);
 		abilityList.remove(index, msg, 1);
 		msg->close();
@@ -790,7 +791,7 @@ void PlayerObjectImplementation::removeAbilities(Vector<Ability*>& abilities, bo
 		return;
 
 	if (notifyClient) {
-		PlayerObjectDeltaMessage9* msg = new PlayerObjectDeltaMessage9(_this.getReferenceUnsafeStaticCast());
+		PlayerObjectDeltaMessage9* msg = new PlayerObjectDeltaMessage9(_this.get());
 		msg->startUpdate(0);
 
 		abilityList.remove(abilityList.find(abilities.get(0)), msg, abilities.size());
@@ -824,7 +825,7 @@ bool PlayerObjectImplementation::addSchematics(Vector<ManagedReference<DraftSche
 		return false;
 
 	if (notifyClient) {
-		PlayerObjectDeltaMessage9* msg = new PlayerObjectDeltaMessage9(_this.getReferenceUnsafeStaticCast());
+		PlayerObjectDeltaMessage9* msg = new PlayerObjectDeltaMessage9(_this.get());
 		msg->startUpdate(4);
 
 		schematicList.add(schematicsToSend.get(0), msg, schematicsToSend.size());
@@ -850,7 +851,7 @@ bool PlayerObjectImplementation::addRewardedSchematic(DraftSchematic* schematic,
 
 	schematics.add(schematic);
 
-	CreatureObject* parent = cast<CreatureObject*>(_this.getReferenceUnsafeStaticCast()->getParent().get().get());
+	CreatureObject* parent = cast<CreatureObject*>(_this.get()->getParent().get().get());
 
 	if (parent == NULL)
 		return false;
@@ -902,7 +903,7 @@ void PlayerObjectImplementation::removeSchematics(Vector<ManagedReference<DraftS
 		return;
 
 	if (notifyClient) {
-		PlayerObjectDeltaMessage9* msg = new PlayerObjectDeltaMessage9(_this.getReferenceUnsafeStaticCast());
+		PlayerObjectDeltaMessage9* msg = new PlayerObjectDeltaMessage9(_this.get());
 		msg->startUpdate(4);
 
 		schematicList.removeAll(msg);
@@ -932,10 +933,10 @@ void PlayerObjectImplementation::removeSchematics(Vector<ManagedReference<DraftS
 
 	for(int i = 0; i < playerSkillBoxList->size(); ++i) {
 		Skill* skillBox = playerSkillBoxList->get(i);
-		skillManager->awardDraftSchematics(skillBox, _this.getReferenceUnsafeStaticCast(), true);
+		skillManager->awardDraftSchematics(skillBox, _this.get(), true);
 	}
 
-	schematicList.addRewardedSchematics(_this.getReferenceUnsafeStaticCast());
+	schematicList.addRewardedSchematics(_this.get());
 }
 
 void PlayerObjectImplementation::doDigest(int fillingReduction) {
@@ -965,7 +966,7 @@ void PlayerObjectImplementation::doDigest(int fillingReduction) {
 Vector<ManagedReference<DraftSchematic* > > PlayerObjectImplementation::filterSchematicList(
 		CreatureObject* player, Vector<uint32>* enabledTabs, int complexityLevel) {
 
-	Locker _locker(_this.getReferenceUnsafeStaticCast());
+	Locker _locker(_this.get());
 
 	return schematicList.filterSchematicList(player, enabledTabs, complexityLevel);
 }
@@ -1016,7 +1017,7 @@ void PlayerObjectImplementation::addFriend(const String& name, bool notifyClient
 
 		friendList.add(nameLower);
 
-		PlayerObjectDeltaMessage9* delta = new PlayerObjectDeltaMessage9(_this.getReferenceUnsafeStaticCast());
+		PlayerObjectDeltaMessage9* delta = new PlayerObjectDeltaMessage9(_this.get());
 		friendList.insertToDeltaMessage(delta);
 		delta->close();
 
@@ -1079,7 +1080,7 @@ void PlayerObjectImplementation::removeFriend(const String& name, bool notifyCli
 
 		friendList.removePlayer(nameLower);
 
-		PlayerObjectDeltaMessage9* delta = new PlayerObjectDeltaMessage9(_this.getReferenceUnsafeStaticCast());
+		PlayerObjectDeltaMessage9* delta = new PlayerObjectDeltaMessage9(_this.get());
 		friendList.insertToDeltaMessage(delta);
 		delta->close();
 
@@ -1155,7 +1156,7 @@ void PlayerObjectImplementation::addIgnore(const String& name, bool notifyClient
 
 		ignoreList.add(nameLower);
 
-		PlayerObjectDeltaMessage9* delta = new PlayerObjectDeltaMessage9(_this.getReferenceUnsafeStaticCast());
+		PlayerObjectDeltaMessage9* delta = new PlayerObjectDeltaMessage9(_this.get());
 		ignoreList.insertToDeltaMessage(delta);
 		delta->close();
 
@@ -1193,7 +1194,7 @@ void PlayerObjectImplementation::removeIgnore(const String& name, bool notifyCli
 
 		ignoreList.removePlayer(nameLower);
 
-		PlayerObjectDeltaMessage9* delta = new PlayerObjectDeltaMessage9(_this.getReferenceUnsafeStaticCast());
+		PlayerObjectDeltaMessage9* delta = new PlayerObjectDeltaMessage9(_this.get());
 		ignoreList.insertToDeltaMessage(delta);
 		delta->close();
 
@@ -1224,7 +1225,7 @@ void PlayerObjectImplementation::setTitle(const String& characterTitle, bool not
 	title = characterTitle;
 
 	if (notifyClient) {
-		PlayerObjectDeltaMessage3* dplay3 = new PlayerObjectDeltaMessage3(_this.getReferenceUnsafeStaticCast());
+		PlayerObjectDeltaMessage3* dplay3 = new PlayerObjectDeltaMessage3(_this.get());
 		dplay3->setCurrentTitle(title);
 		dplay3->close();
 		broadcastMessage(dplay3, true); //update the zone.
@@ -1316,7 +1317,7 @@ void PlayerObjectImplementation::setLanguageID(byte language, bool notifyClient)
 	languageID = language;
 
 	if (notifyClient) {
-		PlayerObjectDeltaMessage9* dplay9 = new PlayerObjectDeltaMessage9(_this.getReferenceUnsafeStaticCast());
+		PlayerObjectDeltaMessage9* dplay9 = new PlayerObjectDeltaMessage9(_this.get());
 		dplay9->setLanguageID(languageID);
 		dplay9->close();
 		getParent().get()->sendMessage(dplay9);
@@ -1338,7 +1339,7 @@ void PlayerObjectImplementation::setFoodFilling(int newValue, bool notifyClient)
 	foodFilling = newValue;
 
 	if (notifyClient) {
-		PlayerObjectDeltaMessage9* dplay9 = new PlayerObjectDeltaMessage9(_this.getReferenceUnsafeStaticCast());
+		PlayerObjectDeltaMessage9* dplay9 = new PlayerObjectDeltaMessage9(_this.get());
 		dplay9->updateFoodFilling(newValue);
 		dplay9->close();
 		getParent().get()->sendMessage(dplay9);
@@ -1352,7 +1353,7 @@ void PlayerObjectImplementation::setDrinkFilling(int newValue, bool notifyClient
 	drinkFilling = newValue;
 
 	if (notifyClient) {
-		PlayerObjectDeltaMessage9* dplay9 = new PlayerObjectDeltaMessage9(_this.getReferenceUnsafeStaticCast());
+		PlayerObjectDeltaMessage9* dplay9 = new PlayerObjectDeltaMessage9(_this.get());
 		dplay9->updateDrinkFilling(drinkFilling);
 		dplay9->close();
 		getParent().get()->sendMessage(dplay9);
@@ -1491,7 +1492,7 @@ void PlayerObjectImplementation::logout(bool doLock) {
 		if (disconnectEvent == NULL) {
 			info("creating disconnect event");
 
-			disconnectEvent = new PlayerDisconnectEvent(_this.getReferenceUnsafeStaticCast());
+			disconnectEvent = new PlayerDisconnectEvent(_this.get());
 
 			if (isLoggingOut()) {
 				disconnectEvent->schedule(10);
@@ -1597,7 +1598,7 @@ void PlayerObjectImplementation::doRecovery() {
 
 void PlayerObjectImplementation::activateRecovery() {
 	if (recoveryEvent == NULL) {
-		recoveryEvent = new PlayerRecoveryEvent(_this.getReferenceUnsafeStaticCast());
+		recoveryEvent = new PlayerRecoveryEvent(_this.get());
 
 		recoveryEvent->schedule(3000);
 	}
@@ -1605,9 +1606,9 @@ void PlayerObjectImplementation::activateRecovery() {
 
 void PlayerObjectImplementation::activateForcePowerRegen() {
 	if (forceRegenerationEvent == NULL) {
-		forceRegenerationEvent = new ForceRegenerationEvent(_this.getReferenceUnsafeStaticCast());
+		forceRegenerationEvent = new ForceRegenerationEvent(_this.get());
 
-		float timer = ((float) getForcePowerRegen()) / 5.f;
+		float timer = getForcePowerRegen() / 5;
 		float scheduledTime = 10 / timer;
 		uint64 miliTime = static_cast<uint64>(scheduledTime * 1000.f);
 		forceRegenerationEvent->schedule(miliTime);
@@ -1828,20 +1829,18 @@ void PlayerObjectImplementation::doForceRegen() {
 	if (creature == NULL || creature->isIncapacitated() || creature->isDead())
 		return;
 
-	const static uint32 tick = 5;
+	uint32 tick = 5;
 
 	uint32 modifier = 1;
 
 	// TODO: Re-factor Force Meditate so TKA meditate doesn't effect.
 	if (creature->isMeditating())
-		modifier = 3;
+		modifier = 3.f;
 
 	uint32 forceTick = tick * modifier;
 
-	//forceTick cant be <1 as per above code, tick is always positive and modifier as well
-	/*if (forceTick < 1)
+	if (forceTick < 1)
 		forceTick = 1;
-		*/
 
 	if (forceTick > getForcePowerMax() - getForcePower()){   // If the player's Force Power is going to regen again and it's close to max,
 		setForcePower(getForcePowerMax());             // Set it to max, so it doesn't go over max.
@@ -1863,7 +1862,7 @@ void PlayerObjectImplementation::addToBountyLockList(uint64 playerId) {
 			bountyLockList.get(playerId)->cancel();
 		}
 	} else {
-		bountyLockList.put(playerId, new BountyHunterTefRemovalTask(_this.getReferenceUnsafeStaticCast(), playerId));
+		bountyLockList.put(playerId, new BountyHunterTefRemovalTask(_this.get(), playerId));
 		updateBountyPvpStatus(playerId);
 	}
 }
@@ -2089,7 +2088,7 @@ void PlayerObjectImplementation::destroyObjectFromDatabase(bool destroyContained
 }
 
 int PlayerObjectImplementation::getLotsRemaining() {
-	Locker locker(_this.getReferenceUnsafeStaticCast());
+	Locker locker(_this.get());
 
 	int lotsRemaining = maximumLots;
 
@@ -2115,7 +2114,7 @@ void PlayerObjectImplementation::setJediState(int state, bool notifyClient) {
 	if (!notifyClient)
 		return;
 
-	PlayerObjectDeltaMessage9* delta = new PlayerObjectDeltaMessage9(_this.getReferenceUnsafeStaticCast());
+	PlayerObjectDeltaMessage9* delta = new PlayerObjectDeltaMessage9(_this.get());
 	delta->setJediState(state);
 	delta->close();
 

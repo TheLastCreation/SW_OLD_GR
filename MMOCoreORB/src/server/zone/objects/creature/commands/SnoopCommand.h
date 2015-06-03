@@ -207,6 +207,8 @@ public:
 				body << " (Overt)" << endl;
 			else if (targetGhost->getFactionStatus() == FactionStatus::COVERT)
 				body << " (Covert)" << endl;
+			else if (targetGhost->getFactionStatus() == FactionStatus::CHANGINGSTATUS)
+				body << " (Changing Status)" << endl;
 
 			rank = target->getFactionRank();
 			body << "Rank:\t" << FactionManager::instance()->getRankName(rank) << " (Rank " << rank + 1 << ")" << endl;

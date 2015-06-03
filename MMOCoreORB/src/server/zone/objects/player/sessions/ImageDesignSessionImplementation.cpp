@@ -63,7 +63,7 @@ void ImageDesignSessionImplementation::startImageDesign(CreatureObject* designer
 			targetTentID = obj->getObjectID();
 
 		if (targetTentID != 0) {
-			positionObserver = new ImageDesignPositionObserver(_this.getReferenceUnsafeStaticCast());
+			positionObserver = new ImageDesignPositionObserver(_this.get());
 
 			designer->registerObserver(ObserverEventType::POSITIONCHANGED, positionObserver);
 
@@ -77,7 +77,7 @@ void ImageDesignSessionImplementation::startImageDesign(CreatureObject* designer
 		designerTentID = 0;
 	}
 
-	designer->addActiveSession(SessionFacadeType::IMAGEDESIGN, _this.getReferenceUnsafeStaticCast());
+	designer->addActiveSession(SessionFacadeType::IMAGEDESIGN, _this.get());
 
 	String hairTemplate;
 
@@ -87,7 +87,7 @@ void ImageDesignSessionImplementation::startImageDesign(CreatureObject* designer
 	designer->sendMessage(msg);
 
 	if (designer != targetPlayer) {
-		targetPlayer->addActiveSession(SessionFacadeType::IMAGEDESIGN, _this.getReferenceUnsafeStaticCast());
+		targetPlayer->addActiveSession(SessionFacadeType::IMAGEDESIGN, _this.get());
 
 		ImageDesignStartMessage* msg2 = new ImageDesignStartMessage(targetPlayer, designer, targetPlayer, targetTentID, hairTemplate);
 		targetPlayer->sendMessage(msg2);
@@ -96,7 +96,7 @@ void ImageDesignSessionImplementation::startImageDesign(CreatureObject* designer
 	designerCreature = designer;
 	targetCreature = targetPlayer;
 
-	idTimeoutEvent = new ImageDesignTimeoutEvent(_this.getReferenceUnsafeStaticCast());
+	idTimeoutEvent = new ImageDesignTimeoutEvent(_this.get());
 }
 
 void ImageDesignSessionImplementation::updateImageDesign(CreatureObject* updater, uint64 designer, uint64 targetPlayer, uint64 tent, int type, const ImageDesignData& data) {
@@ -134,7 +134,7 @@ void ImageDesignSessionImplementation::updateImageDesign(CreatureObject* updater
 			commitChanges = false;
 
 			if (idTimeoutEvent == NULL)
-				idTimeoutEvent = new ImageDesignTimeoutEvent(_this.getReferenceUnsafeStaticCast());
+				idTimeoutEvent = new ImageDesignTimeoutEvent(_this.get());
 
 			if (!idTimeoutEvent->isScheduled())
 				idTimeoutEvent->schedule(120000); //2 minutes

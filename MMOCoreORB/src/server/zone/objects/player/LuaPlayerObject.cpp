@@ -21,6 +21,7 @@ Luna<LuaPlayerObject>::RegType LuaPlayerObject::Register[] = {
 		{ "isOnLeave", &LuaPlayerObject::isOnLeave },
 		{ "isOvert", &LuaPlayerObject::isOvert },
 		{ "isCovert", &LuaPlayerObject::isCovert },
+		{ "isChangingFactionStatus", &LuaPlayerObject::isChangingFactionStatus },
 		{ "increaseFactionStanding", &LuaPlayerObject::increaseFactionStanding },
 		{ "decreaseFactionStanding", &LuaPlayerObject::decreaseFactionStanding },
 		{ "addWaypoint", &LuaPlayerObject::addWaypoint },
@@ -117,6 +118,12 @@ int LuaPlayerObject::isOvert(lua_State* L) {
 
 int LuaPlayerObject::isCovert(lua_State* L) {
 	lua_pushboolean(L, realObject->getFactionStatus() == FactionStatus::COVERT);
+
+	return 1;
+}
+
+int LuaPlayerObject::isChangingFactionStatus(lua_State* L) {
+	lua_pushboolean(L, realObject->getFactionStatus() == FactionStatus::CHANGINGSTATUS);
 
 	return 1;
 }

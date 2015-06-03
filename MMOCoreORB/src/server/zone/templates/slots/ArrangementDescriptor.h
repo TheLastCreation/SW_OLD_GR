@@ -54,7 +54,7 @@ public:
 		arrangementSlots.clone(copyVec);
 	}
 
-	const Vector< Vector<String> >& getArrangementSlots() const {
+	Vector< Vector<String> >& getArrangementSlots() {
 		return arrangementSlots;
 	}
 };

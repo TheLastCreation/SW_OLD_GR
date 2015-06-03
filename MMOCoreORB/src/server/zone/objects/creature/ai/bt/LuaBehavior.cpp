@@ -18,7 +18,7 @@
 #define AI_DEBUG
 #endif
 
-LuaBehavior::LuaBehavior(const String& name) : Object() {
+LuaBehavior::LuaBehavior(String name) : Object() {
 	this->className = name;
 }
 

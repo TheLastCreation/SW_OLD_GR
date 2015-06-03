@@ -300,7 +300,7 @@ int ArmorObjectImplementation::handleObjectMenuSelect(CreatureObject* player, by
 
 		//Create Session
 		session = new SlicingSession(player);
-		session->initalizeSlicingMenu(player, _this.getReferenceUnsafeStaticCast());
+		session->initalizeSlicingMenu(player, _this.get());
 
 		return 0;
 

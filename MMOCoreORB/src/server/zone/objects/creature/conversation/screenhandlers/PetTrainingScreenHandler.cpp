@@ -41,8 +41,6 @@ ConversationScreen* PetTrainingScreenHandler::handleScreen(CreatureObject* conve
 		}
 	}
 
-	Locker locker(controller);
-
 	if (conversationScreen->getScreenID() == "pet_repair_command") {
 		controller->setTrainingCommand(PetManager::REPAIR);
 		return NULL;
@@ -103,9 +101,6 @@ ConversationScreen* PetTrainingScreenHandler::handleScreen(CreatureObject* conve
 		controller->setTrainingCommand(PetManager::STORE);
 		return NULL;
 	}
-
-	locker.release();
-
 	if (conversationScreen->getScreenID() == "pet_leave_group_command") {
 		GroupObject* g = conversingNPC->getGroup();
 		if (g != NULL) {

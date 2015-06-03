@@ -66,7 +66,7 @@ void ZoneProcessServerImplementation::initialize() {
 	//StructureManager::instance();
 
 	vendorManager = VendorManager::instance();
-	vendorManager->initialize(_this.getReferenceUnsafeStaticCast());
+	vendorManager->initialize(_this.get());
 
 	professionManager = SkillManager::instance();
 	professionManager->loadLuaConfig();
@@ -76,16 +76,16 @@ void ZoneProcessServerImplementation::initialize() {
 
 	playerCreationManager = PlayerCreationManager::instance();
 
-	zonePacketHandler = new ZonePacketHandler("ZonePacketHandler", _this.getReferenceUnsafeStaticCast());
+	zonePacketHandler = new ZonePacketHandler("ZonePacketHandler", _this.get());
 	zonePacketHandler->setLogging(false);
 
-	nameManager = new NameManager(_this.getReferenceUnsafeStaticCast());
+	nameManager = new NameManager(_this.get());
 	//nameManager->test();
-	holocronManager = new HolocronManager(_this.getReferenceUnsafeStaticCast());
+	holocronManager = new HolocronManager(_this.get());
 	suiManager = SuiManager::instance();
-	suiManager->setZoneProcessServer(_this.getReferenceUnsafeStaticCast());
+	suiManager->setZoneProcessServer(_this.get());
 
-	objectController = new ObjectController(_this.getReferenceUnsafeStaticCast());
+	objectController = new ObjectController(_this.get());
 
 	fishingManager = new FishingManager();
 	fishingManager->deploy();

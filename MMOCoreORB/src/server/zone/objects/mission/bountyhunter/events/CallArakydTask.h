@@ -126,17 +126,12 @@ public:
 		return player->getPosition();
 	}
 
-	bool noInterferingObjects(CreatureObject* player, const Vector3& position) {
-		CloseObjectsVector* vec = (CloseObjectsVector*) player->getCloseObjects();
+	bool noInterferingObjects(CreatureObject* player, Vector3 position)
+	{
+		SortedVector<ManagedReference<QuadTreeEntry* > >* closeObjects =  player->getCloseObjects();
 
-		if (vec == NULL)
-			return true;
-
-		SortedVector<ManagedReference<QuadTreeEntry* > > closeObjects;
-		vec->safeCopyTo(closeObjects);
-
-		for (int j = 0; j < closeObjects.size(); j++) {
-			SceneObject* obj = cast<SceneObject*>(closeObjects.get(j).get());
+		for (int j = 0; j < closeObjects->size(); j++) {
+			SceneObject* obj = cast<SceneObject*>(closeObjects->get(j).get());
 
 			SharedObjectTemplate* objectTemplate = obj->getObjectTemplate();
 

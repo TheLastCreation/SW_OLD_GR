@@ -109,7 +109,7 @@ void ConversationObserverImplementation::createConversationSession(CreatureObjec
 }
 
 void ConversationObserverImplementation::createPositionObserver(CreatureObject* player) {
-	player->registerObserver(ObserverEventType::POSITIONCHANGED, _this.getReferenceUnsafeStaticCast());
+	player->registerObserver(ObserverEventType::POSITIONCHANGED, _this.get());
 }
 
 void ConversationObserverImplementation::cancelConversationSession(CreatureObject* conversingPlayer, CreatureObject* npc, bool forceClose) {
@@ -121,7 +121,7 @@ void ConversationObserverImplementation::cancelConversationSession(CreatureObjec
 
 	conversingPlayer->dropActiveSession(SessionFacadeType::CONVERSATION);
 
-	conversingPlayer->dropObserver(ObserverEventType::POSITIONCHANGED, _this.getReferenceUnsafeStaticCast());
+	conversingPlayer->dropObserver(ObserverEventType::POSITIONCHANGED, _this.get());
 
 	if (forceClose && npc != NULL)
 		conversingPlayer->sendMessage(new StopNpcConversation(conversingPlayer, npc->getObjectID()));

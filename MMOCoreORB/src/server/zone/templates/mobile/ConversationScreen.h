@@ -192,7 +192,6 @@ public:
 		//Check if the conversation should be stopped.
 		if (stopConversation) {
 			player->sendMessage(new StopNpcConversation(player, npc->getObjectID()));
-			npc->notifyObservers(ObserverEventType::STOPCONVERSATION, player);
 			screenToSave = NULL;
 		}
 

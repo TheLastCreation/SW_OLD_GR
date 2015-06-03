@@ -27,8 +27,9 @@ public:
 		Locker locker(creature);
 
 		if(creature != NULL) {
-			const static int amountOfTicks = 10; // How many ticks will it take to get back to normal HAM.
-			int hamBack = round((float) forceBonus / (float) amountOfTicks);
+			int amountOfTicks = 10; // How many ticks will it take to get back to normal HAM.
+			int hamBack = round(forceBonus / amountOfTicks);
+
 
 			if (counter < amountOfTicks) {
 				int maxHealth = creature->getMaxHAM(CreatureAttribute::HEALTH);
@@ -39,9 +40,9 @@ public:
 				creature->setMaxHAM(CreatureAttribute::ACTION, maxAction + hamBack, true);
 				creature->setMaxHAM(CreatureAttribute::MIND, maxMind + hamBack, true);
 
-				counter++;
-
 				this->reschedule(6000); // Reschedule in 6 seconds...
+
+				counter++;
 			}
 			else {
 

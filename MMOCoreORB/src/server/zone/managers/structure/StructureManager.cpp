@@ -937,9 +937,8 @@ void StructureManager::reportStructureStatus(CreatureObject* creature,
 		InstallationObject* installation = cast<InstallationObject*>(structure);
 
 		float secsRemainingPower = 0.f;
-		float basePowerRate = installation->getBasePowerRate();
-		if((installation->getSurplusPower() > 0) && (basePowerRate != 0)){
-			secsRemainingPower = ((float)installation->getSurplusPower() / (float)basePowerRate)*3600;
+		if( installation->getSurplusPower() > 0 ){
+			secsRemainingPower = ((float)installation->getSurplusPower() / (float)installation->getBasePowerRate())*3600;
 		}
 
 		status->addMenuItem(

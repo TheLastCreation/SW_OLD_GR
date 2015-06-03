@@ -81,7 +81,7 @@ void GuildTerminalImplementation::fillObjectMenuResponse(ObjectMenuResponse* men
 }
 
 int GuildTerminalImplementation::handleObjectMenuSelect(CreatureObject* player, byte selectedID) {
-	Locker _lock(_this.getReferenceUnsafeStaticCast());
+	Locker _lock(_this.get());
 
 	ManagedReference<GuildManager*> guildManager = server->getZoneServer()->getGuildManager();
 
@@ -109,54 +109,54 @@ int GuildTerminalImplementation::handleObjectMenuSelect(CreatureObject* player, 
 	switch (selectedID) {
 	case 69:
 		if (guildObject != NULL && (guildObject->getGuildLeaderID() == playerID || player->getPlayerObject()->isPrivileged())) {
-			guildManager->sendGuildTransferTo(player, _this.getReferenceUnsafeStaticCast());
+			guildManager->sendGuildTransferTo(player, _this.get());
 		}
 		break;
 	case 185:
 		if (guildObject == NULL && player == owner) {
-			guildManager->sendGuildCreateNameTo(player, _this.getReferenceUnsafeStaticCast());
+			guildManager->sendGuildCreateNameTo(player, _this.get());
 		}
 		break;
 	case 189:
 		if (guildObject != NULL && (isMember || player->getPlayerObject()->isPrivileged())) {
-			guildManager->sendGuildWarStatusTo(player, guildObject, _this.getReferenceUnsafeStaticCast());
+			guildManager->sendGuildWarStatusTo(player, guildObject, _this.get());
 		}
 		break;
 	case 193:
 	case 186:
 		if (guildObject != NULL && (isMember || player->getPlayerObject()->isPrivileged())) {
-			guildManager->sendGuildInformationTo(player, guildObject, _this.getReferenceUnsafeStaticCast());
+			guildManager->sendGuildInformationTo(player, guildObject, _this.get());
 		}
 		break;
 	case 191:
 		if (guildObject != NULL) {
-			guildManager->sendGuildDisbandConfirmTo(player, guildObject, _this.getReferenceUnsafeStaticCast());
+			guildManager->sendGuildDisbandConfirmTo(player, guildObject, _this.get());
 		}
 		break;
 	case 194:
 	case 187:
 		if (guildObject != NULL && (isMember || player->getPlayerObject()->isPrivileged())) {
-			guildManager->sendGuildMemberListTo(player, guildObject, _this.getReferenceUnsafeStaticCast());
+			guildManager->sendGuildMemberListTo(player, guildObject, _this.get());
 		}
 		break;
 	case 188:
 		if (guildObject != NULL && (isMember || player->getPlayerObject()->isPrivileged())) {
-			guildManager->sendGuildSponsoredListTo(player, guildObject, _this.getReferenceUnsafeStaticCast());
+			guildManager->sendGuildSponsoredListTo(player, guildObject, _this.get());
 		}
 		break;
 	case 190:
 		if (guildObject != NULL && (isMember || player->getPlayerObject()->isPrivileged())) {
-			guildManager->sendGuildSponsorTo(player, guildObject, _this.getReferenceUnsafeStaticCast());
+			guildManager->sendGuildSponsorTo(player, guildObject, _this.get());
 		}
 		break;
 	case 192:
 		if (guildObject != NULL) {
-			guildManager->sendGuildChangeNameTo(player, guildObject, _this.getReferenceUnsafeStaticCast());
+			guildManager->sendGuildChangeNameTo(player, guildObject, _this.get());
 		}
 		break;
 	case 195:
 		if (guildObject != NULL && (guildObject->getGuildLeaderID() == playerID) ) {
-			guildManager->sendAcceptLotsTo(player, _this.getReferenceUnsafeStaticCast());
+			guildManager->sendAcceptLotsTo(player, _this.get());
 		}
 		break;
 	default:

@@ -23,7 +23,7 @@ int DestroyStructureSessionImplementation::initializeSession() {
 	if (!creatureObject->isPlayerCreature())
 		return cancelSession();
 
-	creatureObject->addActiveSession(SessionFacadeType::DESTROYSTRUCTURE, _this.getReferenceUnsafeStaticCast());
+	creatureObject->addActiveSession(SessionFacadeType::DESTROYSTRUCTURE, _this.get());
 
 	Locker _lock(structureObject, creatureObject);
 

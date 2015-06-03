@@ -38,7 +38,6 @@ public:
 
 		if (!city->isMilitiaMember(creature->getObjectID())) {
 			creature->sendSystemMessage("@city/city:grant_rights_fail"); //You must be the mayor of the city or a member of the city militia to grant zoning rights.
-			return GENERALERROR;
 		}
 
 		CreatureObject* targetPlayer = cast<CreatureObject*>( targetObject.get());

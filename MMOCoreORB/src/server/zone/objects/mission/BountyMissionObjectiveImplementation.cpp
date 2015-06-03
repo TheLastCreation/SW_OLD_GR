@@ -464,7 +464,7 @@ void BountyMissionObjectiveImplementation::removeObserver(int observerNumber, un
 }
 
 void BountyMissionObjectiveImplementation::addObserverToCreature(unsigned int observerType, CreatureObject* creature) {
-	ManagedReference<MissionObserver*> observer = new MissionObserver(_this.getReferenceUnsafeStaticCast());
+	ManagedReference<MissionObserver*> observer = new MissionObserver(_this.get());
 	addObserver(observer, true);
 
 	creature->registerObserver(observerType, observer);

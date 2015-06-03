@@ -53,7 +53,7 @@ void WeatherManagerImplementation::initialize() {
 }
 
 bool WeatherManagerImplementation::loadLuaConfig() {
-	Locker weatherManagerLocker(_this.getReferenceUnsafeStaticCast());
+	Locker weatherManagerLocker(_this.get());
 
 	Lua* lua = new Lua();
 	lua->init();
@@ -94,7 +94,7 @@ bool WeatherManagerImplementation::loadLuaConfig() {
 
 
 void WeatherManagerImplementation::loadDefaultValues() {
-	Locker weatherManagerLocker(_this.getReferenceUnsafeStaticCast());
+	Locker weatherManagerLocker(_this.get());
 
 	weatherEnabled = true;
 
@@ -108,7 +108,7 @@ void WeatherManagerImplementation::loadDefaultValues() {
 
 void WeatherManagerImplementation::createNewWeatherPattern() {
 
-	Locker weatherManagerLocker(_this.getReferenceUnsafeStaticCast());
+	Locker weatherManagerLocker(_this.get());
 
 	int roll = System::random(100);
 
@@ -129,7 +129,7 @@ void WeatherManagerImplementation::createNewWeatherPattern() {
 		if(weatherChangeEvent->isScheduled())
 			weatherChangeEvent->cancel();
 	} else {
-		weatherChangeEvent = new WeatherChangeEvent(_this.getReferenceUnsafeStaticCast());
+		weatherChangeEvent = new WeatherChangeEvent(_this.get());
 	}
 
 	weatherChangeEvent->reschedule(duration * 1000);
@@ -307,7 +307,7 @@ void WeatherManagerImplementation::disableWeather(CreatureObject* player) {
 	if (player == NULL || !weatherEnabled)
 		return;
 
-	Locker weatherManagerLocker(_this.getReferenceUnsafeStaticCast());
+	Locker weatherManagerLocker(_this.get());
 	weatherEnabled = false;
 
 	if (weatherChangeEvent != NULL) {
@@ -327,7 +327,7 @@ void WeatherManagerImplementation::changeWeather(CreatureObject* player, int new
 
 	disableWeather(player);
 
-	Locker weatherManagerLocker(_this.getReferenceUnsafeStaticCast());
+	Locker weatherManagerLocker(_this.get());
 
 	if(newWeather == 5)
 		baseWeather = System::random(5);

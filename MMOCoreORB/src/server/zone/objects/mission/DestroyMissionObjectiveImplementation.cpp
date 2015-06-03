@@ -55,7 +55,7 @@ void DestroyMissionObjectiveImplementation::activate() {
 	if (spawnActiveArea == NULL) {
 		spawnActiveArea = ( Core::lookupObject<ZoneServer>("ZoneServer")->createObject(STRING_HASHCODE("object/mission_spawn_area.iff"), 1)).castTo<MissionSpawnActiveArea*>();
 		Locker alocker(spawnActiveArea);
-		spawnActiveArea->setMissionObjective(_this.getReferenceUnsafeStaticCast());
+		spawnActiveArea->setMissionObjective(_this.get());
 	}
 
 	if (spawnActiveArea->getZone() == NULL) {
@@ -137,7 +137,7 @@ Vector3 DestroyMissionObjectiveImplementation::findValidSpawnPosition(Zone* zone
 }
 
 void DestroyMissionObjectiveImplementation::spawnLair() {
-	Locker _lock(_this.getReferenceUnsafeStaticCast());
+	Locker _lock(_this.get());
 
 	ManagedReference<MissionObject* > mission = this->mission.get();
 
@@ -222,7 +222,7 @@ void DestroyMissionObjectiveImplementation::spawnLair() {
 	 	lairObject->initializePosition(pos.getX(), pos.getZ(), pos.getY());
 	 	lairObject->setDespawnOnNoPlayersInRange(false);
 
-		ManagedReference<MissionObserver*> observer = new MissionObserver(_this.getReferenceUnsafeStaticCast());
+		ManagedReference<MissionObserver*> observer = new MissionObserver(_this.get());
 		addObserver(observer, true);
 
 		lairObject->registerObserver(ObserverEventType::OBJECTDESTRUCTION, observer);

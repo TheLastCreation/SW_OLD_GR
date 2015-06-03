@@ -121,18 +121,15 @@ int EventPerkDeedImplementation::handleObjectMenuSelect(CreatureObject* player, 
 			return 1;
 		}
 
-		CloseObjectsVector* vec = (CloseObjectsVector*) player->getCloseObjects();
+		SortedVector<ManagedReference<QuadTreeEntry* > >* closeObjects = player->getCloseObjects();
 
-		if (vec == NULL) {
+		if (closeObjects == NULL) {
 			error("Player has NULL closeObjectsVector in EventPerkDeedImplementation::handleObjectMenuSelect");
 			return 1;
 		}
 
-		SortedVector<ManagedReference<QuadTreeEntry* > > closeObjects;
-		vec->safeCopyTo(closeObjects);
-
-		for (int i = 0; i < closeObjects.size(); ++i) {
-			SceneObject* obj = cast<SceneObject*>(closeObjects.get(i).get());
+		for (int i = 0; i < closeObjects->size(); ++i) {
+			SceneObject* obj = cast<SceneObject*>(closeObjects->get(i).get());
 
 			if (obj == NULL) {
 				continue;
@@ -218,7 +215,7 @@ int EventPerkDeedImplementation::handleObjectMenuSelect(CreatureObject* player, 
 			return 1;
 		}
 
-		data->setDeed(_this.getReferenceUnsafeStaticCast());
+		data->setDeed(_this.get());
 
 		object->initializePosition(player->getPositionX(), player->getPositionZ(), player->getPositionY());
 		object->setDirection(Math::deg2rad(player->getDirectionAngle()));
@@ -237,12 +234,12 @@ void EventPerkDeedImplementation::destroyObjectFromDatabase(bool destroyContaine
 	ManagedReference<CreatureObject*> strongOwner = owner.get();
 
 	if (strongOwner != NULL) {
-		Locker clocker(strongOwner, _this.getReferenceUnsafeStaticCast());
+		Locker clocker(strongOwner, _this.get());
 
 		PlayerObject* ghost = strongOwner->getPlayerObject();
 
 		if (ghost != NULL) {
-			ghost->removeEventPerk(_this.getReferenceUnsafeStaticCast());
+			ghost->removeEventPerk(_this.get());
 		}
 	}
 
@@ -251,7 +248,7 @@ void EventPerkDeedImplementation::destroyObjectFromDatabase(bool destroyContaine
 
 void EventPerkDeedImplementation::activateRemoveEvent(bool immediate) {
 	if (removeEventPerkTask == NULL) {
-		removeEventPerkTask = new RemoveEventPerkTask(_this.getReferenceUnsafeStaticCast());
+		removeEventPerkTask = new RemoveEventPerkTask(_this.get());
 
 		Time currentTime;
 		uint64 timeDelta = currentTime.getMiliTime() - purchaseTime.getMiliTime();

@@ -235,7 +235,7 @@ void EntertainingSessionImplementation::activateAction() {
 
 void EntertainingSessionImplementation::startTickTask() {
 	if (tickTask == NULL) {
-		tickTask = new EntertainingSessionTask(_this.getReferenceUnsafeStaticCast());
+		tickTask = new EntertainingSessionTask(_this.get());
 	}
 
 	if (!tickTask->isScheduled()) {

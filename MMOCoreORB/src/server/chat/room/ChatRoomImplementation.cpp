@@ -17,7 +17,7 @@
 
 void ChatRoomImplementation::sendTo(CreatureObject* player) {
 	ChatRoomList* crl = new ChatRoomList();
-	crl->addChannel(_this.getReferenceUnsafeStaticCast());
+	crl->addChannel(_this.get());
 
 	crl->insertChannelListCount();
 	player->sendMessage(crl);
@@ -29,7 +29,7 @@ void ChatRoomImplementation::sendDestroyTo(CreatureObject* player) {
 }
 
 void ChatRoomImplementation::addPlayer(CreatureObject* player, bool doLock) {
-	Locker locker(_this.getReferenceUnsafeStaticCast());
+	Locker locker(_this.get());
 
 	if (playerList.put(player->getFirstName(), player) == -1) {
 		//return;
@@ -44,7 +44,7 @@ void ChatRoomImplementation::addPlayer(CreatureObject* player, bool doLock) {
 
 	PlayerObject* ghost = player->getPlayerObject();
 
-	ghost->addChatRoom(_this.getReferenceUnsafeStaticCast());
+	ghost->addChatRoom(_this.get());
 
 
 	/*ChatOnReceiveRoomInvitation* corri = new ChatOnReceiveRoomInvitation(name);
@@ -58,21 +58,21 @@ void ChatRoomImplementation::removePlayer(CreatureObject* player, bool doLock) {
 
 	PlayerObject* ghost = player->getPlayerObject();
 
-	ghost->removeChatRoom(_this.getReferenceUnsafeStaticCast());
+	ghost->removeChatRoom(_this.get());
 
 	locker.release();
 
-	Locker locker2(_this.getReferenceUnsafeStaticCast());
+	Locker locker2(_this.get());
 
 	playerList.drop(player->getFirstName());
 
-	ChatOnLeaveRoom* msg = new ChatOnLeaveRoom(_this.getReferenceUnsafeStaticCast(), player);
+	ChatOnLeaveRoom* msg = new ChatOnLeaveRoom(_this.get(), player);
 	player->sendMessage(msg);
 }
 
 void ChatRoomImplementation::removePlayer(const String& player) {
 	// Pre: player unlocked
-	Locker locker(_this.getReferenceUnsafeStaticCast());
+	Locker locker(_this.get());
 
 	ManagedReference<CreatureObject*> play = playerList.get(player);
 	playerList.drop(player);
@@ -86,14 +86,14 @@ void ChatRoomImplementation::removePlayer(const String& player) {
 
 	PlayerObject* ghost = play->getPlayerObject();
 
-	ghost->removeChatRoom(_this.getReferenceUnsafeStaticCast());
+	ghost->removeChatRoom(_this.get());
 
-	ChatOnLeaveRoom* msg = new ChatOnLeaveRoom(_this.getReferenceUnsafeStaticCast(), play);
+	ChatOnLeaveRoom* msg = new ChatOnLeaveRoom(_this.get(), play);
 	play->sendMessage(msg);
 }
 
 void ChatRoomImplementation::broadcastMessage(BaseMessage* msg) {
-	Locker locker(_this.getReferenceUnsafeStaticCast());
+	Locker locker(_this.get());
 
 	for (int i = 0; i < playerList.size(); ++i) {
 		ManagedReference<CreatureObject*> player = playerList.get(i);
@@ -106,7 +106,7 @@ void ChatRoomImplementation::broadcastMessage(BaseMessage* msg) {
 }
 
 void ChatRoomImplementation::broadcastMessageCheckIgnore(BaseMessage* msg, String& senderName) {
-	Locker locker(_this.getReferenceUnsafeStaticCast());
+	Locker locker(_this.get());
 	String lowerName = senderName.toLowerCase();
 	PlayerManager* playerManager = server->getPlayerManager();
 	ManagedReference<CreatureObject*> sender = NULL;
@@ -148,16 +148,16 @@ void ChatRoomImplementation::broadcastMessageCheckIgnore(BaseMessage* msg, Strin
 }
 
 void ChatRoomImplementation::removeAllPlayers() {
-	Locker locker(_this.getReferenceUnsafeStaticCast());
+	Locker locker(_this.get());
 
 	for (int i = 0; i < playerList.size(); i++) {
 		ManagedReference<CreatureObject*> player = playerList.get(i);
 
-		Locker clocker(player, _this.getReferenceUnsafeStaticCast());
+		Locker clocker(player, _this.get());
 
 		PlayerObject* ghost = player->getPlayerObject();
 
-		ghost->removeChatRoom(_this.getReferenceUnsafeStaticCast());
+		ghost->removeChatRoom(_this.get());
 	}
 
 	playerList.removeAll();

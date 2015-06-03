@@ -60,7 +60,7 @@ void FactoryObjectImplementation::initializeTransientMembers() {
 	ManagedReference<SceneObject*> outputHopper = getSlottedObject("output_hopper");
 
 	if(inputHopper != NULL && outputHopper != NULL) {
-		hopperObserver = new FactoryHopperObserver(_this.getReferenceUnsafeStaticCast());
+		hopperObserver = new FactoryHopperObserver(_this.get());
 		inputHopper->registerObserver(ObserverEventType::OPENCONTAINER, hopperObserver);
 		inputHopper->registerObserver(ObserverEventType::CLOSECONTAINER, hopperObserver);
 
@@ -83,7 +83,7 @@ void FactoryObjectImplementation::createChildObjects() {
 
 	transferObject(outputHopper, 4);
 
-	hopperObserver = new FactoryHopperObserver(_this.getReferenceUnsafeStaticCast());
+	hopperObserver = new FactoryHopperObserver(_this.get());
 
 	ingredientHopper->registerObserver(ObserverEventType::OPENCONTAINER, hopperObserver);
 	ingredientHopper->registerObserver(ObserverEventType::CLOSECONTAINER, hopperObserver);
@@ -197,7 +197,7 @@ void FactoryObjectImplementation::sendInsertManuSui(CreatureObject* player){
 
 	schematics->setCallback(new InsertSchematicSuiCallback(server->getZoneServer()));
 
-	schematics->setUsingObject(_this.getReferenceUnsafeStaticCast());
+	schematics->setUsingObject(_this.get());
 	player->getPlayerObject()->addSuiBox(schematics);
 	player->sendMessage(schematics->generateMessage());
 }
@@ -224,7 +224,7 @@ void FactoryObjectImplementation::sendIngredientsNeededSui(CreatureObject* playe
 		blueprintEntry->insertFactoryIngredient(ingredientList);
 	}
 
-	ingredientList->setUsingObject(_this.getReferenceUnsafeStaticCast());
+	ingredientList->setUsingObject(_this.get());
 	player->getPlayerObject()->addSuiBox(ingredientList);
 	player->sendMessage(ingredientList->generateMessage());
 
@@ -294,7 +294,7 @@ void FactoryObjectImplementation::handleInsertFactorySchem(
 	if (schematic == NULL || !schematic->isASubChildOf(player))
 		return;
 
-	/// pre: player and _this.getReferenceUnsafeStaticCast() are locked
+	/// pre: player and _this.get() are locked
 	if (!schematic->isManufactureSchematic()) {
 		StringIdChatParameter message("manf_station", "schematic_not_added"); //Schematic %TT was not added to the station.
 
@@ -335,7 +335,7 @@ void FactoryObjectImplementation::handleInsertFactorySchem(
 
 void FactoryObjectImplementation::handleRemoveFactorySchem(CreatureObject* player) {
 
-	/// pre: player and _this.getReferenceUnsafeStaticCast() are locked
+	/// pre: player and _this.get() are locked
 
 	if(getContainerObjectsSize() == 0) {
 		return;
@@ -416,7 +416,7 @@ bool FactoryObjectImplementation::startFactory() {
 		return false;
 
 	// Add sampletask
-	Reference<CreateFactoryObjectTask* > createFactoryObjectTask = new CreateFactoryObjectTask(_this.getReferenceUnsafeStaticCast());
+	Reference<CreateFactoryObjectTask* > createFactoryObjectTask = new CreateFactoryObjectTask(_this.get());
 	addPendingTask("createFactoryObject", createFactoryObjectTask, timer * 1000);
 
 	operating = true;
@@ -443,7 +443,7 @@ bool FactoryObjectImplementation::populateSchematicBlueprint(ManufactureSchemati
 
 void FactoryObjectImplementation::stopFactory(const String& message, const String& tt, const String& to, const int di) {
 
-	Locker _locker(_this.getReferenceUnsafeStaticCast());
+	Locker _locker(_this.get());
 
 	operating = false;
 	Reference<Task* > pending = getPendingTask("createFactoryObject");
@@ -496,7 +496,7 @@ void FactoryObjectImplementation::stopFactory(String &type, String &displayedNam
 
 void FactoryObjectImplementation::createNewObject() {
 
-	/// Pre: _this.getReferenceUnsafeStaticCast() locked
+	/// Pre: _this.get() locked
 	if (getContainerObjectsSize() == 0) {
 		stopFactory("manf_error", "", "", -1);
 		return;
@@ -556,7 +556,7 @@ void FactoryObjectImplementation::createNewObject() {
 	if (crate == NULL)
 		crate = createNewFactoryCrate(prototype);
 	else {
-		Locker clocker(crate, _this.getReferenceUnsafeStaticCast());
+		Locker clocker(crate, _this.get());
 		crate->setUseCount(crate->getUseCount() + 1, false);
 
 		FactoryCrateObjectDeltaMessage3* dfcty3 = new FactoryCrateObjectDeltaMessage3(crate);
@@ -570,9 +570,9 @@ void FactoryObjectImplementation::createNewObject() {
 		return;
 	}
 
-	Locker clocker(schematic, _this.getReferenceUnsafeStaticCast());
+	Locker clocker(schematic, _this.get());
 
-	schematic->manufactureItem(_this.getReferenceUnsafeStaticCast());
+	schematic->manufactureItem(_this.get());
 	currentRunCount++;
 
 	if (schematic->getManufactureLimit() < 1) {
