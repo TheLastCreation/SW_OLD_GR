@@ -36,6 +36,21 @@ function Yavin4StaticSpawnsScreenPlay:spawnMobiles()
 	spawnMobile("yavin4", "acklay_elder", 200,  0.1, 55.0, -35.7, -1, 3465362)
 	spawnMobile("yavin4", "acklay", 200,  -0.1, 55.0, 2.4, 0, 3465362)
 	spawnMobile("yavin4", "nk_droideka", 200, 0.1, 57.0, 59.8, -2,  3465362)
+	spawnMobile("yavin4", "alert_droideka", 200, -66.3, 2.0, 72.1, -2, 3465354)
+	spawnMobile("yavin4", "acklay", 200, 12.3, 2.0, 52.8, -94, 3465355)
+	spawnMobile("yavin4", "acklay", 200, 21.7, 2.0, 87.1, 179, 3465355)
+	spawnMobile("yavin4", "enhanced_gaping_spider", 200, -83.6, 2.0, 65.7, 0, 3465354)
+	spawnMobile("yavin4", "enhanced_kwi", 200, -84.0, 12.0, 42.8, 0, 3465356)
+	spawnMobile("yavin4", "death_watch_battle_droid", 200, -39.9, 32.0, 42.6, -90, 3465357)
+	spawnMobile("yavin4", "cavern_spider", 200, -32.0, 32.0, 74.9, -92, 3465357)
+	spawnMobile("yavin4", "nightsister_protector", 200, 12.4, 57.0, 75.0, -90, 3465360)
+	spawnMobile("yavin4", "death_watch_wraith", 200, 6.6, 57.0, 70.5, 179, 3465361)
+	
+	--Outside
+	spawnMobile("yavin4", "nightsister_enraged_bull_rancor", 200, -3149.5, 72.0, -3031.0, -156, 0)
+	spawnMobile("yavin4", "nightsister_enraged_bull_rancor", 200, -3122.1, 72.0, -3051.0, -138, 0)
+	
+	
 	
 	
 end
