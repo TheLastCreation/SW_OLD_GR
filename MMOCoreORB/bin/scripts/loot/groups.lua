@@ -138,7 +138,7 @@ includeFile("groups/swggr_custom/player_house_deeds/g_vehicle_house_loot_deed.lu
 includeFile("groups/swggr_custom/player_house_deeds/g_vipbunker_house_loot_deed.lua")
 includeFile("groups/swggr_custom/player_house_deeds/g_yoda_house_loot_deed.lua")
 includeFile("groups/swggr_custom/player_house_deeds/g_yt1300_house_loot_deed.lua")
-
+includeFile("groups/npc/tutorial_pirate.lua")
 includeFile("groups/armor_attachments.lua")
 includeFile("groups/clothing_attachments.lua")
 includeFile("groups/coa_encoded_disk_fragments.lua")

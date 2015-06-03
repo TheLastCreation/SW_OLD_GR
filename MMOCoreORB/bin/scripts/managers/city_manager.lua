@@ -55,13 +55,12 @@ CitySpecializationCooldown = 604800000
 TreasuryWithdrawalCooldown = 86400000
 
 --The number of city update cycles that must pass before mayoral voting process is complete.
-CityVotingCycles = 1
+CityVotingCycles = 3
 
 --The number of city update cyles after which to lock the mayoral voting race registration.
-CityVotingCyclesUntilLocked = 1
+CityVotingCyclesUntilLocked = 2
 
 --The amount of time in minutes before the city performs an update.
---CityUpdateInterval = 10080
 CityUpdateInterval = 10080
 
 --The amount of time in minutes a new city has to gain enough citizens to remain a city.
@@ -74,13 +73,13 @@ OldCityGracePeriod = 4320
 EnableCityWarn = false
 
 --The number of citizens required to achieve each city rank. (Outpost, Village, Township, City, Metropolis)
-CitizensPerRank = {2, 5, 10, 15, 20}
+CitizensPerRank = {2, 4, 6, 8, 10}
 --CitizensPerRank = {10, 20, 35, 55, 85}
 
 --The radius in meters of the city at each city rank. (Outpost, Village, Township, City, Metropolis)
 RadiusPerRank = {150, 200, 300, 400, 450}
 
--- Maximum for each rank.  rank 1 = decorationsperrank * 1, rank 5 = decorationsperrank * 5	82
+-- Maximum for each rank.  ex. rank 1 = DecorationsPerRank * 1, rank 5 = DecorationsPerRank * 5
 DecorationsPerRank = 10
 TrainersPerRank = 3
 MissionTerminalsPerRank = 3
@@ -98,15 +97,14 @@ maintenanceDiscount = 1.0
 CitiesAllowed = {
 	{"corellia", {20, 20, 15, 10, 10}},
 	{"dantooine", {50, 50, 30, 20, 20}},
-	{"dathomir", {10, 10, 10, 10, 10}},
-	{"endor", {10, 10, 10, 10, 10}},
+	{"dathomir", {0, 0, 0, 0, 0}},
+	{"endor", {0, 0, 0, 0, 0}},
 	{"lok", {50, 50, 30, 20, 20}},
 	{"naboo", {20, 20, 15, 10, 10}},
 	{"rori", {50, 50, 30, 20, 20}},
 	{"talus", {50, 50, 30, 20, 20}},
-	{"taanab", {50, 50, 30, 20, 20}},
 	{"tatooine", {20, 20, 15, 10, 10}},
-	{"yavin4", {10, 10, 10, 10, 10}}
+	{"yavin4", {0, 0, 0, 0, 0}}
 }
 
 
