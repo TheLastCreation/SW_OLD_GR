@@ -41,7 +41,7 @@ force_sensitive_crypt_crawler = Creature:new {
 				{group = "wearables_common", chance = 750000},
 				{group = "wearables_uncommon", chance = 750000}
 			},
-			lootChance = 4500000
+			lootChance = 9500000
 		}
 	},
 	weapons = {"mixed_force_weapons"},

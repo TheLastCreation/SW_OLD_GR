@@ -45,10 +45,20 @@ function Yavin4StaticSpawnsScreenPlay:spawnMobiles()
 	spawnMobile("yavin4", "cavern_spider", 200, -32.0, 32.0, 74.9, -92, 3465357)
 	spawnMobile("yavin4", "nightsister_protector", 200, 12.4, 57.0, 75.0, -90, 3465360)
 	spawnMobile("yavin4", "death_watch_wraith", 200, 6.6, 57.0, 70.5, 179, 3465361)
+	spawnMobile("yavin4", "force_crystal_hunter", 200, -33.2, 32.0, 55.8, -94, 3465358)
+	spawnMobile("yavin4", "force_sensitive_crypt_crawler", 200, -18.6, 32.0, 30.7, -93, 3465357)
+	spawnMobile("yavin4", "force_sensitive_crypt_crawler", 200, -55.4, 3.0, 52.2, 0, 3465355)
+	spawnMobile("yavin4", "acklay", 200,  -30.2, 2.0, 89.0, 113, 3465355)
+	spawnMobile("yavin4", "rancor", 200,  -23.0, 2.2, 12.4, 0, 3465355)
+	spawnMobile("yavin4", "super_durni", 200,  23.2, 2.2, 12.3, -2, 3465355)
 	
 	--Outside
 	spawnMobile("yavin4", "nightsister_enraged_bull_rancor", 200, -3149.5, 72.0, -3031.0, -156, 0)
 	spawnMobile("yavin4", "nightsister_enraged_bull_rancor", 200, -3122.1, 72.0, -3051.0, -138, 0)
+	spawnMobile("yavin4", "force_sensitive_crypt_crawler", 200, -3140, 72.0, -3059.3, -160, 0)
+	spawnMobile("yavin4", "outbreak_undead_deathtrooper_01_m", 200, -3186.6, 69.6, -3145.7, 7, 0)
+	spawnMobile("yavin4", "outbreak_undead_deathtrooper_02_m", 200, -3191.3, 69.8, -3135.5, -44, 0)
+	
 	
 	
 	
