@@ -101,7 +101,7 @@ void GCWManagerImplementation::start() {
 	// randomize a bit so every zone doesn't run it's check at the same time
 	uint64 timer = (uint64)(System::random(gcwCheckTimer / 10) + gcwCheckTimer) * 1000;
 
-	CheckGCWTask* task = new CheckGCWTask(_this.get());
+	CheckGCWTask* task = new CheckGCWTask(_this.getReferenceUnsafeStaticCast());
 	task->schedule(timer);
 
 	initialize();
@@ -286,7 +286,7 @@ void GCWManagerImplementation::scheduleVulnerabilityStart(BuildingObject* buildi
 		return;
 	}
 
-	Reference<Task*> newTask = new StartVulnerabilityTask(_this.get(), building);
+	Reference<Task*> newTask = new StartVulnerabilityTask(_this.getReferenceUnsafeStaticCast(), building);
 	newTask->schedule(llabs(vulnDif));
 	this->addStartTask(building->getObjectID(),newTask);
 
@@ -346,8 +346,8 @@ void GCWManagerImplementation::endVulnerability(BuildingObject* building){
 // back up to date.  usually after a long server down or something
 void GCWManagerImplementation::refreshExpiredVulnerability(BuildingObject* building){
 	DestructibleBuildingDataComponent* baseData = getDestructibleBuildingData( building );
-
-	if(baseData == NULL){
+	if (baseData == NULL){
+		error("ERROR:  could not get base data for base");
 		return;
 	}
 
@@ -389,11 +389,6 @@ void GCWManagerImplementation::refreshExpiredVulnerability(BuildingObject* build
 		Time nStartTime(thisStartTime);
 		nStartTime.addMiliTime(vulnerabilityFrequency*1000);
 		baseData->setNextVulnerableTime(nStartTime);
-
-		if(baseData == NULL){
-			error("ERROR:  could not get base data for base");
-			return;
-		}
 
 		this->initializeNewVulnerability(baseData);
 		bool wasDropped = gcwStartTasks.drop(building->getObjectID());
@@ -471,7 +466,7 @@ void GCWManagerImplementation::scheduleVulnerabilityEnd(BuildingObject* building
 #ifdef GCW_DEBUG
 	info("Scheduling end  vulnerability for " + String::valueOf(endDif));
 #endif
-	Reference<Task*> newTask = new EndVulnerabilityTask(_this.get(), building);
+	Reference<Task*> newTask = new EndVulnerabilityTask(_this.getReferenceUnsafeStaticCast(), building);
 
 	newTask->schedule(llabs(endDif));
 
@@ -504,7 +499,7 @@ void GCWManagerImplementation::scheduleBaseDestruction(BuildingObject* building,
 		baseData->setState(DestructibleBuildingDataComponent::SHUTDOWNSEQUENCE);
 		block.release();
 
-		Reference<Task*> newTask = new BaseDestructionTask(_this.get(), building);
+		Reference<Task*> newTask = new BaseDestructionTask(_this.getReferenceUnsafeStaticCast(), building);
 		newTask->schedule(60000);
 		this->addDestroyTask(building->getObjectID(),newTask);
 
@@ -588,8 +583,8 @@ void GCWManagerImplementation::doBaseDestruction(BuildingObject* building){
 	}
 
 	// need to lock both.  building must be locked for destroyStructure() and then _this is locked when it calls unregister.
-	Locker locker(_this.get());
-	Locker block(building,_this.get());
+	Locker locker(_this.getReferenceUnsafeStaticCast());
+	Locker block(building,_this.getReferenceUnsafeStaticCast());
 
 	int baseType = building->getFactionBaseType();
 
@@ -664,7 +659,7 @@ void GCWManagerImplementation::unregisterGCWBase(BuildingObject* building){
 void GCWManagerImplementation::performGCWTasks(){
 
 
-	Locker locker(_this.get());
+	Locker locker(_this.getReferenceUnsafeStaticCast());
 
 	if(gcwBaseList.size() == 0) {
 		setRebelBaseCount(0);
@@ -716,7 +711,7 @@ void GCWManagerImplementation::performGCWTasks(){
 	setImperialBaseCount(imperialCheck);
 
 
-	CheckGCWTask* task = new CheckGCWTask(_this.get());
+	CheckGCWTask* task = new CheckGCWTask(_this.getReferenceUnsafeStaticCast());
 	task->schedule(this->gcwCheckTimer * 1000);
 }
 
@@ -757,14 +752,14 @@ void GCWManagerImplementation::registerGCWBase(BuildingObject* building, bool in
 
 			if( delay == 0) {
 
-				Locker gLock(_this.get(), ownerCreature);
+				Locker gLock(_this.getReferenceUnsafeStaticCast(), ownerCreature);
 				this->addBase(building);
 				this->startVulnerability(building);
 
 			} 	else {
 
-				Locker cLock(_this.get(), ownerCreature);
-				Reference<Task*> newTask = new StartVulnerabilityTask(_this.get(), building);
+				Locker cLock(_this.getReferenceUnsafeStaticCast(), ownerCreature);
+				Reference<Task*> newTask = new StartVulnerabilityTask(_this.getReferenceUnsafeStaticCast(), building);
 				newTask->schedule(delay * 1000);
 				this->addStartTask(building->getObjectID(),newTask);
 
@@ -980,7 +975,7 @@ void GCWManagerImplementation::resetVulnerability(CreatureObject* creature, Buil
 
 	clock.release();
 
-	Locker glock(_this.get(),creature);
+	Locker glock(_this.getReferenceUnsafeStaticCast(),creature);
 	baseData->setLastVulnerableTime(nextTime);
 
 	nextTime.addMiliTime(vulnerabilityFrequency*1000);
@@ -1734,15 +1729,12 @@ void GCWManagerImplementation::sendDNASampleMenu(CreatureObject* creature, Build
 void GCWManagerImplementation::processDNASample(CreatureObject* creature, TangibleObject* overrideTerminal, const String& sampleChain, const int indx){
 	ManagedReference<BuildingObject*> building = cast<BuildingObject*>(overrideTerminal->getParentRecursively(SceneObjectType::FACTIONBUILDING).get().get());
 
-	if (building == NULL)
+	if (building == NULL || creature == NULL)
 		return;
 
 	DestructibleBuildingDataComponent* baseData = getDestructibleBuildingData( building );
 
-	if(creature==NULL || baseData == NULL)
-			return;
-
-	if(baseData == NULL){
+	if (baseData == NULL) {
 		error("ERROR:  could not get base data for base");
 		return;
 	}
