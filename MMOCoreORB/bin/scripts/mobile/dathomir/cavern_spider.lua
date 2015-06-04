@@ -27,13 +27,7 @@ cavern_spider = Creature:new {
 
 	templates = {"object/mobile/gaping_spider.iff"},
 	scale = 1.1,
-	lootGroups = {
-	    {
-			groups = {
-				{group = "clothing_attachments", chance = 10000000}
-			},
-			lootChance = 1000000
-		},
+	lootGroups = {},
 	weapons = {},
 	conversationTemplate = "",
 	attacks = {
