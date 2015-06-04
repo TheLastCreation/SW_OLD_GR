@@ -30,7 +30,7 @@ cavern_spider = Creature:new {
 	lootGroups = {
 	    {
 			groups = {
-				{group = "clothing_attachments", chance = 10000000},
+				{group = "clothing_attachments", chance = 10000000}
 			},
 			lootChance = 1000000
 		},
