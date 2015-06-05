@@ -26,7 +26,7 @@ som_pwwoz_thug_2 = Creature:new {
 	optionsBitmask = 128,
 	diet = HERBIVORE,
 
-	templates = {"object/mobile/som/som_pwwoz_thug_2.lua.iff"},
+	templates = {"object/mobile/som/som_pwwoz_thug_2.iff"},
 	lootGroups = {
 		{
 			groups = {},
