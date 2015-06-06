@@ -33,17 +33,17 @@ acklay_elder = Creature:new {
 	lootGroups = {
 	   {
 			groups = {
-				{group = "nightsister_rare", chance = 25000},
-				{group = "crystals_select", chance = 500000},
-				{group = "color_crystals", chance = 500000},
-				{group = "nightsister_common", chance = 2275000},
-				{group = "armor_attachments", chance = 350000},
-				{group = "clothing_attachments", chance = 350000},
-				{group = "melee_weapons", chance = 2000000},
-				{group = "rifles", chance = 1000000},
-				{group = "pistols", chance = 1000000},
-				{group = "carbines", chance = 1000000},
-				{group = "wearables_all", chance = 1000000},
+				{group = "pod_racer_one_loot_deed", chance = 25000},
+				{group = "pod_racer_two_loot_deed", chance = 500000},
+				{group = "landspeeder_desert_skiff_loot_deed", chance = 500000},
+				{group = "barc_speeder_imperial_loot_deed", chance = 2275000},
+				{group = "barc_speeder_rebel_loot_deed", chance = 350000},
+				{group = "barc_speeder_loot_deed", chance = 350000},
+				{group = "jetpack_loot_deed", chance = 2000000},
+				{group = "landspeeder_av21_loot_deed", chance = 1000000},
+				{group = "speederbike_loot_deed", chance = 1000000},
+				{group = "speederbike_flash_loot_deed", chance = 1000000},
+				{group = "speederbike_swoop_loot_deed", chance = 1000000},
 			},
 			lootChance = 9000000
 		}
