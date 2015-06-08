@@ -33,17 +33,17 @@ acklay_elder = Creature:new {
 	lootGroups = {
 	   {
 			groups = {
-				{group = "pod_racer_one_loot_deed", chance = 25000},
-				{group = "pod_racer_two_loot_deed", chance = 500000},
-				{group = "landspeeder_desert_skiff_loot_deed", chance = 500000},
-				{group = "barc_speeder_imperial_loot_deed", chance = 2275000},
-				{group = "barc_speeder_rebel_loot_deed", chance = 350000},
-				{group = "barc_speeder_loot_deed", chance = 350000},
-				{group = "jetpack_loot_deed", chance = 2000000},
-				{group = "landspeeder_av21_loot_deed", chance = 1000000},
-				{group = "speederbike_loot_deed", chance = 1000000},
-				{group = "speederbike_flash_loot_deed", chance = 1000000},
-				{group = "speederbike_swoop_loot_deed", chance = 1000000},
+				{group = "pod_racer_one_deed_group", chance = 25000},
+				{group = "pod_racer_two_deed_group", chance = 500000},
+				{group = "landspeeder_desert_skiff_deed_group", chance = 500000},
+				{group = "barc_speeder_imperial_deed_group", chance = 2275000},
+				{group = "barc_speeder_rebel_deed_group", chance = 350000},
+				{group = "barc_speeder_deed_group", chance = 350000},
+				{group = "jetpack_loot_deed_group", chance = 2000000},
+				{group = "landspeeder_av21_deed_group", chance = 1000000},
+				{group = "speederbike_deed_group", chance = 1000000},
+				{group = "speederbike_flash_deed_group", chance = 1000000},
+				{group = "speederbike_swoop_deed_group", chance = 1000000},
 			},
 			lootChance = 9000000
 		}
