@@ -74,7 +74,7 @@ DeathWatchBunkerScreenPlay = ScreenPlay:new {
 		16,terminal mines unlocked
 		32,armorsmith door unlocked
 		64,droidengineer door unlocked
-		128tailor door unlocked
+		128,tailor door unlocked
 	},
 
 	doorMessages = {
