@@ -894,11 +894,18 @@ void PlayerManagerImplementation::sendPlayerToCloner(CreatureObject* player, uin
 		player->addShockWounds(100, true);
 	}
 
+	if (ghost->getFactionStatus() != FactionStatus::ONLEAVE)
+		ghost->setFactionStatus(FactionStatus::ONLEAVE);
+
+	if (ghost->hasPvpTef())
+		ghost->schedulePvpTefRemovalTask(true);
+		
 	if (player->hasSkill("force_rank_dark_novice") || player->hasSkill("force_rank_dark_novice")){
 		ghost->setFactionStatus(FactionStatus::OVERT);
 	}else{
 		ghost->setFactionStatus(FactionStatus::ONLEAVE);
-	}	
+	}
+
 	// Decay
 	if (typeofdeath == 0) {
 		SortedVector<ManagedReference<SceneObject*> > insurableItems = getInsurableItems(player, false);

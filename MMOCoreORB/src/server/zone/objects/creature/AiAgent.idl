@@ -320,6 +320,12 @@ class AiAgent extends CreatureObject {
 	@local
 	@preLocked
 	public native void doAwarenessCheck();
+	
+	@local
+	public native boolean runAwarenessLogicCheck(SceneObject pObject);
+	
+	@local
+	public native int checkForReactionChat(SceneObject pObject);
 
 	/**
 	 * Handles the radial selection sent by the client, must be overriden by inherited objects
@@ -410,6 +416,9 @@ class AiAgent extends CreatureObject {
 
 	@local
 	public native void loadTemplateData(CreatureTemplate templateData);
+
+	@local
+	public native void setupAttackMaps();
 
 	/**
 	 * Inflicts damage into the object
@@ -1047,10 +1056,11 @@ class AiAgent extends CreatureObject {
 
 	@local
 	public CreatureAttackMap getAttackMap() {
-		if (getWeapon() == readyWeapon)
+		if (getWeapon() == readyWeapon) {
 			return attackMap;
-		else
+		} else {
 			return defaultAttackMap;
+		}
 	}
 
 	@local
