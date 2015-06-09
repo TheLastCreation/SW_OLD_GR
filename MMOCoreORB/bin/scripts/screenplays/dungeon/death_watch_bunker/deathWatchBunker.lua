@@ -68,13 +68,13 @@ DeathWatchBunkerScreenPlay = ScreenPlay:new {
 	},
 
 	states = {
-		2,--entrance unlocked
-		4,--terminal a unlocked
-		8,--terminal b unlocked
-		16,--terminal mines unlocked
-		32,--armorsmith door unlocked
-		64,--droidengineer door unlocked
-		128--tailor door unlocked
+		2,entrance unlocked
+		4,terminal a unlocked
+		8,terminal b unlocked
+		16,terminal mines unlocked
+		32,armorsmith door unlocked
+		64,droidengineer door unlocked
+		128tailor door unlocked
 	},
 
 	doorMessages = {
