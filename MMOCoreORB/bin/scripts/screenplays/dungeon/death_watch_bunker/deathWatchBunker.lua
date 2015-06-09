@@ -68,13 +68,13 @@ DeathWatchBunkerScreenPlay = ScreenPlay:new {
 	},
 
 	states = {
-		2,entrance unlocked
-		4,terminal a unlocked
-		8,terminal b unlocked
-		16,terminal mines unlocked
-		32,armorsmith door unlocked
-		64,droidengineer door unlocked
-		128,tailor door unlocked
+		2,--entrance unlocked
+		4,--terminal a unlocked
+		8,--terminal b unlocked
+		16,--terminal mines unlocked
+		32,--armorsmith door unlocked
+		64,--droidengineer door unlocked
+		128--tailor door unlocked
 	},
 
 	doorMessages = {
@@ -117,11 +117,11 @@ DeathWatchBunkerScreenPlay = ScreenPlay:new {
 
 	partStrings = { "@dungeon/death_watch:armorsmith_items", "@dungeon/death_watch:droid_engineer_items", "@dungeon/death_watch:tailored_items" },
 
-	--terminalSkills = { "", "", "", "", "crafting_armorsmith_master", "crafting_droidengineer_master", "crafting_tailor_master", "crafting_artisan_master" },
+	terminalSkills = { "", "", "", "", "crafting_armorsmith_master", "crafting_droidengineer_master", "crafting_tailor_master", "crafting_artisan_master" },
 
-	--terminalSkillMessage = { "@dungeon/death_watch:master_armorsmith_required", "@dungeon/death_watch:master_droidengineer_required", "@dungeon/death_watch:master_tailor_required", "@dungeon/death_watch:master_artisan_required" },
+	terminalSkillMessage = { "@dungeon/death_watch:master_armorsmith_required", "@dungeon/death_watch:master_droidengineer_required", "@dungeon/death_watch:master_tailor_required", "@dungeon/death_watch:master_artisan_required" },
 
-	--missingSkillMessage = { "", "", "", "", "@dungeon/death_watch:not_enough_armorsmith_skill", "@dungeon/death_watch:not_enough_droidengineer_skill", "@dungeon/death_watch:not_enough_tailor_skill" },
+	missingSkillMessage = { "", "", "", "", "@dungeon/death_watch:not_enough_armorsmith_skill", "@dungeon/death_watch:not_enough_droidengineer_skill", "@dungeon/death_watch:not_enough_tailor_skill" },
 
 	mineCells = { 5996352, 5996353, 5996354, 5996355, 5996356, 5996357, 5996358, 5996359, 5996360, 5996361, 5996362, 5996363, 5996364,
 		5996365, 5996366, 5996367, 5996369, 5996372, 5996373, 5996375, 5996376, 5996377 },
