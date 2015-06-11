@@ -45,8 +45,8 @@ PlayerCreationManager::PlayerCreationManager() :
 	professionDefaultsInfo.setNoDuplicateInsertPlan();
 	hairStyleInfo.setNoDuplicateInsertPlan();
 
-	startingCash = 100;
-	startingBank = 1000;
+	startingCash = 5000;
+	startingBank = 10000;
 
 	freeGodMode = false;
 
@@ -341,8 +341,8 @@ bool PlayerCreationManager::createCharacter(MessageCallback* data) {
 			ClientCreateCharacterCallback*>(data);
 	ZoneClientSession* client = data->getClient();
 
-	if (client->getCharacterCount(zoneServer.get()->getGalaxyID()) >= 10) {
-		ErrorMessage* errMsg = new ErrorMessage("Create Error", "You are limited to 10 characters per galaxy.", 0x0);
+	if (client->getCharacterCount(zoneServer.get()->getGalaxyID()) >= 2) {
+		ErrorMessage* errMsg = new ErrorMessage("Create Error", "You are limited to 2 characters per galaxy.", 0x0);
 		client->sendMessage(errMsg);
 
 		return false;
