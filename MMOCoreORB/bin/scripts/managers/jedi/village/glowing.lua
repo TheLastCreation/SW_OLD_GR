@@ -4,10 +4,10 @@ local VillageJediManagerCommon = require("managers.jedi.village.village_jedi_man
 
 Glowing = Object:new {}
 
-TOTALNUMBEROFBADGESREQUIRED = 14 --14
+TOTALNUMBEROFBADGESREQUIRED = 15 --15
 NUMBEROFJEDIBADGESREQUIRED = 10 --10
 NUMBEROFDIFFICULTBADGESREQUIRED = 3 --3
-NUMBEROFEASYBADGESREQUIRED = 1 --1
+NUMBEROFEASYBADGESREQUIRED = 2 --2
 
 JEDIBADGES = {
 	EXP_TAT_TUSKEN_POOL,
@@ -66,7 +66,9 @@ DIFFICULTBADGES = {
 }
 
 EASYBADGES = {
-	BDG_THM_PARK_JABBA_BADGE,	
+	BDG_THM_PARK_JABBA_BADGE,
+	BDG_THM_PARK_IMPERIAL_BADGE,
+	BDG_THM_PARK_REBEL_BADGE
 }
 -- Count the number of badges that the player got in the list.
 -- @param pCreatureObject pointer to the creature object of the player.
