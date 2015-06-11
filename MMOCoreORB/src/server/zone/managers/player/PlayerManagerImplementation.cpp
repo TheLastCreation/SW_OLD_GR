@@ -939,7 +939,7 @@ void PlayerManagerImplementation::sendPlayerToCloner(CreatureObject* player, uin
 
 	// Jedi experience loss.
 	if (ghost->getJediState() > 1)
-		awardExperience(player, "jedi_general", -75000, true);
+		awardExperience(player, "jedi_general", -200000, true);
 }
 
 void PlayerManagerImplementation::ejectPlayerFromBuilding(CreatureObject* player) {
