@@ -2,13 +2,13 @@ gorax = Creature:new {
 	objectName = "@mob/creature_names:gorax",
 	socialGroup = "gorax",
 	faction = "",
-	level = 300,
+	level = 200,
 	chanceHit = 30,
-	damageMin = 1645,
-	damageMax = 3000,
-	baseXp = 28549,
-	baseHAM = 385000,
-	baseHAMmax = 471000,
+	damageMin = 1000,
+	damageMax = 2000,
+	baseXp = 18549,
+	baseHAM = 285000,
+	baseHAMmax = 271000,
 	armor = 3,
 	resists = {165,145,35,35,35,35,35,35,-1},
 	meatType = "",
@@ -33,7 +33,7 @@ gorax = Creature:new {
 				{group = "armor_attachments", chance = 2000000},
 				{group = "clothing_attachments", chance = 2000000}
 			},
-			lootChance = 7000000
+			lootChance = 9000000
 		}
 	},
 	weapons = {},

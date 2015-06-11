@@ -37,7 +37,7 @@ janta_rockshaper = Creature:new {
 				{group = "loot_kit_parts", chance = 3000000},
 				{group = "wearables_all", chance = 500000}
 			},
-			lootChance = 2000000
+			lootChance = 9000000
 		}
 	},
 	weapons = {"primitive_weapons"},

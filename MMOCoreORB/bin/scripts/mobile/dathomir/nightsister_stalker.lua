@@ -32,7 +32,7 @@ nightsister_stalker = Creature:new {
 			groups = {
 				{group = "crystals_okay", chance = 500000},
 				{group = "color_crystals", chance = 500000},
-				{group = "nightsister_common", chance = 2000000},
+				{group = "ns_clothing", chance = 2000000},
 				{group = "armor_attachments", chance = 250000},
 				{group = "clothing_attachments", chance = 250000},
 				{group = "melee_weapons", chance = 2500000},

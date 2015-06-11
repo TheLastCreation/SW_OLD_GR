@@ -35,7 +35,7 @@ singing_mountain_clan_guardian = Creature:new {
 				{group = "color_crystals", chance = 500000},
 				{group = "armor_attachments", chance = 450000},
 				{group = "clothing_attachments", chance = 450000},
-				{group = "melee_weapons", chance = 2600000},
+				{group = "smc_clothing", chance = 2600000},
 				{group = "rifles", chance = 1000000},
 				{group = "pistols", chance = 1000000},
 				{group = "carbines", chance = 1000000},
