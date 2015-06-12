@@ -77,7 +77,13 @@ corellia = {
 	--	{templateFile = "object/tangible/terminal/terminal_character_builder.iff", ox = 0, oy = -0.664289, oz = 0, ow = 0.747476, x = -133.192, z = 28, y = -4711.16, parentid = 0},
 	--	{templateFile = "object/tangible/terminal/terminal_character_builder.iff", ox = 0, oy = 0.346712, oz = 0, ow = 0.937972, x = -5049.64, z = 21, y = -2304.52, parentid = 0},
 	--	{templateFile = "object/tangible/terminal/terminal_character_builder.iff", ox = 0, oy = 0.290803, oz = 0, ow = 0.956783, x = 3330.38, z = 308, y = 5517.14, parentid = 0},
-	--	{templateFile = "object/tangible/terminal/terminal_character_builder.iff", ox = 0, oy = -0.666281, oz = 0, ow = 0.745701, x = -136.437, z = 28, y = -4730.23, parentid = 0}
+	--	{templateFile = "object/tangible/terminal/terminal_character_builder.iff", ox = 0, oy = -0.666281, oz = 0, ow = 0.745701, x = -136.437, z = 28, y = -4730.23, parentid = 0},
+        {templateFile = "object/static/terrain/corellia/rock_crystal_geyser_agrilat_small.iff", ox = 0, oy = -0.664289, oz = 0, ow = 0.747476, x = -190.9, z = 28.0, y = -4723.2, parentid = 0},
+        {templateFile = "object/tangible/event_perk/xwing.iff", ox = 0, oy = -0.664289, oz = 0, ow = 0.747476, x = -149.4, z = 28.0, y = -4790.3, parentid = 0},
+        {templateFile = "object/tangible/event_perk/tie_bomber.iff", ox = 0, oy = -0.664289, oz = 0, ow = 0.747476, x = -200.4, z = 28.0, y = -4793.5, parentid = 0},
+        {templateFile = "object/static/terrain/corellia/rock_crystal_geyser_agrilat_large.iff", ox = 0, oy = -0.664289, oz = 0, ow = 0.747476, x = -176.1, z = 28.0, y = -4752.2, parentid = 0},
+        {templateFile = "object/static/creature/imperial_at_st.iff", ox = 0, oy = 0.290803, oz = 0, ow = 0.956783, x = -220.3, z = 28.0, y = -4872.7, parentid = 0},
+        {templateFile = "object/static/terrain/corellia/rock_crystal_arch_agrilat_medium.iff", ox = 0, oy = 0.290803, oz = 0, ow = 0.956783, x = -144.2, z = 28.2, y = -4695.7, parentid = 0},
 	}
 }
 
@@ -108,8 +114,7 @@ dathomir = {
 	
 	planetObjects = {
 	--	{templateFile = "object/tangible/terminal/terminal_character_builder.iff", ox = 0, oy = 0.701463, oz = 0, ow = 0.712705, x = 592.612, z = 6, y = 3089.84, parentid = 0},
-	--	{templateFile = "object/tangible/terminal/terminal_character_builder.iff", ox = 0, oy = 0.314904, oz = 0, ow = 0.949123, x = -67.6585, z = 18, y = -1595.3, parentid = 0},
-	--	{templateFile = "object/tangible/terminal/terminal_character_builder.iff", ox = 0, oy = 0.314904, oz = 0, ow = 0.949123, x = 5289.6, z = 78.5, y = -4146.1, parentid = 0}
+	--	{templateFile = "object/tangible/terminal/terminal_character_builder.iff", ox = 0, oy = 0.314904, oz = 0, ow = 0.949123, x = -67.6585, z = 18, y = -1595.3, parentid = 0}
 	}
 }
 
@@ -124,9 +129,7 @@ endor = {
 	
 	planetObjects = {
 	--	{templateFile = "object/tangible/terminal/terminal_character_builder.iff", ox = 0, oy = 0.932952, oz = 0, ow = -0.360002, x = -963.537, z = 73, y = 1556.86, parentid = 0},
-	--	{templateFile = "object/tangible/terminal/terminal_character_builder.iff", ox = 0, oy = 0.723459, oz = 0, ow = -0.690367, x = 3240.5, z = 24, y = -3484.79, parentid = 0},
-		-- TEMPORARY
-	--	{templateFile = "object/tangible/terminal/terminal_character_builder.iff", ox = 0, oy = 0.723459, oz = 0, ow = -0.690367, x = -4676.78, z = 12.9066, y = 4327.25, parentid = 0}
+	--	{templateFile = "object/tangible/terminal/terminal_character_builder.iff", ox = 0, oy = 0.723459, oz = 0, ow = -0.690367, x = 3240.5, z = 24, y = -3484.79, parentid = 0}
 	}
 }
 
@@ -139,6 +142,11 @@ lok = {
 	},
 	
 	planetObjects = {
+		{templateFile = "object/static/structure/general/landing_pad_transport.iff", ox = 0, oy = 0.81, oz = 0, ow = -0.59, x = 3746.7, z = 12.0, y = -3035.2, parentid = 0},
+		{templateFile = "object/tangible/event_perk/lambda_shuttle.iff", ox = 0, oy = -0.164, oz = 0, ow = 0.986, x = 3746.7, z = 12.0, y = -3035.2, parentid = 0},
+	--	{templateFile = "object/weapon/ranged/turret/turret_block_large.iff", ox = 0, = oy = 0.989, oz = 0, ow = -0.150, x = 3791.4, z = 11.9, y = -3085.2, -24, parentid = 0},
+		{templateFile = "object/static/installation/mockup_power_generator_fusion_style_1.iff", ox = 0, oy = 0.989, oz = 0, ow = -0.150, x = 3737.2, z = 12.0, y = -3079.6, parentid = 0},
+		{templateFile = "object/static/installation/mockup_power_generator_fusion_style_1.iff", ox = 0, oy = 0.989, oz = 0, ow = -0.150, x = 3729.8, z = 12.1, y = -3084.3, parentid = 0},
 	--	{templateFile = "object/tangible/terminal/terminal_character_builder.iff", ox = 0, oy = 0.999879, oz = 0, ow = 0.015506, x = 464.677, z = 8.75806, y = 5506.49, parentid = 0}
 	}
 }
@@ -349,4 +357,37 @@ tutorial = {
 
 dungeon1 = {
 	weatherEnabled = 0,
+}
+
+kaas = {
+	weatherEnabled = 1,
+	
+			planetTravelPoints = {
+		{name = "Starport", x = -5155.0, z = 80, y = -2244, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1}
+	}
+}
+
+hoth = {
+	weatherEnabled = 1,
+	
+		planetTravelPoints = {
+		{name = "Starport", x = -2226.0, z = 120, y = 737.0, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1}
+	}
+}
+
+taanab = {
+	weatherEnabled = 1,
+
+		planetTravelPoints = {
+		{name = "North Starport", x = -287.58, z = 35, y = 4878.54, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
+		{name = "South Starport", x = 4032.56, z = 37, y = -6234.47, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1}
+	}
+}
+ghomrassen = {
+	weatherEnabled = 1,
+
+		planetTravelPoints = {
+		{name = "Mos Rassen", x = -3383, z = 0, y = -5176, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
+		{name = "Mos Rassen Shuttleport", x = -3198, z = 0, y = -5294, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1}
+	}
 }
