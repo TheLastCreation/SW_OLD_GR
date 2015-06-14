@@ -501,7 +501,7 @@ bool PlayerCreationManager::createCharacter(MessageCallback* data) {
 						shipControlDevice->destroyObjectFromDatabase(true);
 						error("could not get datapad from player");
 					}
-					*/
+					
 				}
 
 				if (accountPermissionLevel < 9) {
