@@ -723,7 +723,7 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					},
 					"Master", "social_imagedesigner_master"
 				},
-				"Jedi",
+				--"Jedi",
 				--{
 				--	"Rank",
 				--	{
