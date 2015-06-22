@@ -4,6 +4,12 @@ require("themeParkLogic")
 require("corvetteTicketGiverLogic")
 require("corvetteTicketTakerLogic")
 
+--GR Screenplays
+includeFile("gr_screenplays/ghomrassen/ghomrassen_mos_rassen.lua")
+includeFile("gr_screenplays/ghomrassen/ghomrassen_static_spawns.lua")
+includeFile("gr_screenplays/lok/generals_bunker.lua")
+--includeFile("gr_screenplays/lok/kill_the_general.lua")
+
 -- Theme parks
 includeFile("themepark/conversations/goru_conv_handler.lua")
 includeFile("themepark/conversations/mission_giver_conv_handler.lua")
