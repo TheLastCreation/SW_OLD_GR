@@ -538,6 +538,9 @@ int PlayerObjectImplementation::addExperience(const String& xpType, int xp, bool
 		if (xp <= 0 && xpType != "jedi_general") {
 			removeExperience(xpType, notifyClient);
 			return 0;
+		// -10 million experience cap for Jedi experience loss
+		} else if(xp < -10000000 && xpType == "jedi_general") {
+			xp = -10000000;
 		}
 	}
 
