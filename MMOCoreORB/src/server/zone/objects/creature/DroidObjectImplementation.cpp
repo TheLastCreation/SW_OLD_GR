@@ -26,14 +26,16 @@ void DroidObjectImplementation::fillAttributeList(AttributeListMessage* msg, Cre
 
 	AiAgentImplementation::fillAttributeList( msg, object );
 
-	float percentPower = ((float)power/(float)MAX_POWER)*100.0;
-	msg->insertAttribute("@obj_attr_n:battery_power", String::valueOf((int)percentPower) + "%");
+	ManagedReference<ControlDevice*> device = getControlDevice().get();
 
-	if (paintCount > 0){
-		msg->insertAttribute("customization_cnt", paintCount);
-	}
-	// only the owner should see module stats. AiAgent will fill in normal stuff
-	if (getLinkedCreature().get() == object || getLinkedCreature().get() == NULL || object == NULL) {
+	if (device != NULL && device->isASubChildOf(object)) {
+		float percentPower = ((float)power/(float)MAX_POWER)*100.0;
+		msg->insertAttribute("@obj_attr_n:battery_power", String::valueOf((int)percentPower) + "%");
+
+		if (paintCount > 0){
+			msg->insertAttribute("customization_cnt", paintCount);
+		}
+
 		for( int i=0; i<modules.size(); i++){
 			BaseDroidModuleComponent* module = modules.get(i);
 			if( module != NULL ){
