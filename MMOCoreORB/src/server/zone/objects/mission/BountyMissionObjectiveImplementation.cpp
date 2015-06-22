@@ -58,7 +58,6 @@ void BountyMissionObjectiveImplementation::deactivate() {
 
 	if (activeDroid != NULL) {
 		if (!activeDroid->isPlayerCreature()) {
-			Locker locker(activeDroid);
 			activeDroid->destroyObjectFromDatabase();
 			activeDroid->destroyObjectFromWorld(true);
 		}

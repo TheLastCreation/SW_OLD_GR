@@ -62,8 +62,6 @@ class PetControlDevice extends ControlDevice {
 	@dereferenced
 	protected PatrolPointsVector patrolPoints;
 
-	protected boolean useRanged;
-
 	public PetControlDevice() {
 		Logger.setLoggingName("PetControlDevice");
 		Logger.setLogging(false);
@@ -78,7 +76,6 @@ class PetControlDevice extends ControlDevice {
 		futureName = "";
 		growthStage = 0;
 		trainedAsMount = false;
-		useRanged = false;
 
 		lastGrowth.updateToCurrentTime();
 
@@ -322,14 +319,4 @@ class PetControlDevice extends ControlDevice {
 
 	@local
 	public native boolean isValidPet(AiAgent pet);
-
-	@preLocked
-	public void toggleUseRanged() {
-		useRanged = !useRanged;
-	}
-
-	@read
-	public boolean getUseRanged() {
-		return useRanged;
-	}
 }

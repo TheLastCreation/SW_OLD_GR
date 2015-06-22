@@ -1,10 +1,11 @@
+
 local ObjectManager = require("managers.object.object_manager")
 
 local CRYSTAL_OBJECT = "object/tangible/loot/quest/force_sensitive/force_crystal.iff"
 
-villageElderConvoHandler = Object:new {}
+elder_conv_handler = Object:new {}
 
-function villageElderConvoHandler:getNextConversationScreen(pConversationTemplate, pPlayer, selectedOption, pConversingNpc)
+function elder_conv_handler:getNextConversationScreen(pConversationTemplate, pPlayer, selectedOption, pConversingNpc)
 	local pConversationSession = CreatureObject(pPlayer):getConversationSession()
 
 	local pLastConversationScreen = nil
@@ -26,48 +27,31 @@ function villageElderConvoHandler:getNextConversationScreen(pConversationTemplat
 	return self:getInitialScreen(pPlayer, pConversingNpc, pConversationTemplate)
 end
 
-function villageElderConvoHandler:getInitialScreen(pPlayer, pNpc, pConversationTemplate)
+function elder_conv_handler:getInitialScreen(pPlayer, pNpc, pConversationTemplate)
 	local convoTemplate = LuaConversationTemplate(pConversationTemplate)
-	return convoTemplate:getScreen("intro")
+	return convoTemplate:getScreen("cs_jsPlumb_1_1")
 end
 
-function villageElderConvoHandler:runScreenHandlers(pConversationTemplate, pConversingPlayer, pConversingNpc, selectedOption, pConversationScreen)
+function elder_conv_handler:runScreenHandlers(pConversationTemplate, pConversingPlayer, pConversingNpc, selectedOption, pConversationScreen)
 	local screen = LuaConversationScreen(pConversationScreen)
+	local conversationTemplate = LuaConversationTemplate(pConversationTemplate)
+
 	local screenID = screen:getScreenID()
 
-	if (screenID == "intro") then
-		local conversationScreen = screen:cloneScreen()
-		local clonedConversation = LuaConversationScreen(conversationScreen)
+	if screenID == "cs_jsPlumb_1_42" then
+		-- If they need a crystal...
+
 		local pInventory = CreatureObject(pConversingPlayer):getSlottedObject("inventory")
 		if (pInventory ~= nil) then
 			local pInvItem = getContainerObjectByTemplate(pInventory, CRYSTAL_OBJECT, true)
 
-			if (pInvItem ~= nil) then
-				clonedConversation:addOption("@conversation/village_elder_1:s_9dc8bf5d", "already_have_crystal")
-			else
-				clonedConversation:addOption("@conversation/village_elder_1:s_9dc8bf5d", "give_new_crystal")
-			end
-		end
-
-		return conversationScreen
-	elseif (screenID == "give_new_crystal") then
-		local pInventory = CreatureObject(pConversingPlayer):getSlottedObject("inventory")
-		if (pInventory ~= nil) then
-			local pItem = getContainerObjectByTemplate(pInventory, CRYSTAL_OBJECT, true)
-
-			if (pItem == nil) then
-				if (SceneObject(pInventory):hasFullContainerObjects()) then
-					CreatureObject(pConversingPlayer):sendSystemMessage("@error_message:inv_full")
-				else
-					pItem = giveItem(pInventory, CRYSTAL_OBJECT, -1)
-
-					if (pItem == nil) then
-						CreatureObject(pConversingPlayer):sendSystemMessage("Error: Unable to generate item.")
-					end
-				end
+			-- If they DO NOT have a crystal.
+			if (pInvItem == nil) then
+				giveItem(pInventory, CRYSTAL_OBJECT, -1)
+			else -- They have one already.
+				pConversationScreen = conversationTemplate:getScreen("cs_jsPlumb_1_161")
 			end
 		end
 	end
-
 	return pConversationScreen
 end

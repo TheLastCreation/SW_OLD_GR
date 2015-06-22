@@ -283,8 +283,6 @@ TangibleObject* LootManagerImplementation::createLootObject(LootItemTemplate* te
 			excMod = legendaryModifier;
 
 			prototype->addMagicBit(false);
-
-			legendaryLooted.increment();
 	} else if (level >= 50 && System::random(exceptionalChance) >= exceptionalChance - (int) floor(((float)level-50)/2.f + 0.5)) {
 		UnicodeString newName = prototype->getDisplayedName() + " (Exceptional)";
 		prototype->setCustomObjectName(newName, false);
@@ -292,8 +290,6 @@ TangibleObject* LootManagerImplementation::createLootObject(LootItemTemplate* te
 		excMod = exceptionalModifier;
 
 		prototype->addMagicBit(false);
-
-		exceptionalLooted.increment();
 	}
 	String subtitle;
 	bool yellow = false;
@@ -381,8 +377,6 @@ TangibleObject* LootManagerImplementation::createLootObject(LootItemTemplate* te
 			}
 
 			yellow = true;
-
-			yellowLooted.increment();
 		}
 
 		craftingValues.setMinValue(subtitle, min);
@@ -396,10 +390,10 @@ TangibleObject* LootManagerImplementation::createLootObject(LootItemTemplate* te
 	if (yellow) {
 		prototype->addMagicBit(false);
 		prototype->setJunkValue((int)(fJunkValue * 1.25));
-	} else {
+	}else{
 		if (excMod==1){
 			prototype->setJunkValue((int)(fJunkValue));
-		} else {
+		}else{
 			prototype->setJunkValue((int)(fJunkValue * (excMod/2)));
 		}
 	}

@@ -163,7 +163,6 @@ int LuaBehavior::interrupt(AiAgent* agent, SceneObject* source, int64 msg) {
 	messageFunc << source; //arg1
 	messageFunc << msg; //arg2
 
-	//agent->info(className + " interrupt... " + String::valueOf(msg), true);
 //	ZoneServer* zoneServer = agent->getZoneServer();
 //	ChatManager* chatManager = zoneServer->getChatManager();
 //	chatManager->broadcastMessage(agent, className + " interrupt... " + String::valueOf(msg), 0, 0, 0);

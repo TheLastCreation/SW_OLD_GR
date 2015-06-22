@@ -335,11 +335,10 @@ int CombatManager::doTargetCombatAction(CreatureObject* attacker, WeaponObject* 
 
 	if (damageMultiplier != 0 && damage != 0) {
 		int poolsToDamage = calculatePoolsToDamage(data.getPoolsToDamage()); // TODO: animations are probably determined by which pools are damaged (high, mid, low, combos, etc)
-		int unmitDamage = damage;
 		damage = applyDamage(attacker, weapon, defender, damage, damageMultiplier, poolsToDamage, data);
 
-		applyDots(attacker, defender, data, damage, unmitDamage);
-		applyWeaponDots(attacker, defender, weapon);
+		applyDots(attacker, defender, data, damage);
+		applyWeaponDots(attacker, defender, weapon, damage);
 	}
 
 	broadcastCombatAction(attacker, defender, weapon, data, hitVal);
@@ -447,7 +446,7 @@ int CombatManager::doTargetCombatAction(TangibleObject* attacker, WeaponObject* 
 	return damage;
 }
 
-void CombatManager::applyDots(CreatureObject* attacker, CreatureObject* defender, const CreatureAttackData& data, int appliedDamage, int unmitDamage) {
+void CombatManager::applyDots(CreatureObject* attacker, CreatureObject* defender, const CreatureAttackData& data, int appliedDamage) {
 	VectorMap<uint64, DotEffect>* dotEffects = data.getDotEffects();
 
 	if (defender->isPlayerCreature() && defender->getPvpStatusBitmask() == CreatureFlag::NONE)
@@ -465,20 +464,13 @@ void CombatManager::applyDots(CreatureObject* attacker, CreatureObject* defender
 		for (int j = 0; j < defenseMods.size(); j++)
 			resist += defender->getSkillMod(defenseMods.get(j));
 
-		int damageToApply = appliedDamage;
-		if (effect.isDotDamageofHit()) {
-			// determine if we should use unmitigated damage
-			if (effect.getDotType() != CreatureState::BLEEDING)
-				damageToApply = unmitDamage;
-		}
-
 		//info("entering addDotState", true);
-		defender->addDotState(attacker, effect.getDotType(), data.getCommand()->getNameCRC(), effect.isDotDamageofHit() ? damageToApply * effect.getPrimaryPercent() / 100.0f : effect.getDotStrength(), effect.getDotPool(), effect.getDotDuration(), 150, resist,
-				effect.isDotDamageofHit() ? damageToApply * effect.getSecondaryPercent() / 100.0f : effect.getDotStrength());
+		defender->addDotState(attacker, effect.getDotType(), data.getCommand()->getNameCRC(), effect.isDotDamageofHit() ? appliedDamage * effect.getPrimaryPercent() / 100.0f : effect.getDotStrength(), effect.getDotPool(), effect.getDotDuration(), 150, resist,
+				effect.isDotDamageofHit() ? appliedDamage * effect.getSecondaryPercent() / 100.0f : effect.getDotStrength());
 	}
 }
 
-void CombatManager::applyWeaponDots(CreatureObject* attacker, CreatureObject* defender, WeaponObject* weapon) {
+void CombatManager::applyWeaponDots(CreatureObject* attacker, CreatureObject* defender, WeaponObject* weapon, int appliedDamage) {
 	if (defender->getPvpStatusBitmask() == CreatureFlag::NONE)
 		return;
 

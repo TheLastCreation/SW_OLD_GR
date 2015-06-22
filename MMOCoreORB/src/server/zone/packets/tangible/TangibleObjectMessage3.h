@@ -23,20 +23,13 @@ public:
 
 		insertStringId(stringId);
 
-		if (tano->isPlayerCreature()) {
+		if (tano->isPlayerCreature() && (cast<CreatureObject*>(tano))->getPlayerObject() != NULL && (cast<CreatureObject*>(tano))->getPlayerObject()->isPrivileged()) {
 			ManagedReference<PlayerObject*> ghost = (cast<CreatureObject*>(tano))->getPlayerObject();
-
-			if (ghost != NULL && ghost->isPrivileged()) {
-				UnicodeString name = tano->getCustomObjectName();
-				UnicodeString tag = PermissionLevelList::instance()->getPermissionTag(ghost->getAdminLevel());
-				insertUnicode(name + " \\#ffff00[" + tag + "]\\#.");
-			} else {
-				insertUnicode(tano->getCustomObjectName());
-			}
-
-		} else {
+			UnicodeString name = tano->getCustomObjectName();
+			UnicodeString tag = PermissionLevelList::instance()->getPermissionTag(ghost->getAdminLevel());
+			insertUnicode(name + " \\#ffff00[" + tag + "]\\#.");
+		} else
 			insertUnicode(tano->getCustomObjectName());
-		}
 
 		insertInt(tano->getVolume());
 
