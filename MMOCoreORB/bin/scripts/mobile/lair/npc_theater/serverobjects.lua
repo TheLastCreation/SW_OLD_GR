@@ -1,3 +1,6 @@
+includeFile("lair/npc_theater/ghomrassen_blacksun_assasin_neutral_large_theater.lua")
+
+
 
 includeFile("lair/npc_theater/corellia_afarathu_cult_outpost_neutral_medium.lua")
 includeFile("lair/npc_theater/corellia_afarathu_cult_outpost_neutral_medium_theater.lua")
