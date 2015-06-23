@@ -379,8 +379,8 @@ taanab = {
 	weatherEnabled = 1,
 
 		planetTravelPoints = {
-		{name = "North Starport", x = -287.58, z = 35, y = 4878.54, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
-		{name = "South Starport", x = 4032.56, z = 37, y = -6234.47, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1}
+		{name = "North Starport", x = -475, z = 58, y = 5849, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
+		{name = "South Starport", x = -3237, z = 53, y = -5707, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1}
 	}
 }
 ghomrassen = {
