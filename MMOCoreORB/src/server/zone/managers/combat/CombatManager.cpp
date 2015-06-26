@@ -1801,6 +1801,15 @@ int CombatManager::applyDamage(TangibleObject* attacker, WeaponObject* weapon, C
 			defender->addWounds(CreatureAttribute::WILLPOWER, 1, true);
 	}
 
+	// now splash damage
+	float maxDamage = MAX(healthDamage, MAX(actionDamage, mindDamage));
+	if ((poolsToDamage ^ 0x7) & HEALTH)
+		defender->inflictDamage(attacker, CreatureAttribute::HEALTH, (int)(maxDamage/10.f + 0.5f), true, xpType);
+	if ((poolsToDamage ^ 0x7) & ACTION)
+		defender->inflictDamage(attacker, CreatureAttribute::ACTION, (int)(maxDamage/10.f + 0.5f), true, xpType);
+	if ((poolsToDamage ^ 0x7) & MIND)
+		defender->inflictDamage(attacker, CreatureAttribute::MIND, (int)(maxDamage/10.f + 0.5f), true, xpType);
+
 	// This method can be called multiple times for area attacks.  Let the calling method decrease the powerup once
 	if (!data.getCommand()->isAreaAction() && !data.getCommand()->isConeAction() && attacker->isCreatureObject()) {
 		weapon->decreasePowerupUses(attacker->asCreatureObject());
