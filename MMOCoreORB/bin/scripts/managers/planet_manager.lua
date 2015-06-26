@@ -363,7 +363,7 @@ kaas = {
 	weatherEnabled = 1,
 	
 			planetTravelPoints = {
-		{name = "Starport", x = -5174.0, z = 80, y = -2218, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1}
+		{name = "Starport", x = -5155.0, z = 80, y = -2244, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1}
 	}
 }
 
@@ -379,15 +379,15 @@ taanab = {
 	weatherEnabled = 1,
 
 		planetTravelPoints = {
-		{name = "North Starport", x = -450, z = 58, y = 5868, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
-		{name = "South Starport", x = -3213, z = 53, y = -5689, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1}
+		{name = "North Starport", x = -475, z = 58, y = 5849, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
+		{name = "South Starport", x = -3237, z = 53, y = -5707, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1}
 	}
 }
 ghomrassen = {
 	weatherEnabled = 1,
 
 		planetTravelPoints = {
-		{name = "Mos Rassen", x = -3407, z = 0, y = -5199, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
+		{name = "Mos Rassen", x = -3383, z = 0, y = -5176, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1},
 		{name = "Mos Rassen Shuttleport", x = -3198, z = 0, y = -5294, interplanetaryTravelAllowed = 1, incomingTravelAllowed = 1}
 	}
 }

@@ -13,12 +13,9 @@ bh_target_zones = {
 	"dantooine",
 	"dathomir",
 	"endor",
-	"ghomrassen",
-	"kaas",
 	"lok",
 	"naboo",
 	"rori",
-	"taanab",
 	"talus",
 	"tatooine",
 	"yavin4"
