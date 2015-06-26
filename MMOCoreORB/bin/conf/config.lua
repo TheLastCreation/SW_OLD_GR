@@ -101,7 +101,7 @@ ZonesEnabled = {
 	"ghomrassen",
 	--"godclient_test",
 	--"hoth",
-	--"kaas",
+	"kaas",
 	"lok",
 	"naboo",
 	--"otoh_gunga",
