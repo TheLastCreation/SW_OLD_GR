@@ -254,3 +254,16 @@ ghomrassen = {
 
 	sandstormDamage = 50, -- 30 = Annoying, 50 = deadly
 }
+
+-----------------
+--    Kaas
+-----------------
+kaas = {
+
+	defaultWeather = 4, -- Sunny
+
+	averageWeatherDuration = 3600, -- In seconds
+
+	weatherStability = 50, -- Range 0 - 100, Higher = Less weather changes, Overall better weather
+}
+

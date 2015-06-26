@@ -12,6 +12,7 @@ cities = {
 	{ "dathomir", "Science Outpost", -85, -1600, 125 },
 	{ "endor", "Smuggler Outpost", -905, 1584, 130 },
 	{ "endor", "Research Outpost", 3221, -3471, 100 },
+	{ "ghomrassen", "Mos Rassen", -3383, -5176, 350 },
 	{ "lok", "Nym's Stronghold", 450, 5214, 501 },
 	{ "naboo", "Theed", -5262, 4252, 836 },
 	{ "naboo", "Keren", 1616, 2736, 822 },
