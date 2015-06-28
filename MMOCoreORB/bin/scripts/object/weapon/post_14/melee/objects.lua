@@ -592,13 +592,7 @@ object_weapon_melee_2h_sword_crafted_saber_shared_sword_lightsaber_two_handed_ge
 
 ObjectTemplates:addClientTemplate(object_weapon_melee_2h_sword_crafted_saber_shared_sword_lightsaber_two_handed_gen4_must, "object/weapon/melee/2h_sword/crafted_saber/shared_sword_lightsaber_two_handed_gen4_must.iff")
 --****************************************************************************************************************************************************************************
-object_weapon_melee_2h_sword_crafted_saber_shared_sword_lightsaber_two_handed_gen5 = SharedWeaponObjectTemplate:new {
-	clientTemplateFileName = "object/weapon/melee/2h_sword/crafted_saber/shared_sword_lightsaber_two_handed_gen5.iff"
 
-}
-
-ObjectTemplates:addClientTemplate(object_weapon_melee_2h_sword_crafted_saber_shared_sword_lightsaber_two_handed_gen5, "object/weapon/melee/2h_sword/crafted_saber/shared_sword_lightsaber_two_handed_gen5.iff")
---****************************************************************************************************************************************************************************
 object_weapon_melee_2h_sword_crafted_saber_shared_sword_lightsaber_two_handed_gen5_eow = SharedWeaponObjectTemplate:new {
 	clientTemplateFileName = "object/weapon/melee/2h_sword/crafted_saber/shared_sword_lightsaber_two_handed_gen5_eow.iff"
 
