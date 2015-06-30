@@ -1,7 +1,6 @@
 som_trinity_assassin_ithorian_male = Creature:new {
 	customName = "som_trinity_assassin_ithorian_male",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

@@ -1,7 +1,6 @@
 voakar_duset = Creature:new {
 	customName = "voakar_duset",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

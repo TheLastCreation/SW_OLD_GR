@@ -1,7 +1,6 @@
 orf_angler = Creature:new {
-	customName = "orf_angler",
+	customName = "ORF Angler",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

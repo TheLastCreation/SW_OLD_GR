@@ -1,7 +1,6 @@
 tulrus_magma_drenched = Creature:new {
 	customName = "tulrus_magma_drenched",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

@@ -1,7 +1,6 @@
 blistmok_trampler = Creature:new {
-	customName = "blistmok_trampler",
+	customName = "Blistmok Trampler",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

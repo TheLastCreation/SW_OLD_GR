@@ -1,7 +1,6 @@
 blackguard_elite = Creature:new {
 	customName = "Blackguard Elite",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,
@@ -27,12 +26,7 @@ blackguard_elite = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/som/blackguard_elite.iff"},
-	lootGroups = {
-		{
-			groups = {},
-			lootChance = 2100000
-		}
-	},
+	lootGroups = {},
 	weapons = {"pirate_weapons_light"},
 	conversationTemplate = "",
 	attacks = merge(marksmannovice,brawlernovice)

@@ -1,7 +1,6 @@
 orf_reptilian_flier = Creature:new {
 	customName = "Reptilian Flier",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

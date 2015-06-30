@@ -1,7 +1,6 @@
 xandank_patriarch = Creature:new {
 	customName = "xandank_patriarch",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

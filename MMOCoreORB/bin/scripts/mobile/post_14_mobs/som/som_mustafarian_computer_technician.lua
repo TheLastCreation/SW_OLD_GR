@@ -1,7 +1,6 @@
 som_mustafarian_computer_technician = Creature:new {
 	customName = "som_mustafarian_computer_technician",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

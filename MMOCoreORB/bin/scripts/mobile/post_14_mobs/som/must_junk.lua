@@ -1,7 +1,6 @@
 must_junk = Creature:new {
 	customName = "Junk Dealer",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

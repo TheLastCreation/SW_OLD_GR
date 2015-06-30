@@ -27,15 +27,13 @@ blistmok = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/som/blistmok.iff"},
-	lootGroups = {
-		{
-			groups = {},
-			lootChance = 2100000
-		}
-	},
-	weapons = {"pirate_weapons_light"},
+	lootGroups = {},
+	weapons = {"creature_spit_small_toxicgreen"},
 	conversationTemplate = "",
-	attacks = merge(marksmannovice,brawlernovice)
+	attacks = {
+		{"creatureareapoison",""},
+		{"strongpoison",""}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(blistmok, "blistmok")

@@ -1,7 +1,6 @@
 orf_whisper_bird = Creature:new {
 	customName = "Whisper Bird",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

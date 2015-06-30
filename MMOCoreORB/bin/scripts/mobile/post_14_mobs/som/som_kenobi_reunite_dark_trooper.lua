@@ -1,7 +1,6 @@
 som_kenobi_reunite_dark_trooper = Creature:new {
 	customName = "som_kenobi_reunite_dark_trooper",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

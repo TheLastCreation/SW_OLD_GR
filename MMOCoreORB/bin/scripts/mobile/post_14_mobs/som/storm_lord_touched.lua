@@ -1,7 +1,6 @@
 storm_lord_touched = Creature:new {
 	customName = "storm_lord_touched",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

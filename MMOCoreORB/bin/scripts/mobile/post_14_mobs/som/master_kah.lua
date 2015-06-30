@@ -1,7 +1,6 @@
 master_kah = Creature:new {
 	customName = "Master Kah",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

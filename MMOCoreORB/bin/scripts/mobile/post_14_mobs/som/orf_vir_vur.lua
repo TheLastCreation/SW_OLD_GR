@@ -1,7 +1,6 @@
 orf_vir_vur = Creature:new {
 	customName = "Vir Vur",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

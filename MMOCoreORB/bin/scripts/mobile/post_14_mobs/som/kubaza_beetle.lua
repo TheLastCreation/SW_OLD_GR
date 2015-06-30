@@ -1,7 +1,6 @@
 kubaza_beetle = Creature:new {
 	customName = "Kubaza Beetle",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

@@ -1,7 +1,6 @@
 som_alien_parasite = Creature:new {
 	customName = "Alien Parasite",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

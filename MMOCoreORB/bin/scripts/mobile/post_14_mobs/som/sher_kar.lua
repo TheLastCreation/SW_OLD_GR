@@ -1,7 +1,6 @@
 sher_kar = Creature:new {
 	customName = "Sher Kar",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

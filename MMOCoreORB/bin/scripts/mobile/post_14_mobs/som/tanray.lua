@@ -1,7 +1,6 @@
 tanray = Creature:new {
 	customName = "tanray",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

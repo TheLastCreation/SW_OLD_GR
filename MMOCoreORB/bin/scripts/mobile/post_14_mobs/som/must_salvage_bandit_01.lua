@@ -1,7 +1,6 @@
 must_salvage_bandit_01 = Creature:new {
 	customName = "Salvage Bandit",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

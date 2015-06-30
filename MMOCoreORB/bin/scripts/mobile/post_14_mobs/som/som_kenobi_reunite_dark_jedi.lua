@@ -1,7 +1,6 @@
 som_kenobi_reunite_dark_jedi = Creature:new {
 	customName = "som_kenobi_reunite_dark_jedi",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

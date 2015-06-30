@@ -1,7 +1,6 @@
 volcano_cyborg_lt = Creature:new {
 	customName = "volcano_cyborg_lt",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

@@ -1,7 +1,6 @@
 orf_tulrus = Creature:new {
 	customName = "Tulrus",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

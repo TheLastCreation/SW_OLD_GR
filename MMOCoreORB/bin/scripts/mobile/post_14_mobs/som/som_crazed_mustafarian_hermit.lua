@@ -1,7 +1,6 @@
 som_crazed_mustafarian_hermit = Creature:new {
 	customName = "Crazed Mustafarian Hermit",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

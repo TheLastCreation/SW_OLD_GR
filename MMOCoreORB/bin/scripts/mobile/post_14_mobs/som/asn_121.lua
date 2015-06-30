@@ -1,7 +1,6 @@
 asn_121 = Creature:new {
 	customName = "ASN-121",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,
@@ -27,12 +26,7 @@ asn_121 = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/som/asn_121.iff"},
-	lootGroups = {
-		{
-			groups = {},
-			lootChance = 2100000
-		}
-	},
+	lootGroups = {},
 	weapons = {"pirate_weapons_light"},
 	conversationTemplate = "",
 	attacks = merge(marksmannovice,brawlernovice)

@@ -1,7 +1,6 @@
 som_kenobi_menth_paul = Creature:new {
 	customName = "som_kenobi_menth_paul",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

@@ -1,7 +1,6 @@
 som_pwwoz_pwwa = Creature:new {
 	customName = "som_pwwoz_pwwa",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

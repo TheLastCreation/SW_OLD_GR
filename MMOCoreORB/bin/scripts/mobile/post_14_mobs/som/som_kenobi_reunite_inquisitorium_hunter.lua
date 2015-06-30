@@ -1,7 +1,6 @@
 som_kenobi_reunite_inquisitorium_hunter = Creature:new {
 	customName = "som_kenobi_reunite_inquisitorium_hunter",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

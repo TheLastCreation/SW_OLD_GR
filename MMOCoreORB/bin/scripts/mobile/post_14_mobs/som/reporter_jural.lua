@@ -1,7 +1,6 @@
 reporter_jural = Creature:new {
 	customName = "Reporter Jural",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

@@ -1,7 +1,6 @@
 miner_pilot = Creature:new {
 	customName = "Miner Pilot",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

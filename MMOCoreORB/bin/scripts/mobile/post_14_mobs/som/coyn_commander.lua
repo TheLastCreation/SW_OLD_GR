@@ -1,7 +1,6 @@
 coyn_commander = Creature:new {
 	customName = "Coyn Commander",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

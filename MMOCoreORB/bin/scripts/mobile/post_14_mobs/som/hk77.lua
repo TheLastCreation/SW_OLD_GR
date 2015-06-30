@@ -1,7 +1,6 @@
 hk77 = Creature:new {
 	customName = "HK-77",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

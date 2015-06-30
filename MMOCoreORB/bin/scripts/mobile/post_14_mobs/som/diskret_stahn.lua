@@ -1,7 +1,6 @@
 diskret_stahn = Creature:new {
 	customName = "Diskret Stahn",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

@@ -1,7 +1,6 @@
 tremor_foot = Creature:new {
 	customName = "tremor_foot",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

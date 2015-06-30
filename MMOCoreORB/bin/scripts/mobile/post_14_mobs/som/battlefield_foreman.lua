@@ -1,7 +1,6 @@
 battlefield_foreman = Creature:new {
 	customName = "Battlefield Foreman",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,
@@ -27,12 +26,7 @@ battlefield_foreman = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/som/battlefield_foreman.iff"},
-	lootGroups = {
-		{
-			groups = {},
-			lootChance = 2100000
-		}
-	},
+	lootGroups = {},
 	weapons = {"pirate_weapons_light"},
 	conversationTemplate = "",
 	attacks = merge(marksmannovice,brawlernovice)

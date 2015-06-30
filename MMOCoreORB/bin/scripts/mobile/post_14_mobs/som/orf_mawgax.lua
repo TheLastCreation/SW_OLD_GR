@@ -1,7 +1,6 @@
 orf_mawgax = Creature:new {
 	customName = "Mawgax",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

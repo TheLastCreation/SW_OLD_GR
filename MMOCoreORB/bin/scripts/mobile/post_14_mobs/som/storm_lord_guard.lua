@@ -1,7 +1,6 @@
 storm_lord_guard = Creature:new {
 	customName = "storm_lord_guard",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

@@ -1,7 +1,6 @@
 thunter_nautolan_m_01 = Creature:new {
 	customName = "thunter_nautolan_m_01",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

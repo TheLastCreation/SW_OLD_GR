@@ -1,7 +1,6 @@
 jundak_devourer = Creature:new {
 	customName = "Jundak Devourer",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

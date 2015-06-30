@@ -1,7 +1,6 @@
 orf_torton = Creature:new {
 	customName = "Torton",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

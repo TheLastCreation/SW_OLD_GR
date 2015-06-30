@@ -1,7 +1,6 @@
 orf_vesp = Creature:new {
 	customName = "Vesp",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

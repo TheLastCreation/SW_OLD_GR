@@ -1,7 +1,6 @@
 xandank_onyx_plated = Creature:new {
 	customName = "xandank_onyx_plated",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

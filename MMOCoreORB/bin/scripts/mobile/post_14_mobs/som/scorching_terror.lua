@@ -1,7 +1,6 @@
 scorching_terror = Creature:new {
 	customName = "Scorching Terror",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

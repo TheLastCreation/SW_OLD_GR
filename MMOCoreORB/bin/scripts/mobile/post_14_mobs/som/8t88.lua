@@ -1,7 +1,6 @@
 droid_8t88 = Creature:new {
 	customName = "8T-88",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,
@@ -27,12 +26,7 @@ droid_8t88 = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/som/8t88.iff"},
-	lootGroups = {
-		{
-			groups = {},
-			lootChance = 2100000
-		}
-	},
+	lootGroups = {},
 	weapons = {"pirate_weapons_light"},
 	conversationTemplate = "",
 	attacks = merge(marksmannovice,brawlernovice)

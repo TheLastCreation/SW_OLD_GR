@@ -1,7 +1,6 @@
 lislot_bloodscar = Creature:new {
 	customName = "Lislot Bloodscar",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,
@@ -27,12 +26,7 @@ lislot_bloodscar = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/som/lislot_bloodscar.iff"},
-	lootGroups = {
-		{
-			groups = {},
-			lootChance = 2100000
-		}
-	},
+	lootGroups = {},
 	weapons = {"pirate_weapons_light"},
 	conversationTemplate = "",
 	attacks = merge(marksmannovice,brawlernovice)

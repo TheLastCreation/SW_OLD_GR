@@ -1,7 +1,6 @@
 som_ancient_guardian_droideka = Creature:new {
 	customName = "Ancient Guardian Droideka",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

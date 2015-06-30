@@ -1,7 +1,6 @@
 ruins_aqualish = Creature:new {
 	customName = "Aqualish",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

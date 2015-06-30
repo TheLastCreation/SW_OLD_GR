@@ -1,7 +1,6 @@
 blistmok_shrieker = Creature:new {
-	customName = "blistmok_shrieker",
+	customName = "Blistmok Shrieker",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,
@@ -27,15 +26,13 @@ blistmok_shrieker = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/som/blistmok_shrieker.iff"},
-	lootGroups = {
-		{
-			groups = {},
-			lootChance = 2100000
-		}
-	},
-	weapons = {"pirate_weapons_light"},
+	lootGroups = {},
+	weapons = {"creature_spit_small_toxicgreen"},
 	conversationTemplate = "",
-	attacks = merge(marksmannovice,brawlernovice)
+	attacks = {
+		{"creatureareapoison",""},
+		{"strongpoison",""}
+	}
 }
 
 CreatureTemplates:addCreatureTemplate(blistmok_shrieker, "blistmok_shrieker")

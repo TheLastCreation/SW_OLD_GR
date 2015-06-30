@@ -1,7 +1,6 @@
 ruins_rodian = Creature:new {
 	customName = "ruins_rodian",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

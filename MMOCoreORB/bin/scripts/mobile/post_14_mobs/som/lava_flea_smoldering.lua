@@ -1,7 +1,6 @@
 lava_flea_smoldering = Creature:new {
 	customName = "Smoldering Lava Flea",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,

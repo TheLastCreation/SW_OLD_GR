@@ -1,7 +1,6 @@
 traveler_f = Creature:new {
 	customName = "traveler_f",
 	socialGroup = "",
-	pvpFaction = "",
 	faction = "",
 	level = 70,
 	chanceHit = 0.27,
