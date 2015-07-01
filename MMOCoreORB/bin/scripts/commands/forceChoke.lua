@@ -44,8 +44,8 @@
 ForceChokeCommand = {
         name = "forcechoke",
         
-   	damage = 750,
-	speed = 6.0,
+   	damage = 1000,
+	speed = 3.0,
 	forceCost = 400,
 
 	animationCRC = hashCode("force_choke_1_particle_level_1_medium"),
