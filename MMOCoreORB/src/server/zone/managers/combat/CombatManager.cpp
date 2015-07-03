@@ -2087,8 +2087,16 @@ void CombatManager::requestEndDuel(CreatureObject* player, CreatureObject* targe
 			ManagedReference<AiAgent*> pet = ghost->getActivePet(i);
 
 			if (pet != NULL) {
-				pet->sendPvpStatusTo(targetPlayer);
 				targetPlayer->removeDefender(pet);
+				pet->sendPvpStatusTo(targetPlayer);
+
+				ManagedReference<CreatureObject*> target = targetPlayer;
+
+				EXECUTE_TASK_2(pet, target, {
+					Locker locker(pet_p);
+
+					pet_p->removeDefender(target_p);
+				});
 			}
 		}
 
@@ -2102,8 +2110,16 @@ void CombatManager::requestEndDuel(CreatureObject* player, CreatureObject* targe
 			ManagedReference<AiAgent*> pet = targetGhost->getActivePet(i);
 
 			if (pet != NULL) {
-				pet->sendPvpStatusTo(player);
 				player->removeDefender(pet);
+				pet->sendPvpStatusTo(player);
+
+				ManagedReference<CreatureObject*> play = player;
+
+				EXECUTE_TASK_2(pet, play, {
+					Locker locker(pet_p);
+
+					pet_p->removeDefender(play_p);
+				});
 			}
 		}
 
@@ -2141,6 +2157,21 @@ void CombatManager::freeDuelList(CreatureObject* player, bool spam) {
 
 					player->sendPvpStatusTo(targetPlayer);
 
+					for (int i = 0; i < ghost->getActivePetsSize(); i++) {
+						ManagedReference<AiAgent*> pet = ghost->getActivePet(i);
+
+						if (pet != NULL) {
+							targetPlayer->removeDefender(pet);
+							pet->sendPvpStatusTo(targetPlayer);
+
+							EXECUTE_TASK_2(pet, targetPlayer, {
+								Locker locker(pet_p);
+
+								pet_p->removeDefender(targetPlayer_p);
+							});
+						}
+					}
+
 					if (spam) {
 						StringIdChatParameter stringId("duel", "end_self");
 						stringId.setTT(targetPlayer->getObjectID());
@@ -2148,6 +2179,23 @@ void CombatManager::freeDuelList(CreatureObject* player, bool spam) {
 					}
 
 					targetPlayer->sendPvpStatusTo(player);
+
+					for (int i = 0; i < targetGhost->getActivePetsSize(); i++) {
+						ManagedReference<AiAgent*> pet = targetGhost->getActivePet(i);
+
+						if (pet != NULL) {
+							player->removeDefender(pet);
+							pet->sendPvpStatusTo(player);
+
+							ManagedReference<CreatureObject*> play = player;
+
+							EXECUTE_TASK_2(pet, play, {
+								Locker locker(pet_p);
+
+								pet_p->removeDefender(play_p);
+							});
+						}
+					}
 
 					if (spam) {
 						StringIdChatParameter stringId2("duel", "end_target");
