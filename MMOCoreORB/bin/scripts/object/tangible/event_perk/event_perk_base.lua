@@ -41,12 +41,8 @@
 --this exception also makes it possible to release a modified version 
 
 
-object_tangible_deed_event_perk_fruit_stand = object_tangible_deed_event_perk_shared_fruit_stand:new {
-	templateType = EVENTPERKDEED,
-	gameObjectType = 8388615,
-	noTrade = 1,
-	generatedObjectTemplate = "object/tangible/furniture/tatooine/frn_tato_fruit_stand_small_style_01.iff",
-	perkType = STATIC,
+object_tangible_event_perk_event_perk_base = object_tangible_poi_base_shared_poi_base:new {
+	invisible = 1
 }
 
-ObjectTemplates:addTemplate(object_tangible_deed_event_perk_fruit_stand, "object/tangible/deed/event_perk/fruit_stand.iff")
+ObjectTemplates:addTemplate(object_tangible_event_perk_event_perk_base, "object/tangible/event_perk/event_perk_base.iff")

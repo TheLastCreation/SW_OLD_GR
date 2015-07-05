@@ -38,7 +38,7 @@
 #include "server/zone/objects/player/sessions/ProposeUnitySession.h"
 #include "server/zone/objects/player/sessions/VeteranRewardSession.h"
 #include "server/zone/objects/tangible/OptionBitmask.h"
-
+#include "server/zone/managers/player/JukeboxSong.h"
 #include "server/zone/objects/intangible/ShipControlDevice.h"
 #include "server/zone/objects/ship/ShipObject.h"
 
