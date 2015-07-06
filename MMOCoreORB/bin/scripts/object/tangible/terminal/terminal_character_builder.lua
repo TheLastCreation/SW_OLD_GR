@@ -1678,11 +1678,11 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					"Backpack 01", "object/tangible/wearables/backpack/backpack_s01.iff"
 				}
 			},
-			--"Consumables",
-			--{
-			--	"Desserts",
-			--	{
-					--"Air Cake", "object/tangible/food/crafted/dessert_air_cake.iff",
+			"Consumables",
+			{
+				"Desserts",
+				{
+					"Air Cake", "object/tangible/food/crafted/dessert_air_cake.iff",
 					--"Almond Kwevvu Crisp Munchies", "object/tangible/food/crafted/dessert_almond_kwevvu_crisp_munchies.iff",
 					--"Bantha Butter", "object/tangible/food/crafted/dessert_bantha_butter.iff",
 					--"Blap Biscuit", "object/tangible/food/crafted/dessert_blap_biscuit.iff",
@@ -1690,7 +1690,7 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					--"Bofa Treat", "object/tangible/food/crafted/dessert_bofa_treat.iff",
 					--"Cavaellin Creams", "object/tangible/food/crafted/dessert_cavaellin_creams.iff",
 					--"Chandad", "object/tangible/food/crafted/dessert_chandad.iff",
-					--"Citros Snow Cake", "object/tangible/food/crafted/dessert_citros_snow_cake.iff",
+					"Citros Snow Cake", "object/tangible/food/crafted/dessert_citros_snow_cake.iff",
 					--"Corellian Fried Icecream", "object/tangible/food/crafted/dessert_corellian_fried_icecream.iff",
 					--"Deneelian Fizz Pudding", "object/tangible/food/crafted/dessert_deneelian_fizz_pudding.iff",
 					--"Dweezel", "object/tangible/food/crafted/dessert_dweezel.iff",
@@ -1700,9 +1700,9 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					--"Kiwik Clusjo Swirl", "object/tangible/food/crafted/dessert_kiwik_clusjo_swirl.iff",
 					--"Nanana Twist", "object/tangible/food/crafted/dessert_nanana_twist.iff",
 					--"Para Roll", "object/tangible/food/crafted/dessert_para_roll.iff",
-					--"Parwan Nutricake", "object/tangible/food/crafted/dessert_parwan_nutricake.iff",
+					"Parwan Nutricake", "object/tangible/food/crafted/dessert_parwan_nutricake.iff",
 					--"Pastebread", "object/tangible/food/crafted/dessert_pastebread.iff",
-					--"Pikatta Pie", "object/tangible/food/crafted/dessert_pikatta_pie.iff",
+					"Pikatta Pie", "object/tangible/food/crafted/dessert_pikatta_pie.iff",
 					--"Pkneb", "object/tangible/food/crafted/dessert_pkneb.iff",
 					--"Puffcake", "object/tangible/food/crafted/dessert_puffcake.iff",
 					--"Pyollian Cake", "object/tangible/food/crafted/dessert_pyollian_cake.iff",
@@ -1714,21 +1714,21 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					--"Vagnerian Canape", "object/tangible/food/crafted/dessert_vagnerian_canape.iff",
 					--"Wedding Cake", "object/tangible/food/crafted/dessert_wedding_cake.iff",
 					--"Won Won", "object/tangible/food/crafted/dessert_won_won.iff",
-				--},
-				--"Dishes",
-				--{
+				},
+				"Dishes",
+				{
 					--"Ahrisa", "object/tangible/food/crafted/dish_ahrisa.iff",
-					--"Bivoli Tempari", "object/tangible/food/crafted/dish_bivoli_tempari.iff",
-					--"Blood Chowder", "object/tangible/food/crafted/dish_blood_chowder.iff",
+					"Bivoli Tempari", "object/tangible/food/crafted/dish_bivoli_tempari.iff",
+					"Blood Chowder", "object/tangible/food/crafted/dish_blood_chowder.iff",
 					--"Braised Canron", "object/tangible/food/crafted/dish_braised_canron.iff",
 					--"Cho Nor Hoola", "object/tangible/food/crafted/dish_cho_nor_hoola.iff",
 					--"Crispic", "object/tangible/food/crafted/dish_crispic.iff",
 					--"Dustcrepe", "object/tangible/food/crafted/dish_dustcrepe.iff",
-					--"Exo Protein Wafers", "object/tangible/food/crafted/dish_exo_protein_wafers.iff",
-					--"Fire Stew", "object/tangible/food/crafted/dish_fire_stew.iff",
+					"Exo Protein Wafers", "object/tangible/food/crafted/dish_exo_protein_wafers.iff",
+					"Fire Stew", "object/tangible/food/crafted/dish_fire_stew.iff",
 					--"Fried Endwa", "object/tangible/food/crafted/dish_fried_endwa.iff",
 					--"Gruuvan Shaal", "object/tangible/food/crafted/dish_gruuvan_shaal.iff",
-					--"Havla", "object/tangible/food/crafted/dish_havla.iff",
+					"Havla", "object/tangible/food/crafted/dish_havla.iff",
 					--"Kanali Wafers", "object/tangible/food/crafted/dish_kanali_wafers.iff",
 					--"Karkan Ribenes", "object/tangible/food/crafted/dish_karkan_ribenes.iff",
 					--"Meatlump", "object/tangible/food/crafted/dish_meatlump.iff",
@@ -1742,20 +1742,20 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					--"Scrimpi", "object/tangible/food/crafted/dish_scrimpi.iff",
 					--"Soypro", "object/tangible/food/crafted/dish_soypro.iff",
 					--"Stewed Gwouch", "object/tangible/food/crafted/dish_stewed_gwouch.iff",
-					--"Synthsteak", "object/tangible/food/crafted/dish_synthsteak.iff",
+					"Synthsteak", "object/tangible/food/crafted/dish_synthsteak.iff",
 					--"Teltier Noodles", "object/tangible/food/crafted/dish_teltier_noodles.iff",
 					--"Terratta", "object/tangible/food/crafted/dish_terratta.iff",
-					--"Thakitillo", "object/tangible/food/crafted/dish_thakitillo.iff",
+					"Thakitillo", "object/tangible/food/crafted/dish_thakitillo.iff",
 					--"Travel Biscuits", "object/tangible/food/crafted/dish_travel_biscuits.iff",
 					--"Trimpian", "object/tangible/food/crafted/dish_trimpian.iff",
-					--"Vegeparsine", "object/tangible/food/crafted/dish_vegeparsine.iff",
+					"Vegeparsine", "object/tangible/food/crafted/dish_vegeparsine.iff",
 					--"Veghash", "object/tangible/food/crafted/dish_veghash.iff",
 					--"Vercupti of Agazza Boleruuee", "object/tangible/food/crafted/dish_vercupti_of_agazza_boleruuee.iff",
 					--"Wastril Bread", "object/tangible/food/crafted/dish_wastril_bread.iff",
 					--"Xermaauc", "object/tangible/food/crafted/dish_xermaauc.iff"
-				--},
-				--"Drinks",
-				--{
+				},
+				"Drinks",
+				{
 					--"Accarragm", "object/tangible/food/crafted/drink_accarragm.iff",
 					--"Aitha", "object/tangible/food/crafted/drink_aitha.iff",
 					--"Alcohol", "object/tangible/food/crafted/drink_alcohol.iff",
@@ -1763,9 +1763,9 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					--"Angerian Fishak Surprise", "object/tangible/food/crafted/drink_angerian_fishak_surprise.iff",
 					--"Antakarian Fire Dancer", "object/tangible/food/crafted/drink_antakarian_fire_dancer.iff",
 					--"Bantha Blaster", "object/tangible/food/crafted/drink_bantha_blaster.iff",
-					--"Bespin Port", "object/tangible/food/crafted/drink_bespin_port.iff",
-					--"Blue Milk", "object/tangible/food/crafted/drink_blue_milk.iff",
-					--"Breath of Heaven", "object/tangible/food/crafted/drink_breath_of_heaven.iff",
+					"Bespin Port", "object/tangible/food/crafted/drink_bespin_port.iff",
+					"Blue Milk", "object/tangible/food/crafted/drink_blue_milk.iff",
+					"Breath of Heaven", "object/tangible/food/crafted/drink_breath_of_heaven.iff",
 					--"Caf", "object/tangible/food/crafted/drink_caf.iff",
 					--"Charde", "object/tangible/food/crafted/drink_charde.iff",
 					--"Corellian Ale", "object/tangible/food/crafted/drink_corellian_ale.iff",
@@ -1773,9 +1773,9 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					--"Cortyg", "object/tangible/food/crafted/drink_cortyg.iff",
 					--"Deuterium Pyro", "object/tangible/food/crafted/drink_deuterium_pyro.iff",
 					--"Double Dip outer Rim Rumdrop", "object/tangible/food/crafted/drink_double_dip_outer_rim_rumdrop.iff",
-					--"Durindfire", "object/tangible/food/crafted/drink_durindfire.iff",
+					"Durindfire", "object/tangible/food/crafted/drink_durindfire.iff",
 					--"Elshandruu Pica Thundercloud", "object/tangible/food/crafted/drink_elshandruu_pica_thundercloud.iff",
-					--"Flameout", "object/tangible/food/crafted/drink_flameout.iff",
+					"Flameout", "object/tangible/food/crafted/drink_flameout.iff",
 					--"Garrmorl", "object/tangible/food/crafted/drink_garrmorl.iff",
 					--"Gralinyn Juice", "object/tangible/food/crafted/drink_gralinyn_juice.iff",
 					--"Ice Blaster", "object/tangible/food/crafted/drink_ice_blaster.iff",
@@ -1783,7 +1783,7 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					--"Jaar", "object/tangible/food/crafted/drink_jaar.iff",
 					--"Jawa Beer", "object/tangible/food/crafted/drink_jawa_beer.iff",
 					--"Kylessian Fruit Distillate", "object/tangible/food/crafted/drink_kylessian_fruit_distillate.iff",
-					--"Mandalorian Wine", "object/tangible/food/crafted/drink_mandalorian_wine.iff",
+					"Mandalorian Wine", "object/tangible/food/crafted/drink_mandalorian_wine.iff",
 					--"Ruby Bliel", "object/tangible/food/crafted/drink_ruby_bliel.iff",
 					--"Skannbult Likker", "object/tangible/food/crafted/drink_skannbult_likker.iff",
 					--"Spiced Tea", "object/tangible/food/crafted/drink_spiced_tea.iff",
@@ -1792,10 +1792,10 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					--"Tatooine Sunburn", "object/tangible/food/crafted/drink_tatooine_sunburn.iff",
 					--"Tilla Tiil", "object/tangible/food/crafted/drink_tilla_tiil.iff",
 					--"Tssolok", "object/tangible/food/crafted/drink_tssolok.iff",
-					--"Vasarian Brandy", "object/tangible/food/crafted/drink_vasarian_brandy.iff",
+					"Vasarian Brandy", "object/tangible/food/crafted/drink_vasarian_brandy.iff",
 					--"Vayerbok", "object/tangible/food/crafted/drink_vayerbok.iff",
 					--"Veronian Berry Wine", "object/tangible/food/crafted/drink_veronian_berry_wine.iff"
-				--},
+				},
 				--"Foraged Food",
 				--{
 					--"Jar of Berries", "object/tangible/food/foraged/edible_jar_berries.iff",
@@ -1821,9 +1821,9 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					--"Meat Object", "object/tangible/food/meat_object.iff",
 					--"Nectar", "object/tangible/food/nectar.iff"
 				--},
-				--"Spice",
-				--{
-					--"Booster Blue", "object/tangible/food/spice/spice_booster_blue.iff",
+				"Spice",
+				{
+					"Booster Blue", "object/tangible/food/spice/spice_booster_blue.iff",
 					--"Crash N Burn", "object/tangible/food/spice/spice_brash_n_burn.iff",
 					--"Droid Lube", "object/tangible/food/spice/spice_droid_lube.iff",
 					--"Giggledust", "object/tangible/food/spice/spice_giggledust.iff",
@@ -1831,8 +1831,8 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					--"Gunjack", "object/tangible/food/spice/spice_gunjack.iff",
 					--"Kliknik Boost", "object/tangible/food/spice/spice_kliknik_boost.iff",
 					--"Kwi Boost", "object/tangible/food/spice/spice_kwi_boost.iff",
-					--"Muon Gold", "object/tangible/food/spice/spice_muon_gold.iff",  
-					--"Neutron Pixie", "object/tangible/food/spice/spice_neutron_pixey.iff",
+					"Muon Gold", "object/tangible/food/spice/spice_muon_gold.iff",  
+					"Neutron Pixie", "object/tangible/food/spice/spice_neutron_pixey.iff",
 					--"Pyrepenol", "object/tangible/food/spice/spice_pyrepenol.iff",
 					--"Scramjet", "object/tangible/food/spice/spice_Scramjet.iff",
 					--"Sedative H4B", "object/tangible/food/spice/spice_sedative_h4b.iff",
@@ -1840,8 +1840,8 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					--"Sweetblossom", "object/tangible/food/spice/spice_sweetblossom.iff",
 					--"Thruster Head", "object/tangible/food/spice/spice_thruster_head.iff",
 					--"Yarrock", "object/tangible/food/spice/spice_yarrock.iff"
-				--}
-			--},
+				}
+			},
 			"Deeds",
 			{
 				"Vehicle Deeds",
@@ -1852,7 +1852,11 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					--"Speederbike Flash", "object/tangible/deed/vehicle_deed/speederbike_flash_deed.iff",
 					--"Landspeeder av21", "object/tangible/deed/vehicle_deed/landspeeder_av21_deed.iff",
 					--"Landspeeder x31", "object/tangible/deed/vehicle_deed/landspeeder_x31_deed.iff",
-					--"Landspeeder x34", "object/tangible/deed/vehicle_deed/landspeeder_x34_deed.iff"
+					--"Landspeeder x34", "object/tangible/deed/vehicle_deed/landspeeder_x34_deed.iff",
+					"Barcspeeder rebel", "object/tangible/deed/vehicle_deed/barc_speeder_rebel_deed.iff",
+					"Barcspeeder imperial", "object/tangible/deed/vehicle_deed/barc_speeder_imperial_deed.iff"
+
+
 				},
 				"Structure Deeds",
 				{
@@ -2111,7 +2115,7 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					"Rental: Flag of Talus", "object/tangible/deed/event_perk/talus_flag_deed.iff",
 					"Rental: Flag of Tatooine", "object/tangible/deed/event_perk/tatooine_flag_deed.iff",
 					"Rental: Flag of Yavin", "object/tangible/deed/event_perk/yavin_flag_deed.iff",
-					--"Rental: Flags of the Universe", "object/tangible/deed/event_perk/universe_flags_theater.iff",
+					"Rental: Flags of the Universe", "object/tangible/deed/event_perk/universe_flags_theater.iff",
 					--"Rental: Fruit Stand", "object/tangible/deed/event_perk/fruit_stand.iff",
 					--"", "object/tangible/deed/event_perk/game_flag_deed.iff",
 					--"Rental: Grave Stone", "object/tangible/deed/event_perk/gravestone.iff",
@@ -2128,7 +2132,7 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					--"Rental: Imperial Stage", "object/tangible/deed/event_perk/imperial_stage_theater_deed.iff",
 					--"Rental: Jawas and Droids", "object/tangible/deed/event_perk/jawas_and_droids_deed.iff",
 					"Rental: Lambda Shuttle", "object/tangible/deed/event_perk/lambda_shuttle_static_deed.iff",
-					--"Rental: Large Imperial Wedding Garden", "object/tangible/deed/event_perk/wedding_garden_imperial_large_theater_deed.iff",
+					"Rental: Large Imperial Wedding Garden", "object/tangible/deed/event_perk/wedding_garden_imperial_large_theater_deed.iff",
 					--"Rental: Large Rebel Wedding Garden", "object/tangible/deed/event_perk/wedding_garden_rebel_large_theater_deed.iff",
 					--"Rental: Lottery Droid", "object/tangible/deed/event_perk/lottery_droid_deed.iff",
 					"Rental: Marble Gazebo", "object/tangible/deed/event_perk/marble_gazebo_static_deed.iff",
@@ -2136,8 +2140,8 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					"Rental: Military Outpost", "object/tangible/deed/event_perk/military_outpost_deed.iff",
 					"Rental: Naboo Style Gazebo", "object/tangible/deed/event_perk/naboo_gazebo_static_deed.iff",
 					--"Rental: NPC Actor", "object/tangible/deed/event_perk/npc_actor_deed.iff",
-					--"Rental: Party Pavillion", "object/tangible/deed/event_perk/picnic_pavillion_deed.iff",
-					--"Rental: Party Stage", "object/tangible/deed/event_perk/party_stage_theater_deed.iff",
+					"Rental: Party Pavillion", "object/tangible/deed/event_perk/picnic_pavillion_deed.iff",
+					"Rental: Party Stage", "object/tangible/deed/event_perk/party_stage_theater_deed.iff",
 					"Rental: Pavillion Style 1", "object/tangible/deed/event_perk/pavillion_1_static_deed.iff",
 					"Rental: Pavillion Style 2", "object/tangible/deed/event_perk/pavillion_2_static_deed.iff",
 					--"Rental: Race Coordinator Droid", "object/tangible/deed/event_perk/race_droid_deed.iff",
@@ -2181,21 +2185,21 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 				"Arakyd Probe Droid", "object/tangible/mission/mission_bounty_droid_probot.iff",
 				"Seeker Droid", "object/tangible/mission/mission_bounty_droid_seeker.iff"
 			},
-			--"Fireworks",
-			--{
-				--"Firework 1", "object/tangible/firework/firework_s01.iff",
-				--"Firework 2", "object/tangible/firework/firework_s02.iff",
-				--"Firework 3", "object/tangible/firework/firework_s03.iff",
-				--"Firework 4", "object/tangible/firework/firework_s04.iff",
-				--"Firework 5", "object/tangible/firework/firework_s05.iff",
-				--"Firework 6", "object/tangible/firework/firework_s10.iff",
-				--"Firework 7", "object/tangible/firework/firework_s11.iff",
-				--"Firework 8", "object/tangible/firework/firework_s18.iff",
-			--},
+			"Fireworks",
+			{
+				"Firework 1", "object/tangible/firework/firework_s01.iff",
+				"Firework 2", "object/tangible/firework/firework_s02.iff",
+				"Firework 3", "object/tangible/firework/firework_s03.iff",
+				"Firework 4", "object/tangible/firework/firework_s04.iff",
+				"Firework 5", "object/tangible/firework/firework_s05.iff",
+				"Firework 6", "object/tangible/firework/firework_s10.iff",
+				"Firework 7", "object/tangible/firework/firework_s11.iff",
+				"Firework 8", "object/tangible/firework/firework_s18.iff",
+			},
 			"Veteran Rewards (COMPLETE)",
 			{
 				--90 Day Rewards
-				--"@veteran_new:poweredharvester","object/tangible/veteran_reward/harvester.iff",
+				"@veteran_new:poweredharvester","object/tangible/veteran_reward/harvester.iff",
 				"@veteran_new:dataterminal1","object/tangible/veteran_reward/data_terminal_s1.iff",
 				"@veteran_new:dataterminal2","object/tangible/veteran_reward/data_terminal_s2.iff",
 				"@veteran_new:dataterminal3","object/tangible/veteran_reward/data_terminal_s3.iff",
@@ -2795,8 +2799,8 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 			--		"Nym's Slug-thrower Carbine", "object/weapon/ranged/carbine/carbine_nym_slugthrower.iff"
 				},
 				
-				--"Post 14 Melee Weapons",
-				--{
+				"Post 14 Melee Weapons",
+				{
 					--"2H Kashyyyk Sword", "object/weapon/melee/2h_sword/2h_sword_kashyyk.iff",
 					--"2H Sith Sword", "object/weapon/melee/2h_sword/2h_sword_sith.iff",
 					--"Blasterfist", "object/weapon/melee/special/blasterfist.iff",
@@ -2807,8 +2811,8 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					--"Kaminoan Lance", "object/weapon/melee/polearm/lance_kaminoan.iff",
 					--"Kashyyyk Lance", "object/weapon/melee/polearm/lance_kashyyk.iff",
 					--"Massassi Lance", "object/weapon/melee/polearm/lance_massassi.iff",
-					--"Shock Lance", "object/weapon/melee/polearm/lance_shock.iff",
-					--"Trandoshan Lance", "object/weapon/melee/polearm/ep3/lance_trando.iff",
+					"Shock Lance", "object/weapon/melee/polearm/lance_shock.iff",
+					"Trandoshan Lance", "object/weapon/melee/polearm/ep3/lance_trando.iff",
 					--"Wookie Lance", "object/weapon/melee/polearm/ep3/lance_wookiee.iff",
 					--"Massassi Knuckler", "object/weapon/melee/special/massassiknuckler.iff",
 					--"Electric Polearm Lance", "object/weapon/melee/polearm/polearm_lance_electric_polearm.iff",
@@ -2819,9 +2823,9 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					--"RSF Sword", "object/weapon/melee/sword/sword_rsf.iff",
 					--"Wookiee Sword", "object/weapon/melee/sword/ep3/sword_wookiee.iff",
 					--"Wookiee Knuckler", "object/weapon/melee/special/ep3/wookiee_knuckler.iff"
-				--},
-				--"Post 14 Ranged Carbines", -- 42 
-				--{
+				},
+				"Post 14 Ranged Carbines", -- 42 
+				{
 					--"Alliance Needler Carbine", "object/weapon/ranged/carbine/carbine_alliance_needler.iff",
 					--"Avatar Trandoshian Carbine", "object/weapon/ranged/carbine/carbine_avatar_trando.iff",
 					--"Avatar Trandoshian E5 Carbine", "object/weapon/ranged/carbine/carbine_avatar_trando_e5.iff",
@@ -2849,10 +2853,10 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					--"Proton Carbine", "object/weapon/ranged/carbine/carbine_proton.iff",
 					--"PVP Carbine", "object/weapon/ranged/carbine/carbine_pvp.iff",
 					--"PVP NGANT Carbine", "object/weapon/ranged/carbine/carbine_pvp_ngant.iff",
-					--"Rotary Underslung Carbine", "object/weapon/ranged/carbine/carbine_rotary_underslung.iff",
-					--"Slug Carbine", "object/weapon/ranged/carbine/carbine_slug.iff",
+					"Rotary Underslung Carbine", "object/weapon/ranged/carbine/carbine_rotary_underslung.iff",
+					"Slug Carbine", "object/weapon/ranged/carbine/carbine_slug.iff",
 					--"Specops Bothan Carbine", "object/weapon/ranged/carbine/carbine_specops_bothan_carbine.iff",
-					--"Underslung Carbine", "object/weapon/ranged/carbine/carbine_underslung.iff",
+					"Underslung Carbine", "object/weapon/ranged/carbine/carbine_underslung.iff",
 					--"Wookie Bowcaster Carbine", "object/weapon/ranged/carbine/ep3/carbine_wookiee_bowcaster.iff",
 					--"Wookie Bowcaster Generic Carbine", "object/weapon/ranged/carbine/ep3/carbine_wookiee_bowcaster_generic.iff",
 					--"Corestrike", "object/weapon/ranged/carbine/ep3_loot_corestrike.iff",
@@ -2865,9 +2869,9 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					--"Republic SFOR Carbine", "object/weapon/ranged/carbine/som_carbine_republic_sfor.iff",
 					--"Republic SFOR Carbine Generic", "object/weapon/ranged/carbine/som_carbine_republic_sfor_generic.iff"
 
-				--},
-				--"Post 14 Ranged Pistols",
-				--{
+				},
+				"Post 14 Ranged Pistols",
+				{
 					--"Blackfalcon", "object/weapon/ranged/pistol/ep3_loot_blackfalcon.iff",
 					--"Blackhand", "object/weapon/ranged/pistol/ep3_loot_blackhand.iff",
 					--"Calibrated", "object/weapon/ranged/pistol/ep3_loot_calibrated.iff",
@@ -2886,7 +2890,7 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					--"D-18 NPE", "object/weapon/ranged/pistol/pistol_d18_npe.iff",
 					--"DD6", "object/weapon/ranged/pistol/pistol_dd6.iff",
 					--"DE10 Generic", "object/weapon/ranged/pistol/pistol_de_10_generic.iff",
-					--"Deathhammer Pistol", "object/weapon/ranged/pistol/pistol_deathhammer.iff",
+					"Deathhammer Pistol", "object/weapon/ranged/pistol/pistol_deathhammer.iff",
 					----"DH17 Generic", "object/weapon/ranged/pistol/pistol_dh17_generic.iff",
 					--"DH18a GCW", "object/weapon/ranged/pistol/pistol_dh18a_gcw.iff",
 					--"DL44 Metal Light", "object/weapon/ranged/pistol/pistol_dl44_metal_light.iff",
@@ -2896,12 +2900,12 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					--"Flechette Generic", "object/weapon/ranged/pistol/pistol_flechette_generic.iff",
 					--"FWG-5 Legendary", "object/weapon/ranged/pistol/pistol_fwg5_legendary.iff",
 					--"Green Bolt", "object/weapon/ranged/pistol/pistol_green_bolt.iff",
-					--"Heroic Exar", "object/weapon/ranged/pistol/pistol_heroic_exar.iff",
+					"Heroic Exar", "object/weapon/ranged/pistol/pistol_heroic_exar.iff",
 					--"Heroic SD", "object/weapon/ranged/pistol/pistol_heroic_sd.iff",
 					--"Intimidator Pistol", "object/weapon/ranged/pistol/pistol_intimidator.iff",
 					--"Intimidator Generic", "object/weapon/ranged/pistol/pistol_intimidator_generic.iff",
 					--"Ion Stunner Pistol", "object/weapon/ranged/pistol/ep3/pistol_ion_stunner.iff",
-					--"Jawa Pistol", "object/weapon/ranged/pistol/pistol_jawa.iff",
+					"Jawa Pistol", "object/weapon/ranged/pistol/pistol_jawa.iff",
 					--"KYD21 Pistol", "object/weapon/ranged/pistol/ep3/pistol_kyd21.iff",
 					--"KYD21 Generic", "object/weapon/ranged/pistol/pistol_kyd21_generic.iff",
 					--"Launcher Elite", "object/weapon/ranged/pistol/pistol_launcher_elite.iff",
@@ -2928,9 +2932,9 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					--"Som Disruptor Pistol Generic", "object/weapon/ranged/pistol/som_disruptor_pistol_generic.iff",
 					--"Som Ion Relic Pistol", "object/weapon/ranged/pistol/som_ion_relic_pistol.iff",
 					--"Som Ion Relic Pistol Generic", "object/weapon/ranged/pistol/som_ion_relic_pistol_generic.iff"
-				--},
-				--"Post 14 Ranged Rifles",
-				--{
+				},
+				"Post 14 Ranged Rifles",
+				{
 
 
 
@@ -2938,7 +2942,7 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					--"Dawnsorrow", "object/weapon/ranged/rifle/ep3_loot_dawnsorrow.iff",
 					--"Nullifier", "object/weapon/ranged/rifle/ep3_loot_nullifier.iff",
 					--"Retaliation", "object/weapon/ranged/rifle/ep3_loot_retaliation.iff",
-					--"Sharpshooter", "object/weapon/ranged/rifle/ep3_loot_sharpshooter.iff",
+					"Sharpshooter", "object/weapon/ranged/rifle/ep3_loot_sharpshooter.iff",
 					--"Event_rifle_tusken_berserker", "object/weapon/ranged/rifle/event_rifle_tusken_berserker.iff",
 					--"jinkins_j1_rifle", "object/weapon/ranged/rifle/jinkins_j1_rifle.iff",
 					--"Quest_rifle_flame_thrower", "object/weapon/ranged/rifle/quest_rifle_flame_thrower.iff",
@@ -2947,7 +2951,7 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					--"Adventurer Rifle", "object/weapon/ranged/rifle/rifle_adventurer.iff",
 					--"Rifle_alliance_gauss_generic", "object/weapon/ranged/rifle/rifle_alliance_gauss_generic.iff",
 					--"Rifle_avatar_laser_trando", "object/weapon/ranged/rifle/rifle_avatar_laser_trando.iff",
-					--"Bounty DC15 Rifle", "object/weapon/ranged/rifle/ep3/rifle_dc15.iff",
+					"Bounty DC15 Rifle", "object/weapon/ranged/rifle/ep3/rifle_dc15.iff",
 					--"Rifle_bowcaster_heavy", "object/weapon/ranged/rifle/rifle_bowcaster_heavy.iff",
 					--"Rifle_bowcaster_master", "object/weapon/ranged/rifle/rifle_bowcaster_master.iff",
 					--"Rrifle_bowcaster_medium", "object/weapon/ranged/rifle/rifle_bowcaster_medium.iff",
@@ -2961,7 +2965,7 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					--"Flame_thrower_light", "object/weapon/ranged/rifle/rifle_flame_thrower_light.iff",
 					--"Geo_drill", "object/weapon/ranged/rifle/rifle_geo_drill.iff",
 					--"Geo_drill_generic", "object/weapon/ranged/rifle/rifle_geo_drill_generic.iff",
-					--"Laser_light", "object/weapon/ranged/rifle/rifle_laser_light.iff",
+					"Laser_light", "object/weapon/ranged/rifle/rifle_laser_light.iff",
 					--"Ld1", "object/weapon/ranged/rifle/rifle_ld1.iff",
 					--"Ld1_generic", "object/weapon/ranged/rifle/rifle_ld1_generic.iff",
 					--"Lightning_heavy", "object/weapon/ranged/rifle/rifle_lightning_heavy.iff",
@@ -2973,7 +2977,7 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					--"Massassi_ink_generic", "object/weapon/ranged/rifle/rifle_massassi_ink_generic.iff",
 					--"Naktra_crystal", "object/weapon/ranged/rifle/ep3/rifle_naktra_crystal.iff",
 					--"Odararissl", "object/weapon/ranged/rifle/rifle_odararissl.iff",
-					--"Proton", "object/weapon/ranged/rifle/rifle_proton.iff",
+					"Proton", "object/weapon/ranged/rifle/rifle_proton.iff",
 					--"Pvp", "object/weapon/ranged/rifle/rifle_pvp.iff",
 					--"Rebel", "object/weapon/ranged/rifle/rifle_rebel.iff",
 					----"T21_generic", "object/weapon/ranged/rifle/rifle_t21_generic.iff",
@@ -2987,7 +2991,7 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					--"Dp23_generic", "object/weapon/ranged/rifle/som_rifle_dp23_generic.iff",
 					--"Mustafar_disruptor", "object/weapon/ranged/rifle/som_rifle_mustafar_disruptor.iff",
 					--"Mustafar_disruptor_generic", "object/weapon/ranged/rifle/som_rifle_mustafar_disruptor_generic.iff"
-				--},
+				},
 				--"Post 14 Heavy",
 				--{
 					--"Corellian", "object/weapon/ranged/heavy/ep3_loot_corellian.iff",
