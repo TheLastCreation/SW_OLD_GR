@@ -99,17 +99,17 @@ object_tangible_wearables_armor_ris_armor_ris_bracer_r = object_tangible_wearabl
 	mindEncumbrance = 1,
 
 	-- LIGHT, MEDIUM, HEAVY
-	rating = LIGHT,
+	rating = HEAVY,
 
-	kinetic = 15,
-	energy = 15,
-	electricity = 15,
-	stun = 15,
-	blast = 15,
-	heat = 15,
-	cold = 15,
-	acid = 15,
-	lightSaber = 0,
+	kinetic = 100,
+	energy = 100,
+	electricity = 100,
+	stun = 100,
+	blast = 100,
+	heat = 100,
+	cold = 100,
+	acid = 100,
+	lightSaber = 100,
 
 	numberExperimentalProperties = {1, 1, 1, 1, 2, 2, 2, 2, 2, 1, 1, 2, 1},
 	experimentalProperties = {"XX", "XX", "XX", "XX", "OQ", "SR", "OQ", "UT", "MA", "OQ", "MA", "OQ", "MA", "OQ", "XX", "XX", "OQ", "SR", "XX"},
