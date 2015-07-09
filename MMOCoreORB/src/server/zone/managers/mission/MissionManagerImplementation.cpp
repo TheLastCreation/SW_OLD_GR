@@ -564,7 +564,6 @@ void MissionManagerImplementation::populateMissionList(MissionTerminal* missionT
 		float cityBonus = 1.f + player->getSkillMod("private_spec_missions") / 100.f;
 		mission->setRewardCredits(mission->getRewardCredits() * cityBonus);
 
-	//	randomizeHuntingMission(player, mission);
 		mission->setRefreshCounter(counter, true);
 	}
 
@@ -668,8 +667,6 @@ void MissionManagerImplementation::randomizeGenericDestroyMission(CreatureObject
 		return;
 	}
 
-	//mission->setMissionTarget(lairObjectTemplate->getObjectName());
-	mission->setStartPlanet(player->getZone()->getZoneName());
 	mission->setStartPosition(startPos.getX(), startPos.getY(), player->getZone()->getZoneName());
 	mission->setCreatorName(nm->makeCreatureName());
 
@@ -842,7 +839,6 @@ void MissionManagerImplementation::randomizeGenericBountyMission(CreatureObject*
 		}
 	}
 
-	mission->setStartPlanet(playerZone->getZoneName());
 	mission->setStartPosition(player->getPositionX(), player->getPositionY(), playerZone->getZoneName());
 
 	mission->setTargetTemplate(TemplateManager::instance()->getTemplate(STRING_HASHCODE("object/tangible/mission/mission_bounty_target.iff")));
@@ -1051,7 +1047,7 @@ bool MissionManagerImplementation::randomGenericDeliverMission(CreatureObject* p
 	Locker missionSpawnLocker(&missionNpcSpawnMap);
 
 	//Find a spawn point in current city.
-	float minDistance = 0.0f;
+	float minDistance = 10.0f;
 	float maxDistance = 300.0f;
 	Reference<NpcSpawnPoint*> startNpc = missionNpcSpawnMap.getRandomNpcSpawnPoint(planetName.hashCode(), startPosition, getDeliverMissionSpawnType(faction), minDistance, maxDistance);
 
@@ -1068,7 +1064,7 @@ bool MissionManagerImplementation::randomGenericDeliverMission(CreatureObject* p
 
 	}
 	//Search in all parts of the city for the end spawn.
-	minDistance = 5.0f;
+	minDistance = 15.0f;
 	maxDistance = 1500.0f;
 
 	Reference<NpcSpawnPoint*> endNpc;
@@ -1096,14 +1092,13 @@ bool MissionManagerImplementation::randomGenericDeliverMission(CreatureObject* p
 	mission->setMissionTargetName(TemplateManager::instance()->getTemplate(STRING_HASHCODE("object/tangible/mission/mission_datadisk.iff"))->getObjectName());
 
 	String planet = zone->getZoneName();
-	mission->setStartPlanet(planet);
 	mission->setStartPosition(startNpc->getPosition()->getX(), startNpc->getPosition()->getY(), planet, true);
 	mission->setEndPosition(endNpc->getPosition()->getX(), endNpc->getPosition()->getY(), planet);
 
 	mission->setTargetTemplate(TemplateManager::instance()->getTemplate(STRING_HASHCODE("object/tangible/mission/mission_datadisk.iff")));
 
-	int baseCredits = 50;
-	int deliverDistanceCredits = startNpc->getPosition()->distanceTo(*(endNpc->getPosition())) / 10;
+	int baseCredits = 40;
+	int deliverDistanceCredits = (playerPosition.distanceTo(*(startNpc->getPosition())) + startNpc->getPosition()->distanceTo(*(endNpc->getPosition()))) / 10;
 
 	mission->setRewardCredits(baseCredits + deliverDistanceCredits);
 
@@ -1132,21 +1127,28 @@ bool MissionManagerImplementation::randomGenericDeliverMission(CreatureObject* p
 	return true;
 }
 
-NpcSpawnPoint* MissionManagerImplementation::getRandomFreeNpcSpawnPoint(unsigned const int planetCRC, const float x, const float y, const int spawnType) {
+NpcSpawnPoint* MissionManagerImplementation::getFreeNpcSpawnPoint(unsigned const int planetCRC, const float x, const float y, const int spawnType) {
+	Locker missionSpawnLocker(&missionNpcSpawnMap);
+
+	Vector3 pos(x, y, 0);
+
+	//First try for an exact match
+	Reference<NpcSpawnPoint* > npc = missionNpcSpawnMap.findSpawnAt(planetCRC, &pos);
+
+	if (npc != NULL && npc->getInUse() == 0) {
+		return npc;
+	}
+
+	//Next try to find a free NPC spawn point in a circle with a radius of max.
 	float min = 0.0f;
 	float max = 50.0f;
 
-	Locker missionSpawnLocker(&missionNpcSpawnMap);
-
-	//Try to find a free NPC spawn point in a circle with a radius of max.
-	Vector3 pos(x, y, 0);
-
 	while (max <= 1600.0f) {
-		Reference<NpcSpawnPoint* > npc = missionNpcSpawnMap.getRandomNpcSpawnPoint(planetCRC, &pos, spawnType, min, max);
-		if (npc != NULL) {
+		npc = missionNpcSpawnMap.getRandomNpcSpawnPoint(planetCRC, &pos, spawnType, min, max);
+		if (npc != NULL && npc->getInUse() == 0) {
 			return npc;
 		} else {
-			//No NPC spawn point found, double the search area radius.
+			//No free NPC spawn point found, double the search area radius.
 			max *= 2;
 		}
 	}
@@ -1236,7 +1238,6 @@ void MissionManagerImplementation::randomizeGenericEntertainerMission(CreatureOb
 	mission->setMissionNumber(randTexts);
 	mission->setCreatorName(nm->makeCreatureName());
 
-	mission->setStartPlanet(zone->getZoneName());
 	mission->setStartPosition(target->getPositionX(), target->getPositionY(), zone->getZoneName());
 
 	if (missionType == MissionObject::DANCER) {
@@ -1350,7 +1351,6 @@ void MissionManagerImplementation::randomizeGenericHuntingMission(CreatureObject
 	mission->setMissionNumber(randTexts);
 	mission->setCreatorName(creatorName);
 
-	mission->setStartPlanet(playerZone->getZoneName());
 	mission->setStartPosition(player->getPositionX(), player->getPositionY(), playerZone->getZoneName());
 
 	mission->setMissionTargetName(creatureTemplate->getObjectName());
@@ -1418,7 +1418,6 @@ void MissionManagerImplementation::randomizeGenericReconMission(CreatureObject* 
 	mission->setMissionTargetName(TemplateManager::instance()->getTemplate(STRING_HASHCODE("object/tangible/mission/mission_recon_target.iff"))->getObjectName());
 	mission->setTargetTemplate(TemplateManager::instance()->getTemplate(STRING_HASHCODE("object/tangible/mission/mission_recon_target.iff")));
 
-	mission->setStartPlanet(playerZone->getZoneName());
 	mission->setStartPosition(position.getX(), position.getY(), playerZone->getZoneName());
 
 	int reward = position.distanceTo(player->getWorldPosition()) / 5;
@@ -1571,6 +1570,7 @@ LairSpawn* MissionManagerImplementation::getRandomLairSpawn(CreatureObject* play
 		return NULL;
 
 	Vector<Reference<LairSpawn*> >* availableLairList = NULL;
+	int minLevelCeiling = 20;
 
 	if (type == MissionObject::DESTROY) {
 		String missionGroup;
@@ -1604,12 +1604,13 @@ LairSpawn* MissionManagerImplementation::getRandomLairSpawn(CreatureObject* play
 		}
 
 		availableLairList = destroyMissionGroup->getSpawnList();
+		minLevelCeiling = destroyMissionGroup->getMinLevelCeiling();
 
 	} else if (type == MissionObject::HUNTING) {
 		CreatureManager* creatureManager = zone->getCreatureManager();
 		Vector<ManagedReference<SpawnArea* > >* worldAreas = creatureManager->getWorldSpawnAreas();
 
-		ManagedReference<SpawnArea*> spawnArea;
+		ManagedReference<SpawnArea*> spawnArea = NULL;
 
 		if (worldAreas == NULL || worldAreas->size() == 0) {
 			return NULL;
@@ -1638,8 +1639,8 @@ LairSpawn* MissionManagerImplementation::getRandomLairSpawn(CreatureObject* play
 
 	LairSpawn* lairSpawn = NULL;
 
-	//Ensure that the minimum is low enough to get missions on any planet
-	int minLevel = MIN(playerLevel - 5, 20);
+	//Cap the minLevel to prevent a group from being too high to get missions on a planet
+	int minLevel = MIN(playerLevel - 5, minLevelCeiling);
 
 	//Try to pick random lair within playerLevel +-5;
 	while (counter > 0 && !foundLair) {

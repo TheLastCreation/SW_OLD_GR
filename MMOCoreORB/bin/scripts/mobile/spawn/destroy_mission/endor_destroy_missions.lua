@@ -1,4 +1,6 @@
 endor_destroy_missions = {
+	minLevelCeiling = 40,
+
 	lairSpawns = {
 		{
 			lairTemplateName = "endor_squall_rabid_neutral_small",
@@ -208,6 +210,12 @@ endor_destroy_missions = {
 			lairTemplateName = "endor_merek_toxic_battlelord_neutral_small",
 			minDifficulty = 40,
 			maxDifficulty = 50,
+			size = 25,
+		},
+		{
+			lairTemplateName = "endor_mantigrue_deranged_neutral_none_boss_01",
+			minDifficulty = 43,
+			maxDifficulty = 47,
 			size = 25,
 		},
 		{

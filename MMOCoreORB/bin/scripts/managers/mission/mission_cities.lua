@@ -12,7 +12,6 @@ cities = {
 	{ "dathomir", "Science Outpost", -85, -1600, 125 },
 	{ "endor", "Smuggler Outpost", -905, 1584, 130 },
 	{ "endor", "Research Outpost", 3221, -3471, 100 },
-	{ "ghomrassen", "Mos Rassen", -3383, -5176, 350 },
 	{ "lok", "Nym's Stronghold", 450, 5214, 501 },
 	{ "naboo", "Theed", -5262, 4252, 836 },
 	{ "naboo", "Keren", 1616, 2736, 822 },
@@ -30,7 +29,9 @@ cities = {
 	{ "tatooine", "Mos Espa", -2878, 2226, 435 },
 	{ "tatooine", "Mos Eisley", 3693, -4788, 688 },
 	{ "tatooine", "Mos Entha", 1344, 3149, 516 },
+	{ "tatooine", "Mos Taike", 3847, 2336, 150 },
 	{ "tatooine", "Anchorhead", 40, -5348, 330 },
+	{ "tatooine", "Wayfar", -5176, -6574, 165 },
 	{ "yavin4", "Yavin IV Mining Outpost", -312, 4865, 100 },
 	{ "yavin4", "Yavin IV Labor Outpost", -6925, -5707, 130 }
 }

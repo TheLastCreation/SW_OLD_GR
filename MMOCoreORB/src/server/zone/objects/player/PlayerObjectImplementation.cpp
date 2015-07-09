@@ -535,6 +535,8 @@ int PlayerObjectImplementation::addExperience(const String& xpType, int xp, bool
 	if (experienceList.contains(xpType)) {
 		xp += experienceList.get(xpType);
 
+
+
 		if (xp <= 0 && xpType != "jedi_general") {
 			removeExperience(xpType, notifyClient);
 			return 0;
@@ -1763,6 +1765,10 @@ void PlayerObjectImplementation::setForcePowerMax(int newValue, bool notifyClien
 
 	if(forcePower > forcePowerMax)
 		setForcePower(forcePowerMax, true);
+
+	if (forcePower < forcePowerMax) {
+		activateForcePowerRegen();
+	}
 
 	if (notifyClient == true){
 		// Update the force power bar max.
