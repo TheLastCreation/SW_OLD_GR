@@ -117,7 +117,7 @@ DeathWatchBunkerScreenPlay = ScreenPlay:new {
 
 	partStrings = { "@dungeon/death_watch:armorsmith_items", "@dungeon/death_watch:droid_engineer_items", "@dungeon/death_watch:tailored_items" },
 
-	terminalSkills = { "combat_commando_master", "combat_1hsword_master", "jedi", "combat_unarmed_master", "combat_polearm_master", "combat_pistol_master", "combat_rifleman_master", "combat_2hsword_master", "combat_bountyhunter_master", "combat_brawler_master", "combat_carbine_master", "science_combatmedic_master", "crafting_armorsmith_master", "crafting_droidengineer_master", "crafting_tailor_master", "crafting_artisan_master" },
+	terminalSkills = { "", "", "", "", "crafting_armorsmith_master", "crafting_droidengineer_master", "crafting_tailor_master", "crafting_artisan_master" },
 
 	terminalSkillMessage = { "@dungeon/death_watch:master_armorsmith_required", "@dungeon/death_watch:master_droidengineer_required", "@dungeon/death_watch:master_tailor_required", "@dungeon/death_watch:master_artisan_required" },
 
