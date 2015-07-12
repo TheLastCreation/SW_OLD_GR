@@ -130,7 +130,7 @@ String FactoryCrateImplementation::getSerialNumber() {
 	return prototype->getSerialNumber();
 }
 
-bool FactoryCrateImplementation::extractObjectToInventory(CreatureObject* player) {
+bool FactoryCrateImplementation::extractObjectToParent() {
 
 	Locker locker(_this.getReferenceUnsafeStaticCast());
 
@@ -140,10 +140,10 @@ bool FactoryCrateImplementation::extractObjectToInventory(CreatureObject* player
 	}
 
 	Reference<TangibleObject*> prototype = getPrototype();
-	ManagedReference<SceneObject*> inventory = player->getSlottedObject("inventory").get();
+	ManagedReference<SceneObject*> strongParent = getParent().get();
 
-	if (prototype == NULL || !prototype->isTangibleObject() || inventory == NULL) {
-		error("FactoryCrateImplementation::extractObjectToInventory has a NULL or non-tangible item");
+	if (prototype == NULL || !prototype->isTangibleObject() || strongParent == NULL) {
+		error("FactoryCrateImplementation::extractObject has a NULL or non-tangible item");
 		return false;
 	}
 
@@ -162,20 +162,22 @@ bool FactoryCrateImplementation::extractObjectToInventory(CreatureObject* player
 		String errorDescription;
 		int errorNumber = 0;
 
-		if ((errorNumber = inventory->canAddObject(protoclone, -1, errorDescription)) != 0) {
+		if ((errorNumber = strongParent->canAddObject(protoclone, -1, errorDescription)) != 0) {
 			if (errorDescription.length() > 1) {
+				ManagedReference<SceneObject*> player = strongParent->getParentRecursively(SceneObjectType::PLAYERCREATURE);
+
+				if (player != NULL)
 					player->sendMessage(new ChatSystemMessage(errorDescription));
-			} else {
-				inventory->error("cannot extratObjectToInventory " + String::valueOf(errorNumber));
-			}
+			} else
+				strongParent->error("cannot extratObjectToParent " + String::valueOf(errorNumber));
 
 			protoclone->destroyObjectFromDatabase(true);
 
 			return false;
 		}
 
-		inventory->transferObject(protoclone, -1, true);
-		inventory->broadcastObject(protoclone, true);
+		strongParent->transferObject(protoclone, -1, true);
+		strongParent->broadcastObject(protoclone, true);
 
 		setUseCount(getUseCount() - 1);
 

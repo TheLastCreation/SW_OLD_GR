@@ -49,8 +49,6 @@ public:
 				return GENERALERROR;
 			}
 
-			Locker clocker(player, creature);
-
 			String action;
 			args.getStringToken(action);
 

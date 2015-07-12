@@ -4,7 +4,6 @@
 #include "server/zone/objects/creature/AiAgent.h"
 #include "server/zone/objects/player/PlayerObject.h"
 #include "server/zone/objects/tangible/components/generic/CoaMessageDataComponent.h"
-#include "server/zone/managers/player/BadgeList.h"
 
 int FactionRecruiterContainerComponent::canAddObject(SceneObject* sceneObject, SceneObject* object, int containmentType, String& errorDescription) {
 
@@ -71,11 +70,8 @@ bool FactionRecruiterContainerComponent::transferObject(SceneObject* sceneObject
 	AiAgent* recruiter = cast<AiAgent*>(sceneObject);
 
 	String recruiterFaction = recruiter->getFactionString().toLowerCase();
-	bool hasBadge = false;
-	
-	const Badge* badge = BadgeList::instance()->get("event_project_dead_eye_1");
-	if (badge != NULL)
-		hasBadge = ghost->hasBadge(badge->getIndex());
+
+	bool hasBadge = ghost->hasBadge(Badge::EVENT_PROJECT_DEAD_EYE_1);
 
 	String faction = data->getFaction().toLowerCase();
 
@@ -108,7 +104,7 @@ bool FactionRecruiterContainerComponent::transferObject(SceneObject* sceneObject
 	player->addCashCredits(credits, true);
 
 	if (!hasBadge) {
-		ghost->awardBadge(badge->getIndex());
+		ghost->awardBadge(Badge::EVENT_PROJECT_DEAD_EYE_1);
 		ghost->increaseFactionStanding(recruiterFaction, 500);
 	}
 

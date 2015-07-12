@@ -39,7 +39,7 @@ public:
 
 			ManagedReference<FactoryCrate*> crate = cast<FactoryCrate*>( object.get());
 
-			if (!crate->extractObjectToInventory(creature)) {
+			if (!crate->extractObjectToParent()) {
 				//error("Error extracting object in ExtractObjectCommand");
 			}
 

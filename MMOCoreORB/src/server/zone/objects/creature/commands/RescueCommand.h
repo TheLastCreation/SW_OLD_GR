@@ -34,8 +34,6 @@ public:
 		if(targetCreature == NULL || !targetCreature->isInCombat())
 			return INVALIDTARGET;
 
-		Locker clocker(targetCreature, creature);
-
 		if(targetCreature->getMainDefender() == NULL)
 			return INVALIDTARGET;
 

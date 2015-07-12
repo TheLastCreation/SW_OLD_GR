@@ -1,8 +1,8 @@
 spacer = Creature:new {
 	objectName = "@mob/creature_names:spacer",
 	randomNameType = NAME_GENERIC_TAG,
-	socialGroup = "thug",
-	faction = "thug",
+	socialGroup = "townsperson",
+	faction = "townsperson",
 	level = 10,
 	chanceHit = 1,
 	damageMin = 645,

@@ -47,19 +47,15 @@ void DroidObjectImplementation::fillAttributeList(AttributeListMessage* msg, Cre
 
 int DroidObjectImplementation::handleObjectMenuSelect(CreatureObject* player, byte selectedID){
 
-	PetControlDevice* pcd = getControlDevice().get().castTo<PetControlDevice*>();
 	if (getLinkedCreature().get() == player) {
 		// Allow modules to handle radials if desired
+		PetControlDevice* pcd = getControlDevice().get().castTo<PetControlDevice*>();
 		for( int i=0; i<modules.size(); i++){
 			BaseDroidModuleComponent* module = modules.get(i);
 			module->handleObjectMenuSelect(player, selectedID, pcd);
 		}
 	}
-	else if (isMerchantBarker()) {
-		BaseDroidModuleComponent* module = getModule("merchant_barker");
-		if(module != NULL)
-			module->handleObjectMenuSelect(player, selectedID, pcd);
-	}
+
 	return SceneObjectImplementation::handleObjectMenuSelect(player, selectedID); // PetMenuComponent
 
 }
@@ -67,12 +63,7 @@ int DroidObjectImplementation::handleObjectMenuSelect(CreatureObject* player, by
 void DroidObjectImplementation::fillObjectMenuResponse(ObjectMenuResponse* menuResponse, CreatureObject* player){
 
 	SceneObjectImplementation::fillObjectMenuResponse( menuResponse, player ); // PetMenuComponent
-	if (isMerchantBarker() && getLinkedCreature().get() != player) {
-		BaseDroidModuleComponent* module = getModule("merchant_barker");
-		if (module != NULL)
-			module->fillObjectMenuResponse( _this.getReferenceUnsafeStaticCast(), menuResponse, player );
-		return;
-	}
+
 	if (getLinkedCreature().get() != player) {
 		return;
 	}
@@ -340,16 +331,6 @@ bool DroidObjectImplementation::isTrapDroid() {
 	}
 	return false;
 }
-bool DroidObjectImplementation::isMerchantBarker() {
-	for( int i=0; i<modules.size(); i++){
-		BaseDroidModuleComponent* module = modules.get(i);
-		if(module->getModuleName() == "merchant_barker") {
-			return true;
-		}
-	}
-	return false;
-}
-
 bool DroidObjectImplementation::hasStorage() {
 	for( int i=0; i<modules.size(); i++){
 		BaseDroidModuleComponent* module = modules.get(i);

@@ -9,8 +9,6 @@
 #define BADGES_H_
 
 #include "engine/engine.h"
-#include "server/ServerCore.h"
-#include "server/zone/managers/player/BadgeList.h"
 #include "Badge.h"
 
 class Badges : public Serializable, public ReadWriteLock {
@@ -74,56 +72,44 @@ public:
 	}
 
 public:
-	void setBadge(const uint badgeid) {
-		const Badge* badge = BadgeList::instance()->get(badgeid);
-		setBadge(badge);
-	}
-	void setBadge(const Badge* badge) {
-		if (badge == NULL) return;
-
+	void setBadge(int badgeindex) {
 		Locker locker(this);
 
-		const int badgeIndex = badge->getIndex();
+		int bitmaskNumber = badgeindex >> 5;
 
-		int bitmaskNumber = badgeIndex >> 5;
-
-		uint32 bit = badgeIndex % 32;
+		uint32 bit = badgeindex % 32;
 		uint32 value = 1 << bit;
 
 		if (bitmaskNumber > 4 || bitmaskNumber < 0) {
-			Logger::console.error("Badge::setBadge wrong badge index " + String::valueOf(badgeIndex));
+			Logger::console.error("Badge::setBadge wrong badge index " + String::valueOf(badgeindex));
 
 			return;
 		}
 
 		if (!(badgeBitmask[bitmaskNumber] & value)) {
 			badgeBitmask[bitmaskNumber] |= value;
-			const int badgeType = badge->getTypeInt(); 
-			badgeTypeCounts[badgeType]++;
+			badgeTypeCounts[Badge::getType(badgeindex)]++;
 			badgeTotal++;
 		}
 	}
 
-	void unsetBadge(Badge* badge) {
-		if (badge == NULL) return;
+	void unsetBadge(int badgeindex) {
 		Locker locker(this);
 
-		const int badgeIndex = badge->getIndex();
-		int bitmaskNumber = badgeIndex >> 5;
+		int bitmaskNumber = badgeindex >> 5;
 
-		uint32 bit = badgeIndex % 32;
+		uint32 bit = badgeindex % 32;
 		uint32 value = 1 << bit;
 
 		if (bitmaskNumber > 4 || bitmaskNumber < 0) {
-			Logger::console.error("Badge::unsetBadge wrong badge index " + String::valueOf(badgeIndex));
+			Logger::console.error("Badge::unsetBadge wrong badge index " + String::valueOf(badgeindex));
 
 			return;
 		}
 
 		if (badgeBitmask[bitmaskNumber] & value) {
 			badgeBitmask[bitmaskNumber] -= value;
-			const int badgeType = badge->getTypeInt();
-			badgeTypeCounts[badgeType]--;
+			badgeTypeCounts[Badge::getType(badgeindex)]--;
 			badgeTotal--;
 		}
 

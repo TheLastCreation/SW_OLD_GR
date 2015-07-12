@@ -81,7 +81,7 @@ void JukeboxImplementation::notifyInsertToZone(Zone* zone) {
 
 	jbox->registerObserver(ObserverEventType::PARENTCHANGED, observer);
 
-	ManagedReference<SceneObject*> obj = jbox->getRootParent().get();
+	ManagedReference<SceneObject*> obj = jbox->getParentRecursively(SceneObjectType::BUILDING);
 
 	if (obj == NULL || !obj->isStructureObject())
 		setRadius(100);
@@ -179,7 +179,7 @@ void JukeboxImplementation::changeMusic(const String& song) {
 	curSong = song;
 
 	SortedVector<ManagedReference<QuadTreeEntry*> > closeObjects;
-	zone->getInRangeObjects(getWorldPositionX(), getWorldPositionY(), radius, &closeObjects, true);
+	zone->getInRangeObjects(getPositionX(), getPositionY(), radius, &closeObjects, true);
 
 	for (int i = 0; i < closeObjects.size(); i++) {
 		SceneObject* targetObject = cast<SceneObject*>(closeObjects.get(i).get());
