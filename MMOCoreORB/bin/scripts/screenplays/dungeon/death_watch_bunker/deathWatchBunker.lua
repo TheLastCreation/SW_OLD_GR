@@ -59,22 +59,22 @@ DeathWatchBunkerScreenPlay = ScreenPlay:new {
 
 	doorData = {
 		{ cellAccess = 5996316, lockTime = 10, doorType = 1 }, -- Entrance
-		{ cellAccess = 5996326, lockTime = 10, doorType = 1 }, -- Area A
-		{ cellAccess = 5996338, lockTime = 10, doorType = 1 }, -- Area B
-		{ cellAccess = 5996352, lockTime = 10, doorType = 1 }, -- Mines
-		{ cellAccess = 5996374, lockTime = 6, doorType = 1 }, -- Armorsmith area
-		{ cellAccess = 5996370, lockTime = 6, doorType = 1 }, -- DE area
-		{ cellAccess = 5996368, lockTime = 6, doorType = 1 } -- Tailor area
+		{ cellAccess = 5996326, lockTime = 10, doorType = 2 }, -- Area A
+		{ cellAccess = 5996338, lockTime = 10, doorType = 2 }, -- Area B
+		{ cellAccess = 5996352, lockTime = 10, doorType = 2 }, -- Mines
+		{ cellAccess = 5996374, lockTime = 6, doorType = 3 }, -- Armorsmith area
+		{ cellAccess = 5996370, lockTime = 6, doorType = 3 }, -- DE area
+		{ cellAccess = 5996368, lockTime = 6, doorType = 3 } -- Tailor area
 	},
 
 	states = {
-		2,  entrance unlocked
-		4,  terminal a unlocked
-		8,  terminal b unlocked
-		16,  terminal mines unlocked
-		32,  armorsmith door unlocked
-		64,  droidengineer door unlocked
-		128  tailor door unlocked
+		2,--entrance unlocked
+		4,--terminal a unlocked
+		8,--terminal b unlocked
+		16,--terminal mines unlocked
+		32,--armorsmith door unlocked
+		64,--droidengineer door unlocked
+		128--tailor door unlocked
 	},
 
 	doorMessages = {
