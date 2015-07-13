@@ -1,6 +1,3 @@
-includeFile("lair/creature_dynamic/ghomrassen_rockmite_swarm_neutral_none.lua")
-
-
 
 includeFile("lair/creature_dynamic/corellia_bageraset_herd_neutral_none.lua")
 includeFile("lair/creature_dynamic/corellia_canoid_pack_neutral_none.lua")

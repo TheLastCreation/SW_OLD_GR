@@ -1,6 +1,3 @@
-includeFile("lair/npc_dynamic/ghomrassen_blacksun_lair_neutral_large.lua")
-
-
 
 includeFile("lair/npc_dynamic/corellia_afarathu_cult_patrol_neutral_none.lua")
 includeFile("lair/npc_dynamic/corellia_beldonna_patrol_neutral_none.lua")

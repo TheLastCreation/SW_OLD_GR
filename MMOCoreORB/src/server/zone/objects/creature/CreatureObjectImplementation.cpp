@@ -511,6 +511,12 @@ void CreatureObjectImplementation::setLevel(int level, bool randomHam) {
 	msg->close();
 
 	broadcastMessage(msg, true);
+
+	if (isGrouped()) {
+		Locker clocker(group, asCreatureObject());
+
+		group->calcGroupLevel();
+	}
 }
 
 void CreatureObjectImplementation::setInstrumentID(int instrumentid,
@@ -3149,6 +3155,8 @@ void CreatureObjectImplementation::destroyPlayerCreatureFromDatabase(bool destro
 
 	if (isInGuild()) {
 		GuildObject* guild = getGuildObject();
+
+		Locker clocker(guild, asCreatureObject());
 
 		guild->removeMember(oid);
 	}

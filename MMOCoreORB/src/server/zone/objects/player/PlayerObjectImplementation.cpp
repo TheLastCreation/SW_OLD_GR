@@ -75,7 +75,6 @@
 #include "server/zone/managers/gcw/GCWManager.h"
 #include "server/zone/managers/jedi/JediManager.h"
 #include "events/ForceRegenerationEvent.h"
-#include "FsExperienceTypes.h"
 #include "server/login/account/Account.h"
 #include "server/zone/objects/tangible/deed/eventperk/EventPerkDeed.h"
 
@@ -1117,12 +1116,37 @@ void PlayerObjectImplementation::removeAllFriends() {
 		ManagedReference<CreatureObject*> playerToRemove = zoneServer->getObject(objID).castTo<CreatureObject*>();
 
 		if (playerToRemove != NULL && playerToRemove->isPlayerCreature()) {
-			EXECUTE_TASK_2(playerToRemove, name, {
+			EXECUTE_TASK_2(playerToRemove, playerName, {
 					Locker locker(playerToRemove_p);
 
 					PlayerObject* ghost = playerToRemove_p->getPlayerObject();
 					if (ghost != NULL) {
-						ghost->removeFriend(name_p, false);
+						ghost->removeFriend(playerName_p, false);
+					}
+			});
+		}
+
+		removeReverseFriend(name);
+	}
+}
+
+void PlayerObjectImplementation::removeAllReverseFriends(const String& oldName) {
+	PlayerManager* playerManager = server->getPlayerManager();
+	ZoneServer* zoneServer = server->getZoneServer();
+
+	while (friendList.reversePlayerCount() > 0) {
+		String name = friendList.getReversePlayer(0).toLowerCase();
+		uint64 objID = playerManager->getObjectID(name);
+
+		ManagedReference<CreatureObject*> reverseFriend = zoneServer->getObject(objID).castTo<CreatureObject*>();
+
+		if (reverseFriend != NULL && reverseFriend->isPlayerCreature()) {
+			EXECUTE_TASK_2(reverseFriend, oldName, {
+					Locker locker(reverseFriend_p);
+
+					PlayerObject* ghost = reverseFriend_p->getPlayerObject();
+					if (ghost != NULL) {
+						ghost->removeFriend(oldName_p, false);
 					}
 			});
 		}
@@ -1364,7 +1388,7 @@ void PlayerObjectImplementation::increaseFactionStanding(const String& factionNa
 	else if (player->getFaction() == factionName.hashCode())
 		newAmount = MIN(FactionManager::instance()->getFactionPointsCap(player->getFactionRank()), newAmount);
 	else
-		newAmount = MIN(1000, newAmount);;
+		newAmount = MIN(1000, newAmount);
 
 	factionStandingList.put(factionName, newAmount);
 
@@ -2195,21 +2219,6 @@ bool PlayerObjectImplementation::hasChosenVeteranReward( const String& rewardTem
 
 }
 
-void PlayerObjectImplementation::updateForceSensitiveElegibleExperiences(int type) {
-	DeltaVectorMap<String, int>* xpList = getExperienceList();
-
-	// Clear the vector for new strings...
-	fsEligibleExperiences.removeAll();
-
-
-	for (int i=0; i < xpList->size(); ++i){
-		String xpString = xpList->getKeyAt(i);
-		if (FsExperienceTypes::isValid(type, xpString) && (!fsEligibleExperiences.contains(xpList->getKeyAt(i)))) {
-			fsEligibleExperiences.add(xpList->getKeyAt(i));
-		}
-	}
-}
-
 int PlayerObjectImplementation::getCharacterAgeInDays() {
 	ManagedReference<CreatureObject*> creature = dynamic_cast<CreatureObject*>(parent.get().get());
 
@@ -2241,10 +2250,4 @@ int PlayerObjectImplementation::getCharacterAgeInDays() {
 	int days = timeDelta / 60 / 60 / 24;
 
 	return days;
-}
-
-String PlayerObjectImplementation::getForceSensitiveExperienceRatio(const String& type) {
-	if (!FsExperienceTypes::getFsRatio(type).isEmpty())
-		return FsExperienceTypes::getFsRatio(type);
-	else return "";
 }
