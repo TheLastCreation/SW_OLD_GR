@@ -6,9 +6,7 @@ death_watch_bunker_commoners = {
 	maximumLevel = 0,
 	lootItems = {
 		{itemTemplate = "alum_gel_packet", weight = 2000000},
-		{itemTemplate = "alum_mineral", weight = 2000000},
-		{itemTemplate = "executioners_hack_schematic", weight = 2000000},
-		{itemTemplate = "mandalorian_rebreather", weight = 2000000},
+		{itemTemplate = "alum_mineral", weight = 6000000},
 		{itemTemplate = "pistol_de10_schematic", weight = 2000000}
 	}
 }
