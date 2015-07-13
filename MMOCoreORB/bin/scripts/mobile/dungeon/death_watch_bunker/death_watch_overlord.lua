@@ -28,7 +28,7 @@ death_watch_overlord = Creature:new {
 
 	templates = {"object/mobile/dressed_death_watch_gold.iff"},
 	lootGroups = {
-		 {
+       {
 			groups = {
 				{group = "pod_racer_one_deed_group", chance = 1000000},
 				{group = "pod_racer_two_deed_group", chance = 500000},
@@ -43,9 +43,8 @@ death_watch_overlord = Creature:new {
 				{group = "speederbike_swoop_deed_group", chance = 1000000},
 			},
 			lootChance = 9000000
-		}
-	},
-		{
+		},
+	    {
 			groups = {
 				{group = "death_watch_bunker_overlord_shared", chance =  500000},
 				{group = "death_watch_bunker_overlord_quest", chance  = 9500000}
