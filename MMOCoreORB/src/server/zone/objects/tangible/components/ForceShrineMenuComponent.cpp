@@ -125,7 +125,7 @@ int ForceShrineMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, C
 				return 0;
 			}
 			ZoneServer* zserv = creature->getZoneServer();
-			String DarkRobe = "object/tangible/wearables/robe/robe_jedi_dark_s01.iff";
+			String DarkRobe = "object/tangible/wearables/robe/robe_jedi_dark_s04.iff";
 			ManagedReference<SceneObject*> darkRobe = zserv->createObject(DarkRobe.hashCode(), 1);
 			inventory->transferObject(darkRobe, -1);
 			inventory->broadcastObject(darkRobe, true);
@@ -137,7 +137,7 @@ int ForceShrineMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, C
 				return 0;
 				}
 				ZoneServer* zserv = creature->getZoneServer();
-				String DarkRobe1 = "object/tangible/wearables/robe/robe_jedi_dark_s01.iff";
+				String DarkRobe1 = "object/tangible/wearables/robe/robe_jedi_dark_s04.iff";
 				ManagedReference<SceneObject*> darkRobe1 = zserv->createObject(DarkRobe1.hashCode(), 1);
 				inventory1->transferObject(darkRobe1, -1);
 				inventory1->broadcastObject(darkRobe1, true);
@@ -163,7 +163,7 @@ int ForceShrineMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, C
 				return 0;
 			}
 			ZoneServer* zserv = creature->getZoneServer();
-			String LightRobe = "object/tangible/wearables/robe/robe_jedi_light_s01.iff";
+			String LightRobe = "object/tangible/wearables/robe/robe_jedi_light_s04.iff";
 			ManagedReference<SceneObject*> lightRobe = zserv->createObject(LightRobe.hashCode(), 1);
 			inventory->transferObject(lightRobe, -1);
 			inventory->broadcastObject(lightRobe, true);
@@ -175,7 +175,7 @@ int ForceShrineMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, C
 				return 0;
 				}
 				ZoneServer* zserv = creature->getZoneServer();
-				String LightRobe1 = "object/tangible/wearables/robe/robe_jedi_light_s01.iff";
+				String LightRobe1 = "object/tangible/wearables/robe/robe_jedi_light_s04.iff";
 				ManagedReference<SceneObject*> lightRobe1 = zserv->createObject(LightRobe1.hashCode(), 1);
 				inventory1->transferObject(lightRobe1, -1);
 				inventory1->broadcastObject(lightRobe1, true);
