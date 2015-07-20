@@ -71,7 +71,7 @@ object_tangible_wearables_robe_robe_jedi_light_s04 = object_tangible_wearables_r
 				noTrade = 0,
 
 				objectMenuComponent = {"cpp", "RobeObjectMenuComponent"},
-				certificationsRequired = {"force_rank_light_member"},
+				certificationsRequired = {"force_title_jedi_rank_02"},
 				attributeListComponent = "JediRobeAttributeListComponent",
 }
 
