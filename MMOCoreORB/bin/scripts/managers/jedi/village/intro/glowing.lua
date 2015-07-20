@@ -94,22 +94,18 @@ end
 -- @param pCreatureObject pointer to the creature object of the player.
 -- @return the total number of interesting badges.
 function Glowing:countBadges(pCreatureObject)
+	local professionBadges = self:countBadgesInListToUpperLimit(pCreatureObject, PROFESSIONBADGES, NUMBEROFPROFESSIONBADGESREQUIRED)
 	local jediBadges = self:countBadgesInListToUpperLimit(pCreatureObject, JEDIBADGES, NUMBEROFJEDIBADGESREQUIRED)
+	local contentBadges = self:countBadgesInListToUpperLimit(pCreatureObject, CONTENTBADGES, NUMBEROFCONTENTBADGESREQUIRED)
 	local difficultBadges = self:countBadgesInListToUpperLimit(pCreatureObject, DIFFICULTBADGES, NUMBEROFDIFFICULTBADGESREQUIRED)
 	local easyBadges = self:countBadgesInListToUpperLimit(pCreatureObject, EASYBADGES, NUMBEROFEASYBADGESREQUIRED)
-	return jediBadges + difficultBadges + easyBadges
+	return professionBadges + jediBadges + contentBadges + difficultBadges + easyBadges
 end
 
 -- Check if the player is glowing or not.
 -- @param pCreatureObject pointer to the creature object of the player.
 function Glowing:isGlowing(pCreatureObject)
-	local player = LuaCreatureObject(pCreatureObject)
-	local pInventory = player:getSlottedObject("inventory")
-	if self:countBadges(pCreatureObject) >= TOTALNUMBEROFBADGESREQUIRED then
-		VillageJediManagerCommon.setJediProgressionScreenPlayState(pCreatureObject, VILLAGE_JEDI_PROGRESSION_GLOWING)
-		--giveItem(pInventory, "object/tangible/loot/quest/force_sensitive/force_crystal.iff", -1)
-		player:sendSystemMessage("Congratulations on becoming GLOWY! Go to any force shrine to continue your progress towards Jedi.")
-	end
+	return VillageJediManagerCommon.hasJediProgressionScreenPlayState(pCreatureObject, VILLAGE_JEDI_PROGRESSION_GLOWING)
 end
 
 -- Event handler for the BADGEAWARDED event.
@@ -118,7 +114,14 @@ end
 -- @param badgeNumber the badge number that was awarded.
 -- @return 0 to keep the observer active.
 function Glowing:badgeAwardedEventHandler(pCreatureObject, pCreatureObject2, badgeNumber)
-	self:isGlowing(pCreatureObject)
+	if (pCreatureObject == nil) then
+		return 0
+	end
+
+	if self:countBadges(pCreatureObject) >= TOTALNUMBEROFBADGESREQUIRED then
+		VillageJediManagerCommon.setJediProgressionScreenPlayState(pCreatureObject, VILLAGE_JEDI_PROGRESSION_GLOWING)
+		OldManEncounter:start(pCreatureObject)
+	end
 
 	return 0
 end
@@ -148,9 +151,9 @@ end
 -- Handling of the checkForceStatus command.
 -- @param pCreatureObject pointer to the creature object of the player who performed the command
 function Glowing:checkForceStatusCommand(pCreatureObject)
-	ObjectManager.withCreatureObject(pCreatureObject, function(creatureObject)
-		creatureObject:sendSystemMessage("@jedi_spam:fs_progress_" .. self:getJediProgressionStatus(pCreatureObject))
-	end)
+	local progress = "@jedi_spam:fs_progress_" .. self:getJediProgressionStatus(pCreatureObject)
+
+	CreatureObject(pCreatureObject):sendSystemMessage(progress)
 end
 
 return Glowing
