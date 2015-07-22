@@ -49,20 +49,20 @@ object_installation_faction_perk_turret_block_med = object_installation_faction_
 	zoneComponent = "TurretZoneComponent",
 	dataObjectComponent = "TurretDataComponent",
 		-- Damagetypes in WeaponObject
-	vulnerability = BLAST,
+	vulnerability = BLAST + LIGHTSABER,
 
 	-- LIGHT, MEDIUM, HEAVY
 	rating = HEAVY,
 
-	kinetic = 75,
-	energy = 75,
-	electricity = 75,
-	stun = 80,
+	kinetic = 80,
+	energy = 95,
+	electricity = 80,
+	stun = 100,
 	blast = -1,
-	heat = 75,
-	cold = 75,
-	acid = 75,
-	lightSaber =75,
+	heat = 80,
+	cold = 80,
+	acid = 80,
+	lightSaber = -1,
 	chanceHit = 4,
 	weapon = "object/weapon/ranged/turret/turret_block_large.iff",
 }
