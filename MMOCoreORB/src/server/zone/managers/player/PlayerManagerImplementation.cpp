@@ -38,8 +38,6 @@
 #include "server/zone/objects/player/sessions/ProposeUnitySession.h"
 #include "server/zone/objects/player/sessions/VeteranRewardSession.h"
 #include "server/zone/objects/tangible/OptionBitmask.h"
-#include "server/zone/managers/player/JukeboxSong.h"
-#include "server/zone/managers/player/QuestInfo.h"
 
 #include "server/zone/objects/intangible/ShipControlDevice.h"
 #include "server/zone/objects/ship/ShipObject.h"
@@ -82,7 +80,6 @@
 #include "server/zone/packets/tangible/UpdatePVPStatusMessage.h"
 
 #include "server/zone/packets/tangible/TangibleObjectDeltaMessage3.h"
-#include "server/zone/packets/player/PlayMusicMessage.h"
 #include "server/zone/packets/player/PlayerObjectDeltaMessage6.h"
 #include "server/zone/packets/object/StartingLocationListMessage.h"
 
@@ -126,8 +123,6 @@
 #include "server/zone/objects/player/Races.h"
 #include "server/zone/objects/tangible/components/droid/DroidPlaybackModuleDataComponent.h"
 
-#include "server/zone/objects/player/badges/Badge.h"
-
 #include <iostream>
 
 int PlayerManagerImplementation::MAX_CHAR_ONLINE_COUNT = 2;
@@ -144,7 +139,7 @@ PlayerManagerImplementation::PlayerManagerImplementation(ZoneServer* zoneServer,
 
 	loadLuaConfig();
 	loadStartingLocations();
-	loadQuestInfo();
+	loadBadgeMap();
 	loadPermissionLevels();
 
 	setGlobalLogging(true);
@@ -221,28 +216,6 @@ void PlayerManagerImplementation::loadLuaConfig() {
 
 	info("Loaded " + String::valueOf(veteranRewards.size()) + " veteran rewards.", true);
 
-	LuaObject jboxSongs = lua->getGlobalObject("jukeboxSongs");
-
-	if (jboxSongs.isValidTable()) {
-		for (int i = 1; i <= jboxSongs.getTableSize(); ++i) {
-			LuaObject songData = jboxSongs.getObjectAt(i);
-
-			if (songData.isValidTable()) {
-				String songStringID = songData.getStringAt(1);
-				String songPath = songData.getStringAt(2);
-
-				Reference<JukeboxSong*> data = new JukeboxSong(songStringID, songPath);
-
-				jukeboxSongs.add(data);
-			}
-
-			songData.pop();
-		}
-
-	}
-
-	jboxSongs.pop();
-
 	delete lua;
 	lua = NULL;
 }
@@ -264,30 +237,37 @@ void PlayerManagerImplementation::loadStartingLocations() {
 	info("Loaded " + String::valueOf(startingLocationList.getTotalLocations()) + " starting locations.", true);
 }
 
-void PlayerManagerImplementation::loadQuestInfo() {
-	TemplateManager* templateManager = TemplateManager::instance();
+void PlayerManagerImplementation::loadBadgeMap() {
+	info("Loading badges.");
 
-	IffStream* iffStream = templateManager->openIffFile("datatables/player/quests.iff");
+	IffStream* iffStream = TemplateManager::instance()->openIffFile("datatables/badge/badge_map.iff");
 
 	if (iffStream == NULL) {
-		info("quests.iff could not be found.", true);
+		info("Couldn't load badge map.", true);
 		return;
 	}
 
-	DataTableIff dtable;
-	dtable.readObject(iffStream);
+	DataTableIff dtiff;
+	dtiff.readObject(iffStream);
 
-	delete iffStream;
+	highestBadgeIndex = 0;
 
-	for (int i = 0; i < dtable.getTotalRows(); ++i) {
-		DataTableRow* row = dtable.getRow(i);
+	for (int i = 0; i < dtiff.getTotalRows(); ++i) {
+		int idx = 0;
+		String key;
 
-		QuestInfo* quest = new QuestInfo();
-		quest->parseDataTableRow(row);
-		questInfo.add(quest);
+		DataTableRow* row = dtiff.getRow(i);
+		row->getCell(0)->getValue(idx);
+		row->getCell(1)->getValue(key);
+		badgeMap.put(idx, key);
+
+		if (idx > highestBadgeIndex)
+			highestBadgeIndex = idx;
 	}
 
-	info("Loaded " + String::valueOf(questInfo.size()) + " quests.", true);
+	info("Loaded " + String::valueOf(badgeMap.size()) + " badges.", true);
+
+	delete iffStream;
 }
 
 void PlayerManagerImplementation::loadPermissionLevels() {
@@ -335,26 +315,6 @@ void PlayerManagerImplementation::loadNameMap() {
 	StringBuffer msg;
 	msg << "loaded " << nameMap->size() << " character names in memory";
 	info(msg.toString(), true);
-}
-
-int PlayerManagerImplementation::getPlayerQuestID(const String& name) {
-	for (int i = 0; i < questInfo.size(); ++i) {
-		QuestInfo* quest = questInfo.get(i);
-
-		if (quest != NULL && quest->getQuestName().hashCode() == name.hashCode())
-			return i;
-	}
-
-	return -1;
-}
-
-String PlayerManagerImplementation::getPlayerQuestParent(int questID) {
-	QuestInfo* quest = questInfo.get(questID);
-
-	if (quest != NULL)
-		return quest->getQuestParent();
-	else
-		return "";
 }
 
 bool PlayerManagerImplementation::existsName(const String& name) {
@@ -581,7 +541,7 @@ void PlayerManagerImplementation::createSkippedTutorialBuilding(CreatureObject* 
 
 	locker.release();
 
-	Reference<SceneObject*> travelTutorialTerminal = server->createObject(STRING_HASHCODE("object/tangible/terminal/terminal_travel_tutorial.iff"), 1);
+	Reference<SceneObject*> travelTutorialTerminal = server->createObject(STRING_HASHCODE("object/tangible/beta/beta_terminal_warp.iff"), 1);
 
 	SceneObject* cellTut = tutorial->getCell(1);
 
@@ -940,7 +900,7 @@ void PlayerManagerImplementation::sendPlayerToCloner(CreatureObject* player, uin
 	if (ghost->hasPvpTef())
 		ghost->schedulePvpTefRemovalTask(true);
 		
-    if (player->hasSkill("force_rank_dark_novice") || player->hasSkill("force_rank_dark_novice")){
+	if (player->hasSkill("force_rank_dark_novice") || player->hasSkill("force_rank_dark_novice")){
 		ghost->setFactionStatus(FactionStatus::OVERT);
 	}else{
 		ghost->setFactionStatus(FactionStatus::ONLEAVE);
@@ -977,24 +937,9 @@ void PlayerManagerImplementation::sendPlayerToCloner(CreatureObject* player, uin
 
 	player->notifyObservers(ObserverEventType::PLAYERCLONED, player, 0);
 
-
 	// Jedi experience loss.
-	if(ghost->getJediState() >= 2) {
-		int jediXpCap = ghost->getXpCap("jedi_general");
-		int xpLoss = (int)(jediXpCap * -0.05);
-		int curExp = ghost->getExperience("jedi_general");
-
-		int negXpCap = -10000000; // Cap on negative jedi experience
-
-		if ((curExp + xpLoss) < negXpCap)
-			xpLoss = negXpCap - curExp;
-
-		awardExperience(player, "jedi_general", xpLoss, true);
-		StringIdChatParameter message("base_player","prose_revoke_xp");
-		message.setDI(xpLoss * -1);
-		message.setTO("exp_n", "jedi_general");
-		player->sendSystemMessage(message);
-	}
+	if (ghost->getJediState() > 1)
+		awardExperience(player, "jedi_general", -50000, true);
 }
 
 void PlayerManagerImplementation::ejectPlayerFromBuilding(CreatureObject* player) {
@@ -1305,83 +1250,70 @@ void PlayerManagerImplementation::removeEncumbrancies(CreatureObject* player, Ar
 	player->healDamage(player, CreatureAttribute::WILLPOWER, mindEncumb, true);
 }
 
-void PlayerManagerImplementation::awardBadge(PlayerObject* ghost, uint32 badgeId) {
-	const Badge* badge = BadgeList::instance()->get(badgeId);
-	if (badge != NULL)
-		awardBadge(ghost, badge);
-}
 
-void PlayerManagerImplementation::awardBadge(PlayerObject* ghost, const Badge* badge) {
-	if (badge == NULL) {
-		ghost->error("Failed to award null badge.");	
+void PlayerManagerImplementation::awardBadge(PlayerObject* ghost, uint32 badge) {
+	if (!Badge::exists(badge))
 		return;
-	}
 
 	StringIdChatParameter stringId("badge_n", "");
-	stringId.setTO("badge_n", badge->getKey());
+	stringId.setTO("badge_n", Badge::getName(badge));
 
 	ManagedReference<CreatureObject*> player = dynamic_cast<CreatureObject*>(ghost->getParent().get().get());
-	const unsigned int badgeId = badge->getIndex();
-	if (ghost->hasBadge(badgeId)) {
+
+	if (ghost->hasBadge(badge)) {
 		stringId.setStringId("badge_n", "prose_hasbadge");
 		player->sendSystemMessage(stringId);
 		return;
 	}
 
-	ghost->setBadge(badgeId);
+	ghost->setBadge(badge);
 	stringId.setStringId("badge_n", "prose_grant");
 	player->sendSystemMessage(stringId);
-	
-	if (badge->getHasMusic()) {
-		String music = badge->getMusic();
-		PlayMusicMessage* musicMessage = new PlayMusicMessage(music);
-		player->sendMessage(musicMessage);
-	}
 
-	player->notifyObservers(ObserverEventType::BADGEAWARDED, player, badgeId);
-	BadgeList* badgeList = BadgeList::instance();
+	player->notifyObservers(ObserverEventType::BADGEAWARDED, player, badge);
+
 	switch (ghost->getNumBadges()) {
 	case 5:
-		awardBadge(ghost, badgeList->get("count_5"));
+		awardBadge(ghost, Badge::COUNT_5);
 		break;
 	case 10:
-		awardBadge(ghost, badgeList->get("count_10"));
+		awardBadge(ghost, Badge::COUNT_10);
 		break;
 	case 25:
-		awardBadge(ghost, badgeList->get("count_25"));
+		awardBadge(ghost, Badge::COUNT_25);
 		break;
 	case 50:
-		awardBadge(ghost, badgeList->get("count_50"));
+		awardBadge(ghost, Badge::COUNT_50);
 		break;
 	case 75:
-		awardBadge(ghost, badgeList->get("count_75"));
+		awardBadge(ghost, Badge::COUNT_75);
 		break;
 	case 100:
-		awardBadge(ghost, badgeList->get("count_100"));
+		awardBadge(ghost, Badge::COUNT_100);
 		break;
 	case 125:
-		awardBadge(ghost, badgeList->get("count_125"));
+		awardBadge(ghost, Badge::COUNT_125);
 		break;
 	default:
 		break;
 	}
 
-	if (badge->getType() == Badge::EXPLORATION) {
-		switch (ghost->getBadgeTypeCount(static_cast<uint8>(Badge::EXPLORATION))) {
+	if (Badge::getType(badge) == Badge::EXPLORATION) {
+		switch (ghost->getBadgeTypeCount(Badge::EXPLORATION)) {
 		case 10:
-			awardBadge(ghost, badgeList->get("bdg_exp_10_badges"));
+			awardBadge(ghost, Badge::BDG_EXP_10_BADGES);
 			break;
 		case 20:
-			awardBadge(ghost, badgeList->get("bdg_exp_20_badges"));
+			awardBadge(ghost, Badge::BDG_EXP_20_BADGES);
 			break;
 		case 30:
-			awardBadge(ghost, badgeList->get("bdg_exp_30_badges"));
+			awardBadge(ghost, Badge::BDG_EXP_30_BADGES);
 			break;
 		case 40:
-			awardBadge(ghost, badgeList->get("bdg_exp_40_badges"));
+			awardBadge(ghost, Badge::BDG_EXP_40_BADGES);
 			break;
 		case 45:
-			awardBadge(ghost, badgeList->get("bdg_exp_45_badges"));
+			awardBadge(ghost, Badge::BDG_EXP_45_BADGES);
 			break;
 		default:
 			break;
@@ -3033,6 +2965,12 @@ int PlayerManagerImplementation::calculatePlayerLevel(CreatureObject* player, St
 	int level = MIN(25, player->getSkillMod("private_" + weaponType + "_combat_difficulty") / 100 + 1);
 
 	return level;
+}
+
+String PlayerManagerImplementation::getBadgeKey(int idx) {
+	VectorMapEntry<int, String> entry = badgeMap.elementAt(idx);
+
+	return entry.getValue();
 }
 
 CraftingStation* PlayerManagerImplementation::getNearbyCraftingStation(CreatureObject* player, int type) {
