@@ -1,19 +1,3 @@
-Skip to content
-This repository  
-Pull requests
-Issues
-Gist
- @terminator2014
-You don’t have any verified emails. We recommend verifying at least one email.
-Email verification helps our support team verify ownership if you lose account access and allows you to receive all the notifications you ask for.
- Unwatch 6
-  Unstar 1
-  Fork 0
-grserver/server PRIVATE
-Tree: 1bbfd3f4fe  server/MMOCoreORB/src/server/zone/managers/player/PlayerManagerImplementation.cpp
-@terminator2014terminator2014 on 8 May {Added new jedi overt}
-3 contributors @terminator2014 @Lasko-GR @grserver
-RawBlameHistory    4772 lines (3509 sloc)  154.944 kB
 /*
  * PlayerManagerImplementation.cpp
  *
