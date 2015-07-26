@@ -942,7 +942,7 @@ void PlayerManagerImplementation::sendPlayerToCloner(CreatureObject* player, uin
 		
     if (player->hasSkill("force_rank_dark_novice") || player->hasSkill("force_rank_dark_novice")){
 		ghost->setFactionStatus(FactionStatus::OVERT);
-	} else {
+	}else{
 		ghost->setFactionStatus(FactionStatus::ONLEAVE);
 	}
 
