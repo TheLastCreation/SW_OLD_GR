@@ -95,7 +95,7 @@ object_tangible_wearables_ring_ring_mark_hero = object_tangible_wearables_ring_s
 		"object/mobile/vendor/zabrak_male.iff"
 	},
 
-	noTrade = 1,
+	noTrade = 0,
 
 	objectMenuComponent = {"cpp", "HeroRingMenuComponent"},
 	attributeListComponent = "HeroRingAttributeListComponent",
