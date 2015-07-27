@@ -933,17 +933,11 @@ void PlayerManagerImplementation::sendPlayerToCloner(CreatureObject* player, uin
 		player->addWounds(CreatureAttribute::MIND, 100, true, false);
 		player->addShockWounds(100, true);
 	}
-
-	if (ghost->getFactionStatus() != FactionStatus::ONLEAVE)
-		ghost->setFactionStatus(FactionStatus::ONLEAVE);
-
-	if (ghost->hasPvpTef())
-		ghost->schedulePvpTefRemovalTask(true);
 		
     if (player->hasSkill("force_rank_dark_novice") || player->hasSkill("force_rank_dark_novice")){
-		ghost->setFactionStatus(FactionStatus::OVERT);
+		    ghost->setFactionStatus(FactionStatus::OVERT);
 	}else{
-		ghost->setFactionStatus(FactionStatus::ONLEAVE);
+		    ghost->setFactionStatus(FactionStatus::ONLEAVE);
 	}
 
 	// Decay
@@ -979,22 +973,8 @@ void PlayerManagerImplementation::sendPlayerToCloner(CreatureObject* player, uin
 
 
 	// Jedi experience loss.
-	if(ghost->getJediState() >= 2) {
-		int jediXpCap = ghost->getXpCap("jedi_general");
-		int xpLoss = (int)(jediXpCap * -0.05);
-		int curExp = ghost->getExperience("jedi_general");
-
-		int negXpCap = -50000; // Cap on negative jedi experience
-
-		if ((curExp + xpLoss) < negXpCap)
-			xpLoss = negXpCap - curExp;
-
-		awardExperience(player, "jedi_general", xpLoss, true);
-		StringIdChatParameter message("base_player","prose_revoke_xp");
-		message.setDI(xpLoss * -1);
-		message.setTO("exp_n", "jedi_general");
-		player->sendSystemMessage(message);
-	}
+	if (ghost->getJediState() > 1)
+		awardExperience(player, "jedi_general", -75000, true);
 }
 
 void PlayerManagerImplementation::ejectPlayerFromBuilding(CreatureObject* player) {
