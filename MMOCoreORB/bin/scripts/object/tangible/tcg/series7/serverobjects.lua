@@ -1,2 +1,2 @@
 --Series7
-includeFile("tangible/tcg/series7/atst_chair.lua")
+includeFile("tangible/tcg/series7/decorative_atst_chair.lua")
