@@ -41,8 +41,8 @@
 --this exception also makes it possible to release a modified version 
 
 object_tangible_tcg_series7_shared_decorative_atst_chair = SharedTangibleObjectTemplate:new {
- clientTemplateFileName = "object/tangible/tcg/series8/shared_decorative_atst_chair.iff"
+ clientTemplateFileName = "object/tangible/tcg/series7/shared_decorative_atst_chair.iff"
 }
-ObjectTemplates:addClientTemplate(object_tangible_tcg_series8_shared_decorative_atst_chair, "object/tangible/tcg/series8/shared_decorative_atst_chair.iff")
+ObjectTemplates:addClientTemplate(object_tangible_tcg_series7_shared_decorative_atst_chair, "object/tangible/tcg/series7/shared_decorative_atst_chair.iff")
 
 
