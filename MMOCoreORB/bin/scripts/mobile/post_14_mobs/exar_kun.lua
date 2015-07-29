@@ -32,7 +32,7 @@ exar_kun = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "jedi_robes",   chance = 10000000},
+				{group = "jedi_robes",   chance = 10000000}
 			},
 			lootChance = 9500000
 		},
