@@ -1,6 +1,4 @@
 --Copyright (C) 2010 <SWGEmu>
-
-
 --This File is part of Core3.
 
 --This program is free software; you can redistribute 
@@ -40,22 +38,7 @@
 --gives permission to release a modified version without this exception; 
 --this exception also makes it possible to release a modified version 
 
+object_building_kashyyyk_poi_kash_rryatt_lvl1_walk_treetop_a5 = object_building_kashyyyk_shared_poi_kash_rryatt_lvl1_walk_treetop_a5:new {
 
-
---Children folder includes
-includeFile("building/base/serverobjects.lua")
-includeFile("building/corellia/serverobjects.lua")
-includeFile("building/dathomir/serverobjects.lua")
-includeFile("building/endor/serverobjects.lua")
-includeFile("building/faction_perk/serverobjects.lua")
-includeFile("building/general/serverobjects.lua")
-includeFile("building/kashyyyk/serverobjects.lua")
-includeFile("building/lok/serverobjects.lua")
-includeFile("building/military/serverobjects.lua")
-includeFile("building/naboo/serverobjects.lua")
-includeFile("building/player/serverobjects.lua")
-includeFile("building/poi/serverobjects.lua")
-includeFile("building/tatooine/serverobjects.lua")
-includeFile("building/yavin/serverobjects.lua")
-
--- Server Objects
+}
+ObjectTemplates:addTemplate(object_building_kashyyyk_poi_kash_rryatt_lvl1_walk_treetop_a5, "object/building/kashyyyk/poi_kash_rryatt_lvl1_walk_treetop_a5.iff")
