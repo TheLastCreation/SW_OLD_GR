@@ -1,8 +1,8 @@
 exar_kun = Creature:new {
 	--objectName = "@mob/creature_names:exar_kun",
 	customName = "Exar Kun",
-	socialGroup = "",
-	pvpFaction = "",
+	socialGroup = "KUN",
+	pvpFaction = "KUN",
 	faction = "",
 	level = 152,
 	chanceHit = 8.5,

@@ -1,8 +1,8 @@
 exar_kun_cultist_01 = Creature:new {
 	--objectName = "@mob/creature_names:exar_kun_cultist_01",
 	customName = "Exar Kun Cultist",
-	socialGroup = "",
-	pvpFaction = "",
+	socialGroup = "KUN",
+	pvpFaction = "KUN",
 	faction = "",
 	level = 20,
 	chanceHit = 0.28,
@@ -33,7 +33,7 @@ exar_kun_cultist_01 = Creature:new {
 	--scale = 1.25,
 	weapons = {"dark_jedi_weapons_gen4"},
 	conversationTemplate = "",
-	attacks = merge(lightsabermaster,forcepowermaster)
+	attacks = merge(lightsabermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(exar_kun_cultist_01, "exar_kun_cultist_01")
