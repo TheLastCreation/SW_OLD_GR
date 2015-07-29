@@ -1542,4 +1542,8 @@ includeFile("items/swggr_custom/ns_pants_type_01.lua")
 includeFile("items/swggr_custom/ns_pants_type_02.lua")
 includeFile("items/swggr_custom/ns_shirt_type_01.lua")
 includeFile("items/swggr_custom/ns_shirt_type_02.lua")
+includeFile("items/swggr_custom/robe_s32.lua")
+includeFile("items/swggr_custom/robe_s32_h1.lua")
+includeFile("items/swggr_custom/robe_s33.lua")
+includeFile("items/swggr_custom/robe_s33_h1.lua")
 
