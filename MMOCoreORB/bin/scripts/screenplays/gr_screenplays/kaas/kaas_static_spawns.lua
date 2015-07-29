@@ -1,4 +1,3 @@
---This is to be used for static spawns that are NOT part of caves, cities, dungeons, poi's, or other large screenplays.
 KaasStaticSpawnsScreenPlay = ScreenPlay:new 
 {
 	numberOfActs = 1,
@@ -16,7 +15,10 @@ end
 
 function KaasStaticSpawnsScreenPlay:spawnMobiles()
 	
-	--
+	--Inside Temple
+	spawnMobile("kaas", "exar_kun", 200,  -0.2, -37.2, -23.0, 0, 35791397)
+	spawnMobile("kaas", "exar_kun_cultist_01", 200,  4.1, -37.3, -16.6, 1, 35791397)
+	spawnMobile("kaas", "exar_kun_cultist_01", 200,  -4.9, -37.3, -16.8, -1, 35791397)
 	
 	
 	
