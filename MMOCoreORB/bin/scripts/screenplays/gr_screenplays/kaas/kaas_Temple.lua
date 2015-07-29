@@ -13,6 +13,13 @@ function KaasTempleScreenPlay:start()
 	end
 end
 
+function KaasTempleScreenPlay:spawnSceneObjects()
+ 
+	-- Temple
+    spawnSceneObject("kaas", "object/tangible/furniture/all/frn_all_tiki_torch_s1.iff", -4.9, -37.3, -16.8, -1, 35791397)   
+
+end
+
 function KaasTempleScreenPlay:spawnMobiles()
 	
 	--Inside Temple

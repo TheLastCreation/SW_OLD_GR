@@ -4,13 +4,13 @@ exar_kun = Creature:new {
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",
-	level = 20,
-	chanceHit = 0.28,
-	damageMin = 90,
-	damageMax = 110,
-	baseXp = 1514,
-	baseHAM = 300,
-	baseHAMmax = 330,
+	level = 152,
+	chanceHit = 8.5,
+	damageMin = 1100,
+	damageMax = 2500,
+	baseXp = 14314,
+	baseHAM = 110000,
+	baseHAMmax = 110000,
 	armor = 0,
 	resists = {25,25,25,25,25,25,25,-1,-1},
 	meatType = "",
@@ -22,18 +22,24 @@ exar_kun = Creature:new {
 	milk = 0,
 	tamingChance = 0,
 	ferocity = 0,
-	pvpBitmask = ATTACKABLE, -- + ATTACKABLE + ENEMY,
-	creatureBitmask = KILLER + STALKER,
+	pvpBitmask = AGGRESSIVE + ATTACKABLE + ENEMY,
+	creatureBitmask = KILLER,
 	optionsBitmask = 128,
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/exar_kun.iff"},
 		
-	lootGroups = {},
+	lootGroups = {
+		{
+			groups = {
+				{group = "jedi_robes",   chance = 10000000},
+			},
+			lootChance = 9500000
+		},
 	--scale = 1.25,
 	weapons = {"dark_jedi_weapons_gen4"},
 	conversationTemplate = "",
-	attacks = merge(lightsabermaster,forcepowermaster)
+	attacks = merge(lightsabermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(exar_kun, "exar_kun")
