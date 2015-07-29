@@ -1,19 +1,19 @@
-KaasStaticSpawnsScreenPlay = ScreenPlay:new 
-{
+KaasTempleScreenPlay = ScreenPlay:new {
 	numberOfActs = 1,
 
-	screenplayName = "KaasSpawnsScreenPlay",
+	screenplayName = "KaasTemple",
+
+registerScreenPlay("KaasTempleScreenPlay", true)
+
 }
 
-registerScreenPlay("KaasStaticSpawnsScreenPlay", true)
-
-function KaasStaticSpawnsScreenPlay:start()
+function KaasTempleScreenPlay:start()
 	if (isZoneEnabled("kaas")) then
-		self:spawnMobiles()
+		        self:spawnMobiles()
 	end
 end
 
-function KaasStaticSpawnsScreenPlay:spawnMobiles()
+function KaasTempleScreenPlay:spawnMobiles()
 	
 	--Inside Temple
 	spawnMobile("kaas", "exar_kun", 200,  -0.2, -37.2, -23.0, 0, 35791397)
