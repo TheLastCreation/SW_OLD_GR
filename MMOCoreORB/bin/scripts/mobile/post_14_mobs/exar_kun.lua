@@ -32,10 +32,11 @@ exar_kun = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "jedi_robes",   chance = 10000000}
+				{group = "jedi_robes", chance = 10000000}
 			},
-			lootChance = 9500000
+			lootChance = 10000000
 		},
+	},
 	--scale = 1.25,
 	weapons = {"dark_jedi_weapons_gen4"},
 	conversationTemplate = "",
