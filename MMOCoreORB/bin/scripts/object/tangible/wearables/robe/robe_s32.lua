@@ -25,7 +25,7 @@ object_tangible_wearables_robe_robe_s32 = object_tangible_wearables_robe_shared_
 				    {"jedi_force_power_regen", 100}
 				},
 
-				noTrade = 1,
+				noTrade = 0,
 
 				objectMenuComponent = {"cpp", "RobeObjectMenuComponent"},
 				certificationsRequired = {"force_title_jedi_rank_02"},

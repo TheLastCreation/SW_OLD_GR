@@ -22,7 +22,7 @@ object_tangible_wearables_robe_robe_chronicle_master = object_tangible_wearables
 				
 				skillMods = {},
 
-				noTrade = 1,
+				noTrade = 0,
 
 
 }
