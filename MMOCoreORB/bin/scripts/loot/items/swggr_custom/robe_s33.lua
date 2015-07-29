@@ -3,7 +3,7 @@
 robe_s33 = {
 	minimumLevel = 0,
 	maximumLevel = -1,
-	customObjectName = "Hero",
+	customObjectName = "Shatterpoint Cloak",
 	directObjectTemplate = "object/tangible/wearables/robe/robe_s33.iff",
 	craftingValues = {
 	},

@@ -3,7 +3,7 @@
 robe_s32_h1 = {
 	minimumLevel = 0,
 	maximumLevel = -1,
-	customObjectName = "shatter_cloak",
+	customObjectName = "Cloak of Hate",
 	directObjectTemplate = "object/tangible/wearables/robe/robe_s32_h1.iff",
 	craftingValues = {
 	},
