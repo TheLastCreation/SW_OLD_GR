@@ -64,7 +64,7 @@ public:
 
 		buff->setStartMessage(startStringId);
 		buff->setEndMessage(endStringId);
-		buff->setSkillModifier("force_shield", 45);
+		buff->setSkillModifier("force_shield", 65);
 		buff->init(&eventTypes);
 
 		creature->addBuff(buff);
