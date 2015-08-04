@@ -1,8 +1,8 @@
 dark_jedi_sentinel = Creature:new {
 	objectName = "@mob/creature_names:dark_jedi_sentinel",
 	randomNameType = NAME_GENERIC_TAG,
-	socialGroup = "self",
-	faction = "",
+	socialGroup = "imperial",
+	faction = "imperial",
 	level = 300,
 	chanceHit = 30,
 	damageMin = 2645,
@@ -10,8 +10,8 @@ dark_jedi_sentinel = Creature:new {
 	baseXp = 28532,
 	baseHAM = 1106000,
 	baseHAMmax = 1352000,
-	armor = 3,
-	resists = {95,95,95,95,95,95,95,95,-1},
+	armor = 1,
+	resists = {30,30,30,30,30,30,30,30,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -32,15 +32,10 @@ dark_jedi_sentinel = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "holocron_dark", chance = 900000},
-				{group = "crystals_premium", chance = 900000},
-				{group = "weapons_all", chance = 2000000},
-				{group = "armor_all", chance = 2000000},
-				{group = "armor_attachments", chance = 1100000},
-				{group = "clothing_attachments", chance = 1100000},
-				{group = "wearables_all", chance = 2000000}
-			}
-		}
+				{group = "crystal_named", chance = 10000000}
+			},
+			lootChance = 10000000
+		},
 	},
 	weapons = {"dark_jedi_weapons_gen4"},
 	conversationTemplate = "",
