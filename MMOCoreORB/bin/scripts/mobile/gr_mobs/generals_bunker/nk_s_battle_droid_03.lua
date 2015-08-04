@@ -1,8 +1,8 @@
 nk_s_battle_droid_03 = Creature:new {
 	--objectName = "@mob/creature_names:mand_bunker_super_battle_droid",
 	customName = "NK-Super Battle Droid",
-	socialGroup = "",
-	pvpFaction = "",
+	socialGroup = "NK",
+	pvpFaction = "NK",
 	faction = "",
 	level = 220,
 	chanceHit = 18,

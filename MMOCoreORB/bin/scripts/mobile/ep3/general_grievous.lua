@@ -28,8 +28,14 @@ general_grievous = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/ep3/general_grievous.iff"},
-		
-	lootGroups = {},
+	lootGroups = {
+		{
+			groups = {
+				{group = "musty_house_loot_deed", chance = 10000000}
+			},
+			lootChance = 10000000
+		},
+	},
 	weapons = {"dark_jedi_weapons_gen4"},
 	conversationTemplate = "",
 	attacks = merge(lightsabermaster,forcepowermaster)

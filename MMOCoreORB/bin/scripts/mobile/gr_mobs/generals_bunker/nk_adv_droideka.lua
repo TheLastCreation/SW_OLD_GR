@@ -1,8 +1,8 @@
 nk_adv_droideka = Creature:new {
 	--objectName = "@mob/creature_names:nym_droideka_strong",
 	customName = "NK-Advanced Droideka",
-	socialGroup = "",
-	pvpFaction = "",
+	socialGroup = "NK",
+	pvpFaction = "NK",
 	faction = "",
 	level = 65,
 	chanceHit = 4,

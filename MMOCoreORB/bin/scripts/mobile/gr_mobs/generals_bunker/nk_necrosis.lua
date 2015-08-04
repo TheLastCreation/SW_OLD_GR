@@ -1,8 +1,8 @@
 nk_necrosis = Creature:new {
 	--objectName = "@mob/creature_names:ep3_general_grievous",
 	customName = "General Grievous",
-	socialGroup = "",
-	pvpFaction = "",
+	socialGroup = "NK",
+	pvpFaction = "NK",
 	faction = "",
 	level = 200,
 	chanceHit = 0.28,
