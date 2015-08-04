@@ -76,6 +76,7 @@ function GeneralsBunkerScreenPlay:spawnMobiles()
 	spawnMobile("lok", "nk_droideka", 200, -89.2, -21.0, 223.3, -177, 9686012)
 	spawnMobile("lok", "nk_droideka", 200, -85.8, -21.0, 223.5, -177, 9686012)
 	spawnMobile("lok", "outbreak_undead_deathtrooper_03_m", 200, -73.0, -21.0, 219.0, 89, 9686012)
+	spawnMobile("lok", "palpatine_hologram", 200, 70.7, -23.0, 219.1, -90, 9686011)
 	
 	
 	
