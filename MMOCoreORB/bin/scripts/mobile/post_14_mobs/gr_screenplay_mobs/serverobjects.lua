@@ -1,0 +1,3 @@
+--Child Folders
+--includeFile("post_14_mobs/kill_the_general/serverobjects.lua")
+--includeFile("post_14_mobs/tatooine/serverobjects.lua")
