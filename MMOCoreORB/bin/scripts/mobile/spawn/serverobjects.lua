@@ -29,7 +29,7 @@ includeFile("spawn/tatooine_easy.lua")
 includeFile("spawn/tatooine_medium.lua")
 includeFile("spawn/ghomrassen_easy.lua")
 includeFile("spawn/ghomrassen_medium.lua")
-includeFile("spawn/ghomrassen_hard.lua")
+--includeFile("spawn/ghomrassen_hard.lua")
 
 
 --destroy_mission
