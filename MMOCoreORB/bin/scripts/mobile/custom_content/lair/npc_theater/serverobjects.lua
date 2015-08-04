@@ -1,0 +1,1 @@
+--includeFile("lair/npc_theater/corellia_afarathu_cult_outpost_neutral_medium.lua")
