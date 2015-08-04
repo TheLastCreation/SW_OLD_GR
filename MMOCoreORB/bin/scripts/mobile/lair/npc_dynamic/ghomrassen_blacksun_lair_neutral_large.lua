@@ -6,6 +6,8 @@ ghomrassen_blacksun_lair_neutral_large = Lair:new {
 	buildingsMedium = {},
 	buildingsHard = {},
 	buildingsVeryHard = {},
+	mobType = "npc",
+	buildingType = "none"
 }
 
 addLairTemplate("ghomrassen_blacksun_lair_neutral_large", ghomrassen_blacksun_lair_neutral_large)
