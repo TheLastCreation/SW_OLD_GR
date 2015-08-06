@@ -1,4 +1,5 @@
 --This is to be used for static spawns that are NOT part of caves, cities, dungeons, poi's, or other large screenplays.
+local ObjectManager = require("managers.object.object_manager")
 
 CorelliaStaticSpawnsScreenPlay = ScreenPlay:new
 {
@@ -43,8 +44,13 @@ function CorelliaStaticSpawnsScreenPlay:notifyTurretDestroyed(pTurret, pPlayer)
 end
 
 function CorelliaStaticSpawnsScreenPlay:respawnTurret(pTurret)
+	if pTurret == nil then return end
+
 	TangibleObject(pTurret):setConditionDamage(0, false)
 	local pZone = getZoneByName("corellia")
+
+	if pZone == nil then return end
+
 	SceneObject(pZone):transferObject(pTurret, -1, true)
 end
 
@@ -86,7 +92,5 @@ function CorelliaStaticSpawnsScreenPlay:spawnMobiles()
 	spawnSceneObject("corellia", "object/tangible/camp/camp_stool_tall.iff", -1419.5, 85.2822, 1978.6, 0, 1, 0, 0, 0 )
 	spawnSceneObject("corellia", "object/tangible/camp/camp_stool_tall.iff", -1420.0, 85.2822, 1976.9, 0, 1, 0, 0, 0 )
 
-	-- Cnet 
-	spawnMobile("corellia", "kkatamk", 200, -4.9, 0.6, 73.0, 0, 1855672)
 
 end
