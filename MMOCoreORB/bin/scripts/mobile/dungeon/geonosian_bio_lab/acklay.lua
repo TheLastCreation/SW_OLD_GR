@@ -32,7 +32,7 @@ acklay = Creature:new {
 			groups = {
 				{group = "acklay", chance = 10000000}
 			},
-			lootChance = 7500000
+			lootChance = 4500000
 		}
 	},
 	weapons = {},

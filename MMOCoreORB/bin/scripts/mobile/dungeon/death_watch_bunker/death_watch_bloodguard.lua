@@ -33,19 +33,19 @@ death_watch_bloodguard = Creature:new {
 				{group = "death_watch_bunker_commoners", chance = 6000000},
 				{group = "death_watch_bunker_lieutenants", chance = 4000000}
 			},
-			lootChance = 9500000
+			lootChance = 4500000
 		},
 		{
 	        groups = {
 				{group = "bounty_hunter_armor", chance = 10000000},			
 			},
-			lootChance = 9500000
+			lootChance = 4500000
 		},
 		{
 	        groups = {
 				{group = "armor_attachments", chance = 10000000},			
 			},
-			lootChance = 9500000
+			lootChance = 4500000
 		}
 	},
 	weapons = {"pirate_weapons_heavy"},

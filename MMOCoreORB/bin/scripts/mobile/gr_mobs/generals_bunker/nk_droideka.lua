@@ -39,7 +39,7 @@ nk_droideka = Creature:new {
 				{group = "carbines", chance = 1000000},
 				{group = "tailor_components", chance = 500000}
 			},
-			lootChance = 9000000
+			lootChance = 4500000
 		},
 	},
 	defaultAttack = "creaturerangedattack",

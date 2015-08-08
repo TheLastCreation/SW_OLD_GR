@@ -39,7 +39,7 @@ tusken_witch_doctor = Creature:new {
 				{group = "color_crystals", chance = 500000},
 				{group = "crystals_premium", chance = 500000}
 			},
-			lootChance = 9000000
+			lootChance = 4500000
 		}
 	},
 	weapons = {"tusken_weapons"},

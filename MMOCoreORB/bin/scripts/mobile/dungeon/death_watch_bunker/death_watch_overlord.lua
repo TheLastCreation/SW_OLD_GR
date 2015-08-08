@@ -40,7 +40,7 @@ death_watch_overlord = Creature:new {
 				{group = "landspeeder_av21_deed_group", chance = 25000},
 				{group = "speederbike_deed_group", chance = 1000000},
 				{group = "speederbike_flash_deed_group", chance = 1000000},
-				{group = "speederbike_swoop_deed_group", chance = 1000000},
+				{group = "speederbike_swoop_deed_group", chance = 1000000}
 			},
 			lootChance = 9000000
 		},
@@ -55,13 +55,13 @@ death_watch_overlord = Creature:new {
 	        groups = {
 				{group = "clothing_attachments", chance = 10000000},			
 			},
-			lootChance = 9500000
+			lootChance = 4500000
 		},
 		{
 	        groups = {
 				{group = "armor_attachments", chance = 10000000},			
 			},
-			lootChance = 9500000
+			lootChance = 4500000
 		}
 	},
 	weapons = {"dark_trooper_weapons"},
