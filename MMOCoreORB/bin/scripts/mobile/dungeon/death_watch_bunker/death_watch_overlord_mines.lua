@@ -28,11 +28,40 @@ death_watch_overlord_mines = Creature:new {
 
 	templates = {"object/mobile/dressed_death_watch_gold.iff"},
 	lootGroups = {
-		{
+       {
 			groups = {
-				{group = "death_watch_bunker_overlord_shared", chance =  10000000}
+				{group = "pod_racer_one_loot_deed", chance = 1000000},
+				{group = "pod_racer_two_loot_deed", chance = 500000},
+				{group = "landspeeder_desert_skiff_loot_deed", chance = 500000},
+				{group = "barc_speeder_imperial_loot_deed", chance = 2275000},
+				{group = "barc_speeder_rebel_loot_deed", chance = 350000},
+				{group = "barc_speeder_loot_deed", chance = 350000},
+				{group = "g_jabbas_house_loot_deed", chance = 2000000},
+				{group = "landspeeder_av21_loot_deed", chance = 25000},
+				{group = "speederbike_loot_deed", chance = 1000000},
+				{group = "speederbike_flash_loot_deed_", chance = 1000000},
+				{group = "speederbike_swoop_loot_deed_", chance = 1000000}
 			},
-			lootChance = 10000000
+			lootChance = 9000000
+		},
+	    {
+			groups = {
+				{group = "death_watch_bunker_overlord_shared", chance =  500000},
+				{group = "death_watch_bunker_overlord_quest", chance  = 9500000}
+			},
+			lootChance = 4000000
+		},
+		{
+	        groups = {
+				{group = "mandalorian_schemes", chance = 10000000},			
+			},
+			lootChance = 3500000
+		},
+		{
+	        groups = {
+				{group = "armor_attachments", chance = 10000000},			
+			},
+			lootChance = 2500000
 		}
 	},
 	weapons = {"dark_trooper_weapons"},

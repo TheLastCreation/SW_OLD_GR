@@ -8,8 +8,8 @@ death_watch_overlord = Creature:new {
 	damageMin = 1245,
 	damageMax = 2200,
 	baseXp = 20948,
-	baseHAM = 350000,
-	baseHAMmax = 350000,
+	baseHAM = 390000,
+	baseHAMmax = 390000,
 	armor = 3,
 	resists = {80,80,90,80,45,45,100,70,-1},
 	meatType = "",
@@ -30,17 +30,17 @@ death_watch_overlord = Creature:new {
 	lootGroups = {
        {
 			groups = {
-				{group = "pod_racer_one_deed_group", chance = 1000000},
-				{group = "pod_racer_two_deed_group", chance = 500000},
-				{group = "landspeeder_desert_skiff_deed_group", chance = 500000},
-				{group = "barc_speeder_imperial_deed_group", chance = 2275000},
-				{group = "barc_speeder_rebel_deed_group", chance = 350000},
-				{group = "barc_speeder_deed_group", chance = 350000},
+				{group = "pod_racer_one_loot_deed", chance = 1000000},
+				{group = "pod_racer_two_loot_deed", chance = 500000},
+				{group = "landspeeder_desert_skiff_loot_deed", chance = 500000},
+				{group = "barc_speeder_imperial_loot_deed", chance = 2275000},
+				{group = "barc_speeder_rebel_loot_deed", chance = 350000},
+				{group = "barc_speeder_loot_deed", chance = 350000},
 				{group = "g_jabbas_house_loot_deed", chance = 2000000},
-				{group = "landspeeder_av21_deed_group", chance = 25000},
-				{group = "speederbike_deed_group", chance = 1000000},
-				{group = "speederbike_flash_deed_group", chance = 1000000},
-				{group = "speederbike_swoop_deed_group", chance = 1000000}
+				{group = "landspeeder_av21_loot_deed", chance = 25000},
+				{group = "speederbike_loot_deed", chance = 1000000},
+				{group = "speederbike_flash_loot_deed_", chance = 1000000},
+				{group = "speederbike_swoop_loot_deed_", chance = 1000000}
 			},
 			lootChance = 9000000
 		},
