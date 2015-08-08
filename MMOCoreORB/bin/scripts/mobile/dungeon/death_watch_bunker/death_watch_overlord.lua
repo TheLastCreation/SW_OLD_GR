@@ -49,19 +49,19 @@ death_watch_overlord = Creature:new {
 				{group = "death_watch_bunker_overlord_shared", chance =  500000},
 				{group = "death_watch_bunker_overlord_quest", chance  = 9500000}
 			},
-			lootChance = 5000000
+			lootChance = 4000000
 		},
 		{
 	        groups = {
 				{group = "mandalorian_schemes", chance = 10000000},			
 			},
-			lootChance = 4500000
+			lootChance = 3500000
 		},
 		{
 	        groups = {
 				{group = "armor_attachments", chance = 10000000},			
 			},
-			lootChance = 4500000
+			lootChance = 2500000
 		}
 	},
 	weapons = {"dark_trooper_weapons"},

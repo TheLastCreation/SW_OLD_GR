@@ -41,13 +41,13 @@ death_watch_ghost = Creature:new {
 	        groups = {
 				{group = "clothing_attachments", chance = 10000000},			
 			},
-			lootChance = 4500000
+			lootChance = 2500000
 		},
 		{
 	        groups = {
 				{group = "armor_attachments", chance = 10000000},			
 			},
-			lootChance = 4500000
+			lootChance = 2500000
 		}
 	},
 	weapons = {"pirate_weapons_heavy"},
