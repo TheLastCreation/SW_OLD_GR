@@ -3,7 +3,7 @@ g_lance_wookiee = {
 	minimumLevel = 0,
 	maximumLevel = 0,
 	lootItems = {
-		{itemTemplate = "g_lance_wookiee", weight = 10000000}
+		{itemTemplate = "lance_wookiee", weight = 10000000}
 	}
 }
 
