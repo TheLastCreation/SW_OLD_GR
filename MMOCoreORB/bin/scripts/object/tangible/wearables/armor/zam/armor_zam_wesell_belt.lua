@@ -42,7 +42,10 @@
 
 
 object_tangible_wearables_armor_zam_armor_zam_wesell_belt = object_tangible_wearables_armor_zam_shared_armor_zam_wesell_belt:new {
+
 	templateType = ARMOROBJECT,
+	
+	objectMenuComponent = {"cpp", "ArmorObjectMenuComponent"}, 
 
 	playerRaces = { "object/creature/player/bothan_male.iff",
 				"object/creature/player/bothan_female.iff",
@@ -106,15 +109,15 @@ object_tangible_wearables_armor_zam_armor_zam_wesell_belt = object_tangible_wear
 	-- LIGHT, MEDIUM, HEAVY
 	rating = LIGHT,
 
-	kinetic = 15,
-	energy = 15,
-	electricity = 15,
-	stun = 15,
-	blast = 15,
-	heat = 15,
-	cold = 15,
-	acid = 15,
-	lightSaber = 0,
+	kinetic = 80,
+	energy = 80,
+	electricity = 80,
+	stun = 80,
+	blast = 80,
+	heat = 80,
+	cold = 80,
+	acid = 80,
+	lightSaber = 80,
 
 	numberExperimentalProperties = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 	experimentalProperties = {"XX", "XX", "XX", "XX", "XX", "XX", "XX", "XX", "XX", "XX", "XX", "XX", "XX"},
