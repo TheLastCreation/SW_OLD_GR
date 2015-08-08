@@ -36,7 +36,7 @@ death_watch_overlord = Creature:new {
 				{group = "barc_speeder_imperial_deed_group", chance = 2275000},
 				{group = "barc_speeder_rebel_deed_group", chance = 350000},
 				{group = "barc_speeder_deed_group", chance = 350000},
-				{group = "landspeeder_xp38_loot_deed", chance = 2000000},
+				{group = "g_jabbas_house_loot_deed", chance = 2000000},
 				{group = "landspeeder_av21_deed_group", chance = 25000},
 				{group = "speederbike_deed_group", chance = 1000000},
 				{group = "speederbike_flash_deed_group", chance = 1000000},
