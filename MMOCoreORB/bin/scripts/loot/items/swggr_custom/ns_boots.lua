@@ -4,7 +4,7 @@ ns_boots = {
 	minimumLevel = 0,
 	maximumLevel = -1,
 	customObjectName = "Nightsister Boots",
-	directObjectTemplate = "object/tangible/wearables/boots/ns_boots.iff",
+	directObjectTemplate = "object/tangible/wearables/boots/nightsister_boots.iff",
 	craftingValues = {
 	},
 	customizationStringNames = {},
