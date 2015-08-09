@@ -186,7 +186,7 @@ void CreateVendorSessionImplementation::createVendor(String& name) {
 
 	vendor->createChildObjects();
 
-	if (inventory->isContainerFullRecursive()) {
+	if (inventory->hasFullContainerObjects()) {
 		player->sendSystemMessage("@player_structure:create_failed");
 		vendor->destroyObjectFromDatabase(true);
 		cancelSession();

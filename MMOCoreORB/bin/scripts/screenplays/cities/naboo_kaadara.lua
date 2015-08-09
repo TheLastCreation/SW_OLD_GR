@@ -1,27 +1,18 @@
-NabooKaadaraScreenPlay = ScreenPlay:new {
+NabooKadaaraScreenPlay = ScreenPlay:new {
 	numberOfActs = 1,
 
-	screenplayName = "NabooKaadaraScreenPlay"
+	screenplayName = "NabooKadaaraScreenPlay"
 }
 
-registerScreenPlay("NabooKaadaraScreenPlay", true)
+registerScreenPlay("NabooKadaaraScreenPlay", true)
 
-function NabooKaadaraScreenPlay:start()
+function NabooKadaaraScreenPlay:start()
 	if (isZoneEnabled("naboo")) then
 		self:spawnMobiles()
-		self:spawnSceneObjects()
 	end
 end
 
-function NabooKaadaraScreenPlay:spawnSceneObjects()
-
-	--outside starport
-	spawnSceneObject("naboo", "object/tangible/crafting/station/public_space_station.iff", 5212.39, -192, 6686.37, 0, 185 )
-	spawnSceneObject("naboo", "object/tangible/crafting/station/public_space_station.iff", 5210, -192, 6668.48, 0, 185 )
-
-end
-
-function NabooKaadaraScreenPlay:spawnMobiles()
+function NabooKadaaraScreenPlay:spawnMobiles()
 
 	--imperial garrison
 	spawnMobile("naboo", "stormtrooper", 300, 0, 0.3, 7.7, 0, 1259939)

@@ -1019,7 +1019,7 @@ bool ResourceSpawner::addResourceToPlayerInventory(CreatureObject* player, Resou
 			}
 		}
 	}
-	if (unitsExtracted > 0 && inventory->isContainerFullRecursive()) {
+	if (unitsExtracted > 0 && inventory->hasFullContainerObjects()) {
 		StringIdChatParameter err("survey", "no_inv_space");
 		player->sendSystemMessage(err);
 		if (!player->isIncapacitated() && !player->isDead()){

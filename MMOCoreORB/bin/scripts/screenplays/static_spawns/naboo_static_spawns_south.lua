@@ -10,6 +10,7 @@ registerScreenPlay("NabooStaticSpawnsSouthScreenPlay", true)
 function NabooStaticSpawnsSouthScreenPlay:start()
 	if (isZoneEnabled("naboo")) then
 		self:spawnMobiles()
+
 	end
 end
 
@@ -75,5 +76,6 @@ function NabooStaticSpawnsSouthScreenPlay:spawnMobiles()
 	spawnMobile("naboo", "naboo_pirate", 300, -1769.5, 33.2, -495.6, -45.0, 0)
 
 		--Ruined Walls (-3586,-880)
+
 
 end

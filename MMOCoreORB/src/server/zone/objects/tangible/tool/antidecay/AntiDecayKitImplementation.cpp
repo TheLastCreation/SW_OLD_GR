@@ -59,7 +59,7 @@ void AntiDecayKitImplementation::doApplyAntiDecay(CreatureObject* player)
 
 	Locker locker(tano, player);
 
-	if(inventory->isContainerFullRecursive()){
+	if(inventory->getContainerVolumeLimit() < (inventory->getCountableObjectsRecursive() + 1)){
 		player->sendSystemMessage("@veteran_new:failed_item_cannot_be_placed_in_inventory"); // The Anti Decay Kit failed to place an item back into your inventory. Please make sure that your inventory has room for this item and try again.
 		return;
 	}
@@ -137,7 +137,9 @@ int AntiDecayKitImplementation::canAddObject(SceneObject* object, int containmen
 		return TransferErrorCode::INVALIDTYPE;
 	}
 
-	if (parent->getSlottedObject("inventory")->isContainerFullRecursive()) {
+	int containerObjects = parent->getSlottedObject("inventory")->getCountableObjectsRecursive();
+
+	if (containerObjects >= parent->getSlottedObject("inventory")->getContainerVolumeLimit()) {
 		errorDescription = "@error_message:inv_full"; // Your inventory is full.
 		return TransferErrorCode::CONTAINERFULL;
 	}
