@@ -4,15 +4,15 @@ nk_necrosis = Creature:new {
 	socialGroup = "NK",
 	pvpFaction = "NK",
 	faction = "",
-	level = 200,
+	level = 300,
 	chanceHit = 0.28,
-	damageMin = 900,
-	damageMax = 1500,
-	baseXp = 11514,
-	baseHAM = 30000,
-	baseHAMmax = 33000,
-	armor = 0,
-	resists = {40,40,40,40,40,40,40,-1,-1},
+	damageMin = 140,
+	damageMax = 230,
+	baseXp = 16884,
+	baseHAM = 96000,
+	baseHAMmax = 178000,
+	armor = 3,
+	resists = {30,35,30,30,30,30,30,-1,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -28,13 +28,15 @@ nk_necrosis = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/ep3/general_grievous.iff"},
-		
 	lootGroups = {
-					{
-						{group = "g_musty_house_loot_deed", chance = 10000000}
-					},
-				lootChance = 5500000
-				},
+		{
+			groups = {
+				{group = "g_sith_house_loot_deed", chance = 5000000},
+				{group = "crystal_named", chance = 5000000},
+			},
+			lootChance = 5000000
+		}
+	},
 	scale = 1.25,
 	weapons = {"dark_jedi_weapons_gen4"},
 	conversationTemplate = "",
