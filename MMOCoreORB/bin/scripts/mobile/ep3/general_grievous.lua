@@ -32,7 +32,7 @@ general_grievous = Creature:new {
 		{
 			groups = {
 				{group = "g_musty_house_loot_deed", chance = 5000000},
-				{group = "crystal_named", chance = 5000000}
+				{group = "crystal_named", chance = 5000000},
 			},
 			lootChance = 7720000
 		}
