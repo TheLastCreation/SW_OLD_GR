@@ -8,11 +8,11 @@ palpatine_hologram = Creature:new {
 	chanceHit = 0.28,
 	damageMin = 140,
 	damageMax = 230,
-	baseXp = 514,
-	baseHAM = 30000,
-	baseHAMmax = 33000,
+	baseXp = 16884,
+	baseHAM = 96000,
+	baseHAMmax = 178000,
 	armor = 3,
-	resists = {25,25,25,25,25,25,25,25,25},
+	resists = {30,35,30,30,30,30,30,-1,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -34,7 +34,7 @@ palpatine_hologram = Creature:new {
 				{group = "g_sith_house_loot_deed", chance = 5000000},
 				{group = "crystal_named", chance = 5000000}
 			},
-			lootChance = 10000000
+			lootChance = 40000000
 		},
 	},
 	weapons = {"dark_jedi_weapons_gen4"},
