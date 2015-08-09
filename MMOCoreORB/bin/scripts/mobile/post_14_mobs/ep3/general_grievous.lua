@@ -4,15 +4,15 @@ general_grievous = Creature:new {
 	socialGroup = "",
 	pvpFaction = "",
 	faction = "",
-	level = 150,
+	level = 200,
 	chanceHit = 0.28,
 	damageMin = 90,
 	damageMax = 110,
-	baseXp = 514,
-	baseHAM = 30000,
-	baseHAMmax = 33000,
+	baseXp = 16884,
+	baseHAM = 96000,
+	baseHAMmax = 178000,
 	armor = 0,
-	resists = {10,5,10,10,10,10,10,-1,-1},
+	resists = {30,35,30,30,30,30,30,-1,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -28,8 +28,15 @@ general_grievous = Creature:new {
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/ep3/general_grievous.iff"},
-		
-	lootGroups = {},
+	lootGroups = {
+		{
+			groups = {
+				{group = "g_sith_house_loot_deed", chance = 5000000},
+				{group = "crystal_named", chance = 5000000},
+			},
+			lootChance = 5000000
+		}
+	},
 	weapons = {"dark_jedi_weapons_gen4"},
 	conversationTemplate = "",
 	attacks = merge(lightsabermaster,forcepowermaster)
