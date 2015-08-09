@@ -34,7 +34,7 @@ palpatine_hologram = Creature:new {
 				{group = "g_sith_house_loot_deed", chance = 5000000},
 				{group = "crystal_named", chance = 5000000}
 			},
-			lootChance = 40000000
+			lootChance = 7720000
 		},
 	},
 	weapons = {"dark_jedi_weapons_gen4"},
