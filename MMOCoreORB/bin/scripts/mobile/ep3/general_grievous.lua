@@ -35,7 +35,7 @@ general_grievous = Creature:new {
 				{group = "crystal_named", chance = 5000000}
 			},
 			lootChance = 7720000
-		},
+		}
 	},
 	weapons = {"dark_jedi_weapons_gen4"},
 	conversationTemplate = "",
