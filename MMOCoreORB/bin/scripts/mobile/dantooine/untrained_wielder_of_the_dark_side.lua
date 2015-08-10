@@ -11,7 +11,7 @@ untrained_wielder_of_the_dark_side = Creature:new {
 	baseHAM = 11000,
 	baseHAMmax = 14000,
 	armor = 1,
-	resists = {30,30,15,15,15,15,15,15,-1},
+	resists = {130,130,15,15,15,15,15,15,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -40,8 +40,7 @@ untrained_wielder_of_the_dark_side = Creature:new {
 				{group = "clothing_attachments", chance = 1000000},
 				{group = "wearables_uncommon", chance = 750000},
 				{group = "wearables_common", chance = 750000}
-			},
-			lootChance = 3000000
+			}
 		}
 	},
 	weapons = {"mixed_force_weapons"},

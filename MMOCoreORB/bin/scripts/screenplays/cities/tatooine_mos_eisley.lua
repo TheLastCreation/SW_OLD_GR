@@ -14,16 +14,15 @@ function TatooineMosEisleyScreenPlay:start()
 end
 
 function TatooineMosEisleyScreenPlay:spawnSceneObjects()
+	--just outside starport
+	spawnSceneObject("tatooine", "object/tangible/crafting/station/public_space_station.iff", 3520.67, 5, -4822.73, 0, 150 )
 	--Lower Floor
 	spawnSceneObject("tatooine", "object/tangible/terminal/terminal_elevator_down.iff", -3.5, 9, -21.4, 1076970, 1, 0, 0, 0) --Middle
 	spawnSceneObject("tatooine", "object/tangible/terminal/terminal_elevator_up.iff", -3.5, 0, -21.4, 1076970, 1, 0, 0, 0)
-
 	spawnSceneObject("tatooine", "object/tangible/terminal/terminal_elevator_down.iff", .5, 9, -21.4, 1076971, 1, 0, 0, 0) --Left side
 	spawnSceneObject("tatooine", "object/tangible/terminal/terminal_elevator_up.iff", .5, 0, -21.4, 1076971, 1, 0, 0, 0)
-
 	spawnSceneObject("tatooine", "object/tangible/terminal/terminal_elevator_down.iff", -7.5, 9, -21.4, 1076969, 1, 0, 0, 0) --Right side
 	spawnSceneObject("tatooine", "object/tangible/terminal/terminal_elevator_up.iff", -7.5, 0, -21.4, 1076969, 1, 0, 0, 0)
-
 	--Upper Floor
 	spawnSceneObject("tatooine", "object/tangible/terminal/terminal_elevator_up.iff", 13.5, 7, -17.95, 1076972, 1, 0, 0, 0)
 	spawnSceneObject("tatooine", "object/tangible/terminal/terminal_elevator_down.iff", 13.5, 15, -17.95, 1076972, 1, 0, 0, 0)
@@ -31,21 +30,6 @@ end
 
 function TatooineMosEisleyScreenPlay:spawnMobiles()
 
-
-	--Easy Mobs Outside ME
-	spawnMobile("tatooine", "me_dune_stalker_leader", 240, 3142.1, 5.3, -4742.1, 65, 0)
-	spawnMobile("tatooine", "me_dune_stalker_marksman", 240, 3149.5, 5.0, -4744.8, -45, 0)
-	spawnMobile("tatooine", "me_dune_stalker_brawler", 240, 3152.5, 5.0, -4738.0, 151, 0)
-	
-	spawnMobile("tatooine", "me_dune_stalker_brawler", 240, 3002.2, 5.0, -4819.3, -135, 0)
-	spawnMobile("tatooine", "me_dune_stalker_marksman", 240, 3192.9, 5.0, -4819.1, 118, 0)
-	spawnMobile("tatooine", "me_dune_stalker_scavenger", 240, 3197.8, 5.0, -4821.5, -35, 0)
-	
-	spawnMobile("tatooine", "me_dune_stalker_brawler", 240, 3136.3, 6.1, -4895.1, 56, 0)
-	spawnMobile("tatooine", "me_dune_stalker_marksman", 240, 3143.4, 5.6, -4893.7, 162, 0)
-	spawnMobile("tatooine", "me_dune_stalker_enforcer", 240, 3139.6, 5.7, -4889.9, -35, 0)
-	
-	
 	--Anything dashed out will need to be added here and removed from spawn manager once the spawnMobiles command is extended.
 
 	--Starport
