@@ -11,7 +11,7 @@ nightsister_spell_weaver = Creature:new {
 	baseHAM = 24000,
 	baseHAMmax = 30000,
 	armor = 2,
-	resists = {5,100,5,100,100,100,100,100,-1},
+	resists = {30,25,25,30,30,30,30,30,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -47,7 +47,7 @@ nightsister_spell_weaver = Creature:new {
 	},
 	weapons = {},
 	conversationTemplate = "",
-	attacks = merge(tkamaster,brawlermaster,forcewielder)
+	attacks = merge(tkamaster,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(nightsister_spell_weaver, "nightsister_spell_weaver")

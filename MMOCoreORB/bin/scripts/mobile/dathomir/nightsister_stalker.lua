@@ -11,7 +11,7 @@ nightsister_stalker = Creature:new {
 	baseHAM = 20000,
 	baseHAMmax = 25000,
 	armor = 1,
-	resists = {45,100,45,100,100,100,100,100,-1},
+	resists = {30,25,25,30,30,30,30,30,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -46,7 +46,7 @@ nightsister_stalker = Creature:new {
 	},
 	weapons = {"mixed_force_weapons"},
 	conversationTemplate = "",
-	attacks = merge(pikemanmaster,brawlermaster,forcewielder)
+	attacks = merge(pikemanmaster,brawlermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(nightsister_stalker, "nightsister_stalker")
