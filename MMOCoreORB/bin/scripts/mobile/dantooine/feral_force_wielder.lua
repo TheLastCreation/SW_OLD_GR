@@ -10,7 +10,7 @@ feral_force_wielder = Creature:new {
 	baseXp = 10921,
 	baseHAM = 24000,
 	baseHAMmax = 30000,
-	armor = 1,
+	armor = 0,
 	resists = {80,80,80,80,80,80,80,80,-1},
 	meatType = "",
 	meatAmount = 0,
@@ -37,7 +37,8 @@ feral_force_wielder = Creature:new {
 				{group = "armor_attachments", chance = 750000},
 				{group = "clothing_attachments", chance = 750000},
 				{group = "wearables_all", chance = 1000000}
-			}
+			},
+			lootChance = 3500000
 		}
 	},
 	weapons = {"mixed_force_weapons"},

@@ -2828,7 +2828,11 @@ void PlayerManagerImplementation::lootAll(CreatureObject* player, CreatureObject
 
 	if (!ai->isDead() || player->isDead())
 		return;
-		
+
+	if (ai->getDistanceTo(player) > 6) {
+		player->sendSystemMessage("@pet/droid_modules:corpse_too_far");
+		return;
+	}
 
 	SceneObject* creatureInventory = ai->getSlottedObject("inventory");
 

@@ -16,7 +16,6 @@
 #include "server/zone/packets/chat/ChatSystemMessage.h"
 #include "server/zone/objects/creature/CreatureObject.h"
 #include "server/zone/packets/tangible/UpdatePVPStatusMessage.h"
-#include "server/zone/templates/tangible/PlayerCreatureTemplate.h"
 
 class InvisibleDelayEvent: public Task {
 	ManagedReference<CreatureObject*> player;
@@ -40,35 +39,15 @@ public:
 				if (zone == NULL)
 					return;
 
-				PlayerCreatureTemplate* playerTemplate = dynamic_cast<PlayerCreatureTemplate*>(player->getObjectTemplate());
+				player->switchZone(zone->getZoneName(), player->getPositionX(), player->getPositionZ(), player->getPositionY(), player->getParentID(), true);
 
-				if (playerTemplate == NULL)
-					return;
-
-				ManagedReference<ImageDesignSession*> session = player->getActiveSession(SessionFacadeType::IMAGEDESIGN).castTo<ImageDesignSession*>();
-
-				if (session != NULL) {
-					session->sessionTimeout();
-				}
-
-				float height = player->getHeight();
-
-				if (!player->isInvisible()) {
-					if (playerTemplate->getMinScale() <= height) {
-						player->setHeight(height * 0.25f);
-					}
-
+				if (player->isInvisible()) {
 					player->sendSystemMessage("You are now invisible to other players and creatures.");
 
 				} else {
-					if (playerTemplate->getMinScale() > height) {
-						player->setHeight(height * 4.0f);
-					}
-
 					player->sendSystemMessage("You are now visible to all players and creatures.");
 				}
 
-				player->switchZone(zone->getZoneName(), player->getPositionX(), player->getPositionZ(), player->getPositionY(), player->getParentID(), true);
 			}
 
 		} catch (Exception& e) {

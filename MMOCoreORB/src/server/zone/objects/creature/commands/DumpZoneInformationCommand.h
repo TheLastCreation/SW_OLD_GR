@@ -30,15 +30,7 @@ public:
 		if (!creature->isPlayerCreature())
 			return GENERALERROR;
 
-		CreatureObject* player = creature;
-
-		Zone* zone = player->getZone();
-
-		if (zone == NULL)
-			return GENERALERROR;
-
-		PlanetManager* planetManager = zone->getPlanetManager();
-		TerrainManager* terrainManager = planetManager->getTerrainManager();
+		CreatureObject* player = cast<CreatureObject*>(creature);
 
 		int cityPlayerCount = 0;
 
@@ -84,13 +76,6 @@ public:
 		}
 
 		msg << "active areas size = " << player->getActiveAreasSize() << endl;
-
-		int heightCacheHitCount = terrainManager->getCacheHitCount();
-		int heightCacheMissCount = terrainManager->getCacheMissCount();
-
-		int total = MAX(heightCacheHitCount + heightCacheMissCount, 1);
-
-		msg << "height cache hit count = " << heightCacheHitCount << ", miss count = " << heightCacheMissCount << ", hit rate = " << ((float)heightCacheHitCount / (float)total) * 100 << "%" << endl;
 
 		creature->sendSystemMessage(msg.toString());
 
