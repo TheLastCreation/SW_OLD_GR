@@ -43,15 +43,16 @@
 
 ForceChokeCommand = {
         name = "forcechoke",
-        
-   	damage = 1000,
-	speed = 3.0,
+
+   	damage = 900,
+	speed = 6.0,
 	forceCost = 400,
+	attackType = FORCEATTACK,
 
 	animationCRC = hashCode("force_choke_1_particle_level_1_medium"),
 
 	combatSpam = "forcechoke",
-	
+
 	poolsToDamage = RANDOM_ATTRIBUTE,
 
 	range = 32
