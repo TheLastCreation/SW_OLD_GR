@@ -6,8 +6,8 @@ palpatine_hologram = Creature:new {
 	faction = "",
 	level = 300,
 	chanceHit = 0.28,
-	damageMin = 140,
-	damageMax = 230,
+	damageMin = 1400,
+	damageMax = 2300,
 	baseXp = 16884,
 	baseHAM = 96000,
 	baseHAMmax = 178000,
@@ -34,7 +34,7 @@ palpatine_hologram = Creature:new {
 				{group = "g_sith_house_loot_deed", chance = 5000000},
 				{group = "crystal_named", chance = 5000000},
 			},
-			lootChance = 7720000
+			lootChance = 5000000
 		}
 	},
 	weapons = {"dark_jedi_weapons_gen4"},

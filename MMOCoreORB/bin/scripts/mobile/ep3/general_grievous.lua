@@ -6,8 +6,8 @@ general_grievous = Creature:new {
 	faction = "",
 	level = 200,
 	chanceHit = 0.28,
-	damageMin = 90,
-	damageMax = 110,
+	damageMin = 1600,
+	damageMax = 2100,
 	baseXp = 16884,
 	baseHAM = 96000,
 	baseHAMmax = 178000,
@@ -34,7 +34,7 @@ general_grievous = Creature:new {
 				{group = "g_musty_house_loot_deed", chance = 5000000},
 				{group = "crystal_named", chance = 5000000},
 			},
-			lootChance = 7720000
+			lootChance = 5000000
 		}
 	},
 	weapons = {"dark_jedi_weapons_gen4"},
