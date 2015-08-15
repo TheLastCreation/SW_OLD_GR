@@ -1505,24 +1505,24 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					"Master", "crafting_weaponsmith_master"
 				}
 			},
-			--"Unlearn All Skills", "unlearn_all_skills",
-			--"Cleanse Character", "cleanse_character",
-			--"Enhance Character", "enhance_character",
-			--"Reset Buffs", "reset_buffs",
-			--"Learn Languages", "language",
-			--"Credits", "credits",
-			--"Apply DOTs", "apply_dots",
-			--"Clear DOTs", "clear_dots",
-			--"Max XP", "max_xp",
-			--"Become Glowy", "become_glowy",
-			--"Faction Points",
-			--{
-				--"Imperial", "faction_imperial",
-				--"Rebel", "faction_rebel"
-			--}
+			"Unlearn All Skills", "unlearn_all_skills",
+			"Cleanse Character", "cleanse_character",
+			"Enhance Character", "enhance_character",
+			"Reset Buffs", "reset_buffs",
+			"Learn Languages", "language",
+			"Credits", "credits",
+			"Apply DOTs", "apply_dots",
+			"Clear DOTs", "clear_dots",
+			"Max XP", "max_xp",
+			"Become Glowy", "become_glowy",
+			"Faction Points",
+			{
+				"Imperial", "faction_imperial",
+				"Rebel", "faction_rebel"
+			}
 		},
 		"Items",
-		--[[{
+		{
 			--"Attachments",
 			--{
 			--	"Armor Attachment", "object/tangible/gem/armor.iff",
@@ -2287,7 +2287,7 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 				"Painting: Imperial Oppression (TIE Oppressor)","object/tangible/veteran_reward/one_year_anniversary/painting_08.iff",
 				"Painting: Emperor's Eyes (TIE Sentinel)","object/tangible/veteran_reward/one_year_anniversary/painting_09.iff",
 			},
-			]]"Furniture",
+			"Furniture",
 			{	
 				"Trophies (NEW COMPLETE)",
 				{
@@ -2647,7 +2647,7 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 					"Street Lamp (Style 4) Red", "object/tangible/furniture/city/streetlamp_med_red_02.iff"
 				},
 			},
-			--[["Intruments",
+			"Intruments",
 			{
 				"Bandfill", "object/tangible/instrument/bandfill.iff",
 				"Fanfar", "object/tangible/instrument/fanfar.iff",
@@ -3120,7 +3120,7 @@ object_tangible_terminal_terminal_character_builder = object_tangible_terminal_s
 				"Jet Pack Base", "object/tangible/loot/dungeon/death_watch_bunker/jetpack_base.iff",
 				"Protective Liquid Coating", "object/tangible/loot/dungeon/death_watch_bunker/emulsion_protection.iff",
 				"Binary Liquid", "object/tangible/loot/dungeon/death_watch_bunker/binary_liquid.iff"
-			}]]
+			}
 		}
 	}
 }
