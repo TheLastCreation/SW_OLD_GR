@@ -806,21 +806,19 @@ int CombatManager::calculateDamageRange(TangibleObject* attacker, CreatureObject
 	return range < 0 ? 0 : (int)range;
 }
 
-float CombatManager::applyDamageModifiers(CreatureObject* attacker, WeaponObject* weapon, float damage, const CreatureAttackData& data) {
-	if (data.getAttackType() == CombatManager::WEAPONATTACK) {
-		Vector<String>* weaponDamageMods = weapon->getDamageModifiers();
+float CombatManager::applyDamageModifiers(CreatureObject* attacker, WeaponObject* weapon, float damage) {
+	Vector<String>* weaponDamageMods = weapon->getDamageModifiers();
 
-		for (int i = 0; i < weaponDamageMods->size(); ++i) {
-			damage += attacker->getSkillMod(weaponDamageMods->get(i));
-		}
-
-		if (weapon->getAttackType() == WeaponObject::MELEEATTACK)
-			damage += attacker->getSkillMod("private_melee_damage_bonus");
-		if (weapon->getAttackType() == WeaponObject::RANGEDATTACK)
-			damage += attacker->getSkillMod("private_ranged_damage_bonus");
+	for (int i = 0; i < weaponDamageMods->size(); ++i) {
+		damage += attacker->getSkillMod(weaponDamageMods->get(i));
 	}
 
 	damage += attacker->getSkillMod("private_damage_bonus");
+
+	if (weapon->getAttackType() == WeaponObject::MELEEATTACK)
+		damage += attacker->getSkillMod("private_melee_damage_bonus");
+	if (weapon->getAttackType() == WeaponObject::RANGEDATTACK)
+		damage += attacker->getSkillMod("private_ranged_damage_bonus");
 
 	int damageMultiplier = attacker->getSkillMod("private_damage_multiplier");
 
@@ -1027,45 +1025,13 @@ int CombatManager::getArmorVehicleReduction(VehicleObject* defender, WeaponObjec
 }
 
 int CombatManager::getArmorReduction(TangibleObject* attacker, WeaponObject* weapon, CreatureObject* defender, float damage, int poolToDamage, const CreatureAttackData& data){
-	if (data.getAttackType() == CombatManager::FORCEATTACK) {
-		float jediBuffDamage = 0;
-		float rawDamage = damage;
+	if (poolToDamage == 0)
+		return 0;
 
-		// Force Shield
-		int forceShield = defender->getSkillMod("force_shield");
-		if (forceShield > 0) {
-			jediBuffDamage = rawDamage - (damage *= 1.f - (forceShield / 100.f));
-			sendMitigationCombatSpam(defender, NULL, (int)jediBuffDamage, FORCESHIELD);
-		}
+	if(weapon == NULL)
+		return 0;
 
-		// Force Feedback
-		int forceFeedback = defender->getSkillMod("force_feedback");
-		if (forceFeedback > 0 && (defender->hasBuff(BuffCRC::JEDI_FORCE_FEEDBACK_1) || defender->hasBuff(BuffCRC::JEDI_FORCE_FEEDBACK_2))) {
-			float feedbackDmg = rawDamage * (forceFeedback / 100.f);
-			float splitDmg = feedbackDmg / 3;
-
-			attacker->inflictDamage(defender, CreatureAttribute::HEALTH, splitDmg, true);
-			attacker->inflictDamage(defender, CreatureAttribute::ACTION, splitDmg, true);
-			attacker->inflictDamage(defender, CreatureAttribute::MIND, splitDmg, true);
-			broadcastCombatSpam(defender, attacker, NULL, feedbackDmg, "cbt_spam", "forcefeedback_hit", 1);
-			defender->playEffect("clienteffect/pl_force_feedback_block.cef", "");
-		}
-
-		// Force Absorb
-		if (defender->getSkillMod("force_absorb") > 0 && defender->isPlayerCreature()) {
-			ManagedReference<PlayerObject*> playerObject = defender->getPlayerObject();
-			if (playerObject != NULL) {
-				playerObject->setForcePower(playerObject->getForcePower() + (damage * 0.5));
-				sendMitigationCombatSpam(defender, NULL, (int)damage * 0.5, FORCEABSORB);
-				defender->playEffect("clienteffect/pl_force_absorb_hit.cef", "");
-			}
-		}
-
-		defender->notifyObservers(ObserverEventType::FORCEBUFFHIT, attacker, jediBuffDamage);
-
-		return damage;
-	}
-
+	// the easy calculation
 	if (defender->isAiAgent()) {
 		float armorReduction = getArmorNpcReduction(cast<AiAgent*>(defender), weapon);
 
@@ -1086,17 +1052,7 @@ int CombatManager::getArmorReduction(TangibleObject* attacker, WeaponObject* wea
 		return damage;
 	}
 
-	// Force Armor
-	float rawDamage = damage;
-
-	int forceArmor = defender->getSkillMod("force_armor");
-	if (forceArmor > 0) {
-		float dmgAbsorbed = rawDamage - (damage *= 1.f - (forceArmor / 100.f));
-		defender->notifyObservers(ObserverEventType::FORCEBUFFHIT, attacker, dmgAbsorbed);
-		sendMitigationCombatSpam(defender, NULL, (int)dmgAbsorbed, FORCEARMOR);
-	}
-
-	// PSG
+	// start with PSG reduction
 	ManagedReference<ArmorObject*> psg = getPSGArmor(defender);
 
 	if (psg != NULL && !psg->isVulnerable(weapon->getDamageType())) {
@@ -1119,7 +1075,56 @@ int CombatManager::getArmorReduction(TangibleObject* attacker, WeaponObject* wea
 
 	}
 
-	// Standard Armor
+	// Next is Jedi stuff
+	if (data.getAttackType() == CombatManager::FORCEATTACK) {
+		float jediBuffDamage = 0;
+		float rawDamage = damage;
+
+		// Force Shield
+		int forceShield = defender->getSkillMod("force_shield");
+		if (forceShield > 0) {
+			jediBuffDamage = rawDamage - (damage *= 1.f - (forceShield / 100.f));
+			sendMitigationCombatSpam(defender, NULL, (int)jediBuffDamage, FORCESHIELD);
+		}
+
+		// Force Feedback
+		int forceFeedback = defender->getSkillMod("force_feedback");
+		if ((defender->hasBuff(BuffCRC::JEDI_FORCE_FEEDBACK_1) || defender->hasBuff(BuffCRC::JEDI_FORCE_FEEDBACK_2)) && forceFeedback > 0) {
+			float feedbackDmg = rawDamage * (forceFeedback / 100.f);
+			float splitDmg = feedbackDmg / 3;
+
+			attacker->inflictDamage(defender, CreatureAttribute::HEALTH, splitDmg, true);
+			attacker->inflictDamage(defender, CreatureAttribute::ACTION, splitDmg, true);
+			attacker->inflictDamage(defender, CreatureAttribute::MIND, splitDmg, true);
+			broadcastCombatSpam(defender, attacker, NULL, feedbackDmg, "cbt_spam", "forcefeedback_hit", 1);
+			defender->playEffect("clienteffect/pl_force_feedback_block.cef", "");
+		}
+
+		// Force Absorb
+		if (defender->getSkillMod("force_absorb") > 0 && defender->isPlayerCreature()) {
+			ManagedReference<PlayerObject*> playerObject = defender->getPlayerObject();
+			if (playerObject != NULL) {
+				playerObject->setForcePower(playerObject->getForcePower() + (damage * 0.5));
+				sendMitigationCombatSpam(defender, NULL, (int)damage * 0.5, FORCEABSORB);
+				defender->playEffect("clienteffect/pl_force_absorb_hit.cef", "");
+			}
+		}
+
+		defender->notifyObservers(ObserverEventType::FORCEBUFFHIT, attacker, jediBuffDamage);
+
+	} else if (data.getAttackType() == CombatManager::WEAPONATTACK) {
+		// Force Armor
+		float rawDamage = damage;
+
+		int forceArmor = defender->getSkillMod("force_armor");
+		if (forceArmor > 0) {
+			float dmgAbsorbed = rawDamage - (damage *= 1.f - (forceArmor / 100.f));
+			defender->notifyObservers(ObserverEventType::FORCEBUFFHIT, attacker, dmgAbsorbed);
+			sendMitigationCombatSpam(defender, NULL, (int)dmgAbsorbed, FORCEARMOR);
+		}
+	}
+
+	// now apply the rest of the damage to the regular armor
 	ManagedReference<ArmorObject*> armor = NULL;
 
 	if (poolToDamage & CombatManager::HEALTH)
@@ -1188,34 +1193,26 @@ float CombatManager::getArmorPiercing(TangibleObject* defender, WeaponObject* we
         return pow(0.50, armorReduction - armorPiercing);
 }
 
-float CombatManager::calculateDamage(CreatureObject* attacker, WeaponObject* weapon, TangibleObject* defender, const CreatureAttackData& data) {
-	float damage = 0;
+float CombatManager::calculateDamage(CreatureObject* attacker, WeaponObject* weapon, TangibleObject* defender) {
+	float minDamage = weapon->getMinDamage(), maxDamage = weapon->getMaxDamage();
 
-	if (data.getDamage() > 0) { // this is a special attack (force, etc)
-		damage = data.getDamage();
-		damage -= System::random(damage / 4);
-
-	} else {
-		float minDamage = weapon->getMinDamage(), maxDamage = weapon->getMaxDamage();
-
-		if (attacker->isPlayerCreature() && !weapon->isCertifiedFor(attacker)) {
-			minDamage = 5.f;
-			maxDamage = 10.f;
-		}
-
-		damage = minDamage;
-		float diff = maxDamage - minDamage;
-
-		if (diff >= 0)
-			damage += System::random(diff);
+	if (attacker->isPlayerCreature() && !weapon->isCertifiedFor(attacker)) {
+		minDamage = 5.f;
+		maxDamage = 10.f;
 	}
 
-	damage = applyDamageModifiers(attacker, weapon, damage, data);
+	float damage = minDamage;
+	float diff = maxDamage - minDamage;
+
+	if (diff >= 0)
+		damage = System::random(diff) + (int)minDamage;
+
+	damage = applyDamageModifiers(attacker, weapon, damage);
 
 	if (attacker->isPlayerCreature())
 		damage *= 1.5;
 
-	if (data.getAttackType() == CombatManager::WEAPONATTACK && weapon->getAttackType() == WeaponObject::MELEEATTACK)
+	if (weapon->getAttackType() == WeaponObject::MELEEATTACK)
 		damage *= 1.25;
 
 	//info("damage to be dealt is " + String::valueOf(damage), true);
@@ -1234,7 +1231,6 @@ float CombatManager::calculateDamage(CreatureObject* attacker, WeaponObject* wea
 
 	return damage;
 }
-
 float CombatManager::doDroidDetonation(CreatureObject* droid, CreatureObject* defender, float damage) {
 	if (defender->isPlayerCreature() && defender->getPvpStatusBitmask() == CreatureFlag::NONE) {
 		return 0;
@@ -1332,10 +1328,9 @@ float CombatManager::doDroidDetonation(CreatureObject* droid, CreatureObject* de
 float CombatManager::calculateDamage(CreatureObject* attacker, WeaponObject* weapon, CreatureObject* defender, const CreatureAttackData& data, Vector<int>& foodMitigation) {
 	float damage = 0;
 
-	if (data.getDamage() > 0) { // this is a special attack (force, etc)
+	if (data.getDamage() > 0) { // this is a special attack (force, heavy weapon, etc)
 		damage = data.getDamage();
 		damage -= System::random(damage / 4);
-
 	} else {
 		int diff = calculateDamageRange(attacker, defender, weapon);
 		float minDamage = weapon->getMinDamage();
@@ -1349,14 +1344,14 @@ float CombatManager::calculateDamage(CreatureObject* attacker, WeaponObject* wea
 			damage = minDamage;
 	}
 
-	damage = applyDamageModifiers(attacker, weapon, damage, data);
+	damage = applyDamageModifiers(attacker, weapon, damage);
 
 	damage += defender->getSkillMod("private_damage_susceptibility");
 
 	if (attacker->isPlayerCreature())
 		damage *= 1.5;
 
-	if (data.getAttackType() == CombatManager::WEAPONATTACK && weapon->getAttackType() == WeaponObject::MELEEATTACK)
+	if (weapon->getAttackType() == WeaponObject::MELEEATTACK)
 		damage *= 1.25;
 
 	if (defender->isKnockedDown())
@@ -1560,7 +1555,7 @@ void CombatManager::doDodge(TangibleObject* attacker, WeaponObject* weapon, Crea
 }
 
 bool CombatManager::applySpecialAttackCost(CreatureObject* attacker, WeaponObject* weapon, const CreatureAttackData& data) {
-	if (attacker->isAiAgent() || data.getAttackType() != CombatManager::WEAPONATTACK)
+	if (attacker->isAiAgent())
 		return true;
 
 	float force = weapon->getForceCost() * data.getForceCostMultiplier();
@@ -1825,8 +1820,8 @@ int CombatManager::applyDamage(TangibleObject* attacker, WeaponObject* weapon, C
 	if ((poolsToDamage ^ 0x7) & MIND)
 		defender->inflictDamage(attacker, CreatureAttribute::MIND, (int)(maxDamage/10.f + 0.5f), true, xpType);
 
-	// This method can be called multiple times for area attacks. Let the calling method decrease the powerup once
-	if (data.getAttackType() == CombatManager::WEAPONATTACK && !data.getCommand()->isAreaAction() && !data.getCommand()->isConeAction() && attacker->isCreatureObject()) {
+	// This method can be called multiple times for area attacks.  Let the calling method decrease the powerup once
+	if (!data.getCommand()->isAreaAction() && !data.getCommand()->isConeAction() && attacker->isCreatureObject()) {
 		weapon->decreasePowerupUses(attacker->asCreatureObject());
 	}
 
@@ -1841,7 +1836,7 @@ int CombatManager::applyDamage(CreatureObject* attacker, WeaponObject* weapon, T
 		return 0;
 	}
 
-	int damage = calculateDamage(attacker, weapon, defender, data);
+	int damage = calculateDamage(attacker, weapon, defender);
 
 	float damageMultiplier = data.getDamageMultiplier();
 
@@ -1856,7 +1851,7 @@ int CombatManager::applyDamage(CreatureObject* attacker, WeaponObject* weapon, T
 	else
 		xpType = weapon->getXpType();
 
-	if(defender->isTurret() && data.getAttackType() == CombatManager::WEAPONATTACK){
+	if(defender->isTurret()){
 		int armorReduction = getArmorTurretReduction(attacker, defender, weapon);
 
 		if (armorReduction >= 0)
@@ -1867,8 +1862,8 @@ int CombatManager::applyDamage(CreatureObject* attacker, WeaponObject* weapon, T
 
 	defender->inflictDamage(attacker, 0, damage, true, xpType);
 
-	// This method can be called multiple times for area attacks. Let the calling method decrease the powerup once
-	if (data.getAttackType() == CombatManager::WEAPONATTACK && !data.getCommand()->isAreaAction() && !data.getCommand()->isConeAction())
+	// This method can be called multiple times for area attacks.  Let the calling method decrease the powerup once
+	if (!data.getCommand()->isAreaAction() && !data.getCommand()->isConeAction())
 		weapon->decreasePowerupUses(attacker);
 
 	return damage;
@@ -2406,9 +2401,7 @@ int CombatManager::doAreaCombatAction(CreatureObject* attacker, WeaponObject* we
 		throw;
 	}
 
-	if (data.getAttackType() == CombatManager::WEAPONATTACK)
-		weapon->decreasePowerupUses(attacker);
-
+	weapon->decreasePowerupUses(attacker);
 	return damage;
 }
 

@@ -94,7 +94,7 @@ public:
 				} else if(type == 1) {
 					if(!creature->isNonPlayerCreatureObject())
 						continue;
-					if(creature->isVendor() || creature->isJunkDealer() || creature->isProbotSpecies())
+					if(creature->isVendor()||creature->isJunkDealer())
 						continue;
 				} else if(type == 2) {
 					if(!creature->isPlayerCreature())

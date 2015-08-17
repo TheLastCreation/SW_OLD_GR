@@ -934,8 +934,11 @@ void PlayerManagerImplementation::sendPlayerToCloner(CreatureObject* player, uin
 		player->addShockWounds(100, true);
 	}
 
-	if (ghost->getFactionStatus() != FactionStatus::ONLEAVE)
+	if (player->hasSkill("force_rank_dark_novice") || player->hasSkill("force_rank_dark_novice")){
+		ghost->setFactionStatus(FactionStatus::OVERT);
+	} else {
 		ghost->setFactionStatus(FactionStatus::ONLEAVE);
+	}
 
 	if (ghost->hasPvpTef())
 		ghost->schedulePvpTefRemovalTask(true);
@@ -973,22 +976,8 @@ void PlayerManagerImplementation::sendPlayerToCloner(CreatureObject* player, uin
 
 
 	// Jedi experience loss.
-	if(ghost->getJediState() >= 2) {
-		int jediXpCap = ghost->getXpCap("jedi_general");
-		int xpLoss = (int)(jediXpCap * -0.05);
-		int curExp = ghost->getExperience("jedi_general");
-
-		int negXpCap = -10000000; // Cap on negative jedi experience
-
-		if ((curExp + xpLoss) < negXpCap)
-			xpLoss = negXpCap - curExp;
-
-		awardExperience(player, "jedi_general", xpLoss, true);
-		StringIdChatParameter message("base_player","prose_revoke_xp");
-		message.setDI(xpLoss * -1);
-		message.setTO("exp_n", "jedi_general");
-		player->sendSystemMessage(message);
-	}
+	if (ghost->getJediState() > 1)
+		awardExperience(player, "jedi_general", -75000, true);
 }
 
 void PlayerManagerImplementation::ejectPlayerFromBuilding(CreatureObject* player) {
@@ -1199,7 +1188,7 @@ void PlayerManagerImplementation::disseminateExperience(TangibleObject* destruct
 		Locker squadLock(squadLeader, destructedObject);
 
 		//If he is a squad leader, and is in range of this player, then add the combat exp for him to use.
-		if (squadLeader->hasSkill("outdoors_squadleader_novice") && pos.distanceTo(attacker->getWorldPosition()) <= ZoneServer::CLOSEOBJECTRANGE) {
+		if (squadLeader->hasSkill("outdoors_squadleader_novice") && pos.distanceTo(attacker->getWorldPosition()) <= 192.f) {
 			int v = slExperience.get(squadLeader) + combatXp;
 			slExperience.put(squadLeader, v);
 		}
@@ -2839,6 +2828,8 @@ void PlayerManagerImplementation::lootAll(CreatureObject* player, CreatureObject
 
 	if (!ai->isDead() || player->isDead())
 		return;
+
+	
 
 	SceneObject* creatureInventory = ai->getSlottedObject("inventory");
 

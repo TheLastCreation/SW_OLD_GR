@@ -28,19 +28,14 @@ public:
 			return NOJEDIARMOR;
 		}
 
-		ManagedReference<SceneObject*> targetObject = server->getZoneServer()->getObject(target);
-
-		if (targetObject == NULL || !targetObject->isCreatureObject()) {
-			return INVALIDTARGET;
-		}
-
 		int res = doCombatAction(creature, target);
 
 		if (res == SUCCESS) {
 
 			// Setup debuff.
 
-			ManagedReference<CreatureObject*> creatureTarget = targetObject.castTo<CreatureObject*>();
+			Reference<SceneObject*> object = server->getZoneServer()->getObject(target);
+			ManagedReference<CreatureObject*> creatureTarget = cast<CreatureObject*>( object.get());
 
 			if (creatureTarget != NULL) {
 				Locker clocker(creatureTarget, creature);
