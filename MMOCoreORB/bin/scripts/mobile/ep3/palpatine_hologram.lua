@@ -5,15 +5,9 @@ palpatine_hologram = Creature:new {
 	pvpFaction = "",
 	faction = "",
 	level = 300,
-<<<<<<< HEAD
 	chanceHit = 0.28,
 	damageMin = 140,
 	damageMax = 230,
-=======
-	chanceHit = 30.0,
-	damageMin = 1400,
-	damageMax = 2300,
->>>>>>> parent of 6a23dbe... Revert "[Edited] Hit rate on mobs"
 	baseXp = 16884,
 	baseHAM = 96000,
 	baseHAMmax = 178000,

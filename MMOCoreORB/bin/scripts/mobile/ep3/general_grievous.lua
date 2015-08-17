@@ -5,15 +5,9 @@ general_grievous = Creature:new {
 	pvpFaction = "",
 	faction = "",
 	level = 200,
-<<<<<<< HEAD
 	chanceHit = 0.28,
 	damageMin = 90,
 	damageMax = 110,
-=======
-	chanceHit = 30.0,
-	damageMin = 1600,
-	damageMax = 2100,
->>>>>>> parent of 6a23dbe... Revert "[Edited] Hit rate on mobs"
 	baseXp = 16884,
 	baseHAM = 96000,
 	baseHAMmax = 178000,
