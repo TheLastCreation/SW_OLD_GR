@@ -10,6 +10,9 @@ includeFile("gr_screenplays/ghomrassen/ghomrassen_static_spawns.lua")
 includeFile("gr_screenplays/kaas/kaas_Temple.lua")
 includeFile("gr_screenplays/lok/generals_bunker.lua")
 --includeFile("gr_screenplays/lok/kill_the_general.lua")
+includeFile("gr_screenplays/taanab/battlefeild1/battlefeild1.lua")
+includeFile("gr_screenplays/taanab/battlefeild1/battlefeild1rebelnpcs1.lua")
+includeFile("gr_screenplays/taanab/battlefeild1/battlefeild1rebelturrets1.lua")
 
 -- Theme parks
 includeFile("themepark/conversations/goru_conv_handler.lua")
