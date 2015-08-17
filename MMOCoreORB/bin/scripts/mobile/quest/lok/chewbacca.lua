@@ -24,7 +24,6 @@ chewbacca = Creature:new {
 	creatureBitmask = PACK,
 	optionsBitmask = 128,
 	diet = HERBIVORE,
-	scale = 1.5,
 
 	templates = {"object/mobile/chewbacca.iff"},
 	lootGroups = {},

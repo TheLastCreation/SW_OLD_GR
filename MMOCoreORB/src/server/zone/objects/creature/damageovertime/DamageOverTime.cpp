@@ -3,14 +3,13 @@
 		See file COPYING for copying conditions. */
 
 
-#include "server/zone/objects/creature/CreatureAttribute.h"
-#include "server/zone/objects/creature/CreatureState.h"
+#include "../CreatureAttribute.h"
+#include "../CreatureState.h"
 #include "server/zone/objects/creature/CreatureObject.h"
-#include "server/zone/objects/creature/commands/effect/CommandEffect.h"
 #include "DamageOverTime.h"
 #include "server/zone/Zone.h"
 #include "server/zone/ZoneServer.h"
-#include "server/zone/packets/object/CombatSpam.h"
+#include "../../../packets/object/CombatSpam.h"
 
 DamageOverTime::DamageOverTime() {
 	setAttackerID(0);
@@ -95,6 +94,7 @@ uint32 DamageOverTime::applyDot(CreatureObject* victim) {
 		return 0;
 
 	nextTick.updateToCurrentTime();
+	nextTick.addMiliTime(10000);
 
 	uint32 power = 0;
 	ManagedReference<CreatureObject*> attacker = victim->getZoneServer()->getObject(attackerID).castTo<CreatureObject*>();
@@ -105,59 +105,43 @@ uint32 DamageOverTime::applyDot(CreatureObject* victim) {
 	switch(type) {
 	case CreatureState::BLEEDING:
 		power = doBleedingTick(victim, attacker);
-		nextTick.addMiliTime(20000);
+		nextTick.addMiliTime(10000);
 		break;
 	case CreatureState::POISONED:
 		power = doPoisonTick(victim, attacker);
-		nextTick.addMiliTime(10000);
 		break;
 	case CreatureState::DISEASED:
 		power = doDiseaseTick(victim);
-		nextTick.addMiliTime(40000);
+		nextTick.addMiliTime(30000);
 		break;
 	case CreatureState::ONFIRE:
 		power = doFireTick(victim, attacker);
-		nextTick.addMiliTime(10000);
-		break;
-	case CommandEffect::FORCECHOKE:
-		power = doForceChokeTick(victim, attacker);
-		nextTick.addMiliTime(6000);
 		break;
 	}
 
 	return power;
 }
 
-uint32 DamageOverTime::initDot(CreatureObject* victim, CreatureObject* attacker) {
+uint32 DamageOverTime::initDot(CreatureObject* victim) {
 	uint32 power = 0;
 	int absorptionMod = 0;
 	nextTick.updateToCurrentTime();
+	nextTick.addMiliTime(10000);
 
 	switch(type) {
 	case CreatureState::BLEEDING:
 		absorptionMod = MIN(0, MAX(50, victim->getSkillMod("absorption_bleeding")));
-		nextTick.addMiliTime(20000);
+		nextTick.addMiliTime(10000);
 		break;
 	case CreatureState::POISONED:
 		absorptionMod = MIN(0, MAX(50, victim->getSkillMod("absorption_poison")));
-		nextTick.addMiliTime(10000);
 		break;
 	case CreatureState::ONFIRE:
 		absorptionMod = MIN(0, MAX(50, victim->getSkillMod("absorption_fire")));
-		nextTick.addMiliTime(10000);
 		break;
 	case CreatureState::DISEASED:
 		absorptionMod = MIN(0, MAX(50, victim->getSkillMod("absorption_disease")));
-		nextTick.addMiliTime(40000);
-		break;
-	case CommandEffect::FORCECHOKE:
-		nextTick.addMiliTime(6000);
-		strength = (float)strength * (1.f - (System::random(25) / 100.f));
-
-		if (victim->isPlayerCreature() && attacker->isPlayerCreature()) {
-			strength /= 4;
-		}
-
+		nextTick.addMiliTime(30000);
 		break;
 	}
 
@@ -170,10 +154,6 @@ uint32 DamageOverTime::initDot(CreatureObject* victim, CreatureObject* attacker)
 
 uint32 DamageOverTime::doBleedingTick(CreatureObject* victim, CreatureObject* attacker) {
 	// TODO: Do we try to resist again?
-	// we need to allow dots to tick while incapped, but not do damage
-	if (victim->isIncapacitated())
-		return 0;
-
 	uint32 attr = victim->getHAM(attribute);
 	int absorptionMod = MIN(0, MAX(50, victim->getSkillMod("absorption_bleeding")));
 
@@ -206,10 +186,6 @@ uint32 DamageOverTime::doBleedingTick(CreatureObject* victim, CreatureObject* at
 }
 
 uint32 DamageOverTime::doFireTick(CreatureObject* victim, CreatureObject* attacker) {
-	// we need to allow dots to tick while incapped, but not do damage
-	if (victim->isIncapacitated())
-		return 0;
-
 	uint32 attr = victim->getHAM(attribute);
 	int absorptionMod = MIN(0, MAX(50, victim->getSkillMod("absorption_fire")));
 
@@ -249,10 +225,6 @@ uint32 DamageOverTime::doFireTick(CreatureObject* victim, CreatureObject* attack
 }
 
 uint32 DamageOverTime::doPoisonTick(CreatureObject* victim, CreatureObject* attacker) {
-	// we need to allow dots to tick while incapped, but not do damage
-	if (victim->isIncapacitated())
-		return 0;
-
 	uint32 attr = victim->getHAM(attribute);
 	int absorptionMod = MIN(0, MAX(50, victim->getSkillMod("absorption_poison")));
 
@@ -283,10 +255,6 @@ uint32 DamageOverTime::doPoisonTick(CreatureObject* victim, CreatureObject* atta
 }
 
 uint32 DamageOverTime::doDiseaseTick(CreatureObject* victim) {
-	// we need to allow dots to tick while incapped, but not do damage
-	if (victim->isIncapacitated())
-		return 0;
-
 	int absorptionMod = MIN(0, MAX(50, victim->getSkillMod("absorption_disease")));
 
 	// absorption reduces the strength of a dot by the given %.
@@ -308,32 +276,6 @@ uint32 DamageOverTime::doDiseaseTick(CreatureObject* victim) {
 			victimRef_p->addShockWounds((int)(strength_p * 0.075f));
 
 			victimRef_p->playEffect("clienteffect/dot_diseased.cef","");
-	});
-
-	return damage;
-}
-
-uint32 DamageOverTime::doForceChokeTick(CreatureObject* victim, CreatureObject* attacker) {
-	// we need to allow dots to tick while incapped, but not do damage
-	if (victim->isIncapacitated())
-		return 0;
-
-	int damage = (int)(strength);
-	Reference<CreatureObject*> attackerRef = attacker;
-	Reference<CreatureObject*> victimRef = victim;
-
-	EXECUTE_TASK_3(victimRef, attackerRef, damage, {
-			Locker locker(victimRef_p);
-
-			Locker crossLocker(attackerRef_p, victimRef_p);
-
-			victimRef_p->inflictDamage(attackerRef_p, CreatureAttribute::HEALTH, damage_p, true);
-			victimRef_p->inflictDamage(attackerRef_p, CreatureAttribute::ACTION, damage_p, true);
-			victimRef_p->inflictDamage(attackerRef_p, CreatureAttribute::MIND, damage_p, true);
-			if (victimRef_p->hasAttackDelay())
-				victimRef_p->removeAttackDelay();
-
-			victimRef_p->playEffect("clienteffect/pl_force_choke.cef", "");
 	});
 
 	return damage;

@@ -460,7 +460,6 @@ void CommandConfigManager::registerGlobals() {
 	setGlobalInt("ACTIONDEGRADE_EFFECT", CommandEffect::ACTIONDEGRADE);
 	setGlobalInt("MINDDEGRADE_EFFECT", CommandEffect::MINDDEGRADE);
 	setGlobalInt("REMOVE_COVER_EFFECT", CommandEffect::REMOVECOVER);
-	setGlobalInt("FORCECHOKE", CommandEffect::FORCECHOKE);
 
 	// trails
 	setGlobalInt("NOTRAIL", CombatManager::NOTRAIL);

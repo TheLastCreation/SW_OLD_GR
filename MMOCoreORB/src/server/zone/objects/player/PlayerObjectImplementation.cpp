@@ -78,7 +78,6 @@
 #include "server/login/account/Account.h"
 #include "server/zone/objects/tangible/deed/eventperk/EventPerkDeed.h"
 #include "server/zone/managers/player/QuestInfo.h"
-#include "server/zone/objects/player/events/ForceMeditateTask.h"
 
 void PlayerObjectImplementation::initializeTransientMembers() {
 	IntangibleObjectImplementation::initializeTransientMembers();
@@ -1592,7 +1591,7 @@ void PlayerObjectImplementation::doRecovery() {
 
 	if (creature->isInCombat() && creature->getTargetID() != 0 && !creature->isPeaced()
 			&& (commandQueue->size() == 0) && creature->isNextActionPast() && !creature->isDead() && !creature->isIncapacitated()) {
-		creature->executeObjectControllerAction(STRING_HASHCODE("attack"), creature->getTargetID(), "");
+		creature->sendCommand(STRING_HASHCODE("attack"), "", creature->getTargetID());
 	}
 
 	if (!getZoneServer()->isServerLoading()) {
@@ -1848,14 +1847,16 @@ void PlayerObjectImplementation::doForceRegen() {
 
 	uint32 modifier = 1;
 
-	if (creature->isMeditating()) {
-		Reference<ForceMeditateTask*> medTask = creature->getPendingTask("forcemeditate").castTo<ForceMeditateTask*>();
-
-		if (medTask != NULL)
-			modifier = 3;
-	}
+	// TODO: Re-factor Force Meditate so TKA meditate doesn't effect.
+	if (creature->isMeditating())
+		modifier = 3;
 
 	uint32 forceTick = tick * modifier;
+
+	//forceTick cant be <1 as per above code, tick is always positive and modifier as well
+	/*if (forceTick < 1)
+		forceTick = 1;
+		*/
 
 	if (forceTick > getForcePowerMax() - getForcePower()){   // If the player's Force Power is going to regen again and it's close to max,
 		setForcePower(getForcePowerMax());             // Set it to max, so it doesn't go over max.
