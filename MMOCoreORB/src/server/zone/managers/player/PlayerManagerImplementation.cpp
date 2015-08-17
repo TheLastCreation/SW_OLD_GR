@@ -940,7 +940,7 @@ void PlayerManagerImplementation::sendPlayerToCloner(CreatureObject* player, uin
 	if (ghost->hasPvpTef())
 		ghost->schedulePvpTefRemovalTask(true);
 		
-	if (player->hasSkill("force_rank_dark_novice") || player->hasSkill("force_rank_light_novice")){
+	if (player->hasSkill("force_rank_dark_novice") || player->hasSkill("force_rank_dark_novice")){
 		ghost->setFactionStatus(FactionStatus::OVERT);
 	}else{
 		ghost->setFactionStatus(FactionStatus::ONLEAVE);
