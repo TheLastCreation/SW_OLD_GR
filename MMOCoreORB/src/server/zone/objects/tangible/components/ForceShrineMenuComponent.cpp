@@ -118,11 +118,6 @@ int ForceShrineMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, C
 			PlayMusicMessage* pmm = new PlayMusicMessage("sound/intro.snd");
 			creature->sendMessage(pmm);
 			ghost->setJediState(8);
-			ZoneServer* zoneServer = creature->getZoneServer();
-		    ChatManager* chatManager = zoneServer->getChatManager();
-		    chatManager->broadcastGalaxy(NULL, "IMPERIAL COMMUNICATION FROM THE REGIONAL GOVERNOR: Lord Vader has detected a vergence in the Force.");
-		    chatManager->broadcastGalaxy(NULL, "Be on the lookout for any suspicious persons displaying unique or odd abilities. Lord Vader authorizes all citizens to use deadly force to eliminate this threat to the Empire.");
-			
 			//Check if inventory is full.
 			ManagedReference<SceneObject*> inventory = creature->getSlottedObject("inventory");
 			if (inventory->hasFullContainerObjects()) {
