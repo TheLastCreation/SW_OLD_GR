@@ -69,7 +69,7 @@ object_weapon_ranged_carbine_carbine_rotary_underslung = object_weapon_ranged_ca
 	attackType = RANGEDATTACK,
 
 	-- ENERGY, KINETIC, ELECTRICITY, STUN, BLAST, HEAT, COLD, ACID, FORCE, LIGHTSABER
-	damageType = ENERGY,LIGHTSABER,KINETIC,STUN,BLAST,HEAT,ACID,FORCE,COLD
+	damageType = ENERGY,LIGHTSABER,KINETIC,STUN,BLAST,HEAT,ACID,FORCE,COLD,
 
 	-- NONE, LIGHT, MEDIUM, HEAVY
 	armorPiercing = HEAVY,
