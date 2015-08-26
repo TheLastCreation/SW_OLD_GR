@@ -69,7 +69,7 @@ object_weapon_ranged_carbine_carbine_underslung = object_weapon_ranged_carbine_s
 	attackType = RANGEDATTACK,
 
 	-- ENERGY, KINETIC, ELECTRICITY, STUN, BLAST, HEAT, COLD, ACID, FORCE, LIGHTSABER
-	damageType = ENERGY,
+	damageType = ENERGY,LIGHTSABER,KINETIC,STUN,BLAST,HEAT,ACID,FORCE,COLD
 
 	-- NONE, LIGHT, MEDIUM, HEAVY
 	armorPiercing = NONE,
@@ -108,14 +108,14 @@ object_weapon_ranged_carbine_carbine_underslung = object_weapon_ranged_carbine_s
 	pointBlankRange = 0,
 	pointBlankAccuracy = 100,
 
-	idealRange = 50,
-	idealAccuracy = 100,
+	idealRange = 150,
+	idealAccuracy = 150,
 
 	maxRange = 200,
 	maxRangeAccuracy = 100,
 
-	minDamage = 99999999998,
-	maxDamage = 99999999999,
+	minDamage = 3500,
+	maxDamage = 4000,
 
 	attackSpeed = 1,
 
