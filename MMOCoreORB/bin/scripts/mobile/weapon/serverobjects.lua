@@ -3,9 +3,6 @@
 -- creature default attack
 includeFile("weapon/creature_default_weapon.lua")
 
---New Groups
-includeFile("weapon/groups/deathtrooper_weapons.lua")
-
 -- creature spit attacks
 includeFile("weapon/creature_spit_heavy_flame.lua")
 includeFile("weapon/creature_spit_large_green.lua")
@@ -35,6 +32,7 @@ includeFile("weapon/groups/imperial_weapons_heavy.lua")
 includeFile("weapon/groups/imperial_weapons_light.lua")
 includeFile("weapon/groups/imperial_weapons_medium.lua")
 includeFile("weapon/groups/jawa_warlord_weapons.lua")
+includeFile("weapon/groups/jawa_weaker_weapons.lua")
 includeFile("weapon/groups/mixed_force_weapons.lua")
 includeFile("weapon/groups/nyax_weapons.lua")
 includeFile("weapon/groups/pirate_weapons_light.lua")
@@ -80,7 +78,6 @@ includeFile("weapon/groups/st_rifleman_weapons.lua")
 includeFile("weapon/groups/st_sniper_weapons.lua")
 includeFile("weapon/groups/stormtrooper_weapons.lua")
 includeFile("weapon/groups/tusken_weapons.lua")
-includeFile("weapon/groups/yoda_weapons.lua")
 
 -- tutorial
 includeFile("weapon/groups/tutorial_bandit.lua")
