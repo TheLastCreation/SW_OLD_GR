@@ -72,7 +72,7 @@ object_weapon_ranged_rifle_ep3_rifle_dc15 = object_weapon_ranged_rifle_ep3_share
 	damageType = ENERGY,
 
 	-- NONE, LIGHT, MEDIUM, HEAVY
-	armorPiercing = NONE,
+	armorPiercing = HEAVY,
 
 	-- combat_rangedspecialize_bactarifle, combat_rangedspecialize_rifle, combat_rangedspecialize_pistol, combat_rangedspecialize_heavy, combat_rangedspecialize_carbine
 	-- combat_meleespecialize_unarmed, combat_meleespecialize_twohand, combat_meleespecialize_polearm, combat_meleespecialize_onehand, combat_general,
@@ -108,14 +108,14 @@ object_weapon_ranged_rifle_ep3_rifle_dc15 = object_weapon_ranged_rifle_ep3_share
 	pointBlankRange = 0,
 	pointBlankAccuracy = 100,
 
-	idealRange = 50,
-	idealAccuracy = 100,
+	idealRange = 150,
+	idealAccuracy = 150,
 
-	maxRange = 150,
-	maxRangeAccuracy = 100,
+	maxRange = 200,
+	maxRangeAccuracy = 250,
 
-	minDamage = 9999998,
-	maxDamage = 9999999,
+	minDamage = 3500,
+	maxDamage = 4000,
 
 	attackSpeed = 1,
 
