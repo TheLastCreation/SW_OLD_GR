@@ -69,10 +69,10 @@ object_weapon_ranged_carbine_carbine_underslung = object_weapon_ranged_carbine_s
 	attackType = RANGEDATTACK,
 
 	-- ENERGY, KINETIC, ELECTRICITY, STUN, BLAST, HEAT, COLD, ACID, FORCE, LIGHTSABER
-	damageType = ENERGY,LIGHTSABER,KINETIC,STUN,BLAST,HEAT,ACID,FORCE,COLD,
+	damageType = LIGHTSABER,
 
 	-- NONE, LIGHT, MEDIUM, HEAVY
-	armorPiercing = NONE,
+	armorPiercing = HEAVY,
 
 	-- combat_rangedspecialize_bactarifle, combat_rangedspecialize_rifle, combat_rangedspecialize_pistol, combat_rangedspecialize_heavy, combat_rangedspecialize_carbine
 	-- combat_meleespecialize_unarmed, combat_meleespecialize_twohand, combat_meleespecialize_polearm, combat_meleespecialize_onehand, combat_general,
@@ -80,20 +80,20 @@ object_weapon_ranged_carbine_carbine_underslung = object_weapon_ranged_carbine_s
 	xpType = "combat_rangedspecialize_carbine",
 
 	-- See http://www.ocdsoft.com/files/certifications.xls
-	certificationsRequired = { "cert_carbine_cdef" },
+	certificationsRequired = { "cert_rifle_t21" },
 	-- See http://www.ocdsoft.com/files/accuracy.xls
-	creatureAccuracyModifiers = { "carbine_accuracy" },
+	creatureAccuracyModifiers = { "rifle_accuracy" },
 
-	creatureAimModifiers = { "carbine_aim", "aim" },
+	creatureAimModifiers = { "rifle_aim", "aim" },
 
 	-- See http://www.ocdsoft.com/files/defense.xls
 	defenderDefenseModifiers = { "ranged_defense" },
 
 	-- Leave as "dodge" for now, may have additions later
-	defenderSecondaryDefenseModifiers = { "counterattack" },
+	defenderSecondaryDefenseModifiers = { "block" },
 
 	-- See http://www.ocdsoft.com/files/speed.xls
-	speedModifiers = { "carbine_speed" },
+	speedModifiers = { "rifle_speed" },
 
 	-- Leave blank for now
 	damageModifiers = { },
