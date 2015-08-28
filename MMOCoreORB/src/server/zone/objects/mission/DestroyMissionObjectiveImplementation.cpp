@@ -292,11 +292,9 @@ int DestroyMissionObjectiveImplementation::notifyObserverEvent(MissionObserver* 
 	if (eventType == ObserverEventType::OBJECTDESTRUCTION) {
 
 		complete();
-
-		return 1;
 	}
 
-	return 0;
+	return 1;
 }
 
 Vector3 DestroyMissionObjectiveImplementation::getEndPosition() {

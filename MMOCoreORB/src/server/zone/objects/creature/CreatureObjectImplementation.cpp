@@ -316,7 +316,7 @@ void CreatureObjectImplementation::sendToOwner(bool doClose) {
 }
 
 void CreatureObjectImplementation::sendBaselinesTo(SceneObject* player) {
-	CreatureObject* thisPointer = asCreatureObject();
+	Reference<CreatureObject*> thisPointer = asCreatureObject();
 	Zone* zone = getZone();
 
 	if (zone == NULL)
@@ -3251,11 +3251,4 @@ CreatureObject* CreatureObjectImplementation::asCreatureObject() {
 
 CreatureObject* CreatureObject::asCreatureObject() {
 	return this;
-}
-
-bool CreatureObjectImplementation::isPlayerCreature() {
-	if (templateObject == NULL)
-		return false;
-
-	return templateObject->isPlayerCreatureTemplate();
 }
