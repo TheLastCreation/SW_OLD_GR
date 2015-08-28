@@ -939,13 +939,13 @@ void PlayerManagerImplementation::sendPlayerToCloner(CreatureObject* player, uin
 
 	if (ghost->hasPvpTef())
 		ghost->schedulePvpTefRemovalTask(true);
-		
+	
 	if (player->hasSkill("force_rank_dark_novice") || player->hasSkill("force_rank_light_novice")){
 		ghost->setFactionStatus(FactionStatus::OVERT);
 	}else{
 		ghost->setFactionStatus(FactionStatus::ONLEAVE);
-    }
-	
+	}
+
 	// Decay
 	if (typeofdeath == 0) {
 		SortedVector<ManagedReference<SceneObject*> > insurableItems = getInsurableItems(player, false);
@@ -984,7 +984,7 @@ void PlayerManagerImplementation::sendPlayerToCloner(CreatureObject* player, uin
 		int xpLoss = (int)(jediXpCap * -0.05);
 		int curExp = ghost->getExperience("jedi_general");
 
-		int negXpCap = -10000000; // Cap on negative jedi experience
+		int negXpCap = -75000; // Cap on negative jedi experience
 
 		if ((curExp + xpLoss) < negXpCap)
 			xpLoss = negXpCap - curExp;
@@ -1963,9 +1963,11 @@ int PlayerManagerImplementation::notifyObserverEvent(uint32 eventType, Observabl
 		if(logoutTask != NULL) {
 			logoutTask->cancelLogout();
 		}
+
+		return 1;
 	}
 
-	return 1;
+	return 0;
 }
 
 void PlayerManagerImplementation::sendBattleFatigueMessage(CreatureObject* player, CreatureObject* target) {
