@@ -93,10 +93,10 @@ void ZoneComponent::updateInRangeObjectsOnMount(SceneObject* sceneObject) {
 		CloseObjectsVector* closeObjectsVector = (CloseObjectsVector*) sceneObject->getCloseObjects();
 		CloseObjectsVector* parentCloseObjectsVector = (CloseObjectsVector*) sceneObject->getRootParent().get()->getCloseObjects();
 
-		SortedVector<QuadTreeEntry*> closeObjects(closeObjectsVector->size(), 10);
+		SortedVector<ManagedReference<QuadTreeEntry*> > closeObjects(closeObjectsVector->size(), 10);
 		closeObjectsVector->safeCopyTo(closeObjects);
 
-		SortedVector<QuadTreeEntry*> parentCloseObjects(parentCloseObjectsVector->size(), 10);
+		SortedVector<ManagedReference<QuadTreeEntry*> > parentCloseObjects(parentCloseObjectsVector->size(), 10);
 		parentCloseObjectsVector->safeCopyTo(parentCloseObjects);
 
 		//remove old ones
@@ -109,8 +109,8 @@ void ZoneComponent::updateInRangeObjectsOnMount(SceneObject* sceneObject) {
 		float oldy = sceneObject->getPreviousPositionY();
 
 		for (int i = 0; i < closeObjects.size(); ++i) {
-			QuadTreeEntry* o = closeObjects.get(i);
-			QuadTreeEntry* objectToRemove = o;
+			ManagedReference<QuadTreeEntry*> o = closeObjects.get(i);
+			ManagedReference<QuadTreeEntry*> objectToRemove = o;
 			ManagedReference<QuadTreeEntry*> rootParent = o->getRootParent();
 
 			if (rootParent != NULL)
@@ -208,16 +208,22 @@ void ZoneComponent::updateZone(SceneObject* sceneObject, bool lightUpdate, bool 
 	}
 
 	try {
+		if (sceneObject->isTangibleObject()) {
+			TangibleObject* tano = sceneObject->asTangibleObject();
+
+			zone->updateActiveAreas(tano);
+		}
+
 		bool isInvis = false;
 
 		if (sceneObject->isTangibleObject()) {
 			TangibleObject* tano = sceneObject->asTangibleObject();
 
-			zone->updateActiveAreas(tano);
-
-			if (tano->isInvisible())
+			if(tano->isInvisible())
 				isInvis = true;
+
 		}
+
 
 		if (!isInvis && sendPackets && (parent == NULL || (!parent->isVehicleObject() && !parent->isMount()))) {
 			if (lightUpdate) {
@@ -290,12 +296,11 @@ void ZoneComponent::updateZoneWithParent(SceneObject* sceneObject, SceneObject* 
 		CloseObjectsVector* closeObjects = (CloseObjectsVector*) sceneObject->getCloseObjects();
 
 		if (closeObjects != NULL) {
-			SortedVector<QuadTreeEntry*> objects(closeObjects->size(), 10);
+			SortedVector<ManagedReference<QuadTreeEntry*> > objects(closeObjects->size(), 10);
 			closeObjects->safeCopyTo(objects);
 
 			for (int i = 0; i < objects.size(); ++i) {
 				QuadTreeEntry* object = objects.get(i);
-
 				try {
 					object->notifyPositionUpdate(sceneObject);
 				} catch (Exception& e) {

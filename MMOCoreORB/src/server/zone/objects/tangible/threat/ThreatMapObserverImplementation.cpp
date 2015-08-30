@@ -12,13 +12,9 @@
 #include "server/zone/objects/scene/ObserverEventType.h"
 
 int ThreatMapObserverImplementation::notifyObserverEvent(uint32 eventType, Observable* observable, ManagedObject* arg1, int64 arg2) {
-	if (eventType != ObserverEventType::HEALINGPERFORMED) {
-		return 0;
-	}
-
 	ManagedReference<TangibleObject*> strongRef = self.get();
 
-	if (strongRef == NULL) {
+	if (eventType != ObserverEventType::HEALINGPERFORMED || strongRef == NULL) {
 		return 1;
 	}
 

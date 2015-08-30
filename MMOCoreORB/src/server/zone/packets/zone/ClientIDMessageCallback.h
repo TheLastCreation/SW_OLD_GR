@@ -46,6 +46,9 @@ public:
 	}
 
 	void run() {
+		client->setSessionID(sessionID);
+		client->setAccountID(accountID);
+
 		StringBuffer query;
 		query << "SELECT session_id FROM sessions WHERE account_id = " << accountID;
 		query << " AND  ip = '"<< client->getSession()->getIPAddress() <<"' AND expires > NOW();";
@@ -60,8 +63,6 @@ public:
 			result = NULL;
 
 			if (sesskey == sessionID) {
-				client->setSessionID(sessionID);
-				client->setAccountID(accountID);
 
 				StringBuffer delQuery;
 				delQuery << "DELETE FROM sessions WHERE account_id = " << accountID << ";";

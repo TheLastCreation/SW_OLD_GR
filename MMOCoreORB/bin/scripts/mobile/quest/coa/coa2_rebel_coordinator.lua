@@ -23,13 +23,13 @@ coa2_rebel_coordinator = Creature:new {
 	ferocity = 0,
 	pvpBitmask = NONE,
 	creatureBitmask = NONE,
-	optionsBitmask = 264,
+	optionsBitmask = 128,
 	diet = HERBIVORE,
 
 	templates = {"object/mobile/dressed_rebel_brigadier_general_sullustan_male.iff"},
 	lootGroups = {},
-	weapons = {},
-	conversationTemplate = "rebelCoordinatorConvoTemplate",
+	weapons = {"imperial_weapons_heavy"},
+	conversationTemplate = "",
 	attacks = merge(riflemanmaster,pistoleermaster,carbineermaster,brawlermaster)
 }
 

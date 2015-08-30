@@ -28,8 +28,6 @@
 #include "server/zone/objects/installation/components/TurretDataComponent.h"
 #include "server/zone/objects/creature/AiAgent.h"
 
-#define COMBAT_SPAM_RANGE 85
-
 const uint32 CombatManager::defaultAttacks[9] = {
 		0x99476628, 0xF5547B91, 0x3CE273EC, 0x734C00C,
 		0x43C4FFD0, 0x56D7CC78, 0x4B41CAFB, 0x2257D06B,
@@ -667,10 +665,8 @@ int CombatManager::getAttackerAccuracyModifier(TangibleObject* attacker, Creatur
 		switch (defender->getWeapon()->getGameObjectType()) {
 		case SceneObjectType::PISTOL:
 			attackerAccuracy += 20.f;
-			/* no break */
 		case SceneObjectType::CARBINE:
 			attackerAccuracy += 55.f;
-			/* no break */
 		case SceneObjectType::RIFLE:
 		case SceneObjectType::MINE:
 		case SceneObjectType::SPECIALHEAVYWEAPON:
@@ -1990,20 +1986,20 @@ void CombatManager::broadcastCombatSpam(TangibleObject* attacker, TangibleObject
 		return;
 
 	CloseObjectsVector* vec = (CloseObjectsVector*) attacker->getCloseObjects();
-	SortedVector<QuadTreeEntry*> closeObjects;
+	SortedVector<ManagedReference<QuadTreeEntry*> > closeObjects;
 
 	if (vec != NULL) {
 		closeObjects.removeAll(vec->size(), 10);
 		vec->safeCopyTo(closeObjects);
 	} else {
 		info("Null closeobjects vector in CombatManager::broadcastCombatSpam", true);
-		zone->getInRangeObjects(attacker->getWorldPositionX(), attacker->getWorldPositionY(), COMBAT_SPAM_RANGE, &closeObjects, true);
+		zone->getInRangeObjects(attacker->getWorldPositionX(), attacker->getWorldPositionY(), 70, &closeObjects, true);
 	}
 
 	for (int i = 0; i < closeObjects.size(); ++i) {
-		SceneObject* object = cast<SceneObject*>( closeObjects.get(i));
+		SceneObject* object = cast<SceneObject*>( closeObjects.get(i).get());
 
-		if (object->isPlayerCreature() && attacker->isInRange(object, COMBAT_SPAM_RANGE)) {
+		if (object->isPlayerCreature() && attacker->isInRange(object, 70)) {
 			CreatureObject* receiver = cast<CreatureObject*>( object);
 			CombatSpam* spam = new CombatSpam(attacker, defender, receiver, item, damage, file, stringName, color);
 			receiver->sendMessage(spam);
@@ -2375,7 +2371,7 @@ int CombatManager::doAreaCombatAction(CreatureObject* attacker, WeaponObject* we
 
 		CloseObjectsVector* vec = (CloseObjectsVector*) attacker->getCloseObjects();
 
-		SortedVector<QuadTreeEntry*> closeObjects;
+		SortedVector<ManagedReference<QuadTreeEntry*> > closeObjects;
 
 		if (vec != NULL) {
 			closeObjects.removeAll(vec->size(), 10);
@@ -2386,13 +2382,14 @@ int CombatManager::doAreaCombatAction(CreatureObject* attacker, WeaponObject* we
 		}
 
 		for (int i = 0; i < closeObjects.size(); ++i) {
-			SceneObject* object = cast<SceneObject*>(closeObjects.get(i));
+			ManagedReference<SceneObject*> object = cast<SceneObject*>(closeObjects.get(i).get());
 
-			TangibleObject* tano = object->asTangibleObject();
-
-			if (tano == NULL) {
+			if (!object->isTangibleObject()) {
+				//error("object is not tangible");
 				continue;
 			}
+
+			TangibleObject* tano = object->asTangibleObject();
 
 			if (object == attacker) {
 				//error("object is attacker");
@@ -2491,7 +2488,7 @@ int CombatManager::doAreaCombatAction(TangibleObject* attacker, WeaponObject* we
 
 		CloseObjectsVector* vec = (CloseObjectsVector*) attacker->getCloseObjects();
 
-		SortedVector<QuadTreeEntry*> closeObjects;
+		SortedVector<ManagedReference<QuadTreeEntry*> > closeObjects;
 
 		if (vec != NULL) {
 			closeObjects.removeAll(vec->size(), 10);
@@ -2502,13 +2499,14 @@ int CombatManager::doAreaCombatAction(TangibleObject* attacker, WeaponObject* we
 		}
 
 		for (int i = 0; i < closeObjects.size(); ++i) {
-			SceneObject* object = cast<SceneObject*>(closeObjects.get(i));
+			ManagedReference<SceneObject*> object = cast<SceneObject*>(closeObjects.get(i).get());
 
-			TangibleObject* tano = object->asTangibleObject();
-
-			if (tano == NULL) {
+			if (!object->isTangibleObject()) {
+				//error("object is not tangible");
 				continue;
 			}
+
+			TangibleObject* tano = cast<TangibleObject*>(object.get());
 
 			if (object == attacker) {
 				//error("object is attacker");

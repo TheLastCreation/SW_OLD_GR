@@ -29,7 +29,7 @@ class VehicleControlObserver extends Observer {
 	@dirty
 	public int notifyObserverEvent(unsigned int eventType, Observable observable, ManagedObject arg1, long arg2) {
 		if (eventType != ObserverEventType.STARTCOMBAT) {
-			return 0;
+			return 1;
 		}
 		
 		VehicleControlDevice dev = vehicleControlDevice;

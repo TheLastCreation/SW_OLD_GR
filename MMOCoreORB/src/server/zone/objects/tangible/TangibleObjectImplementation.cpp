@@ -101,7 +101,7 @@ void TangibleObjectImplementation::notifyLoadFromDatabase() {
 void TangibleObjectImplementation::sendBaselinesTo(SceneObject* player) {
 	info("sending tano baselines");
 
-	TangibleObject* thisPointer = asTangibleObject();
+	Reference<TangibleObject*> thisPointer = asTangibleObject();
 
 	BaseMessage* tano3 = new TangibleObjectMessage3(thisPointer);
 	player->sendMessage(tano3);
