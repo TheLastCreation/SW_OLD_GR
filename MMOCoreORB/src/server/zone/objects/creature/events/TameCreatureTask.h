@@ -133,7 +133,7 @@ public:
 		StringId s;
 		s.setStringId(creature->getObjectName()->getFullPath());
 
-		controlDevice->setObjectName(s, false);
+		controlDevice->setObjectName(s);
 		controlDevice->setPetType(PetManager::CREATUREPET);
 		controlDevice->setMaxVitality(100);
 		controlDevice->setVitality(100);

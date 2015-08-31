@@ -15,7 +15,7 @@ int ImageDesignPositionObserverImplementation::notifyObserverEvent(uint32 eventT
 		return 1;
 
 	if (eventType != ObserverEventType::POSITIONCHANGED)
-		return 0;
+		return 1;
 
 	SceneObject* scene = dynamic_cast<SceneObject*>(observable);
 

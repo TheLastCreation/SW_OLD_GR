@@ -2025,7 +2025,9 @@ class CreatureObject extends TangibleObject {
 	}	
 
 	@dirty
-	public native boolean isPlayerCreature();
+	public boolean isPlayerCreature() {
+		return getPlayerObject() != null;
+	}
 
 	@dirty
 	public abstract boolean isInformantCreature() {

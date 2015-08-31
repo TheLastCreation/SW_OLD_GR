@@ -939,7 +939,13 @@ void PlayerManagerImplementation::sendPlayerToCloner(CreatureObject* player, uin
 
 	if (ghost->hasPvpTef())
 		ghost->schedulePvpTefRemovalTask(true);
-
+		
+	if (player->hasSkill("force_rank_dark_novice") || player->hasSkill("force_rank_light_novice")){
+		ghost->setFactionStatus(FactionStatus::OVERT);
+	}else{
+		ghost->setFactionStatus(FactionStatus::ONLEAVE);
+    }
+	
 	// Decay
 	if (typeofdeath == 0) {
 		SortedVector<ManagedReference<SceneObject*> > insurableItems = getInsurableItems(player, false);
@@ -1957,11 +1963,9 @@ int PlayerManagerImplementation::notifyObserverEvent(uint32 eventType, Observabl
 		if(logoutTask != NULL) {
 			logoutTask->cancelLogout();
 		}
-
-		return 1;
 	}
 
-	return 0;
+	return 1;
 }
 
 void PlayerManagerImplementation::sendBattleFatigueMessage(CreatureObject* player, CreatureObject* target) {
@@ -2583,7 +2587,7 @@ void PlayerManagerImplementation::updatePermissionName(CreatureObject* player, i
 		UnicodeString tag = permissionLevelList->getPermissionTag(permissionLevel);
 
 		TangibleObjectDeltaMessage3* tanod3 = new TangibleObjectDeltaMessage3(player);
-		tanod3->updateCustomName(player->getDisplayedName(), tag);
+		tanod3->updateName(player->getDisplayedName(), tag);
 		tanod3->close();
 		player->broadcastMessage(tanod3, true);
 

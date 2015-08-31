@@ -116,7 +116,7 @@ Region* CityRegionImplementation::addRegion(float x, float y, float radius, bool
 	region->setCityRegion(_this.getReferenceUnsafeStaticCast());
 	region->setRadius(radius);
 	region->initializePosition(x, 0, y);
-	region->setObjectName(regionName, false);
+	region->setObjectName(regionName);
 
 	if (isClientRegion())
 		region->setNoBuildArea(true);

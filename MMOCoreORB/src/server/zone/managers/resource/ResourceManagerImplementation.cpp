@@ -76,11 +76,9 @@ int ResourceManagerImplementation::notifyObserverEvent(uint32 eventType, Observa
 
 			creature->sendSystemMessage("@survey:sample_cancel");
 		}
-
-		return 1;
 	}
 
-	return 0;
+	return 1;
 }
 
 bool ResourceManagerImplementation::loadConfigData() {
@@ -361,7 +359,7 @@ void ResourceManagerImplementation::givePlayerResource(CreatureObject* playerCre
 
 	ManagedReference<SceneObject*> inventory = playerCreature->getSlottedObject("inventory");
 
-	if(inventory != NULL && !inventory->isContainerFullRecursive()) {
+	if(inventory != NULL && !inventory->hasFullContainerObjects()) {
 		Locker locker(spawn);
 
 		Reference<ResourceContainer*> newResource = spawn->createResource(quantity);

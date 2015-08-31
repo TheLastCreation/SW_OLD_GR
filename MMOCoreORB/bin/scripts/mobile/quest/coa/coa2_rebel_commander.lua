@@ -23,17 +23,13 @@ coa2_rebel_commander = Creature:new {
 	ferocity = 0,
 	pvpBitmask = NONE,
 	creatureBitmask = NONE,
-	optionsBitmask = 264,
+	optionsBitmask = 128,
 	diet = HERBIVORE,
 
-	templates = {
-		"object/mobile/dressed_rebel_recruiter_human_female_01.iff",
-		"object/mobile/dressed_rebel_recruiter_human_female_02.iff",
-		"object/mobile/dressed_rebel_recruiter_moncal_male_01.iff",
-		"object/mobile/dressed_rebel_recruiter_twilek_female_01.iff"},
+	templates = {"object/mobile/dressed_rebel_commando_zabrak_female_01.iff"},
 	lootGroups = {},
-	weapons = {},
-	conversationTemplate = "rebelCommanderConvoTemplate",
+	weapons = {"rebel_weapons_medium"},
+	conversationTemplate = "",
 	attacks = merge(riflemanmaster,pistoleermaster,carbineermaster,brawlermaster)
 }
 

@@ -199,7 +199,7 @@ void DeliverMissionObjectiveImplementation::updateMissionStatus(CreatureObject* 
 		Locker clocker(item, player);
 
 		itemName.setStringId("mission/mission_deliver_neutral_easy", itemEntry.toString());
-		item->setObjectName(itemName, false);
+		item->setObjectName(itemName);
 
 		//Give player the item to deliver
 		if (inventory->transferObject(item, -1, true)) {

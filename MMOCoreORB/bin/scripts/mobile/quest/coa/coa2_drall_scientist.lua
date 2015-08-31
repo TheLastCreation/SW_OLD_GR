@@ -1,6 +1,6 @@
 coa2_drall_scientist = Creature:new {
-	objectName = "@mob/creature_names:scientist",
-	randomNameType = NAME_GENERIC_TAG,
+	objectName = "",
+	customName = "a Drall Scientist",
 	socialGroup = "drall",
 	faction = "rebel",
 	level = 24,
@@ -26,15 +26,14 @@ coa2_drall_scientist = Creature:new {
 	optionsBitmask = 128,
 	diet = HERBIVORE,
 
-	templates = {"object/mobile/drall_male.iff",
-			"object/mobile/drall_female.iff"},
+	templates = {"object/mobile/drall_male.iff"},
 	lootGroups = {
 		{
 			groups = {
 				{group = "junk", chance = 4000000},
-				{group = "weapons_all", chance = 2000000},
-				{group = "armor_all", chance = 2000000},
-				{group = "wearables_all", chance = 2000000}
+				{group = "wearables_common", chance = 3000000},
+				{group = "loot_kit_parts", chance = 2000000},
+				{group = "tailor_components", chance = 1000000},
 			}
 		}
 	},

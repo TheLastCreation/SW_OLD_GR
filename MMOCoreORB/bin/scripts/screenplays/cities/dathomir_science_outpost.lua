@@ -16,9 +16,9 @@ function DathomirScienceOutpostScreenPlay:spawnMobiles()
 
 	--In a building
 	local pNpc = spawnMobile("dathomir", "medic",60,5.1,0.6,-2.2,-51,2835552)
-	self:setMoodString(pNpc, "sad")
+	self:setMoodString(pNpc, "npc_use_terminal_low")
 	pNpc = spawnMobile("dathomir", "contractor",60,6.3,0.6,-6.4,-133,2835573)
-	self:setMoodString(pNpc, "nervous")
+	self:setMoodString(pNpc, "bored")
 
 	--Outside
 	spawnMobile("dathomir", "businessman", 60, -70.8878, 18, -1646.08, 315.408, 0)

@@ -153,21 +153,19 @@ TEST_F(ZoneTest, InRangeTest) {
 
 TEST_F(ZoneTest, ActiveAreaTest) {
 	Reference<ActiveArea*> activeArea = createActiveArea();
-
-	Locker alocker(activeArea);
-
 	activeArea->setRadius(128);
 	activeArea->initializePosition(0, 0, 0);
+
+	Locker alocker(activeArea);
 
 	zone->transferObject(activeArea, -1);
 
 	alocker.release();
 
 	Reference<TangibleObject*> tano = createTangibleObject();
+	tano->initializePosition(0, 0, 0);
 
 	Locker slocker(tano);
-
-	tano->initializePosition(0, 0, 0);
 
 	ASSERT_EQ(tano->getActiveAreasSize(), 0);
 

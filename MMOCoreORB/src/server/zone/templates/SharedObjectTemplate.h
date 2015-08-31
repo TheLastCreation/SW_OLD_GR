@@ -732,9 +732,6 @@ public:
 	virtual bool isVehicleObjectTemplate() {
 		return false;
 	}
-	virtual bool isPlayerCreatureTemplate() {
-		return false;
-	}
 };
 
 
