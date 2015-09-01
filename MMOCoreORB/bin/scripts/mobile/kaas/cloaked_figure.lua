@@ -27,7 +27,7 @@ cloaked_figure = Creature:new {
 
 	templates = {
 		"object/mobile/tatooine_npc/hedon_istee.iff"},
-	--outfit = "prophet_kadann_outfit",
+	outfit = "prophet_kadann_outfit",
 	scale = 1.1;
 	lootGroups = {},
 	weapons = {},

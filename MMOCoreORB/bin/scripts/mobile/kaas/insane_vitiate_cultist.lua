@@ -27,7 +27,7 @@ insane_vitiate_cultist = Creature:new {
 
 	templates = {
 		"object/mobile/tatooine_npc/hedon_istee.iff"},
-	--outfit = "prophet_outfit",
+	outfit = "prophet_outfit",
 	lootGroups = {
 	    {
 			groups = {
