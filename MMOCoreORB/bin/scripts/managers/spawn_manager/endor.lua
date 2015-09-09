@@ -128,7 +128,7 @@ endor_regions = {
 }
 
 endor_static_spawns = {
-    spawnMobile("endor", "yoda", 200, 84.6, 9.0, 19.9, 3, 0)
+    
 }
 
 endor_badges = {
