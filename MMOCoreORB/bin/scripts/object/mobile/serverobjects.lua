@@ -87,6 +87,7 @@ includeFile("mobile/outbreak_undead_deathtrooper_28_m.lua")
 
 includeFile("mobile/watto.lua")
 includeFile("mobile/yoda.lua")
+includeFile("mobile/general_grievous.lua")
 
 
 -- Server Objects
