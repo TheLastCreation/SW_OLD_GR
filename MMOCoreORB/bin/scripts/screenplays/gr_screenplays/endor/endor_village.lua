@@ -1,24 +1,26 @@
-endorvillageScreenPlay = ScreenPlay:new {
+EndorVillageScreenPlay = ScreenPlay:new {
 	numberOfActs = 1,
 
-	screenplayName = "endorvillage",
-
-registerScreenPlay("endorvillageScreenPlay", true)
-
+	screenplayName = "EndorVillage",
 }
 
-function endorvillageScreenPlay:start()
-	if (isZoneEnabled("Endor")) then
-		        self:spawnMobiles()
+registerScreenPlay("EndorVillageScreenPlay", true)
+
+function EndorVillageScreenPlay:start()
+	if (isZoneEnabled("endor")) then
+		self:spawnMobiles()
+		self:spawnSceneObjects()
 	end
 end
 
+function EndorVillageScreenPlay:spawnSceneObjects()
+ 
+    
 
+end
 
-function endorvillageScreenPlay:spawnMobiles()
+function EndorVillageScreenPlay:spawnMobiles()
 
-	
-	Ewok Village 
     spawnMobile("endor", "yoda", 200, 84.6, 9.0, 19.9, 3, 0)
 	
 	
