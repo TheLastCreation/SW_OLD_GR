@@ -40,6 +40,15 @@ includeFile("conversations/events/life_day/life_day_oraalarri_conv.lua")
 includeFile("conversations/events/life_day/life_day_radrrl_conv.lua")
 includeFile("conversations/events/life_day/life_day_tebeurra_conv.lua")
 
+--Coa2
+includeFile("conversations/events/coa_2/imperial_commander_conv.lua")
+includeFile("conversations/events/coa_2/imperial_coordinator_conv.lua")
+includeFile("conversations/events/coa_2/imperial_informant_conv.lua")
+includeFile("conversations/events/coa_2/rebel_commander_conv.lua")
+includeFile("conversations/events/coa_2/rebel_coordinator_conv.lua")
+includeFile("conversations/events/coa_2/rebel_lyda_conv.lua")
+includeFile("conversations/events/coa_2/rebel_sympathizer_conv.lua")
+
 -- Hero of Tat
 includeFile("conversations/tasks/hero_of_tatooine/hermit_conv.lua")
 includeFile("conversations/tasks/hero_of_tatooine/hero_of_tat_bounty_hunter_conv.lua")
@@ -112,6 +121,7 @@ includeFile("conversations/recruiter/rebel_recruiter_conv.lua")
 includeFile("conversations/recruiter/imperial_recruiter_conv.lua")
 
 -- Tasks
+includeFile("conversations/tasks/audience_member_conv.lua")
 includeFile("conversations/tasks/herald_conv.lua")
 includeFile("conversations/tasks/ris_armor_quest_conv.lua")
 includeFile("conversations/tasks/librarian_conv.lua")
@@ -128,7 +138,6 @@ includeFile("conversations/village/phase1/elder_phase1_conv.lua")
 includeFile("conversations/racetracks/agrilatswampconversation.lua")
 includeFile("conversations/racetracks/kerenconversation.lua")
 includeFile("conversations/racetracks/mosespaconversation.lua")
-includeFile("conversations/racetracks/mosrassenconversation.lua")
 includeFile("conversations/racetracks/narmleconversation.lua")
 includeFile("conversations/racetracks/lokconversation.lua")
 includeFile("conversations/racetracks/nashalconversation.lua")

@@ -68,7 +68,7 @@ public:
 
 		buff->setStartMessage(startStringId);
 		buff->setEndMessage(endStringId);
-		buff->setSkillModifier("force_absorb", 45);
+		buff->setSkillModifier("force_absorb", 1);
 		buff->init(&eventTypes);
 
 		creature->addBuff(buff);

@@ -832,11 +832,11 @@ void BuildingObjectImplementation::onExit(CreatureObject* player, uint64 parenti
 uint32 BuildingObjectImplementation::getMaximumNumberOfPlayerItems() {
 	SharedStructureObjectTemplate* ssot = dynamic_cast<SharedStructureObjectTemplate*> (templateObject.get());
 	if (isCivicStructure() )
-		return 10000;
+		return 250;
 
 	if (ssot == NULL)
 		return 0;
-	//This sets the item limit for City Halls and Cloning Centers to 10000 like they were during live, instead of 400 like they are now from the line below.
+	//This sets the item limit for City Halls and Cloning Centers to 250 like they were during live, instead of 400 like they are now from the line below.
 
 	uint8 lots = ssot->getLotSize();
 
@@ -844,7 +844,7 @@ uint32 BuildingObjectImplementation::getMaximumNumberOfPlayerItems() {
 	if (lots == 0)
 		return MAXPLAYERITEMS;
 
-	return MIN(MAXPLAYERITEMS, lots * 10000);
+	return MIN(MAXPLAYERITEMS, lots * 100);
 }
 
 bool BuildingObjectImplementation::transferObject(SceneObject* object, int containmentType, bool notifyClient, bool allowOverflow) {
@@ -1012,8 +1012,8 @@ bool BuildingObjectImplementation::canPlayerRegisterWithin() {
 	String categoryName = pmc->getName();
 	if (categoryName == "medicalcenter" || categoryName == "hotel" || categoryName == "cantina" || categoryName == "theater" || categoryName == "guild_theater" || categoryName == "tavern")
 		return true;
-		
-		if (categoryName == "imperial_hq" || categoryName == "rebel_hq") {
+
+	if (categoryName == "imperial_hq" || categoryName == "rebel_hq") {
 		SharedBuildingObjectTemplate* buildingTemplate = cast<SharedBuildingObjectTemplate*>(getObjectTemplate());
 
 		if (buildingTemplate == NULL) {
@@ -1095,6 +1095,9 @@ void BuildingObjectImplementation::promptPayAccessFee(CreatureObject* player) {
 
 	PlayerObject* ghost = player->getPlayerObject();
 
+	if (ghost == NULL)
+		return;
+
 	if (ghost->hasSuiBoxWindowType(SuiWindowType::STRUCTURE_CONSENT_PAY_ACCESS_FEE))
 		return;
 
@@ -1146,7 +1149,11 @@ void BuildingObjectImplementation::payAccessFee(CreatureObject* player) {
 
 	if(owner != NULL && owner->isPlayerCreature()) {
 		Locker clocker(owner, player);
-		owner->getPlayerObject()->addExperience("merchant", 50, true);
+
+		PlayerObject* ghost = owner->getPlayerObject();
+
+		if (ghost != NULL)
+			ghost->addExperience("merchant", 50, true);
 	}
 
 	updatePaidAccessList();
@@ -1261,7 +1268,7 @@ void BuildingObjectImplementation::createChildObjects(){
 				dbString = "playerstructures";
 			}
 
-			ManagedReference<SceneObject*> obj = server->createObject(child->getTemplateFile().hashCode(),dbString,1);
+			ManagedReference<SceneObject*> obj = server->createObject(child->getTemplateFile().hashCode(), dbString, getPersistenceLevel());
 
 			if (obj == NULL )
 				continue;
@@ -1410,7 +1417,7 @@ void BuildingObjectImplementation::spawnChildSceneObject(String& templatePath, f
 	if (zone == NULL)
 		return;
 
-	ManagedReference<SceneObject*> object = zoneServer->createObject(templatePath.hashCode(), 0);
+	ManagedReference<SceneObject*> object = zoneServer->createObject(templatePath.hashCode(), getPersistenceLevel());
 
 	if (object == NULL || object->isCreatureObject())
 		return;
@@ -1435,8 +1442,6 @@ void BuildingObjectImplementation::spawnChildSceneObject(String& templatePath, f
 	} else {
 		zone->transferObject(object, -1, true);
 	}
-
-	objLocker.release();
 
 	object->createChildObjects();
 
@@ -1474,7 +1479,7 @@ void BuildingObjectImplementation::spawnChildCreaturesFromTemplate(){
 					}
 
 				} catch (Exception& e) {
-						error("unreported exception caught in void SceneObjectImplementation::createChildObjects()!");
+						error("unreported exception caught in void BuildingObjectImplementation::spawnChildCreaturesFromTemplate()!");
 						e.printStackTrace();
 				}
 
@@ -1594,7 +1599,7 @@ void BuildingObjectImplementation::changeSign( SignTemplate* signConfig ){
 
 	ZoneServer* zoneServer = getZone()->getZoneServer();
 
-	ManagedReference<SceneObject*> signSceno = zoneServer->createObject(signConfig->getTemplateFile().hashCode(), 1);
+	ManagedReference<SceneObject*> signSceno = zoneServer->createObject(signConfig->getTemplateFile().hashCode(), getPersistenceLevel());
 	if (signSceno == NULL)
 		return;
 

@@ -219,6 +219,7 @@ class CreatureObject extends TangibleObject {
 
 	public native void finalize();
 
+	@preLocked
 	public native void createChildObjects();
 
 	/**
@@ -2025,9 +2026,7 @@ class CreatureObject extends TangibleObject {
 	}	
 
 	@dirty
-	public boolean isPlayerCreature() {
-		return getPlayerObject() != null;
-	}
+	public native boolean isPlayerCreature();
 
 	@dirty
 	public abstract boolean isInformantCreature() {

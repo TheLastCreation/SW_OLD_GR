@@ -1067,7 +1067,7 @@ int SceneObjectImplementation::handleObjectMenuSelect(CreatureObject* player, by
 	return objectMenuComponent->handleObjectMenuSelect(asSceneObject(), player, selectedID);
 }
 
-void SceneObjectImplementation::setObjectName(StringId& stringID) {
+void SceneObjectImplementation::setObjectName(StringId& stringID, bool notifyClient) {
 	objectName = stringID;
 }
 
@@ -1175,12 +1175,12 @@ void SceneObjectImplementation::createChildObjects() {
 		if (child == NULL)
 			continue;
 
-		ManagedReference<SceneObject*> obj = zoneServer->createObject(child->getTemplateFile().hashCode(), 1);
+		ManagedReference<SceneObject*> obj = zoneServer->createObject(child->getTemplateFile().hashCode(), getPersistenceLevel());
 
 		if (obj == NULL)
 			continue;
 
-		Locker objLocker(obj);
+		Locker objLocker(obj, asSceneObject());
 
 		Vector3 childPosition = child->getPosition();
 		childObjects.put(obj);

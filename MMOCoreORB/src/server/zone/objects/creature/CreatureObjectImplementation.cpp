@@ -316,7 +316,7 @@ void CreatureObjectImplementation::sendToOwner(bool doClose) {
 }
 
 void CreatureObjectImplementation::sendBaselinesTo(SceneObject* player) {
-	Reference<CreatureObject*> thisPointer = asCreatureObject();
+	CreatureObject* thisPointer = asCreatureObject();
 	Zone* zone = getZone();
 
 	if (zone == NULL)
@@ -2931,7 +2931,7 @@ void CreatureObjectImplementation::createChildObjects() {
 			continue;
 
 		ManagedReference<SceneObject*> obj = zoneServer->createObject(
-				child->getTemplateFile().hashCode(), 1);
+				child->getTemplateFile().hashCode(), getPersistenceLevel());
 
 		if (obj == NULL)
 			continue;
@@ -3251,4 +3251,11 @@ CreatureObject* CreatureObjectImplementation::asCreatureObject() {
 
 CreatureObject* CreatureObject::asCreatureObject() {
 	return this;
+}
+
+bool CreatureObjectImplementation::isPlayerCreature() {
+	if (templateObject == NULL)
+		return false;
+
+	return templateObject->isPlayerCreatureTemplate();
 }

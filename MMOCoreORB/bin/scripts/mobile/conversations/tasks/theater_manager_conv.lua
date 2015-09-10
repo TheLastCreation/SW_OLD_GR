@@ -179,7 +179,7 @@ init_passed_audition = ConvoScreen:new {
 theaterManagerConvoTemplate:addScreen(init_passed_audition);
 
 init_first_advertising = ConvoScreen:new {
-	id = "init_after_audition",
+	id = "init_first_advertising",
 	leftDialog = "@conversation/quest_crowd_pleaser_manager:s_937f2001", -- Back already, huh? I don't blame you for wanting to get started.
 	stopConversation = "false",
 	options = {
@@ -187,7 +187,7 @@ init_first_advertising = ConvoScreen:new {
 		{"@conversation/quest_crowd_pleaser_manager:s_414898b2", "come_back_when_you_are"}, -- I'm not quite ready yet.
 	}
 }
-theaterManagerConvoTemplate:addScreen(init_after_audition);
+theaterManagerConvoTemplate:addScreen(init_first_advertising);
 
 come_back_when_you_are = ConvoScreen:new {
 	id = "come_back_when_you_are",
@@ -202,14 +202,14 @@ first_show_advertising = ConvoScreen:new {
 	leftDialog = "@conversation/quest_crowd_pleaser_manager:s_353af024", -- Well, before you put on your first show, we need to do some advertising. You know, what good is a show if nobody comes to see it?
 	stopConversation = "false",
 	options = {
-		{"@conversation/quest_crowd_pleaser_manager:s_694f2644", "go_out_and_promote"}, -- How do we do that?
+		{"@conversation/quest_crowd_pleaser_manager:s_8ddf8010", "go_out_and_promote"}, -- How do we do that?
 		{"@conversation/quest_crowd_pleaser_manager:s_e8276d66", "come_back_whenever"}, -- That sounds pretty hard, maybe I'll come back later.
 	}
 }
 theaterManagerConvoTemplate:addScreen(first_show_advertising);
 
 come_back_whenever = ConvoScreen:new {
-	id = "come_back_when_you_are",
+	id = "come_back_whenever",
 	leftDialog = "@conversation/quest_crowd_pleaser_manager:s_f72be127", -- Alright. Come back whenever you're ready.
 	stopConversation = "true",
 	options = {}
@@ -293,7 +293,7 @@ theaterManagerConvoTemplate:addScreen(take_your_time);
 
 stomach_of_steel = ConvoScreen:new {
 	id = "stomach_of_steel",
-	leftDialog = "@conversation/quest_crowd_pleaser_manager:s_b5131941", -- Sure, sure. You've got a stomach of pure steel. So, are you ready to get started?
+	leftDialog = "@conversation/quest_crowd_pleaser_manager:s_85b97ed7", -- Sure, sure. You've got a stomach of pure steel. So, are you ready to get started?
 	stopConversation = "false",
 	options = {
 		-- Handled by convo handler in case someone is on stage
