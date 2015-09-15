@@ -163,13 +163,7 @@ end
 -- Check if the player is glowing or not.
 -- @param pCreatureObject pointer to the creature object of the player.
 function Glowing:isGlowing(pCreatureObject)
-	local player = LuaCreatureObject(pCreatureObject)
-	local pInventory = player:getSlottedObject("inventory")
-	if self:countBadges(pCreatureObject) >= TOTALNUMBEROFBADGESREQUIRED then
-		VillageJediManagerCommon.setJediProgressionScreenPlayState(pCreatureObject, VILLAGE_JEDI_PROGRESSION_GLOWING)
-		--giveItem(pInventory, "object/tangible/loot/quest/force_sensitive/force_crystal.iff", -1)
-		player:sendSystemMessage("Congratulations on becoming GLOWY! Please wait for the old man to Visit you!!!.")
-	end
+	return VillageJediManagerCommon.hasJediProgressionScreenPlayState(pCreatureObject, VILLAGE_JEDI_PROGRESSION_GLOWING)
 end
 
 -- Event handler for the BADGEAWARDED event.
