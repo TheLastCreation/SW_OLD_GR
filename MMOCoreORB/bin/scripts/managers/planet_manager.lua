@@ -83,7 +83,7 @@ corellia = {
         {templateFile = "object/tangible/event_perk/tie_bomber.iff", ox = 0, oy = -0.664289, oz = 0, ow = 0.747476, x = -200.4, z = 28.0, y = -4793.5, parentid = 0},
         {templateFile = "object/static/terrain/corellia/rock_crystal_geyser_agrilat_large.iff", ox = 0, oy = -0.664289, oz = 0, ow = 0.747476, x = -176.1, z = 28.0, y = -4752.2, parentid = 0},
         {templateFile = "object/static/creature/imperial_at_st.iff", ox = 0, oy = 0.290803, oz = 0, ow = 0.956783, x = -220.3, z = 28.0, y = -4872.7, parentid = 0},
-        {templateFile = "object/static/terrain/corellia/rock_crystal_arch_agrilat_medium.iff", ox = 0, oy = 0.290803, oz = 0, ow = 0.956783, x = -144.2, z = 28.2, y = -4695.7, parentid = 0},
+        {templateFile = "object/static/terrain/corellia/rock_crystal_arch_agrilat_medium.iff", ox = 0, oy = 0.290803, oz = 0, ow = 0.956783, x = -144.2, z = 28.2, y = -4695.7, parentid = 0}
 	}
 }
 
