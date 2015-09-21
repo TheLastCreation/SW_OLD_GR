@@ -33,7 +33,7 @@ super_durni = Creature:new {
 	lootGroups = {
 	   {
 			groups = {
-				{group = "nightsister_rare", chance = 25000},
+				{group = "ns_clothing", chance = 25000},
 				{group = "crystals_select", chance = 500000},
 				{group = "color_crystals", chance = 500000},
 				{group = "nightsister_common", chance = 2275000},
