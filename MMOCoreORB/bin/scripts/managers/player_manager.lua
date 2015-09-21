@@ -51,10 +51,10 @@ performanceDuration = 7200 -- in seconds
 medicalDuration = 7200 -- in seconds
 
 --Sets the experience multiplier while grouped
-groupExpMultiplier = 5
+groupExpMultiplier = 6
 
 --Sets a global experience multiplier
-globalExpMultiplier = 3
+globalExpMultiplier = 4
 
 --Sets the base number of control devices of each type that a player can have in their datapad at once
 --For creature pets, A Creature Handler will have the base number + their stored pets skill mod as limit
@@ -73,7 +73,7 @@ veteranRewardAdditionalMilestones = 360 --frequency, in days, of additional mile
 
 veteranRewards = {
 
-		-- 90 Day Rewards
+		 90 Day Rewards
 		-- Disabled until harvester is functional {templateFile = "object/tangible/veteran_reward/harvester.iff", milestone=90, oneTime=true, description="@veteran_new:poweredharvester"},
 		{templateFile = "object/tangible/veteran_reward/data_terminal_s1.iff", milestone=90, oneTime=false, description="@veteran_new:dataterminal1"},
 		{templateFile = "object/tangible/veteran_reward/data_terminal_s2.iff", milestone=90, oneTime=false, description="@veteran_new:dataterminal2"},
@@ -82,14 +82,14 @@ veteranRewards = {
 		{templateFile = "object/tangible/veteran_reward/frn_vet_protocol_droid_toy.iff", milestone=90, oneTime=false, description="@veteran_new:mini_protocoldroid"},
 		{templateFile = "object/tangible/veteran_reward/frn_vet_r2_toy.iff", milestone=90, oneTime=false, description="@veteran_new:mini_r2"},
 
-		-- 180 Day Rewards
+		 180 Day Rewards
 		{templateFile = "object/tangible/veteran_reward/resource.iff", milestone=180, oneTime=true, description="@veteran_new:resourcecrate"},
 		{templateFile = "object/tangible/veteran_reward/frn_couch_falcon_corner_s01.iff", milestone=180, oneTime=false, description="@veteran_new:falconcouch"},
 		{templateFile = "object/tangible/veteran_reward/frn_couch_falcon_section_s01.iff", milestone=180, oneTime=false, description="@veteran_new:falconchair"},
 		{templateFile = "object/tangible/veteran_reward/frn_vet_tie_fighter_toy.iff", milestone=180, oneTime=false, description="@veteran_new:mini_tiefighter"},
 		{templateFile = "object/tangible/veteran_reward/frn_vet_x_wing_toy.iff", milestone=180, oneTime=false, description="@veteran_new:mini_xwing"},
 
-		-- 270 Day Rewards
+		 270 Day Rewards
 		{templateFile = "object/tangible/deed/vehicle_deed/speederbike_flash_deed.iff", milestone=270, oneTime=true},
 		{templateFile = "object/tangible/wearables/goggles/goggles_s01.iff", milestone=270, oneTime=false, description="Special Edition Goggles Style 1"},
 		{templateFile = "object/tangible/wearables/goggles/goggles_s02.iff", milestone=270, oneTime=false, description="Special Edition Goggles Style 2"},
@@ -99,7 +99,7 @@ veteranRewards = {
 		{templateFile = "object/tangible/wearables/goggles/goggles_s06.iff", milestone=270, oneTime=false, description="Special Edition Goggles Style 6"},
 		{templateFile = "object/tangible/veteran_reward/frn_vet_darth_vader_toy.iff", milestone=270, oneTime=false, description="@veteran_new:mini_darthvader"},
 
-		-- 360 Day Rewards
+		 360 Day Rewards
 		{templateFile = "object/tangible/veteran_reward/frn_tech_console_sectional_a.iff", milestone=360, oneTime=false, description="@veteran_new:techconsole_a"},
 		{templateFile = "object/tangible/veteran_reward/frn_tech_console_sectional_b.iff", milestone=360, oneTime=false, description="@veteran_new:techconsole_b"},
 		{templateFile = "object/tangible/veteran_reward/frn_tech_console_sectional_c.iff", milestone=360, oneTime=false, description="@veteran_new:techconsole_c"},
@@ -108,7 +108,7 @@ veteranRewards = {
 		{templateFile = "object/tangible/veteran_reward/frn_vet_stormtrooper_toy.iff", milestone=360, oneTime=false, description="@veteran_new:mini_stormtrooper"},
 		{templateFile = "object/tangible/veteran_reward/antidecay.iff", milestone=360, oneTime=true, description="@veteran_new:antidecay"},
 
-		-- 450 Day Rewards
+		 450 Day Rewards
 		{templateFile = "object/tangible/camp/camp_spit_s2.iff", milestone=450, oneTime=false, description="Camp Center (Small)"},
 		{templateFile = "object/tangible/camp/camp_spit_s3.iff", milestone=450, oneTime=false, description="Camp Center (Large)"},
 		{templateFile = "object/tangible/furniture/tatooine/frn_tato_vase_style_01.iff", milestone=450, oneTime=false, description="Gold Ornamental Vase (Style 1)"},
@@ -116,28 +116,28 @@ veteranRewards = {
 		{templateFile = "object/tangible/furniture/decorative/foodcart.iff", milestone=450, oneTime=false, description="Foodcart"},
 		{templateFile = "object/tangible/furniture/all/frn_bench_generic.iff", milestone=450, oneTime=false, description="Park Bench"},
 
-		-- 540 Day Rewards
+		 540 Day Rewards
 		{templateFile = "object/tangible/furniture/decorative/professor_desk.iff", milestone=540, oneTime=false, description="Professor Desk"},
 		{templateFile = "object/tangible/furniture/decorative/diagnostic_screen.iff", milestone=540, oneTime=false, description="@frn_n:diagnostic_screen"},
 		{templateFile = "object/tangible/furniture/all/frn_all_plant_potted_lg_s2.iff", milestone=540, oneTime=false, description="Large Potted Plant (Style 2)"},
 		{templateFile = "object/tangible/furniture/all/frn_all_plant_potted_lg_s3.iff", milestone=540, oneTime=false, description="Large Potted Plant (Style 3)"},
 		{templateFile = "object/tangible/furniture/all/frn_all_plant_potted_lg_s4.iff", milestone=540, oneTime=false, description="Large Potted Plant (Style 4)"},
 
-		-- 630 Day Rewards
+		 630 Day Rewards
 		{templateFile = "object/tangible/furniture/modern/bar_counter_s1.iff", milestone=630, oneTime=false, description="Bar Countertop"},
 		{templateFile = "object/tangible/furniture/modern/bar_piece_curve_s1.iff", milestone=630, oneTime=false, description="Bar Countertop (Curved, Style 1)"},
 		{templateFile = "object/tangible/furniture/modern/bar_piece_curve_s2.iff", milestone=630, oneTime=false, description="Bar Countertop (Curved, Style 2)"},
 		{templateFile = "object/tangible/furniture/modern/bar_piece_straight_s1.iff", milestone=630, oneTime=false, description="Bar Countertop (Straight, Style 1)"},
 		{templateFile = "object/tangible/furniture/modern/bar_piece_straight_s2.iff", milestone=630, oneTime=false, description="Bar Countertop (Straight, Style 2)"},
 
-		-- 720 Day Rewards
+		 720 Day Rewards
 		{templateFile = "object/tangible/furniture/all/frn_all_table_s01.iff", milestone=720, oneTime=false, description="Round Cantina Table (Style 1)"},
 		{templateFile = "object/tangible/furniture/all/frn_all_table_s02.iff", milestone=720, oneTime=false, description="Round Cantina Table (Style 2)"},
 		{templateFile = "object/tangible/furniture/all/frn_all_table_s03.iff", milestone=720, oneTime=false, description="Round Cantina Table (Style 3)"},
 		{templateFile = "object/tangible/furniture/tatooine/frn_tatt_chair_cantina_seat_2.iff", milestone=720, oneTime=false, description="Large Cantina Sofa"},
 		{templateFile = "object/tangible/furniture/tatooine/frn_tato_cafe_parasol.iff", milestone=720, oneTime=false, description="@frn_n:frn_tato_cafe_parasol"},
 
-		-- 810 Day Rewards
+		 810 Day Rewards
 		{templateFile = "object/tangible/furniture/modern/rug_oval_m_s02.iff", milestone=810, oneTime=false, description="Medium Oval Rug"},
 		{templateFile = "object/tangible/furniture/modern/rug_oval_sml_s01.iff", milestone=810, oneTime=false, description="Small Oval Rug"},
 		{templateFile = "object/tangible/furniture/modern/rug_rect_m_s01.iff", milestone=810, oneTime=false, description="Medium Rectangular Rug"},
@@ -145,7 +145,7 @@ veteranRewards = {
 		{templateFile = "object/tangible/furniture/modern/rug_rnd_m_s01.iff", milestone=810, oneTime=false, description="Medium Round Rug"},
 		{templateFile = "object/tangible/furniture/modern/rug_rnd_sml_s01.iff", milestone=810, oneTime=false, description="Small Round Rug"},
 
-		-- 900 Day Rewards
+		 900 Day Rewards
 		{templateFile = "object/tangible/loot/misc/loot_skull_bith.iff", milestone=900, oneTime=false, description="A Bith Skull"},
 		{templateFile = "object/tangible/loot/misc/loot_skull_human.iff", milestone=900, oneTime=false, description="A Human Skull"},
 		{templateFile = "object/tangible/loot/misc/loot_skull_ithorian.iff", milestone=900, oneTime=false, description="A Ithorian Skull"},
@@ -153,7 +153,7 @@ veteranRewards = {
 		{templateFile = "object/tangible/loot/misc/loot_skull_voritor.iff", milestone=900, oneTime=false, description="A Voritor Lizard Skull"},
         {templateFile = "object/tangible/wearables/helmet/helmet_s06.iff", milestone=900, oneTime=true, description="Rebel Endor Helmet"},
 		
-		-- 990 Day Rewards
+		 990 Day Rewards
 		{templateFile = "object/tangible/furniture/modern/rug_rect_lg_s01.iff", milestone=990, oneTime=false, description="Large Rectangular Rug (Style 1)"},
 		{templateFile = "object/tangible/furniture/modern/rug_rect_lg_s02.iff", milestone=990, oneTime=false, description="Large Rectangular Rug (Style 2)"},
 		{templateFile = "object/tangible/furniture/modern/rug_oval_lg_s01.iff", milestone=990, oneTime=false, description="Large Oval Rug"},
@@ -161,7 +161,7 @@ veteranRewards = {
 		{templateFile = "object/tangible/furniture/all/frn_all_desk_map_table.iff", milestone=990, oneTime=false, description="Round Data Terminal"},
         {templateFile = "object/tangible/wearables/armor/nightsister/armor_nightsister_bicep_r_s01.iff", milestone=990, oneTime=true, description="Nightsister Melee Armguard"},
 		
-		-- 1080 Day Rewards
+		 1080 Day Rewards
 		{templateFile = "object/tangible/veteran_reward/one_year_anniversary/painting_01.iff", milestone=1080, oneTime=false, description="Painting: Cast Wing in Flight"},
 		{templateFile = "object/tangible/veteran_reward/one_year_anniversary/painting_02.iff", milestone=1080, oneTime=false, description="Painting: Decimator"},
 		{templateFile = "object/tangible/veteran_reward/one_year_anniversary/painting_03.iff", milestone=1080, oneTime=false, description="Painting: Tatooine Dune Speeder"},
@@ -174,7 +174,7 @@ veteranRewards = {
 
 }
 
--- { "stringId", "songFilePath" }
+ { "stringId", "songFilePath" }
 jukeboxSongs = {
 	{ "@event_perk_jukebox_songs:emperors_theme", "sound/music_emperor_theme_loop.snd" },
 	{ "@event_perk_jukebox_songs:chamber_music", "sound/music_starport_a_loop.snd" },
