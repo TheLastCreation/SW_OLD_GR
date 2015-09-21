@@ -141,7 +141,6 @@ includeFile("conversations/racetracks/mosespaconversation.lua")
 includeFile("conversations/racetracks/narmleconversation.lua")
 includeFile("conversations/racetracks/lokconversation.lua")
 includeFile("conversations/racetracks/nashalconversation.lua")
-includeFile("conversations/racetracks/mosrassen_race_coordinator")
 
 -- Space
 includeFile("conversations/space/chassis_dealer_conv.lua")
