@@ -4,6 +4,7 @@ exar_kun = Creature:new {
 	socialGroup = "KUN",
 	pvpFaction = "KUN",
 	faction = "",
+	level = 300,
 	chanceHit = 92.5,
 	damageMin = 2800,
 	damageMax = 4580,
