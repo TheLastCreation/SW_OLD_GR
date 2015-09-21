@@ -1,4 +1,5 @@
 includeFile("weapon/groups/deathtrooper_weapons.lua")
+includeFile("weapon/groups/yoda_weapons.lua")
 
 -- weapon group templates
 
