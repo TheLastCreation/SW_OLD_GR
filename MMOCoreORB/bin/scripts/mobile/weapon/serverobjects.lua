@@ -1,3 +1,5 @@
+includeFile("weapon/groups/deathtrooper_weapons.lua")
+
 -- weapon group templates
 
 -- creature default attack
