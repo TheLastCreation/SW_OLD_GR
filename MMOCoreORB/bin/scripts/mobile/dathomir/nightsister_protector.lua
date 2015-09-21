@@ -11,7 +11,7 @@ nightsister_protector = Creature:new {
 	baseHAM = 50000,
 	baseHAMmax = 61000,
 	armor = 2,
-	resists = {30,25,25,30,30,30,30,30,-1},
+	resists = {55,100,55,100,100,100,100,100,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -30,10 +30,9 @@ nightsister_protector = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "nightsister_rare", chance = 25000},
 				{group = "crystals_select", chance = 500000},
 				{group = "color_crystals", chance = 500000},
-				{group = "ns_clothing", chance = 2275000},
+				{group = "nightsister_common", chance = 2300000},
 				{group = "armor_attachments", chance = 350000},
 				{group = "clothing_attachments", chance = 350000},
 				{group = "melee_weapons", chance = 2000000},
@@ -46,7 +45,7 @@ nightsister_protector = Creature:new {
 	},
 	weapons = {"mixed_force_weapons"},
 	conversationTemplate = "",
-	attacks = merge(brawlermaster,pikemanmaster)
+	attacks = merge(brawlermaster,pikemanmaster,forcewielder)
 }
 
 CreatureTemplates:addCreatureTemplate(nightsister_protector, "nightsister_protector")

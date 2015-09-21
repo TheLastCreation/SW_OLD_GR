@@ -101,7 +101,7 @@ void TangibleObjectImplementation::notifyLoadFromDatabase() {
 void TangibleObjectImplementation::sendBaselinesTo(SceneObject* player) {
 	info("sending tano baselines");
 
-	Reference<TangibleObject*> thisPointer = asTangibleObject();
+	TangibleObject* thisPointer = asTangibleObject();
 
 	BaseMessage* tano3 = new TangibleObjectMessage3(thisPointer);
 	player->sendMessage(tano3);
@@ -146,12 +146,12 @@ void TangibleObjectImplementation::broadcastPvpStatusBitmask() {
 
 		CreatureObject* thisCreo = asCreatureObject();
 
-		SortedVector<ManagedReference<QuadTreeEntry*> > closeObjects(closeobjects->size(), 10);
+		SortedVector<QuadTreeEntry*> closeObjects(closeobjects->size(), 10);
 
 		closeobjects->safeCopyTo(closeObjects);
 
 		for (int i = 0; i < closeObjects.size(); ++i) {
-			SceneObject* obj = cast<SceneObject*>(closeObjects.get(i).get());
+			SceneObject* obj = cast<SceneObject*>(closeObjects.get(i));
 
 			if (obj != NULL && obj->isCreatureObject()) {
 				CreatureObject* creo = obj->asCreatureObject();
@@ -589,6 +589,19 @@ int TangibleObjectImplementation::healDamage(TangibleObject* healer, int damageT
 	return returnValue;
 }
 
+void TangibleObjectImplementation::setObjectName(StringId& stringID, bool notifyClient) {
+	objectName = stringID;
+
+	if (!notifyClient)
+		return;
+
+	TangibleObjectDeltaMessage3* dtano3 = new TangibleObjectDeltaMessage3(asTangibleObject());
+	dtano3->updateObjectName(stringID);
+	dtano3->close();
+
+	broadcastMessage(dtano3, true);
+}
+
 void TangibleObjectImplementation::setCustomObjectName(const UnicodeString& name, bool notifyClient) {
 	customName = name;
 
@@ -596,7 +609,7 @@ void TangibleObjectImplementation::setCustomObjectName(const UnicodeString& name
 		return;
 
 	TangibleObjectDeltaMessage3* dtano3 = new TangibleObjectDeltaMessage3(asTangibleObject());
-	dtano3->updateName(name);
+	dtano3->updateCustomName(name);
 	dtano3->close();
 
 	broadcastMessage(dtano3, true);

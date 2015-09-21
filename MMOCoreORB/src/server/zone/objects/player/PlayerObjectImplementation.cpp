@@ -78,6 +78,7 @@
 #include "server/login/account/Account.h"
 #include "server/zone/objects/tangible/deed/eventperk/EventPerkDeed.h"
 #include "server/zone/managers/player/QuestInfo.h"
+#include "server/zone/objects/player/events/ForceMeditateTask.h"
 
 void PlayerObjectImplementation::initializeTransientMembers() {
 	IntangibleObjectImplementation::initializeTransientMembers();
@@ -1518,7 +1519,7 @@ void PlayerObjectImplementation::logout(bool doLock) {
 }
 
 
-void PlayerObjectImplementation::doRecovery() {
+void PlayerObjectImplementation::doRecovery(int latency) {
 	if (getZoneServer()->isServerLoading()) {
 		activateRecovery();
 
@@ -1555,7 +1556,7 @@ void PlayerObjectImplementation::doRecovery() {
 		}
 	}
 
-	creature->activateHAMRegeneration();
+	creature->activateHAMRegeneration(latency);
 	creature->activateStateRecovery();
 
 	CooldownTimerMap* cooldownTimerMap = creature->getCooldownTimerMap();
@@ -1609,15 +1610,23 @@ void PlayerObjectImplementation::doRecovery() {
 void PlayerObjectImplementation::activateRecovery() {
 	if (recoveryEvent == NULL) {
 		recoveryEvent = new PlayerRecoveryEvent(_this.getReferenceUnsafeStaticCast());
+	}
 
+	if (!recoveryEvent->isScheduled()) {
 		recoveryEvent->schedule(3000);
 	}
 }
 
 void PlayerObjectImplementation::activateForcePowerRegen() {
+	if (forcePowerRegen == 0) {
+		return;
+	}
+
 	if (forceRegenerationEvent == NULL) {
 		forceRegenerationEvent = new ForceRegenerationEvent(_this.getReferenceUnsafeStaticCast());
+	}
 
+	if (!forceRegenerationEvent->isScheduled()) {
 		float timer = ((float) getForcePowerRegen()) / 5.f;
 		float scheduledTime = 10 / timer;
 		uint64 miliTime = static_cast<uint64>(scheduledTime * 1000.f);
@@ -1641,7 +1650,7 @@ void PlayerObjectImplementation::setOnline() {
 
 	clearCharacterBit(PlayerObjectImplementation::LD, true);
 
-	doRecovery();
+	doRecovery(1000);
 
 	activateMissions();
 }
@@ -1733,14 +1742,6 @@ void PlayerObjectImplementation::disconnect(bool closeClient, bool doLock) {
 
 void PlayerObjectImplementation::clearDisconnectEvent() {
 	disconnectEvent = NULL;
-}
-
-void PlayerObjectImplementation::clearRecoveryEvent() {
-	recoveryEvent = NULL;
-}
-
-void PlayerObjectImplementation::clearForceRegenerationEvent() {
-	forceRegenerationEvent = NULL;
 }
 
 void PlayerObjectImplementation::maximizeExperience() {
@@ -1847,16 +1848,14 @@ void PlayerObjectImplementation::doForceRegen() {
 
 	uint32 modifier = 1;
 
-	// TODO: Re-factor Force Meditate so TKA meditate doesn't effect.
-	if (creature->isMeditating())
-		modifier = 3;
+	if (creature->isMeditating()) {
+		Reference<ForceMeditateTask*> medTask = creature->getPendingTask("forcemeditate").castTo<ForceMeditateTask*>();
+
+		if (medTask != NULL)
+			modifier = 3;
+	}
 
 	uint32 forceTick = tick * modifier;
-
-	//forceTick cant be <1 as per above code, tick is always positive and modifier as well
-	/*if (forceTick < 1)
-		forceTick = 1;
-		*/
 
 	if (forceTick > getForcePowerMax() - getForcePower()){   // If the player's Force Power is going to regen again and it's close to max,
 		setForcePower(getForcePowerMax());             // Set it to max, so it doesn't go over max.
@@ -2087,6 +2086,19 @@ void PlayerObjectImplementation::destroyObjectFromDatabase(bool destroyContained
 				if (structure->isCivicStructure()) {
 					StructureSetOwnerTask* task = new StructureSetOwnerTask(structure, 0);
 					task->execute();
+
+					if (structure->isCityHall()) {
+						ManagedReference<CityRegion*> city = structure->getCityRegion().get();
+
+						if (city != NULL) {
+							EXECUTE_TASK_1(city, {
+									Locker locker(city_p);
+
+									city_p->setMayorID(0);
+							});
+						}
+					}
+
 					continue;
 				}
 

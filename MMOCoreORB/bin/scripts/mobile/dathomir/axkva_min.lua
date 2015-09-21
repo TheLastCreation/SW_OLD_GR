@@ -10,7 +10,7 @@ axkva_min = Creature:new {
 	baseHAM = 385000,
 	baseHAMmax = 471000,
 	armor = 3,
-	resists = {30,25,25,30,30,30,30,30,-1},
+	resists = {100,35,35,100,100,100,100,100,-1},
 	meatType = "",
 	meatAmount = 0,
 	hideType = "",
@@ -29,9 +29,8 @@ axkva_min = Creature:new {
 	lootGroups = {
 		{
 			groups = {
-				{group = "nightsister_rare", chance = 50000},
 				{group = "crystals_premium", chance = 900000},
-				{group = "ns_clothing", chance = 2550000},
+				{group = "nightsister_common", chance = 2600000},
 				{group = "pistols", chance = 1000000},
 				{group = "rifles", chance = 1000000},
 				{group = "carbines", chance = 1000000},
@@ -45,12 +44,12 @@ axkva_min = Creature:new {
 			groups = {
 				{group = "axkva_min", chance = 10000000},
 			},
-			lootChance = 9000000
+			lootChance = 5000000
 		}
 	},
 	weapons = {"mixed_force_weapons"},
 	conversationTemplate = "",
-	attacks = merge(pikemanmaster,brawlermaster)
+	attacks = merge(pikemanmaster,brawlermaster,forcepowermaster)
 }
 
 CreatureTemplates:addCreatureTemplate(axkva_min, "axkva_min")

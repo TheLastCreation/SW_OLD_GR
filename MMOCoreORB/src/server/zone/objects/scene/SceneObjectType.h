@@ -156,6 +156,8 @@ public:
 	const static int REVIVEPACK = 0x2033;
 	const static int STATICLOOTCONTAINER = 0x2034;
 	const static int PLAYERLOOTCRATE = 0x2035;
+	const static int FSPUZZLEPACK = 0x2036;
+	const static int GROWABLEPLANT = 0x2037;
 	/// End Not in client **************
 
 	const static int TERMINAL = 0x4000;

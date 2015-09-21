@@ -550,6 +550,12 @@ includeFile("items/armor/ubese_armor_pants.lua")
 includeFile("items/armor/ubese_armor_shirt.lua")
 
 --coa sub-folder
+includeFile("items/coa/coa_decoder_housing.lua")
+includeFile("items/coa/coa_decoder_power.lua")
+includeFile("items/coa/coa_decoder_processor.lua")
+includeFile("items/coa/coa_decoder_reader.lua")
+includeFile("items/coa/coa_decoder_screen.lua")
+includeFile("items/coa/coa_decoder_translation.lua")
 includeFile("items/coa/coa_imp_1.lua")
 includeFile("items/coa/coa_imp_2.lua")
 includeFile("items/coa/coa_imp_3.lua")
@@ -558,6 +564,7 @@ includeFile("items/coa/coa_reb_1.lua")
 includeFile("items/coa/coa_reb_2.lua")
 includeFile("items/coa/coa_reb_3.lua")
 includeFile("items/coa/coa_reb_4.lua")
+includeFile("items/coa/coa_rebel_message.lua")
 
 
 -- creature sub-folder
@@ -826,7 +833,6 @@ includeFile("items/npc/gungan_signet.lua")
 includeFile("items/npc/janta_blood.lua")
 includeFile("items/npc/janta_hides.lua")
 includeFile("items/npc/jawa_beads.lua")
-includeFile("items/npc/nightsister_bicep_r.lua")
 includeFile("items/npc/nightsister_lance_schematic.lua")
 includeFile("items/npc/nightsister_layer.lua")
 includeFile("items/npc/nightsister_shards.lua")

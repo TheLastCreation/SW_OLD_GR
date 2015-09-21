@@ -149,6 +149,30 @@ void ResourceSpawner::loadResourceSpawns() {
 			continue;
 		}
 
+		// Create spawn maps for zones that were disabled when the resource spawned
+		if (resourceSpawn->inShift()) {
+			ResourceTreeEntry* resourceEntry = resourceTree->getEntry(resourceSpawn->getType());
+
+			if (resourceEntry != NULL) {
+				int minPool = resourceEntry->getMinpool();
+				int spawnMapSize = resourceSpawn->getSpawnMapSize();
+
+				if (spawnMapSize < minPool) {
+					Vector<String> activeZones;
+					activeResourceZones.clone(activeZones);
+
+					for (int i = 0; i < spawnMapSize; i++) {
+						activeZones.removeElement(resourceSpawn->getSpawnMapZone(i));
+					}
+
+					Locker locker(resourceSpawn);
+
+					resourceSpawn->createSpawnMaps(resourceEntry->isJTL(), minPool - spawnMapSize,
+							resourceEntry->getMaxpool() - spawnMapSize, resourceEntry->getZoneRestriction(), activeZones);
+				}
+			}
+		}
+
 		resourceMap->add(resourceSpawn->getName(), resourceSpawn);
 
 		if (!resourceSpawn->inShift()) {
@@ -394,11 +418,60 @@ ResourceSpawn* ResourceSpawner::createRecycledResourceSpawn(ResourceTreeEntry* e
 	return newSpawn;
 }
 
-ResourceSpawn* ResourceSpawner::manualCreateResourceSpawn(const String& type) {
+ResourceSpawn* ResourceSpawner::manualCreateResourceSpawn(CreatureObject* player, const UnicodeString& args) {
+	StringTokenizer tokenizer(args.toString());
+	tokenizer.setDelimeter(" ");
+
+	if (!tokenizer.hasMoreTokens()) {
+		return NULL;
+	}
+
+	String type;
+	tokenizer.getStringToken(type);
+	VectorMap<String, int> attributes;
+
+	try {
+		while(tokenizer.hasMoreTokens()) {
+			String token;
+			tokenizer.getStringToken(token);
+
+			StringTokenizer izer(token);
+			izer.setDelimeter(",");
+
+			String att;
+			izer.getStringToken(att);
+
+			if (!izer.hasMoreTokens()) {
+				throw Exception();
+			}
+
+			int value = izer.getIntToken();
+
+			if (value < 1) {
+				value = 1;
+			} else if (value > 1000) {
+				value = 1000;
+			}
+
+			attributes.put(att, value);
+		}
+	} catch (Exception& e) {
+		player->sendSystemMessage("Invalid arguments for /gmCreateSpecificResource: type <attribute,value> ..");
+		return NULL;
+	}
+
 	ResourceSpawn* resourceSpawn = createResourceSpawn(type);
 
 	if (resourceSpawn != NULL) {
 		Locker locker(resourceSpawn);
+
+		for (int i = 0; i < attributes.size(); i++) {
+			String key = attributes.elementAt(i).getKey();
+			if (resourceSpawn->getValueOf(key) > 0) {
+				resourceSpawn->addAttribute(key, attributes.get(i));
+			}
+		}
+
 		manualPool->addResource(resourceSpawn, "any");
 	}
 
@@ -830,18 +903,10 @@ void ResourceSpawner::sendSample(CreatureObject* player, const String& resname,
 
 	ManagedReference<PlayerObject*> ghost = player->getPlayerObject();
 
-	/*if (player->getHAM(CreatureAttribute::ACTION) < 200) {
-		player->setPosture(CreaturePosture::UPRIGHT, true);
-		player->sendSystemMessage("@error_message:survey_mind"); //You are exhausted. You nee to clear your head before you can survey again.
-		return;
-	}*/
-
 	//Adjust cost based upon player's quickness
 	int actionCost = 124 - (int)(player->getHAM(CreatureAttribute::QUICKNESS)/12.5f);
-	int mindCost = 124 - (int)(player->getHAM(CreatureAttribute::FOCUS)/12.5f);
 
 	player->inflictDamage(player, CreatureAttribute::ACTION, actionCost, false, true);
-	player->inflictDamage(player, CreatureAttribute::MIND, mindCost, false, true);
 
 	PlayClientEffectLoc* effect = new PlayClientEffectLoc(sampleAnimation,
 			player->getZone()->getZoneName(), player->getPositionX(),
@@ -1019,7 +1084,7 @@ bool ResourceSpawner::addResourceToPlayerInventory(CreatureObject* player, Resou
 			}
 		}
 	}
-	if (unitsExtracted > 0 && inventory->hasFullContainerObjects()) {
+	if (unitsExtracted > 0 && inventory->isContainerFullRecursive()) {
 		StringIdChatParameter err("survey", "no_inv_space");
 		player->sendSystemMessage(err);
 		if (!player->isIncapacitated() && !player->isDead()){

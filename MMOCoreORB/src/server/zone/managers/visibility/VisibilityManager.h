@@ -1,6 +1,6 @@
 /*
 				Copyright <SWGEmu>
-		See file COPYING for copying conditions. */
+		See file COPYING for copying conditions.*/
 
 #ifndef VISIBILITYMANAGER_H_
 #define VISIBILITYMANAGER_H_
@@ -23,7 +23,7 @@ class VisibilityManager : public Singleton<VisibilityManager>, public Logger, pu
 	 * available on the bounty hunter mission terminal as a player bounty.
 	 */
 	enum {
-		TERMINALVISIBILITYLIMIT = 2
+		TERMINALVISIBILITYLIMIT = 24
 	};
 
 	/**

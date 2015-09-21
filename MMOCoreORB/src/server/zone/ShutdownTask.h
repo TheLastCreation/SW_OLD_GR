@@ -24,7 +24,7 @@ public:
 	void run() {
 		--minutesRemaining;
 
-		String str = "Server will shutdown in " + String::valueOf(minutesRemaining) + " minutes. Please find a safe place to log out.";
+		String str = "Server will shutdown in " + String::valueOf(minutesRemaining) + " minutes";
 		Logger::console.info(str, true);
 
 		if (minutesRemaining == 0)

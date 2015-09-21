@@ -292,6 +292,72 @@ int ZoneImplementation::getInRangeActiveAreas(float x, float y, SortedVector<Man
 	return objects->size();
 }
 
+int ZoneImplementation::getInRangeActiveAreas(float x, float y, ActiveAreasVector* objects, bool readLockZone) {
+	//Locker locker(_this.getReferenceUnsafeStaticCast());
+
+	bool readlock = readLockZone && !_this.getReferenceUnsafeStaticCast()->isLockedByCurrentThread();
+
+	//_this.getReferenceUnsafeStaticCast()->rlock(readlock);
+
+	Zone* thisZone = _this.getReferenceUnsafeStaticCast();
+
+	try {
+		thisZone->rlock(readlock);
+
+		SortedVector<QuadTreeEntry*> entryObjects;
+
+		regionTree->inRange(x, y, entryObjects);
+
+		thisZone->runlock(readlock);
+
+		for (int i = 0; i < entryObjects.size(); ++i) {
+			ActiveArea* obj = dynamic_cast<ActiveArea*>(entryObjects.get(i));
+			objects->put(obj);
+		}
+	}catch (...) {
+//		_this.getReferenceUnsafeStaticCast()->runlock(readlock);
+
+		throw;
+	}
+
+//	_this.getReferenceUnsafeStaticCast()->runlock(readlock);
+
+	return objects->size();
+}
+
+int ZoneImplementation::getInRangeActiveAreas(float x, float y, float range, ActiveAreasVector* objects, bool readLockZone) {
+	//Locker locker(_this.getReferenceUnsafeStaticCast());
+
+	bool readlock = readLockZone && !_this.getReferenceUnsafeStaticCast()->isLockedByCurrentThread();
+
+	//_this.getReferenceUnsafeStaticCast()->rlock(readlock);
+
+	Zone* thisZone = _this.getReferenceUnsafeStaticCast();
+
+	try {
+		thisZone->rlock(readlock);
+
+		SortedVector<QuadTreeEntry*> entryObjects;
+
+		regionTree->inRange(x, y, range, entryObjects);
+
+		thisZone->runlock(readlock);
+
+		for (int i = 0; i < entryObjects.size(); ++i) {
+			ActiveArea* obj = dynamic_cast<ActiveArea*>(entryObjects.get(i));
+			objects->put(obj);
+		}
+	}catch (...) {
+		//		_this.getReferenceUnsafeStaticCast()->runlock(readlock);
+
+		throw;
+	}
+
+	//	_this.getReferenceUnsafeStaticCast()->runlock(readlock);
+
+	return objects->size();
+}
+
 int ZoneImplementation::getInRangeActiveAreas(float x, float y, float range, SortedVector<ManagedReference<ActiveArea*> >* objects, bool readLockZone) {
 	//Locker locker(_this.getReferenceUnsafeStaticCast());
 
@@ -423,7 +489,7 @@ void ZoneImplementation::updateActiveAreas(TangibleObject* tano) {
 
 void ZoneImplementation::addSceneObject(SceneObject* object) {
 	SceneObject* old = objectMap->put(object->getObjectID(), object);
-	
+
 	//Civic and commercial structures map registration will be handled by their city
 	if (object->isStructureObject()) {
 		StructureObject* structure = cast<StructureObject*>(object);
@@ -442,7 +508,7 @@ void ZoneImplementation::addSceneObject(SceneObject* object) {
 	} else if (old == NULL && object->isAiAgent()) {
 		spawnedAiAgents.increment();
 	}
-	
+
 	registerObjectWithPlanetaryMap(object);
 }
 

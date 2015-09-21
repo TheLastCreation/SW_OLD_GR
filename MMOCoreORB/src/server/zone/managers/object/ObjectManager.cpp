@@ -146,6 +146,7 @@ void ObjectManager::registerObjectTypes() {
 	objectFactory.registerObject<TangibleObject>(SceneObjectType::CAMPKIT);
 	objectFactory.registerObject<Container>(SceneObjectType::STATICLOOTCONTAINER);
 	objectFactory.registerObject<TangibleObject>(SceneObjectType::PLAYERLOOTCRATE);
+	objectFactory.registerObject<PlantObject>(SceneObjectType::GROWABLEPLANT);
 
 	objectFactory.registerObject<SlicingTool>(SceneObjectType::SLICINGTOOL);
 	objectFactory.registerObject<SlicingTool>(SceneObjectType::FLOWANALYZER);
@@ -252,6 +253,7 @@ void ObjectManager::registerObjectTypes() {
 	objectFactory.registerObject<StatePack>(SceneObjectType::STATEPACK);
 	objectFactory.registerObject<RevivePack>(SceneObjectType::REVIVEPACK);
 	objectFactory.registerObject<VitalityPack>(SceneObjectType::PETMEDECINE);
+	objectFactory.registerObject<FsPuzzlePack>(SceneObjectType::FSPUZZLEPACK);
 
 	//clothing
 	objectFactory.registerObject<ClothingObject>(SceneObjectType::CLOTHING);

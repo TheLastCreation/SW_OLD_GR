@@ -68,7 +68,7 @@ public:
 
 		buff->setStartMessage(startStringId);
 		buff->setEndMessage(endStringId);
-		buff->setSkillModifier("force_armor", 65);
+		buff->setSkillModifier("force_armor", 45);
 		buff->init(&eventTypes);
 
 		creature->addBuff(buff);

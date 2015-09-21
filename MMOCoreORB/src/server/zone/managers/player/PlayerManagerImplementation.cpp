@@ -137,7 +137,6 @@ PlayerManagerImplementation::PlayerManagerImplementation(ZoneServer* zoneServer,
 	server = zoneServer;
 	processor = impl;
 
-	playerMap = new PlayerMap(3000);
 	nameMap = new CharacterNameMap();
 
 	DirectorManager::instance()->getLuaInstance()->runFile("scripts/screenplays/checklnum.lua");
@@ -304,9 +303,6 @@ void PlayerManagerImplementation::loadPermissionLevels() {
 }
 
 void PlayerManagerImplementation::finalize() {
-	delete playerMap;
-	playerMap = NULL;
-
 	delete nameMap;
 	nameMap = NULL;
 }
@@ -939,13 +935,7 @@ void PlayerManagerImplementation::sendPlayerToCloner(CreatureObject* player, uin
 
 	if (ghost->hasPvpTef())
 		ghost->schedulePvpTefRemovalTask(true);
-		
-	if (player->hasSkill("force_rank_dark_novice") || player->hasSkill("force_rank_light_novice")){
-		ghost->setFactionStatus(FactionStatus::OVERT);
-	}else{
-		ghost->setFactionStatus(FactionStatus::ONLEAVE);
-    }
-	
+
 	// Decay
 	if (typeofdeath == 0) {
 		SortedVector<ManagedReference<SceneObject*> > insurableItems = getInsurableItems(player, false);
@@ -1963,9 +1953,11 @@ int PlayerManagerImplementation::notifyObserverEvent(uint32 eventType, Observabl
 		if(logoutTask != NULL) {
 			logoutTask->cancelLogout();
 		}
+
+		return 1;
 	}
 
-	return 1;
+	return 0;
 }
 
 void PlayerManagerImplementation::sendBattleFatigueMessage(CreatureObject* player, CreatureObject* target) {
@@ -2041,12 +2033,15 @@ void PlayerManagerImplementation::stopListen(CreatureObject* creature, uint64 en
 	if (object == NULL)
 		return;
 
+	// If the player selected "Stop listening" by using a radial menu created on a
+	// musician other than the one that they are currently listening to then change
+	// entid to their listenID so that the player can still stop listening.
+	if (entid != listenID && listenID != 0 && creature->isListening()) {
+		entid = listenID;
+	}
+
 	if(object->isDroidObject()) {
 		creature->setMood(creature->getMoodID());
-		if (entid != listenID ) {
-			creature->sendSystemMessage("You are not currently listening to " + object->getDisplayedName() + ".");
-			return;
-		}
 		if(doSendPackets) {
 			creature->setListenToID(0, true);
 			creature->setMoodString(creature->getMoodString(), true);
@@ -2056,16 +2051,18 @@ void PlayerManagerImplementation::stopListen(CreatureObject* creature, uint64 en
 			StringIdChatParameter stringID;
 			if (forced) {
 				stringID.setTU(entid);
-				stringID.setStringId("performance", "music_stop_other");
+				stringID.setStringId("performance", "music_stop_other"); // "%TU stops playing."
 				player->sendSystemMessage(stringID);
 				return;
 			} else if (outOfRange) {
+				// The correct string id is @performance:music_listen_out_of_range ("You stop listening to %TT because %OT is too far away.")
+				// but %OT will get replaced by him/her which gives an incorrect message.
 				StringBuffer msg;
 				msg << "You stop listening to " << object->getDisplayedName() << " because they are too far away.";
 				player->sendSystemMessage(msg.toString());
 				return;
 			} else {
-				player->sendSystemMessage("@performance:music_listen_stop_self"); //"You stop watching."
+				player->sendSystemMessage("@performance:music_listen_stop_self"); // "You stop listening."
 				return;
 			}
 		}
@@ -2073,7 +2070,7 @@ void PlayerManagerImplementation::stopListen(CreatureObject* creature, uint64 en
 	}
 
 	if (!object->isPlayerCreature()) {
-		creature->sendSystemMessage("You cannot stop listening an object.");
+		creature->sendSystemMessage("@performance:music_listen_npc"); // "You cannot /listen to NPCs."
 		return;
 	}
 
@@ -2105,12 +2102,6 @@ void PlayerManagerImplementation::stopListen(CreatureObject* creature, uint64 en
 		clocker.release();
 	}
 
-	if (entid != listenID && entertainer != NULL) {
-		creature->sendSystemMessage("You are not currently listening to " + entName + ".");
-
-		return;
-	}
-
 	creature->setMood(creature->getMoodID());
 
 	if (doSendPackets && esession != NULL)
@@ -2123,20 +2114,17 @@ void PlayerManagerImplementation::stopListen(CreatureObject* creature, uint64 en
 
 		if (forced) {
 			stringID.setTU(entid);
-			stringID.setStringId("performance", "music_stop_other");
+			stringID.setStringId("performance", "music_stop_other"); // "%TU stops playing."
 
 			player->sendSystemMessage(stringID);
-			//player->sendSystemMessage("performance", "dance_stop_other", params); //"%TU stops dancing."
 		} else if (outOfRange) {
+			// The correct string id is @performance:music_listen_out_of_range ("You stop listening to %TT because %OT is too far away.")
+			// but %OT will get replaced by him/her which gives an incorrect message.
 			StringBuffer msg;
-			msg << "You stop watching " << entertainer->getFirstName() << " because they are too far away.";
+			msg << "You stop listening to " << entertainer->getFirstName() << " because they are too far away.";
 			player->sendSystemMessage(msg.toString());
-
-			//TODO: Why does %OT say "him/her" instead of "he/she"?
-			//params->addTT(entid);
-			//player->sendSystemMessage("performance", "dance_watch_out_of_range", params); //"You stop watching %TT because %OT is too far away."
 		} else {
-			player->sendSystemMessage("@performance:music_listen_stop_self"); //"You stop watching."
+			player->sendSystemMessage("@performance:music_listen_stop_self"); // "You stop listening."
 		}
 
 		ManagedReference<PlayerObject*> entPlayer = entertainer->getPlayerObject();
@@ -2145,23 +2133,31 @@ void PlayerManagerImplementation::stopListen(CreatureObject* creature, uint64 en
 	}
 	//esession->setEntertainerBuffDuration(creature, PerformanceType::MUSIC, 0.0f); // reset
 	//esession->setEntertainerBuffStrength(creature, PerformanceType::MUSIC, 0.0f);
-	creature->info("stopped watching [" + entName + "]");
+	creature->info("stopped listening [" + entName + "]");
 
-	//creature->setListenToID(0, true);
+	creature->setListenToID(0, true);
 }
 
 
 void PlayerManagerImplementation::stopWatch(CreatureObject* creature, uint64 entid, bool doSendPackets, bool forced, bool doLock, bool outOfRange) {
 	Locker locker(creature);
 
-	ManagedReference<SceneObject*> object = server->getObject(entid);
 	uint64 watchID = creature->getWatchToID();
+
+	// If the player selected "Stop watching" by using a radial menu created on a
+	// dancer other than the one that they are currently watching then change
+	// entid to their watchID so that the player can still stop watching.
+	if (entid != watchID && watchID != 0 && creature->isWatching()) {
+		entid = watchID;
+	}
+
+	ManagedReference<SceneObject*> object = server->getObject(entid);
 
 	if (object == NULL)
 		return;
 
 	if (!object->isPlayerCreature()) {
-		creature->sendSystemMessage("You cannot stop watching an object.");
+		creature->sendSystemMessage("@performance:dance_watch_npc"); // "You cannot /watch NPCs."
 		return;
 	}
 
@@ -2193,12 +2189,6 @@ void PlayerManagerImplementation::stopWatch(CreatureObject* creature, uint64 ent
 		clocker.release();
 	}
 
-	if (entid != watchID) {
-		creature->sendSystemMessage("You are not currently watching " + entName + ".");
-
-		return;
-	}
-
 	creature->setMood(creature->getMoodID());
 
 	if (doSendPackets && esession != NULL)
@@ -2209,22 +2199,18 @@ void PlayerManagerImplementation::stopWatch(CreatureObject* creature, uint64 ent
 		CreatureObject* player = cast<CreatureObject*>( creature);
 
 		StringIdChatParameter stringID;
-		//StfParameter* params = new StfParameter;
 
 		if (forced) {
 			stringID.setTU(entid);
-			stringID.setStringId("performance", "dance_stop_other");
+			stringID.setStringId("performance", "dance_stop_other"); // %TU stops dancing.
 
 			player->sendSystemMessage(stringID);
-			//player->sendSystemMessage("performance", "dance_stop_other", params); //"%TU stops dancing."
 		} else if (outOfRange) {
+			// The correct string id is @performance:dance_watch_out_of_range ("You stop watching %TT because %OT is too far away.")
+			// but %OT will get replaced by him/her which gives an incorrect message.
 			StringBuffer msg;
 			msg << "You stop watching " << entertainer->getFirstName() << " because they are too far away.";
 			player->sendSystemMessage(msg.toString());
-
-			//TODO: Why does %OT say "him/her" instead of "he/she"?
-			//params->addTT(entid);
-			//player->sendSystemMessage("performance", "dance_watch_out_of_range", params); //"You stop watching %TT because %OT is too far away."
 		} else {
 			player->sendSystemMessage("@performance:dance_watch_stop_self"); //"You stop watching."
 		}
@@ -2250,6 +2236,9 @@ void PlayerManagerImplementation::startWatch(CreatureObject* creature, uint64 en
 	ManagedReference<SceneObject*> object = server->getObject(entid);
 	uint64 watchID = creature->getWatchToID();
 
+	if (watchID == entid)
+		return;
+
 	if (object == NULL)
 		return;
 
@@ -2259,7 +2248,7 @@ void PlayerManagerImplementation::startWatch(CreatureObject* creature, uint64 en
 	}*/
 
 	if (!object->isPlayerCreature()) {
-		creature->sendSystemMessage("You cannot start watching an object.");
+		creature->sendSystemMessage("@performance:dance_watch_npc"); // "You can not /watch NPCs."
 		return;
 	}
 
@@ -2271,16 +2260,18 @@ void PlayerManagerImplementation::startWatch(CreatureObject* creature, uint64 en
 	Locker clocker(entertainer, creature);
 
 	if (creature->isDancing() || creature->isPlayingMusic()) {
-		creature->sendSystemMessage("You cannot /watch while skill animating.");
+		StringIdChatParameter stringID;
+		stringID.setStringId("cmd_err", "locomotion_prose"); // "You cannot %TO while %TU."
+		stringID.setTO("/watch");
+		stringID.setTU("@locomotion_n:skillanimating"); // "Skill Animating"
+		creature->sendSystemMessage(stringID);
 
 		return;
 	} else if (!entertainer->isDancing()) {
-		creature->sendSystemMessage(entertainer->getCustomObjectName().toString() + " is not currently dancing.");
-
-		return;
-	} else if (entid == watchID) {
-		creature->sendSystemMessage("You are already watching " + entertainer->getCustomObjectName().toString() + ".");
-
+		StringIdChatParameter stringID;
+		stringID.setStringId("performance", "dance_watch_not_dancing"); // "%TT is not dancing."
+		stringID.setTT(entid);
+		creature->sendSystemMessage(stringID);
 		return;
 	}
 
@@ -2307,8 +2298,10 @@ void PlayerManagerImplementation::startWatch(CreatureObject* creature, uint64 en
 
 	//creature->addWatcher(_this);
 
-	//if (isPlayer())
-	creature->sendSystemMessage("You begin watching " + entertainer->getCustomObjectName().toString() + ".");
+	StringIdChatParameter stringID;
+	stringID.setStringId("performance", "dance_watch_self"); // You start watching %TT.
+	stringID.setTT(entid);
+	creature->sendSystemMessage(stringID);
 
 	//setEntertainerBuffDuration(PerformanceType::DANCE, 0.0f);
 	//setEntertainerBuffStrength(PerformanceType::DANCE, 0.0f);
@@ -2325,6 +2318,9 @@ void PlayerManagerImplementation::startListen(CreatureObject* creature, uint64 e
 	ManagedReference<SceneObject*> object = server->getObject(entid);
 	uint64 listenID = creature->getListenID();
 
+	if (listenID == entid)
+		return;
+
 	if (object == NULL)
 		return;
 
@@ -2337,7 +2333,7 @@ void PlayerManagerImplementation::startListen(CreatureObject* creature, uint64 e
 	if(object->isDroidObject()) {
 		DroidObject* droid = cast<DroidObject*>( object.get());
 		if (droid == NULL) {
-			creature->sendSystemMessage("You cannot start listening an object.");
+			creature->sendSystemMessage("@performance:music_listen_npc"); // "You cannot /listen to NPCs."
 			return;
 		}
 		BaseDroidModuleComponent* bmodule = droid->getModule("playback_module");
@@ -2345,20 +2341,25 @@ void PlayerManagerImplementation::startListen(CreatureObject* creature, uint64 e
 			DroidPlaybackModuleDataComponent* module = cast<DroidPlaybackModuleDataComponent*>(bmodule);
 			if(module != NULL) {
 				if (creature->isDancing() || creature->isPlayingMusic()) {
-					creature->sendSystemMessage("You cannot /watch while skill animating.");
+					StringIdChatParameter stringID;
+					stringID.setStringId("cmd_err", "locomotion_prose"); // "You cannot %TO while %TU."
+					stringID.setTO("/listen");
+					stringID.setTU("@locomotion_n:skillanimating"); // "Skill Animating"
+					creature->sendSystemMessage(stringID);
 					return;
 				}
 
 				if(module->isActive()) {
 					// the droid is playing so we can do something
-					if (entid == listenID) {
-						creature->sendSystemMessage("You are already listening " + droid->getDisplayedName() + ".");
-						return;
-					}
 					if (creature->isListening()) {
 						stopListen(creature, listenID, false);
 					}
-					creature->sendSystemMessage("You begin to listen " + droid->getDisplayedName() + ".");
+
+					StringIdChatParameter stringID;
+					stringID.setTT(entid);
+					stringID.setStringId("performance", "music_listen_self"); // "You start listening to %TT."
+					creature->sendSystemMessage(stringID);
+
 					creature->setListenToID(entid, true);
 					String str = Races::getMoodStr("entertained");
 					creature->setMoodString(str, true);
@@ -2366,20 +2367,23 @@ void PlayerManagerImplementation::startListen(CreatureObject* creature, uint64 e
 					module->addListener(creature->getObjectID());
 					return;
 				} else {
-					creature->sendSystemMessage(droid->getDisplayedName() + " is not currently playing music.");
+					StringIdChatParameter stringID;
+					stringID.setTT(entid);
+					stringID.setStringId("performance", "music_listen_not_playing"); // %TT is not playing a song.
+					creature->sendSystemMessage(stringID);
 					return;
 				}
 			} else {
-				creature->sendSystemMessage("You cannot start listening an object.");
+				creature->sendSystemMessage("@performance:music_listen_npc"); // "You cannot /listen to NPCs."
 			}
 		} else {
-			creature->sendSystemMessage("You cannot start listening an object.");
+			creature->sendSystemMessage("@performance:music_listen_npc"); // "You cannot /listen to NPCs."
 		}
 		return;
 	}
 
 	if (!object->isPlayerCreature()) {
-		creature->sendSystemMessage("You cannot start listening an object.");
+		creature->sendSystemMessage("@performance:music_listen_npc"); // "You cannot /listen to NPCs."
 		return;
 	}
 
@@ -2391,15 +2395,17 @@ void PlayerManagerImplementation::startListen(CreatureObject* creature, uint64 e
 	Locker clocker(entertainer, creature);
 
 	if (creature->isDancing() || creature->isPlayingMusic()) {
-		creature->sendSystemMessage("You cannot /watch while skill animating.");
-
+		StringIdChatParameter stringID;
+		stringID.setStringId("cmd_err", "locomotion_prose"); // "You cannot %TO while %TU."
+		stringID.setTO("/listen");
+		stringID.setTU("@locomotion_n:skillanimating"); // "Skill Animating"
+		creature->sendSystemMessage(stringID);
 		return;
 	} else if (!entertainer->isPlayingMusic()) {
-		creature->sendSystemMessage(entertainer->getCustomObjectName().toString() + " is not currently playing music.");
-
-		return;
-	} else if (entid == listenID) {
-		creature->sendSystemMessage("You are already listening " + entertainer->getCustomObjectName().toString() + ".");
+		StringIdChatParameter stringID;
+		stringID.setTT(entid);
+		stringID.setStringId("performance", "music_listen_not_playing"); // %TT is not playing a song.
+		creature->sendSystemMessage(stringID);
 
 		return;
 	}
@@ -2427,13 +2433,15 @@ void PlayerManagerImplementation::startListen(CreatureObject* creature, uint64 e
 
 	//creature->addWatcher(_this);
 
-	//if (isPlayer())
-	creature->sendSystemMessage("You begin to listen " + entertainer->getCustomObjectName().toString() + ".");
+	StringIdChatParameter stringID;
+	stringID.setTT(entid);
+	stringID.setStringId("performance", "music_listen_self"); // "You start listening to %TT."
+	creature->sendSystemMessage(stringID);
 
 	//setEntertainerBuffDuration(PerformanceType::DANCE, 0.0f);
 	//setEntertainerBuffStrength(PerformanceType::DANCE, 0.0f);
 
-	creature->info("started watching [" + entertainer->getCustomObjectName().toString() + "]");
+	creature->info("started listening to [" + entertainer->getCustomObjectName().toString() + "]");
 
 	creature->setListenToID(entertainer->getObjectID());
 	//watchID =  entid;
@@ -2587,7 +2595,7 @@ void PlayerManagerImplementation::updatePermissionName(CreatureObject* player, i
 		UnicodeString tag = permissionLevelList->getPermissionTag(permissionLevel);
 
 		TangibleObjectDeltaMessage3* tanod3 = new TangibleObjectDeltaMessage3(player);
-		tanod3->updateName(player->getDisplayedName(), tag);
+		tanod3->updateCustomName(player->getDisplayedName(), tag);
 		tanod3->close();
 		player->broadcastMessage(tanod3, true);
 
@@ -4846,3 +4854,104 @@ void PlayerManagerImplementation::enhanceCharacter(CreatureObject* player) {
 	if (message && player->isPlayerCreature())
 		player->sendSystemMessage("An unknown force strengthens you for battles yet to come.");
 }
+
+void PlayerManagerImplementation::sendAdminJediList(CreatureObject* player) {
+	Reference<ObjectManager*> objectManager = player->getZoneServer()->getObjectManager();
+
+	HashTable<String, uint64> names = nameMap->getNames();
+	HashTableIterator<String, uint64> iter = names.iterator();
+
+	VectorMap<UnicodeString, int> players;
+	uint32 a = STRING_HASHCODE("SceneObject.slottedObjects");
+	uint32 b = STRING_HASHCODE("SceneObject.customName");
+	uint32 c = STRING_HASHCODE("PlayerObject.jediState");
+
+	while (iter.hasNext()) {
+		uint64 creoId = iter.next();
+		VectorMap<String, uint64> slottedObjects;
+		UnicodeString playerName;
+		int state = -1;
+
+		objectManager->getPersistentObjectsSerializedVariable<VectorMap<String, uint64> >(a, &slottedObjects, creoId);
+		objectManager->getPersistentObjectsSerializedVariable<UnicodeString>(b, &playerName, creoId);
+
+		uint64 ghostId = slottedObjects.get("ghost");
+
+		if (ghostId == 0) {
+			continue;
+		}
+
+		objectManager->getPersistentObjectsSerializedVariable<int>(c, &state, ghostId);
+
+		if (state > 1) {
+			players.put(playerName, state);
+		}
+	}
+
+	ManagedReference<SuiListBox*> listBox = new SuiListBox(player, SuiWindowType::ADMIN_JEDILIST);
+	listBox->setPromptTitle("Jedi List");
+	listBox->setPromptText("This is a list of all characters with a jedi state of 2 or greater (Name - State).");
+	listBox->setCancelButton(true, "@cancel");
+
+	for (int i = 0; i < players.size(); i++) {
+		listBox->addMenuItem(players.elementAt(i).getKey().toString() + " - " + String::valueOf(players.get(i)));
+	}
+
+	Locker locker(player);
+
+	player->getPlayerObject()->closeSuiWindowType(SuiWindowType::ADMIN_JEDILIST);
+
+	player->getPlayerObject()->addSuiBox(listBox);
+	player->sendMessage(listBox->generateMessage());
+}
+
+void PlayerManagerImplementation::sendAdminList(CreatureObject* player) {
+	Reference<ObjectManager*> objectManager = player->getZoneServer()->getObjectManager();
+
+	HashTable<String, uint64> names = nameMap->getNames();
+	HashTableIterator<String, uint64> iter = names.iterator();
+
+	VectorMap<UnicodeString, int> players;
+	uint32 a = STRING_HASHCODE("SceneObject.slottedObjects");
+	uint32 b = STRING_HASHCODE("SceneObject.customName");
+	uint32 c = STRING_HASHCODE("PlayerObject.adminLevel");
+
+	while (iter.hasNext()) {
+		uint64 creoId = iter.next();
+		VectorMap<String, uint64> slottedObjects;
+		UnicodeString playerName;
+		int state = -1;
+
+		objectManager->getPersistentObjectsSerializedVariable<VectorMap<String, uint64> >(a, &slottedObjects, creoId);
+		objectManager->getPersistentObjectsSerializedVariable<UnicodeString>(b, &playerName, creoId);
+
+		uint64 ghostId = slottedObjects.get("ghost");
+
+		if (ghostId == 0) {
+			continue;
+		}
+
+		objectManager->getPersistentObjectsSerializedVariable<int>(c, &state, ghostId);
+
+		if (state != 0) {
+			players.put(playerName, state);
+		}
+	}
+
+	ManagedReference<SuiListBox*> listBox = new SuiListBox(player, SuiWindowType::ADMIN_LIST);
+	listBox->setPromptTitle("Admin List");
+	listBox->setPromptText("This is a list of all characters with a admin level of 1 or greater (Name - State).");
+	listBox->setCancelButton(true, "@cancel");
+
+	for (int i = 0; i < players.size(); i++) {
+		listBox->addMenuItem(players.elementAt(i).getKey().toString() + " - " + String::valueOf(players.get(i)));
+	}
+
+	Locker locker(player);
+
+	player->getPlayerObject()->closeSuiWindowType(SuiWindowType::ADMIN_LIST);
+
+	player->getPlayerObject()->addSuiBox(listBox);
+	player->sendMessage(listBox->generateMessage());
+}
+
