@@ -1610,15 +1610,23 @@ void PlayerObjectImplementation::doRecovery(int latency) {
 void PlayerObjectImplementation::activateRecovery() {
 	if (recoveryEvent == NULL) {
 		recoveryEvent = new PlayerRecoveryEvent(_this.getReferenceUnsafeStaticCast());
+	}
 
+	if (!recoveryEvent->isScheduled()) {
 		recoveryEvent->schedule(3000);
 	}
 }
 
 void PlayerObjectImplementation::activateForcePowerRegen() {
+	if (forcePowerRegen == 0) {
+		return;
+	}
+
 	if (forceRegenerationEvent == NULL) {
 		forceRegenerationEvent = new ForceRegenerationEvent(_this.getReferenceUnsafeStaticCast());
+	}
 
+	if (!forceRegenerationEvent->isScheduled()) {
 		float timer = ((float) getForcePowerRegen()) / 5.f;
 		float scheduledTime = 10 / timer;
 		uint64 miliTime = static_cast<uint64>(scheduledTime * 1000.f);
@@ -1734,14 +1742,6 @@ void PlayerObjectImplementation::disconnect(bool closeClient, bool doLock) {
 
 void PlayerObjectImplementation::clearDisconnectEvent() {
 	disconnectEvent = NULL;
-}
-
-void PlayerObjectImplementation::clearRecoveryEvent() {
-	recoveryEvent = NULL;
-}
-
-void PlayerObjectImplementation::clearForceRegenerationEvent() {
-	forceRegenerationEvent = NULL;
 }
 
 void PlayerObjectImplementation::maximizeExperience() {

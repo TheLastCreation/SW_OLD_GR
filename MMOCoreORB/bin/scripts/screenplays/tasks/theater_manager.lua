@@ -141,6 +141,41 @@ function TheaterManagerScreenPlay:completeCurrentStep(pPlayer)
 	CreatureObject(pPlayer):setScreenPlayState(stateNum, stateName)
 end
 
+<<<<<<< HEAD
+=======
+-- Teaches the player the skills for completing a series
+function TheaterManagerScreenPlay:teachSkills(pPlayer)
+	local curSeries = self:getCurrentSeries(pPlayer)
+
+	ObjectManager.withCreaturePlayerObject(pPlayer, function(player, playerObject)
+		if (curSeries == 1) then
+			playerObject:addAbility("startDance+theatrical")
+			playerObject:addAbility("startDance+theatrical2")
+		elseif (curSeries == 2) then
+			playerObject:addAbility("startMusic+western")
+		end
+	end)
+end
+
+-- Completes the player's current series
+function TheaterManagerScreenPlay:completeCurrentSeries(pPlayer)
+	local curSeries = self:getCurrentSeries(pPlayer)
+
+	if (curSeries == 0) then
+		printf("Error in TheaterManagerScreenPlay:completeCurrentSeries(), player is not currently participating in a Theater Manager series.")
+		return
+	end
+
+	CreatureObject(pPlayer):setScreenPlayState(curSeries, "theater_manager_series_completed")
+	self:setCurrentSeries(pPlayer, 0)
+end
+
+-- Checks if the player's series is completed
+function TheaterManagerScreenPlay:isSeriesComplete(pPlayer, type)
+	return CreatureObject(pPlayer):hasScreenPlayState(type, "theater_manager_series_completed")
+end
+
+>>>>>>> origin/master
 -- Get's the player's current series, dance or music
 function TheaterManagerScreenPlay:getCurrentSeries(pPlayer)
 	local curSeries = readScreenPlayData(pPlayer, "theaterManager", "currentSeries")
@@ -790,11 +825,21 @@ end
 function TheaterManagerScreenPlay:getRequiredPromotions(step)
 	if (step == 5) then
 		return self.requiredPromotions[1]
+<<<<<<< HEAD
 	elseif (step == 11) then
 		return self.requiredPromotions[2]
 	elseif (step == 17) then
 		return self.requiredPromotions[3]
 	end
+=======
+	elseif (step == 10) then
+		return self.requiredPromotions[2]
+	elseif (step == 15) then
+		return self.requiredPromotions[3]
+	end
+
+	return 0
+>>>>>>> origin/master
 end
 
 -- Sets the player's currently completed promotions
@@ -843,9 +888,15 @@ function TheaterManagerScreenPlay:notifyPromotionObserver(pPlayer, pEntertained)
 
 	local popStep = 1
 
+<<<<<<< HEAD
 	if (currentStep == 11) then
 		popStep = 2
 	elseif (currentStep == 17) then
+=======
+	if (currentStep == 10) then
+		popStep = 2
+	elseif (currentStep == 15) then
+>>>>>>> origin/master
 		popStep = 3
 	end
 

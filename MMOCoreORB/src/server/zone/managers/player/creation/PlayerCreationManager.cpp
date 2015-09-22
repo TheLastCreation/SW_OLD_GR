@@ -45,8 +45,8 @@ PlayerCreationManager::PlayerCreationManager() :
 	professionDefaultsInfo.setNoDuplicateInsertPlan();
 	hairStyleInfo.setNoDuplicateInsertPlan();
 
-	startingCash = 5000;
-	startingBank = 10000;
+	startingCash = 100;
+	startingBank = 1000;
 
 	freeGodMode = false;
 
@@ -520,7 +520,7 @@ bool PlayerCreationManager::createCharacter(MessageCallback* data) {
 							Time timeVal(sec);
 
 							if (timeVal.miliDifference() < 3600000) {
-								ErrorMessage* errMsg = new ErrorMessage("Create Error", "You are only permitted to create one character every 1 hour. Repeat attempts prior to 1 hour elapsing will reset the timer.", 0x0);
+								ErrorMessage* errMsg = new ErrorMessage("Create Error", "Welcome to Swggr You are only permitted to create one character every 1 hour. Repeat attempts prior to 1 hour elapsing will reset the timer.", 0x0);
 								client->sendMessage(errMsg);
 
 								playerCreature->destroyPlayerCreatureFromDatabase(true);
@@ -538,7 +538,7 @@ bool PlayerCreationManager::createCharacter(MessageCallback* data) {
 						Time lastCreatedTime = lastCreatedCharacter.get(accID);
 
 						if (lastCreatedTime.miliDifference() < 3600000) {
-							ErrorMessage* errMsg = new ErrorMessage("Create Error", "You are only permitted to create one character every 1 hour. Repeat attempts prior to 1 hour elapsing will reset the timer.", 0x0);
+							ErrorMessage* errMsg = new ErrorMessage("Create Error", "Welcome to Swggr You are only permitted to create one character every 1 hour. Repeat attempts prior to 1 hour elapsing will reset the timer.", 0x0);
 							client->sendMessage(errMsg);
 
 							playerCreature->destroyPlayerCreatureFromDatabase(true);
@@ -642,7 +642,11 @@ bool PlayerCreationManager::createCharacter(MessageCallback* data) {
 
 	ManagedReference<SuiMessageBox*> box = new SuiMessageBox(playerCreature, SuiWindowType::NONE);
 	box->setPromptTitle("PLEASE NOTE");
+<<<<<<< HEAD
 	box->setPromptText("Welcome to SWG-GR You are limited to creating one character every 1 hour. Attempting to create another character or deleting your character before the 1 hour timer expires will reset the timer.");
+=======
+	box->setPromptText("Welcome to Swggr You are limited to creating one character every 1 hour. Attempting to create another character or deleting your character before the 1 hour timer expires will reset the timer.");
+>>>>>>> origin/master
 
 	ghost->addSuiBox(box);
 	playerCreature->sendMessage(box->generateMessage());

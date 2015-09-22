@@ -94,7 +94,11 @@ int ForceShrineMenuComponent::handleObjectMenuSelect(SceneObject* sceneObject, C
                 } else  {
                     //getChatManager()->broadcastGalaxy(NULL, "distubance in the force")
                     //ManagedReference<ZoneServer*> zoneServer;
+<<<<<<< HEAD
                 ghost->getZoneServer()->getChatManager()->broadcastGalaxy(NULL, "\\#ffb90fIMPERIAL COMMUNICATION FROM THE REGIONAL GOVERNOR: Master Obi has detected a vergence in the Force.");
+=======
+                ghost->getZoneServer()->getChatManager()->broadcastGalaxy(NULL, "\\#ffb90fIMPERIAL COMMUNICATION FROM THE REGIONAL GOVERNOR: Lord Vader has detected a vergence in the Force.");
+>>>>>>> origin/master
                 ManagedReference<SuiMessageBox*> box = new SuiMessageBox(creature, SuiWindowType::NONE);
                 box->setPromptTitle("@jedi_trials:padawan_trials_title"); // Jedi Trials
                 box->setPromptText("@jedi_trials:padawan_trials_completed");

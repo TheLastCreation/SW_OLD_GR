@@ -43,6 +43,11 @@ includeFile("quest/generic/scientist_target_spy.lua")
 
 --CoA
 includeFile("quest/coa/coa2_drall_guard.lua")
+<<<<<<< HEAD
+=======
+includeFile("quest/coa/caravan_leader_coa3.lua")
+includeFile("quest/coa/caravan_thug_coa3.lua")
+>>>>>>> origin/master
 includeFile("quest/coa/coa2_drall_scientist.lua")
 includeFile("quest/coa/coa2_imperial_commander.lua")
 includeFile("quest/coa/coa2_imperial_coordinator.lua")
@@ -73,6 +78,33 @@ includeFile("quest/coa/coa3_tactical_rebel.lua")
 includeFile("quest/coa/coa3_warehouse_captain.lua")
 includeFile("quest/coa/coa3_warehouse_guard.lua")
 includeFile("quest/coa/coa3_warehouse_thug.lua")
+<<<<<<< HEAD
+=======
+includeFile("quest/coa/drall_guard_coa2.lua")
+includeFile("quest/coa/imperial_coordinator.lua")
+includeFile("quest/coa/imperial_informant_coa2.lua")
+includeFile("quest/coa/imperial_research_captain_coa3.lua")
+includeFile("quest/coa/imperial_research_guard_coa3.lua")
+includeFile("quest/coa/imperial_slicer_coa2.lua")
+includeFile("quest/coa/imperial_slicer_gang_coa2.lua")
+includeFile("quest/coa/information_officer.lua")
+includeFile("quest/coa/lookout_coa3.lua")
+includeFile("quest/coa/lyda_thug_coa2.lua")
+includeFile("quest/coa/rebel_coordinator.lua")
+includeFile("quest/coa/rebel_lyda_coa2.lua")
+includeFile("quest/coa/rebel_research_attacker_1_coa3.lua")
+includeFile("quest/coa/rebel_research_attacker_2_coa3.lua")
+includeFile("quest/coa/rebel_research_captain_coa3.lua")
+includeFile("quest/coa/rebel_research_guard_coa3.lua")
+includeFile("quest/coa/rebel_sympathizer_coa2.lua")
+includeFile("quest/coa/rebel_vacca_coa3.lua")
+includeFile("quest/coa/relay_captain_coa2.lua")
+includeFile("quest/coa/relay_guard_coa2.lua")
+includeFile("quest/coa/tactical_officer.lua")
+includeFile("quest/coa/warehouse_captain_coa3.lua")
+includeFile("quest/coa/warehouse_guard_coa3.lua")
+includeFile("quest/coa/warehouse_thug_coa3.lua")
+>>>>>>> origin/master
 
 -- Corellia
 includeFile("quest/corellia/aldalad.lua")

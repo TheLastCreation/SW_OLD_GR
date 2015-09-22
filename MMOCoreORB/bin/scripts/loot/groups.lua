@@ -168,6 +168,10 @@ includeFile("groups/armor_attachments.lua")
 includeFile("groups/clothing_attachments.lua")
 includeFile("groups/coa_encoded_disk_fragments.lua")
 includeFile("groups/coa2_decoder_components.lua")
+<<<<<<< HEAD
+=======
+includeFile("groups/coa2_rebel_message.lua")
+>>>>>>> origin/master
 includeFile("groups/color_crystals.lua")
 includeFile("groups/crystal_allayas_exile.lua")
 includeFile("groups/crystal_allayas_redemption.lua")
